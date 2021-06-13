@@ -1,0 +1,25 @@
+
+# K8S PREFLIGHT SECTION
+check_version_exists: yes # You can disable this if there are any issues
+k8s_version: 1.21.1-00 # To get a list of all versions run: curl -s https://packages.cloud.google.com/apt/dists/kubernetes-xenial/main/binary-amd64/Packages | grep 'Package: kubelet' -A 2 | grep 'Version' | awk '{print $2}'
+
+# K8S SECTION -> all settings needed to setup the k8s cluster
+multi_master: no # Will this cluster be a multi master cluster
+pod_cidr: 192.168.0.0/16 # The POD CIDR. Calico by default uses this pod cidr, if you use calico and you are applying the default config ( pod_network_setup_command ), then leave it as it is or provide custom configurations
+
+setup_cni: yes
+cni_setup_command: kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')" # CNI custom resources
+cni_controller_name: weave # pod name that will be checked if it's running to verify that the CNI has been applied successfully
+
+
+generate_join_commands: yes
+output_dir: ./output
+
+# SECURITY SECTION
+
+check_cluster_role_bindings: yes # Check there is exactly one cluster role binding
+fix_file_permissions: yes # Attempt to fix the file permissions and ownership
+fix_k8s_components: yes # Attempt to fix k8s components by making them a bit more secure
+check_roles_have_wildcard_all: yes # Checks if there are any roles that have a wildcard set to "*" not a very good check, so disable if errors
+check_default_namespace_empty: yes # Checks that there is only one service in the default namespace and nothing else
+

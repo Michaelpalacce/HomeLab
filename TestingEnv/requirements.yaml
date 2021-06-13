@@ -1,0 +1,5 @@
+- name: michaelpalacce.docker
+- name: michaelpalacce.helm
+- name: michaelpalacce.kubernetes_preflight
+- name: michaelpalacce.kubernetes_cluster
+- name: michaelpalacce.kubernetes_master_security
