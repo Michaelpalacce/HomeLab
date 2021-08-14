@@ -1,0 +1,26 @@
+version: '3'
+
+networks:
+    net:
+
+services:
+    jenkins:
+        container_name: jenkins
+        image: jenkins/jenkins:2.306
+        ports:
+            - "3000:8080"
+        volumes:
+            - ./jenkins_home:/var/jenkins_home
+            - ./ssh:/ssh
+        networks:
+            - net
+
+    remote-agent-ansible:
+        container_name: remote-agent-ansible
+        build:
+            dockerfile: Dockerfile-agent-ansible
+            target: remote-agent-ansible
+            context: .
+        networks:
+            - net
+        command: java -jar agent.jar -jnlpUrl http://jenkins:8080/computer/local-agent-1-ansible/jenkins-agent.jnlp -secret 9373664563da653626fa5a4aa71ba7ac8a330361366ed123b30b70799fd88d35 -workDir "/opt/jenkins"

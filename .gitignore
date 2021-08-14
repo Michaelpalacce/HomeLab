@@ -1,3 +1,7 @@
-TestingEnv/.vagrant
 .idea
-output
+.vagrant
+/jenkins-data/jenkins_home
+/teamcity/teamcity_data
+/teamcity/teamcity_logs
+/teamcity/ansible-remote-agent
+TestingEnv
