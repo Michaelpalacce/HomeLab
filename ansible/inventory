@@ -1,0 +1,19 @@
+[init_master]
+192.168.1.109
+
+# All the workers with the logging too
+[workers]
+192.168.1.182
+
+# This group has all the servers
+[all:children]
+init_master
+workers
+
+#Variables for all the servers
+[all:vars]
+ansible_connection=ssh
+ansible_user=ansible
+ansible_ssh_pass=ansible
+ansible_become_pass=ansible
+ansible_ssh_common_args='-o StrictHostKeyChecking=no'

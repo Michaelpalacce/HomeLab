@@ -1,0 +1,62 @@
+- hosts: all
+  become: yes
+  any_errors_fatal: yes
+  tags:
+      - preflight
+  vars_files:
+      - "./vars/main.yml"
+  roles:
+      - michaelpalacce.docker
+      - michaelpalacce.helm
+      - michaelpalacce.kubernetes_preflight
+
+- hosts: init_master
+  become: yes
+  any_errors_fatal: yes
+  tags:
+      - setup
+      - setup-master-node
+  vars_files:
+      - "./vars/main.yml"
+  roles:
+      - michaelpalacce.kubernetes_cluster
+
+- hosts: workers
+  name: Joins all the workers to the cluster
+  tags:
+      - setup
+      - setup-join-workers
+  become: yes
+  any_errors_fatal: true
+  tasks:
+      - name: Attempt to check if this node can join a cluster. Don't do anything if preflight checks cannot pass
+        command: kubeadm init phase preflight
+        ignore_errors: yes
+        register: preflight
+
+      - name: Copy the join command to server location
+        copy:
+            src: "output/join-command"
+            dest: /tmp/join-command.sh
+            mode: 0755
+        when: preflight.rc == 0
+
+      - name: Join the node to cluster
+        command: sh /tmp/join-command.sh
+        when: preflight.rc == 0
+
+- hosts: init_master
+  name: Untaint the master
+  become: yes
+  tags:
+      - setup
+      - setup-untaint-master
+  vars_files:
+      - "./vars/main.yml"
+  tasks:
+      - name: Untaint the master
+        command: kubectl taint nodes --all node-role.kubernetes.io/master-
+        when: untaint_master_node
+        register: untaintResult
+        failed_when: untaintResult.stdout.find( 'untainted' ) == -1
+        ignore_errors: true

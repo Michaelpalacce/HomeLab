@@ -5,3 +5,4 @@
 /teamcity/teamcity_logs
 /teamcity/ansible-remote-agent
 TestingEnv
+output/
