@@ -1,0 +1,9 @@
+apiVersion: v2
+name: monitoring
+description: Installs Prometheus with Grafana. Sets up scrapers -> Node-Exporter + cAdvisor. Limited resources of the PIs are kept in mind
+type: application
+version: 1.0.0
+appVersion: "1.0.0"
+maintainers:
+    - name: Stefan Genov
+      email: sgenov94@gmail.com

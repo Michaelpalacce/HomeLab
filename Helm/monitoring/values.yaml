@@ -1,0 +1,56 @@
+prometheus:
+    image: quay.io/prometheus/prometheus
+    tag: main
+    port: 9090
+#   nodeSelectorKey and nodeSelectorValue are used if startOnMaster is set to false
+#   if you don't want to do a nodeSelector, leave nodeSelectorKey empty
+    nodeSelector:
+        key: logging
+        value: "" # Make sure this is empty
+#   How long will data scraped by prometheus be kept on the fs
+    retentionTime: 7d
+    pathToStoreData: /opt/prometheus
+
+
+# Remove cadvisor if you don't want to have this scraper
+cadvisor:
+    image: gcr.io/cadvisor/cadvisor
+    tag: v0.38.0
+    port: 8080
+#   Remove this if you do not want to add any tolerations.
+#   If you want to, then the structure is an array of objects. Each object must have a key and an effect. Value is optional only set it if you need to.
+    tolerations:
+        - key: node-role.kubernetes.io/master
+          effect: NoSchedule
+    limits:
+#       Increase this if you don't want throttling. Generally it's ok for the scrapers to throttle. Cadvisor specifically is very cpu hungry.
+        cpu: 150m
+        memory: 512Mi
+
+# Remove nodeExporter if you don't want to have this scraper
+nodeExporter:
+    image: prom/node-exporter
+    tag: v1.1.2
+#   Remove this if you do not want to add any tolerations.
+#   If you want to, then the structure is an array of objects. Each object must have a key and an effect. Value is optional only set it if you need to.
+    tolerations:
+        - key: node-role.kubernetes.io/master
+          effect: NoSchedule
+#   NodeExporter runs on the hostNetwork, so 9100 must be open
+    port: 9100
+
+grafana:
+    image: grafana/grafana
+    tag: 7.5.4
+    port: 3000
+    pathToStoreData: /opt/grafana
+#   If not set, then no nodePort will be set and the service will be of type CLusterIP
+    nodePort: 30100
+#   nodeSelectorKey and nodeSelectorValue are used if startOnMaster is set to false
+#   if you don't want to do a nodeSelector, leave nodeSelectorKey empty
+    nodeSelector:
+        key: logging
+        value:
+    limits:
+        cpu: 250m
+        memory: 512Mi

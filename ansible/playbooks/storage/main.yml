@@ -1,0 +1,67 @@
+- hosts: all
+  name: Setup Longhorn dependencies
+  become: yes
+  tags:
+      - storage
+      - storage-setup-longhorn-dependencies
+  vars_files:
+      - "./vars/main.yml"
+  tasks:
+      - name: Ensure Longhorn dependencies are installed
+        apt:
+            name: "{{ packages }}"
+            state: present
+        vars:
+            packages:
+                - open-iscsi
+                - curl
+                - grep
+                - nfs-common
+                - jq
+
+- hosts: init_master
+  name: Setup Longhorn storage
+  become: yes
+  tags:
+      - storage
+      - storage-setup-longhorn
+  vars_files:
+      - "./vars/main.yml"
+  tasks:
+      - name: Prechecks if everything is ok
+        shell: curl -sSfL https://raw.githubusercontent.com/longhorn/longhorn/v1.1.2/scripts/environment_check.sh | bash
+        register: prechecks
+        failed_when: prechecks.stdout.find( "MountPropagation is enabled" ) == -1 or prechecks.stdout.find( "unable to recognize" ) != -1
+        changed_when: no
+        when: longhorn_prechecks
+
+      - name: Applying Longhorn Installation ( This will take a long time to complete )
+        command: kubectl apply -f https://raw.githubusercontent.com/longhorn/longhorn/v1.1.2/deploy/longhorn.yaml
+
+- hosts: init_master
+  name: Setup ingress
+  become: yes
+  tags:
+      - storage
+      - storage-setup-longhorn-ingress
+  vars_files:
+      - "./vars/main.yml"
+  tasks:
+      - name: Setup an auth file to setup authentication
+        command: USER=admin; PASSWORD=admin; echo "${USER}:$(openssl passwd -stdin -apr1 <<< ${PASSWORD})" >> auth
+
+      - name: Add a basic-auth secret to use for the ingress
+        command: kubectl -n longhorn-system create secret generic basic-auth --from-file=auth
+
+      - name: Ensure the auth file is missing
+        file:
+            path: ./auth
+            state: absent
+
+      - name: Ensure latest manifest is present
+        copy:
+            dest: ingress.yaml
+            src: ./manifests/ingress.yaml
+
+      - name: Apply the ingress manifest
+        command: kubectl -n longhorn-system apply -f longhorn-ingress.yml

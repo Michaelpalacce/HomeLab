@@ -1,0 +1,123 @@
+{{- with .Values.prometheus }}
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+    name: prometheus
+rules:
+    - apiGroups: [""]
+      resources:
+          - nodes
+          - nodes/proxy
+          - services
+          - endpoints
+          - pods
+      verbs: ["get", "list", "watch"]
+    - apiGroups:
+          - extensions
+      resources:
+          - ingresses
+      verbs: ["get", "list", "watch"]
+    - nonResourceURLs: ["/metrics"]
+      verbs: ["get"]
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+    name: prometheus
+roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: prometheus
+subjects:
+    - kind: ServiceAccount
+      name: default
+      namespace: {{ $.Release.Namespace }}
+
+---
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+    name: prometheus
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app: prometheus
+spec:
+    serviceName: prometheus
+    replicas: 1
+    selector:
+        matchLabels:
+            app: prometheus
+    template:
+        metadata:
+            labels:
+                app: prometheus
+            annotations:
+                prometheus.io/scrape: "true"
+                prometheus.io/port: "{{ .port }}"
+        spec:
+            {{- with .nodeSelector }}
+            nodeSelector:
+                {{ .key }}: {{ .value }}
+            {{- end }}
+            initContainers:
+                - name: logs-dir-ownership
+                  image: alpine:3
+                  command:
+                      - chown
+                      - -R
+                      - 65534:65534 # 65534 is the prometheus uid
+                      - /prometheus
+                  volumeMounts:
+                      -   name: data
+                          mountPath: /prometheus
+            containers:
+                - name: prometheus
+                  image: {{ .image }}:{{ .tag }}
+                  imagePullPolicy: IfNotPresent
+                  securityContext:
+                      privileged: true
+                  args:
+                      - '--storage.tsdb.retention.time={{ .retentionTime }}'
+                      - '--storage.tsdb.path=/prometheus'
+                      - '--config.file=/etc/prometheus/prometheus.yml'
+                  command:
+                      - /bin/prometheus
+                  ports:
+                      - name: web
+                        containerPort: {{ .port }}
+                  volumeMounts:
+                      - name: config-volume
+                        mountPath: /etc/prometheus
+                      - name: data
+                        mountPath: /prometheus
+            restartPolicy: Always
+            terminationGracePeriodSeconds: 0
+            volumes:
+                - name: config-volume
+                  configMap:
+                      name: prometheus-config
+                - name: data
+                  hostPath:
+                      path: {{ .pathToStoreData }}
+                      type: DirectoryOrCreate
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: prometheus
+    namespace: {{ $.Release.Namespace }}
+spec:
+    selector:
+        app: prometheus
+    ports:
+        - name: prometheus
+          protocol: TCP
+          port: {{ .port }}
+
+{{- end }}

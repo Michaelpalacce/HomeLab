@@ -1,0 +1,30 @@
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+    name: local-storage
+provisioner: kubernetes.io/no-provisioner
+volumeBindingMode: WaitForFirstConsumer
+reclaimPolicy: Retain
+
+
+{{- with .Values.prometheus }}
+
+---
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: es
+    labels:
+        type: local
+        app: elasticsearch
+spec:
+    storageClassName: local-storage
+    capacity:
+        storage: {{ $storageClaim }}
+    accessModes:
+        - ReadWriteOnce
+    hostPath:
+        path: "/opt/logsLocalStoragePv"
+
+{{- end }}
