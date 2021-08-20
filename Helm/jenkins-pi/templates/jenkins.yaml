@@ -1,0 +1,59 @@
+apiVersion: v1
+kind: Service
+metadata:
+    name: jenkins
+    namespace: {{ .Release.Namespace }}
+spec:
+    ports:
+        - port: 8080
+          nodePort: 30201
+          protocol: TCP
+          targetPort: http-jenkins
+    selector:
+        app: jenkins
+    type: NodePort
+
+---
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+    name: jenkins
+    namespace: {{ $.Release.Namespace }}
+spec:
+    serviceName: jenkins
+    replicas: 1
+    selector:
+        matchLabels:
+            app: jenkins
+    template:
+        metadata:
+            labels:
+                app: jenkins
+        spec:
+            securityContext:
+                runAsUser: 1000
+                runAsGroup: 1000
+                fsGroup: 1000
+            serviceAccountName: jenkins
+            containers:
+                - name: jenkins
+                  image: jenkins/jenkins:2.307
+                  ports:
+                      - containerPort: 8080
+                        name: http-jenkins
+                        protocol: TCP
+                  volumeMounts:
+                      - mountPath: /var/jenkins_home
+                        name: jenkins-home
+                  resources:
+                      requests:
+                          cpu: 100m
+                          memory: 500Mi
+                      limits:
+                          cpu: {{ .Values.jenkins.limits.cpu }}
+                          memory: {{ .Values.jenkins.limits.memory }}
+            volumes:
+                - name: jenkins-home
+                  persistentVolumeClaim:
+                      claimName: jenkins-pvc

@@ -1,7 +1,7 @@
 kind: StorageClass
 apiVersion: storage.k8s.io/v1
 metadata:
-    name: jenkins-2replicas
+    name: joplin-2replicas
 provisioner: driver.longhorn.io
 allowVolumeExpansion: true
 parameters:
@@ -9,19 +9,16 @@ parameters:
     staleReplicaTimeout: "2800"
     fromBackup: ""
 
-{{- with .Values.jenkins }}
 ---
 
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-    name: jenkins-pvc
+    name: joplin-pvc
 spec:
     accessModes:
         - ReadWriteMany
-    storageClassName: jenkins-2replicas
+    storageClassName: joplin-2replicas
     resources:
         requests:
-            storage: 5Gi
-
-{{- end }}
+            storage: 2Gi

@@ -1,0 +1,33 @@
+- hosts: init_master
+  name: Setup Monitoring helm chart
+  become: yes
+  tags:
+      - deploy
+      - deploy-monitorin
+  vars_files:
+      - "./vars/main.yml"
+  tasks:
+      - name: Create monitoring namespace
+        command: kubeclt create ns monitoring
+
+      - name: Package Helm chart
+        command: helm package ../../../Helm/monitoring
+
+#      - name: Copy helm package to cluster
+#        copy:
+#            src: monitoring-1.0.0.tgz
+#            dest: monitoring.tgz
+#
+#      - name: Apply Helm Chart
+
+- hosts: init_master
+  name: Setup Jenkins CI/CD
+  become: yes
+  tags:
+      - deploy
+      - deploy-jenkins
+  vars_files:
+      - "./vars/main.yml"
+  tasks:
+      - name: Create jenkins namespace
+        command: kubectl create ns jenkins
