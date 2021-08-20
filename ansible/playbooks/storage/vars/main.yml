@@ -1,1 +1,2 @@
 longhorn_prechecks: yes
+longhornNodePort: 30200

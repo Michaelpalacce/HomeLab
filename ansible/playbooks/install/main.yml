@@ -10,6 +10,25 @@
       - michaelpalacce.helm
       - michaelpalacce.kubernetes_preflight
 
+- hosts: all
+  name: Setup Storage dependencies
+  become: yes
+  tags:
+      - storage
+      - storage-setup-dependencies
+  vars_files:
+      - "./vars/main.yml"
+  tasks:
+      - name: Ensure dependencies are installed
+        apt:
+            name: "{{ packages }}"
+            state: present
+        vars:
+            packages:
+                - open-iscsi
+                - nfs-common
+                - jq
+
 - hosts: init_master
   become: yes
   any_errors_fatal: yes

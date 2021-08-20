@@ -8,6 +8,7 @@ The purpose of this project is to setup my Kubernetes HomeLab environment
 
 ### Prerequisites
 - All the RPIs should have a unique hostname `sudo hostnamectl set-hostname {something_unique}`
+- RUN: `iptables -F && update-alternatives --set iptables /usr/sbin/iptables-legacy && update-alternatives --set ip6tables /usr/sbin/ip6tables-legacy && reboot` If you want networking to work.
 
 ### Software needed
 - Ansible 2.9.x [Install Instructions](https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-ansible-on-ubuntu-20-04)

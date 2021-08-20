@@ -1,29 +1,26 @@
-- hosts: all
-  name: Setup OpenEBS dependencies
-  become: yes
-  tags:
-      - storage
-      - storage-setup-openebs-dependencies
-  vars_files:
-      - "./vars/main.yml"
-  tasks:
-      - name: Ensure dependencies are installed
-        apt:
-            name: "{{ packages }}"
-            state: present
-        vars:
-            packages:
-                - open-iscsi
-                - nfs-common
-
 - hosts: init_master
-  name: Setup OpenEBS
+  name: Setup Longhorn storage
   become: yes
   tags:
       - storage
-      - storage-setup-openebs
+      - storage-setup-longhorn
   vars_files:
       - "./vars/main.yml"
   tasks:
-      - name: Add a basic-auth secret to use for the ingress
-        command: kubectl apply -f https://openebs.github.io/charts/openebs-operator.yaml
+      - name: Create longhorn-system namespace
+        command: kubectl create ns longhorn-system
+
+      - name: Prechecks if everything is ok
+        shell: curl -sSfL https://raw.githubusercontent.com/longhorn/longhorn/v1.1.2/scripts/environment_check.sh | bash
+        register: prechecks
+        failed_when: prechecks.stdout.find( "MountPropagation is enabled" ) == -1 or prechecks.stdout.find( "unable to recognize" ) != -1
+        changed_when: no
+        when: longhorn_prechecks
+
+      - name: Applying Longhorn Installation ( This will take a long time to complete )
+        command: kubectl apply -f https://raw.githubusercontent.com/longhorn/longhorn/v1.1.2/deploy/longhorn.yaml
+
+      - name: Patch Longhorn frontend to be a nodeport on port {{ longhornNodePort }}
+        command: "{{ item }}"
+        with_items:
+            - "kubectl patch -n longhorn-system svc longhorn-frontend --type='json' -p='[{\"op\":\"replace\",\"path\":\"/spec/type\",\"value\":\"NodePort\"},{\"op\":\"add\",\"path\":\"/spec/ports/0/nodePort\",\"value\":{{ longhornNodePort }}}]'"
