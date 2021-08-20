@@ -4,7 +4,7 @@ k8s_version: 1.21.1-00 # K8S version to install
 
 multi_master: no
 load_balancer:
-pod_cidr: 10.0.0.0/16
+pod_cidr: 10.244.0.0/16 # For Flannel this HAS TO BE 10.244.0.0/16
 service_cidr: 10.96.0.0/12
 
 setup_cni: yes # Do you want there to be a cni setup for u or will u do it manually
