@@ -1,22 +1,3 @@
-# Documentation:
-# Resource Type: Deployment https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
-# Deployment created: grafana
-# Namespace: monitoring
-#
-# Tolerations: node-role.kubernetes.io/master:NoSchedule   -> We add this toleration because we want the pod to be scheduled on the controlplane so we don't take resources from the workers
-# nodeSelector: node-role.kubernetes.io/master   -> Forces the grafana pod to be scheduled on the controlplane/master
-#
-# InitContainers:
-#   1. logs-dir-ownership -> changes the ownership of the hostPath mounted folder so we can get data that is persistent
-#
-# Requests: { CPU: 100m, RAM: 500Mi }
-# Limits: { CPU: 500m, RAM: 1Gi }
-#
-# Notes:
-#   1. All Grafana data will be stored on the master node at: /opt/grafana
-#   2. The service that is defined is of type NodePort, exposing grafana on the master node on port: 30080
-#
-
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -34,31 +15,11 @@ spec:
             labels:
                 app: grafana
         spec:
-            {{- with .Values.grafana.nodeSelector }}
-            {{- if .master }}
-            tolerations:
-              - key: node-role.kubernetes.io/master
-                effect: NoSchedule
-            {{- end }}
-            nodeSelector:
-                {{- if .master }}
-                node-role.kubernetes.io/master: ""
-                {{- else }}
-                {{ .key }}: {{ .value }}
-                {{- end }}
-            {{- end }}
-            initContainers:
-                - name: logs-dir-ownership
-                  image: alpine:3
-                  command:
-                      - chown
-                      - -R
-                      - 472:472 # 472 is grafana uid
-                      - /var/lib/grafana
-                  volumeMounts:
-                      - name: grafana
-                        mountPath: /var/lib/grafana
             terminationGracePeriodSeconds: 0
+            securityContext:
+                runAsUser: 472
+                runAsGroup: 472
+                fsGroup: 472
             restartPolicy: Always
             containers:
                 - image: {{ .Values.grafana.image }}:{{ .Values.grafana.tag }}
@@ -90,9 +51,8 @@ spec:
                         name: grafana
             volumes:
                 - name: grafana
-                  hostPath:
-                      path: {{ .Values.grafana.pathToStoreData }}
-                      type: DirectoryOrCreate
+                  persistentVolumeClaim:
+                      claimName: grafana-pvc
 ---
 apiVersion: v1
 kind: Service

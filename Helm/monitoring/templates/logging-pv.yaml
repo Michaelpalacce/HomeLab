@@ -1,30 +1,45 @@
 kind: StorageClass
 apiVersion: storage.k8s.io/v1
 metadata:
-    name: local-storage
-provisioner: kubernetes.io/no-provisioner
-volumeBindingMode: WaitForFirstConsumer
-reclaimPolicy: Retain
+    name: longhorn-2replicas
+provisioner: driver.longhorn.io
+allowVolumeExpansion: true
+parameters:
+    numberOfReplicas: "2"
+    staleReplicaTimeout: "2800"
+    fromBackup: ""
 
-
-{{- with .Values.prometheus }}
-
+{{- with .Values.grafana }}
 ---
 
 apiVersion: v1
-kind: PersistentVolume
+kind: PersistentVolumeClaim
 metadata:
-    name: es
-    labels:
-        type: local
-        app: elasticsearch
+    name: grafana-pvc
 spec:
-    storageClassName: local-storage
-    capacity:
-        storage: {{ $storageClaim }}
     accessModes:
-        - ReadWriteOnce
-    hostPath:
-        path: "/opt/logsLocalStoragePv"
+        - ReadWriteMany
+    storageClassName: longhorn-2replicas
+    resources:
+        requests:
+            storage: 2Gi
 
 {{- end }}
+
+{{- with .Values.grafana }}
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: prometheus-pvc
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: longhorn-2replicas
+    resources:
+        requests:
+            storage: 2Gi
+
+{{- end }}
+

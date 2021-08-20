@@ -1,18 +1,6 @@
 {{- $relNamespace := .Release.Namespace -}}
 
 {{- with .Values.nodeExporter }}
-# Documentation:
-# Resource Type: DaemonSet https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/
-# Deployment created: node-exporter
-# Namespace: monitoring
-#
-# Requests: { CPU: 100m } -> node-exporter is not CPU intensive or memory intensive but if it does not behave as it should, consider adding some
-#
-# Notes:
-#   1. The annotations attached are for prometheus to know where to scrape. The port comes from the defined port in the container spec
-#   2. DaemonSets deploy one instance of the pod on each node
-#
-
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
@@ -33,16 +21,6 @@ spec:
         prometheus.io/scrape: "true"
         prometheus.io/port: "{{ .port }}"
     spec:
-      {{- with .tolerations }}
-      tolerations:
-        {{- range . }}
-        - key: {{ .key }}
-          effect: {{ .effect }}
-          {{- if .value }}
-          value: {{ .value }}
-          {{- end }}
-        {{- end }}
-      {{- end }}
       hostPID: true
       hostIPC: true
       hostNetwork: true

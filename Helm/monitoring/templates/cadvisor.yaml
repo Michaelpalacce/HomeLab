@@ -1,18 +1,6 @@
 {{- $relNamespace := .Release.Namespace -}}
 
 {{- with .Values.cadvisor }}
-# Documentation:
-# Resource Type: DaemonSet https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/
-# DaemonSet created: cadvisor
-# Namespace: monitoring
-#
-# Requests: { CPU: 100m, RAM: 200Mi }
-# Limits: { CPU: 150m, RAM: 2000Mi } -> Low CPU will result in slower scrape speeds. This should not be an issue but if it is, consider raising the CPU limit ( however this will take more and more resources the more nodes you have )
-#
-# Notes:
-#   1. The annotations attached are for prometheus to know where to scrape. The port comes from the defined port in the container spec
-#   2. DaemonSets deploy one instance of the pod on each node, so be careful how much resources you give to this one as cAdvisor is quite resource hungry.
-#
 
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
@@ -95,16 +83,6 @@ spec:
                 prometheus.io/port: "{{ .port }}"
         spec:
             serviceAccountName: cadvisor
-            {{- with .tolerations }}
-            tolerations:
-              {{- range . }}
-                - key: {{ .key }}
-                  effect: {{ .effect }}
-                  {{- if .value }}
-                  value: {{ .value }}
-                  {{- end }}
-              {{- end }}
-            {{- end }}
             containers:
                 - name: cadvisor
                   image: {{ .image }}:{{ .tag }}
