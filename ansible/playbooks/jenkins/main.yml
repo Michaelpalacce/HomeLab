@@ -1,0 +1,31 @@
+- hosts: init_master
+  name: Setup Jenkins CI/CD
+  become: yes
+  tags:
+      - deploy
+      - deploy-jenkins
+  vars_files:
+      - "./vars/main.yml"
+  tasks:
+      - name: Cleanup old potential chart
+        file:
+            path: jenkins-pi
+            state: absent
+
+      - name: Ensure new Chart is present
+        copy:
+            src: ../../../Helm/jenkins-pi
+            dest: .
+
+      - name: Install jenkins-pi namespace
+        kubernetes.core.helm:
+            name: jenkins-pi
+            create_namespace: true
+            release_namespace: jenkins-pi
+            chart_ref: jenkins-pi/
+            values_files: jenkins-pi/values.yaml
+
+      - name: Cleanup chart, we no longer need this
+        file:
+            path: jenkins-pi
+            state: absent

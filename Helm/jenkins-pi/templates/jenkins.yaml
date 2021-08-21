@@ -44,7 +44,7 @@ spec:
                         name: http-jenkins
                         protocol: TCP
                   volumeMounts:
-                      - mountPath: /var/jenkins_home
+                      - mountPath: /var
                         name: jenkins-home
                   resources:
                       requests:
