@@ -14,49 +14,18 @@ metadata:
         kubernetes.io/bootstrapping: rbac-defaults
     name: jenkins
 rules:
-    - apiGroups:
-          - '*'
-      resources:
-          - statefulsets
-          - services
-          - replicationcontrollers
-          - replicasets
-          - podtemplates
-          - podsecuritypolicies
-          - pods
-          - pods/log
-          - pods/exec
-          - podpreset
-          - poddisruptionbudget
-          - persistentvolumes
-          - persistentvolumeclaims
-          - jobs
-          - endpoints
-          - deployments
-          - deployments/scale
-          - daemonsets
-          - cronjobs
-          - configmaps
-          - namespaces
-          - events
-          - secrets
-      verbs:
-          - create
-          - get
-          - watch
-          - delete
-          - list
-          - patch
-          - update
-    - apiGroups:
-          - ""
-      resources:
-          - nodes
-      verbs:
-          - get
-          - list
-          - watch
-          - update
+    - apiGroups: [""]
+      resources: ["pods"]
+      verbs: ["create","delete","get","list","patch","update","watch"]
+    - apiGroups: [""]
+      resources: ["pods/exec"]
+      verbs: ["create","delete","get","list","patch","update","watch"]
+    - apiGroups: [""]
+      resources: ["pods/log"]
+      verbs: ["get","list","watch"]
+    - apiGroups: [""]
+      resources: ["secrets"]
+      verbs: ["get"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
