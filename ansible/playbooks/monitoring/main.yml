@@ -1,0 +1,31 @@
+- hosts: init_master
+  name: Setup monitoring with Grafana and Prometheus
+  become: yes
+  tags:
+      - monitoring
+      - monitoring-setup
+  vars_files:
+      - "./vars/main.yml"
+  tasks:
+      - name: Cleanup old potential chart
+        file:
+            path: monitoring
+            state: absent
+
+      - name: Ensure new Chart is present
+        copy:
+            src: ../../../Helm/monitoring
+            dest: .
+
+      - name: Install monitoring namespace
+        kubernetes.core.helm:
+            name: monitoring
+            create_namespace: true
+            release_namespace: monitoring
+            chart_ref: monitoring/
+            values_files: monitoring/values.yaml
+
+      - name: Cleanup chart, we no longer need this
+        file:
+            path: monitoring
+            state: absent

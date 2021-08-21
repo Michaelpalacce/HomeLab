@@ -1,0 +1,9 @@
+apiVersion: v2
+name: longhorn-system
+description: This chart setups Longhorn storage
+type: application
+version: 1.0.0
+appVersion: "1.0.0"
+maintainers:
+    - name: Stefan Genov
+      email: sgenov94@gmail.com

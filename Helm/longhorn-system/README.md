@@ -1,0 +1,1 @@
+This chart setups Longhorn storage

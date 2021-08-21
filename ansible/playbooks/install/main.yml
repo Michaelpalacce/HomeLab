@@ -1,4 +1,5 @@
 - hosts: all
+  name: Setup Docker, helm and kubernetes binaries on all our PIs
   become: yes
   any_errors_fatal: yes
   tags:
@@ -30,6 +31,7 @@
                 - jq
 
 - hosts: init_master
+  name: Initialize Kubernetes cluster
   become: yes
   any_errors_fatal: yes
   tags:
@@ -65,7 +67,7 @@
         when: preflight.rc == 0
 
 - hosts: init_master
-  name: Untaint the master
+  name: Untaint the master node
   become: yes
   tags:
       - setup

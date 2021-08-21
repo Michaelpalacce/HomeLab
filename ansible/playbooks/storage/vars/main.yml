@@ -1,2 +1,2 @@
 longhorn_prechecks: yes
-longhornNodePort: 30200
+verify_running: yes

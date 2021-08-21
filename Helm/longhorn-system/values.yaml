@@ -1,0 +1,7 @@
+longhorn:
+    nodePort: 30200
+    storageClass:
+        allowVolumeExpansion: true
+        parameters:
+            numberOfReplicas: 2
+            staleReplicaTimeout: 2880

@@ -7,9 +7,6 @@
   vars_files:
       - "./vars/main.yml"
   tasks:
-      - name: Create longhorn-system namespace
-        command: kubectl create ns longhorn-system
-
       - name: Prechecks if everything is ok
         shell: curl -sSfL https://raw.githubusercontent.com/longhorn/longhorn/v1.1.2/scripts/environment_check.sh | bash
         register: prechecks
@@ -17,10 +14,33 @@
         changed_when: no
         when: longhorn_prechecks
 
-      - name: Applying Longhorn Installation ( This will take a long time to complete )
-        command: kubectl apply -f https://raw.githubusercontent.com/longhorn/longhorn/v1.1.2/deploy/longhorn.yaml
+      - name: Cleanup old potential chart
+        file:
+            path: longhorn-system
+            state: absent
 
-      - name: Patch Longhorn frontend to be a nodeport on port {{ longhornNodePort }}
-        command: "{{ item }}"
-        with_items:
-            - "kubectl patch -n longhorn-system svc longhorn-frontend --type='json' -p='[{\"op\":\"replace\",\"path\":\"/spec/type\",\"value\":\"NodePort\"},{\"op\":\"add\",\"path\":\"/spec/ports/0/nodePort\",\"value\":{{ longhornNodePort }}}]'"
+      - name: Ensure new Chart is present
+        copy:
+            src: ../../../Helm/longhorn-system
+            dest: .
+
+      - name: Install longhorn namespace
+        kubernetes.core.helm:
+            name: longhorn
+            create_namespace: true
+            release_namespace: longhorn-system
+            chart_ref: longhorn-system/
+            values_files: longhorn-system/values.yaml
+
+      - name: Cleanup chart, we no longer need this
+        file:
+            path: longhorn-system
+            state: absent
+
+      - name: Verify everything is in state Running ( This may take a LONG time if you don't have the images and your internet is slow )
+        shell: kubectl get po -n longhorn-system | awk '{ print $3 }'
+        register: storage_pods_running
+        until: storage_pods_running.stdout.find("ContainerCreating") == -1 and storage_pods_running.stdout.find("BackOff") == -1 and storage_pods_running.stdout.find("Error") == -1
+        retries: 360
+        delay: 5
+        when: verify_running
