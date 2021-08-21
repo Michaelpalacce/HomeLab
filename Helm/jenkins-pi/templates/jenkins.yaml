@@ -33,7 +33,6 @@ spec:
         spec:
             securityContext:
                 runAsUser: 1000
-                runAsGroup: 1000
                 fsGroup: 1000
             serviceAccountName: jenkins
             containers:
@@ -43,12 +42,17 @@ spec:
                       - containerPort: 8080
                         name: http-jenkins
                         protocol: TCP
+
+                      - name: jnlp-port
+                        containerPort: 50000
+                        protocol: TCP
+
                   volumeMounts:
-                      - mountPath: /var
+                      - mountPath: /var/jenkins_home
                         name: jenkins-home
                   resources:
                       requests:
-                          cpu: 100m
+                          cpu: 500m
                           memory: 500Mi
                       limits:
                           cpu: {{ .Values.jenkins.limits.cpu }}
