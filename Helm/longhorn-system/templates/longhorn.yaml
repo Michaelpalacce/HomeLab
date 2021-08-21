@@ -1,6 +1,5 @@
 # https://raw.githubusercontent.com/longhorn/longhorn/v1.1.2/deploy/longhorn.yaml
 
----
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -39,6 +38,9 @@ rules:
     - apiGroups: ["storage.k8s.io"]
       resources: ["storageclasses", "volumeattachments", "csinodes", "csidrivers"]
       verbs: ["*"]
+    - apiGroups: ["coordination.k8s.io"]
+      resources: ["leases"]
+      verbs: ["get", "watch", "list", "delete", "update", "create"]
     - apiGroups: ["snapshot.storage.k8s.io"]
       resources: ["volumesnapshotclasses", "volumesnapshots", "volumesnapshotcontents", "volumesnapshotcontents/status"]
       verbs: ["*"]

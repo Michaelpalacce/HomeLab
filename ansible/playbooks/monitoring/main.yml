@@ -17,7 +17,7 @@
             src: ../../../Helm/monitoring
             dest: .
 
-      - name: Install monitoring namespace
+      - name: Install monitoring namespace ( NOTE GRAFANA TAKES A WHILE TO PROVISION )
         kubernetes.core.helm:
             name: monitoring
             create_namespace: true

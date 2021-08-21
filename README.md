@@ -71,12 +71,20 @@ iptables -F && update-alternatives --set iptables /usr/sbin/iptables-legacy && u
 - Go to http://{{CLUSTER_URI}}:30100
 - Username: admin  Password: admin
 - It will prompt you to change the password
-- Import the dashboard located in ./config/ by clicking on the plus and then import
 - Go to Settings/DataSources and add a Prometheus Datasource
-- Set URL to prometheus:9090 
-- Go to the dashboard :) It will take a few mins to populate data
+- Set URL to prometheus:9090
+- Import the dashboard located in ./config/ by clicking on the plus and then import
+- Go to the dashboard :) It will take a few minutes to populate data
 
-# Setup
-- setup ssh ''
-- add a user 'sudo useradd stef', sudo usermod -aG sudo stef'
-- add user in ssh allow users /etc/ssh/ssh_config (add AllowUsers stef somewhere)
+
+# Troubleshooting
+
+### Cluster creation failed ( or everything has gone to heck and I want to re-do it)
+- Run: `ansible -i inventory -a "kubeadm reset -f" all`
+- Rerun `ansible-playbook -i inventory playbooks/install/main.yml --tags setup` 
+
+### Grafana is giving an error
+- Try deleting the prometheus data source and re-adding it ( there may be 2 data sources, grafana makes a mistake sometimes )
+
+### Grafana stuck in ContainerCreating and storage is not being attached
+- Only solution I found was recreating the cluster. Happened once to me

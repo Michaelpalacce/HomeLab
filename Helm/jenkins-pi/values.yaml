@@ -1,4 +1,5 @@
 jenkins:
-    limits:
-        cpu: 1
+    nodePort: 30201
+    limits: # May want to tune this down if resources are limited
+        cpu: 750m
         memory: 2Gi
