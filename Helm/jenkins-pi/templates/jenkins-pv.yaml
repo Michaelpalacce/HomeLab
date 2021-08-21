@@ -1,7 +1,7 @@
 kind: StorageClass
 apiVersion: storage.k8s.io/v1
 metadata:
-    name: jenkins-2replicas
+    name: jenkins-pi
 provisioner: driver.longhorn.io
 allowVolumeExpansion: true
 parameters:
@@ -18,7 +18,7 @@ metadata:
 spec:
     accessModes:
         - ReadWriteMany
-    storageClassName: jenkins-2replicas
+    storageClassName: jenkins-pi
     resources:
         requests:
             storage: 5Gi

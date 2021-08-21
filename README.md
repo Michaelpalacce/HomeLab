@@ -66,6 +66,7 @@ iptables -F && update-alternatives --set iptables /usr/sbin/iptables-legacy && u
 - Run `ansible-playbook -i inventory playbooks/install/main.yml --tags setup` This will initialize the master on the init_master PI
 - Run `ansible-playbook -i inventory playbooks/storage/main.yml` Initialize longhorn storage
 - Run `ansible-playbook -i inventory playbooks/monitoring/main.yml` Initialize Prometheus and Grafana
+- Run `ansible-playbook -i inventory playbooks/jenkins/main.yml` Install Jenkins CI/CD
 
 ### Setting up grafana dashboard
 - Go to http://{{CLUSTER_URI}}:30100
@@ -88,3 +89,6 @@ iptables -F && update-alternatives --set iptables /usr/sbin/iptables-legacy && u
 
 ### Grafana stuck in ContainerCreating and storage is not being attached
 - Only solution I found was recreating the cluster. Happened once to me
+
+### Ansible is not connection/is slow/hangs
+- God have mercy on your soul cause ain't nobody gonna help you ;(

@@ -81,3 +81,16 @@
         register: untaintResult
         failed_when: untaintResult.stdout.find( 'untainted' ) == -1
         ignore_errors: true
+
+- hosts: init_master
+  name: Setup metrics server
+  become: yes
+  tags:
+      - setup
+      - setup-metrics-server
+  vars_files:
+      - "./vars/main.yml"
+  tasks:
+      - name: Sets the metrics server up so you can run `kubectl top nodes` and `kubectl top pod`
+        command: kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+        when: setup_metrics_server

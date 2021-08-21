@@ -1,9 +1,30 @@
+annotations:
+    artifacthub.io/images: |
+        - name: jenkins
+          image: jenkins/jenkins:2.289.3-jdk11
+        - name: k8s-sidecar
+          image: kiwigrid/k8s-sidecar:0.1.275
+        - name: inbound-agent
+          image: jenkins/inbound-agent:4.6-1
+        - name: backup
+          image: maorfr/kube-tasks:0.2.0
+    artifacthub.io/links: |
+        - name: Chart Source
+          url: https://github.com/jenkinsci/helm-charts/tree/main/charts/jenkins
+        - name: Jenkins
+          url: https://www.jenkins.io/
 apiVersion: v2
-name: jenkins-pi
-description: Installs Jenkins using longhorn for storage
-type: application
-version: 1.0.0
-appVersion: "1.0.0"
+appVersion: 2.289.3
+description: Jenkins - Build great things at any scale! The leading open source automation
+    server, Jenkins provides hundreds of plugins to support building, deploying and
+    automating any project.
 maintainers:
     - name: Stefan Genov
       email: sgenov94@gmail.com
+name: jenkins-pi
+sources:
+    - https://github.com/jenkinsci/jenkins
+    - https://github.com/jenkinsci/docker-inbound-agent
+    - https://github.com/maorfr/kube-tasks
+    - https://github.com/jenkinsci/configuration-as-code-plugin
+version: 3.5.11
