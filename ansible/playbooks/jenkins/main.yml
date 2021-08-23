@@ -17,7 +17,7 @@
             src: ../../../Helm/jenkins-pi
             dest: .
 
-      - name: Install jenkins-pi namespace ( this is SUPER SLOW. Took me ~ 30 minutes. A LOT of disk IOPS is needed to extract jenkins war file and provision plugins, you can check progress if Longhorn dashboard by waiting for pvc to stop growing )
+      - name: Install jenkins-pi namespace ( this is SUPER SLOW. May take more than 30 mins.)
         kubernetes.core.helm:
             name: jenkins-pi
             create_namespace: true

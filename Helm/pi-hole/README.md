@@ -1,0 +1,1 @@
+This chart is used to install pi-hole ( note you have to set it up on the router yourself )

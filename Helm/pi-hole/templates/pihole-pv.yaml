@@ -1,7 +1,7 @@
 kind: StorageClass
 apiVersion: storage.k8s.io/v1
 metadata:
-    name: jenkins-pi
+    name: pi-hole-2replicas
 provisioner: driver.longhorn.io
 allowVolumeExpansion: true
 parameters:
@@ -9,16 +9,19 @@ parameters:
     staleReplicaTimeout: "2800"
     fromBackup: ""
 
+{{- with .Values.pihole }}
 ---
 
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-    name: jenkins-pvc
+    name: pihole-pvc
 spec:
     accessModes:
         - ReadWriteMany
-    storageClassName: jenkins-pi
+    storageClassName: pi-hole-2replicas
     resources:
         requests:
-            storage: {{ .Values.persistence.size }}
+            storage: {{ .size }}
+
+{{- end }}

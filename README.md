@@ -60,13 +60,15 @@ iptables -F && update-alternatives --set iptables /usr/sbin/iptables-legacy && u
 ### Setting up the cluster
 - First thing we are going to do is navigate to the `./ansible` folder
 - Set up your inventory file ( use mine as an example, the only thing different will probably be the IPs, but if you chose a different ansible user, make sure to modify accordingly )
+- If you did not fix the iptables, do it now: `ansible -i inventory -b -m shell -a "iptables -F && update-alternatives --set iptables /usr/sbin/iptables-legacy && update-alternatives --set ip6tables /usr/sbin/ip6tables-legacy && reboot" all`
 - Run `ansible-galaxy install -r playbooks/install/requirements.yml` to install all the needed ansible roles from Ansible Galaxy
-- Run `ansible-galaxy collection install  -r playbooks/install/requirements-collecttions.yml` to install all the needed ansible collections
+- Run `ansible-galaxy collection install -r playbooks/install/requirements-collecttions.yml` to install all the needed ansible collections
 - Run `ansible-playbook -i inventory playbooks/install/main.yml --tags preflight` At this point you have everything needed to setup kubernetes ( all the needed binaries )
 - Run `ansible-playbook -i inventory playbooks/install/main.yml --tags setup` This will initialize the master on the init_master PI
 - Run `ansible-playbook -i inventory playbooks/storage/main.yml` Initialize longhorn storage
 - Run `ansible-playbook -i inventory playbooks/monitoring/main.yml` Initialize Prometheus and Grafana
-- Run `ansible-playbook -i inventory playbooks/jenkins/main.yml` Install Jenkins CI/CD
+- Run `ansible-playbook -i inventory playbooks/jenkins/main.yml` Install Jenkins CI/CD. 
+- Run `kubectl exec --namespace jenkins-pi -it svc/jenkins-pi -c jenkins -- /bin/cat /run/secrets/chart-admin-password && echo` to get the jenkins password
 
 ### Setting up grafana dashboard
 - Go to http://{{CLUSTER_URI}}:30100
