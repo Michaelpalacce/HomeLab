@@ -29,16 +29,6 @@ spec:
                       - containerPort: {{ .Values.grafana.port }}
                         name: http-grafana
                         protocol: TCP
-                  readinessProbe:
-                      failureThreshold: 3
-                      httpGet:
-                          path: /robots.txt
-                          port: {{ .Values.grafana.port }}
-                          scheme: HTTP
-                      initialDelaySeconds: 10
-                      periodSeconds: 30
-                      successThreshold: 1
-                      timeoutSeconds: 2
                   resources:
                       requests:
                           cpu: 100m

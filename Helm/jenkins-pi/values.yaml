@@ -740,7 +740,7 @@ persistence:
     storageClass: jenkins-pi
     annotations: {}
     accessMode: "ReadWriteOnce"
-    size: "5Gi"
+    size: "25Gi"
     volumes:
     #  - name: nothing
     #    emptyDir: {}

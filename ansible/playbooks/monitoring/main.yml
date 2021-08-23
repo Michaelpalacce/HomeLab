@@ -4,8 +4,6 @@
   tags:
       - monitoring
       - monitoring-setup
-  vars_files:
-      - "./vars/main.yml"
   tasks:
       - name: Cleanup old potential chart
         file:
