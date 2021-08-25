@@ -65,7 +65,8 @@ iptables -F && update-alternatives --set iptables /usr/sbin/iptables-legacy && u
 - Run `ansible-galaxy collection install -r playbooks/install/requirements-collecttions.yml` to install all the needed ansible collections
 - Run `ansible-playbook -i inventory playbooks/install/main.yml --tags preflight` At this point you have everything needed to setup kubernetes ( all the needed binaries )
 - Run `ansible-playbook -i inventory playbooks/install/main.yml --tags setup` This will initialize the master on the init_master PI
-- Run `ansible-playbook -i inventory playbooks/storage/main.yml` Initialize longhorn storage
+- IF YOU WANT LONGHORN STORAGE Run `ansible-playbook -i inventory playbooks/longhorn-storage/main.yml` Initialize longhorn storage
+- IF YOU WANT OPENEBS STORAGE Run `ansible-playbook -i inventory playbooks/openebs-storage/main.yml` Initialize openebs storage
 - Run `ansible-playbook -i inventory playbooks/monitoring/main.yml` Initialize Prometheus and Grafana
 - Run `ansible-playbook -i inventory playbooks/jenkins/main.yml` Install Jenkins CI/CD. 
 - Run `kubectl exec --namespace jenkins-pi -it svc/jenkins-pi -c jenkins -- /bin/cat /run/secrets/chart-admin-password && echo` to get the jenkins password

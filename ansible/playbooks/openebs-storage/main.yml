@@ -1,0 +1,29 @@
+- hosts: init_master
+  name: Setup Openebs storage
+  become: yes
+  tags:
+      - storage
+      - storage-setup-openebs
+  tasks:
+      - name: Cleanup old potential chart
+        file:
+            path: openebs
+            state: absent
+
+      - name: Ensure new Chart is present
+        copy:
+            src: ../../../Helm/openebs
+            dest: .
+
+      - name: Install openebs namespace
+        kubernetes.core.helm:
+            name: openebs
+            create_namespace: true
+            release_namespace: openebs
+            chart_ref: openebs/
+            values_files: openebs/values.yaml
+
+      - name: Cleanup chart, we no longer need this
+        file:
+            path: openebs
+            state: absent
