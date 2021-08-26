@@ -73,6 +73,10 @@ iptables -F && update-alternatives --set iptables /usr/sbin/iptables-legacy && u
   ( I am using WSL to run my commands )
 - sshpass ( if you are going to use password based authentication for the RPIs which I am ). If you want better security then configure key based authentication.
 
+### K3S and why are we using it
+- For raspberry pis who have limited resources we need something more minimalistic. k3s was made to run with limited resources in mind, so it seems like a good fit
+- We will not be using traefik and flannel tho as they seem to result in a DNS issue I could not resolve, so I stuck with the classic -> calico :)
+
 ### Setting up the cluster
 - First thing we are going to do is navigate to the `./ansible` folder
 - Set up your inventory file ( use mine as an example, the only thing different will probably be the IPs, but if you chose a different ansible user, make sure to modify accordingly )
