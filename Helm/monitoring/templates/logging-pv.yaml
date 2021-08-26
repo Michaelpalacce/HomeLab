@@ -1,26 +1,15 @@
 kind: StorageClass
 apiVersion: storage.k8s.io/v1
 metadata:
-    name: monitoring-2replicas
+    name: monitoring-sc
 provisioner: driver.longhorn.io
 allowVolumeExpansion: true
 parameters:
-    numberOfReplicas: "2"
+    numberOfReplicas: "{{ .Values.storage.numberOfReplicas }}"
+    dataLocality: "{{ .Values.storage.dataLocality }}"
     staleReplicaTimeout: "2800"
     fromBackup: ""
 
-{{/*apiVersion: storage.k8s.io/v1*/}}
-{{/*kind: StorageClass*/}}
-{{/*metadata:*/}}
-{{/*    name: monitoring-2replicas*/}}
-{{/*    annotations:*/}}
-{{/*        openebs.io/cas-type: jiva*/}}
-{{/*        cas.openebs.io/config: |*/}}
-{{/*            - name: ReplicaCount*/}}
-{{/*              value: "2"*/}}
-{{/*            - name: StoragePool*/}}
-{{/*              value: default*/}}
-{{/*provisioner: openebs.io/provisioner-iscsi*/}}
 
 {{- with .Values.grafana }}
 ---
@@ -32,7 +21,7 @@ metadata:
 spec:
     accessModes:
         - ReadWriteMany
-    storageClassName: monitoring-2replicas
+    storageClassName: monitoring-sc
     resources:
         requests:
             storage: 2Gi
@@ -49,7 +38,7 @@ metadata:
 spec:
     accessModes:
         - ReadWriteMany
-    storageClassName: monitoring-2replicas
+    storageClassName: monitoring-sc
     resources:
         requests:
             storage: 2Gi

@@ -5,7 +5,7 @@ The OS used is an Ubuntu server 21.04 x64 arm64 ISO ( downloaded from the Raspbe
 
 ### Hardware needed
 - 2 Raspberry pi 4S 8GB
-- 2x 64gb SD cards
+- 2x SSDs ( you can do SD cards but lord have mercy is it slow )
 - MicroSD adapter to install the OS on the card
 - Raspberry Pi case for better form factor
 - the machine you are reading this from ;)
@@ -18,6 +18,22 @@ The OS used is an Ubuntu server 21.04 x64 arm64 ISO ( downloaded from the Raspbe
 - Add all your heatsinks ( if any )
 - Place the PIs in their cases
 - I noticed a 15 degrees drop when I removed the raspberry pi case lid. I just placed it on it, leaving it to breathe a bit and that improved the internal temperature drastically
+
+### Booting Ubuntu Server from a SSD
+- So first thing you gotta do is you gotta have a spare raspbian OS sd card.
+- Boot into raspbian os and update the system `sudo apt upgrade -y`
+- Run: `sudo raspi-config` and change your bootloader version to latest, then change the boot order to boot from USB storage
+
+### My SSD drive has UAS
+Oh boy are you in for a treat :)
+- What I noticed is that if you ... ahem "connect the usb half-assed ( aka not fully connected )" the pi boots fine 
+ ( easiest way to do this is to first boot it without anything and start slowly inserting the usb ). So do that and let the pi boot
+- After that, login to the Ubuntu Server and run `lsusb`. Get the ID of your SSD
+- `sudo nano /etc/modprobe.d/blacklist.conf` and add a new directive `blacklist uas`
+- `echo options usb-storage quirks={{ID_OF_YOUR_SSD}}:u | sudo tee /etc/modprobe.d/blacklist_uas.conf`
+- `sudo update-initramfs -u`
+- This should be all :) Pi will now boot from SSD
+
 
 ### Software Prerequisites
 - If you want to use WI-FI ( WPA2 - Personal ) instead of Ethernet: https://www.linuxbabe.com/command-line/ubuntu-server-16-04-wifi-wpa-supplicant
@@ -43,9 +59,9 @@ sudo ln -s /usr/bin/python3 /usr/bin/python
 - That's it. At this point you can abandon the raspberry pis and go to your own machine to continue setup :) 
 
 ### Kubernetes Networking Prerequisites:
-There seems to be an issue with iptabels >= 1.8 with all the network CNIs I have used ( flannel, calico, weave ).
-The only solution seems to be to use the legacy ip tables. This will be needed unless your CNI of choice ( we will be using calico ) 
-has a fix for this issue or supports iptables >= 1.8. The following command will ensure that we use the legacy iptables, which are working fine with calico ( should work fine with the rest however no guarantee )
+There seems to be an issue with iptabels >= 1.8 with all the network CNIs I have used.
+The only solution seems to be to use the legacy ip tables. The following command will ensure that we use the legacy iptables,
+which are working fine with k3s
 
 ~~~ bash
 # Make sure you are sudo
@@ -65,8 +81,7 @@ iptables -F && update-alternatives --set iptables /usr/sbin/iptables-legacy && u
 - Run `ansible-galaxy collection install -r playbooks/install/requirements-collecttions.yml` to install all the needed ansible collections
 - Run `ansible-playbook -i inventory playbooks/install/main.yml --tags preflight` At this point you have everything needed to setup kubernetes ( all the needed binaries )
 - Run `ansible-playbook -i inventory playbooks/install/main.yml --tags setup` This will initialize the master on the init_master PI
-- IF YOU WANT LONGHORN STORAGE Run `ansible-playbook -i inventory playbooks/longhorn-storage/main.yml` Initialize longhorn storage
-- IF YOU WANT OPENEBS STORAGE Run `ansible-playbook -i inventory playbooks/openebs-storage/main.yml` Initialize openebs storage
+- Run `ansible-playbook -i inventory playbooks/longhorn-storage/main.yml` Initialize longhorn storage
 - Run `ansible-playbook -i inventory playbooks/monitoring/main.yml` Initialize Prometheus and Grafana
 - Run `ansible-playbook -i inventory playbooks/jenkins/main.yml` Install Jenkins CI/CD. 
 - Run `kubectl exec --namespace jenkins-pi -it svc/jenkins-pi -c jenkins -- /bin/cat /run/secrets/chart-admin-password && echo` to get the jenkins password
@@ -84,7 +99,7 @@ iptables -F && update-alternatives --set iptables /usr/sbin/iptables-legacy && u
 # Troubleshooting
 
 ### Cluster creation failed ( or everything has gone to heck and I want to re-do it)
-- Run: `ansible -i inventory -a "kubeadm reset -f" all`
+- Run the k3s uninstall script https://rancher.com/docs/k3s/latest/en/installation/uninstall/
 - Rerun `ansible-playbook -i inventory playbooks/install/main.yml --tags setup` 
 
 ### Grafana is giving an error

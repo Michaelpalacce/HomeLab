@@ -9,14 +9,13 @@
   roles:
       - michaelpalacce.docker
       - michaelpalacce.helm
-      - michaelpalacce.kubernetes_preflight
 
 - hosts: all
   name: Setup Storage dependencies
   become: yes
   tags:
-      - storage
-      - storage-setup-dependencies
+      - preflight
+      - preflight-storage-dependencies
   vars_files:
       - "./vars/main.yml"
   tasks:
@@ -31,16 +30,37 @@
                 - jq
 
 - hosts: init_master
-  name: Initialize Kubernetes cluster
+  name: Setup master k3s
   become: yes
-  any_errors_fatal: yes
   tags:
       - setup
-      - setup-master-node
+      - setup-init-master
   vars_files:
       - "./vars/main.yml"
-  roles:
-      - michaelpalacce.kubernetes_cluster
+  tasks:
+      - name: Install k3s
+        shell: "{{ item }}"
+        with_items:
+            - curl -sfL https://get.k3s.io | sh -
+            - cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
+
+      - name: Get token
+        shell: cat /var/lib/rancher/k3s/server/node-token
+        register: nodeToken
+
+      - name: Generate join commands
+        shell: "echo 'curl -sfL https://get.k3s.io | K3S_URL={{ k3s_master_url }} K3S_TOKEN={{ nodeToken.stdout }} sh -' >> /tmp/join-command"
+
+      - name: Copy output to local files
+        fetch:
+            src: "{{ item.src }}"
+            dest: "{{ item.dest }}"
+            flat: yes
+        with_items:
+            - src: /tmp/join-command
+              dest: "{{ output_dir }}/join-command"
+            - src: ~/.kube/config
+              dest: "{{ output_dir }}/config"
 
 - hosts: workers
   name: Joins all the workers to the cluster
@@ -50,34 +70,11 @@
   become: yes
   any_errors_fatal: true
   tasks:
-      - name: Attempt to check if this node can join a cluster. Don't do anything if preflight checks cannot pass
-        command: kubeadm init phase preflight
-        ignore_errors: yes
-        register: preflight
-
       - name: Copy the join command to server location
         copy:
             src: "output/join-command"
             dest: /tmp/join-command.sh
             mode: 0755
-        when: preflight.rc == 0
 
       - name: Join the node to cluster
         command: sh /tmp/join-command.sh
-        when: preflight.rc == 0
-
-- hosts: init_master
-  name: Untaint the master node
-  become: yes
-  tags:
-      - setup
-      - setup-untaint-master
-  vars_files:
-      - "./vars/main.yml"
-  tasks:
-      - name: Untaint the master
-        command: kubectl taint nodes --all node-role.kubernetes.io/master-
-        when: untaint_master_node
-        register: untaintResult
-        failed_when: untaintResult.stdout.find( 'untainted' ) == -1
-        ignore_errors: true

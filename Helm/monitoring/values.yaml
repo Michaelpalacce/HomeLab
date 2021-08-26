@@ -1,3 +1,7 @@
+storage:
+    dataLocality: "best-effort" # or disabled
+    numberOfReplicas: 1
+
 prometheus:
     image: quay.io/prometheus/prometheus
     tag: main
@@ -17,7 +21,6 @@ prometheus:
 #        cpu: 150m
 #        memory: 512Mi
 
-# Remove nodeExporter if you don't want to have this scraper
 nodeExporter:
     image: prom/node-exporter
     tag: v1.1.2
