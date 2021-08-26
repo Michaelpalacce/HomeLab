@@ -5,20 +5,10 @@ metadata:
 provisioner: driver.longhorn.io
 allowVolumeExpansion: true
 parameters:
-    numberOfReplicas: "2"
+    numberOfReplicas: "1"
+    dataLocality: "best-effort"
     staleReplicaTimeout: "2800"
     fromBackup: ""
-
-{{/*apiVersion: storage.k8s.io/v1*/}}
-{{/*kind: StorageClass*/}}
-{{/*metadata:*/}}
-{{/*    name: jenkins-pi*/}}
-{{/*    annotations:*/}}
-{{/*        openebs.io/cas-type: jiva*/}}
-{{/*        cas.openebs.io/config: |*/}}
-{{/*            - name: ReplicaCount*/}}
-{{/*              value: "2"*/}}
-{{/*provisioner: openebs.io/provisioner-iscsi*/}}
 
 ---
 
