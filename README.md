@@ -90,6 +90,18 @@ iptables -F && update-alternatives --set iptables /usr/sbin/iptables-legacy && u
 - Run `ansible-playbook -i inventory playbooks/jenkins/main.yml` Install Jenkins CI/CD. 
 - Run `kubectl exec --namespace jenkins-pi -it svc/jenkins-pi -c jenkins -- /bin/cat /run/secrets/chart-admin-password && echo` to get the jenkins password
 
+### Setting up Pihole
+- You will have to first allow calico to forward ips, so your loadbalancer setup will work correctly
+- go to each node and edit: /etc/cni/net.d/10-calico.conflist
+- Add:
+~~~json
+    "container_settings": {
+        "allow_ip_forwarding": true
+    },
+~~~
+just after policy
+- Run: `ansible-playbook -i inventory playbooks/pihole/main.yml`
+
 ### Setting up grafana dashboard
 - Go to http://{{CLUSTER_URI}}:30100
 - Username: admin  Password: admin

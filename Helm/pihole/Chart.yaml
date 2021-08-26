@@ -4,6 +4,6 @@ description: This chart is used to install pi-hole
 maintainers:
 - email: sgenov94@gmail.com
   name: Stefan Genov
-name: pi-hole
+name: pihole
 type: application
 version: 1.0.0
