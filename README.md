@@ -28,10 +28,10 @@ The OS used is an Ubuntu server 21.04 x64 arm64 ISO ( downloaded from the Raspbe
 Oh boy are you in for a treat :)
 - What I noticed is that if you ... ahem "connect the usb half-assed ( aka not fully connected )" the pi boots fine 
  ( easiest way to do this is to first boot it without anything and start slowly inserting the usb ). So do that and let the pi boot
-- After that, login to the Ubuntu Server and run `lsusb`. Get the ID of your SSD
-- `sudo nano /etc/modprobe.d/blacklist.conf` and add a new directive `blacklist uas`
-- `echo options usb-storage quirks={{ID_OF_YOUR_SSD}}:u | sudo tee /etc/modprobe.d/blacklist_uas.conf`
-- `sudo update-initramfs -u`
+- After that, login to the Ubuntu Server and run `lsusb`. Get the ID of your SSD ( make sure it's the SSD, it will be named accordingly )
+- `sudo nano /etc/modprobe.d/blacklist.conf` and add a new directive `blacklist uas` somewhere in the file
+- `echo options usb-storage quirks={{ID_OF_YOUR_SSD}}:u | sudo tee /etc/modprobe.d/ssd_quirks.conf`
+- `sudo update-initramfs -u` wait for operation to finish and you should be save to plug in the SSD all the way and boot.
 - This should be all :) Pi will now boot from SSD
 
 
@@ -85,24 +85,29 @@ iptables -F && update-alternatives --set iptables /usr/sbin/iptables-legacy && u
 - Run `ansible-galaxy collection install -r playbooks/install/requirements-collecttions.yml` to install all the needed ansible collections
 - Run `ansible-playbook -i inventory playbooks/install/main.yml --tags preflight` At this point you have everything needed to setup kubernetes ( all the needed binaries )
 - Run `ansible-playbook -i inventory playbooks/install/main.yml --tags setup` This will initialize the master on the init_master PI
-- Run `ansible-playbook -i inventory playbooks/longhorn-storage/main.yml` Initialize longhorn storage
-- Run `ansible-playbook -i inventory playbooks/monitoring/main.yml` Initialize Prometheus and Grafana
-- Run `ansible-playbook -i inventory playbooks/jenkins/main.yml` Install Jenkins CI/CD. 
-- Run `kubectl exec --namespace jenkins-pi -it svc/jenkins-pi -c jenkins -- /bin/cat /run/secrets/chart-admin-password && echo` to get the jenkins password
 
-### Setting up Pihole
+### Setting up storage 
+- Run `ansible-playbook -i inventory playbooks/longhorn-storage/main.yml` Initialize longhorn storage
+- Monitor that everything is started correctly: `watch -n1 -d kubectl get all -o wide -n longhorn-system`
+
+### Setting up Jenkins
+- Run `ansible-playbook -i inventory playbooks/jenkins/main.yml` Install Jenkins CI/CD.
+- Go to http://{{CLUSTER_URI}}:30201
+- Setup jenkins as you see fit :)
+
+### Setting up Pihole ( WORK IN PROGRESS, CURRENTLY DOES NOT WORK AS EXPECTED )
 - You will have to first allow calico to forward ips, so your loadbalancer setup will work correctly
 - go to each node and edit: /etc/cni/net.d/10-calico.conflist
-- Add:
+- Add just after policy directive:
 ~~~json
     "container_settings": {
         "allow_ip_forwarding": true
     },
 ~~~
-just after policy
 - Run: `ansible-playbook -i inventory playbooks/pihole/main.yml`
 
-### Setting up grafana dashboard
+### Setting up monitoring
+- Run `ansible-playbook -i inventory playbooks/monitoring/main.yml` Initialize Prometheus and Grafana
 - Go to http://{{CLUSTER_URI}}:30100
 - Username: admin  Password: admin
 - It will prompt you to change the password
@@ -126,3 +131,9 @@ just after policy
 
 ### Ansible is not connection/is slow/hangs
 - God have mercy on your soul cause ain't nobody gonna help you ;(
+
+### The pis are not connecting to the internet after reboot
+- I also noticed this once after reboot, not sure why but fixing my resolv.conf to point to my router seems to have fixed the issue
+
+### Longhorn storage has an issue
+- Check if it's dns, if it's not dns, I suggest you redo the entire cluster

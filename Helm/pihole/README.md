@@ -1,1 +1,1 @@
-This chart is used to install pi-hole ( note you have to set it up on the router yourself )
+This chart is used to install pi-hole. This actually only installs the persistent volume claim and the actual chart will be installed by helm later on, but the same values are applied.
