@@ -93,7 +93,35 @@ iptables -F && update-alternatives --set iptables /usr/sbin/iptables-legacy && u
 ### Setting up Jenkins
 - Run `ansible-playbook -i inventory playbooks/jenkins/main.yml` Install Jenkins CI/CD.
 - Go to http://{{CLUSTER_URI}}:30201
-- Setup jenkins as you see fit :)
+- Install all the kubernetes pluguins and any other plugins you may need.
+- How to configure:
+~~~
+Name: Kubernetes
+Kubernetes URL: <blank>
+Kubernetes Namespace: jenkins-pi
+Credentials: {{ADD new with Service Account}}
+WebSocket: yes
+Direct: no
+Jenkins URL: http://{{CLUSTER_IP}}:30201 # had to put in my whole ip here, service name did not work
+Jenkins tunnel: <blank>
+# Add new pod template
+name: whatever
+namespace: jenkins-pi
+labels: SomeLabel
+
+#Add container template
+name: jnlp
+Docker Image: stefangenov/jenkins-agent-node:node-16.7 # I have made a custom Node image that runs for arm processors, but you can check my docker repo and make your own
+Working directory: /home/jenkins/agent
+Command to run: <blank>
+arguments passed: <blank>
+Allocate pseudo TTY: yes
+
+#Scroll down and search for Service account
+Service account: jenkins
+
+# That should be all, but if you have different requirements you can set them up
+~~~
 
 ### Setting up Pihole ( WORK IN PROGRESS, CURRENTLY DOES NOT WORK AS EXPECTED )
 - You will have to first allow calico to forward ips, so your loadbalancer setup will work correctly
