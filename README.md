@@ -4,7 +4,7 @@ The purpose of this project is to setup my Kubernetes HomeLab environment on a R
 The OS used is an Ubuntu server 21.04 x64 arm64 ISO ( downloaded from the Raspberry pi Imager )
 
 ### Hardware needed
-- 2 Raspberry pi 4S 8GB
+- 2 Raspberry pi 4B 8GB
 - 2x SSDs ( you can do SD cards but lord have mercy is it slow )
 - MicroSD adapter to install the OS on the card
 - Raspberry Pi case for better form factor

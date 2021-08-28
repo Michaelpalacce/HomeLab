@@ -268,20 +268,6 @@ controller:
     #  - name: secret-name-1
     #    keyName: password
 
-    additionalSecrets: []
-    #  - name: nameOfSecret
-    #    value: secretText
-
-    # Generate SecretClaim resources in order to create Kubernetes secrets from HashiCorp Vault using kube-vault-controller.
-    # 'name' is name of the secret that will be created in Kubernetes. The Jenkins fullname is prepended to this value.
-    # 'path' is the fully qualified path to the secret in Vault
-    # 'type' is an optional Kubernetes secret type. Defaults to 'Opaque'
-    # 'renew' is an optional secret renewal time in seconds
-    secretClaims: []
-    # - name: secretName        # required
-    #   path: testPath          # required
-    #   type: kubernetes.io/tls # optional
-    #   renew: 60               # optional
 
     # Name of default cloud configuration.
     cloudName: "kubernetes"
@@ -394,81 +380,6 @@ controller:
     # ref: https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#update-strategies
     updateStrategy: {}
 
-    ingress:
-        enabled: false
-        # Override for the default paths that map requests to the backend
-        paths: []
-        # - backend:
-        #     serviceName: ssl-redirect
-        #     servicePort: use-annotation
-        # - backend:
-        #     serviceName: >-
-        #       {{ template "jenkins.fullname" . }}
-        #     # Don't use string here, use only integer value!
-        #     servicePort: 8080
-        # For Kubernetes v1.14+, use 'networking.k8s.io/v1beta1'
-        # For Kubernetes v1.19+, use 'networking.k8s.io/v1'
-        apiVersion: "extensions/v1beta1"
-        labels: {}
-        annotations: {}
-        # kubernetes.io/ingress.class: nginx
-        # kubernetes.io/tls-acme: "true"
-        # For Kubernetes >= 1.18 you should specify the ingress-controller via the field ingressClassName
-        # See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#specifying-the-class-of-an-ingress
-        # ingressClassName: nginx
-        # Set this path to jenkinsUriPrefix above or use annotations to rewrite path
-        # path: "/jenkins"
-        # configures the hostname e.g. jenkins.example.com
-        hostName:
-        tls:
-        # - secretName: jenkins.cluster.local
-        #   hosts:
-        #     - jenkins.cluster.local
-
-    # often you want to have your controller all locked down and private
-    # but you still want to get webhooks from your SCM
-    # A secondary ingress will let you expose different urls
-    # with a differnt configuration
-    secondaryingress:
-        enabled: false
-        # paths you want forwarded to the backend
-        # ex /github-webhook
-        paths: []
-        # For Kubernetes v1.14+, use 'networking.k8s.io/v1beta1'
-        # For Kubernetes v1.19+, use 'networking.k8s.io/v1'
-        apiVersion: "extensions/v1beta1"
-        labels: {}
-        annotations: {}
-        # kubernetes.io/ingress.class: nginx
-        # kubernetes.io/tls-acme: "true"
-        # For Kubernetes >= 1.18 you should specify the ingress-controller via the field ingressClassName
-        # See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#specifying-the-class-of-an-ingress
-        # ingressClassName: nginx
-        # configures the hostname e.g. jenkins-external.example.com
-        hostName:
-        tls:
-        # - secretName: jenkins-external.example.com
-        #   hosts:
-        #     - jenkins-external.example.com
-
-    # If you're running on GKE and need to configure a backendconfig
-    # to finish ingress setup, use the following values.
-    # Docs: https://cloud.google.com/kubernetes-engine/docs/concepts/backendconfig
-    backendconfig:
-        enabled: false
-        apiVersion: "extensions/v1beta1"
-        name:
-        labels: {}
-        annotations: {}
-        spec: {}
-
-    # Openshift route
-    route:
-        enabled: false
-        labels: {}
-        annotations: {}
-        # path: "/jenkins"
-
     # controller.hostAliases allows for adding entries to Pod /etc/hosts:
     # https://kubernetes.io/docs/concepts/services-networking/add-entries-to-pod-etc-hosts-with-host-aliases/
     hostAliases: []
@@ -478,27 +389,6 @@ controller:
     # - ip: 10.0.50.50
     #   hostnames:
     #     - other.local
-
-    # Expose Prometheus metrics
-    prometheus:
-        # If enabled, add the prometheus plugin to the list of plugins to install
-        # https://plugins.jenkins.io/prometheus
-        enabled: false
-        # Additional labels to add to the ServiceMonitor object
-        serviceMonitorAdditionalLabels: {}
-        # Set a custom namespace where to deploy ServiceMonitor resource
-        # serviceMonitorNamespace: monitoring
-        scrapeInterval: 60s
-        # This is the default endpoint used by the prometheus plugin
-        scrapeEndpoint: /prometheus
-        # Additional labels to add to the PrometheusRule object
-        alertingRulesAdditionalLabels: {}
-        # An array of prometheus alerting rules
-        # See here: https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/
-        # The `groups` root object is added by default, simply add the rule entries
-        alertingrules: []
-        # Set a custom namespace where to deploy PrometheusRule resource
-        prometheusRuleNamespace: ""
 
     # Can be used to disable rendering controller test resources when using helm template
     testEnabled: true
@@ -749,23 +639,6 @@ persistence:
     #    name: nothing
     #    readOnly: true
 
-networkPolicy:
-    # Enable creation of NetworkPolicy resources.
-    enabled: false
-    # For Kubernetes v1.4, v1.5 and v1.6, use 'extensions/v1beta1'
-    # For Kubernetes v1.7, use 'networking.k8s.io/v1'
-    apiVersion: networking.k8s.io/v1
-    # You can allow agents to connect from both within the cluster (from within specific/all namespaces) AND/OR from a given external IP range
-    internalAgents:
-        allowed: true
-        podLabels: {}
-        namespaceLabels: {}
-        # project: myproject
-    externalAgents: {}
-    #   ipCIDR: 172.17.0.0/16
-    #   except:
-    #     - 172.17.1.0/24
-
 ## Install Default RBAC roles and bindings
 rbac:
     create: true
@@ -788,70 +661,4 @@ serviceAccountAgent:
     annotations: {}
     imagePullSecretName:
 
-## Backup cronjob configuration
-## Ref: https://github.com/maorfr/kube-tasks
-backup:
-    # Backup must use RBAC
-    # So by enabling backup you are enabling RBAC specific for backup
-    enabled: false
-    # Used for label app.kubernetes.io/component
-    componentName: "backup"
-    # Schedule to run jobs. Must be in cron time format
-    # Ref: https://crontab.guru/
-    schedule: "0 2 * * *"
-    labels: {}
-    serviceAccount:
-        create: true
-        name:
-        annotations: {}
-        # Example for authorization to AWS S3 using kube2iam or IRSA
-        # Can also be done using environment variables
-        # iam.amazonaws.com/role: "jenkins"
-        # "eks.amazonaws.com/role-arn": "arn:aws:iam::123456789012:role/jenkins-backup"
-    # Set this to terminate the job that is running/failing continously and set the job status to "Failed"
-    activeDeadlineSeconds: ""
-    image:
-        repository: "maorfr/kube-tasks"
-        tag: "0.2.0"
-    # Additional arguments for kube-tasks
-    # Ref: https://github.com/maorfr/kube-tasks#simple-backup
-    extraArgs: []
-    # Add existingSecret for AWS credentials
-    existingSecret: {}
-      ## Example for using an existing secret
-      # jenkinsaws:
-      ## Use this key for AWS access key ID
-      # awsaccesskey: jenkins_aws_access_key
-      ## Use this key for AWS secret access key
-      # awssecretkey: jenkins_aws_secret_key
-      # Add additional environment variables
-      # jenkinsgcp:
-      ## Use this key for GCP credentials
-    # gcpcredentials: credentials.json
-    env: []
-    # Example environment variable required for AWS credentials chain
-    # - name: "AWS_REGION"
-    #   value: "us-east-1"
-    resources:
-        requests:
-            memory: 1Gi
-            cpu: 1
-        limits:
-            memory: 1Gi
-            cpu: 1
-    # Destination to store the backup artifacts
-    # Supported cloud storage services: AWS S3, Minio S3, Azure Blob Storage, Google Cloud Storage
-    # Additional support can added. Visit this repository for details
-    # Ref: https://github.com/maorfr/skbn
-    destination: "s3://jenkins-data/backup"
-    # By enabling only the jenkins_home/jobs folder gets backed up, not the whole jenkins instance
-    onlyJobs: false
-    # Enable backup pod security context (must be `true` if runAsUser or fsGroup are set)
-    usePodSecurityContext: true
-    # When setting runAsUser to a different value than 0 also set fsGroup to the same value:
-    runAsUser: 1000
-    fsGroup: 1000
-    securityContextCapabilities: {}
-    #  drop:
-    #    - NET_RAW
 checkDeprecation: true
