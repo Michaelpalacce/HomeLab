@@ -41,7 +41,7 @@ spec:
     storageClassName: monitoring-sc
     resources:
         requests:
-            storage: 2Gi
+            storage: 10Gi
 
 {{- end }}
 

@@ -20,7 +20,7 @@
   "gnetId": 1860,
   "graphTooltip": 1,
   "id": 1,
-  "iteration": 1629995926890,
+  "iteration": 1630160932819,
   "links": [],
   "panels": [
 	{
@@ -3438,7 +3438,7 @@
 	  {
 		"allValue": null,
 		"current": {
-		  "selected": true,
+		  "selected": false,
 		  "text": "192.168.1.109:9100",
 		  "value": "192.168.1.109:9100"
 		},
@@ -3493,7 +3493,7 @@
 	]
   },
   "time": {
-	"from": "now-5m",
+	"from": "now-15m",
 	"to": "now-0m"
   },
   "timepicker": {

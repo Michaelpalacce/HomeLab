@@ -14,6 +14,8 @@ The OS used is an Ubuntu server 21.04 x64 arm64 ISO ( downloaded from the Raspbe
 - Fan Heatsink ( ~ 10 dollars each )
 - Smaller memory heatsink ( ~ 2 dollars each )
 
+# Setting up the PI
+
 ### Setting up the Raspberry pi Hardware wise
 - Add all your heatsinks ( if any )
 - Place the PIs in their cases
@@ -34,6 +36,7 @@ Oh boy are you in for a treat :)
 - `sudo update-initramfs -u` wait for operation to finish and you should be save to plug in the SSD all the way and boot.
 - This should be all :) Pi will now boot from SSD
 
+# Preparing the OS
 
 ### Software Prerequisites
 - If you want to use WI-FI ( WPA2 - Personal ) instead of Ethernet: https://www.linuxbabe.com/command-line/ubuntu-server-16-04-wifi-wpa-supplicant
@@ -77,6 +80,8 @@ iptables -F && update-alternatives --set iptables /usr/sbin/iptables-legacy && u
 - For raspberry pis who have limited resources we need something more minimalistic. k3s was made to run with limited resources in mind, so it seems like a good fit
 - We will not be using traefik and flannel tho as they seem to result in a DNS issue I could not resolve, so I stuck with the classic -> calico :)
 
+# Installing Kubernetes
+
 ### Setting up the cluster
 - First thing we are going to do is navigate to the `./ansible` folder
 - Set up your inventory file ( use mine as an example, the only thing different will probably be the IPs, but if you chose a different ansible user, make sure to modify accordingly )
@@ -89,6 +94,16 @@ iptables -F && update-alternatives --set iptables /usr/sbin/iptables-legacy && u
 ### Setting up storage 
 - Run `ansible-playbook -i inventory playbooks/longhorn-storage/main.yml` Initialize longhorn storage
 - Monitor that everything is started correctly: `watch -n1 -d kubectl get all -o wide -n longhorn-system`
+
+### Setting up monitoring
+- Run `ansible-playbook -i inventory playbooks/monitoring/main.yml` Initialize Prometheus and Grafana
+- Go to http://{{CLUSTER_URI}}:30100
+- Username: admin  Password: admin
+- It will prompt you to change the password
+- Go to Settings/DataSources and add a Prometheus Datasource
+- Set URL to prometheus:9090
+- Import the dashboard located in ./config/ by clicking on the plus and then import
+- Go to the dashboard :) It will take a few minutes to populate data
 
 ### Setting up Jenkins
 - Run `ansible-playbook -i inventory playbooks/jenkins/main.yml` Install Jenkins CI/CD.
@@ -133,16 +148,6 @@ Service account: jenkins
     },
 ~~~
 - Run: `ansible-playbook -i inventory playbooks/pihole/main.yml`
-
-### Setting up monitoring
-- Run `ansible-playbook -i inventory playbooks/monitoring/main.yml` Initialize Prometheus and Grafana
-- Go to http://{{CLUSTER_URI}}:30100
-- Username: admin  Password: admin
-- It will prompt you to change the password
-- Go to Settings/DataSources and add a Prometheus Datasource
-- Set URL to prometheus:9090
-- Import the dashboard located in ./config/ by clicking on the plus and then import
-- Go to the dashboard :) It will take a few minutes to populate data
 
 
 # Troubleshooting
