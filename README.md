@@ -95,6 +95,10 @@ iptables -F && update-alternatives --set iptables /usr/sbin/iptables-legacy && u
 - Run `ansible-playbook -i inventory playbooks/longhorn-storage/main.yml` Initialize longhorn storage
 - Monitor that everything is started correctly: `watch -n1 -d kubectl get all -o wide -n longhorn-system`
 
+### Setting up plex ( note you will need around 80GB of space )
+- Go to the plex helm chart values and put your own claim token in there "https://plex.tv/claim"
+- Run `ansible-playbook -i inventory playbooks/kube-plex/main.yml` Initialize plex server
+
 ### Setting up monitoring
 - Run `ansible-playbook -i inventory playbooks/monitoring/main.yml` Initialize Prometheus and Grafana
 - Go to http://{{CLUSTER_URI}}:30100
