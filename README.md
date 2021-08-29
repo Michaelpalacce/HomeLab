@@ -95,10 +95,6 @@ iptables -F && update-alternatives --set iptables /usr/sbin/iptables-legacy && u
 - Run `ansible-playbook -i inventory playbooks/longhorn-storage/main.yml` Initialize longhorn storage
 - Monitor that everything is started correctly: `watch -n1 -d kubectl get all -o wide -n longhorn-system`
 
-### Setting up plex ( note you will need around 80GB of space )
-- Go to the plex helm chart values and put your own claim token in there "https://plex.tv/claim"
-- Run `ansible-playbook -i inventory playbooks/kube-plex/main.yml` Initialize plex server
-
 ### Setting up monitoring
 - Run `ansible-playbook -i inventory playbooks/monitoring/main.yml` Initialize Prometheus and Grafana
 - Go to http://{{CLUSTER_URI}}:30100
@@ -142,6 +138,10 @@ Service account: jenkins
 # That should be all, but if you have different requirements you can set them up
 ~~~
 
+### Setting up plex ( note you will need around 60GB of space )
+- Go to the plex helm chart values and put your own claim token in there "https://plex.tv/claim"
+- Run `ansible-playbook -i inventory playbooks/kube-plex/main.yml` Initialize plex server
+- 
 ### Setting up Pihole ( WORK IN PROGRESS, CURRENTLY DOES NOT WORK AS EXPECTED )
 - You will have to first allow calico to forward ips, so your loadbalancer setup will work correctly
 - go to each node and edit: /etc/cni/net.d/10-calico.conflist

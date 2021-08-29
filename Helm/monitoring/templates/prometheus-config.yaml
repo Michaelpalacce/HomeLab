@@ -10,6 +10,7 @@ data:
         global:
           scrape_interval:     60s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
           evaluation_interval: 60s # Evaluate rules every 15 seconds. The default is every 1 minute.
+          scrape_timeout:      60s
         # Alertmanager configuration
         alerting:
           alertmanagers:

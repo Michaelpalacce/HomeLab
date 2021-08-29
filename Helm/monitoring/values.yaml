@@ -10,15 +10,14 @@ prometheus:
 #   How long will data scraped by prometheus be kept on the fs
     retentionTime: 7d
 
-# Currently disabled since I don't see a need for it
-## Remove cadvisor if you don't want to have this scraper
+# Remove cadvisor if you don't want to have this scraper
 #cadvisor:
 #    image: zcube/cadvisor # ARM based image :) cannot use official one since google do not wanna support arm for some reason
 #    tag: v0.37.5
 #    port: 8080
 #    limits:
 ##       Increase this if you don't want throttling. Generally it's ok for the scrapers to throttle. Cadvisor specifically is very cpu hungry.
-#        cpu: 150m
+#        cpu: 250m
 #        memory: 512Mi
 
 nodeExporter:
