@@ -1,5 +1,5 @@
 longhorn:
-    nodePort: 30200
+    nodePort: 30030
     storageClass:
         allowVolumeExpansion: true
         parameters:

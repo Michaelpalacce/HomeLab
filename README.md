@@ -153,6 +153,24 @@ Service account: jenkins
 ~~~
 - Run: `ansible-playbook -i inventory playbooks/pihole/main.yml`
 
+# NodePorts in use
+
+## Monitoring
+#### Used Port range: 30010-30019
+##### Grafana: 30010
+##### Prometheus: 30010
+
+## CI/CD
+#### Used Port range: 30020-30029
+##### Jenkins CI/CD: 30020
+
+## Infrastructure
+#### Used Port range: 30030-30039
+##### Longhorn Storage: 30030
+
+## Media
+#### Used Port range: 30040-30049 / 32400
+##### Plex Server: 32400
 
 # Troubleshooting
 

@@ -6,7 +6,7 @@ prometheus:
     image: quay.io/prometheus/prometheus
     tag: main
     port: 9090
-    nodePort: 30101
+    nodePort: 30011
 #   How long will data scraped by prometheus be kept on the fs
     retentionTime: 7d
 
@@ -30,7 +30,7 @@ grafana:
     image: grafana/grafana
     tag: 8.1.2
     port: 3000
-    nodePort: 30100
+    nodePort: 30010
     limits:
         cpu: 250m
         memory: 1Gi
