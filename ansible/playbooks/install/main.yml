@@ -1,5 +1,5 @@
 - hosts: all
-  name: Setup helm
+  name: Setup prereqs
   become: yes
   any_errors_fatal: yes
   tags:
@@ -8,6 +8,7 @@
       - "./vars/main.yml"
   roles:
       - michaelpalacce.helm
+      - michaelpalacce.kubernetes_preflight
 
 - hosts: all
   name: Setup Storage dependencies
