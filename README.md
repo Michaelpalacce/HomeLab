@@ -141,7 +141,14 @@ Service account: jenkins
 ### Setting up plex ( note you will need around 60GB of space )
 - Go to the plex helm chart values and put your own claim token in there "https://plex.tv/claim"
 - Run `ansible-playbook -i inventory playbooks/kube-plex/main.yml` Initialize plex server
-- 
+
+### Installing rancher ( Manual process. I personally would not recommend it :) if you won't be installing apps )
+- Run `kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.5.3/cert-manager.yaml` to install cert-manager that rancher needs
+- Run `helm repo add rancher-stable https://releases.rancher.com/server-charts/stable`
+- Run `helm repo update`
+- Run `helm install rancher rancher-stable/rancher --namespace cattle-system --create-namespace --set hostname=rancher.local`
+- Patch the rancher service to port 30031
+
 ### Setting up Pihole ( WORK IN PROGRESS, CURRENTLY DOES NOT WORK AS EXPECTED )
 - You will have to first allow calico to forward ips, so your loadbalancer setup will work correctly
 - go to each node and edit: /etc/cni/net.d/10-calico.conflist
@@ -167,6 +174,8 @@ Service account: jenkins
 ## Infrastructure
 #### Used Port range: 30030-30039
 ##### Longhorn Storage: 30030
+##### Rancher: 30031 -> http
+##### Rancher: 30032 -> https
 
 ## Media
 #### Used Port range: 30040-30049 / 32400
