@@ -17,7 +17,7 @@
 
       - name: Install homer namespace
         kubernetes.core.helm:
-            name: homer-pv
+            name: homer
             create_namespace: true
             release_namespace: homer
             chart_ref: homer/

@@ -32,16 +32,13 @@ spec:
                       - name: config-volume
                         mountPath: /www/assets
                   readinessProbe:
-                      failureThreshold: 5
-                      initialDelaySeconds: 60
-                      successThreshold: 2
+                      failureThreshold: 10
                       timeoutSeconds: 5
                       tcpSocket:
                           port: 8080
                   livenessProbe:
                       failureThreshold: 5
-                      initialDelaySeconds: 60
-                      successThreshold: 2
+                      initialDelaySeconds: 30
                       timeoutSeconds: 5
                       tcpSocket:
                           port: 8080

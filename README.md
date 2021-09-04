@@ -139,7 +139,7 @@ Service account: jenkins
 ~~~
 
 ### Setting up Homer ( WIP )
-- Go to Helm/homer and edit the homer-config to your own custom services
+- Go to Helm/homer and edit the `homer-config.yaml` to your own custom services
 - Run `ansible-playbook -i inventory playbooks/homer/main.yml` Initialize Homer Dashboard storage
 
 ### Setting up plex ( note you will need around 60GB of space )
