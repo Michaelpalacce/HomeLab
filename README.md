@@ -138,9 +138,12 @@ Service account: jenkins
 # That should be all, but if you have different requirements you can set them up
 ~~~
 
-### Setting up Homer ( WIP )
+### Setting up Homer
 - Go to Helm/homer and edit the `homer-config.yaml` to your own custom services
 - Run `ansible-playbook -i inventory playbooks/homer/main.yml` Initialize Homer Dashboard storage
+
+### Setting up Statping
+- Run `ansible-playbook -i inventory playbooks/statping/main.yml`
 
 ### Setting up plex ( note you will need around 60GB of space )
 - Go to the plex helm chart values and put your own claim token in there "https://plex.tv/claim"
@@ -169,7 +172,8 @@ Service account: jenkins
 ## Monitoring
 #### Used Port range: 30010-30019
 ##### Grafana: 30010
-##### Prometheus: 30010
+##### Prometheus: 30011
+##### Statping: 30012
 
 ## CI/CD
 #### Used Port range: 30020-30029

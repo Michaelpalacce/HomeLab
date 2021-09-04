@@ -14,10 +14,10 @@ data:
         # Using this will ignore remaining config in this file
         # externalConfig: https://example.com/server-luci/config.yaml
 
-        title: "App dashboard"
-        subtitle: "Homer"
+        title: "My HomeLab"
+        subtitle: "powered by Homer"
         # documentTitle: "Welcome" # Customize the browser tab text
-        logo: "assets/logo.png"
+        logo: "icons/png/homer.png"
         # Alternatively a fa icon can be provided:
         # icon: "fas fa-skull-crossbones"
 
@@ -105,18 +105,78 @@ data:
         # First level array represents a group.
         # Leave only a "items" key if not using group (group name, icon & tagstyle are optional, section separation will not be displayed).
         services:
-            - name: "Application"
-              icon: "fas fa-code-branch"
+            - name: "Monitoring"
+              # icon: "fas fa-code-branch"
                 # A path to an image can also be provided. Note that icon take precedence if both icon and logo are set.
                 # logo: "path/to/logo"
               items:
                   - name: "Grafana"
-                    logo: "https://pics.freeicons.io/uploads/icons/png/8135670941548141941-512.png"
+                    logo: "icons/png/grafana.png"
                       # Alternatively a fa icon can be provided:
                       # icon: "fab fa-jenkins"
-                    subtitle: "Monitoring Dashboard"
-                    tag: "app"
+                    subtitle: "Monitoring"
+                    tag: "monitor"
                     url: "http://192.168.1.182:30010"
+                    target: "_blank" # optional html tag target attribute
+
+                  - name: "Prometheus"
+                    logo: "icons/png/prometheus.png"
+                      # Alternatively a fa icon can be provided:
+                      # icon: "fab fa-jenkins"
+                    subtitle: "Monitoring"
+                    tag: "monitor"
+                    url: "http://192.168.1.182:30011"
+                    target: "_blank" # optional html tag target attribute
+
+                  - name: "StatPing"
+                    logo: "icons/png/statping.png"
+                      # Alternatively a fa icon can be provided:
+                      # icon: "fab fa-jenkins"
+                    subtitle: "Services heartbeat"
+                    tag: "monitor"
+                    url: "http://192.168.1.182:30012/dashboard"
+                    target: "_blank" # optional html tag target attribute
+
+            - name: "CI/CD"
+              # icon: "fas fa-code-branch"
+                # A path to an image can also be provided. Note that icon take precedence if both icon and logo are set.
+                # logo: "path/to/logo"
+              items:
+                  - name: "Jenkins"
+                    logo: "icons/png/jenkins.png"
+                      # Alternatively a fa icon can be provided:
+                      # icon: "fab fa-jenkins"
+                    subtitle: "CI/CD Pipeline for my projects"
+                    tag: "ci/cd"
+                    url: "http://192.168.1.182:30020"
+                    target: "_blank" # optional html tag target attribute
+
+            - name: "Infrastructure"
+              # icon: "fas fa-code-branch"
+                # A path to an image can also be provided. Note that icon take precedence if both icon and logo are set.
+                # logo: "path/to/logo"
+              items:
+                  - name: "Longhorn Storage"
+                    logo: "icons/png/longhorn.png"
+                      # Alternatively a fa icon can be provided:
+                      # icon: "fab fa-jenkins"
+                    subtitle: "Block Storage for kubernetes"
+                    tag: "storage"
+                    url: "http://192.168.1.182:30030"
+                    target: "_blank" # optional html tag target attribute
+
+            - name: "Media"
+              # icon: "fas fa-code-branch"
+                # A path to an image can also be provided. Note that icon take precedence if both icon and logo are set.
+                # logo: "path/to/logo"
+              items:
+                  - name: "Plex"
+                    logo: "icons/png/plex.png"
+                      # Alternatively a fa icon can be provided:
+                      # icon: "fab fa-jenkins"
+                    subtitle: "Media Streaming"
+                    tag: "media"
+                    url: "http://192.168.1.182:32400"
                     target: "_blank" # optional html tag target attribute
             #- name: "Other group"
             #  icon: "fas fa-heartbeat"

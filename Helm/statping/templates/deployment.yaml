@@ -1,40 +1,39 @@
-{{- with .Values.homer }}
+{{- with .Values.statping }}
 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: homer
+    name: statping
     namespace: {{ $.Release.Namespace }}
     labels:
-        app: homer
+        app: statping
 spec:
     replicas: 1
     selector:
         matchLabels:
-            app: homer
+            app: statping
     template:
         metadata:
             labels:
-                app: homer
-            annotations:
-                {{- with $ }}
-                checksum/config: {{ include (print $.Template.BasePath "/homer-config.yaml") . | sha256sum }}
-                {{- end }}
+                app: statping
         spec:
             containers:
-                - name: homer
+                - name: statping
                   image: {{ .image }}:{{ .tag }}
                   imagePullPolicy: IfNotPresent
                   resources:
+                      requests:
+                          cpu: 250m
+                          memory: 250Mi
                       limits:
-                          cpu: 50m
-                          memory: 100Mi
+                          cpu: 500m
+                          memory: 512Mi
                   ports:
                       - name: web
                         containerPort: 8080
                   volumeMounts:
-                      - name: config-volume
-                        mountPath: /www/assets
+                      - name: statping-data
+                        mountPath: /app
                   readinessProbe:
                       failureThreshold: 10
                       timeoutSeconds: 5
@@ -49,23 +48,24 @@ spec:
 
             restartPolicy: Always
             volumes:
-                - name: config-volume
-                  configMap:
-                      name: homer-config
+                - name: statping-data
+                  persistentVolumeClaim:
+                      claimName: statping-pvc
+                      readOnly: false
 
 ---
 
 apiVersion: v1
 kind: Service
 metadata:
-    name: homer
+    name: statping
     namespace: {{ $.Release.Namespace }}
 spec:
     type: NodePort
     selector:
-        app: homer
+        app: statping
     ports:
-        - name: homer
+        - name: statping
           protocol: TCP
           port: 8080
           nodePort: {{ .nodePort }}
