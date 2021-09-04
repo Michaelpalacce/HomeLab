@@ -138,6 +138,10 @@ Service account: jenkins
 # That should be all, but if you have different requirements you can set them up
 ~~~
 
+### Setting up Homer ( WIP )
+- Go to Helm/homer and edit the homer-config to your own custom services
+- Run `ansible-playbook -i inventory playbooks/homer/main.yml` Initialize Homer Dashboard storage
+
 ### Setting up plex ( note you will need around 60GB of space )
 - Go to the plex helm chart values and put your own claim token in there "https://plex.tv/claim"
 - Run `ansible-playbook -i inventory playbooks/kube-plex/main.yml` Initialize plex server
@@ -176,6 +180,7 @@ Service account: jenkins
 ##### Longhorn Storage: 30030
 ##### Rancher: 30031 -> http
 ##### Rancher: 30032 -> https
+##### Homer: 30033
 
 ## Media
 #### Used Port range: 30040-30049 / 32400

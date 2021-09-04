@@ -1,5 +1,5 @@
 - hosts: init_master
-  name: Setup monitoring with Grafana and Prometheus
+  name: Setup pihole
   become: yes
   tags:
       - pihole

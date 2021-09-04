@@ -1,0 +1,4 @@
+homer:
+    image: b4bz/homer
+    tag: 21.07.1
+    nodePort: 30033
