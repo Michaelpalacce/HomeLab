@@ -90,14 +90,15 @@ iptables -F && update-alternatives --set iptables /usr/sbin/iptables-legacy && u
 - Run `ansible-galaxy collection install -r playbooks/install/requirements-collecttions.yml` to install all the needed ansible collections
 - Run `ansible-playbook -i inventory playbooks/install/main.yml --tags preflight` At this point you have everything needed to setup kubernetes ( all the needed binaries )
 - Run `ansible-playbook -i inventory playbooks/install/main.yml --tags setup` This will initialize the master on the init_master PI
-
-### Setting up storage 
 - Run `ansible-playbook -i inventory playbooks/longhorn-storage/main.yml` Initialize longhorn storage
-- Monitor that everything is started correctly: `watch -n1 -d kubectl get all -o wide -n longhorn-system`
+- Run `ansible-playbook -i inventory playbooks/homer/main.yml` Initialize Homer Dashboard storage. You can go to Helm/homer and edit the `homer-config.yaml` to your own custom services if you want
+- Run `ansible-playbook -i inventory playbooks/statping/main.yml`. Go to the landing page to set it up and then add the services you want to keep a check on
 
 ### Setting up monitoring
+- If you have statping setup, make sure to go ahead and modify the prometheus config to include the statping 
+ api key. You can find more info here: https://github.com/statping/statping/wiki/Prometheus-Exporter
 - Run `ansible-playbook -i inventory playbooks/monitoring/main.yml` Initialize Prometheus and Grafana
-- Go to http://{{CLUSTER_URI}}:30100
+- Go to http://{{CLUSTER_URI}}:30010
 - Username: admin  Password: admin
 - It will prompt you to change the password
 - Go to Settings/DataSources and add a Prometheus Datasource
@@ -117,7 +118,7 @@ Kubernetes Namespace: jenkins-pi
 Credentials: {{ADD new with Service Account}}
 WebSocket: yes
 Direct: no
-Jenkins URL: http://{{CLUSTER_IP}}:30201 # had to put in my whole ip here, service name did not work
+Jenkins URL: http://{{CLUSTER_IP}}:30020 # had to put in my whole ip here, service name did not work
 Jenkins tunnel: <blank>
 # Add new pod template
 name: whatever
@@ -137,13 +138,6 @@ Service account: jenkins
 
 # That should be all, but if you have different requirements you can set them up
 ~~~
-
-### Setting up Homer
-- Go to Helm/homer and edit the `homer-config.yaml` to your own custom services
-- Run `ansible-playbook -i inventory playbooks/homer/main.yml` Initialize Homer Dashboard storage
-
-### Setting up Statping
-- Run `ansible-playbook -i inventory playbooks/statping/main.yml`
 
 ### Setting up plex ( note you will need around 60GB of space )
 - Go to the plex helm chart values and put your own claim token in there "https://plex.tv/claim"
@@ -171,7 +165,6 @@ Service account: jenkins
 ## Media
 #### Used Port range: 30040-30049 / 32400
 ##### Plex Server: 32400
-
 
 
 # Experimental !!!!!!!!!!!!!!!!

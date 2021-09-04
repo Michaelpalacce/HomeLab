@@ -24,6 +24,11 @@ data:
         # A scrape configuration containing exactly one endpoint to scrape:
         # Here it's Prometheus itself.
         scrape_configs:
+          - job_name: 'statping'
+            scrape_interval: 30s
+            bearer_token: 'd8303bdc91d38c04c26f39c7f42e01c6ac4870430c23010ae8f696b97717c4d8'
+            static_configs:
+                - targets: ['statping.statping:8080']
           - job_name: 'kubernetes-nodes'
             scheme: https
             tls_config:
