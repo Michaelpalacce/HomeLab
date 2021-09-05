@@ -2,3 +2,4 @@ homer:
     image: stefangenov/homer
     tag: 21.07.1
     nodePort: 30033
+    clusterUrl: 192.168.1.182

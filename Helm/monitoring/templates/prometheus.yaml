@@ -39,14 +39,13 @@ subjects:
 ---
 
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
     name: prometheus
     namespace: {{ $.Release.Namespace }}
     labels:
         app: prometheus
 spec:
-    serviceName: prometheus
     replicas: 1
     selector:
         matchLabels:

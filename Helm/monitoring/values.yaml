@@ -23,3 +23,8 @@ grafana:
     limits:
         cpu: 250m
         memory: 1Gi
+
+statping:
+    image: statping/statping
+    tag: v0.90.74
+    nodePort: 30012

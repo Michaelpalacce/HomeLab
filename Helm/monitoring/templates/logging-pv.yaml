@@ -28,7 +28,7 @@ spec:
 
 {{- end }}
 
-{{- with .Values.grafana }}
+{{- with .Values.prometheus }}
 ---
 
 apiVersion: v1
@@ -45,3 +45,19 @@ spec:
 
 {{- end }}
 
+{{- with .Values.statping }}
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: statping-pvc
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: monitoring-sc
+    resources:
+        requests:
+            storage: 2Gi
+
+{{- end }}

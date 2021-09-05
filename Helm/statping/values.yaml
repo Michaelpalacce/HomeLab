@@ -1,8 +1,0 @@
-statping:
-    image: statping/statping
-    tag: v0.90.74
-    nodePort: 30012
-
-storage:
-    dataLocality: "best-effort" # or disabled
-    numberOfReplicas: 1

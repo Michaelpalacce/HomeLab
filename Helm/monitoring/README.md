@@ -1,9 +1,9 @@
-This chart is used to install prometheus with grafana.
+This chart is used to install prometheus, grafana, node-exporter and statping.
 
 The processes are limited so we don't steal all the resources of the PIs. 
 
-Ideal values:
-grafana -> 1Gi Memory
-
 Available scrapers:
 - Node-Exporter: `https://github.com/prometheus/node_exporter`
+- Statping
+
+

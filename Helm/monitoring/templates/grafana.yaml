@@ -1,12 +1,11 @@
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
     labels:
         app: grafana
     name: grafana
     namespace: {{ .Release.Namespace }}
 spec:
-    serviceName: grafana
     selector:
         matchLabels:
             app: grafana
@@ -52,14 +51,10 @@ metadata:
 spec:
     ports:
         - port: {{ .Values.grafana.port }}
-          {{- if .Values.grafana.nodePort }}
           nodePort: {{ .Values.grafana.nodePort }}
-          {{- end }}
           protocol: TCP
           targetPort: http-grafana
     selector:
         app: grafana
     sessionAffinity: None
-    {{- if .Values.grafana.nodePort }}
     type: NodePort
-    {{- end }}

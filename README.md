@@ -82,6 +82,13 @@ iptables -F && update-alternatives --set iptables /usr/sbin/iptables-legacy && u
 
 # Installing Kubernetes
 
+### Before installing anything
+It is highly advisory to go to each helm chart values.yaml file and check the different options and modify them as you wish.
+Things like ports, storage size etc are good to be checked out. You may also want to check out the variables for the ansible scripts
+
+### Where are my services 
+If you scroll down a bit you will find a list of ports that the services are running on
+
 ### Setting up the cluster
 - First thing we are going to do is navigate to the `./ansible` folder
 - Set up your inventory file ( use mine as an example, the only thing different will probably be the IPs, but if you chose a different ansible user, make sure to modify accordingly )
@@ -91,12 +98,10 @@ iptables -F && update-alternatives --set iptables /usr/sbin/iptables-legacy && u
 - Run `ansible-playbook -i inventory playbooks/install/main.yml --tags preflight` At this point you have everything needed to setup kubernetes ( all the needed binaries )
 - Run `ansible-playbook -i inventory playbooks/install/main.yml --tags setup` This will initialize the master on the init_master PI
 - Run `ansible-playbook -i inventory playbooks/longhorn-storage/main.yml` Initialize longhorn storage
-- Run `ansible-playbook -i inventory playbooks/homer/main.yml` Initialize Homer Dashboard storage. You can go to Helm/homer and edit the `homer-config.yaml` to your own custom services if you want
-- Run `ansible-playbook -i inventory playbooks/statping/main.yml`. Go to the landing page to set it up and then add the services you want to keep a check on
+- Run `ansible-playbook -i inventory playbooks/homer/main.yml` Initialize Homer Dashboard storage.
+You can go to Helm/homer and edit the `homer-config.yaml` to your own custom services if you want. It is highly advisable to add this, so you can find services easily.
 
 ### Setting up monitoring
-- If you have statping setup, make sure to go ahead and modify the prometheus config to include the statping 
- api key. You can find more info here: https://github.com/statping/statping/wiki/Prometheus-Exporter
 - Run `ansible-playbook -i inventory playbooks/monitoring/main.yml` Initialize Prometheus and Grafana
 - Go to http://{{CLUSTER_URI}}:30010
 - Username: admin  Password: admin

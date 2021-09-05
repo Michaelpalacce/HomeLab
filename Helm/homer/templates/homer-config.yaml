@@ -116,7 +116,7 @@ data:
                       # icon: "fab fa-jenkins"
                     subtitle: "Monitoring"
                     tag: "monitor"
-                    url: "http://192.168.1.182:30010"
+                    url: "http://{{ .clusterUrl }}:30010"
                     target: "_blank" # optional html tag target attribute
 
                   - name: "Prometheus"
@@ -125,7 +125,7 @@ data:
                       # icon: "fab fa-jenkins"
                     subtitle: "Monitoring"
                     tag: "monitor"
-                    url: "http://192.168.1.182:30011"
+                    url: "http://{{ .clusterUrl }}:30011"
                     target: "_blank" # optional html tag target attribute
 
                   - name: "StatPing"
@@ -134,7 +134,7 @@ data:
                       # icon: "fab fa-jenkins"
                     subtitle: "Services heartbeat"
                     tag: "monitor"
-                    url: "http://192.168.1.182:30012/dashboard"
+                    url: "http://{{ .clusterUrl }}:30012/dashboard"
                     target: "_blank" # optional html tag target attribute
 
             - name: "CI/CD"
@@ -148,7 +148,7 @@ data:
                       # icon: "fab fa-jenkins"
                     subtitle: "CI/CD Pipeline for my projects"
                     tag: "ci/cd"
-                    url: "http://192.168.1.182:30020"
+                    url: "http://{{ .clusterUrl }}:30020"
                     target: "_blank" # optional html tag target attribute
 
             - name: "Infrastructure"
@@ -162,7 +162,7 @@ data:
                       # icon: "fab fa-jenkins"
                     subtitle: "Block Storage for kubernetes"
                     tag: "storage"
-                    url: "http://192.168.1.182:30030"
+                    url: "http://{{ .clusterUrl }}:30030"
                     target: "_blank" # optional html tag target attribute
 
             - name: "Media"
@@ -176,7 +176,7 @@ data:
                       # icon: "fab fa-jenkins"
                     subtitle: "Media Streaming"
                     tag: "media"
-                    url: "http://192.168.1.182:32400"
+                    url: "http://{{ .clusterUrl }}:32400"
                     target: "_blank" # optional html tag target attribute
             #- name: "Other group"
             #  icon: "fas fa-heartbeat"
