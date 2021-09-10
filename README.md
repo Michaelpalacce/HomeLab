@@ -110,6 +110,7 @@ You can go to Helm/homer and edit the `homer-config.yaml` to your own custom ser
 - Set URL to prometheus:9090
 - Import the dashboard located in ./config/ by clicking on the plus and then import
 - Go to the dashboard :) It will take a few minutes to populate data
+- If you want to setup backing up with s3 read the `BACKUP` section
 
 ### Setting up Jenkins
 - Run `ansible-playbook -i inventory playbooks/jenkins/main.yml` Install Jenkins CI/CD.
@@ -171,6 +172,10 @@ Service account: jenkins
 #### Used Port range: 30040-30049 / 32400
 ##### Plex Server: 32400
 
+# Backups
+I have written a simple kubernetes operator that will run commands in containers according to annotations.
+The backup is deployed with an extra helm chart and will search for annotations and give you the ability to execute commands manually or automatically.
+This is not a required step, but this is something that I do and use, so it is included :)
 
 # Experimental !!!!!!!!!!!!!!!!
 
