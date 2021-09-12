@@ -1,0 +1,9 @@
+babybuddy:
+    image: linuxserver/babybuddy
+    tag: latest
+    nodePort: 30100
+
+storage:
+    dataLocality: "best-effort" # or disabled
+    numberOfReplicas: 1
+    size: 2Gi

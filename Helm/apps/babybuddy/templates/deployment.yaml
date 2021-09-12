@@ -1,0 +1,72 @@
+{{- with .Values.babybuddy }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: babybuddy
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app: babybuddy
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: babybuddy
+    template:
+        metadata:
+            labels:
+                app: babybuddy
+        spec:
+            containers:
+                - name: babybuddy
+                  image: {{ .image }}:{{ .tag }}
+                  imagePullPolicy: IfNotPresent
+                  resources:
+                      requests:
+                          cpu: 250m
+                          memory: 512Mi
+                      limits:
+                          cpu: 500m
+                          memory: 750Mi
+                  ports:
+                      - name: web
+                        containerPort: 8000
+                  volumeMounts:
+                      - name: app-data
+                        mountPath: /config
+                  readinessProbe:
+                      failureThreshold: 10
+                      timeoutSeconds: 5
+                      tcpSocket:
+                          port: 8000
+                  livenessProbe:
+                      failureThreshold: 5
+                      initialDelaySeconds: 30
+                      timeoutSeconds: 5
+                      tcpSocket:
+                          port: 8000
+
+            restartPolicy: Always
+            volumes:
+                - name: app-data
+                  persistentVolumeClaim:
+                      claimName: babybuddy-pvc
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: babybuddy
+    namespace: {{ $.Release.Namespace }}
+spec:
+    type: NodePort
+    selector:
+        app: babybuddy
+    ports:
+        - name: babybuddy
+          protocol: TCP
+          port: 8000
+          nodePort: {{ .nodePort }}
+
+{{- end }}

@@ -145,9 +145,11 @@ Service account: jenkins
 # That should be all, but if you have different requirements you can set them up
 ~~~
 
-### Setting up plex ( note you will need around 60GB of space )
-- Go to the plex helm chart values and put your own claim token in there "https://plex.tv/claim"
-- Run `ansible-playbook -i inventory playbooks/kube-plex/main.yml` Initialize plex server
+# Setting up apps
+
+### Setting up BabyBuddy
+- Run `ansible-playbook -i inventory playbooks/apps/babybuddy/main.yml`
+
 
 # NodePorts in use
 
@@ -170,7 +172,10 @@ Service account: jenkins
 
 ## Media
 #### Used Port range: 30040-30049 / 32400
-##### Plex Server: 32400
+
+## Apps
+#### Used Port range: 30100 - 30200
+##### BabyBuddy: 30100
 
 # Backups
 I have written a simple kubernetes operator that will run commands in containers according to annotations.

@@ -1,0 +1,29 @@
+- hosts: init_master
+  name: Setup medusa
+  become: yes
+  tags:
+      - medusa
+      - medusa-setup
+  tasks:
+      - name: Cleanup old potential chart
+        file:
+            path: medusa
+            state: absent
+
+      - name: Ensure new Chart is present
+        copy:
+            src: ../../../../Helm/apps/medusa
+            dest: .
+
+      - name: Install medusa namespace
+        kubernetes.core.helm:
+            name: medusa
+            create_namespace: true
+            release_namespace: medusa
+            chart_ref: medusa/
+            values_files: medusa/values.yaml
+
+      - name: Cleanup chart, we no longer need this
+        file:
+            path: medusa
+            state: absent

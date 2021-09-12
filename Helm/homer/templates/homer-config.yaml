@@ -165,19 +165,15 @@ data:
                     url: "http://{{ .clusterUrl }}:30030"
                     target: "_blank" # optional html tag target attribute
 
-            - name: "Media"
-              # icon: "fas fa-code-branch"
-                # A path to an image can also be provided. Note that icon take precedence if both icon and logo are set.
-                # logo: "path/to/logo"
+            - name: "Apps"
               items:
-                  - name: "Plex"
-                    logo: "icons/png/plex.png"
-                      # Alternatively a fa icon can be provided:
-                      # icon: "fab fa-jenkins"
-                    subtitle: "Media Streaming"
-                    tag: "media"
-                    url: "http://{{ .clusterUrl }}:32400"
+                  - name: "BabyBuddy"
+                    logo: "icons/babybuddy.png"
+                    subtitle: "Baby Monitoring"
+                    tag: "apps"
+                    url: "http://{{ .clusterUrl }}:30100"
                     target: "_blank" # optional html tag target attribute
+
             #- name: "Other group"
             #  icon: "fas fa-heartbeat"
             #  items:
