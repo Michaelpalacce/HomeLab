@@ -1,0 +1,15 @@
+medusa:
+    image: linuxserver/medusa
+    tag: latest
+    nodePort: 30101
+    transmission:
+        image: linuxserver/transmission
+        tag: latest
+        nodePort: 30102
+    jellyfin:
+        nodePort: 30103
+
+storage:
+    dataLocality: "best-effort" # or disabled
+    numberOfReplicas: 1
+    configSize: 10Gi

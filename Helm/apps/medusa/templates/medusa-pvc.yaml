@@ -1,0 +1,55 @@
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+    name: medusa-sc
+provisioner: driver.longhorn.io
+allowVolumeExpansion: true
+parameters:
+    numberOfReplicas: "{{ .Values.storage.numberOfReplicas }}"
+    dataLocality: "{{ .Values.storage.dataLocality }}"
+    staleReplicaTimeout: "2800"
+    fromBackup: ""
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: medusa-config-pvc
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: medusa-sc
+    resources:
+        requests:
+            storage: {{ .Values.storage.configSize }}
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: medusa-transmission-pvc
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: medusa-sc
+    resources:
+        requests:
+            storage: 2Gi
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: medusa-jellyfin-pvc
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: medusa-sc
+    resources:
+        requests:
+            storage: 2Gi
+
+

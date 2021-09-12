@@ -150,6 +150,8 @@ Service account: jenkins
 ### Setting up BabyBuddy
 - Run `ansible-playbook -i inventory playbooks/apps/babybuddy/main.yml`
 
+### Setting up Medusa
+- Run `ansible-playbook -i inventory playbooks/apps/medusa/main.yml`
 
 # NodePorts in use
 
@@ -176,6 +178,9 @@ Service account: jenkins
 ## Apps
 #### Used Port range: 30100 - 30200
 ##### BabyBuddy: 30100
+##### Medusa: 30101
+##### Transmission: 30102
+##### Jellyfin: 30103
 
 # Backups
 I have written a simple kubernetes operator that will run commands in containers according to annotations.

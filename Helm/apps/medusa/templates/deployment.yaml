@@ -1,0 +1,180 @@
+{{- with .Values.medusa }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: medusa
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app: medusa
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: medusa
+    template:
+        metadata:
+            labels:
+                app: medusa
+        spec:
+            containers:
+                - name: medusa
+                  image: {{ .image }}:{{ .tag }}
+                  imagePullPolicy: IfNotPresent
+                  resources:
+                      requests:
+                          cpu: 250m
+                          memory: 512Mi
+                      limits:
+                          cpu: 1000m
+                          memory: 750Mi
+                  ports:
+                      - name: web
+                        containerPort: 8081
+                  volumeMounts:
+                      - name: app-data
+                        mountPath: /config
+                      - name: downloads-data
+                        mountPath: /downloads
+                      - name: shows-data
+                        mountPath: /tv
+                  livenessProbe:
+                      failureThreshold: 5
+                      initialDelaySeconds: 300
+                      timeoutSeconds: 5
+                      tcpSocket:
+                          port: 8081
+                  readinessProbe:
+                      failureThreshold: 5
+                      initialDelaySeconds: 30
+                      timeoutSeconds: 5
+                      tcpSocket:
+                          port: 8081
+
+                - name: transmission
+                  image: {{ .transmission.image }}:{{ .transmission.tag }}
+                  imagePullPolicy: IfNotPresent
+                  resources:
+                      requests:
+                          cpu: 500m
+                          memory: 512Mi
+                      limits:
+                          cpu: 1000m
+                          memory: 2Gi
+                  env:
+                      - name: USER
+                        value: username
+                      - name: PASS
+                        value: password
+                  ports:
+                      - name: web
+                        containerPort: 9091
+                      - name: torrent-tcp
+                        protocol: TCP
+                        containerPort: 51413
+                      - name: torrent-udp
+                        protocol: UDP
+                        containerPort: 51413
+                  volumeMounts:
+                      - name: transmission-data
+                        mountPath: /config
+                      - name: downloads-data
+                        mountPath: /downloads
+
+                - name: jellyfin
+                  image: jellyfin/jellyfin
+                  imagePullPolicy: IfNotPresent
+                  env:
+                    - name: NODE_NAME
+                      valueFrom:
+                          fieldRef:
+                              apiVersion: v1
+                              fieldPath: spec.nodeName
+                    - name: POD_NAME
+                      valueFrom:
+                          fieldRef:
+                              apiVersion: v1
+                              fieldPath: metadata.name
+                    - name: POD_NAMESPACE
+                      valueFrom:
+                          fieldRef:
+                              apiVersion: v1
+                              fieldPath: metadata.namespace
+                  ports:
+                      - containerPort: 8096
+                        protocol: TCP
+                  volumeMounts:
+                      - mountPath: /data/media
+                        name: shows-data
+                        readOnly: True
+                      - name: downloads-data
+                        mountPath: /downloads
+                        readOnly: True
+                      - mountPath: /config
+                        name: jellyfin-data
+
+            restartPolicy: Always
+            volumes:
+                - name: app-data
+                  persistentVolumeClaim:
+                      claimName: medusa-config-pvc
+                - name: shows-data
+                  emptyDir: {}
+                - name: downloads-data
+                  emptyDir: {}
+                - name: transmission-data
+                  emptyDir: {}
+                - name: jellyfin-data
+                  emptyDir: {}
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: medusa
+    namespace: {{ $.Release.Namespace }}
+spec:
+    type: NodePort
+    selector:
+        app: medusa
+    ports:
+        - name: medusa
+          protocol: TCP
+          port: 8081
+          nodePort: {{ .nodePort }}
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: transmission
+    namespace: {{ $.Release.Namespace }}
+spec:
+    type: NodePort
+    selector:
+        app: medusa
+    ports:
+        - name: transmission
+          protocol: TCP
+          port: 9091
+          nodePort: {{ .transmission.nodePort }}
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: jellyfin
+    namespace: {{ $.Release.Namespace }}
+spec:
+    type: NodePort
+    ports:
+        - name: web
+          port: 8096
+          protocol: TCP
+          targetPort: 8096
+          nodePort: {{ .jellyfin.nodePort }}
+    selector:
+        app: medusa
+
+{{- end }}

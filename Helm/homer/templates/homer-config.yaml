@@ -173,6 +173,24 @@ data:
                     tag: "apps"
                     url: "http://{{ .clusterUrl }}:30100"
                     target: "_blank" # optional html tag target attribute
+                  - name: "Medusa"
+                    logo: "icons/png/medusa.png"
+                    subtitle: "Tv Shows Downloader"
+                    tag: "apps"
+                    url: "http://{{ .clusterUrl }}:30101"
+                    target: "_blank" # optional html tag target attribute
+                  - name: "Transmission"
+                    logo: "icons/png/transmission.png"
+                    subtitle: "Torrent"
+                    tag: "apps"
+                    url: "http://{{ .clusterUrl }}:30102"
+                    target: "_blank" # optional html tag target attribute
+                  - name: "Jellyfin"
+                    logo: "icons/png/jellyfin.png"
+                    subtitle: "Tv Shows Stream"
+                    tag: "apps"
+                    url: "http://{{ .clusterUrl }}:30103"
+                    target: "_blank" # optional html tag target attribute
 
             #- name: "Other group"
             #  icon: "fas fa-heartbeat"
