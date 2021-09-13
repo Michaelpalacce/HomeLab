@@ -1,5 +1,5 @@
 homer:
     image: stefangenov/homer
     tag: 21.07.1
-    nodePort: 33333
+    nodePort: 32222
     clusterUrl: 192.168.1.182
