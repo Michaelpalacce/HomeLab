@@ -123,10 +123,11 @@ spec:
                 - name: downloads-data
                   emptyDir: {}
                 - name: transmission-data
-                  emptyDir: {}
+                  persistentVolumeClaim:
+                      claimName: medusa-transmission-pvc
                 - name: jellyfin-data
-                  emptyDir: {}
-
+                  persistentVolumeClaim:
+                      claimName: medusa-jellyfin-pvc
 ---
 
 apiVersion: v1
