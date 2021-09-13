@@ -12,4 +12,5 @@ medusa:
 storage:
     dataLocality: "best-effort" # or disabled
     numberOfReplicas: 1
-    configSize: 10Gi
+    configSize: 2Gi
+    showsSize: 100Gi

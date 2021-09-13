@@ -29,6 +29,20 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
+    name: medusa-shows-pvc
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: medusa-sc
+    resources:
+        requests:
+            storage: {{ .Values.storage.showsSize }}
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
     name: medusa-transmission-pvc
 spec:
     accessModes:

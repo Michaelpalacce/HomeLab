@@ -165,12 +165,12 @@ Service account: jenkins
 #### Used Port range: 30020-30029
 ##### Jenkins CI/CD: 30020
 
-## Infrastructure
-#### Used Port range: 30030-30039
+## Infrastructure 
+#### Used Port range: 30030-30039 / 33333
 ##### Longhorn Storage: 30030
 ##### Rancher: 30031 -> http
 ##### Rancher: 30032 -> https
-##### Homer: 30033
+##### Homer: 33333
 
 ## Media
 #### Used Port range: 30040-30049 / 32400

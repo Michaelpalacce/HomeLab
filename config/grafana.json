@@ -20,7 +20,7 @@
   "gnetId": 1860,
   "graphTooltip": 1,
   "id": 1,
-  "iteration": 1630160932819,
+  "iteration": 1631548520961,
   "links": [],
   "panels": [
 	{
@@ -113,7 +113,7 @@
 			"lastNotNull"
 		  ],
 		  "displayMode": "table",
-		  "placement": "right"
+		  "placement": "bottom"
 		},
 		"tooltip": {
 		  "mode": "multi"
@@ -208,7 +208,7 @@
 			"lastNotNull"
 		  ],
 		  "displayMode": "table",
-		  "placement": "right"
+		  "placement": "bottom"
 		},
 		"tooltip": {
 		  "mode": "multi"
@@ -316,7 +316,7 @@
 		  "exemplar": true,
 		  "expr": "avg(node_hwmon_temp_celsius) by (instance)",
 		  "interval": "",
-		  "legendFormat": "",
+		  "legendFormat": "{{ instance }}",
 		  "refId": "A"
 		}
 	  ],
@@ -3524,6 +3524,6 @@
   },
   "timezone": "browser",
   "title": "Kubernetes Server Metrics",
-  "uid": "ogh2pMV7k",
+  "uid": "aZfthCVnk",
   "version": 2
 }
