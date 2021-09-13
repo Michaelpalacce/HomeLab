@@ -56,7 +56,7 @@ spec:
                   imagePullPolicy: IfNotPresent
                   resources:
                       requests:
-                          cpu: 400m
+                          cpu: 250m
                           memory: 512Mi
                       limits:
                           cpu: 500m
@@ -86,10 +86,10 @@ spec:
                   imagePullPolicy: IfNotPresent
                   resources:
                       requests:
-                          cpu: 250m
+                          cpu: 100m
                           memory: 512Mi
                       limits:
-                          cpu: 750m
+                          cpu: 500m
                           memory: 1Gi
                   env:
                     - name: NODE_NAME
