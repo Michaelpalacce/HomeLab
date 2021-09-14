@@ -152,6 +152,8 @@ Service account: jenkins
 
 ### Setting up Medusa
 - Read `Helm/apps/medusa/README.md` on some of the decisions taken
+- I have decided I will use a pi called `ubunutu-1` for this purpose
+- Run `kubectl label no ubuntu-1 type=media`
 - Run `ansible-playbook -i inventory playbooks/apps/medusa/main.yml`
 
 # NodePorts in use
