@@ -17,10 +17,19 @@ spec:
             labels:
                 app: medusa
         spec:
+            securityContext:
+                fsGroup: 0
+            nodeSelector:
+                type: media
             containers:
                 - name: medusa
                   image: {{ .image }}:{{ .tag }}
                   imagePullPolicy: IfNotPresent
+                  env:
+                      - name: PUID
+                        value: "0"
+                      - name: GUID
+                        value: "0"
                   resources:
                       requests:
                           cpu: 250m
@@ -119,19 +128,19 @@ spec:
             restartPolicy: Always
             volumes:
                 - name: app-data
-                  persistentVolumeClaim:
-                      claimName: medusa-config-pvc
+                  hostPath:
+                      path: /mnt/medusa/config
                 - name: shows-data
-                  persistentVolumeClaim:
-                      claimName: medusa-shows-pvc
+                  hostPath:
+                      path: /mnt/medusa/shows
                 - name: downloads-data
                   emptyDir: {}
                 - name: transmission-data
-                  persistentVolumeClaim:
-                      claimName: medusa-transmission-pvc
+                  hostPath:
+                      path: /mnt/medusa/transmission
                 - name: jellyfin-data
-                  persistentVolumeClaim:
-                      claimName: medusa-jellyfin-pvc
+                  hostPath:
+                      path: /mnt/medusa/jellyfin
 ---
 
 apiVersion: v1

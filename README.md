@@ -151,6 +151,7 @@ Service account: jenkins
 - Run `ansible-playbook -i inventory playbooks/apps/babybuddy/main.yml`
 
 ### Setting up Medusa
+- Read `Helm/apps/medusa/README.md` on some of the decisions taken
 - Run `ansible-playbook -i inventory playbooks/apps/medusa/main.yml`
 
 # NodePorts in use
