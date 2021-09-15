@@ -14,3 +14,23 @@ jellyfin:
     nodePort: 30103
     image: jellyfin/jellyfin
     tag: latest
+
+readarr:
+    nodePort: 30104
+    image: linuxserver/readarr
+    tag: nightly-0.1.0.963-ls6
+    port: 8787
+
+jackett:
+    nodePort: 30105
+    image: linuxserver/jackett
+    tag: latest
+    port: 9117
+
+ubooquity:
+    libNodePort: 30106
+    adminNodePort: 30107
+    image: linuxserver/ubooquity
+    tag: latest
+    libPort: 2202
+    adminPort: 2203

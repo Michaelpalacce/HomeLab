@@ -1,3 +1,17 @@
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+    name: media-config-sc
+provisioner: driver.longhorn.io
+allowVolumeExpansion: true
+parameters:
+    numberOfReplicas: "1"
+    dataLocality: "best-effort"
+    staleReplicaTimeout: "2800"
+    fromBackup: ""
+
+---
+
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -170,5 +184,116 @@ spec:
     resources:
         requests:
             storage: 80Gi
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: readarr-config-volume
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: media-config-sc
+    resources:
+        requests:
+            storage: 1Gi
+
+---
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: books-volume-pv
+    labels:
+        type: local
+        app: books
+spec:
+    storageClassName: manual
+    capacity:
+        storage: 5Gi
+    accessModes:
+        - ReadWriteOnce
+    hostPath:
+        path: "/mnt/media/books"
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: books-volume
+spec:
+    selector:
+        matchLabels:
+            app: books
+    storageClassName: manual
+    accessModes:
+        - ReadWriteOnce
+    resources:
+        requests:
+            storage: 5Gi
+
+---
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: jackett-downloads-pv
+    labels:
+        type: local
+        app: jackett-downloads
+spec:
+    storageClassName: manual
+    capacity:
+        storage: 5Gi
+    accessModes:
+        - ReadWriteOnce
+    hostPath:
+        path: "/mnt/media/jackett-downloads"
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: jackett-downloads
+spec:
+    selector:
+        matchLabels:
+            app: jackett-downloads
+    storageClassName: manual
+    accessModes:
+        - ReadWriteOnce
+    resources:
+        requests:
+            storage: 5Gi
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: jackett-config-volume
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: media-config-sc
+    resources:
+        requests:
+            storage: 1Gi
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: ubooquity-config-volume
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: media-config-sc
+    resources:
+        requests:
+            storage: 1Gi
 
 ---

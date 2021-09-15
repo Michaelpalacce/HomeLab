@@ -105,6 +105,49 @@ data:
         # First level array represents a group.
         # Leave only a "items" key if not using group (group name, icon & tagstyle are optional, section separation will not be displayed).
         services:
+
+            - name: "Apps"
+              items:
+                  - name: "BabyBuddy"
+                    logo: "icons/babybuddy.png"
+                    subtitle: "Baby Monitoring"
+                    tag: "apps"
+                    url: "http://{{ .clusterUrl }}:30100"
+                    target: "_blank" # optional html tag target attribute
+                  - name: "Jellyfin"
+                    logo: "icons/png/jellyfin.png"
+                    subtitle: "Tv Shows Stream"
+                    tag: "apps"
+                    url: "http://{{ .clusterUrl }}:30103"
+                    target: "_blank" # optional html tag target attribute
+                  - name: "Ubooquity Library"
+                    logo: "icons/png/ubooquity.png"
+                    subtitle: "Book Library"
+                    tag: "books"
+                    url: "http://{{ .clusterUrl }}:30106/ubooquity"
+                    target: "_blank" # optional html tag target attribute
+                  - name: "Ubooquity Admin"
+                    logo: "icons/png/ubooquity.png"
+                    subtitle: "Book Library Admin"
+                    tag: "books"
+                    url: "http://{{ .clusterUrl }}:30107/ubooquity/admin"
+                    target: "_blank" # optional html tag target attribute
+
+            - name: "Downloaders"
+              items:
+                  - name: "Medusa"
+                    logo: "icons/png/medusa.png"
+                    subtitle: "Tv Shows Downloader"
+                    tag: "tv"
+                    url: "http://{{ .clusterUrl }}:30101"
+                    target: "_blank" # optional html tag target attribute
+                  - name: "Readarr"
+                    logo: "icons/png/readarr.png"
+                    subtitle: "Ebook Library Downloader"
+                    tag: "ebooks"
+                    url: "http://{{ .clusterUrl }}:30104"
+                    target: "_blank" # optional html tag target attribute
+
             - name: "Monitoring"
               # icon: "fas fa-code-branch"
                 # A path to an image can also be provided. Note that icon take precedence if both icon and logo are set.
@@ -137,20 +180,6 @@ data:
                     url: "http://{{ .clusterUrl }}:30012/dashboard"
                     target: "_blank" # optional html tag target attribute
 
-            - name: "CI/CD"
-              # icon: "fas fa-code-branch"
-                # A path to an image can also be provided. Note that icon take precedence if both icon and logo are set.
-                # logo: "path/to/logo"
-              items:
-                  - name: "Jenkins"
-                    logo: "icons/png/jenkins.png"
-                      # Alternatively a fa icon can be provided:
-                      # icon: "fab fa-jenkins"
-                    subtitle: "CI/CD Pipeline for my projects"
-                    tag: "ci/cd"
-                    url: "http://{{ .clusterUrl }}:30020"
-                    target: "_blank" # optional html tag target attribute
-
             - name: "Infrastructure"
               # icon: "fas fa-code-branch"
                 # A path to an image can also be provided. Note that icon take precedence if both icon and logo are set.
@@ -164,45 +193,30 @@ data:
                     tag: "storage"
                     url: "http://{{ .clusterUrl }}:30030"
                     target: "_blank" # optional html tag target attribute
-
-            - name: "Apps"
-              items:
-                  - name: "BabyBuddy"
-                    logo: "icons/babybuddy.png"
-                    subtitle: "Baby Monitoring"
-                    tag: "apps"
-                    url: "http://{{ .clusterUrl }}:30100"
-                    target: "_blank" # optional html tag target attribute
-                  - name: "Medusa"
-                    logo: "icons/png/medusa.png"
-                    subtitle: "Tv Shows Downloader"
-                    tag: "apps"
-                    url: "http://{{ .clusterUrl }}:30101"
-                    target: "_blank" # optional html tag target attribute
                   - name: "Transmission"
                     logo: "icons/png/transmission.png"
                     subtitle: "Torrent"
-                    tag: "apps"
+                    tag: "torrent"
                     url: "http://{{ .clusterUrl }}:30102"
                     target: "_blank" # optional html tag target attribute
-                  - name: "Jellyfin"
-                    logo: "icons/png/jellyfin.png"
-                    subtitle: "Tv Shows Stream"
-                    tag: "apps"
-                    url: "http://{{ .clusterUrl }}:30103"
+                  - name: "Jackett"
+                    logo: "icons/png/jackett.png"
+                    subtitle: "Torrent indexer"
+                    tag: "torrent"
+                    url: "http://{{ .clusterUrl }}:30105"
                     target: "_blank" # optional html tag target attribute
 
-            #- name: "Other group"
-            #  icon: "fas fa-heartbeat"
-            #  items:
-            #      - name: "Pi-hole"
-            #        logo: "assets/tools/sample.png"
-            #          # subtitle: "Network-wide Ad Blocking" # optional, if no subtitle is defined, PiHole statistics will be shown
-            #        tag: "other"
-            #        url: "http://192.168.0.151/admin"
-            #        type: "PiHole" # optional, loads a specific component that provides extra features. MUST MATCH a file name (without file extension) available in `src/components/services`
-            #        target: "_blank" # optional html a tag target attribute
-            #          # class: "green" # optional custom CSS class for card, useful with custom stylesheet
-            #          # background: red # optional color for card to set color directly without custom stylesheet
-
+            - name: "CI/CD"
+              # icon: "fas fa-code-branch"
+                # A path to an image can also be provided. Note that icon take precedence if both icon and logo are set.
+                # logo: "path/to/logo"
+              items:
+                  - name: "Jenkins"
+                    logo: "icons/png/jenkins.png"
+                      # Alternatively a fa icon can be provided:
+                      # icon: "fab fa-jenkins"
+                    subtitle: "CI/CD Pipeline for my projects"
+                    tag: "ci/cd"
+                    url: "http://{{ .clusterUrl }}:30020"
+                    target: "_blank" # optional html tag target attribute
 {{- end }}

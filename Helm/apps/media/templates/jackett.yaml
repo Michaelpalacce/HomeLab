@@ -1,26 +1,33 @@
-{{- with .Values.statping }}
+{{- with .Values.jackett }}
 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: statping
+    name: jackett
     namespace: {{ $.Release.Namespace }}
     labels:
-        app: statping
+        app: jackett
 spec:
     replicas: 1
     selector:
         matchLabels:
-            app: statping
+            app: jackett
     template:
         metadata:
             labels:
-                app: statping
+                app: jackett
         spec:
+            nodeSelector:
+                type: media
             containers:
-                - name: statping
+                - name: jackett
                   image: {{ .image }}:{{ .tag }}
                   imagePullPolicy: IfNotPresent
+                  env:
+                      - name: PUID
+                        value: "1000"
+                      - name: GUID
+                        value: "1000"
                   resources:
                       requests:
                           cpu: 250m
@@ -30,44 +37,48 @@ spec:
                           memory: 512Mi
                   ports:
                       - name: web
-                        containerPort: 8080
+                        containerPort: {{ .port }}
                   volumeMounts:
-                      - name: statping-data
-                        mountPath: /app
-                  readinessProbe:
-                      failureThreshold: 10
+                      - name: app-data
+                        mountPath: /config
+                      - name: downloads-data
+                        mountPath: /downloads
+                  livenessProbe:
+                      failureThreshold: 5
+                      initialDelaySeconds: 300
                       timeoutSeconds: 5
                       tcpSocket:
-                          port: 8080
-                  livenessProbe:
+                          port: {{ .port }}
+                  readinessProbe:
                       failureThreshold: 5
                       initialDelaySeconds: 10
                       timeoutSeconds: 5
                       tcpSocket:
-                          port: 8080
+                          port: {{ .port }}
 
             restartPolicy: Always
             volumes:
-                - name: statping-data
+                - name: app-data
                   persistentVolumeClaim:
-                      claimName: statping-pvc
-                      readOnly: false
-
+                      claimName: jackett-config-volume
+                - name: downloads-data
+                  persistentVolumeClaim:
+                      claimName: jackett-downloads
 ---
 
 apiVersion: v1
 kind: Service
 metadata:
-    name: statping
+    name: jackett
     namespace: {{ $.Release.Namespace }}
 spec:
     type: NodePort
     selector:
-        app: statping
+        app: jackett
     ports:
-        - name: statping
+        - name: jackett
           protocol: TCP
-          port: 8080
+          port: {{ .port }}
           nodePort: {{ .nodePort }}
 
-  {{- end }}
+{{- end }}

@@ -41,7 +41,7 @@ spec:
                           port: 8000
                   livenessProbe:
                       failureThreshold: 5
-                      initialDelaySeconds: 30
+                      initialDelaySeconds: 10
                       timeoutSeconds: 5
                       tcpSocket:
                           port: 8000

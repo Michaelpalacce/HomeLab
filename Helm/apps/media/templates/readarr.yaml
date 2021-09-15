@@ -1,26 +1,26 @@
-{{- with .Values.medusa }}
+{{- with .Values.readarr }}
 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: medusa
+    name: readarr
     namespace: {{ $.Release.Namespace }}
     labels:
-        app: medusa
+        app: readarr
 spec:
     replicas: 1
     selector:
         matchLabels:
-            app: medusa
+            app: readarr
     template:
         metadata:
             labels:
-                app: medusa
+                app: readarr
         spec:
             nodeSelector:
                 type: media
             containers:
-                - name: medusa
+                - name: readarr
                   image: {{ .image }}:{{ .tag }}
                   imagePullPolicy: IfNotPresent
                   env:
@@ -37,35 +37,35 @@ spec:
                           memory: 512Mi
                   ports:
                       - name: web
-                        containerPort: 8081
+                        containerPort: {{ .port }}
                   volumeMounts:
                       - name: app-data
                         mountPath: /config
                       - name: downloads-data
                         mountPath: /downloads
-                      - name: shows-data
-                        mountPath: /tv
+                      - name: books-data
+                        mountPath: /books
                   livenessProbe:
                       failureThreshold: 5
                       initialDelaySeconds: 300
                       timeoutSeconds: 5
                       tcpSocket:
-                          port: 8081
+                          port: {{ .port }}
                   readinessProbe:
                       failureThreshold: 5
                       initialDelaySeconds: 10
                       timeoutSeconds: 5
                       tcpSocket:
-                          port: 8081
+                          port: {{ .port }}
 
             restartPolicy: Always
             volumes:
                 - name: app-data
                   persistentVolumeClaim:
-                      claimName: medusa-config-volume
-                - name: shows-data
+                      claimName: readarr-config-volume
+                - name: books-data
                   persistentVolumeClaim:
-                      claimName: shows-volume
+                      claimName: books-volume
                 - name: downloads-data
                   persistentVolumeClaim:
                       claimName: downloads-volume
@@ -74,16 +74,16 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-    name: medusa
+    name: readarr
     namespace: {{ $.Release.Namespace }}
 spec:
     type: NodePort
     selector:
-        app: medusa
+        app: readarr
     ports:
-        - name: medusa
+        - name: readarr
           protocol: TCP
-          port: 8081
+          port: {{ .port }}
           nodePort: {{ .nodePort }}
 
 {{- end }}

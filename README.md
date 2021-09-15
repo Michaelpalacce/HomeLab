@@ -175,15 +175,16 @@ Service account: jenkins
 ##### Rancher: 30032 -> https
 ##### Homer: 32222
 
-## Media
-#### Used Port range: 30040-30049 / 32400
-
 ## Apps
 #### Used Port range: 30100 - 30200
 ##### BabyBuddy: 30100
 ##### Medusa: 30101
 ##### Transmission: 30102
 ##### Jellyfin: 30103
+##### Readarr: 30104
+##### Jackett: 30105
+##### Ubooquity Lib: 30106
+##### Ubooquity Admin: 30107
 
 # Backups
 I have written a simple kubernetes operator that will run commands in containers according to annotations.

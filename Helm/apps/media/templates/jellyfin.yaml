@@ -17,8 +17,6 @@ spec:
             labels:
                 app: jellyfin
         spec:
-            securityContext:
-                fsGroup: 0
             nodeSelector:
                 type: media
             containers:
@@ -28,11 +26,15 @@ spec:
                   resources:
                       requests:
                           cpu: 100m
-                          memory: 512Mi
+                          memory: 250Mi
                       limits:
                           cpu: 500m
-                          memory: 1Gi
+                          memory: 512Mi
                   env:
+                    - name: PUID
+                      value: "1000"
+                    - name: GUID
+                      value: "1000"
                     - name: NODE_NAME
                       valueFrom:
                           fieldRef:
