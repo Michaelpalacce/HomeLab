@@ -150,11 +150,11 @@ Service account: jenkins
 ### Setting up BabyBuddy
 - Run `ansible-playbook -i inventory playbooks/apps/babybuddy/main.yml`
 
-### Setting up Medusa
-- Read `Helm/apps/medusa/README.md` on some of the decisions taken
+### Setting up Media Services
+- Read `Helm/apps/media/README.md` on some of the decisions taken
 - I have decided I will use a pi called `ubunutu-1` for this purpose
 - Run `kubectl label no ubuntu-1 type=media`
-- Run `ansible-playbook -i inventory playbooks/apps/medusa/main.yml`
+- Run `ansible-playbook -i inventory playbooks/apps/media/main.yml`
 
 # NodePorts in use
 

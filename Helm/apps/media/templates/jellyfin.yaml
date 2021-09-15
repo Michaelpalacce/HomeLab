@@ -1,0 +1,86 @@
+{{- with .Values.jellyfin }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: jellyfin
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app: jellyfin
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: jellyfin
+    template:
+        metadata:
+            labels:
+                app: jellyfin
+        spec:
+            securityContext:
+                fsGroup: 0
+            nodeSelector:
+                type: media
+            containers:
+                - name: jellyfin
+                  image: {{ .image }}:{{ .tag }}
+                  imagePullPolicy: IfNotPresent
+                  resources:
+                      requests:
+                          cpu: 100m
+                          memory: 512Mi
+                      limits:
+                          cpu: 500m
+                          memory: 1Gi
+                  env:
+                    - name: NODE_NAME
+                      valueFrom:
+                          fieldRef:
+                              apiVersion: v1
+                              fieldPath: spec.nodeName
+                    - name: POD_NAME
+                      valueFrom:
+                          fieldRef:
+                              apiVersion: v1
+                              fieldPath: metadata.name
+                    - name: POD_NAMESPACE
+                      valueFrom:
+                          fieldRef:
+                              apiVersion: v1
+                              fieldPath: metadata.namespace
+                  ports:
+                      - containerPort: 8096
+                        protocol: TCP
+                  volumeMounts:
+                      - mountPath: /data/media
+                        name: shows-data
+                      - mountPath: /config
+                        name: jellyfin-data
+
+            restartPolicy: Always
+            volumes:
+                - name: jellyfin-data
+                  persistentVolumeClaim:
+                      claimName: jellyfin-config-volume
+                - name: shows-data
+                  persistentVolumeClaim:
+                      claimName: shows-volume
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: jellyfin
+    namespace: {{ $.Release.Namespace }}
+spec:
+    selector:
+        app: jellyfin
+    type: NodePort
+    ports:
+        - name: web
+          port: 8096
+          protocol: TCP
+          targetPort: 8096
+          nodePort: {{ .nodePort }}
+
+{{- end }}

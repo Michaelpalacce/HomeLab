@@ -1,0 +1,16 @@
+medusa:
+    image: linuxserver/medusa
+    tag: latest
+    nodePort: 30101
+
+transmission:
+    image: linuxserver/transmission
+    tag: latest
+    nodePort: 30102
+    username: username
+    password: password
+
+jellyfin:
+    nodePort: 30103
+    image: jellyfin/jellyfin
+    tag: latest

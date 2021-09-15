@@ -1,0 +1,174 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: medusa-config-volume-pv
+    labels:
+        type: local
+        app: medusa
+spec:
+    storageClassName: manual
+    capacity:
+        storage: 2Gi
+    accessModes:
+        - ReadWriteOnce
+    hostPath:
+        path: "/mnt/media/medusa"
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: medusa-config-volume
+spec:
+    selector:
+        matchLabels:
+            app: medusa
+    storageClassName: manual
+    accessModes:
+        - ReadWriteOnce
+    resources:
+        requests:
+            storage: 2Gi
+
+---
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: transmission-config-volume-pv
+    labels:
+        type: local
+        app: transmission
+spec:
+    storageClassName: manual
+    capacity:
+        storage: 2Gi
+    accessModes:
+        - ReadWriteOnce
+    hostPath:
+        path: "/mnt/media/transmission"
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: transmission-config-volume
+spec:
+    selector:
+        matchLabels:
+            app: transmission
+    storageClassName: manual
+    accessModes:
+        - ReadWriteOnce
+    resources:
+        requests:
+            storage: 2Gi
+
+---
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: jellyfin-config-volume-pv
+    labels:
+        type: local
+        app: jellyfin
+spec:
+    storageClassName: manual
+    capacity:
+        storage: 2Gi
+    accessModes:
+        - ReadWriteOnce
+    hostPath:
+        path: "/mnt/media/jellyfin"
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: jellyfin-config-volume
+spec:
+    selector:
+        matchLabels:
+            app: jellyfin
+    storageClassName: manual
+    accessModes:
+        - ReadWriteOnce
+    resources:
+        requests:
+            storage: 2Gi
+
+---
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: shows-volume-pv
+    labels:
+        type: local
+        app: shows
+spec:
+    storageClassName: manual
+    capacity:
+        storage: 100Gi
+    accessModes:
+        - ReadWriteOnce
+    hostPath:
+        path: "/mnt/media/shows"
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: shows-volume
+spec:
+    selector:
+        matchLabels:
+            app: shows
+    storageClassName: manual
+    accessModes:
+        - ReadWriteOnce
+    resources:
+        requests:
+            storage: 100Gi
+
+---
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: downloads-volume-pv
+    labels:
+        type: local
+        app: downloads
+spec:
+    storageClassName: manual
+    capacity:
+        storage: 80Gi
+    accessModes:
+        - ReadWriteOnce
+    hostPath:
+        path: "/mnt/media/downloads"
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: downloads-volume
+spec:
+    selector:
+        matchLabels:
+            app: downloads
+    storageClassName: manual
+    accessModes:
+        - ReadWriteOnce
+    resources:
+        requests:
+            storage: 80Gi
+
+---

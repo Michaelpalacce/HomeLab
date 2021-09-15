@@ -1,0 +1,81 @@
+{{- with .Values.transmission }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: transmission
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app: transmission
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: transmission
+    template:
+        metadata:
+            labels:
+                app: transmission
+        spec:
+            securityContext:
+                fsGroup: 0
+            nodeSelector:
+                type: media
+            containers:
+                - name: transmission
+                  image: {{ .image }}:{{ .tag }}
+                  imagePullPolicy: IfNotPresent
+                  resources:
+                      requests:
+                          cpu: 250m
+                          memory: 512Mi
+                      limits:
+                          cpu: 500m
+                          memory: 2Gi
+                  env:
+                      - name: USER
+                        value: {{ .username }}
+                      - name: PASS
+                        value: {{ .password }}
+                  ports:
+                      - name: web
+                        containerPort: 9091
+                      - name: torrent-tcp
+                        protocol: TCP
+                        containerPort: 51413
+                      - name: torrent-udp
+                        protocol: UDP
+                        containerPort: 51413
+                  volumeMounts:
+                      - name: transmission-data
+                        mountPath: /config
+                      - name: downloads-data
+                        mountPath: /downloads
+
+            restartPolicy: Always
+            volumes:
+                - name: transmission-data
+                  persistentVolumeClaim:
+                      claimName: transmission-config-volume
+                - name: downloads-data
+                  persistentVolumeClaim:
+                      claimName: downloads-volume
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: transmission
+    namespace: {{ $.Release.Namespace }}
+spec:
+    type: NodePort
+    selector:
+        app: transmission
+    ports:
+        - name: transmission
+          protocol: TCP
+          port: 9091
+          nodePort: {{ .nodePort }}
+
+{{- end }}

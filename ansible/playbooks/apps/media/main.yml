@@ -1,29 +1,29 @@
 - hosts: init_master
-  name: Setup medusa
+  name: Setup media
   become: yes
   tags:
-      - medusa
-      - medusa-setup
+      - media
+      - media-setup
   tasks:
       - name: Cleanup old potential chart
         file:
-            path: medusa
+            path: media
             state: absent
 
       - name: Ensure new Chart is present
         copy:
-            src: ../../../../Helm/apps/medusa
+            src: ../../../../Helm/apps/media
             dest: .
 
-      - name: Install medusa namespace
+      - name: Install media namespace
         kubernetes.core.helm:
-            name: medusa
+            name: media
             create_namespace: true
-            release_namespace: medusa
-            chart_ref: medusa/
-            values_files: medusa/values.yaml
+            release_namespace: media
+            chart_ref: media/
+            values_files: media/values.yaml
 
       - name: Cleanup chart, we no longer need this
         file:
-            path: medusa
+            path: media
             state: absent
