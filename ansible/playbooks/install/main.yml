@@ -79,3 +79,103 @@
 
       - name: Join the node to cluster
         command: sh /tmp/join-command.sh
+
+- hosts: init_master
+  name: Setup traefik
+  become: yes
+  tags:
+      - traefik
+      - traefik-setup
+  tasks:
+      - name: Cleanup old potential chart
+        file:
+            path: traefik
+            state: absent
+
+      - name: Ensure new Chart is present
+        copy:
+            src: ../../../Helm/traefik
+            dest: .
+
+      - name: Install traefik namespace
+        kubernetes.core.helm:
+            name: traefik
+            create_namespace: false
+            release_namespace: kube-system
+            chart_ref: traefik/
+            values_files: traefik/values.yaml
+
+      - name: Cleanup chart, we no longer need this
+        file:
+            path: traefik
+            state: absent
+
+- hosts: init_master
+  name: Setup homer
+  become: yes
+  tags:
+      - homer
+      - homer-setup
+  tasks:
+      - name: Cleanup old potential chart
+        file:
+            path: homer
+            state: absent
+
+      - name: Ensure new Chart is present
+        copy:
+            src: ../../../Helm/homer
+            dest: .
+
+      - name: Install homer namespace
+        kubernetes.core.helm:
+            name: homer
+            create_namespace: true
+            release_namespace: homer
+            chart_ref: homer/
+            values_files: homer/values.yaml
+
+      - name: Cleanup chart, we no longer need this
+        file:
+            path: homer
+            state: absent
+
+- hosts: init_master
+  name: Setup Longhorn storage
+  become: yes
+  tags:
+      - storage
+      - storage-setup-longhorn
+  vars_files:
+      - "./vars/main.yml"
+  tasks:
+      - name: Cleanup old potential chart
+        file:
+            path: longhorn-system
+            state: absent
+
+      - name: Ensure new Chart is present
+        copy:
+            src: ../../../Helm/longhorn-system
+            dest: .
+
+      - name: Install longhorn-system namespace
+        kubernetes.core.helm:
+            name: longhorn-system
+            create_namespace: true
+            release_namespace: longhorn-system
+            chart_ref: longhorn-system/
+            values_files: longhorn-system/values.yaml
+
+      - name: Cleanup chart, we no longer need this
+        file:
+            path: longhorn-system
+            state: absent
+
+      - name: Verify everything is in state Running ( This may take a LONG time if you don't have the images and your internet is slow )
+        shell: kubectl get po -n longhorn-system | awk '{ print $3 }'
+        register: storage_pods_running
+        until: storage_pods_running.stdout.find("ContainerCreating") == -1 and storage_pods_running.stdout.find("BackOff") == -1 and storage_pods_running.stdout.find("Error") == -1 and storage_pods_running.stdout.find("Init") == -1
+        retries: 360
+        delay: 5
+        when: verify_running

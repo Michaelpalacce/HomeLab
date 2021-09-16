@@ -77,6 +77,7 @@ spec:
           nodePort: {{ .Values.grafana.nodePort }}
           protocol: TCP
           targetPort: http-grafana
+          name: grafana
     selector:
         app: grafana
     sessionAffinity: None

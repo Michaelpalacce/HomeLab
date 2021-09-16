@@ -1,0 +1,23 @@
+{{- with .Values.homer.ingress }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: homer-web-ui
+    namespace: {{ $.Release.Namespace }}
+    annotations:
+        kubernetes.io/ingress.class: traefik
+        traefik.ingress.kubernetes.io/rule-type: "PathPrefixStrip"
+        traefik.ingress.kubernetes.io/rewrite-target: "/"
+        traefik.ingress.kubernetes.io/app-root: "/"
+spec:
+    rules:
+        - http:
+              paths:
+                  - path: {{ .path }}
+                    pathType: Exact
+                    backend:
+                        service:
+                            name: homer
+                            port:
+                                name: homer
+{{- end }}
