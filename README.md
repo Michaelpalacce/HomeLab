@@ -11,7 +11,7 @@ The OS used is an Ubuntu server 21.04 x64 arm64 ISO ( downloaded from the Raspbe
 - the machine you are reading this from ;)
 
 ##### Optional:
-- Fan Heatsink ( ~ 10 dollars each )
+- Fan Heatsink ( ~ 5-10 dollars each )
 - Smaller memory heatsink ( ~ 2 dollars each )
 
 # Setting up the PI
@@ -34,7 +34,7 @@ Oh boy are you in for a treat :)
 - After that, login to the Ubuntu Server and run `lsusb`. Get the ID of your SSD ( make sure it's the SSD, it will be named accordingly )
 - `sudo nano /etc/modprobe.d/blacklist.conf` and add a new directive `blacklist uas` somewhere in the file
 - `echo options usb-storage quirks={{ID_OF_YOUR_SSD}}:u | sudo tee /etc/modprobe.d/ssd_quirks.conf`
-- `sudo update-initramfs -u` wait for operation to finish and you should be save to plug in the SSD all the way and boot.
+- `sudo update-initramfs -u` wait for operation to finish and you should be safe to plug in the SSD all the way and boot.
 - This should be all :) Pi will now boot from SSD
 
 # Preparing the OS
