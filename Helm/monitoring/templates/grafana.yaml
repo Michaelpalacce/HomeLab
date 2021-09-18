@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -11,9 +12,6 @@ spec:
             app: grafana
     template:
         metadata:
-{{/*            annotations:*/}}
-{{/*                kc3.command: "aws s3 sync /var/lib/grafana/ s3://sgenov-backup/grafana/"*/}}
-{{/*                kc3.container: awscli*/}}
             labels:
                 app: grafana
         spec:
@@ -42,25 +40,6 @@ spec:
                       - mountPath: /var/lib/grafana
                         name: grafana
 
-{{/*                - image: stefangenov/awscli:alpine*/}}
-{{/*                  name: awscli*/}}
-{{/*                  imagePullPolicy: IfNotPresent*/}}
-{{/*                  securityContext:*/}}
-{{/*                      runAsGroup: 0*/}}
-{{/*                      runAsUser: 0*/}}
-{{/*                      privileged: true*/}}
-{{/*                  envFrom:*/}}
-{{/*                      - secretRef:*/}}
-{{/*                           name: aws-access-keys*/}}
-{{/*                  resources:*/}}
-{{/*                      limits:*/}}
-{{/*                          cpu: 500m*/}}
-{{/*                          memory: 512Mi*/}}
-{{/*                  volumeMounts:*/}}
-{{/*                      - mountPath: /var/lib/grafana*/}}
-{{/*                        name: grafana*/}}
-{{/*                  command: [ "/bin/sh", "-c", "--" ]*/}}
-{{/*                  args: [ "sleep 3600000" ]*/}}
             volumes:
                 - name: grafana
                   persistentVolumeClaim:
