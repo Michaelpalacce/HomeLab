@@ -26,9 +26,10 @@ The OS used is an Ubuntu server 21.04 x64 arm64 ISO ( downloaded from the Raspbe
 - Boot into raspbian os and update the system `sudo apt upgrade -y`
 - Run: `sudo raspi-config` and change your bootloader version to latest, then change the boot order to boot from USB storage
 
-### My SSD drive has UAS
+### My SSD drive has UAS and it's not letting me boot
 Oh boy are you in for a treat :)
-- What I noticed is that if you ... ahem "connect the usb half-assed ( aka not fully connected )" the pi boots fine 
+- Now the problem here is not all manufacturers who claim UASP support actually do. The problem may also come from the enclosure.
+- What I noticed is that if you ... ahem "connect the usb half-assed ( aka not fully connected )" the pi boots fine.
  ( easiest way to do this is to first boot it without anything and start slowly inserting the usb ). So do that and let the pi boot
 - After that, login to the Ubuntu Server and run `lsusb`. Get the ID of your SSD ( make sure it's the SSD, it will be named accordingly )
 - `sudo nano /etc/modprobe.d/blacklist.conf` and add a new directive `blacklist uas` somewhere in the file
