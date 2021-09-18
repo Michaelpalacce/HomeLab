@@ -319,3 +319,49 @@ spec:
             storage: 1Gi
 
 ---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: serveremulator-volume-pv
+    labels:
+        type: local
+        app: serveremulator-volume
+spec:
+    storageClassName: manual
+    capacity:
+        storage: 40Gi
+    accessModes:
+        - ReadWriteMany
+    hostPath:
+        path: "/mnt/media/server-emulator"
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: serveremulator-volume
+spec:
+    selector:
+        matchLabels:
+            app: serveremulator-volume
+    accessModes:
+        - ReadWriteMany
+    storageClassName: manual
+    resources:
+        requests:
+            storage: 40Gi
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: serveremulator-config-volume
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: media-config-sc
+    resources:
+        requests:
+            storage: 1Gi

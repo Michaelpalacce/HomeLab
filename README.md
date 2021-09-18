@@ -189,6 +189,7 @@ Service account: jenkins
 ##### Jackett: 30105
 ##### Ubooquity Lib: 30106
 ##### Ubooquity Admin: 30107
+##### ServerEmulator: 30108
 
 # Backups
 I have written a simple kubernetes operator that will run commands in containers according to annotations.

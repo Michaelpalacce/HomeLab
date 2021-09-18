@@ -1,0 +1,75 @@
+{{- with .Values.serveremulator }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: serveremulator
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app: serveremulator
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: serveremulator
+    template:
+        metadata:
+            labels:
+                app: serveremulator
+        spec:
+            nodeSelector:
+                type: media
+            containers:
+                - name: serveremulator
+                  image: {{ .image }}:{{ .tag }}
+                  imagePullPolicy: IfNotPresent
+                  env:
+                      - name: SERVER_CONFIG_PATH
+                        value: "/config"
+                      - name: USER_DATA_PATH
+                        value: "/data"
+                      - name: SUDO
+                        value: "1"
+                  resources:
+                      requests:
+                          cpu: 100m
+                          memory: 250Mi
+                      limits:
+                          cpu: 500m
+                          memory: 1Gi
+                  ports:
+                      - containerPort: {{ .port }}
+                        protocol: TCP
+                  volumeMounts:
+                      - mountPath: /data
+                        name: data-volume
+                      - mountPath: /config
+                        name: config-data
+
+            restartPolicy: Always
+            volumes:
+                - name: data-volume
+                  persistentVolumeClaim:
+                      claimName: serveremulator-volume
+                - name: config-data
+                  persistentVolumeClaim:
+                      claimName: serveremulator-config-volume
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: serveremulator
+    namespace: {{ $.Release.Namespace }}
+spec:
+    selector:
+        app: serveremulator
+    type: NodePort
+    ports:
+        - name: web
+          port: {{ .port }}
+          protocol: TCP
+          targetPort: {{ .port }}
+          nodePort: {{ .nodePort }}
+
+{{- end }}

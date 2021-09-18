@@ -21,6 +21,12 @@ readarr:
     tag: nightly-0.1.0.963-ls6
     port: 8787
 
+serveremulator:
+    nodePort: 30108
+    image: stefangenov/server
+    tag: latest
+    port: 80
+
 jackett:
     nodePort: 30105
     image: linuxserver/jackett
