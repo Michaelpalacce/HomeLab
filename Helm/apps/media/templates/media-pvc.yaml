@@ -284,14 +284,36 @@ spec:
             storage: 1Gi
 
 ---
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: ubooquity-config-volume-pv
+    labels:
+        type: local
+        app: ubooquity-config-volume
+spec:
+    storageClassName: manual
+    capacity:
+        storage: 1Gi
+    accessModes:
+        - ReadWriteMany
+    hostPath:
+        path: "/mnt/media/ubooquity-config"
+
+---
+
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
     name: ubooquity-config-volume
 spec:
+    selector:
+        matchLabels:
+            app: ubooquity-config-volume
     accessModes:
         - ReadWriteMany
-    storageClassName: media-config-sc
+    storageClassName: manual
     resources:
         requests:
             storage: 1Gi
