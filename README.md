@@ -51,6 +51,7 @@ sudo adduser {USERNAME_HERE} # Follow prompts
 sudo adduser ansible # Follow prompts and set password to ansible as well
 sudo usermod -aG sudo ansible # Make ansible user root
 sudo usermod -aG sudo {USERNAME_HERE} # Make your own user root
+sudo sed -i '$ s/$/ cgroup_enable=cpuset cgroup_enable=memory cgroup_memory=1 swapaccount=1/' /boot/firmware/cmdline.txt
 
 sudo apt install -y openssh-server
 sudo vi /etc/ssh/ssh_config
@@ -149,6 +150,9 @@ Service account: jenkins
 
 ### Setting up BabyBuddy
 - Run `ansible-playbook -i inventory playbooks/apps/babybuddy/main.yml`
+- 
+### Setting up Vikunja
+- Run `ansible-playbook -i inventory playbooks/apps/vikunja/main.yml`
 
 ### Setting up Media Services
 - Read `Helm/apps/media/README.md` on some of the decisions taken
@@ -190,6 +194,7 @@ Service account: jenkins
 ##### Ubooquity Lib: 30106
 ##### Ubooquity Admin: 30107
 ##### ServerEmulator: 30108
+##### Vikunja: 30109
 
 # Backups
 I have written a simple kubernetes operator that will run commands in containers according to annotations.

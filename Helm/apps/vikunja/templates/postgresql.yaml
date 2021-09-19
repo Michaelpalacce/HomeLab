@@ -1,0 +1,108 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+    name: vikunja-postgresql
+    namespace: {{ $.Release.Namespace }}
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: postgresql
+    serviceName: postgresql
+    template:
+
+        metadata:
+            labels:
+                app: postgresql
+            name: postgresql
+        spec:
+            securityContext:
+                runAsUser: 0
+                runAsGroup: 0
+                fsGroup: 0
+            affinity:
+                podAntiAffinity:
+                    preferredDuringSchedulingIgnoredDuringExecution:
+                        - podAffinityTerm:
+                              labelSelector:
+                                  matchLabels:
+                                      app.kubernetes.io/component: primary
+                                      app.kubernetes.io/instance: vikunja
+                                      app.kubernetes.io/name: postgresql
+                              namespaces:
+                                  - {{ $.Release.Namespace }}
+                              topologyKey: kubernetes.io/hostname
+                          weight: 1
+            automountServiceAccountToken: false
+            containers:
+                - name: vikunja-postgresql
+                  image: postgres:9.6
+                  imagePullPolicy: IfNotPresent
+                  ports:
+                      - containerPort: 5432
+                        name: tcp-postgresql
+                        protocol: TCP
+                  env:
+                      - name: POSTGRES_USER
+                        value: postgres
+                      - name: POSTGRES_PASSWORD
+                        value: postgres
+                  livenessProbe:
+                      exec:
+                          command:
+                              - /bin/sh
+                              - -c
+                              - exec pg_isready -U "postgres" -h 127.0.0.1 -p 5432
+                      failureThreshold: 6
+                      initialDelaySeconds: 30
+                      periodSeconds: 10
+                      successThreshold: 1
+                      timeoutSeconds: 5
+                  readinessProbe:
+                      exec:
+                          command:
+                              - /bin/sh
+                              - -c
+                              - -e
+                              - |
+                                  exec pg_isready -U "postgres" -h 127.0.0.1 -p 5432
+                                  [ -f /opt/bitnami/postgresql/tmp/.initialized ] || [ -f /bitnami/postgresql/.initialized ]
+                      failureThreshold: 6
+                      initialDelaySeconds: 5
+                      periodSeconds: 10
+                      successThreshold: 1
+                      timeoutSeconds: 5
+                  resources:
+                      requests:
+                          cpu: 250m
+                          memory: 256Mi
+                  volumeMounts:
+                      - mountPath: /dev/shm
+                        name: dshm
+                      - mountPath: /var/lib/postgresql
+                        name: data
+            terminationGracePeriodSeconds: 30
+            volumes:
+                - name: data
+                  persistentVolumeClaim:
+                      claimName: postgresql-data-pvc
+                - name: dshm
+                  persistentVolumeClaim:
+                      claimName: postgresql-dshm-pvc
+    updateStrategy:
+        type: RollingUpdate
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: postgresql
+    namespace: {{ $.Release.Namespace }}
+spec:
+    selector:
+        app: postgresql
+    ports:
+        - name: postgresql
+          protocol: TCP
+          port: 5432

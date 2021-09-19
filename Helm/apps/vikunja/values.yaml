@@ -1,0 +1,4 @@
+storage:
+    dataLocality: "best-effort" # or disabled
+    numberOfReplicas: 1
+

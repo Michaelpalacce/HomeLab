@@ -1,0 +1,29 @@
+- hosts: init_master
+  name: Setup vikunja
+  become: yes
+  tags:
+      - vikunja
+      - vikunja-setup
+  tasks:
+      - name: Cleanup old potential chart
+        file:
+            path: vikunja
+            state: absent
+
+      - name: Ensure new Chart is present
+        copy:
+            src: ../../../../Helm/apps/vikunja
+            dest: .
+
+      - name: Install vikunja namespace
+        kubernetes.core.helm:
+            name: vikunja
+            create_namespace: true
+            release_namespace: vikunja
+            chart_ref: vikunja/
+            values_files: vikunja/values.yaml
+
+      - name: Cleanup chart, we no longer need this
+        file:
+            path: vikunja
+            state: absent

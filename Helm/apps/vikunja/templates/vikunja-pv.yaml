@@ -1,0 +1,39 @@
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+    name: vikunja-sc
+provisioner: driver.longhorn.io
+allowVolumeExpansion: true
+parameters:
+    numberOfReplicas: "{{ .Values.storage.numberOfReplicas }}"
+    dataLocality: "{{ .Values.storage.dataLocality }}"
+    staleReplicaTimeout: "2800"
+    fromBackup: ""
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: postgresql-dshm-pvc
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: vikunja-sc
+    resources:
+        requests:
+            storage: 1Gi
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: postgresql-data-pvc
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: vikunja-sc
+    resources:
+        requests:
+            storage: 8Gi

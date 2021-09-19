@@ -126,6 +126,12 @@ data:
                     tag: "apps"
                     url: "http://{{ .clusterUrl }}:30108"
                     target: "_blank" # optional html tag target attribute
+                  - name: "Vikunja"
+                    logo: "icons/png/vikunja.png"
+                    subtitle: "Tasks"
+                    tag: "tasks"
+                    url: "http://{{ .clusterUrl }}:30109"
+                    target: "_blank" # optional html tag target attribute
                   - name: "Ubooquity Library"
                     logo: "icons/png/ubooquity.png"
                     subtitle: "Book Library"
