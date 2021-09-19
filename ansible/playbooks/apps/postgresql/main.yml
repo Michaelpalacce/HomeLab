@@ -1,0 +1,29 @@
+- hosts: init_master
+  name: Setup postgresql
+  become: yes
+  tags:
+      - postgresql
+      - postgresql-setup
+  tasks:
+      - name: Cleanup old potential chart
+        file:
+            path: postgresql
+            state: absent
+
+      - name: Ensure new Chart is present
+        copy:
+            src: ../../../../Helm/apps/postgresql
+            dest: .
+
+      - name: Install postgresql namespace
+        kubernetes.core.helm:
+            name: postgresql
+            create_namespace: true
+            release_namespace: postgresql
+            chart_ref: postgresql/
+            values_files: postgresql/values.yaml
+
+      - name: Cleanup chart, we no longer need this
+        file:
+            path: postgresql
+            state: absent

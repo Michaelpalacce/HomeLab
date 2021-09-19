@@ -1,4 +1,18 @@
-storage:
-    dataLocality: "best-effort" # or disabled
-    numberOfReplicas: 1
-
+vikunja:
+    nodePort: 30109
+    api:
+        image: vikunja/api
+        tag: 0.18.1
+        port: 3456
+        db:
+            username: vikunja
+            password: vikunja
+            name: vikunja
+    frontend:
+        image: vikunja/frontend
+        tag: 0.18.1
+        port: 80
+    nginx:
+        image: nginx
+        tag: 1.21.3
+        port: 8080

@@ -1,0 +1,22 @@
+storage:
+    dataLocality: "best-effort" # or disabled
+    numberOfReplicas: 1
+    dshmSize: 1Gi
+    dataSize: 10Gi
+
+postgresql:
+    image: postgres
+    tag: 9.6
+    port: 5432
+    db:
+        username: postgres
+        password: postgres
+
+pgadmin:
+    image: dpage/pgadmin4
+    tag: 2021-09-06-2
+    port: 80
+    nodePort: 30033
+    security:
+        username: postgres@local.dev
+        password: postgres

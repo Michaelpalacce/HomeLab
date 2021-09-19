@@ -1,12 +1,13 @@
+{{- with .Values.storage }}
 kind: StorageClass
 apiVersion: storage.k8s.io/v1
 metadata:
-    name: vikunja-sc
+    name: postgresql-sc
 provisioner: driver.longhorn.io
 allowVolumeExpansion: true
 parameters:
-    numberOfReplicas: "{{ .Values.storage.numberOfReplicas }}"
-    dataLocality: "{{ .Values.storage.dataLocality }}"
+    numberOfReplicas: "{{ .numberOfReplicas }}"
+    dataLocality: "{{ .dataLocality }}"
     staleReplicaTimeout: "2800"
     fromBackup: ""
 
@@ -19,10 +20,10 @@ metadata:
 spec:
     accessModes:
         - ReadWriteMany
-    storageClassName: vikunja-sc
+    storageClassName: postgresql-sc
     resources:
         requests:
-            storage: 1Gi
+            storage: {{ .dshmSize }}
 
 ---
 
@@ -33,7 +34,9 @@ metadata:
 spec:
     accessModes:
         - ReadWriteMany
-    storageClassName: vikunja-sc
+    storageClassName: postgresql-sc
     resources:
         requests:
-            storage: 8Gi
+            storage: {{ .dataSize }}
+
+{{- end }}

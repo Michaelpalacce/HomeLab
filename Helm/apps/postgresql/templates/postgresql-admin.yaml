@@ -1,0 +1,69 @@
+{{- with .Values.pgadmin }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: pgadmin
+    namespace: {{ $.Release.Namespace }}
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: pgadmin
+    template:
+
+        metadata:
+            labels:
+                app: pgadmin
+            name: pgadmin
+        spec:
+            containers:
+                - name: pgadmin
+                  image: {{ .image }}:{{ .tag }}
+                  imagePullPolicy: IfNotPresent
+                  ports:
+                      - containerPort: {{ .port }}
+                        name: tcp-pgadmin
+                        protocol: TCP
+                  env:
+                      - name: PGADMIN_DEFAULT_EMAIL
+                        value: {{ .security.username }}
+                      - name: PGADMIN_DEFAULT_PASSWORD
+                        value: {{ .security.password }}
+                  livenessProbe:
+                      tcpSocket:
+                          port: {{ .port }}
+                      failureThreshold: 6
+                      initialDelaySeconds: 30
+                      periodSeconds: 10
+                      successThreshold: 1
+                      timeoutSeconds: 5
+                  readinessProbe:
+                      tcpSocket:
+                          port: {{ .port }}
+                      failureThreshold: 6
+                      initialDelaySeconds: 5
+                      periodSeconds: 10
+                      successThreshold: 1
+                      timeoutSeconds: 5
+                  resources:
+                      requests:
+                          cpu: 250m
+                          memory: 256Mi
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: pgadmin
+    namespace: {{ $.Release.Namespace }}
+spec:
+    type: NodePort
+    selector:
+        app: pgadmin
+    ports:
+        - name: pgadmin
+          protocol: TCP
+          port: {{ .port }}
+          nodePort: {{ .nodePort }}
+
+{{- end }}

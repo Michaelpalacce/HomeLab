@@ -150,8 +150,16 @@ Service account: jenkins
 
 ### Setting up BabyBuddy
 - Run `ansible-playbook -i inventory playbooks/apps/babybuddy/main.yml`
-- 
+
+### Setting up postgresql
+- Run `ansible-playbook -i inventory playbooks/apps/postgresql/main.yml`
+
 ### Setting up Vikunja
+- Setup: `Setting up postgresql`
+- Wait for pgAdmin 4 to be up and running, login with credentials specific in values.
+- Add server. Hostname: `postgresql.postgresql`. Username: `postgresql`. Password: `postgresql`
+- Create new database vikunja
+- Create a new user vikunja and give it permissions to the vikunja db
 - Run `ansible-playbook -i inventory playbooks/apps/vikunja/main.yml`
 
 ### Setting up Media Services
@@ -170,17 +178,17 @@ Service account: jenkins
 #### Used Port range: 30010-30019
 ##### Grafana: 30010
 ##### Prometheus: 30011
-##### Statping: 30012
 
 ## CI/CD
 #### Used Port range: 30020-30029
 ##### Jenkins CI/CD: 30020
 
 ## Infrastructure 
-#### Used Port range: 30030-30039 / 32222
+#### Used Port range: 30030-30099 / 32222
 ##### Longhorn Storage: 30030
 ##### Rancher: 30031 -> http
 ##### Rancher: 30032 -> https
+##### pgAdmin: 30033
 ##### Homer: 32222
 
 ## Apps

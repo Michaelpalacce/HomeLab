@@ -1,9 +1,8 @@
-This chart is used to install prometheus, grafana, node-exporter and statping.
+This chart is used to install prometheus, grafana and node-exporter.
 
 The processes are limited so we don't steal all the resources of the PIs. 
 
 Available scrapers:
 - Node-Exporter: `https://github.com/prometheus/node_exporter`
-- Statping
 
 

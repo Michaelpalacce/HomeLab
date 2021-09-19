@@ -1,3 +1,5 @@
+{{- with .Values.vikunja }}
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -17,11 +19,12 @@ spec:
                 app: vikunja
         spec:
             containers:
-                - image: nginx
+                {{- with .nginx }}
+                - image: {{ .image }}:{{ .tag }}
                   name: vikunja
                   imagePullPolicy: IfNotPresent
                   ports:
-                      - containerPort: 8080
+                      - containerPort: {{ .port }}
                         name: http
                         protocol: TCP
                   livenessProbe:
@@ -30,7 +33,7 @@ spec:
                       initialDelaySeconds: 10
                       successThreshold: 1
                       tcpSocket:
-                          port: 8080
+                          port: {{ .port }}
                       timeoutSeconds: 1
                   readinessProbe:
                       failureThreshold: 5
@@ -38,40 +41,45 @@ spec:
                       initialDelaySeconds: 10
                       successThreshold: 1
                       tcpSocket:
-                          port: 8080
+                          port: {{ .port }}
                       timeoutSeconds: 1
                   volumeMounts:
                       - name: nginx-config-volume
                         mountPath: /etc/nginx/conf.d/default.conf
                         subPath: default.conf
+                {{- end }}
 
+                {{- with .api }}
                 - name: api
-                  image: vikunja/api:0.17.1
+                  image: {{ .image }}:{{ .tag }}
                   env:
-                    - name: VIKUNJA_DATABASE_HOST
-                      value: postgresql
-                    - name: VIKUNJA_DATABASE_USER
-                      value: postgres
-                    - name: VIKUNJA_DATABASE_PASSWORD
-                      value: postgres
-                    - name: VIKUNJA_DATABASE_TYPE
-                      value: postgres
-                    - name: VIKUNJA_DATABASE_DATABASE
-                      value: postgres
+                      - name: VIKUNJA_DATABASE_HOST
+                        value: postgresql.postgresql
+                      - name: VIKUNJA_DATABASE_USER
+                        value: {{ .db.username }}
+                      - name: VIKUNJA_DATABASE_PASSWORD
+                        value: {{ .db.password }}
+                      - name: VIKUNJA_DATABASE_TYPE
+                        value: postgres
+                      - name: VIKUNJA_DATABASE_DATABASE
+                        value: {{ .db.name }}
 
                   imagePullPolicy: IfNotPresent
                   ports:
-                      - containerPort: 3456
+                      - containerPort: {{ .port }}
                         name: api
                         protocol: TCP
+                {{- end }}
 
+                {{- with .frontend }}
                 - name: frontend
-                  image: vikunja/frontend:0.17.0
+                  image: {{ .image }}:{{ .tag }}
                   imagePullPolicy: IfNotPresent
                   ports:
-                      - containerPort: 80
+                      - containerPort: {{ .port }}
                         name: frontend
                         protocol: TCP
+                {{- end }}
 
             volumes:
                 - name: nginx-config-volume
@@ -92,5 +100,6 @@ spec:
     ports:
         - name: vikunja
           protocol: TCP
-          port: 8080
-          nodePort: 30109
+          port: {{ .nginx.port }}
+          nodePort: {{ .nodePort }}
+{{- end }}

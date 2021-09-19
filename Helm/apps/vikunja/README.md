@@ -1,1 +1,1 @@
-This chart installs redis
+This chart installs vikunja
