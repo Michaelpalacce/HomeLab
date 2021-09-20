@@ -3,6 +3,7 @@ storage:
     numberOfReplicas: 1
     dshmSize: 1Gi
     dataSize: 10Gi
+    pgAdmin: 1Gi
 
 postgresql:
     image: postgres

@@ -1,67 +1,68 @@
-{{- with .Values.babybuddy }}
+{{- with .Values.dashy }}
 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: babybuddy
+    name: dashy
     namespace: {{ $.Release.Namespace }}
     labels:
-        app: babybuddy
+        app: dashy
 spec:
     replicas: 1
     selector:
         matchLabels:
-            app: babybuddy
+            app: dashy
     template:
         metadata:
             labels:
-                app: babybuddy
+                app: dashy
+            annotations:
+                {{- with $ }}
+                checksum/config: {{ include (print $.Template.BasePath "/dashy-config.yaml") . | sha256sum }}
+                {{- end }}
         spec:
             containers:
-                - name: babybuddy
+                - name: dashy
                   image: {{ .image }}:{{ .tag }}
                   imagePullPolicy: IfNotPresent
                   resources:
-                      requests:
-                          cpu: 400m
-                          memory: 512Mi
                       limits:
-                          cpu: 750m
-                          memory: 750Mi
+                          cpu: 125m
+                          memory: 250Mi
                   ports:
                       - name: web
-                        containerPort: 8000
+                        containerPort: {{ .port }}
                   volumeMounts:
-                      - name: app-data
-                        mountPath: /config
+                      - name: config-volume
+                        mountPath: /app/public
                   livenessProbe:
                       failureThreshold: 5
                       initialDelaySeconds: 10
                       timeoutSeconds: 5
                       tcpSocket:
-                          port: 8000
+                          port: {{ .port }}
 
             restartPolicy: Always
             volumes:
-                - name: app-data
-                  persistentVolumeClaim:
-                      claimName: babybuddy-pvc
+                - name: config-volume
+                  configMap:
+                      name: dashy-config
 
 ---
 
 apiVersion: v1
 kind: Service
 metadata:
-    name: babybuddy
+    name: dashy
     namespace: {{ $.Release.Namespace }}
 spec:
     type: NodePort
     selector:
-        app: babybuddy
+        app: dashy
     ports:
-        - name: babybuddy
+        - name: dashy
           protocol: TCP
-          port: 8000
+          port: {{ .port }}
           nodePort: {{ .nodePort }}
 
 {{- end }}

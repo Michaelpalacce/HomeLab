@@ -6,6 +6,7 @@ metadata:
 provisioner: driver.longhorn.io
 allowVolumeExpansion: true
 parameters:
+    fstype: xfs
     numberOfReplicas: "{{ .numberOfReplicas }}"
     dataLocality: "{{ .dataLocality }}"
     staleReplicaTimeout: "2800"
@@ -24,6 +25,20 @@ spec:
     resources:
         requests:
             storage: {{ .dshmSize }}
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: pgadmin-data-pvc
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: postgresql-sc
+    resources:
+        requests:
+            storage: {{ .pgAdmin }}
 
 ---
 

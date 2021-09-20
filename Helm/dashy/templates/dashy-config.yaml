@@ -1,0 +1,27 @@
+{{- with .Values.dashy }}
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: dashy-config
+    namespace: {{ $.Release.Namespace }}
+data:
+    conf.yml: |
+        ---
+        pageInfo:
+            title: HomeLab
+            navLinks:
+                - title: Home
+                  path: /
+                - title: Source Code
+                  path: https://github.com/Michaelpalacce/HomeLab
+        appConfig:
+            theme: colorful
+        sections:
+            - name: Getting Started
+              items:
+                  - title: BabyBuddy
+                    description: Baby Monitor
+                    icon: item-icons/babybuddy.png
+                    url: http://{{ .clusterUrl }}:{{ .nodePort }}
+  {{- end }}

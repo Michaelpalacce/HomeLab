@@ -1007,9 +1007,6 @@ spec:
                   ports:
                       - containerPort: 9500
                         name: manager
-                  readinessProbe:
-                      tcpSocket:
-                          port: 9500
                   volumeMounts:
                       - name: dev
                         mountPath: /host/dev/

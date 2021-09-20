@@ -16,10 +16,17 @@ spec:
                 app: pgadmin
             name: pgadmin
         spec:
+            volumes:
+                - name: pgadminstorage
+                  persistentVolumeClaim:
+                      claimName: pgadmin-data-pvc
             containers:
                 - name: pgadmin
                   image: {{ .image }}:{{ .tag }}
                   imagePullPolicy: IfNotPresent
+                  volumeMounts:
+                      - mountPath: /var/lib/pgadmin
+                        name: pgadminstorage
                   ports:
                       - containerPort: {{ .port }}
                         name: tcp-pgadmin
@@ -33,15 +40,7 @@ spec:
                       tcpSocket:
                           port: {{ .port }}
                       failureThreshold: 6
-                      initialDelaySeconds: 30
-                      periodSeconds: 10
-                      successThreshold: 1
-                      timeoutSeconds: 5
-                  readinessProbe:
-                      tcpSocket:
-                          port: {{ .port }}
-                      failureThreshold: 6
-                      initialDelaySeconds: 5
+                      initialDelaySeconds: 60
                       periodSeconds: 10
                       successThreshold: 1
                       timeoutSeconds: 5
