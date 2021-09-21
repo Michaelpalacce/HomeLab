@@ -4,6 +4,7 @@
 # All the workers with the logging too
 [workers]
 192.168.1.182
+192.168.1.149
 
 # This group has all the servers
 [all:children]
