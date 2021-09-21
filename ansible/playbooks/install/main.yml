@@ -89,6 +89,7 @@
   name: Setup traefik
   become: yes
   tags:
+      - init
       - traefik
       - traefik-setup
   tasks:
@@ -119,6 +120,7 @@
   name: Setup homer
   become: yes
   tags:
+      - init
       - homer
       - homer-setup
   tasks:
@@ -149,6 +151,7 @@
   name: Setup Longhorn storage
   become: yes
   tags:
+      - init
       - storage
       - storage-setup-longhorn
   vars_files:

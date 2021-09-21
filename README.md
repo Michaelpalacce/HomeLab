@@ -98,7 +98,8 @@ If you scroll down a bit you will find a list of ports that the services are run
 - Run `ansible-galaxy install -r playbooks/install/requirements.yml` to install all the needed ansible roles from Ansible Galaxy
 - Run `ansible-galaxy collection install -r playbooks/install/requirements-collecttions.yml` to install all the needed ansible collections
 - Run `ansible-playbook -i inventory playbooks/install/main.yml --tags preflight` At this point you have everything needed to setup kubernetes ( all the needed binaries )
-- Run `ansible-playbook -i inventory playbooks/install/main.yml --tags setup` This will initialize the master on the init_master PI. This will also setup traefik
+- Run `ansible-playbook -i inventory playbooks/install/main.yml --tags setup` This will initialize the master on the init_master PI and add all the workers
+- Run `ansible-playbook -i inventory playbooks/install/main.yml --tags init` Inits homer, longhorn, traefik
 You can go to Helm/homer and edit the `homer-config.yaml` to your own custom services if you want. It is highly advisable to add this, so you can find services easily.
 You can always reapply homer after that with: `ansible-playbook -i inventory playbooks/homer/main.yml`
 
