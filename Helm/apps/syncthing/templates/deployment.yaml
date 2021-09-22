@@ -1,0 +1,79 @@
+{{- with .Values.syncthing }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: syncthing
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app: syncthing
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: syncthing
+    template:
+        metadata:
+            labels:
+                app: syncthing
+        spec:
+            containers:
+                - name: syncthing
+                  image: {{ .image }}:{{ .tag }}
+                  imagePullPolicy: IfNotPresent
+                  resources:
+                      requests:
+                          cpu: 125m
+                          memory: 512Mi
+                      limits:
+                          cpu: 1000m
+                          memory: 1Gi
+                  ports:
+                      - name: web
+                        containerPort: {{ .port }}
+                      - name: tcp
+                        containerPort: 22000
+                        protocol: TCP
+                      - name: udp
+                        containerPort: 22000
+                        protocol: UDP
+                      - name: udp2
+                        containerPort: 21027
+                        protocol: UDP
+                  volumeMounts:
+                      - name: app-config
+                        mountPath: /config
+                  livenessProbe:
+                      failureThreshold: 5
+                      initialDelaySeconds: 60
+                      timeoutSeconds: 5
+                      tcpSocket:
+                          port: {{ .port }}
+
+            restartPolicy: Always
+            volumes:
+                - name: app-config
+                  persistentVolumeClaim:
+                      claimName: syncthing-pvc
+                - name: app-data
+                  persistentVolumeClaim:
+                      claimName: syncthing-data-pvc
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: syncthing
+    namespace: {{ $.Release.Namespace }}
+spec:
+    type: NodePort
+    selector:
+        app: syncthing
+    ports:
+        - name: syncthing
+          protocol: TCP
+          port: {{ .port }}
+          nodePort: {{ .nodePort }}
+
+{{- end }}

@@ -1,0 +1,10 @@
+syncthing:
+    image: linuxserver/syncthing
+    tag: v1.18.2-ls61
+    nodePort: 30110
+    port: 8384
+
+storage:
+    dataLocality: "best-effort" # or disabled
+    numberOfReplicas: 1
+    configSize: 25Gi

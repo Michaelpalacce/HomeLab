@@ -169,6 +169,10 @@ Service account: jenkins
 ### Setting up wikijs
 - Run `ansible-playbook -i inventory playbooks/apps/wikijs/main.yml`
 
+### Setting up syncthing
+- Run `ansible-playbook -i inventory playbooks/apps/syncthing/main.yml`
+- Go to your other device and add this one :)
+
 ### Setting up Vikunja
 - Setup: `Setting up postgresql`
 - Wait for pgAdmin 4 to be up and running, login with credentials specific in values.
@@ -218,7 +222,7 @@ Service account: jenkins
 ##### Ubooquity Admin: 30107
 ##### ServerEmulator: 30108
 ##### Vikunja: 30109
-##### UNUSED: 30110
+##### Syncthing: 30110
 ##### WikiJS: 30111
 
 # Backups

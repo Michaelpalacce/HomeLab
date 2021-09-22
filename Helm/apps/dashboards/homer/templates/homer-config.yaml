@@ -120,12 +120,6 @@ data:
                     tag: "apps"
                     url: "http://{{ .clusterUrl }}:30103"
                     target: "_blank" # optional html tag target attribute
-                  - name: "ServerEmulator"
-                    logo: "icons/serveremulator.ico"
-                    subtitle: "Backup"
-                    tag: "apps"
-                    url: "http://{{ .clusterUrl }}:30108"
-                    target: "_blank" # optional html tag target attribute
                   - name: "Ubooquity Library"
                     logo: "icons/png/ubooquity.png"
                     subtitle: "Book Library"
@@ -137,6 +131,21 @@ data:
                     subtitle: "Book Library Admin"
                     tag: "books"
                     url: "http://{{ .clusterUrl }}:30107/ubooquity/admin"
+                    target: "_blank" # optional html tag target attribute
+
+            - name: Storage
+              items:
+                  - name: "ServerEmulator"
+                    logo: "icons/serveremulator.ico"
+                    subtitle: "Backup"
+                    tag: "apps"
+                    url: "http://{{ .clusterUrl }}:30108"
+                    target: "_blank" # optional html tag target attribute
+                  - name: "Syncthing"
+                    logo: "icons/png/syncthing.png"
+                    subtitle: "Sync Devices"
+                    tag: "apps"
+                    url: "http://{{ .clusterUrl }}:30110"
                     target: "_blank" # optional html tag target attribute
 
             - name: Knowledge Base And Tasks

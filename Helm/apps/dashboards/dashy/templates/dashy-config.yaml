@@ -26,10 +26,6 @@ data:
                     description: Baby Monitor
                     icon: babybuddy.png
                     url: http://{{ .clusterUrl }}:30100
-                  - title: ServerEmulator
-                    description: Backup
-                    icon: serveremulator.ico
-                    url: http://{{ .clusterUrl }}:30108
                   - title: Ubooquity
                     description: Book Library
                     icon: /png/ubooquity.png
@@ -60,6 +56,16 @@ data:
                     description: Tasks
                     icon: vikunja.png
                     url: http://{{ .clusterUrl }}:30109
+            - name: Storage
+              items:
+                  - title: Syncthing
+                    description: Sync multiple devices
+                    icon: /png/syncthing.png
+                    url: http://{{ .clusterUrl }}:30110
+                  - title: ServerEmulator
+                    description: Backup
+                    icon: serveremulator.ico
+                    url: http://{{ .clusterUrl }}:30108
             - name: Downloaders
               items:
                   - title: Medusa
