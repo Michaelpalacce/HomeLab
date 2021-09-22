@@ -55,9 +55,6 @@ spec:
                 - name: app-config
                   persistentVolumeClaim:
                       claimName: syncthing-pvc
-                - name: app-data
-                  persistentVolumeClaim:
-                      claimName: syncthing-data-pvc
 
 ---
 
