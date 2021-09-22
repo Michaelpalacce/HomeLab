@@ -1,0 +1,72 @@
+{{- with .Values.wikijs }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: wikijs
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app: wikijs
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: wikijs
+    template:
+        metadata:
+            labels:
+                app: wikijs
+        spec:
+            containers:
+                - name: wikijs
+                  image: {{ .image }}:{{ .tag }}
+                  imagePullPolicy: IfNotPresent
+                  resources:
+                      requests:
+                          cpu: 125m
+                          memory: 512Mi
+                      limits:
+                          cpu: 1000m
+                          memory: 1Gi
+                  ports:
+                      - name: web
+                        containerPort: {{ .port }}
+                  volumeMounts:
+                      - name: app-config
+                        mountPath: /config
+                      - name: app-data
+                        mountPath: /data
+                  livenessProbe:
+                      failureThreshold: 5
+                      initialDelaySeconds: 60
+                      timeoutSeconds: 5
+                      tcpSocket:
+                          port: {{ .port }}
+
+            restartPolicy: Always
+            volumes:
+                - name: app-config
+                  persistentVolumeClaim:
+                      claimName: wikijs-pvc
+                - name: app-data
+                  persistentVolumeClaim:
+                      claimName: wikijs-data-pvc
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: wikijs
+    namespace: {{ $.Release.Namespace }}
+spec:
+    type: NodePort
+    selector:
+        app: wikijs
+    ports:
+        - name: wikijs
+          protocol: TCP
+          port: {{ .port }}
+          nodePort: {{ .nodePort }}
+
+{{- end }}

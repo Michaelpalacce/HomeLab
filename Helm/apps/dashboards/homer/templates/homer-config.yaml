@@ -126,12 +126,6 @@ data:
                     tag: "apps"
                     url: "http://{{ .clusterUrl }}:30108"
                     target: "_blank" # optional html tag target attribute
-                  - name: "Vikunja"
-                    logo: "icons/vikunja.png"
-                    subtitle: "Tasks"
-                    tag: "tasks"
-                    url: "http://{{ .clusterUrl }}:30109"
-                    target: "_blank" # optional html tag target attribute
                   - name: "Ubooquity Library"
                     logo: "icons/png/ubooquity.png"
                     subtitle: "Book Library"
@@ -143,6 +137,21 @@ data:
                     subtitle: "Book Library Admin"
                     tag: "books"
                     url: "http://{{ .clusterUrl }}:30107/ubooquity/admin"
+                    target: "_blank" # optional html tag target attribute
+
+            - name: Knowledge Base And Tasks
+              items:
+                  - name: "Wikijs"
+                    logo: "icons/png/wikijs.png"
+                    subtitle: "Knowledge Base Wiki"
+                    tag: "wiki"
+                    url: "http://{{ .clusterUrl }}:30111"
+                    target: "_blank" # optional html tag target attribute
+                  - name: "Vikunja"
+                    logo: "icons/vikunja.png"
+                    subtitle: "Tasks"
+                    tag: "tasks"
+                    url: "http://{{ .clusterUrl }}:30109"
                     target: "_blank" # optional html tag target attribute
 
             - name: "Downloaders"

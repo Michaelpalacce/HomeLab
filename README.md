@@ -166,6 +166,9 @@ Service account: jenkins
 ### Setting up postgresql
 - Run `ansible-playbook -i inventory playbooks/apps/postgresql/main.yml`
 
+### Setting up wikijs
+- Run `ansible-playbook -i inventory playbooks/apps/wikijs/main.yml`
+
 ### Setting up Vikunja
 - Setup: `Setting up postgresql`
 - Wait for pgAdmin 4 to be up and running, login with credentials specific in values.
@@ -215,6 +218,8 @@ Service account: jenkins
 ##### Ubooquity Admin: 30107
 ##### ServerEmulator: 30108
 ##### Vikunja: 30109
+##### UNUSED: 30110
+##### WikiJS: 30111
 
 # Backups
 I have written a simple kubernetes operator that will run commands in containers according to annotations.

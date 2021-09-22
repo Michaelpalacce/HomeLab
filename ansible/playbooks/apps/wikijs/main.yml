@@ -1,0 +1,29 @@
+- hosts: init_master
+  name: Setup wikijs
+  become: yes
+  tags:
+      - wikijs
+      - wikijs-setup
+  tasks:
+      - name: Cleanup old potential chart
+        file:
+            path: wikijs
+            state: absent
+
+      - name: Ensure new Chart is present
+        copy:
+            src: ../../../../Helm/apps/wikijs
+            dest: .
+
+      - name: Install wikijs namespace
+        kubernetes.core.helm:
+            name: wikijs
+            create_namespace: true
+            release_namespace: wikijs
+            chart_ref: wikijs/
+            values_files: wikijs/values.yaml
+
+      - name: Cleanup chart, we no longer need this
+        file:
+            path: wikijs
+            state: absent
