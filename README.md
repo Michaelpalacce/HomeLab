@@ -127,7 +127,7 @@ dashboard!
 
 ### Setting up Jenkins
 - Run `ansible-playbook -i inventory playbooks/jenkins/main.yml` Install Jenkins CI/CD.
-- Go to http://{{CLUSTER_URI}}:30201
+- Go to http://{{CLUSTER_URI}}:30020
 - Install all the kubernetes pluguins and any other plugins you may need.
 - How to configure:
 ~~~

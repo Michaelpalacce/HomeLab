@@ -131,7 +131,7 @@
 
       - name: Ensure new Chart is present
         copy:
-            src: "../../../Helm/{{ dashboard }}"
+            src: "../../../Helm/apps/dashboards/{{ dashboard }}"
             dest: .
 
       - name: Install dashboard namespace

@@ -94,4 +94,17 @@ data:
                     description: CI/CD Pipeline for my projects
                     icon: /png/jenkins.png
                     url: http://{{ .clusterUrl }}:30020
+            - name: External
+              items:
+                  - title: SelfHosted
+                    description: Reddit r/selfhosted
+                    url: https://reddit.com/r/selfhosted
+                  - title: HomeLab
+                    description: Reddit r/homelab
+                    url: https://reddit.com/r/homelab
+            - name: Personal
+              items:
+                  - title: Website
+                    description: My Website
+                    url: https://stefangenov.site
 {{- end }}
