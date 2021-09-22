@@ -36,7 +36,7 @@ spec:
                         mountPath: /config
                   livenessProbe:
                       failureThreshold: 5
-                      initialDelaySeconds: 10
+                      initialDelaySeconds: 60
                       timeoutSeconds: 5
                       tcpSocket:
                           port: 8000

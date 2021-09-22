@@ -117,34 +117,34 @@
             state: absent
 
 - hosts: init_master
-  name: Setup homer
+  name: Setup dashboard
   become: yes
   tags:
       - init
-      - homer
-      - homer-setup
+      - dashboard
+      - dashboard-setup
   tasks:
       - name: Cleanup old potential chart
         file:
-            path: homer
+            path: "{{ dashboard }}"
             state: absent
 
       - name: Ensure new Chart is present
         copy:
-            src: ../../../Helm/homer
+            src: "../../../Helm/{{ dashboard }}"
             dest: .
 
-      - name: Install homer namespace
+      - name: Install dashboard namespace
         kubernetes.core.helm:
-            name: homer
+            name: "{{ dashboard }}"
             create_namespace: true
-            release_namespace: homer
-            chart_ref: homer/
-            values_files: homer/values.yaml
+            release_namespace: "{{ dashboard }}"
+            chart_ref: "{{ dashboard }}/"
+            values_files: "{{ dashboard }}/values.yaml"
 
       - name: Cleanup chart, we no longer need this
         file:
-            path: homer
+            path: "{{ dashboard }}"
             state: absent
 
 - hosts: init_master

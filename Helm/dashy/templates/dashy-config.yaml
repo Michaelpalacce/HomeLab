@@ -16,12 +16,82 @@ data:
                 - title: Source Code
                   path: https://github.com/Michaelpalacce/HomeLab
         appConfig:
-            theme: colorful
+            theme: dracula
+            statusCheck: true
+            enableServiceWorker: true
         sections:
-            - name: Getting Started
+            - name: Apps
               items:
                   - title: BabyBuddy
                     description: Baby Monitor
-                    icon: item-icons/babybuddy.png
-                    url: http://{{ .clusterUrl }}:{{ .nodePort }}
-  {{- end }}
+                    icon: babybuddy.png
+                    url: http://{{ .clusterUrl }}:30100
+                  - title: Jellyfin
+                    description: Tv Shows Stream
+                    icon: /png/jellyfin.png
+                    url: http://{{ .clusterUrl }}:30103
+                  - title: ServerEmulator
+                    description: Backup
+                    icon: serveremulator.ico
+                    url: http://{{ .clusterUrl }}:30108
+                  - title: Vikunja
+                    description: Tasks
+                    icon: vikunja.png
+                    url: http://{{ .clusterUrl }}:30109
+                  - title: Ubooquity
+                    description: Book Library
+                    icon: /png/ubooquity.png
+                    url: http://{{ .clusterUrl }}:30106/ubooquity
+                  - title: Ubooquity Admin
+                    description: Book Library Admin
+                    icon: /png/ubooquity.png
+                    url: http://{{ .clusterUrl }}:30107/ubooquity/admin
+            - name: Downloaders
+              items:
+                  - title: Medusa
+                    description: Tv Shows Downloader
+                    icon: /png/medusa.png
+                    url: http://{{ .clusterUrl }}:30101
+                  - title: Readarr
+                    description: Ebook Library Downloader
+                    icon: /png/readarr.png
+                    url: http://{{ .clusterUrl }}:30104
+            - name: Monitoring
+              items:
+                  - title: Grafana
+                    description: Monitoring
+                    icon: /png/grafana.png
+                    url: http://{{ .clusterUrl }}:30010
+                  - title: Prometheus
+                    description: Monitoring
+                    icon: /png/prometheus.png
+                    url: http://{{ .clusterUrl }}:30011
+            - name: Infrastructure
+              items:
+                  - title: Longhorn Storage
+                    description: Block Storage for kubernetes
+                    icon: /png/longhorn.png
+                    url: http://{{ .clusterUrl }}:30030
+                  - title: Transmission
+                    description: Torrent
+                    icon: /png/transmission.png
+                    url: http://{{ .clusterUrl }}:30102
+                    statusCheck: false
+                  - title: Jackett
+                    description: Torrent indexer
+                    icon: /png/jackett.png
+                    url: http://{{ .clusterUrl }}:30105
+                    statusCheck: false
+            - name: Databases
+              items:
+                  - title: pgAdmin
+                    description: PostgreSQL admin pannel
+                    icon: /png/pgadmin.png
+                    url: http://{{ .clusterUrl }}:30033
+            - name: CI/CD
+              items:
+                  - title: Jenkins
+                    description: CI/CD Pipeline for my projects
+                    icon: /png/jenkins.png
+                    url: http://{{ .clusterUrl }}:30020
+{{- end }}

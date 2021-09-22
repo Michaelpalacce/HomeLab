@@ -12,7 +12,7 @@
 
       - name: Ensure new Chart is present
         copy:
-            src: ../../../Helm/pihole
+            src: ../../../Helm/apps/pihole
             dest: .
 
       - name: Install pihole namespace ( this will just setup a PV )

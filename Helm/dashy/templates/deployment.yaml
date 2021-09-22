@@ -27,17 +27,18 @@ spec:
                   imagePullPolicy: IfNotPresent
                   resources:
                       limits:
-                          cpu: 125m
-                          memory: 250Mi
+                          cpu: 1000m
+                          memory: 1000Mi
                   ports:
                       - name: web
                         containerPort: {{ .port }}
                   volumeMounts:
                       - name: config-volume
-                        mountPath: /app/public
+                        mountPath: /app/public/conf.yml
+                        subPath: conf.yml
                   livenessProbe:
                       failureThreshold: 10
-                      initialDelaySeconds: 120
+                      initialDelaySeconds: 500
                       timeoutSeconds: 5
                       tcpSocket:
                           port: {{ .port }}

@@ -1,8 +1,8 @@
 dashy:
     image: stefangenov/dashy
-    tag: latest
-    nodePort: 32223
+    tag: v1.0
+    nodePort: 32222
     port: 80
     clusterUrl: 192.168.1.182
-#    ingress:
-#        path: /
+    ingress:
+        path: /

@@ -99,9 +99,20 @@ If you scroll down a bit you will find a list of ports that the services are run
 - Run `ansible-galaxy collection install -r playbooks/install/requirements-collecttions.yml` to install all the needed ansible collections
 - Run `ansible-playbook -i inventory playbooks/install/main.yml --tags preflight` At this point you have everything needed to setup kubernetes ( all the needed binaries )
 - Run `ansible-playbook -i inventory playbooks/install/main.yml --tags setup` This will initialize the master on the init_master PI and add all the workers
-- Run `ansible-playbook -i inventory playbooks/install/main.yml --tags init` Inits homer, longhorn, traefik
-You can go to Helm/homer and edit the `homer-config.yaml` to your own custom services if you want. It is highly advisable to add this, so you can find services easily.
-You can always reapply homer after that with: `ansible-playbook -i inventory playbooks/homer/main.yml`
+- Run `ansible-playbook -i inventory playbooks/install/main.yml --tags init` Inits dashy, longhorn, traefik
+
+### Dashboard
+By default dashy is installed. However dashy has a costly init and takes a while before it is actually applied. If you
+have limited resources, you may need to use homer instead. You can change the variable in `playbooks/install/vars/main.yml` of dashboard to `homer`
+
+You can always reapply the dashboard after that with: `ansible-playbook -i inventory playbooks/install/main.yml --tags "dashboard"`. You will have to manually uninstall the other
+dashboard!
+
+### Adding new workers after cluster has been run
+- Follow all the same prerequisite steps as for the other workers
+- Modify the inventory file to add the new worker to the other workers
+- Run: `ansible-playbook -i inventory playbooks/install/main.yml --tags preflight`
+- Run: `ansible-playbook -i inventory playbooks/install/main.yml --tags setup`
 
 ### Setting up monitoring
 - Run `ansible-playbook -i inventory playbooks/monitoring/main.yml` Initialize Prometheus and Grafana
@@ -170,7 +181,7 @@ Service account: jenkins
 - Run `ansible-playbook -i inventory playbooks/apps/media/main.yml`
 
 # Ingress rules
-##### / -> Homer
+##### / -> Homer/Dashy
 ##### /traefik -> trafeik admin
 
 # NodePorts in use
@@ -190,7 +201,7 @@ Service account: jenkins
 ##### Rancher: 30031 -> http
 ##### Rancher: 30032 -> https
 ##### pgAdmin: 30033
-##### Homer: 32222
+##### Homer/Dashy ( Dashboard ): 32222
 
 ## Apps
 #### Used Port range: 30100 - 30200
