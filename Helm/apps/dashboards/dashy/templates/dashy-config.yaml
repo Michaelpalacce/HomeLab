@@ -13,6 +13,8 @@ data:
             navLinks:
                 - title: Home
                   path: /
+                - title: My Github
+                  path: https://github.com/Michaelpalacce
                 - title: Source Code
                   path: https://github.com/Michaelpalacce/HomeLab
         appConfig:
