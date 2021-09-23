@@ -30,6 +30,12 @@ spec:
                         value: "/data"
                       - name: SUDO
                         value: "1"
+                  livenessProbe:
+                      failureThreshold: 5
+                      initialDelaySeconds: 60
+                      timeoutSeconds: 5
+                      tcpSocket:
+                          port: {{ .port }}
                   resources:
                       requests:
                           cpu: 100m
@@ -45,6 +51,8 @@ spec:
                         name: data-volume
                       - mountPath: /config
                         name: config-data
+                      - mountPath: /mnt/syncthing
+                        name: syncthing-config
 
             restartPolicy: Always
             volumes:
@@ -54,6 +62,9 @@ spec:
                 - name: config-data
                   persistentVolumeClaim:
                       claimName: serveremulator-config-volume
+                - name: syncthing-config
+                  persistentVolumeClaim:
+                      claimName: syncthing-pvc
 ---
 
 apiVersion: v1

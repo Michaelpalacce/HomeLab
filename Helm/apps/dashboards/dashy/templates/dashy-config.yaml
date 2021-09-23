@@ -124,4 +124,12 @@ data:
                     description: My Website
                     url: https://stefangenov.site
                     statusCheck: false
+            - name: Internal Services ( Status Checks )
+              items:
+                  - title: Postgresql
+                    description: Database
+                    url: postgresql.postgresql:5432
+                    statusCheck: true
+                    statusCheckInterval: 10
+
 {{- end }}

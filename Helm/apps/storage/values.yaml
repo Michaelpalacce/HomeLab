@@ -4,7 +4,14 @@ syncthing:
     nodePort: 30110
     port: 8384
 
+serveremulator:
+    nodePort: 30108
+    image: stefangenov/server
+    tag: 22.0.0
+    port: 80
+
 storage:
     dataLocality: "best-effort" # or disabled
     numberOfReplicas: 1
-    configSize: 25Gi
+    syncthingConfigSize: 25Gi
+    serverEmulatorConfigSize: 1Gi

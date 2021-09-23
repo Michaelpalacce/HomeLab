@@ -1,0 +1,67 @@
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+    name: storage-sc
+provisioner: driver.longhorn.io
+allowVolumeExpansion: true
+parameters:
+    numberOfReplicas: "{{ .Values.storage.numberOfReplicas }}"
+    dataLocality: "{{ .Values.storage.dataLocality }}"
+    staleReplicaTimeout: "2800"
+    fromBackup: ""
+    fstype: xfs
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: syncthing-pvc
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: storage-sc
+    resources:
+        requests:
+            storage: {{ .Values.storage.syncthingConfigSize }}
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: serveremulator-pvc
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: storage-sc
+    resources:
+        requests:
+            storage: {{ .Values.storage.serverEmulatorConfigSize }}
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: serveremulator-volume
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: media-config-sc
+    resources:
+        requests:
+            storage: 40Gi
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: serveremulator-config-volume
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: media-config-sc
+    resources:
+        requests:
+            storage: 1Gi

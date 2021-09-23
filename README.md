@@ -169,9 +169,10 @@ Service account: jenkins
 ### Setting up wikijs
 - Run `ansible-playbook -i inventory playbooks/apps/wikijs/main.yml`
 
-### Setting up syncthing
-- Run `ansible-playbook -i inventory playbooks/apps/syncthing/main.yml`
-- Go to your other device and add this one :)
+### Setting up storage ( syncthing + ServerEmulator )
+- Run `ansible-playbook -i inventory playbooks/apps/storage/main.yml`
+- Go to your other device and add this one for syncthing :)
+- For ServerEmulator you can use the root:toor credentials
 
 ### Setting up Vikunja
 - Setup: `Setting up postgresql`

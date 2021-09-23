@@ -1,29 +1,29 @@
 - hosts: init_master
-  name: Setup syncthing
+  name: Setup storage
   become: yes
   tags:
-      - syncthing
-      - syncthing-setup
+      - storage
+      - storage-setup
   tasks:
       - name: Cleanup old potential chart
         file:
-            path: syncthing
+            path: storage
             state: absent
 
       - name: Ensure new Chart is present
         copy:
-            src: ../../../../Helm/apps/syncthing
+            src: ../../../../Helm/apps/storage
             dest: .
 
-      - name: Install syncthing namespace
+      - name: Install storage namespace
         kubernetes.core.helm:
-            name: syncthing
+            name: storage
             create_namespace: true
-            release_namespace: syncthing
-            chart_ref: syncthing/
-            values_files: syncthing/values.yaml
+            release_namespace: storage
+            chart_ref: storage/
+            values_files: storage/values.yaml
 
       - name: Cleanup chart, we no longer need this
         file:
-            path: syncthing
+            path: storage
             state: absent
