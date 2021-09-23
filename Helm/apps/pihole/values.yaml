@@ -1,5 +1,5 @@
 pihole:
-    size: 10Gi
+    size: 2Gi
 
 replicaCount: 2
 
