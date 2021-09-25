@@ -6,7 +6,6 @@ metadata:
 provisioner: driver.longhorn.io
 allowVolumeExpansion: true
 parameters:
-    fstype: xfs
     numberOfReplicas: "{{ .numberOfReplicas }}"
     dataLocality: "{{ .dataLocality }}"
     staleReplicaTimeout: "2800"
