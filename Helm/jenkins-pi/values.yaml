@@ -24,7 +24,7 @@ controller:
     imagePullSecretName:
     # Optionally configure lifetime for controller-container
     lifecycle:
-    #  postStart:
+    #  postStart:æ
     #    exec:
     #      command:
     #      - "uname"

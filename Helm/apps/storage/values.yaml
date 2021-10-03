@@ -7,7 +7,7 @@ syncthing:
 serveremulator:
     nodePort: 30108
     image: stefangenov/server
-    tag: 22.0.0
+    tag: 22.0.3
     port: 80
 
 storage:
@@ -15,3 +15,4 @@ storage:
     numberOfReplicas: 1
     syncthingConfigSize: 25Gi
     serverEmulatorConfigSize: 1Gi
+    serverEmulatorDataSize: 5Gi

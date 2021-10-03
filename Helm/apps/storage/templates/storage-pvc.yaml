@@ -24,19 +24,6 @@ spec:
     resources:
         requests:
             storage: {{ .Values.storage.syncthingConfigSize }}
----
-
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-    name: serveremulator-pvc
-spec:
-    accessModes:
-        - ReadWriteMany
-    storageClassName: storage-sc
-    resources:
-        requests:
-            storage: {{ .Values.storage.serverEmulatorConfigSize }}
 
 ---
 
@@ -50,7 +37,7 @@ spec:
     storageClassName: storage-sc
     resources:
         requests:
-            storage: 5Gi
+            storage: {{ .Values.storage.serverEmulatorDataSize }}
 
 ---
 
@@ -64,4 +51,4 @@ spec:
     storageClassName: storage-sc
     resources:
         requests:
-            storage: 1Gi
+            storage: {{ .Values.storage.serverEmulatorConfigSize }}
