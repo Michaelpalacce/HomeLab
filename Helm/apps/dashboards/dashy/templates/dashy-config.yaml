@@ -28,14 +28,14 @@ data:
                     description: Baby Monitor
                     icon: babybuddy.png
                     url: http://{{ .clusterUrl }}:30100
-                  - title: Ubooquity
-                    description: Book Library
-                    icon: /png/ubooquity.png
-                    url: http://{{ .clusterUrl }}:30106/ubooquity
-                  - title: Ubooquity Admin
-                    description: Book Library Admin
-                    icon: /png/ubooquity.png
-                    url: http://{{ .clusterUrl }}:30107/ubooquity/admin
+{{/*                  - title: Ubooquity*/}}
+{{/*                    description: Book Library*/}}
+{{/*                    icon: /png/ubooquity.png*/}}
+{{/*                    url: http://{{ .clusterUrl }}:30106/ubooquity*/}}
+{{/*                  - title: Ubooquity Admin*/}}
+{{/*                    description: Book Library Admin*/}}
+{{/*                    icon: /png/ubooquity.png*/}}
+{{/*                    url: http://{{ .clusterUrl }}:30107/ubooquity/admin*/}}
             - name: Media
               items:
                   - title: Jellyfin
@@ -74,10 +74,10 @@ data:
                     description: Tv Shows Downloader
                     icon: /png/medusa.png
                     url: http://{{ .clusterUrl }}:30101
-                  - title: Readarr
-                    description: Ebook Library Downloader
-                    icon: /png/readarr.png
-                    url: http://{{ .clusterUrl }}:30104
+{{/*                  - title: Readarr*/}}
+{{/*                    description: Ebook Library Downloader*/}}
+{{/*                    icon: /png/readarr.png*/}}
+{{/*                    url: http://{{ .clusterUrl }}:30104*/}}
             - name: Monitoring
               items:
                   - title: Grafana
@@ -131,7 +131,6 @@ data:
                   - title: Postgresql
                     description: Database
                     url: postgresql.postgresql:5432
-                    statusCheck: true
-                    statusCheckInterval: 10
+                    statusCheck: false
 
 {{- end }}

@@ -1,6 +1,6 @@
 babybuddy:
     image: linuxserver/babybuddy
-    tag: latest
+    tag: version-v1.9.0
     nodePort: 30100
 
 storage:

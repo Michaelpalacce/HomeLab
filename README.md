@@ -227,9 +227,8 @@ Service account: jenkins
 ##### WikiJS: 30111
 
 # Backups
-I have written a simple kubernetes operator that will run commands in containers according to annotations.
-The backup is deployed with an extra helm chart and will search for annotations and give you the ability to execute commands manually or automatically.
-This is not a required step, but this is something that I do and use, so it is included :)
+You can use a longhorn backup. NOTE: XFS does not work correctly with backups. IF you are using a xfs drive, longhorn
+is not the way.
 
 # Experimental !!!!!!!!!!!!!!!!
 

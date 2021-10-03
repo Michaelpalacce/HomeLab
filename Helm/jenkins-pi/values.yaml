@@ -66,8 +66,8 @@ controller:
             cpu: "50m"
             memory: "256Mi"
         limits:
-            cpu: "2000m"
-            memory: "4096Mi"
+            cpu: "1000m"
+            memory: "2048Mi"
     # Overrides the init container default values
     # initContainerResources:
     #   requests:

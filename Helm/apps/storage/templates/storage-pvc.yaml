@@ -47,10 +47,10 @@ metadata:
 spec:
     accessModes:
         - ReadWriteMany
-    storageClassName: media-config-sc
+    storageClassName: storage-sc
     resources:
         requests:
-            storage: 40Gi
+            storage: 5Gi
 
 ---
 
@@ -61,7 +61,7 @@ metadata:
 spec:
     accessModes:
         - ReadWriteMany
-    storageClassName: media-config-sc
+    storageClassName: storage-sc
     resources:
         requests:
             storage: 1Gi
