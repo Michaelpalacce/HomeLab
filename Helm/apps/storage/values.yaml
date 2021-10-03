@@ -7,7 +7,7 @@ syncthing:
 serveremulator:
     nodePort: 30108
     image: stefangenov/server
-    tag: 22.0.3
+    tag: 22.0.4
     port: 80
 
 storage:
