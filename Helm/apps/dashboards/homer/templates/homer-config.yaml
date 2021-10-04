@@ -114,6 +114,12 @@ data:
                     tag: "apps"
                     url: "http://{{ .clusterUrl }}:30100"
                     target: "_blank" # optional html tag target attribute
+                  - name: "Grocy"
+                    logo: "icons/png/grocy.png"
+                    subtitle: "Groceries"
+                    tag: "apps"
+                    url: "http://{{ .clusterUrl }}:30112"
+                    target: "_blank" # optional html tag target attribute
                   - name: "Jellyfin"
                     logo: "icons/png/jellyfin.png"
                     subtitle: "Tv Shows Stream"
@@ -136,7 +142,7 @@ data:
             - name: Storage
               items:
                   - name: "ServerEmulator"
-                    logo: "icons/serveremulator.ico"
+                    logo: "icons/serveremulator.png"
                     subtitle: "Backup"
                     tag: "apps"
                     url: "http://{{ .clusterUrl }}:30108"
@@ -225,6 +231,12 @@ data:
                     subtitle: "Torrent indexer"
                     tag: "torrent"
                     url: "http://{{ .clusterUrl }}:30105"
+                    target: "_blank" # optional html tag target attribute
+                  - name: "Uptime Kuma"
+                    logo: "icons/png/uptime-kuma.png
+                    subtitle: "Uptime Monitor"
+                    tag: "monitor"
+                    url: "http://{{ .clusterUrl }}:30034"
                     target: "_blank" # optional html tag target attribute
 
             - name: "Databases"

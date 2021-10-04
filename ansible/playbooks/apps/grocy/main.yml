@@ -1,0 +1,29 @@
+- hosts: init_master
+  name: Setup grocy
+  become: yes
+  tags:
+      - grocy
+      - grocy-setup
+  tasks:
+      - name: Cleanup old potential chart
+        file:
+            path: grocy
+            state: absent
+
+      - name: Ensure new Chart is present
+        copy:
+            src: ../../../../Helm/apps/grocy
+            dest: .
+
+      - name: Install grocy namespace
+        kubernetes.core.helm:
+            name: grocy
+            create_namespace: true
+            release_namespace: grocy
+            chart_ref: grocy/
+            values_files: grocy/values.yaml
+
+      - name: Cleanup chart, we no longer need this
+        file:
+            path: grocy
+            state: absent

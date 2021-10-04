@@ -30,7 +30,7 @@ spec:
                           memory: 750Mi
                   ports:
                       - name: web
-                        containerPort: 8000
+                        containerPort: {{ .port }}
                   volumeMounts:
                       - name: app-data
                         mountPath: /config
@@ -39,7 +39,7 @@ spec:
                       initialDelaySeconds: 60
                       timeoutSeconds: 5
                       tcpSocket:
-                          port: 8000
+                          port: {{ .port }}
 
             restartPolicy: Always
             volumes:
@@ -61,7 +61,7 @@ spec:
     ports:
         - name: babybuddy
           protocol: TCP
-          port: 8000
+          port: {{ .port }}
           nodePort: {{ .nodePort }}
 
 {{- end }}

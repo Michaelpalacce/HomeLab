@@ -1,53 +1,42 @@
-{{- with .Values.readarr }}
+{{- with .Values.uptimekuma }}
 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: readarr
+    name: uptimekuma
     namespace: {{ $.Release.Namespace }}
     labels:
-        app: readarr
+        app: uptimekuma
 spec:
     replicas: 1
     selector:
         matchLabels:
-            app: readarr
+            app: uptimekuma
     template:
         metadata:
             labels:
-                app: readarr
+                app: uptimekuma
         spec:
-            nodeSelector:
-                type: media
             containers:
-                - name: readarr
+                - name: uptimekuma
                   image: {{ .image }}:{{ .tag }}
                   imagePullPolicy: IfNotPresent
-                  env:
-                      - name: PUID
-                        value: "0"
-                      - name: GUID
-                        value: "0"
                   resources:
                       requests:
-                          cpu: 125m
-                          memory: 100Mi
+                          cpu: 100m
+                          memory: 512Mi
                       limits:
                           cpu: 250m
-                          memory: 512Mi
+                          memory: 750Mi
                   ports:
                       - name: web
                         containerPort: {{ .port }}
                   volumeMounts:
                       - name: app-data
-                        mountPath: /config
-                      - name: downloads-data
-                        mountPath: /downloads
-                      - name: books-data
-                        mountPath: /books
+                        mountPath: /app/data
                   livenessProbe:
                       failureThreshold: 5
-                      initialDelaySeconds: 300
+                      initialDelaySeconds: 60
                       timeoutSeconds: 5
                       tcpSocket:
                           port: {{ .port }}
@@ -56,26 +45,21 @@ spec:
             volumes:
                 - name: app-data
                   persistentVolumeClaim:
-                      claimName: readarr-config-volume
-                - name: books-data
-                  persistentVolumeClaim:
-                      claimName: books-volume
-                - name: downloads-data
-                  persistentVolumeClaim:
-                      claimName: downloads-volume
+                      claimName: uptimekuma-pvc
+
 ---
 
 apiVersion: v1
 kind: Service
 metadata:
-    name: readarr
+    name: uptimekuma
     namespace: {{ $.Release.Namespace }}
 spec:
     type: NodePort
     selector:
-        app: readarr
+        app: uptimekuma
     ports:
-        - name: readarr
+        - name: uptimekuma
           protocol: TCP
           port: {{ .port }}
           nodePort: {{ .nodePort }}

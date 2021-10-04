@@ -28,6 +28,10 @@ data:
                     description: Baby Monitor
                     icon: babybuddy.png
                     url: http://{{ .clusterUrl }}:30100
+                  - title: Grocy
+                    description: Groceries
+                    icon: /png/grocy.png
+                    url: http://{{ .clusterUrl }}:30112
 {{/*                  - title: Ubooquity*/}}
 {{/*                    description: Book Library*/}}
 {{/*                    icon: /png/ubooquity.png*/}}
@@ -66,7 +70,7 @@ data:
                     url: http://{{ .clusterUrl }}:30110
                   - title: ServerEmulator
                     description: Backup
-                    icon: serveremulator.ico
+                    icon: serveremulator.png
                     url: http://{{ .clusterUrl }}:30108
             - name: Downloaders
               items:
@@ -104,6 +108,11 @@ data:
                     icon: /png/jackett.png
                     url: http://{{ .clusterUrl }}:30105
                     statusCheck: false
+                  - title: Uptime Kuma
+                    description: Uptime Monitor
+                    icon: /png/uptime-kuma.png
+                    url: http://{{ .clusterUrl }}:30034
+                    statusCheck: true
             - name: Databases
               items:
                   - title: pgAdmin

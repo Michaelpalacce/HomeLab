@@ -166,8 +166,14 @@ Service account: jenkins
 ### Setting up postgresql
 - Run `ansible-playbook -i inventory playbooks/apps/postgresql/main.yml`
 
+### Setting up grocy
+- Run `ansible-playbook -i inventory playbooks/apps/grocy/main.yml`
+
 ### Setting up wikijs
 - Run `ansible-playbook -i inventory playbooks/apps/wikijs/main.yml`
+
+### Setting up UptimeKuma
+- Run `ansible-playbook -i inventory playbooks/apps/uptimekuma/main.yml`
 
 ### Setting up storage ( syncthing + ServerEmulator )
 - Run `ansible-playbook -i inventory playbooks/apps/storage/main.yml`
@@ -209,6 +215,7 @@ Service account: jenkins
 ##### Rancher: 30031 -> http
 ##### Rancher: 30032 -> https
 ##### pgAdmin: 30033
+##### UptimeKuma: 30034
 ##### Homer/Dashy ( Dashboard ): 32222
 
 ## Apps
@@ -225,6 +232,7 @@ Service account: jenkins
 ##### Vikunja: 30109
 ##### Syncthing: 30110
 ##### WikiJS: 30111
+##### Grocy: 30112
 
 # Backups
 You can use a longhorn backup. NOTE: XFS does not work correctly with backups. IF you are using a xfs drive, longhorn
