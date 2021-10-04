@@ -7,6 +7,9 @@ metadata:
     name: grafana
     namespace: {{ .Release.Namespace }}
 spec:
+    strategy:
+        rollingUpdate:
+            maxUnavailable: 0
     selector:
         matchLabels:
             app: grafana

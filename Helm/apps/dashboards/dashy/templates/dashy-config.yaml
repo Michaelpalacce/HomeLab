@@ -13,8 +13,6 @@ data:
             navLinks:
                 - title: Home
                   path: /
-                - title: My Github
-                  path: https://github.com/Michaelpalacce
                 - title: Source Code
                   path: https://github.com/Michaelpalacce/HomeLab
         appConfig:
@@ -119,6 +117,20 @@ data:
                     description: PostgreSQL admin pannel
                     icon: /png/pgadmin.png
                     url: http://{{ .clusterUrl }}:30033
+            - name: Personal
+              items:
+                  - title: Website
+                    description: My Website
+                    url: https://stefangenov.site
+                    statusCheck: false
+                  - title: Docker Hub
+                    description: Docker Hub
+                    url: https://hub.docker.com/u/stefangenov
+                    statusCheck: false
+                  - title: Github
+                    description: My Github Profile
+                    url: https://github.com/Michaelpalacce
+                    statusCheck: false
             - name: External
               items:
                   - title: SelfHosted
@@ -128,18 +140,6 @@ data:
                   - title: HomeLab
                     description: Reddit r/homelab
                     url: https://reddit.com/r/homelab
-                    statusCheck: false
-            - name: Personal
-              items:
-                  - title: Website
-                    description: My Website
-                    url: https://stefangenov.site
-                    statusCheck: false
-            - name: Internal Services ( Status Checks )
-              items:
-                  - title: Postgresql
-                    description: Database
-                    url: postgresql.postgresql:5432
                     statusCheck: false
 
 {{- end }}

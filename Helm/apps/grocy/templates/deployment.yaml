@@ -9,6 +9,9 @@ metadata:
         app: grocy
 spec:
     replicas: 1
+    strategy:
+        rollingUpdate:
+            maxUnavailable: 0
     selector:
         matchLabels:
             app: grocy
