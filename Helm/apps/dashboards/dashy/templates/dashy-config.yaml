@@ -90,6 +90,11 @@ data:
                     description: Monitoring
                     icon: /png/prometheus.png
                     url: http://{{ .clusterUrl }}:30011
+                  - title: Uptime Kuma
+                    description: Uptime Monitor
+                    icon: /png/uptime-kuma.png
+                    url: http://{{ .clusterUrl }}:30012
+                    statusCheck: true
             - name: Infrastructure
               items:
                   - title: Longhorn Storage
@@ -106,11 +111,6 @@ data:
                     icon: /png/jackett.png
                     url: http://{{ .clusterUrl }}:30105
                     statusCheck: false
-                  - title: Uptime Kuma
-                    description: Uptime Monitor
-                    icon: /png/uptime-kuma.png
-                    url: http://{{ .clusterUrl }}:30034
-                    statusCheck: true
             - name: Databases
               items:
                   - title: pgAdmin

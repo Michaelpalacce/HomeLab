@@ -204,6 +204,7 @@ Service account: jenkins
 #### Used Port range: 30010-30019
 ##### Grafana: 30010
 ##### Prometheus: 30011
+##### UptimeKuma: 30012
 
 ## CI/CD
 #### Used Port range: 30020-30029
@@ -215,7 +216,6 @@ Service account: jenkins
 ##### Rancher: 30031 -> http
 ##### Rancher: 30032 -> https
 ##### pgAdmin: 30033
-##### UptimeKuma: 30034
 ##### Homer/Dashy ( Dashboard ): 32222
 
 ## Apps

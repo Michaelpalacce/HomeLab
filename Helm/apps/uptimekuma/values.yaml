@@ -1,7 +1,7 @@
 uptimekuma:
     image: louislam/uptime-kuma
     tag: 1.7.3-alpine
-    nodePort: 30034
+    nodePort: 30012
     port: 3001
 
 storage:

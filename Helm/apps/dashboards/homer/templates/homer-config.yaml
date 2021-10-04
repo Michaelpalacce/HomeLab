@@ -207,6 +207,13 @@ data:
                     url: "http://{{ .clusterUrl }}:30011"
                     target: "_blank" # optional html tag target attribute
 
+                  - name: "Uptime Kuma"
+                    logo: "icons/png/uptime-kuma.png
+                    subtitle: "Uptime Monitor"
+                    tag: "monitor"
+                    url: "http://{{ .clusterUrl }}:30012"
+                    target: "_blank" # optional html tag target attribute
+
             - name: "Infrastructure"
               # icon: "fas fa-code-branch"
                 # A path to an image can also be provided. Note that icon take precedence if both icon and logo are set.
@@ -231,12 +238,6 @@ data:
                     subtitle: "Torrent indexer"
                     tag: "torrent"
                     url: "http://{{ .clusterUrl }}:30105"
-                    target: "_blank" # optional html tag target attribute
-                  - name: "Uptime Kuma"
-                    logo: "icons/png/uptime-kuma.png
-                    subtitle: "Uptime Monitor"
-                    tag: "monitor"
-                    url: "http://{{ .clusterUrl }}:30034"
                     target: "_blank" # optional html tag target attribute
 
             - name: "Databases"
