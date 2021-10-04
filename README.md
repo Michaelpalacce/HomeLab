@@ -278,3 +278,7 @@ is not the way.
 
 ### Longhorn storage has an issue
 - Check if it's dns, if it's not dns, I suggest you redo the entire cluster
+
+### Clearing up containerd
+- Go to `./ansible`
+- Run: `ansible -i inventory -m shell -a "k3s crictl rmp -a && k3s crictl rmi --prune && k3s crictl rm -a" -b all`
