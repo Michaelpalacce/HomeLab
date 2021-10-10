@@ -24,7 +24,7 @@ spec:
     storageClassName: monitoring-sc
     resources:
         requests:
-            storage: 2Gi
+            storage: 1Gi
 
 {{- end }}
 
@@ -41,6 +41,6 @@ spec:
     storageClassName: monitoring-sc
     resources:
         requests:
-            storage: 10Gi
+            storage: 15Gi
 
 {{- end }}

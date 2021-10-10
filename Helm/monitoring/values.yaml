@@ -1,5 +1,5 @@
 storage:
-    dataLocality: "disabled" # or disabled
+    dataLocality: "best-effort" # or disabled
     numberOfReplicas: 1
 
 backup:
@@ -20,6 +20,9 @@ nodeExporter:
     image: prom/node-exporter
     tag: v1.1.2
     port: 9100
+    tolerations:
+        - key: node-role.kubernetes.io/master
+          effect: NoSchedule
 
 grafana:
     image: grafana/grafana

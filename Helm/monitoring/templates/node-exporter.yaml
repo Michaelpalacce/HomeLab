@@ -21,6 +21,16 @@ spec:
         prometheus.io/scrape: "true"
         prometheus.io/port: "{{ .port }}"
     spec:
+      {{- with .tolerations }}
+      tolerations:
+        {{- range . }}
+          - key: {{ .key }}
+            effect: {{ .effect }}
+            {{- if .value }}
+            value: {{ .value }}
+            {{- end }}
+        {{- end }}
+      {{- end }}
       hostPID: true
       hostIPC: true
       hostNetwork: true
