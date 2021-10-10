@@ -9,7 +9,6 @@ parameters:
     dataLocality: "{{ .Values.storage.dataLocality }}"
     staleReplicaTimeout: "2800"
     fromBackup: ""
-    fstype: xfs
 
 ---
 

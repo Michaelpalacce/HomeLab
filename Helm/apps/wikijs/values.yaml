@@ -5,7 +5,7 @@ wikijs:
     port: 3000
 
 storage:
-    dataLocality: "best-effort" # or disabled
+    dataLocality: "disabled" # or disabled
     numberOfReplicas: 1
     dataSize: 10Gi
     configSize: 1Gi

@@ -11,8 +11,8 @@ serveremulator:
     port: 80
 
 storage:
-    dataLocality: "best-effort" # or disabled
+    dataLocality: "disabled" # or disabled
     numberOfReplicas: 1
     syncthingConfigSize: 25Gi
     serverEmulatorConfigSize: 1Gi
-    serverEmulatorDataSize: 5Gi
+    serverEmulatorDataSize: 10Gi

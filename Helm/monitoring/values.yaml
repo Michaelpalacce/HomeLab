@@ -1,5 +1,5 @@
 storage:
-    dataLocality: "best-effort" # or disabled
+    dataLocality: "disabled" # or disabled
     numberOfReplicas: 1
 
 backup:

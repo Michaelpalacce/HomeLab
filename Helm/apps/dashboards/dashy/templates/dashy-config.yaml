@@ -26,10 +26,10 @@ data:
                     description: Baby Monitor
                     icon: babybuddy.png
                     url: http://{{ .clusterUrl }}:30100
-                  - title: Grocy
-                    description: Groceries
-                    icon: /png/grocy.png
-                    url: http://{{ .clusterUrl }}:30112
+{{/*                  - title: Grocy*/}}
+{{/*                    description: Groceries*/}}
+{{/*                    icon: /png/grocy.png*/}}
+{{/*                    url: http://{{ .clusterUrl }}:30112*/}}
 {{/*                  - title: Ubooquity*/}}
 {{/*                    description: Book Library*/}}
 {{/*                    icon: /png/ubooquity.png*/}}

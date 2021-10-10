@@ -5,6 +5,6 @@ uptimekuma:
     port: 3001
 
 storage:
-    dataLocality: "best-effort" # or disabled
+    dataLocality: "disabled" # or disabled
     numberOfReplicas: 1
     size: 10Gi
