@@ -38,6 +38,7 @@ data:
 {{/*                    description: Book Library Admin*/}}
 {{/*                    icon: /png/ubooquity.png*/}}
 {{/*                    url: http://{{ .clusterUrl }}:30107/ubooquity/admin*/}}
+
             - name: Media
               items:
                   - title: Jellyfin

@@ -9,6 +9,9 @@ metadata:
         app: uptimekuma
 spec:
     replicas: 1
+    strategy:
+        rollingUpdate:
+            maxUnavailable: 0
     selector:
         matchLabels:
             app: uptimekuma
@@ -18,7 +21,7 @@ spec:
                 app: uptimekuma
         spec:
             containers:
-                - name: uptimekuma
+                - name: uptimekumaw
                   image: {{ .image }}:{{ .tag }}
                   imagePullPolicy: IfNotPresent
                   resources:

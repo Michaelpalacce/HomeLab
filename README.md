@@ -96,7 +96,7 @@ If you scroll down a bit you will find a list of ports that the services are run
 - Set up your inventory file ( use mine as an example, the only thing different will probably be the IPs, but if you chose a different ansible user, make sure to modify accordingly )
 - If you did not fix the iptables, do it now: `ansible -i inventory -b -m shell -a "iptables -F && update-alternatives --set iptables /usr/sbin/iptables-legacy && update-alternatives --set ip6tables /usr/sbin/ip6tables-legacy && reboot" all`
 - Run `ansible-galaxy install -r playbooks/install/requirements.yml` to install all the needed ansible roles from Ansible Galaxy
-- Run `ansible-galaxy collection install -r playbooks/install/requirements-collecttions.yml` to install all the needed ansible collections
+- Run `ansible-galaxy collection install -r playbooks/install/requirements-collections.yml` to install all the needed ansible collections
 - Run `ansible-playbook -i inventory playbooks/install/main.yml --tags preflight` At this point you have everything needed to setup kubernetes ( all the needed binaries )
 - Run `ansible-playbook -i inventory playbooks/install/main.yml --tags setup` This will initialize the master on the init_master PI and add all the workers
 - Run `ansible-playbook -i inventory playbooks/install/main.yml --tags init` Inits dashy, longhorn, traefik
@@ -175,6 +175,9 @@ Service account: jenkins
 ### Setting up UptimeKuma
 - Run `ansible-playbook -i inventory playbooks/apps/uptimekuma/main.yml`
 
+### Setting up SnippetBox
+- Run `ansible-playbook -i inventory playbooks/apps/snippetbox/main.yml`
+
 ### Setting up storage ( syncthing + ServerEmulator )
 - Run `ansible-playbook -i inventory playbooks/apps/storage/main.yml`
 - Go to your other device and add this one for syncthing :)
@@ -233,6 +236,7 @@ Service account: jenkins
 ##### Syncthing: 30110
 ##### WikiJS: 30111
 ##### Grocy: 30112
+##### SnippetBox: 30113
 
 # Backups
 You can use a longhorn backup. NOTE: XFS does not work correctly with backups. IF you are using a xfs drive, longhorn

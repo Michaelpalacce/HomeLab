@@ -11,6 +11,39 @@
       - michaelpalacce.kubernetes_preflight
 
 - hosts: all
+  name: Setup Logs and log sizes
+  become: yes
+  tags:
+      - preflight
+      - preflight-logs
+  vars_files:
+      - "./vars/main.yml"
+  tasks:
+      - name: Logrotate
+        copy:
+            dest: "{{ item.dest }}"
+            src: "{{ item.src }}"
+        with_items:
+            - dest: /etc/logrotate.d/allContainerLogs
+              src: allContainerLogs
+            - dest: /etc/logrotate.d/cniLogs
+              src: cniLogs
+            - dest: /etc/logrotate.d/podLogs
+              src: podLogs
+
+      - name: Limit Journalctl max size
+        command: "journalctl --vacuum-size={{ journalctl_vaccum_size }}"
+        register: logrotate_stat
+
+      - name: Check if logrotate is daily
+        stat: path=/etc/cron.daily/logrotate
+        register: logrotate_stat
+
+      - name: Move logrotate to hourly if daily
+        command: mv /etc/cron.daily/logrotate /etc/cron.hourly/logrotate
+        when: logrotate_stat.stat.exists
+
+- hosts: all
   name: Setup Storage dependencies
   become: yes
   tags:

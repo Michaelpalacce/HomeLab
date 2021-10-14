@@ -1,10 +1,10 @@
 uptimekuma:
     image: louislam/uptime-kuma
-    tag: 1.7.3-alpine
+    tag: 1.8.0-alpine
     nodePort: 30012
     port: 3001
 
 storage:
-    dataLocality: "disabled" # or disabled
+    dataLocality: "best-effort" # or disabled
     numberOfReplicas: 1
     size: 10Gi

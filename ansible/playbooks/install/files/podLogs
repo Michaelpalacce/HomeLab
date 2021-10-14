@@ -1,0 +1,11 @@
+/var/logs/pods/*/*/*.log {
+  rotate 2
+  copytruncate
+  missingok
+  notifempty
+  compress
+  maxsize 10M
+  dateext
+  dateformat -%Y%m%d-%s
+  create 0644 root root
+}
