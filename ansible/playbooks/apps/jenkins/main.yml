@@ -14,7 +14,7 @@
 
       - name: Ensure new Chart is present
         copy:
-            src: ../../../Helm/jenkins-pi
+            src: ../../../../Helm/apps/jenkins-pi
             dest: .
 
       - name: Install jenkins-pi namespace ( this is SUPER SLOW. May take more than 30 mins.)

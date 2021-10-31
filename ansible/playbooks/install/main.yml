@@ -220,3 +220,33 @@
         retries: 360
         delay: 5
         when: verify_running
+
+- hosts: init_master
+  name: Setup cgroup-gc to help cleanup cgroups
+  become: yes
+  tags:
+      - cgroup-gc
+      - cgroup-gc-setup
+  tasks:
+      - name: Cleanup old potential chart
+        file:
+            path: cgroup-gc
+            state: absent
+
+      - name: Ensure new Chart is present
+        copy:
+            src: ../../../Helm/apps/cgroup-gc
+            dest: .
+
+      - name: Install cgroup-gc namespace
+        kubernetes.core.helm:
+            name: cgroup-gc
+            create_namespace: true
+            release_namespace: cgroup-gc
+            chart_ref: cgroup-gc/
+            values_files: cgroup-gc/values.yaml
+
+      - name: Cleanup chart, we no longer need this
+        file:
+            path: cgroup-gc
+            state: absent

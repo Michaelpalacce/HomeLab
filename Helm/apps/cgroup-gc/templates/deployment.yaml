@@ -1,0 +1,88 @@
+# This DaemonSet that runs a systemd cgroup garbage collection job once an hour to workaround
+# bugs https://github.com/Azure/AKS/issues/750 & https://github.com/kubernetes/kubernetes/issues/64137.
+# Note that these pods run in privileged mode, which can pose a security risk. Use with caution.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: systemd-cgroup-gc
+    namespace: {{ $.Release.Namespace }}
+data:
+    systemd-cgroup-gc: |
+        #!/bin/bash
+        function runhost() {
+          # Runs a process on the host K8s node.
+          nsenter -m/proc/1/ns/mnt "$@"
+        }
+        count=0
+        for i in $(runhost ls /sys/fs/cgroup/systemd/system.slice |grep "^run-r"); do
+        pod=$(runhost systemctl list-units --type scope --state running $i |cat |sed -n 's/\(.*\)Kubernetes transient mount for \/var\/lib\/kubelet\/pods\/\(.*\)\/volumes\(.*\)/\2/p')
+        if [ ! -e "/var/lib/kubelet/pods/$pod" ]; then
+          echo -n "Try to stop '$i' systemd scope... "
+          runhost systemctl stop $i
+          echo "Stopped."
+          count=$((count + 1))
+        fi
+        done
+        echo "Total ${count} systemd scope stopped."
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+    name: systemd-cgroup-gc
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        tier: management
+        app: systemd-cgroup-gc
+spec:
+    selector:
+        matchLabels:
+            name: systemd-cgroup-gc
+    template:
+        metadata:
+            labels:
+                name: systemd-cgroup-gc
+        spec:
+            {{- with .Values.tolerations }}
+            tolerations:
+              {{- range . }}
+                 - key: {{ .key }}
+                   effect: {{ .effect }}
+                   {{- if .value }}
+                   value: {{ .value }}
+                   {{- end }}
+              {{- end }}
+            {{- end }}
+            hostPID: true
+            containers:
+                - resources:
+                      requests:
+                          cpu: 5m
+                          memory: 500Ki
+                      limits:
+                          cpu: 5m
+                          memory: 50Mi  # This crashes on startup with a 5Mi limit, but only uses about 320Ki after that.
+                  securityContext:
+                      privileged: true
+                  image: ubuntu:16.04
+                  name: systemd-cgroup-gc
+                  command: ["/bin/bash", "-c"]
+                  args:
+                      - |
+                          while true; do
+                            /usr/local/bin/systemd-cgroup-gc
+                            sleep 3600 # Run hourly.
+                          done
+                  volumeMounts:
+                      - name: scriptsrc
+                        mountPath: /usr/local/bin
+                      - name: kubeletpath
+                        mountPath: /var/lib/kubelet/pods
+            volumes:
+                - name: scriptsrc
+                  configMap:
+                      name: systemd-cgroup-gc
+                      defaultMode: 0755
+                - name: kubeletpath
+                  hostPath:
+                      path: /var/lib/kubelet/pods
+                      type: Directory

@@ -99,7 +99,11 @@ If you scroll down a bit you will find a list of ports that the services are run
 - Run `ansible-galaxy collection install -r playbooks/install/requirements-collections.yml` to install all the needed ansible collections
 - Run `ansible-playbook -i inventory playbooks/install/main.yml --tags preflight` At this point you have everything needed to setup kubernetes ( all the needed binaries )
 - Run `ansible-playbook -i inventory playbooks/install/main.yml --tags setup` This will initialize the master on the init_master PI and add all the workers
-- Run `ansible-playbook -i inventory playbooks/install/main.yml --tags init` Inits dashy, longhorn, traefik
+- Run `ansible-playbook -i inventory playbooks/install/main.yml --tags init` Inits dashy, longhorn, traefik and cgroup-gc
+
+### cgroup-gc
+This is a helm chart that installs a daemonset that will be deployed on all nodes with the purpose of clearing up cgroups.
+For more information: `https://serverfault.com/questions/976233/context-deadline-exceeded-preventing-pods-from-being-created-in-aks`
 
 ### Dashboard
 By default dashy is installed. However dashy has a costly init and takes a while before it is actually applied. If you
@@ -126,7 +130,7 @@ dashboard!
 - If you want to setup backing up with s3 read the `BACKUP` section
 
 ### Setting up Jenkins
-- Run `ansible-playbook -i inventory playbooks/jenkins/main.yml` Install Jenkins CI/CD.
+- Run `ansible-playbook -i inventory playbooks/apps/jenkins/main.yml` Install Jenkins CI/CD.
 - Go to http://{{CLUSTER_URI}}:30020
 - Install all the kubernetes pluguins and any other plugins you may need.
 - How to configure:
