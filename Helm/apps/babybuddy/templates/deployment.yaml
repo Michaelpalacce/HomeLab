@@ -8,7 +8,7 @@ metadata:
     labels:
         app: babybuddy
 spec:
-    replicas: 1
+    replicas: {{ .replicas }}
     strategy:
         rollingUpdate:
             maxUnavailable: 0

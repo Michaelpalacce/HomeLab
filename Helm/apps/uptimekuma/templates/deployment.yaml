@@ -21,7 +21,7 @@ spec:
                 app: uptimekuma
         spec:
             containers:
-                - name: uptimekumaw
+                - name: uptimekuma
                   image: {{ .image }}:{{ .tag }}
                   imagePullPolicy: IfNotPresent
                   resources:

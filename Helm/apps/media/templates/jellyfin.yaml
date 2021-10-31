@@ -25,10 +25,10 @@ spec:
                   imagePullPolicy: IfNotPresent
                   resources:
                       requests:
-                          cpu: 50m
+                          cpu: 250m
                           memory: 250Mi
                       limits:
-                          cpu: 1250m
+                          cpu: 1500m
                           memory: 1Gi
                   env:
                     - name: PUID

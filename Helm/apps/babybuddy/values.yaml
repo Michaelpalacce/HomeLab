@@ -3,6 +3,7 @@ babybuddy:
     tag: version-v1.9.0
     nodePort: 30100
     port: 8000
+    replicas: 2
 
 storage:
     dataLocality: "disabled" # or disabled

@@ -23,10 +23,10 @@ spec:
                   imagePullPolicy: IfNotPresent
                   resources:
                       requests:
-                          cpu: 125m
+                          cpu: 512m
                           memory: 512Mi
                       limits:
-                          cpu: 750m
+                          cpu: 1500m
                           memory: 1Gi
                   ports:
                       - name: web
