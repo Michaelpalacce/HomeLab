@@ -1,11 +1,11 @@
 wikijs:
     image: linuxserver/wikijs
-    tag: 2.5.214-ls43
+    tag: 2.5.219
     nodePort: 30111
     port: 3000
 
 storage:
-    dataLocality: "disabled" # or disabled
+    dataLocality: "best-effort" # or disabled
     numberOfReplicas: 1
     dataSize: 10Gi
     configSize: 1Gi
