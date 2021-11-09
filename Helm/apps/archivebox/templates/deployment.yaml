@@ -26,16 +26,16 @@ spec:
                   imagePullPolicy: IfNotPresent
                   resources:
                       requests:
-                          cpu: 100m
+                          cpu: 250m
                           memory: 512Mi
                       limits:
-                          cpu: 250m
-                          memory: 750Mi
+                          cpu: 750m
+                          memory: 1500Mi
                   ports:
                       - name: web
                         containerPort: {{ .port }}
                   volumeMounts:
-                      - name: app-data
+                      - name: data
                         mountPath: /data
                   livenessProbe:
                       failureThreshold: 5
@@ -46,7 +46,7 @@ spec:
 
             restartPolicy: Always
             volumes:
-                - name: app-data
+                - name: data
                   persistentVolumeClaim:
                       claimName: archivebox-pvc
 

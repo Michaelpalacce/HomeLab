@@ -5,6 +5,6 @@ archivebox:
     port: 8000
 
 storage:
-    dataLocality: "disabled" # or disabled
+    dataLocality: "disabled"
     numberOfReplicas: 1
     size: 25Gi

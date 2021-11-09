@@ -290,3 +290,6 @@ is not the way.
 ### Clearing up containerd
 - Go to `./ansible`
 - Run: `ansible -i inventory -m shell -a "k3s crictl rmp -a && k3s crictl rmi --prune && k3s crictl rm -a" -b all`
+
+### Issues with Longhorn volumes mounting
+* Check out: https://longhorn.io/kb/troubleshooting-volume-with-multipath/
