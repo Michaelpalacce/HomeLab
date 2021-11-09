@@ -1,6 +1,6 @@
 medusa:
     image: linuxserver/medusa
-    tag: latest
+    tag: 0.5.20
     nodePort: 30101
 
 transmission:
