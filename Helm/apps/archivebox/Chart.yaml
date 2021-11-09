@@ -1,9 +1,9 @@
 apiVersion: v2
 appVersion: 1.0.0
-description: This chart is used to install grocy
+description: This chart is used to install archivebox
 maintainers:
 - email: sgenov94@gmail.com
   name: Stefan Genov
-name: grocy
+name: archivebox
 type: application
 version: 1.0.0

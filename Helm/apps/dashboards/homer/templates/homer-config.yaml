@@ -114,6 +114,12 @@ data:
                     tag: "apps"
                     url: "http://{{ .clusterUrl }}:30100"
                     target: "_blank" # optional html tag target attribute
+                  - name: "ArchiveBox"
+                    logo: "icons/archivebox.png"
+                    subtitle: "Web Archive"
+                    tag: "apps"
+                    url: "http://{{ .clusterUrl }}:30113"
+                    target: "_blank" # optional html tag target attribute
                   - name: "Grocy"
                     logo: "icons/png/grocy.png"
                     subtitle: "Groceries"

@@ -173,6 +173,9 @@ Service account: jenkins
 ### Setting up grocy
 - Run `ansible-playbook -i inventory playbooks/apps/grocy/main.yml`
 
+### Setting up archivebox
+- Run `ansible-playbook -i inventory playbooks/apps/archivebox/main.yml`
+
 ### Setting up wikijs
 - Run `ansible-playbook -i inventory playbooks/apps/wikijs/main.yml`
 
@@ -237,6 +240,7 @@ Service account: jenkins
 ##### Syncthing: 30110
 ##### WikiJS: 30111
 ##### Grocy: 30112
+##### Archivebox: 30113
 
 # Backups
 You can use a longhorn backup. NOTE: XFS does not work correctly with backups. IF you are using a xfs drive, longhorn

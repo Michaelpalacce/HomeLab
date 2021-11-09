@@ -1,0 +1,29 @@
+- hosts: init_master
+  name: Setup archivebox
+  become: yes
+  tags:
+      - archivebox
+      - archivebox-setup
+  tasks:
+      - name: Cleanup old potential chart
+        file:
+            path: archivebox
+            state: absent
+
+      - name: Ensure new Chart is present
+        copy:
+            src: ../../../../Helm/apps/archivebox
+            dest: .
+
+      - name: Install archivebox namespace
+        kubernetes.core.helm:
+            name: archivebox
+            create_namespace: true
+            release_namespace: archivebox
+            chart_ref: archivebox/
+            values_files: archivebox/values.yaml
+
+      - name: Cleanup chart, we no longer need this
+        file:
+            path: archivebox
+            state: absent
