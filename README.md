@@ -173,6 +173,14 @@ Service account: jenkins
 ### Setting up grocy
 - Run `ansible-playbook -i inventory playbooks/apps/grocy/main.yml`
 
+### Setting up n8n
+- Setup: `Setting up postgresql`
+- Wait for pgAdmin 4 to be up and running, login with credentials specific in values.
+- Add server. Hostname: `postgresql.postgresql`. Username: `postgresql`. Password: `postgresql`
+- Create new database n8n
+- Create a new user n8n and give it permissions to the n8n db
+- Run `ansible-playbook -i inventory playbooks/apps/n8n/main.yml`
+
 ### Setting up archivebox
 - Run `ansible-playbook -i inventory playbooks/apps/archivebox/main.yml`
 
@@ -241,6 +249,7 @@ Service account: jenkins
 ##### WikiJS: 30111
 ##### Grocy: 30112
 ##### Archivebox: 30113
+##### N8N: 30114
 
 # Backups
 You can use a longhorn backup. NOTE: XFS does not work correctly with backups. IF you are using a xfs drive, longhorn

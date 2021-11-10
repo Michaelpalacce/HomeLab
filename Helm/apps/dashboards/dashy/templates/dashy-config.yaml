@@ -39,6 +39,14 @@ data:
 {{/*                    icon: /png/ubooquity.png*/}}
 {{/*                    url: http://{{ .clusterUrl }}:30107/ubooquity/admin*/}}
 
+            - name: Automation
+              items:
+                  - title: N8N
+                    description: Self hosted IFTTT
+                    icon: /png/n8n.png
+                    url: http://{{ .clusterUrl }}:30114
+                    statusCheck: false
+
             - name: Media
               items:
                   - title: Jellyfin
@@ -61,10 +69,10 @@ data:
                     description: Tasks
                     icon: vikunja.png
                     url: http://{{ .clusterUrl }}:30109
-                  - title: ArchiveBox
-                    description: Web Archive
-                    icon: /png/archivebox.png
-                    url: http://{{ .clusterUrl }}:30113
+{{/*                  - title: ArchiveBox*/}}
+{{/*                    description: Web Archive*/}}
+{{/*                    icon: /png/archivebox.png*/}}
+{{/*                    url: http://{{ .clusterUrl }}:30113*/}}
             - name: Storage
               items:
                   - title: Syncthing

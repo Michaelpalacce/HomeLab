@@ -1,0 +1,86 @@
+{{- with .Values.n8n }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: n8n
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app: n8n
+spec:
+    replicas: 1
+    strategy:
+        rollingUpdate:
+            maxUnavailable: 0
+    selector:
+        matchLabels:
+            app: n8n
+    template:
+        metadata:
+            labels:
+                app: n8n
+        spec:
+            containers:
+                - name: n8n
+                  image: {{ .image }}:{{ .tag }}
+                  imagePullPolicy: IfNotPresent
+                  env:
+                      - name: N8N_BASIC_AUTH_ACTIVE
+                        value: "true"
+                      - name: N8N_BASIC_AUTH_USER
+                        value: {{ .username }}
+                      - name: N8N_BASIC_AUTH_PASSWORD
+                        value: {{ .password }}
+                      - name: DB_POSTGRESDB_DATABASE
+                        value: {{ .db.name }}
+                      - name: DB_POSTGRESDB_HOST
+                        value: "postgresql.postgresql"
+                      - name: DB_POSTGRESDB_PORT
+                        value: "5432"
+                      - name: DB_POSTGRESDB_USER
+                        value: {{ .db.username }}
+                      - name: DB_POSTGRESDB_PASSWORD
+                        value: {{ .db.password }}
+                      - name: DB_TYPE
+                        value: "postgresdb"
+                      - name: N8N_PORT
+                        value: "{{ .port }}"
+                      - name: N8N_ENCRYPTION_KEY
+                        value: "{{ .encryption_key }}"
+                  resources:
+                      requests:
+                          cpu: 500m
+                          memory: 512Mi
+                      limits:
+                          cpu: 2000m
+                          memory: 2Gi
+                  ports:
+                      - name: web
+                        containerPort: {{ .port }}
+                  livenessProbe:
+                      failureThreshold: 5
+                      initialDelaySeconds: 60
+                      timeoutSeconds: 5
+                      tcpSocket:
+                          port: {{ .port }}
+
+            restartPolicy: Always
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: n8n
+    namespace: {{ $.Release.Namespace }}
+spec:
+    type: NodePort
+    selector:
+        app: n8n
+    ports:
+        - name: n8n
+          protocol: TCP
+          port: {{ .port }}
+          nodePort: {{ .nodePort }}
+
+{{- end }}

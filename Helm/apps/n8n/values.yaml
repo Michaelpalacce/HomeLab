@@ -1,0 +1,17 @@
+n8n:
+    image: n8nio/n8n
+    tag: 0.148.0
+    nodePort: 30114
+    port: 5678
+    username: "admin"
+    password: "admin"
+    encryption_key: "SOME_ENC_KEY" # MOVE TO SECRET
+    db:
+        username: "n8n"
+        password: "n8n"
+        name: "n8n"
+
+storage:
+    dataLocality: "disabled"
+    numberOfReplicas: 1
+    size: 15Gi
