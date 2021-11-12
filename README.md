@@ -4,8 +4,8 @@ The purpose of this project is to setup my Kubernetes HomeLab environment on a R
 The OS used is an Ubuntu server 21.04 x64 arm64 ISO ( downloaded from the Raspberry pi Imager )
 
 ### Hardware needed
-- 2 Raspberry pi 4B 8GB
-- 2x SSDs ( you can do SD cards but lord have mercy is it slow )
+- 4 Raspberry pi 4B 8GB
+- 4x SSDs ( you can do SD cards but lord have mercy is it slow )
 - MicroSD adapter to install the OS on the card
 - Raspberry Pi case for better form factor
 - the machine you are reading this from ;)
@@ -187,6 +187,9 @@ Service account: jenkins
 ### Setting up wikijs
 - Run `ansible-playbook -i inventory playbooks/apps/wikijs/main.yml`
 
+### Setting up diagrams
+- Run `ansible-playbook -i inventory playbooks/apps/diagrams/main.yml`
+
 ### Setting up UptimeKuma
 - Run `ansible-playbook -i inventory playbooks/apps/uptimekuma/main.yml`
 
@@ -250,6 +253,7 @@ Service account: jenkins
 ##### Grocy: 30112
 ##### Archivebox: 30113
 ##### N8N: 30114
+##### Diagrams/Drawio: 30115
 
 # Backups
 You can use a longhorn backup. NOTE: XFS does not work correctly with backups. IF you are using a xfs drive, longhorn
@@ -298,7 +302,9 @@ is not the way.
 
 ### Clearing up containerd
 - Go to `./ansible`
-- Run: `ansible -i inventory -m shell -a "k3s crictl rmp -a && k3s crictl rmi --prune && k3s crictl rm -a" -b all`
+- Run: `ansible -i inventory -m shell -a "k3s crictl rmp -a" -b all`
+- Run: `ansible -i inventory -m shell -a "k3s crictl rmi --prune`
+- Run: `ansible -i inventory -m shell -a "k3s crictl rm -a" -b all`
 
 ### Issues with Longhorn volumes mounting
 * Check out: https://longhorn.io/kb/troubleshooting-volume-with-multipath/

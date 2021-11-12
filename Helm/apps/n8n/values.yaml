@@ -10,8 +10,3 @@ n8n:
         username: "n8n"
         password: "n8n"
         name: "n8n"
-
-storage:
-    dataLocality: "disabled"
-    numberOfReplicas: 1
-    size: 15Gi

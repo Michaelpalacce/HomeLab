@@ -48,12 +48,12 @@ spec:
                       - name: N8N_ENCRYPTION_KEY
                         value: "{{ .encryption_key }}"
                   resources:
-                      requests:
-                          cpu: 500m
-                          memory: 512Mi
                       limits:
-                          cpu: 2000m
-                          memory: 2Gi
+                          cpu: 500m
+                          memory: 750Mi
+                      requests:
+                          cpu: 125m
+                          memory: 512Mi
                   ports:
                       - name: web
                         containerPort: {{ .port }}
