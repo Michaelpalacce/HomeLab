@@ -25,10 +25,10 @@ spec:
                 - name: homer
                   image: {{ .image }}:{{ .tag }}
                   imagePullPolicy: IfNotPresent
+{{- if .resources }}
                   resources:
-                      limits:
-                          cpu: 50m
-                          memory: 100Mi
+{{ toYaml .resources | indent 22 }}
+{{- end }}
                   ports:
                       - name: web
                         containerPort: 8080

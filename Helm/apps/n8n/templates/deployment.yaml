@@ -47,13 +47,11 @@ spec:
                         value: "{{ .port }}"
                       - name: N8N_ENCRYPTION_KEY
                         value: "{{ .encryption_key }}"
+
+{{- if .resources }}
                   resources:
-                      limits:
-                          cpu: 500m
-                          memory: 750Mi
-                      requests:
-                          cpu: 125m
-                          memory: 512Mi
+{{ toYaml .resources | indent 22 }}
+{{- end }}
                   ports:
                       - name: web
                         containerPort: {{ .port }}

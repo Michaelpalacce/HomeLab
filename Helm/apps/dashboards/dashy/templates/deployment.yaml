@@ -28,10 +28,10 @@ spec:
                 - name: dashy
                   image: {{ .image }}:{{ .tag }}
                   imagePullPolicy: IfNotPresent
+{{- if .resources }}
                   resources:
-                      limits:
-                          cpu: 1000m
-                          memory: 1000Mi
+{{ toYaml .resources | indent 22 }}
+{{- end }}
                   ports:
                       - name: web
                         containerPort: {{ .port }}

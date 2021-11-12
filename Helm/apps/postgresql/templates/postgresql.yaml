@@ -57,10 +57,10 @@ spec:
                       periodSeconds: 10
                       successThreshold: 1
                       timeoutSeconds: 5
+{{- if .resources }}
                   resources:
-                      requests:
-                          cpu: 250m
-                          memory: 256Mi
+{{ toYaml .resources | indent 22 }}
+{{- end }}
                   volumeMounts:
                       - mountPath: /dev/shm
                         name: dshm

@@ -24,13 +24,10 @@ spec:
                 - name: uptimekuma
                   image: {{ .image }}:{{ .tag }}
                   imagePullPolicy: IfNotPresent
+{{- if .resources }}
                   resources:
-                      requests:
-                          cpu: 100m
-                          memory: 512Mi
-                      limits:
-                          cpu: 250m
-                          memory: 750Mi
+{{ toYaml .resources | indent 22 }}
+{{- end }}
                   ports:
                       - name: web
                         containerPort: {{ .port }}

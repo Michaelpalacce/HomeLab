@@ -10,3 +10,10 @@ n8n:
         username: "n8n"
         password: "n8n"
         name: "n8n"
+    resources:
+        limits:
+            cpu: 500m
+            memory: 750Mi
+        requests:
+            cpu: 125m
+            memory: 512Mi

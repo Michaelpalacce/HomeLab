@@ -69,6 +69,10 @@ data:
                     description: Tasks
                     icon: vikunja.png
                     url: http://{{ .clusterUrl }}:30109
+                  - title: Diagrams
+                    description: Make diagrams in your browser
+                    icon: /png/draw.png
+                    url: http://{{ .clusterUrl }}:30115
 {{/*                  - title: ArchiveBox*/}}
 {{/*                    description: Web Archive*/}}
 {{/*                    icon: /png/archivebox.png*/}}
