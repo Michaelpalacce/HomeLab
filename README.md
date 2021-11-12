@@ -268,17 +268,6 @@ is not the way.
 - Run `helm install rancher rancher-stable/rancher --namespace cattle-system --create-namespace --set hostname=rancher.local`
 - Patch the rancher service to port 30031
 
-### Setting up Pihole ( WORK IN PROGRESS, CURRENTLY DOES NOT WORK AS EXPECTED )
-- You will have to first allow calico to forward ips, so your loadbalancer setup will work correctly
-- go to each node and edit: /etc/cni/net.d/10-calico.conflist
-- Add just after policy directive:
-~~~json
-    "container_settings": {
-        "allow_ip_forwarding": true
-    },
-~~~
-- Run: `ansible-playbook -i inventory playbooks/pihole/main.yml`
-
 # Troubleshooting
 
 ### Cluster creation failed ( or everything has gone to heck and I want to re-do it)

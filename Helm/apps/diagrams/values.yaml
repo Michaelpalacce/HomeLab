@@ -3,3 +3,10 @@ diagrams:
     tag: v15.7.3
     nodePort: 30115
     port: 8080 #8443 for https
+    resources:
+        requests:
+            cpu: 250m
+            memory: 512Mi
+        limits:
+            cpu: 500m
+            memory: 1Gi
