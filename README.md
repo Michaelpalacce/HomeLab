@@ -210,8 +210,8 @@ Service account: jenkins
 - Setup: `Setting up postgresql`
 - Wait for pgAdmin 4 to be up and running, login with credentials specific in values.
 - Add server. Hostname: `postgresql.postgresql`. Username: `postgresql`. Password: `postgresql`
-- Create new database wallabag
-- Create a new user wallabag with pass wallabag and give it permissions to the wallabag db
+- The wallabag docker image creates a postgresql user and db itself
+- Make sure to edit the values.yaml and change the `domainName` to your own one.
 - Run `ansible-playbook -i inventory playbooks/apps/wallabag/main.yml`
 
 ### Setting up Media Services

@@ -25,6 +25,10 @@ spec:
                   image: {{ .image }}:{{ .tag }}
                   imagePullPolicy: IfNotPresent
                   env:
+                      - name: PUID
+                        value: "1000"
+                      - name: GUID
+                        value: "1000"
                       - name: SYMFONY__ENV__DATABASE_DRIVER
                         value: "pdo_pgsql"
                       - name: SYMFONY__ENV__DATABASE_PORT
@@ -37,10 +41,12 @@ spec:
                         value: {{ .db.password }}
                       - name: SYMFONY__ENV__DATABASE_HOST
                         value: {{ .db.host }}
+                      - name: SYMFONY__ENV__DOMAIN_NAME
+                        value: {{ .domainName }}
                       - name: POSTGRES_USER
-                        value: {{ .db.username }}
+                        value: postgres
                       - name: POSTGRES_PASSWORD
-                        value: {{ .db.password }}
+                        value: postgres
 {{- if .resources }}
                   resources:
 {{ toYaml .resources | indent 22 }}
@@ -50,7 +56,7 @@ spec:
                         containerPort: {{ .port }}
                   livenessProbe:
                       failureThreshold: 5
-                      initialDelaySeconds: 60
+                      initialDelaySeconds: 120
                       timeoutSeconds: 5
                       tcpSocket:
                           port: {{ .port }}
