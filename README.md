@@ -203,8 +203,16 @@ Service account: jenkins
 - Wait for pgAdmin 4 to be up and running, login with credentials specific in values.
 - Add server. Hostname: `postgresql.postgresql`. Username: `postgresql`. Password: `postgresql`
 - Create new database vikunja
-- Create a new user vikunja and give it permissions to the vikunja db
+- Create a new user vikunja with pass vikunja and give it permissions to the vikunja db
 - Run `ansible-playbook -i inventory playbooks/apps/vikunja/main.yml`
+- 
+### Setting up Wallabag
+- Setup: `Setting up postgresql`
+- Wait for pgAdmin 4 to be up and running, login with credentials specific in values.
+- Add server. Hostname: `postgresql.postgresql`. Username: `postgresql`. Password: `postgresql`
+- Create new database wallabag
+- Create a new user wallabag with pass wallabag and give it permissions to the wallabag db
+- Run `ansible-playbook -i inventory playbooks/apps/wallabag/main.yml`
 
 ### Setting up Media Services
 - Read `Helm/apps/media/README.md` on some of the decisions taken
@@ -254,6 +262,7 @@ Service account: jenkins
 ##### Archivebox: 30113
 ##### N8N: 30114
 ##### Diagrams/Drawio: 30115
+##### Wallabag: 30116
 
 # Backups
 You can use a longhorn backup. NOTE: XFS does not work correctly with backups. IF you are using a xfs drive, longhorn

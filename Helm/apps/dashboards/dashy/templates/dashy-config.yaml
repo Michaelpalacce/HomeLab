@@ -26,6 +26,10 @@ data:
                     description: Baby Monitor
                     icon: babybuddy.png
                     url: http://{{ .clusterUrl }}:30100
+                  - title: Wallabag
+                    description: Self-hosted Pocket!
+                    icon: /png/wallabag.png
+                    url: http://{{ .clusterUrl }}:30116
 {{/*                  - title: Grocy*/}}
 {{/*                    description: Groceries*/}}
 {{/*                    icon: /png/grocy.png*/}}

@@ -1,0 +1,77 @@
+{{- with .Values.wallabag }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: wallabag
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app: wallabag
+spec:
+    replicas: 1
+    strategy:
+        rollingUpdate:
+            maxUnavailable: 0
+    selector:
+        matchLabels:
+            app: wallabag
+    template:
+        metadata:
+            labels:
+                app: wallabag
+        spec:
+            containers:
+                - name: wallabag
+                  image: {{ .image }}:{{ .tag }}
+                  imagePullPolicy: IfNotPresent
+                  env:
+                      - name: SYMFONY__ENV__DATABASE_DRIVER
+                        value: "pdo_pgsql"
+                      - name: SYMFONY__ENV__DATABASE_PORT
+                        value: "{{ .db.port }}"
+                      - name: SYMFONY__ENV__DATABASE_NAME
+                        value: {{ .db.name }}
+                      - name: SYMFONY__ENV__DATABASE_USER
+                        value: {{ .db.username }}
+                      - name: SYMFONY__ENV__DATABASE_PASSWORD
+                        value: {{ .db.password }}
+                      - name: SYMFONY__ENV__DATABASE_HOST
+                        value: {{ .db.host }}
+                      - name: POSTGRES_USER
+                        value: {{ .db.username }}
+                      - name: POSTGRES_PASSWORD
+                        value: {{ .db.password }}
+{{- if .resources }}
+                  resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+                  ports:
+                      - name: web
+                        containerPort: {{ .port }}
+                  livenessProbe:
+                      failureThreshold: 5
+                      initialDelaySeconds: 60
+                      timeoutSeconds: 5
+                      tcpSocket:
+                          port: {{ .port }}
+
+            restartPolicy: Always
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: wallabag
+    namespace: {{ $.Release.Namespace }}
+spec:
+    type: NodePort
+    selector:
+        app: wallabag
+    ports:
+        - name: wallabag
+          protocol: TCP
+          port: {{ .port }}
+          nodePort: {{ .nodePort }}
+
+{{- end }}

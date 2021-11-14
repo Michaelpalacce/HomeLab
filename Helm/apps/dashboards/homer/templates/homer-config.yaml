@@ -114,6 +114,12 @@ data:
                     tag: "apps"
                     url: "http://{{ .clusterUrl }}:30100"
                     target: "_blank" # optional html tag target attribute
+                  - name: "Wallabag"
+                    logo: "icons/png/wallabag.png"
+                    subtitle: "Self-hosted Pocket!"
+                    tag: "apps"
+                    url: "http://{{ .clusterUrl }}:30116"
+                    target: "_blank" # optional html tag target attribute
                   - name: "ArchiveBox"
                     logo: "icons/archivebox.png"
                     subtitle: "Web Archive"
