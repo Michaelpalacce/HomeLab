@@ -1,5 +1,5 @@
 storage:
-    dataLocality: "disabled" # or disabled
+    dataLocality: "best-effort" # or disabled
     numberOfReplicas: 1
     dshmSize: 1Gi
     dataSize: 10Gi
@@ -22,7 +22,7 @@ postgresql:
 
 pgadmin:
     image: dpage/pgadmin4
-    tag: 2021-09-06-2
+    tag: 6.1
     port: 80
     nodePort: 30033
     security:

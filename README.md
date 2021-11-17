@@ -175,7 +175,7 @@ Service account: jenkins
 
 ### Setting up n8n
 - Setup: `Setting up postgresql`
-- Wait for pgAdmin 4 to be up and running, login with credentials specific in values.
+- Wait for pgAdmin to be up and running, login with credentials specific in values.
 - Add server. Hostname: `postgresql.postgresql`. Username: `postgresql`. Password: `postgresql`
 - Create new database n8n
 - Create a new user n8n and give it permissions to the n8n db
@@ -200,15 +200,18 @@ Service account: jenkins
 
 ### Setting up Vikunja
 - Setup: `Setting up postgresql`
-- Wait for pgAdmin 4 to be up and running, login with credentials specific in values.
+- Wait for pgAdmin to be up and running, login with credentials specific in values.
 - Add server. Hostname: `postgresql.postgresql`. Username: `postgresql`. Password: `postgresql`
 - Create new database vikunja
 - Create a new user vikunja with pass vikunja and give it permissions to the vikunja db
+- IF YOU WANT SMTP: Go to the vikunja Helm values and modify the smtp settings. Change enabled to true and enter your 
+  email details ( please use an app password instead of your actual password to your mail client ). Note that gmail settings 
+  are entered but you can choose to use any smtp client you wish
 - Run `ansible-playbook -i inventory playbooks/apps/vikunja/main.yml`
 - 
 ### Setting up Wallabag
 - Setup: `Setting up postgresql`
-- Wait for pgAdmin 4 to be up and running, login with credentials specific in values.
+- Wait for pgAdmin to be up and running, login with credentials specific in values.
 - Add server. Hostname: `postgresql.postgresql`. Username: `postgresql`. Password: `postgresql`
 - The wallabag docker image creates a postgresql user and db itself
 - Make sure to edit the values.yaml and change the `domainName` to your own one.
@@ -263,6 +266,7 @@ Service account: jenkins
 ##### N8N: 30114
 ##### Diagrams/Drawio: 30115
 ##### Wallabag: 30116
+##### Radarr: 30117
 
 # Backups
 You can use a longhorn backup. NOTE: XFS does not work correctly with backups. IF you are using a xfs drive, longhorn
@@ -306,3 +310,7 @@ is not the way.
 
 ### Issues with Longhorn volumes mounting
 * Check out: https://longhorn.io/kb/troubleshooting-volume-with-multipath/
+
+### Even more issues with Longhorn volume mounting
+Some times in case of a lot of services being brought up Longhorn fails to resolve for hours.... What I found useful is 
+changing the replicas to the failing services to zero and slowly increasing it to the desired amount one by one 

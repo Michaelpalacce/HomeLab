@@ -1,5 +1,11 @@
 vikunja:
     nodePort: 30109
+    smtp:
+        enabled: "false"
+        host: "smtp.gmail.com"
+        port: "587"
+        username: ""
+        password: ""
     api:
         image: vikunja/api
         tag: 0.18.1

@@ -15,12 +15,17 @@ jellyfin:
     image: jellyfin/jellyfin
     tag: latest
 
-
 jackett:
     nodePort: 30105
     image: linuxserver/jackett
     tag: latest
     port: 9117
+
+radarr:
+    nodePort: 30117
+    image: linuxserver/radarr
+    tag: 0.0.5497
+    port: 7878
 
 #readarr:
 #    nodePort: 30104

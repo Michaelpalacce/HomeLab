@@ -55,6 +55,31 @@ spec:
                         value: postgres
                       - name: VIKUNJA_DATABASE_DATABASE
                         value: {{ .db.name }}
+                      - name: VIKUNJA_MAILER_ENABLED
+                        valueFrom:
+                            secretKeyRef:
+                                name: smtp-settings
+                                key: enabled
+                      - name: VIKUNJA_MAILER_HOST
+                        valueFrom:
+                            secretKeyRef:
+                                name: smtp-settings
+                                key: host
+                      - name: VIKUNJA_MAILER_PORT
+                        valueFrom:
+                            secretKeyRef:
+                                name: smtp-settings
+                                key: port
+                      - name: VIKUNJA_MAILER_USERNAME
+                        valueFrom:
+                            secretKeyRef:
+                                name: smtp-settings
+                                key: username
+                      - name: VIKUNJA_MAILER_PASSWORD
+                        valueFrom:
+                            secretKeyRef:
+                                name: smtp-settings
+                                key: password
 
                   imagePullPolicy: IfNotPresent
                   ports:

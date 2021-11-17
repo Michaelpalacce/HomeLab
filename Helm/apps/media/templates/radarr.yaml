@@ -1,0 +1,83 @@
+{{- with .Values.radarr }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: radarr
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app: radarr
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: radarr
+    template:
+        metadata:
+            labels:
+                app: radarr
+        spec:
+            nodeSelector:
+                type: media
+            containers:
+                - name: radarr
+                  image: {{ .image }}:{{ .tag }}
+                  imagePullPolicy: IfNotPresent
+                  env:
+                      - name: PUID
+                        value: "0"
+                      - name: GUID
+                        value: "0"
+                  resources:
+                      requests:
+                          cpu: 125m
+                          memory: 100Mi
+                      limits:
+                          cpu: 750m
+                          memory: 1Gi
+                  ports:
+                      - name: web
+                        containerPort: {{ .port }}
+                  volumeMounts:
+                      - name: app-data
+                        mountPath: /config
+                      - name: downloads-data
+                        mountPath: /downloads
+                      - name: shows-data
+                        mountPath: /tv
+                  livenessProbe:
+                      failureThreshold: 5
+                      initialDelaySeconds: 300
+                      timeoutSeconds: 5
+                      tcpSocket:
+                          port: {{ .port }}
+
+            restartPolicy: Always
+            volumes:
+                - name: app-data
+                  persistentVolumeClaim:
+                      claimName: radarr-config-volume
+                - name: shows-data
+                  persistentVolumeClaim:
+                      claimName: movies-volume
+                - name: downloads-data
+                  persistentVolumeClaim:
+                      claimName: downloads-volume
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: radarr
+    namespace: {{ $.Release.Namespace }}
+spec:
+    type: NodePort
+    selector:
+        app: radarr
+    ports:
+        - name: radarr
+          protocol: TCP
+          port: {{ .port }}
+          nodePort: {{ .nodePort }}
+
+{{- end }}

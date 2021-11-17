@@ -201,6 +201,12 @@ data:
                     tag: "ebooks"
                     url: "http://{{ .clusterUrl }}:30104"
                     target: "_blank" # optional html tag target attribute
+                  - name: "Radarr"
+                    logo: "icons/png/radarr.png"
+                    subtitle: "Movies Downloader"
+                    tag: "ebooks"
+                    url: "http://{{ .clusterUrl }}:30117"
+                    target: "_blank" # optional html tag target attribute
 
             - name: "Monitoring"
               # icon: "fas fa-code-branch"

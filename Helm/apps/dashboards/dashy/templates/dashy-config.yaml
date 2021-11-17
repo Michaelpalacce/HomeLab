@@ -97,6 +97,10 @@ data:
                     description: Tv Shows Downloader
                     icon: /png/medusa.png
                     url: http://{{ .clusterUrl }}:30101
+                  - title: Radarr
+                    description: Movies Downloader
+                    icon: /png/radarr.png
+                    url: http://{{ .clusterUrl }}:30117
 {{/*                  - title: Readarr*/}}
 {{/*                    description: Ebook Library Downloader*/}}
 {{/*                    icon: /png/readarr.png*/}}
