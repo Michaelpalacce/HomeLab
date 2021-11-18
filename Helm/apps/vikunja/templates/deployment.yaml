@@ -12,7 +12,8 @@ spec:
         matchLabels:
             app: vikunja
     strategy:
-        type: Recreate
+        rollingUpdate:
+            maxUnavailable: 0
     template:
         metadata:
             labels:
@@ -30,7 +31,15 @@ spec:
                   livenessProbe:
                       failureThreshold: 5
                       periodSeconds: 10
-                      initialDelaySeconds: 10
+                      initialDelaySeconds: 60
+                      successThreshold: 1
+                      tcpSocket:
+                          port: {{ .port }}
+                      timeoutSeconds: 1
+                  readinessProbe:
+                      failureThreshold: 5
+                      periodSeconds: 10
+                      initialDelaySeconds: 5
                       successThreshold: 1
                       tcpSocket:
                           port: {{ .port }}
@@ -45,6 +54,8 @@ spec:
                 - name: api
                   image: {{ .image }}:{{ .tag }}
                   env:
+                      - name: VIKUNJA_SERVICE_FRONTENDURL
+                        value: "{{ .frontendUrl }}"
                       - name: VIKUNJA_DATABASE_HOST
                         value: postgresql.postgresql
                       - name: VIKUNJA_DATABASE_USER
@@ -65,6 +76,11 @@ spec:
                             secretKeyRef:
                                 name: smtp-settings
                                 key: host
+                      - name: VIKUNJA_MAILER_FROMEMAIL
+                        valueFrom:
+                            secretKeyRef:
+                                name: smtp-settings
+                                key: from
                       - name: VIKUNJA_MAILER_PORT
                         valueFrom:
                             secretKeyRef:
