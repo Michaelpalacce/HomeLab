@@ -35,7 +35,7 @@ spec:
                       successThreshold: 1
                       tcpSocket:
                           port: {{ .port }}
-                      timeoutSeconds: 1
+                      timeoutSeconds: 2
                   readinessProbe:
                       failureThreshold: 5
                       periodSeconds: 10
@@ -43,7 +43,7 @@ spec:
                       successThreshold: 1
                       tcpSocket:
                           port: {{ .port }}
-                      timeoutSeconds: 1
+                      timeoutSeconds: 2
                   volumeMounts:
                       - name: nginx-config-volume
                         mountPath: /etc/nginx/conf.d/default.conf
@@ -76,11 +76,6 @@ spec:
                             secretKeyRef:
                                 name: smtp-settings
                                 key: host
-                      - name: VIKUNJA_MAILER_FROMEMAIL
-                        valueFrom:
-                            secretKeyRef:
-                                name: smtp-settings
-                                key: from
                       - name: VIKUNJA_MAILER_PORT
                         valueFrom:
                             secretKeyRef:

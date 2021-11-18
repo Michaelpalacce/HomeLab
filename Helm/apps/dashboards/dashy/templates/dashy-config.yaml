@@ -25,11 +25,11 @@ data:
                   - title: BabyBuddy
                     description: Baby Monitor
                     icon: babybuddy.png
-                    url: http://{{ .clusterUrl }}:30100
+                    url: http://babybuddy.local
                   - title: Wallabag
                     description: Self-hosted Pocket!
                     icon: /png/wallabag.png
-                    url: http://{{ .clusterUrl }}:30116
+                    url: http://wallabag.local
 {{/*                  - title: Grocy*/}}
 {{/*                    description: Groceries*/}}
 {{/*                    icon: /png/grocy.png*/}}
@@ -48,7 +48,7 @@ data:
                   - title: N8N
                     description: Self hosted IFTTT
                     icon: /png/n8n.png
-                    url: http://{{ .clusterUrl }}:30114
+                    url: http://n8n.local
                     statusCheck: false
 
             - name: Media
@@ -68,15 +68,15 @@ data:
                   - title: Wiki.JS
                     description: Self hosted wiki
                     icon: /png/wikijs.png
-                    url: http://{{ .clusterUrl }}:30111
+                    url: http://wikijs.local
                   - title: Vikunja
                     description: Tasks
                     icon: vikunja.png
-                    url: http://{{ .clusterUrl }}:30109
+                    url: http://vikunja.local
                   - title: Diagrams
                     description: Make diagrams in your browser
                     icon: /png/draw.png
-                    url: http://{{ .clusterUrl }}:30115
+                    url: http://diagrams.local
 {{/*                  - title: ArchiveBox*/}}
 {{/*                    description: Web Archive*/}}
 {{/*                    icon: /png/archivebox.png*/}}

@@ -6,12 +6,11 @@ metadata:
     namespace: {{ $.Release.Namespace }}
     annotations:
         kubernetes.io/ingress.class: traefik
-        traefik.ingress.kubernetes.io/rule-type: "PathPrefixStrip"
-        traefik.ingress.kubernetes.io/rewrite-target: "/"
-        traefik.ingress.kubernetes.io/app-root: "/"
+        nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
     rules:
-        - http:
+        - host: "dashy.local"
+          http:
               paths:
                   - path: {{ .path }}
                     pathType: Exact

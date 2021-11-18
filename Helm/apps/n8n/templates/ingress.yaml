@@ -1,0 +1,22 @@
+{{- with .Values.n8n }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: web-ui
+    namespace: {{ $.Release.Namespace }}
+    annotations:
+        kubernetes.io/ingress.class: traefik
+        nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+    rules:
+        - host: "{{ .host }}"
+          http:
+              paths:
+                  - path: /
+                    pathType: Exact
+                    backend:
+                        service:
+                            name: n8n
+                            port:
+                                name: n8n
+  {{- end }}

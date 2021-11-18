@@ -1,4 +1,5 @@
 babybuddy:
+    host: "babybuddy.local"
     image: linuxserver/babybuddy
     tag: version-v1.9.0
     nodePort: 30100

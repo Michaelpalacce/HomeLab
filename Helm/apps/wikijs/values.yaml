@@ -1,4 +1,5 @@
 wikijs:
+    host: "wikijs.local"
     image: linuxserver/wikijs
     tag: 2.5.219
     nodePort: 30111

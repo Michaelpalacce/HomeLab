@@ -1,4 +1,5 @@
 diagrams:
+    host: "diagrams.local"
     image: stefangenov/diagrams # official image does not have an ARM build :)
     tag: v15.7.3
     nodePort: 30115

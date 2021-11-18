@@ -1,4 +1,5 @@
 uptimekuma:
+    host: "uptimekuma.local"
     image: louislam/uptime-kuma
     tag: 1.10.2-alpine
     nodePort: 30012

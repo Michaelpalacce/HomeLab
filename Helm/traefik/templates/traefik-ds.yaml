@@ -23,6 +23,15 @@ spec:
                 k8s-app: traefik-ingress-lb
                 name: traefik-ingress-lb
         spec:
+            affinity:
+                podAntiAffinity:
+                    preferredDuringSchedulingIgnoredDuringExecution:
+                        - podAffinityTerm:
+                              labelSelector:
+                                  matchLabels:
+                                      k8s-app: kube-dns
+                              topologyKey: kubernetes.io/hostname
+                          weight: 1
             serviceAccountName: traefik-ingress-controller
             terminationGracePeriodSeconds: 60
             containers:
