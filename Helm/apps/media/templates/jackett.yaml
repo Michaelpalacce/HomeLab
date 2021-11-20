@@ -33,16 +33,14 @@ spec:
                           cpu: 250m
                           memory: 250Mi
                       limits:
-                          cpu: 500m
-                          memory: 512Mi
+                          cpu: 1000m
+                          memory: 1Gi
                   ports:
                       - name: web
                         containerPort: {{ .port }}
                   volumeMounts:
                       - name: app-data
                         mountPath: /config
-                      - name: downloads-data
-                        mountPath: /downloads
                   livenessProbe:
                       failureThreshold: 5
                       initialDelaySeconds: 300
@@ -55,9 +53,7 @@ spec:
                 - name: app-data
                   persistentVolumeClaim:
                       claimName: jackett-config-volume
-                - name: downloads-data
-                  persistentVolumeClaim:
-                      claimName: jackett-downloads
+
 ---
 
 apiVersion: v1

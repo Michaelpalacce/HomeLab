@@ -78,6 +78,9 @@ iptables -F && update-alternatives --set iptables /usr/sbin/iptables-legacy && u
   ( I am using WSL to run my commands )
 - sshpass ( if you are going to use password based authentication for the RPIs which I am ). If you want better security then configure key based authentication.
 
+### Software needed on master ( or a separate device )
+- Pi-Hole setup 
+
 ### K3S and why are we using it
 - For raspberry pis who have limited resources we need something more minimalistic. k3s was made to run with limited resources in mind, so it seems like a good fit
 - We will not be using traefik and flannel tho as they seem to result in a DNS issue I could not resolve, so I stuck with the classic -> calico :)
@@ -224,8 +227,15 @@ Service account: jenkins
 - Run `ansible-playbook -i inventory playbooks/apps/media/main.yml`
 
 # Ingress rules
-##### / -> Homer/Dashy
-##### /traefik -> trafeik admin
+##### dashy.local
+##### vikunja.local
+##### n8n.local
+##### diagrams.local
+##### wikijs.local
+##### uptimekuma.local
+##### babybuddy.local
+##### wallabag.local
+##### {{node_ip}}/traefik -> trafeik admin
 
 # NodePorts in use
 
@@ -246,17 +256,19 @@ Service account: jenkins
 ##### Rancher: 30032 -> https
 ##### pgAdmin: 30033
 ##### Homer/Dashy ( Dashboard ): 32222
+##### Jackett: 30034
+##### Transmission: 30035
+
+## Media
+#### Used Port range: 31001 - 31050
+##### Jellyfin: 31001
+##### Readarr: 31002
+##### Radarr: 31003
+##### Sonarr: 31004
 
 ## Apps
-#### Used Port range: 30100 - 30200
+#### Used Port range: 30100 - 31000
 ##### BabyBuddy: 30100
-##### Medusa: 30101
-##### Transmission: 30102
-##### Jellyfin: 30103
-##### Readarr: 30104
-##### Jackett: 30105
-##### Ubooquity Lib: 30106
-##### Ubooquity Admin: 30107
 ##### ServerEmulator: 30108
 ##### Vikunja: 30109
 ##### Syncthing: 30110
@@ -266,7 +278,6 @@ Service account: jenkins
 ##### N8N: 30114
 ##### Diagrams/Drawio: 30115
 ##### Wallabag: 30116
-##### Radarr: 30117
 
 # Backups
 You can use a longhorn backup. NOTE: XFS does not work correctly with backups. IF you are using a xfs drive, longhorn

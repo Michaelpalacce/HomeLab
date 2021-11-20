@@ -136,7 +136,7 @@ data:
                     logo: "icons/png/jellyfin.png"
                     subtitle: "Tv Shows Stream"
                     tag: "apps"
-                    url: "http://{{ .clusterUrl }}:30103"
+                    url: "http://{{ .clusterUrl }}:31001"
                     target: "_blank" # optional html tag target attribute
                   - name: "Ubooquity Library"
                     logo: "icons/png/ubooquity.png"
@@ -199,13 +199,13 @@ data:
                     logo: "icons/png/readarr.png"
                     subtitle: "Ebook Library Downloader"
                     tag: "ebooks"
-                    url: "http://{{ .clusterUrl }}:30104"
+                    url: "http://{{ .clusterUrl }}:31002"
                     target: "_blank" # optional html tag target attribute
                   - name: "Radarr"
                     logo: "icons/png/radarr.png"
                     subtitle: "Movies Downloader"
                     tag: "ebooks"
-                    url: "http://{{ .clusterUrl }}:30117"
+                    url: "http://{{ .clusterUrl }}:31003"
                     target: "_blank" # optional html tag target attribute
 
             - name: "Monitoring"
@@ -255,13 +255,13 @@ data:
                     logo: "icons/png/transmission.png"
                     subtitle: "Torrent"
                     tag: "torrent"
-                    url: "http://{{ .clusterUrl }}:30102"
+                    url: "http://{{ .clusterUrl }}:30035"
                     target: "_blank" # optional html tag target attribute
                   - name: "Jackett"
                     logo: "icons/png/jackett.png"
                     subtitle: "Torrent indexer"
                     tag: "torrent"
-                    url: "http://{{ .clusterUrl }}:30105"
+                    url: "http://{{ .clusterUrl }}:30034"
                     target: "_blank" # optional html tag target attribute
 
             - name: "Databases"

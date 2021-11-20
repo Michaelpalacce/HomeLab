@@ -13,90 +13,16 @@ parameters:
 ---
 
 apiVersion: v1
-kind: PersistentVolume
-metadata:
-    name: medusa-config-volume-pv
-    labels:
-        type: local
-        app: medusa
-spec:
-    storageClassName: manual
-    capacity:
-        storage: 2Gi
-    accessModes:
-        - ReadWriteOnce
-    hostPath:
-        path: "/mnt/media/medusa"
-
----
-
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-    name: medusa-config-volume
-spec:
-    selector:
-        matchLabels:
-            app: medusa
-    storageClassName: manual
-    accessModes:
-        - ReadWriteOnce
-    resources:
-        requests:
-            storage: 2Gi
-
----
-
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-    name: transmission-config-volume-pv
-    labels:
-        type: local
-        app: transmission
-spec:
-    storageClassName: manual
-    capacity:
-        storage: 2Gi
-    accessModes:
-        - ReadWriteOnce
-    hostPath:
-        path: "/mnt/media/transmission"
-
----
-
-apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
     name: transmission-config-volume
 spec:
-    selector:
-        matchLabels:
-            app: transmission
-    storageClassName: manual
     accessModes:
-        - ReadWriteOnce
+        - ReadWriteMany
+    storageClassName: media-config-sc
     resources:
         requests:
-            storage: 2Gi
-
----
-
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-    name: jellyfin-config-volume-pv
-    labels:
-        type: local
-        app: jellyfin
-spec:
-    storageClassName: manual
-    capacity:
-        storage: 2Gi
-    accessModes:
-        - ReadWriteOnce
-    hostPath:
-        path: "/mnt/media/jellyfin"
+            storage: 1Gi
 
 ---
 
@@ -105,15 +31,68 @@ kind: PersistentVolumeClaim
 metadata:
     name: jellyfin-config-volume
 spec:
-    selector:
-        matchLabels:
-            app: jellyfin
-    storageClassName: manual
     accessModes:
-        - ReadWriteOnce
+        - ReadWriteMany
+    storageClassName: media-config-sc
     resources:
         requests:
-            storage: 2Gi
+            storage: 1Gi
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: jackett-config-volume
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: media-config-sc
+    resources:
+        requests:
+            storage: 1Gi
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: readarr-config-volume
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: media-config-sc
+    resources:
+        requests:
+            storage: 1Gi
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: radarr-config-volume
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: media-config-sc
+    resources:
+        requests:
+            storage: 1Gi
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: sonarr-config-volume
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: media-config-sc
+    resources:
+        requests:
+            storage: 1Gi
 
 ---
 
@@ -162,7 +141,7 @@ metadata:
 spec:
     storageClassName: manual
     capacity:
-        storage: 50Gi
+        storage: 100Gi
     accessModes:
         - ReadWriteOnce
     hostPath:
@@ -183,7 +162,7 @@ spec:
         - ReadWriteOnce
     resources:
         requests:
-            storage: 50Gi
+            storage: 100Gi
 
 ---
 
@@ -197,7 +176,7 @@ metadata:
 spec:
     storageClassName: manual
     capacity:
-        storage: 80Gi
+        storage: 100Gi
     accessModes:
         - ReadWriteOnce
     hostPath:
@@ -218,35 +197,7 @@ spec:
         - ReadWriteOnce
     resources:
         requests:
-            storage: 80Gi
-
----
-
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-    name: readarr-config-volume
-spec:
-    accessModes:
-        - ReadWriteMany
-    storageClassName: media-config-sc
-    resources:
-        requests:
-            storage: 1Gi
-
----
-
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-    name: radarr-config-volume
-spec:
-    accessModes:
-        - ReadWriteMany
-    storageClassName: media-config-sc
-    resources:
-        requests:
-            storage: 1Gi
+            storage: 100Gi
 
 ---
 
@@ -260,7 +211,7 @@ metadata:
 spec:
     storageClassName: manual
     capacity:
-        storage: 5Gi
+        storage: 15Gi
     accessModes:
         - ReadWriteOnce
     hostPath:
@@ -281,89 +232,6 @@ spec:
         - ReadWriteOnce
     resources:
         requests:
-            storage: 5Gi
+            storage: 15Gi
 
 ---
-
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-    name: jackett-downloads-pv
-    labels:
-        type: local
-        app: jackett-downloads
-spec:
-    storageClassName: manual
-    capacity:
-        storage: 5Gi
-    accessModes:
-        - ReadWriteOnce
-    hostPath:
-        path: "/mnt/media/jackett-downloads"
-
----
-
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-    name: jackett-downloads
-spec:
-    selector:
-        matchLabels:
-            app: jackett-downloads
-    storageClassName: manual
-    accessModes:
-        - ReadWriteOnce
-    resources:
-        requests:
-            storage: 5Gi
-
----
-
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-    name: jackett-config-volume
-spec:
-    accessModes:
-        - ReadWriteMany
-    storageClassName: media-config-sc
-    resources:
-        requests:
-            storage: 1Gi
-
----
-
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-    name: ubooquity-config-volume-pv
-    labels:
-        type: local
-        app: ubooquity-config-volume
-spec:
-    storageClassName: manual
-    capacity:
-        storage: 1Gi
-    accessModes:
-        - ReadWriteMany
-    hostPath:
-        path: "/mnt/media/ubooquity-config"
-
----
-
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-    name: ubooquity-config-volume
-spec:
-    selector:
-        matchLabels:
-            app: ubooquity-config-volume
-    accessModes:
-        - ReadWriteMany
-    storageClassName: manual
-    resources:
-        requests:
-            storage: 1Gi
-

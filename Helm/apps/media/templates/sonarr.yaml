@@ -1,0 +1,83 @@
+{{- with .Values.sonarr }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: sonarr
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app: sonarr
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: sonarr
+    template:
+        metadata:
+            labels:
+                app: sonarr
+        spec:
+            nodeSelector:
+                type: media
+            containers:
+                - name: sonarr
+                  image: {{ .image }}:{{ .tag }}
+                  imagePullPolicy: IfNotPresent
+                  env:
+                      - name: PUID
+                        value: "0"
+                      - name: GUID
+                        value: "0"
+                  resources:
+                      requests:
+                          cpu: 125m
+                          memory: 100Mi
+                      limits:
+                          cpu: 250m
+                          memory: 512Mi
+                  ports:
+                      - name: web
+                        containerPort: {{ .port }}
+                  volumeMounts:
+                      - name: app-data
+                        mountPath: /config
+                      - name: downloads-data
+                        mountPath: /downloads
+                      - name: shows-data
+                        mountPath: /shows
+                  livenessProbe:
+                      failureThreshold: 5
+                      initialDelaySeconds: 300
+                      timeoutSeconds: 5
+                      tcpSocket:
+                          port: {{ .port }}
+
+            restartPolicy: Always
+            volumes:
+                - name: app-data
+                  persistentVolumeClaim:
+                      claimName: sonarr-config-volume
+                - name: shows-data
+                  persistentVolumeClaim:
+                      claimName: shows-volume
+                - name: downloads-data
+                  persistentVolumeClaim:
+                      claimName: downloads-volume
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: sonarr
+    namespace: {{ $.Release.Namespace }}
+spec:
+    type: NodePort
+    selector:
+        app: sonarr
+    ports:
+        - name: sonarr
+          protocol: TCP
+          port: {{ .port }}
+          nodePort: {{ .nodePort }}
+
+{{- end }}

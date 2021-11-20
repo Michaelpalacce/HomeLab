@@ -25,11 +25,11 @@ data:
                   - title: BabyBuddy
                     description: Baby Monitor
                     icon: babybuddy.png
-                    url: http://babybuddy.local
+                    url: http://{{ .clusterUrl }}:30100
                   - title: Wallabag
                     description: Self-hosted Pocket!
                     icon: /png/wallabag.png
-                    url: http://wallabag.local
+                    url: http://{{ .clusterUrl }}:30116
 {{/*                  - title: Grocy*/}}
 {{/*                    description: Groceries*/}}
 {{/*                    icon: /png/grocy.png*/}}
@@ -48,7 +48,7 @@ data:
                   - title: N8N
                     description: Self hosted IFTTT
                     icon: /png/n8n.png
-                    url: http://n8n.local
+                    url: http://{{ .clusterUrl }}:30114
                     statusCheck: false
 
             - name: Media
@@ -56,7 +56,7 @@ data:
                   - title: Jellyfin
                     description: Tv Shows Stream
                     icon: /png/jellyfin.png
-                    url: http://{{ .clusterUrl }}:30103
+                    url: http://{{ .clusterUrl }}:31001
             - name: CI/CD
               items:
                   - title: Jenkins
@@ -68,15 +68,15 @@ data:
                   - title: Wiki.JS
                     description: Self hosted wiki
                     icon: /png/wikijs.png
-                    url: http://wikijs.local
+                    url: http://{{ .clusterUrl }}:30111
                   - title: Vikunja
                     description: Tasks
                     icon: vikunja.png
-                    url: http://vikunja.local
+                    url: http://{{ .clusterUrl }}:30109
                   - title: Diagrams
                     description: Make diagrams in your browser
                     icon: /png/draw.png
-                    url: http://diagrams.local
+                    url: http://{{ .clusterUrl }}:30115
 {{/*                  - title: ArchiveBox*/}}
 {{/*                    description: Web Archive*/}}
 {{/*                    icon: /png/archivebox.png*/}}
@@ -93,18 +93,18 @@ data:
                     url: http://{{ .clusterUrl }}:30108
             - name: Downloaders
               items:
-                  - title: Medusa
-                    description: Tv Shows Downloader
-                    icon: /png/medusa.png
-                    url: http://{{ .clusterUrl }}:30101
                   - title: Radarr
                     description: Movies Downloader
                     icon: /png/radarr.png
-                    url: http://{{ .clusterUrl }}:30117
-{{/*                  - title: Readarr*/}}
-{{/*                    description: Ebook Library Downloader*/}}
-{{/*                    icon: /png/readarr.png*/}}
-{{/*                    url: http://{{ .clusterUrl }}:30104*/}}
+                    url: http://{{ .clusterUrl }}:31003
+                  - title: Readarr
+                    description: Ebook Library Downloader
+                    icon: /png/readarr.png
+                    url: http://{{ .clusterUrl }}:31002
+                  - title: Sonarr
+                    description: Shows Downloader
+                    icon: /png/sonarr.png
+                    url: http://{{ .clusterUrl }}:31004
             - name: Monitoring
               items:
                   - title: Grafana
@@ -126,15 +126,24 @@ data:
                     description: Block Storage for kubernetes
                     icon: /png/longhorn.png
                     url: http://{{ .clusterUrl }}:30030
+                  - title: Pi-hole
+                    description: Local DNS and blocker
+                    icon: /png/pihole.png
+                    url: http://192.168.1.109/admin
+                  - title: Router
+                    description: Router location
+                    url: http://192.168.1.1
+            - name: Torrents
+              items:
                   - title: Transmission
                     description: Torrent
                     icon: /png/transmission.png
-                    url: http://{{ .clusterUrl }}:30102
+                    url: http://{{ .clusterUrl }}:30035
                     statusCheck: false
                   - title: Jackett
                     description: Torrent indexer
                     icon: /png/jackett.png
-                    url: http://{{ .clusterUrl }}:30105
+                    url: http://{{ .clusterUrl }}:30034
                     statusCheck: false
             - name: Databases
               items:

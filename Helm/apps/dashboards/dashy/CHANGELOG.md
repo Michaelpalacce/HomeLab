@@ -1,3 +1,7 @@
+#### [V1.3.0]
+* Added pi-hole
+* Changed ingress variable
+
 #### [V1.2.0]
 * Added radarr
 

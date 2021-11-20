@@ -28,7 +28,7 @@ spec:
                           cpu: 250m
                           memory: 250Mi
                       limits:
-                          cpu: 1500m
+                          cpu: 1000m
                           memory: 1Gi
                   env:
                     - name: PUID
@@ -54,10 +54,12 @@ spec:
                       - containerPort: 8096
                         protocol: TCP
                   volumeMounts:
-                      - mountPath: /data/media
+                      - mountPath: /data/shows
                         name: shows-data
                       - mountPath: /data/movies
                         name: movies-data
+                      - name: books-data
+                        mountPath: /data/books
                       - mountPath: /config
                         name: jellyfin-data
 
@@ -69,6 +71,9 @@ spec:
                 - name: shows-data
                   persistentVolumeClaim:
                       claimName: shows-volume
+                - name: books-data
+                  persistentVolumeClaim:
+                      claimName: books-volume
                 - name: movies-data
                   persistentVolumeClaim:
                       claimName: movies-volume

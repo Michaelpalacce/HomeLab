@@ -1,42 +1,36 @@
-medusa:
-    image: linuxserver/medusa
-    tag: 0.5.20
-    nodePort: 30101
-
 transmission:
     image: linuxserver/transmission
     tag: latest
-    nodePort: 30102
+    nodePort: 30035
     username: username
     password: password
 
-jellyfin:
-    nodePort: 30103
-    image: jellyfin/jellyfin
-    tag: latest
-
 jackett:
-    nodePort: 30105
+    nodePort: 30034
     image: linuxserver/jackett
     tag: latest
     port: 9117
 
+jellyfin:
+    nodePort: 31001
+    image: jellyfin/jellyfin
+    tag: latest
+
 radarr:
-    nodePort: 30117
+    nodePort: 31003
     image: linuxserver/radarr
     tag: 0.0.5497
     port: 7878
 
-#readarr:
-#    nodePort: 30104
-#    image: linuxserver/readarr
-#    tag: nightly-0.1.0.963-ls6
-#    port: 8787
+readarr:
+    nodePort: 31002
+    image: linuxserver/readarr
+    tag: nightly-0.1.0.963-ls6
+    port: 8787
 
-#ubooquity:
-#    libNodePort: 30106
-#    adminNodePort: 30107
-#    image: linuxserver/ubooquity
-#    tag: latest
-#    libPort: 2202
-#    adminPort: 2203
+sonarr:
+    nodePort: 31004
+    image: linuxserver/sonarr
+    tag: 0.6.1375
+    port: 8989
+
