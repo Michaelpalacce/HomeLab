@@ -319,6 +319,9 @@ is not the way.
 - Run: `ansible -i inventory -m shell -a "k3s crictl rmi --prune`
 - Run: `ansible -i inventory -m shell -a "k3s crictl rm -a" -b all`
 
+### Wallabag doesn't want to work correctly, it's giving me a wallabag_internal_settings talbe is not created
+Restarting the deployment helps. No idea why?
+
 ### Issues with Longhorn volumes mounting
 * Check out: https://longhorn.io/kb/troubleshooting-volume-with-multipath/
 
