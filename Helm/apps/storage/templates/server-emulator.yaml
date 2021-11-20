@@ -17,8 +17,6 @@ spec:
             labels:
                 app: serveremulator
         spec:
-            nodeSelector:
-                type: media
             containers:
                 - name: serveremulator
                   image: {{ .image }}:{{ .tag }}

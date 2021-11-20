@@ -325,3 +325,8 @@ is not the way.
 ### Even more issues with Longhorn volume mounting
 Some times in case of a lot of services being brought up Longhorn fails to resolve for hours.... What I found useful is 
 changing the replicas to the failing services to zero and slowly increasing it to the desired amount one by one 
+
+### Even even more issues with Longhorn 
+Check if Longhorn nodes are up or down. If they are down, identify the manager that is failing and see why it is failing.
+In a few cases it has been due to not being able to patch one volume, at that point you can scale down that service to 0 so it can start and later on start it back up and
+all will be good.
