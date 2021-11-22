@@ -1,8 +1,8 @@
 storage:
     dataLocality: "best-effort" # or disabled
-    numberOfReplicas: 3
+    numberOfReplicas: 3 # 1
     dshmSize: 1Gi
-    dataSize: 10Gi
+    dataSize: 25Gi
     pgAdmin: 1Gi
 
 postgresql:
