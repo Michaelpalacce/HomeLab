@@ -1,12 +1,18 @@
 babybuddy:
     host: "babybuddy.local"
     image: linuxserver/babybuddy
-    tag: version-v1.9.0
+    tag: 1.9.1
     nodePort: 30100
     port: 8000
     replicas: 1
+    db:
+        engine: django.db.backends.postgresql
+        host: postgresql.postgresql
+        username: babybuddy
+        password: babybuddy
+        name: babybuddy
 
 storage:
-    dataLocality: "disabled" # or disabled
+    dataLocality: "best-effort" # or disabled
     numberOfReplicas: 1
     size: 2Gi

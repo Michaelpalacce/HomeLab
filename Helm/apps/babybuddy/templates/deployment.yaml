@@ -24,6 +24,23 @@ spec:
                 - name: babybuddy
                   image: {{ .image }}:{{ .tag }}
                   imagePullPolicy: IfNotPresent
+                  env:
+                      - name: DB_ENGINE
+                        value: "{{ .db.engine }}"
+                      - name: DB_HOST
+                        value: "{{ .db.host }}"
+                      - name: DB_PORT
+                        value: "5432"
+                      - name: DB_NAME
+                        value: "{{ .db.name }}"
+                      - name: DB_USER
+                        value: "{{ .db.username }}"
+                      - name: DB_PASSWORD
+                        value: "{{ .db.password }}"
+                      - name: TIME_ZONE
+                        value: "UTC"
+                      - name: USE_24_HOUR_TIME_FORMAT
+                        value: "True"
                   resources:
                       requests:
                           cpu: 250m

@@ -12,6 +12,21 @@ parameters:
     fromBackup: ""
 
 ---
+{{/* Don't want 3 replicas for pgAdmin */}}
+
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+    name: postgresql-pgadmin-sc
+provisioner: driver.longhorn.io
+allowVolumeExpansion: true
+parameters:
+    numberOfReplicas: "1"
+    dataLocality: "{{ .dataLocality }}"
+    staleReplicaTimeout: "2800"
+    fromBackup: ""
+
+---
 
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -48,7 +63,7 @@ metadata:
 spec:
     accessModes:
         - ReadWriteMany
-    storageClassName: postgresql-sc
+    storageClassName: postgresql-pgadmin-sc
     resources:
         requests:
             storage: {{ .pgAdmin }}
