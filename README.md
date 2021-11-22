@@ -286,11 +286,23 @@ is not the way.
 # Experimental !!!!!!!!!!!!!!!!
 
 ### Installing rancher ( Manual process. I personally would not recommend it :) if you won't be installing apps )
-- Run `kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.5.3/cert-manager.yaml` to install cert-manager that rancher needs
-- Run `helm repo add rancher-stable https://releases.rancher.com/server-charts/stable`
-- Run `helm repo update`
-- Run `helm install rancher rancher-stable/rancher --namespace cattle-system --create-namespace --set hostname=rancher.local`
-- Patch the rancher service to port 30031
+* Run `kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.5.3/cert-manager.yaml` to install cert-manager that rancher needs
+* Run `helm repo add rancher-stable https://releases.rancher.com/server-charts/stable`
+* Run `helm repo update`
+* Run `helm install rancher rancher-stable/rancher --namespace cattle-system --create-namespace --set hostname=rancher.local`
+* Patch the rancher service to port 30031
+
+# Increasing PVC/volume Size
+Longhorn requires a few manual steps to achieve this.
+
+## Steps:
+
+1. Stop all pods the volume is attached to
+1. Increase size of volume
+1. Go to Longhorn UI
+1. Attach the volume in maintenance mode
+1. Wait for the resizing to finish
+1. Start all pods
 
 # Troubleshooting
 
