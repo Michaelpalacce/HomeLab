@@ -31,11 +31,22 @@ spec:
                   volumeMounts:
                       - name: app-config
                         mountPath: /config
-                      - name: app-data
-                        mountPath: /data
+                  env:
+                      - name: DB_TYPE
+                        value: "postgres"
+                      - name: DB_HOST
+                        value: "{{ .db.host }}"
+                      - name: DB_PORT
+                        value: "{{ .db.port }}"
+                      - name: DB_USER
+                        value: "{{ .db.username }}"
+                      - name: DB_PASS
+                        value: "{{ .db.password }}"
+                      - name: DB_NAME
+                        value: "{{ .db.name }}"
                   livenessProbe:
                       failureThreshold: 5
-                      initialDelaySeconds: 60
+                      initialDelaySeconds: 120
                       timeoutSeconds: 5
                       tcpSocket:
                           port: {{ .port }}
@@ -45,9 +56,6 @@ spec:
                 - name: app-config
                   persistentVolumeClaim:
                       claimName: wikijs-pvc
-                - name: app-data
-                  persistentVolumeClaim:
-                      claimName: wikijs-data-pvc
 
 ---
 

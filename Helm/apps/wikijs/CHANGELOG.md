@@ -1,3 +1,6 @@
+#### [V1.3.0]
+* Now using postgres as a database
+
 #### [V1.2.0]
 * Updated ingress
 

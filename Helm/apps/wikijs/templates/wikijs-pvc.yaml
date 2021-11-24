@@ -23,16 +23,3 @@ spec:
     resources:
         requests:
             storage: {{ .Values.storage.configSize }}
----
-
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-    name: wikijs-data-pvc
-spec:
-    accessModes:
-        - ReadWriteMany
-    storageClassName: wikijs-sc
-    resources:
-        requests:
-            storage: {{ .Values.storage.dataSize }}

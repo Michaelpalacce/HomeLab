@@ -188,6 +188,11 @@ Service account: jenkins
 - Run `ansible-playbook -i inventory playbooks/apps/archivebox/main.yml`
 
 ### Setting up wikijs
+- Setup: `Setting up postgresql`
+- Wait for pgAdmin to be up and running, login with credentials specific in values.
+- Add server. Hostname: `postgresql.postgresql`. Username: `postgresql`. Password: `postgresql`
+- Create new database wikijs
+- Create a new user wikijs and give it permissions to the wikijs db
 - Run `ansible-playbook -i inventory playbooks/apps/wikijs/main.yml`
 
 ### Setting up diagrams

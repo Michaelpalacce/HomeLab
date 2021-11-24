@@ -1,19 +1,25 @@
 wikijs:
     host: "wikijs.local"
-    image: linuxserver/wikijs
+    image: requarks/wiki
     tag: 2.5.219
     nodePort: 30111
     port: 3000
+    db:
+        type: postgres
+        host: postgresql.postgresql
+        port: 5432
+        name: wikijs
+        username: wikijs
+        password: wikijs
     resources:
         requests:
             cpu: 512m
             memory: 512Mi
         limits:
-            cpu: 1500m
-            memory: 1Gi
+            cpu: 2000m
+            memory: 2Gi
 
 storage:
     dataLocality: "best-effort" # or disabled
-    numberOfReplicas: 3
-    dataSize: 10Gi
+    numberOfReplicas: 1
     configSize: 1Gi
