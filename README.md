@@ -333,7 +333,7 @@ Longhorn requires a few manual steps to achieve this.
 ### Clearing up containerd
 - Go to `./ansible`
 - Run: `ansible -i inventory -m shell -a "k3s crictl rmp -a" -b all`
-- Run: `ansible -i inventory -m shell -a "k3s crictl rmi --prune`
+- Run: `ansible -i inventory -m shell -a "k3s crictl rmi --prune -b all"`
 - Run: `ansible -i inventory -m shell -a "k3s crictl rm -a" -b all`
 
 ### Wallabag doesn't want to work correctly, it's giving me a wallabag_internal_settings talbe is not created
