@@ -1,0 +1,64 @@
+{{- with .Values.nodered }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: nodered
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app: nodered
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: nodered
+    template:
+        metadata:
+            labels:
+                app: nodered
+        spec:
+            containers:
+                - name: nodered
+                  image: {{ .image }}:{{ .tag }}
+                  imagePullPolicy: IfNotPresent
+{{- if .resources }}
+                  resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+                  ports:
+                      - name: web
+                        containerPort: {{ .port }}
+                  volumeMounts:
+                      - name: data-config
+                        mountPath: /data
+                  livenessProbe:
+                      failureThreshold: 5
+                      initialDelaySeconds: 120
+                      timeoutSeconds: 5
+                      tcpSocket:
+                          port: {{ .port }}
+
+            restartPolicy: Always
+            volumes:
+                - name: data-config
+                  persistentVolumeClaim:
+                      claimName: nodered-pvc
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: nodered
+    namespace: {{ $.Release.Namespace }}
+spec:
+    type: NodePort
+    selector:
+        app: nodered
+    ports:
+        - name: nodered
+          protocol: TCP
+          port: {{ .port }}
+          nodePort: {{ .nodePort }}
+
+{{- end }}

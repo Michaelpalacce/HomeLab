@@ -187,6 +187,15 @@ data:
                     url: "http://{{ .clusterUrl }}:30115"
                     target: "_blank" # optional html tag target attribute
 
+            - name: Automation
+              items:
+                  - name: "Node-Red"
+                    logo: "icons/png/nodered.png"
+                    subtitle: "Low Code Automation"
+                    tag: "automation"
+                    url: "http://{{ .clusterUrl }}:30117"
+                    target: "_blank" # optional html tag target attribute
+
             - name: "Downloaders"
               items:
                   - name: "Medusa"

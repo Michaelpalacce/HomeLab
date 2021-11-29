@@ -50,6 +50,11 @@ data:
                     icon: /png/n8n.png
                     url: http://{{ .clusterUrl }}:30114
                     statusCheck: false
+                  - title: Node-Red
+                    description: Low-code automation
+                    icon: /png/nodered.png
+                    url: http://{{ .clusterUrl }}:30117
+                    statusCheck: false
 
             - name: Media
               items:

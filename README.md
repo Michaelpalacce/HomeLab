@@ -201,6 +201,9 @@ Service account: jenkins
 ### Setting up UptimeKuma
 - Run `ansible-playbook -i inventory playbooks/apps/uptimekuma/main.yml`
 
+### Setting up Node-Red
+- Run `ansible-playbook -i inventory playbooks/apps/nodered/main.yml`
+
 ### Setting up storage ( syncthing + ServerEmulator )
 - Run `ansible-playbook -i inventory playbooks/apps/storage/main.yml`
 - Go to your other device and add this one for syncthing :)
@@ -283,6 +286,7 @@ Service account: jenkins
 ##### N8N: 30114
 ##### Diagrams/Drawio: 30115
 ##### Wallabag: 30116
+##### Node-Red: 30117
 
 # Backups
 You can use a longhorn backup. NOTE: XFS does not work correctly with backups. IF you are using a xfs drive, longhorn
