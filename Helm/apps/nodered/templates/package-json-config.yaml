@@ -1,0 +1,52 @@
+{{- with .Values.nodered }}
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: package-json-config
+    namespace: {{ $.Release.Namespace }}
+data:
+    package.json: |
+        {
+            "name": "node-red-docker",
+            "version": "2.1.3",
+            "description": "Low-code programming for event-driven applications",
+            "homepage": "http://nodered.org",
+            "license": "Apache-2.0",
+            "repository": {
+                "type": "git",
+                "url": "https://github.com/node-red/node-red-docker.git"
+            },
+            "private": true,
+            "scripts": {
+                "start": "npm i && node $NODE_OPTIONS node_modules/node-red/red.js $FLOWS",
+                "debug": "node --inspect=0.0.0.0:9229 $NODE_OPTIONS node_modules/node-red/red.js $FLOWS",
+                "debug_brk": "node --inspect=0.0.0.0:9229 --inspect-brk $NODE_OPTIONS node_modules/node-red/red.js $FLOWS"
+            },
+            "contributors": [
+                {
+                    "name": "Dave Conway-Jones"
+                },
+                {
+                    "name": "Nick O'Leary"
+                },
+                {
+                    "name": "James Thomas"
+                },
+                {
+                    "name": "Raymond Mouthaan"
+                }
+            ],
+            "dependencies": {
+                "node-red": "2.1.3",
+                "node-red-contrib-bigssh": "1.2.9",
+                "node-red-node-ping": "0.3.1",
+                "node-red-contrib-tcp-ping": "0.3.1",
+                "node-red-contrib-telegrambot": "7.0.0"
+            },
+            "engines": {
+                "node": ">=12"
+            }
+        }
+
+  {{- end }}

@@ -47,6 +47,8 @@ spec:
                         value: "{{ .port }}"
                       - name: N8N_ENCRYPTION_KEY
                         value: "{{ .encryption_key }}"
+                      - name: N8N_PAYLOAD_SIZE_MAX
+                        value: "{{ .maxFileSizeMb }}"
 
 {{- if .resources }}
                   resources:

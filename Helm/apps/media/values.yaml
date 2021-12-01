@@ -14,7 +14,7 @@ jackett:
 jellyfin:
     nodePort: 31001
     image: jellyfin/jellyfin
-    tag: latest
+    tag: 20211130.11-unstable
 
 radarr:
     nodePort: 31003

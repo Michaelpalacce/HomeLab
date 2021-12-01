@@ -7,14 +7,15 @@ n8n:
     username: "admin"
     password: "admin"
     encryption_key: "SOME_ENC_KEY" # MOVE TO SECRET
+    maxFileSizeMb: "128" # MOVE TO SECRET
     db:
         username: "n8n"
         password: "n8n"
         name: "n8n"
     resources:
         limits:
-            cpu: 500m
-            memory: 1Gi
+            cpu: 750m
+            memory: 2Gi
         requests:
             cpu: 125m
             memory: 512Mi
