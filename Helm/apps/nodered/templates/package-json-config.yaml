@@ -42,6 +42,9 @@ data:
                 "node-red-contrib-bigssh": "1.2.9",
                 "node-red-node-ping": "0.3.1",
                 "node-red-contrib-discord-advanced": "3.1.0",
+                "node-red-dashboard": "3.1.2",
+                "node-red-contrib-sftpco": "1.0.17",
+                "node-red-node-aws": "0.2.1",
                 "node-red-contrib-telegrambot": "10.0.9"
             },
             "engines": {
