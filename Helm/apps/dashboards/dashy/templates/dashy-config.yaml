@@ -62,12 +62,12 @@ data:
                     description: Tv Shows Stream
                     icon: /png/jellyfin.png
                     url: http://{{ .clusterUrl }}:31001
-{{/*            - name: CI/CD*/}}
-{{/*              items:*/}}
-{{/*                  - title: Jenkins*/}}
-{{/*                    description: CI/CD Pipeline for my projects*/}}
-{{/*                    icon: /png/jenkins.png*/}}
-{{/*                    url: http://{{ .clusterUrl }}:30020*/}}
+            - name: CI/CD
+              items:
+                  - title: Jenkins
+                    description: CI/CD Pipeline for my projects
+                    icon: /png/jenkins.png
+                    url: http://{{ .clusterUrl }}:30020
             - name: Knowledge Base And Tasks
               items:
                   - title: Wiki.JS

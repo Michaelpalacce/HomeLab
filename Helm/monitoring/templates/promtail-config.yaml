@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: promtail-config
+    namespace: {{ $.Release.Namespace }}
+data:
+    promtail.yaml: |
+        positions:
+            filename: /positions/positions.yaml
+        server:
+            http_listen_address: 0.0.0.0
+            http_listen_port: 9080
+        clients:
+            - url: http://loki:3100/loki/api/v1/push
+              basic_auth:
+                  username: loki
+                  password: loki
+        scrape_configs:
+            - job_name: containers
+              static_configs:
+                  - targets:
+                        - localhost
+                    labels:
+                        job: containerlogs
+                        __path__: /var/log/pods/*/*/*.log
+
+              pipeline_stages:
+                  - cri: {}
+                  - regex:
+                      source: filename
+                      expression: "/var/log/pods/[\\S]+/(?P<container>[\\S]+)/[\\S]+log"
+                  - labels:
+                        container: container

@@ -44,3 +44,54 @@ spec:
             storage: 15Gi
 
 {{- end }}
+
+{{- with .Values.loki }}
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: loki-pvc
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: monitoring-sc
+    resources:
+        requests:
+            storage: 10Gi
+
+{{- end }}
+
+{{- with .Values.loki }}
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: loki-logs-pvc
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: monitoring-sc
+    resources:
+        requests:
+            storage: 20Gi
+
+{{- end }}
+
+{{- with .Values.promtail }}
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: promtail-position-pvc
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: monitoring-sc
+    resources:
+        requests:
+            storage: 2Gi
+
+{{- end }}

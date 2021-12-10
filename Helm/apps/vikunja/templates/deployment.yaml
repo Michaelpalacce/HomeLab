@@ -130,4 +130,8 @@ spec:
           protocol: TCP
           port: {{ .nginx.port }}
           nodePort: {{ .nodePort }}
+        - name: api
+          protocol: TCP
+          port: 3456
+          nodePort: 31111
 {{- end }}

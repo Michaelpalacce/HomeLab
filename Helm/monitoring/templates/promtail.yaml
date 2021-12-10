@@ -1,0 +1,92 @@
+{{- with .Values.promtail }}
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+    name: promtail-daemonset
+    namespace: {{ $.Release.Namespace }}
+spec:
+    updateStrategy:
+        rollingUpdate:
+            maxSurge: 4
+            maxUnavailable: 4
+    selector:
+        matchLabels:
+            name: promtail
+    template:
+        metadata:
+            labels:
+                name: promtail
+            annotations:
+                {{- with $ }}
+                checksum/config: {{ include (print $.Template.BasePath "/promtail-config.yaml") . | sha256sum }}
+                {{- end }}
+        spec:
+            serviceAccountName: promtail-serviceaccount
+            volumes:
+                - name: logs
+                  hostPath:
+                      path: /var/log
+                - name: promtail-config
+                  configMap:
+                      name: promtail-config
+                - name: promtail-position
+                  persistentVolumeClaim:
+                      claimName: promtail-position-pvc
+            containers:
+                - name: promtail-container
+                  image: {{ .image }}:{{ .tag }}
+{{- if .resources }}
+                  resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+                  args:
+                      - -config.file=/etc/promtail/promtail.yaml
+                  volumeMounts:
+                      - name: logs
+                        mountPath: /var/log
+                      - name: promtail-config
+                        mountPath: /etc/promtail
+                      - name: promtail-position
+                        mountPath: /positions
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+    name: promtail-clusterrole
+    namespace: {{ $.Release.Namespace }}
+rules:
+    - apiGroups: [""]
+      resources:
+          - nodes
+          - services
+          - pods
+      verbs:
+          - get
+          - watch
+          - list
+
+---
+
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+    name: promtail-serviceaccount
+    namespace: {{ $.Release.Namespace }}
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+    name: promtail-clusterrolebinding
+subjects:
+    - kind: ServiceAccount
+      name: promtail-serviceaccount
+      namespace: {{ $.Release.Namespace }}
+roleRef:
+    kind: ClusterRole
+    name: promtail-clusterrole
+    apiGroup: rbac.authorization.k8s.io
+{{- end }}
