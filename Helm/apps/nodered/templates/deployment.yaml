@@ -40,9 +40,9 @@ spec:
                   volumeMounts:
                       - name: data-config
                         mountPath: /data
-                      - name: config-volume
-                        mountPath: /usr/src/node-red/package.json
-                        subPath: package.json
+{{/*                      - name: config-volume*/}}
+{{/*                        mountPath: /usr/src/node-red/package.json*/}}
+{{/*                        subPath: package.json*/}}
                   livenessProbe:
                       failureThreshold: 5
                       initialDelaySeconds: 120

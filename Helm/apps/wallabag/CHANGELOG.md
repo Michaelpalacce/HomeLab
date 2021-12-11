@@ -1,3 +1,6 @@
+#### [v1.2.1]
+* Added probes for wallabag so it will automatically fix itself if failed
+
 #### [v1.2.0]
 * Added ingress
 

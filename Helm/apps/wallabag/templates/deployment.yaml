@@ -60,6 +60,13 @@ spec:
                       timeoutSeconds: 5
                       tcpSocket:
                           port: {{ .port }}
+                  readinessProbe:
+                      failureThreshold: 5
+                      initialDelaySeconds: 30
+                      timeoutSeconds: 5
+                      httpGet:
+                          port: {{ .port }}
+                          path: /api/info
 
             restartPolicy: Always
 

@@ -180,5 +180,13 @@ data:
                     description: Reddit r/homelab
                     url: https://reddit.com/r/homelab
                     statusCheck: false
+                  - title: YouTube
+                    description: Youtube!
+                    url: https://youtube.com
+                    statusCheck: false
+                  - title: Messenger
+                    description: Facebook Messenger
+                    url: https://messenger.com
+                    statusCheck: false
 
 {{- end }}
