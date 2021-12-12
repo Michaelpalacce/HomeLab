@@ -119,34 +119,34 @@
         command: sh /tmp/join-command.sh
 
 - hosts: init_master
-  name: Setup traefik
+  name: Setup nginxproxymanager
   become: yes
   tags:
       - init
-      - traefik
-      - traefik-setup
+      - nginxproxymanager
+      - nginxproxymanager-setup
   tasks:
       - name: Cleanup old potential chart
         file:
-            path: traefik
+            path: nginxproxymanager
             state: absent
 
       - name: Ensure new Chart is present
         copy:
-            src: ../../../Helm/traefik
+            src: ../../../Helm/nginxproxymanager
             dest: .
 
-      - name: Install traefik namespace
+      - name: Install nginxproxymanager namespace
         kubernetes.core.helm:
-            name: traefik
+            name: nginxproxymanager
             create_namespace: false
             release_namespace: kube-system
-            chart_ref: traefik/
-            values_files: traefik/values.yaml
+            chart_ref: nginxproxymanager/
+            values_files: nginxproxymanager/values.yaml
 
       - name: Cleanup chart, we no longer need this
         file:
-            path: traefik
+            path: nginxproxymanager
             state: absent
 
 - hosts: init_master

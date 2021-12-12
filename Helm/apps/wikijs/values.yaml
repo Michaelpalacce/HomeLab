@@ -1,5 +1,4 @@
 wikijs:
-    host: "wikijs.local"
     image: requarks/wiki
     tag: 2.5.219
     nodePort: 30111

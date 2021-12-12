@@ -1,5 +1,4 @@
 wallabag:
-    host: "wallabag.local"
     image: stefangenov/wallabag # official image does not have an ARM build :)
     tag: 2.4.2
     nodePort: 30116

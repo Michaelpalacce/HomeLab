@@ -1,5 +1,4 @@
 n8n:
-    host: "n8n.local"
     image: n8nio/n8n
     tag: 0.148.0
     nodePort: 30114

@@ -102,7 +102,7 @@ If you scroll down a bit you will find a list of ports that the services are run
 - Run `ansible-galaxy collection install -r playbooks/install/requirements-collections.yml` to install all the needed ansible collections
 - Run `ansible-playbook -i inventory playbooks/install/main.yml --tags preflight` At this point you have everything needed to setup kubernetes ( all the needed binaries )
 - Run `ansible-playbook -i inventory playbooks/install/main.yml --tags setup` This will initialize the master on the init_master PI and add all the workers
-- Run `ansible-playbook -i inventory playbooks/install/main.yml --tags init` Inits dashy, longhorn, traefik and cgroup-gc
+- Run `ansible-playbook -i inventory playbooks/install/main.yml --tags init` Inits dashy, longhorn, nginxproxymanager and cgroup-gc
 
 ### cgroup-gc
 This is a helm chart that installs a daemonset that will be deployed on all nodes with the purpose of clearing up cgroups.
@@ -234,16 +234,15 @@ Service account: jenkins
 - Run `kubectl label no ubuntu-1 type=media`
 - Run `ansible-playbook -i inventory playbooks/apps/media/main.yml`
 
-# Ingress rules
-##### dashy.local
-##### vikunja.local
-##### n8n.local
-##### diagrams.local
-##### wikijs.local
-##### uptimekuma.local
-##### babybuddy.local
-##### wallabag.local
-##### {{node_ip}}/traefik -> trafeik admin
+# Ingress rules setup in unbound
+##### dashy.home.me
+##### vikunja.home.me
+##### n8n.home.me
+##### diagrams.home.me
+##### wikijs.home.me
+##### uptimekuma.home.me
+##### babybuddy.home.me
+##### wallabag.home.me
 
 # NodePorts in use
 

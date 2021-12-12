@@ -14,23 +14,6 @@ data:
             # as a daemon. Default is yes.
             do-daemonize: no
 
-            local-data: "pc.local. A 192.168.1.215"
-            local-data: "dashy.local. A 192.168.1.182"
-            local-data: "vikunja.local. A 192.168.1.182"
-            local-data: "n8n.local. A 192.168.1.182"
-            local-data: "diagrams.local. A 192.168.1.182"
-            local-data: "wikijs.local. A 192.168.1.182"
-            local-data: "uptimekuma.local. A 192.168.1.182"
-            local-data: "babybuddy.local. A 192.168.1.182"
-            local-data: "wallabag.local. A 192.168.1.182"
-            local-data: "nodered.local. A 192.168.1.182"
-            local-data: "jenkins.local. A 192.168.1.182"
-            local-data: "syncthing.local. A 192.168.1.182"
-            local-data: "server.local. A 192.168.1.182"
-            local-data: "sonarr.local. A 192.168.1.182"
-            local-data: "readarr.local. A 192.168.1.182"
-            local-data: "radarr.local. A 192.168.1.182"
-
             # If given, after binding the port the user privileges are dropped.
             # Default is "unbound". If you give username: "" no user change is performed.
             username: ""
@@ -52,7 +35,7 @@ data:
             # Level 4 gives algorithm level information.
             # Level 5 logs client identification for cache misses.
             # Default is level 1. The verbosity can also be increased from the commandline.
-            verbosity: 1
+            verbosity: 3
 
             # Listen on all ipv4 interfaces, answer queries from the local subnet.
             interface: 0.0.0.0
@@ -63,7 +46,7 @@ data:
             do-ip4: yes
             do-udp: yes
             do-tcp: yes
-            do-ip6: no
+            do-ip6: yes
 
             # You want to leave this to no unless you have *native* IPv6. With 6to4 and
             # Terredo tunnels your web browser should favor IPv4 for the same reasons
@@ -73,7 +56,7 @@ data:
             harden-glue: yes
 
             # Require DNSSEC data for trust-anchored zones, if such data is absent, the zone becomes BOGUS
-            harden-dnssec-stripped: yes
+            harden-dnssec-stripped: no
 
             # Don't use Capitalization randomization as it known to cause DNSSEC issues sometimes
             # see https://discourse.pi-hole.net/t/unbound-stubby-or-dnscrypt-proxy/9378 for further details
@@ -125,12 +108,38 @@ data:
             # have write permission.
             auto-trust-anchor-file: /etc/unbound/root.key
 
+            private-domain: "home.me"
+            local-zone: "home.me" static
+        
+            local-data: "dashy.home.me IN A {{ .clusterIp }}"
+            local-data: "wikijs.home.me IN A {{ .clusterIp }}"
+            local-data: "vikunja.home.me IN A {{ .clusterIp }}"
+            local-data: "babybuddy.home.me IN A {{ .clusterIp }}"
+            local-data: "n8n.home.me IN A {{ .clusterIp }}"
+            local-data: "nodered.home.me IN A {{ .clusterIp }}"
+            local-data: "diagrams.home.me IN A {{ .clusterIp }}"
+            local-data: "server.home.me IN A {{ .clusterIp }}"
+            local-data: "syncthing.home.me IN A {{ .clusterIp }}"
+            local-data: "wallabag.home.me IN A {{ .clusterIp }}"
+            local-data: "jellyfin.home.me IN A {{ .clusterIp }}"
+            local-data: "sonarr.home.me IN A {{ .clusterIp }}"
+            local-data: "radarr.home.me IN A {{ .clusterIp }}"
+            local-data: "readarr.home.me IN A {{ .clusterIp }}"
+            local-data: "jenkins.home.me IN A {{ .clusterIp }}"
+            local-data: "grafana.home.me IN A {{ .clusterIp }}"
+            local-data: "prometheus.home.me IN A {{ .clusterIp }}"
+            local-data: "uptimekuma.home.me IN A {{ .clusterIp }}"
+            local-data: "longhorn.home.me IN A {{ .clusterIp }}"
+            local-data: "transmission.home.me IN A {{ .clusterIp }}"
+            local-data: "jackett.home.me IN A {{ .clusterIp }}"
+            local-data: "pgadmin.home.me IN A {{ .clusterIp }}"
+
             forward-zone:
                 # Forward all queries (except those in cache and local zone) to
                 # upstream recursive servers
                 name: "."
                 # Queries to this forward zone use TLS
-                forward-tls-upstream: yes
+                forward-tls-upstream: no
 
                 # https://dnsprivacy.org/wiki/display/DP/DNS+Privacy+Test+Servers
 

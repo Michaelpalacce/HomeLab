@@ -1,5 +1,4 @@
 vikunja:
-    host: vikunja.local
     nodePort: 30109
     smtp:
         enabled: "false"

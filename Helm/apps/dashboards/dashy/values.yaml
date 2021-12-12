@@ -1,6 +1,5 @@
 dashy:
     image: stefangenov/dashy
-    host: "dashy.local"
     tag: v1.8.5-1
     nodePort: 32222
     port: 80

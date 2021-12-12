@@ -1,5 +1,4 @@
 nodered:
-    host: "nodered.local"
     image: nodered/node-red
     tag: 2.1.4-1-16
     nodePort: 30117
