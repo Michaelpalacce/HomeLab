@@ -19,4 +19,4 @@ spec:
                             name: babybuddy
                             port:
                                 name: babybuddy
-  {{- end }}
+{{- end }}

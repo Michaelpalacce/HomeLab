@@ -1,18 +1,18 @@
-{{- with .Values.dashy.ingress }}
+{{- with .Values.dashy }}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-    name: dashy-web-ui
+    name: dashy-web
     namespace: {{ $.Release.Namespace }}
     annotations:
         kubernetes.io/ingress.class: traefik
         nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
     rules:
-        - host: "dashy.local"
+        - host: "{{ .host }}"
           http:
               paths:
-                  - path: {{ .path }}
+                  - path: /
                     pathType: Exact
                     backend:
                         service:
