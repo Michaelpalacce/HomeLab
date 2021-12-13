@@ -35,7 +35,7 @@ data:
             # Level 4 gives algorithm level information.
             # Level 5 logs client identification for cache misses.
             # Default is level 1. The verbosity can also be increased from the commandline.
-            verbosity: 3
+            verbosity: 1
 
             # Listen on all ipv4 interfaces, answer queries from the local subnet.
             interface: 0.0.0.0
@@ -110,29 +110,32 @@ data:
 
             private-domain: "home.me"
             local-zone: "home.me" static
-        
-            local-data: "dashy.home.me IN A {{ .clusterIp }}"
-            local-data: "wikijs.home.me IN A {{ .clusterIp }}"
-            local-data: "vikunja.home.me IN A {{ .clusterIp }}"
-            local-data: "babybuddy.home.me IN A {{ .clusterIp }}"
-            local-data: "n8n.home.me IN A {{ .clusterIp }}"
-            local-data: "nodered.home.me IN A {{ .clusterIp }}"
-            local-data: "diagrams.home.me IN A {{ .clusterIp }}"
-            local-data: "server.home.me IN A {{ .clusterIp }}"
-            local-data: "syncthing.home.me IN A {{ .clusterIp }}"
-            local-data: "wallabag.home.me IN A {{ .clusterIp }}"
-            local-data: "jellyfin.home.me IN A {{ .clusterIp }}"
-            local-data: "sonarr.home.me IN A {{ .clusterIp }}"
-            local-data: "radarr.home.me IN A {{ .clusterIp }}"
-            local-data: "readarr.home.me IN A {{ .clusterIp }}"
-            local-data: "jenkins.home.me IN A {{ .clusterIp }}"
-            local-data: "grafana.home.me IN A {{ .clusterIp }}"
-            local-data: "prometheus.home.me IN A {{ .clusterIp }}"
-            local-data: "uptimekuma.home.me IN A {{ .clusterIp }}"
-            local-data: "longhorn.home.me IN A {{ .clusterIp }}"
-            local-data: "transmission.home.me IN A {{ .clusterIp }}"
-            local-data: "jackett.home.me IN A {{ .clusterIp }}"
-            local-data: "pgadmin.home.me IN A {{ .clusterIp }}"
+
+            {{- range $ip := .clusterIps }}
+            local-data: "cluster.home.me IN A {{ $ip }}"
+            local-data: "dashy.home.me IN A {{ $ip }}"
+            local-data: "wikijs.home.me IN A {{ $ip }}"
+            local-data: "vikunja.home.me IN A {{ $ip }}"
+            local-data: "babybuddy.home.me IN A {{ $ip }}"
+            local-data: "n8n.home.me IN A {{ $ip }}"
+            local-data: "nodered.home.me IN A {{ $ip }}"
+            local-data: "diagrams.home.me IN A {{ $ip }}"
+            local-data: "server.home.me IN A {{ $ip }}"
+            local-data: "syncthing.home.me IN A {{ $ip }}"
+            local-data: "wallabag.home.me IN A {{ $ip }}"
+            local-data: "jellyfin.home.me IN A {{ $ip }}"
+            local-data: "sonarr.home.me IN A {{ $ip }}"
+            local-data: "radarr.home.me IN A {{ $ip }}"
+            local-data: "readarr.home.me IN A {{ $ip }}"
+            local-data: "jenkins.home.me IN A {{ $ip }}"
+            local-data: "grafana.home.me IN A {{ $ip }}"
+            local-data: "prometheus.home.me IN A {{ $ip }}"
+            local-data: "uptimekuma.home.me IN A {{ $ip }}"
+            local-data: "longhorn.home.me IN A {{ $ip }}"
+            local-data: "transmission.home.me IN A {{ $ip }}"
+            local-data: "jackett.home.me IN A {{ $ip }}"
+            local-data: "pgadmin.home.me IN A {{ $ip }}"
+            {{- end }}
 
             forward-zone:
                 # Forward all queries (except those in cache and local zone) to

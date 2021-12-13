@@ -103,6 +103,7 @@ If you scroll down a bit you will find a list of ports that the services are run
 - Run `ansible-playbook -i inventory playbooks/install/main.yml --tags preflight` At this point you have everything needed to setup kubernetes ( all the needed binaries )
 - Run `ansible-playbook -i inventory playbooks/install/main.yml --tags setup` This will initialize the master on the init_master PI and add all the workers
 - Run `ansible-playbook -i inventory playbooks/install/main.yml --tags init` Inits dashy, longhorn, nginxproxymanager and cgroup-gc
+- Run `ansible-playbook -i inventory playbooks/install/main.yml --tags unbound` Sets up unbound with all the services mapped to the cluster Ips provided. Make sure to edit the values to your own cluster IPs
 
 ### cgroup-gc
 This is a helm chart that installs a daemonset that will be deployed on all nodes with the purpose of clearing up cgroups.

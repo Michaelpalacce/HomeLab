@@ -1,0 +1,8 @@
+unbound:
+    image: klutchell/unbound
+    tag: 1-13-2-rev2
+    clusterIps:
+        - 192.168.1.182
+        - 192.168.1.16
+        - 192.168.1.109
+        - 192.168.1.149
