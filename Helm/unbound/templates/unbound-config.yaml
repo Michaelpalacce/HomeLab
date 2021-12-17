@@ -131,11 +131,13 @@ data:
             local-data: "grafana.home.me IN A {{ $ip }}"
             local-data: "prometheus.home.me IN A {{ $ip }}"
             local-data: "uptimekuma.home.me IN A {{ $ip }}"
+            local-data: "uptime.home.me IN A {{ $ip }}"
             local-data: "longhorn.home.me IN A {{ $ip }}"
             local-data: "transmission.home.me IN A {{ $ip }}"
             local-data: "jackett.home.me IN A {{ $ip }}"
             local-data: "pgadmin.home.me IN A {{ $ip }}"
             {{- end }}
+            local-data: "nas.home.me IN A {{ .nasIp }}"
 
             forward-zone:
                 # Forward all queries (except those in cache and local zone) to

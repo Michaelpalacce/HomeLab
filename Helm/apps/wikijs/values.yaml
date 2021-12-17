@@ -1,6 +1,6 @@
 wikijs:
     image: requarks/wiki
-    tag: 2.5.219
+    tag: 2.5.255
     nodePort: 30111
     port: 3000
     db:

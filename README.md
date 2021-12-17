@@ -235,7 +235,7 @@ Service account: jenkins
 - Run `kubectl label no ubuntu-1 type=media`
 - Run `ansible-playbook -i inventory playbooks/apps/media/main.yml`
 
-# Ingress rules setup in unbound
+# DNS A records in  unbound
 ##### dashy.home.me
 ##### vikunja.home.me
 ##### n8n.home.me
@@ -244,6 +244,13 @@ Service account: jenkins
 ##### uptimekuma.home.me
 ##### babybuddy.home.me
 ##### wallabag.home.me
+##### nas.home.me
+##### nodered.home.me
+##### sonarr.home.me
+##### readarr.home.me
+##### radarr.home.me
+##### transmission.home.me
+##### jackett.home.me
 
 # NodePorts in use
 

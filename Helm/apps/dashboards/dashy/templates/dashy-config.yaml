@@ -25,35 +25,23 @@ data:
                   - title: BabyBuddy
                     description: Baby Monitor
                     icon: babybuddy.png
-                    url: http://{{ .clusterUrl }}:30100
+                    url: https://babybuddy.home.me
                   - title: Wallabag
                     description: Self-hosted Pocket!
                     icon: /png/wallabag.png
-                    url: http://{{ .clusterUrl }}:30116
-{{/*                  - title: Grocy*/}}
-{{/*                    description: Groceries*/}}
-{{/*                    icon: /png/grocy.png*/}}
-{{/*                    url: http://{{ .clusterUrl }}:30112*/}}
-{{/*                  - title: Ubooquity*/}}
-{{/*                    description: Book Library*/}}
-{{/*                    icon: /png/ubooquity.png*/}}
-{{/*                    url: http://{{ .clusterUrl }}:30106/ubooquity*/}}
-{{/*                  - title: Ubooquity Admin*/}}
-{{/*                    description: Book Library Admin*/}}
-{{/*                    icon: /png/ubooquity.png*/}}
-{{/*                    url: http://{{ .clusterUrl }}:30107/ubooquity/admin*/}}
+                    url: http://{{ .clusterUrl }}:30116 # https://wallabag.home.me does not work
 
             - name: Automation
               items:
                   - title: N8N
                     description: Self hosted IFTTT
                     icon: /png/n8n.png
-                    url: http://{{ .clusterUrl }}:30114
+                    url: https://n8n.home.me
                     statusCheck: false
                   - title: Node-Red
                     description: Low-code automation
                     icon: /png/nodered.png
-                    url: http://{{ .clusterUrl }}:30117
+                    url: https://nodered.home.me
                     statusCheck: false
 
             - name: Media
@@ -61,76 +49,72 @@ data:
                   - title: Jellyfin
                     description: Tv Shows Stream
                     icon: /png/jellyfin.png
-                    url: http://{{ .clusterUrl }}:31001
+                    url: https://jellyfin.home.me
             - name: CI/CD
               items:
                   - title: Jenkins
                     description: CI/CD Pipeline for my projects
                     icon: /png/jenkins.png
-                    url: http://{{ .clusterUrl }}:30020
+                    url: https://jenkins.home.me
             - name: Knowledge Base And Tasks
               items:
                   - title: Wiki.JS
                     description: Self hosted wiki
                     icon: /png/wikijs.png
-                    url: http://{{ .clusterUrl }}:30111
+                    url: https://wikijs.home.me
                   - title: Vikunja
                     description: Tasks
                     icon: vikunja.png
-                    url: http://{{ .clusterUrl }}:30109
+                    url: https://vikunja.home.me
                   - title: Diagrams
                     description: Make diagrams in your browser
                     icon: /png/draw.png
-                    url: http://{{ .clusterUrl }}:30115
-{{/*                  - title: ArchiveBox*/}}
-{{/*                    description: Web Archive*/}}
-{{/*                    icon: /png/archivebox.png*/}}
-{{/*                    url: http://{{ .clusterUrl }}:30113*/}}
+                    url: https://diagrams.home.me
             - name: Storage
               items:
                   - title: Syncthing
                     description: Sync multiple devices
                     icon: /png/syncthing.png
-                    url: http://{{ .clusterUrl }}:30110
+                    url: http://{{ .clusterUrl }}:30110 # https://syncthing.home.me does not work
                   - title: ServerEmulator
                     description: Backup
                     icon: serveremulator.png
-                    url: http://{{ .clusterUrl }}:30108
+                    url: https://server.home.me
             - name: Downloaders
               items:
                   - title: Radarr
                     description: Movies Downloader
                     icon: /png/radarr.png
-                    url: http://{{ .clusterUrl }}:31003
+                    url: https://radarr.home.me
                   - title: Readarr
                     description: Ebook Library Downloader
                     icon: /png/readarr.png
-                    url: http://{{ .clusterUrl }}:31002
+                    url: https://readarr.home.me
                   - title: Sonarr
                     description: Shows Downloader
                     icon: /png/sonarr.png
-                    url: http://{{ .clusterUrl }}:31004
+                    url: https://sonarr.home.me
             - name: Monitoring
               items:
                   - title: Grafana
                     description: Monitoring
                     icon: /png/grafana.png
-                    url: http://{{ .clusterUrl }}:30010
+                    url: https://grafana.home.me
                   - title: Prometheus
                     description: Monitoring
                     icon: /png/prometheus.png
-                    url: http://{{ .clusterUrl }}:30011
+                    url: https://prometheus.home.me/
                   - title: Uptime Kuma
                     description: Uptime Monitor
                     icon: /png/uptime-kuma.png
-                    url: http://{{ .clusterUrl }}:30012
+                    url: http://{{ .clusterUrl }}:30012 # https://uptimekuma.home.me does not work
                     statusCheck: true
             - name: Infrastructure
               items:
                   - title: Longhorn Storage
                     description: Block Storage for kubernetes
                     icon: /png/longhorn.png
-                    url: http://{{ .clusterUrl }}:30030
+                    url: http://{{ .clusterUrl }}:30030 # https://longhorn.home.me/ does not work
                   - title: Nginx Proxy Manager
                     description: Best Proxy Ever Web UI
                     icon: /png/nginxproxymanager.png
@@ -143,19 +127,19 @@ data:
                   - title: Transmission
                     description: Torrent
                     icon: /png/transmission.png
-                    url: http://{{ .clusterUrl }}:30035
+                    url: https://{{ .clusterUrl }}:30035 # https://transmission.home.me does not work
                     statusCheck: false
                   - title: Jackett
                     description: Torrent indexer
                     icon: /png/jackett.png
-                    url: http://{{ .clusterUrl }}:30034
+                    url: http://{{ .clusterUrl }}:30034 # https://jackett.home.me does not work
                     statusCheck: false
             - name: Databases
               items:
                   - title: pgAdmin
                     description: PostgreSQL admin pannel
                     icon: /png/pgadmin.png
-                    url: http://{{ .clusterUrl }}:30033
+                    url: http://{{ .clusterUrl }}:30033 # https://pgadmin.home.me does not work
             - name: Personal
               items:
                   - title: Website
