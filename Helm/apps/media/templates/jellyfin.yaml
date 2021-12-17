@@ -70,13 +70,13 @@ spec:
                       claimName: jellyfin-config-volume
                 - name: shows-data
                   persistentVolumeClaim:
-                      claimName: shows-volume
+                      claimName: shows-volume-nfs
                 - name: books-data
                   persistentVolumeClaim:
-                      claimName: books-volume
+                      claimName: books-volume-nfs
                 - name: movies-data
                   persistentVolumeClaim:
-                      claimName: movies-volume
+                      claimName: movies-volume-nfs
 ---
 
 apiVersion: v1

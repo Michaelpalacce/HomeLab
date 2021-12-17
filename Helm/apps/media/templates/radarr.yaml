@@ -43,7 +43,7 @@ spec:
                         mountPath: /config
                       - name: downloads-data
                         mountPath: /downloads
-                      - name: shows-data
+                      - name: movies-data-nfs
                         mountPath: /tv
                   livenessProbe:
                       failureThreshold: 5
@@ -57,9 +57,9 @@ spec:
                 - name: app-data
                   persistentVolumeClaim:
                       claimName: radarr-config-volume
-                - name: shows-data
+                - name: movies-data-nfs
                   persistentVolumeClaim:
-                      claimName: movies-volume
+                      claimName: movies-volume-nfs
                 - name: downloads-data
                   persistentVolumeClaim:
                       claimName: downloads-volume

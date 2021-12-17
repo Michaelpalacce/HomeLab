@@ -99,70 +99,74 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-    name: shows-volume-pv
+    name: shows-volume-nfs-pv
     labels:
-        type: local
+        type: nfs
         app: shows
 spec:
-    storageClassName: manual
+    storageClassName: nfs-direct
     capacity:
-        storage: 100Gi
+        storage: 500Gi
     accessModes:
-        - ReadWriteOnce
-    hostPath:
-        path: "/mnt/media/shows"
+        - ReadWriteMany
+    nfs:
+        path: "/volume1/k3s/media/shows"
+        server: 192.168.1.20
 
 ---
 
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-    name: shows-volume
+    name: shows-volume-nfs
 spec:
     selector:
         matchLabels:
+            type: nfs
             app: shows
-    storageClassName: manual
+    storageClassName: nfs-direct
     accessModes:
-        - ReadWriteOnce
+        - ReadWriteMany
     resources:
         requests:
-            storage: 100Gi
+            storage: 500Gi
 
 ---
 
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-    name: movies-volume-pv
+    name: movies-volume-nfs-pv
     labels:
-        type: local
+        type: nfs
         app: movies
 spec:
-    storageClassName: manual
+    storageClassName: nfs-direct
     capacity:
-        storage: 100Gi
+        storage: 500Gi
     accessModes:
-        - ReadWriteOnce
-    hostPath:
-        path: "/mnt/media/movies"
+        - ReadWriteMany
+    nfs:
+       path: "/volume1/k3s/media/movies"
+       server: 192.168.1.20
 
 ---
 
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-    name: movies-volume
+    name: movies-volume-nfs
 spec:
     selector:
         matchLabels:
             app: movies
-    storageClassName: manual
+            type: nfs
+    storageClassName: nfs-direct
     accessModes:
-        - ReadWriteOnce
+        - ReadWriteMany
     resources:
         requests:
-            storage: 100Gi
+            storage: 500Gi
 
 ---
 
@@ -204,34 +208,36 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-    name: books-volume-pv
+    name: books-volume-nfs-pv
     labels:
-        type: local
+        type: nfs
         app: books
 spec:
-    storageClassName: manual
+    storageClassName: nfs-direct
     capacity:
-        storage: 15Gi
+        storage: 5Gi
     accessModes:
-        - ReadWriteOnce
-    hostPath:
-        path: "/mnt/media/books"
+        - ReadWriteMany
+    nfs:
+      path: "/volume1/k3s/media/books"
+      server: 192.168.1.20
 
 ---
 
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-    name: books-volume
+    name: books-volume-nfs
 spec:
     selector:
         matchLabels:
             app: books
-    storageClassName: manual
+            type: nfs
+    storageClassName: nfs-direct
     accessModes:
-        - ReadWriteOnce
+        - ReadWriteMany
     resources:
         requests:
-            storage: 15Gi
+            storage: 5Gi
 
 ---

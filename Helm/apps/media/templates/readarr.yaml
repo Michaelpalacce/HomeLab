@@ -43,7 +43,7 @@ spec:
                         mountPath: /config
                       - name: downloads-data
                         mountPath: /downloads
-                      - name: books-data
+                      - name: books-data-nfs
                         mountPath: /books
                   livenessProbe:
                       failureThreshold: 5
@@ -57,9 +57,9 @@ spec:
                 - name: app-data
                   persistentVolumeClaim:
                       claimName: readarr-config-volume
-                - name: books-data
+                - name: books-data-nfs
                   persistentVolumeClaim:
-                      claimName: books-volume
+                      claimName: books-volume-nfs
                 - name: downloads-data
                   persistentVolumeClaim:
                       claimName: downloads-volume

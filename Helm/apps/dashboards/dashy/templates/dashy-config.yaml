@@ -3,174 +3,178 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-    name: dashy-config
-    namespace: {{ $.Release.Namespace }}
+  name: dashy-config
+  namespace: {{ $.Release.Namespace }}
 data:
-    conf.yml: |
-        ---
-        pageInfo:
-            title: HomeLab
-            navLinks:
-                - title: Home
-                  path: /
-                - title: Source Code
-                  path: https://github.com/Michaelpalacce/HomeLab
-        appConfig:
-            theme: dracula
+  conf.yml: |
+    ---
+    pageInfo:
+      title: HomeLab
+      navLinks:
+        - title: Home
+          path: /
+        - title: Source Code
+          path: https://github.com/Michaelpalacce/HomeLab
+    appConfig:
+      theme: dracula
+      statusCheck: true
+      enableServiceWorker: true
+    sections:
+      - name: Apps
+        items:
+          - title: BabyBuddy
+            description: Baby Monitor
+            icon: babybuddy.png
+            url: http://{{ .clusterUrl }}:30100
+          - title: Wallabag
+            description: Self-hosted Pocket!
+            icon: /png/wallabag.png
+            url: http://{{ .clusterUrl }}:30116
+
+      - name: Automation
+        items:
+          - title: N8N
+            description: Self hosted IFTTT
+            icon: /png/n8n.png
+            url: http://{{ .clusterUrl }}:30114
+            statusCheck: false
+          - title: Node-Red
+            description: Low-code automation
+            icon: /png/nodered.png
+            url: http://{{ .clusterUrl }}:30117
+            statusCheck: false
+
+      - name: Media
+        items:
+          - title: Jellyfin
+            description: Tv Shows Stream
+            icon: /png/jellyfin.png
+            url: http://{{ .clusterUrl }}:31001
+      - name: CI/CD
+        items:
+          - title: Jenkins
+            description: CI/CD Pipeline for my projects
+            icon: /png/jenkins.png
+            url: http://{{ .clusterUrl }}:30020
+      - name: Knowledge Base And Tasks
+        items:
+          - title: Wiki.JS
+            description: Self hosted wiki
+            icon: /png/wikijs.png
+            url: http://{{ .clusterUrl }}:30111
+          - title: Vikunja
+            description: Tasks
+            icon: vikunja.png
+            url: http://{{ .clusterUrl }}:30109
+          - title: Diagrams
+            description: Make diagrams in your browser
+            icon: /png/draw.png
+            url: http://{{ .clusterUrl }}:30115
+      - name: Storage
+        items:
+          - title: Syncthing
+            description: Sync multiple devices
+            icon: /png/syncthing.png
+            url: http://{{ .clusterUrl }}:30110
+          - title: ServerEmulator
+            description: Backup
+            icon: serveremulator.png
+            url: http://{{ .clusterUrl }}:30108
+          - title: Synology
+            description: NAS
+            icon: /png/synology.png
+            url: https://192.168.1.20:5001
+      - name: Downloaders
+        items:
+          - title: Radarr
+            description: Movies Downloader
+            icon: /png/radarr.png
+            url: http://{{ .clusterUrl }}:31003
+          - title: Readarr
+            description: Ebook Library Downloader
+            icon: /png/readarr.png
+            url: http://{{ .clusterUrl }}:31002
+          - title: Sonarr
+            description: Shows Downloader
+            icon: /png/sonarr.png
+            url: http://{{ .clusterUrl }}:31004
+      - name: Monitoring
+        items:
+          - title: Grafana
+            description: Monitoring
+            icon: /png/grafana.png
+            url: http://{{ .clusterUrl }}:30010
+          - title: Prometheus
+            description: Monitoring
+            icon: /png/prometheus.png
+            url: http://{{ .clusterUrl }}:30011
+          - title: Uptime Kuma
+            description: Uptime Monitor
+            icon: /png/uptime-kuma.png
+            url: http://{{ .clusterUrl }}:30012
             statusCheck: true
-            enableServiceWorker: true
-        sections:
-            - name: Apps
-              items:
-                  - title: BabyBuddy
-                    description: Baby Monitor
-                    icon: babybuddy.png
-                    url: https://babybuddy.home.me
-                  - title: Wallabag
-                    description: Self-hosted Pocket!
-                    icon: /png/wallabag.png
-                    url: http://{{ .clusterUrl }}:30116 # https://wallabag.home.me does not work
-
-            - name: Automation
-              items:
-                  - title: N8N
-                    description: Self hosted IFTTT
-                    icon: /png/n8n.png
-                    url: https://n8n.home.me
-                    statusCheck: false
-                  - title: Node-Red
-                    description: Low-code automation
-                    icon: /png/nodered.png
-                    url: https://nodered.home.me
-                    statusCheck: false
-
-            - name: Media
-              items:
-                  - title: Jellyfin
-                    description: Tv Shows Stream
-                    icon: /png/jellyfin.png
-                    url: https://jellyfin.home.me
-            - name: CI/CD
-              items:
-                  - title: Jenkins
-                    description: CI/CD Pipeline for my projects
-                    icon: /png/jenkins.png
-                    url: https://jenkins.home.me
-            - name: Knowledge Base And Tasks
-              items:
-                  - title: Wiki.JS
-                    description: Self hosted wiki
-                    icon: /png/wikijs.png
-                    url: https://wikijs.home.me
-                  - title: Vikunja
-                    description: Tasks
-                    icon: vikunja.png
-                    url: https://vikunja.home.me
-                  - title: Diagrams
-                    description: Make diagrams in your browser
-                    icon: /png/draw.png
-                    url: https://diagrams.home.me
-            - name: Storage
-              items:
-                  - title: Syncthing
-                    description: Sync multiple devices
-                    icon: /png/syncthing.png
-                    url: http://{{ .clusterUrl }}:30110 # https://syncthing.home.me does not work
-                  - title: ServerEmulator
-                    description: Backup
-                    icon: serveremulator.png
-                    url: https://server.home.me
-            - name: Downloaders
-              items:
-                  - title: Radarr
-                    description: Movies Downloader
-                    icon: /png/radarr.png
-                    url: https://radarr.home.me
-                  - title: Readarr
-                    description: Ebook Library Downloader
-                    icon: /png/readarr.png
-                    url: https://readarr.home.me
-                  - title: Sonarr
-                    description: Shows Downloader
-                    icon: /png/sonarr.png
-                    url: https://sonarr.home.me
-            - name: Monitoring
-              items:
-                  - title: Grafana
-                    description: Monitoring
-                    icon: /png/grafana.png
-                    url: https://grafana.home.me
-                  - title: Prometheus
-                    description: Monitoring
-                    icon: /png/prometheus.png
-                    url: https://prometheus.home.me/
-                  - title: Uptime Kuma
-                    description: Uptime Monitor
-                    icon: /png/uptime-kuma.png
-                    url: http://{{ .clusterUrl }}:30012 # https://uptimekuma.home.me does not work
-                    statusCheck: true
-            - name: Infrastructure
-              items:
-                  - title: Longhorn Storage
-                    description: Block Storage for kubernetes
-                    icon: /png/longhorn.png
-                    url: http://{{ .clusterUrl }}:30030 # https://longhorn.home.me/ does not work
-                  - title: Nginx Proxy Manager
-                    description: Best Proxy Ever Web UI
-                    icon: /png/nginxproxymanager.png
-                    url: http://{{ .clusterUrl }}:81
-                  - title: Router
-                    description: Router location
-                    url: http://192.168.1.1
-            - name: Torrents
-              items:
-                  - title: Transmission
-                    description: Torrent
-                    icon: /png/transmission.png
-                    url: https://{{ .clusterUrl }}:30035 # https://transmission.home.me does not work
-                    statusCheck: false
-                  - title: Jackett
-                    description: Torrent indexer
-                    icon: /png/jackett.png
-                    url: http://{{ .clusterUrl }}:30034 # https://jackett.home.me does not work
-                    statusCheck: false
-            - name: Databases
-              items:
-                  - title: pgAdmin
-                    description: PostgreSQL admin pannel
-                    icon: /png/pgadmin.png
-                    url: http://{{ .clusterUrl }}:30033 # https://pgadmin.home.me does not work
-            - name: Personal
-              items:
-                  - title: Website
-                    description: My Website
-                    url: https://stefangenov.site
-                    statusCheck: false
-                  - title: Docker Hub
-                    description: Docker Hub
-                    url: https://hub.docker.com/u/stefangenov
-                    statusCheck: false
-                  - title: Github
-                    description: My Github Profile
-                    url: https://github.com/Michaelpalacce
-                    statusCheck: false
-            - name: External
-              items:
-                  - title: SelfHosted
-                    description: Reddit r/selfhosted
-                    url: https://reddit.com/r/selfhosted
-                    statusCheck: false
-                  - title: HomeLab
-                    description: Reddit r/homelab
-                    url: https://reddit.com/r/homelab
-                    statusCheck: false
-                  - title: YouTube
-                    description: Youtube!
-                    url: https://youtube.com
-                    statusCheck: false
-                  - title: Messenger
-                    description: Facebook Messenger
-                    url: https://messenger.com
-                    statusCheck: false
+      - name: Infrastructure
+        items:
+          - title: Longhorn Storage
+            description: Block Storage for kubernetes
+            icon: /png/longhorn.png
+            url: http://{{ .clusterUrl }}:30030
+          - title: Nginx Proxy Manager
+            description: Best Proxy Ever Web UI
+            icon: /png/nginxproxymanager.png
+            url: http://{{ .clusterUrl }}:81
+          - title: Router
+            description: Router location
+            url: http://192.168.1.1
+      - name: Torrents
+        items:
+          - title: Transmission
+            description: Torrent
+            icon: /png/transmission.png
+            url: http://{{ .clusterUrl }}:30035
+            statusCheck: false
+          - title: Jackett
+            description: Torrent indexer
+            icon: /png/jackett.png
+            url: http://{{ .clusterUrl }}:30034
+            statusCheck: false
+      - name: Databases
+        items:
+          - title: pgAdmin
+            description: PostgreSQL admin pannel
+            icon: /png/pgadmin.png
+            url: http://{{ .clusterUrl }}:30033
+      - name: Personal
+        items:
+          - title: Website
+            description: My Website
+            url: https://stefangenov.site
+            statusCheck: false
+          - title: Docker Hub
+            description: Docker Hub
+            url: https://hub.docker.com/u/stefangenov
+            statusCheck: false
+          - title: Github
+            description: My Github Profile
+            url: https://github.com/Michaelpalacce
+            statusCheck: false
+      - name: External
+        items:
+          - title: SelfHosted
+            description: Reddit r/selfhosted
+            url: https://reddit.com/r/selfhosted
+            statusCheck: false
+          - title: HomeLab
+            description: Reddit r/homelab
+            url: https://reddit.com/r/homelab
+            statusCheck: false
+          - title: YouTube
+            description: Youtube!
+            url: https://youtube.com
+            statusCheck: false
+          - title: Messenger
+            description: Facebook Messenger
+            url: https://messenger.com
+            statusCheck: false
 
 {{- end }}

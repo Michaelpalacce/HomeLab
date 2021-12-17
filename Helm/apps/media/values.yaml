@@ -1,6 +1,6 @@
 transmission:
     image: linuxserver/transmission
-    tag: latest
+    tag: 2021.11.18
     nodePort: 30035
     username: username
     password: password
@@ -8,29 +8,29 @@ transmission:
 jackett:
     nodePort: 30034
     image: linuxserver/jackett
-    tag: latest
+    tag: 0.20.173
     port: 9117
 
 jellyfin:
     nodePort: 31001
     image: jellyfin/jellyfin
-    tag: 20211130.11-unstable
+    tag: 20211211.10-unstable
 
 radarr:
     nodePort: 31003
     image: linuxserver/radarr
-    tag: 0.0.5497
+    tag: nightly-version-4.0.0.5597
     port: 7878
 
 readarr:
     nodePort: 31002
     image: linuxserver/readarr
-    tag: nightly-0.1.0.963-ls6
+    tag: nightly-version-0.1.0.1137
     port: 8787
 
 sonarr:
     nodePort: 31004
     image: linuxserver/sonarr
-    tag: 0.6.1375
+    tag: develop-version-3.0.6.1405
     port: 8989
 

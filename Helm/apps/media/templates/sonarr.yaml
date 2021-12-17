@@ -33,8 +33,8 @@ spec:
                           cpu: 125m
                           memory: 100Mi
                       limits:
-                          cpu: 250m
-                          memory: 512Mi
+                          cpu: 500m
+                          memory: 1Gi
                   ports:
                       - name: web
                         containerPort: {{ .port }}
@@ -43,7 +43,7 @@ spec:
                         mountPath: /config
                       - name: downloads-data
                         mountPath: /downloads
-                      - name: shows-data
+                      - name: shows-data-nfs
                         mountPath: /shows
                   livenessProbe:
                       failureThreshold: 5
@@ -57,9 +57,9 @@ spec:
                 - name: app-data
                   persistentVolumeClaim:
                       claimName: sonarr-config-volume
-                - name: shows-data
+                - name: shows-data-nfs
                   persistentVolumeClaim:
-                      claimName: shows-volume
+                      claimName: shows-volume-nfs
                 - name: downloads-data
                   persistentVolumeClaim:
                       claimName: downloads-volume

@@ -1,3 +1,7 @@
+#### [V3.0.0]
+* Improved image tags, updated old ones
+* Migrated to NFS
+
 #### [V2.0.0]
 * Converted to the *arr stack
 * Entire rework
