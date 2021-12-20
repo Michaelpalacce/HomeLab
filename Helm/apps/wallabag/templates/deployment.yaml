@@ -58,8 +58,9 @@ spec:
                       failureThreshold: 5
                       initialDelaySeconds: 120
                       timeoutSeconds: 5
-                      tcpSocket:
+                      httpGet:
                           port: {{ .port }}
+                          path: /api/info
                   readinessProbe:
                       failureThreshold: 5
                       initialDelaySeconds: 30

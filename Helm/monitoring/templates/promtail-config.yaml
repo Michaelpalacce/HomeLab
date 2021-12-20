@@ -31,3 +31,18 @@ data:
                       expression: "/var/log/pods/[\\S]+/(?P<container>[\\S]+)/[\\S]+log"
                   - labels:
                         container: container
+            - job_name: syslog
+              static_configs:
+                  - targets:
+                        - localhost
+                    labels:
+                        job: containerlogs
+                        __path__: /var/log/syslog
+
+              pipeline_stages:
+                  - cri: {}
+                  - regex:
+                      source: filename
+                      expression: "/var/log/pods/[\\S]+/(?P<container>[\\S]+)/[\\S]+log"
+                  - labels:
+                        container: container

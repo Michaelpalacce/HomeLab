@@ -348,6 +348,13 @@ Longhorn requires a few manual steps to achieve this.
 - Run: `ansible -i inventory -m shell -a "k3s crictl rmi --prune -b all"`
 - Run: `ansible -i inventory -m shell -a "k3s crictl rm -a" -b all`
 
+### Orphaned pods.
+There is a chance that you may have force deleted some pods or an error may have occurred. In that case a lot of orphaned pods volumes will be left without being deleted.
+I have written a script that will tail /var/log/syslog for the orphaned pod messages and delete them once it has matched
+one. Copy the ./utils/cleanUpOrphanedPods.py script to your pods and run it. When you stop seeing messages that means that there
+are no more orphaned pods, and you can stop the script. This script may take a bit to complete if you have not cleaned any pods for a long time
+so be patient. In the future this may be moved to a CRON job that will do this for you
+
 ### Wallabag doesn't want to work correctly, it's giving me a wallabag_internal_settings talbe is not created
 Restarting the deployment helps. No idea why?
 
