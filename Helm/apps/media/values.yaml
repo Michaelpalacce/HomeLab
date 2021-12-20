@@ -1,3 +1,6 @@
+storage:
+    nasIp: 192.168.1.20
+
 transmission:
     image: linuxserver/transmission
     tag: 2021.11.18

@@ -15,7 +15,7 @@ parameters:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-    name: syncthing-pvc
+    name: syncthing-config-pvc
 spec:
     accessModes:
         - ReadWriteMany
@@ -23,20 +23,6 @@ spec:
     resources:
         requests:
             storage: {{ .Values.storage.syncthingConfigSize }}
-
----
-
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-    name: serveremulator-volume
-spec:
-    accessModes:
-        - ReadWriteMany
-    storageClassName: storage-sc
-    resources:
-        requests:
-            storage: {{ .Values.storage.serverEmulatorDataSize }}
 
 ---
 
@@ -51,3 +37,79 @@ spec:
     resources:
         requests:
             storage: {{ .Values.storage.serverEmulatorConfigSize }}
+
+
+---
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: syncthing-data-nfs-pv
+    labels:
+        type: nfs
+        app: syncthing
+spec:
+    storageClassName: nfs-direct
+    capacity:
+        storage: 100Gi
+    accessModes:
+        - ReadWriteMany
+    nfs:
+        path: "/volume1/k3s/storage/syncthing"
+        server: {{ .Values.storage.nasIp }}
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: syncthing-data-nfs
+spec:
+    selector:
+        matchLabels:
+            type: nfs
+            app: syncthing
+    storageClassName: nfs-direct
+    accessModes:
+        - ReadWriteMany
+    resources:
+        requests:
+            storage: 100Gi
+
+---
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: serveremulator-data-nfs-pv
+    labels:
+        type: nfs
+        app: serveremulator
+spec:
+    storageClassName: nfs-direct
+    capacity:
+        storage: 1Ti
+    accessModes:
+        - ReadWriteMany
+    nfs:
+        path: "/volume1"
+        server: {{ .Values.storage.nasIp }}
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: serveremulator-data-nfs
+spec:
+    selector:
+        matchLabels:
+            type: nfs
+            app: serveremulator
+    storageClassName: nfs-direct
+    accessModes:
+        - ReadWriteMany
+    resources:
+        requests:
+            storage: 1Ti
+

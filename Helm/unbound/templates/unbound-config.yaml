@@ -112,7 +112,7 @@ data:
             local-zone: "home.me" static
 
             {{- range $ip := .clusterIps }}
-            local-data: "cluster.home.me IN A {{ $ip }}"
+            local-data: "home.me IN A {{ $ip }}"
             local-data: "dashy.home.me IN A {{ $ip }}"
             local-data: "wikijs.home.me IN A {{ $ip }}"
             local-data: "vikunja.home.me IN A {{ $ip }}"

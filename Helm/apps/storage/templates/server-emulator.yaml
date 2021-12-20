@@ -49,20 +49,15 @@ spec:
                         name: data-volume
                       - mountPath: /config
                         name: config-data
-                      - mountPath: /mnt/syncthing
-                        name: syncthing-config
 
             restartPolicy: Always
             volumes:
-                - name: data-volume
-                  persistentVolumeClaim:
-                      claimName: serveremulator-volume
                 - name: config-data
                   persistentVolumeClaim:
                       claimName: serveremulator-config-volume
-                - name: syncthing-config
+                - name: data-volume
                   persistentVolumeClaim:
-                      claimName: syncthing-pvc
+                      claimName: serveremulator-data-nfs
 ---
 
 apiVersion: v1

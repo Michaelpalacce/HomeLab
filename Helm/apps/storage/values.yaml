@@ -13,6 +13,6 @@ serveremulator:
 storage:
     dataLocality: "disabled" # or disabled
     numberOfReplicas: 1
-    syncthingConfigSize: 25Gi
+    syncthingConfigSize: 1Gi
     serverEmulatorConfigSize: 1Gi
-    serverEmulatorDataSize: 10Gi
+    nasIp: 192.168.1.20

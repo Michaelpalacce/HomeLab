@@ -46,6 +46,8 @@ spec:
                   volumeMounts:
                       - name: app-config
                         mountPath: /config
+                      - name: data-volume
+                        mountPath: /data
                   livenessProbe:
                       failureThreshold: 5
                       initialDelaySeconds: 60
@@ -57,7 +59,10 @@ spec:
             volumes:
                 - name: app-config
                   persistentVolumeClaim:
-                      claimName: syncthing-pvc
+                      claimName: syncthing-config-pvc
+                - name: data-volume
+                  persistentVolumeClaim:
+                      claimName: syncthing-data-nfs
 
 ---
 

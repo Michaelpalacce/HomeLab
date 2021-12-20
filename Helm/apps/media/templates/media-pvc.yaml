@@ -111,7 +111,7 @@ spec:
         - ReadWriteMany
     nfs:
         path: "/volume1/k3s/media/shows"
-        server: 192.168.1.20
+        server: {{ .Values.storage.nasIp }}
 
 ---
 
@@ -148,7 +148,7 @@ spec:
         - ReadWriteMany
     nfs:
        path: "/volume1/k3s/media/movies"
-       server: 192.168.1.20
+       server: {{ .Values.storage.nasIp }}
 
 ---
 
@@ -220,7 +220,7 @@ spec:
         - ReadWriteMany
     nfs:
       path: "/volume1/k3s/media/books"
-      server: 192.168.1.20
+      server: {{ .Values.storage.nasIp }}
 
 ---
 
