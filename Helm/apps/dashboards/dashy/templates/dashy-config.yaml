@@ -73,7 +73,7 @@ data:
           - title: Syncthing
             description: Sync multiple devices
             icon: /png/syncthing.png
-            url: https://diagrams.home.me
+            url: http://{{ .clusterUrl }}:30110
           - title: ServerEmulator
             description: Backup
             icon: serveremulator.png
