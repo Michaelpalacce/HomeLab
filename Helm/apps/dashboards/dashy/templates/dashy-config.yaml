@@ -17,7 +17,7 @@ data:
           path: https://github.com/Michaelpalacce/HomeLab
     appConfig:
       theme: dracula
-      statusCheck: true
+      statusCheck: false
       enableServiceWorker: true
     sections:
       - name: Apps
@@ -25,7 +25,7 @@ data:
           - title: BabyBuddy
             description: Baby Monitor
             icon: babybuddy.png
-            url: http://{{ .clusterUrl }}:30100
+            url: https://babybuddy.home.me
           - title: Wallabag
             description: Self-hosted Pocket!
             icon: /png/wallabag.png
@@ -36,89 +36,86 @@ data:
           - title: N8N
             description: Self hosted IFTTT
             icon: /png/n8n.png
-            url: http://{{ .clusterUrl }}:30114
-            statusCheck: false
+            url: https://n8n.home.me
           - title: Node-Red
             description: Low-code automation
             icon: /png/nodered.png
-            url: http://{{ .clusterUrl }}:30117
-            statusCheck: false
+            url: https://nodered.home.me
 
       - name: Media
         items:
           - title: Jellyfin
             description: Tv Shows Stream
             icon: /png/jellyfin.png
-            url: http://{{ .clusterUrl }}:31001
+            url: https://jellyfin.home.me
       - name: CI/CD
         items:
           - title: Jenkins
             description: CI/CD Pipeline for my projects
             icon: /png/jenkins.png
-            url: http://{{ .clusterUrl }}:30020
+            url: https://jenkins.home.me
       - name: Knowledge Base And Tasks
         items:
           - title: Wiki.JS
             description: Self hosted wiki
             icon: /png/wikijs.png
-            url: http://{{ .clusterUrl }}:30111
+            url: https://wikijs.home.me
           - title: Vikunja
             description: Tasks
             icon: vikunja.png
-            url: http://{{ .clusterUrl }}:30109
+            url: https://vikunja.home.me
           - title: Diagrams
             description: Make diagrams in your browser
             icon: /png/draw.png
-            url: http://{{ .clusterUrl }}:30115
+            url: https://diagrams.home.me
       - name: Storage
         items:
           - title: Syncthing
             description: Sync multiple devices
             icon: /png/syncthing.png
-            url: http://{{ .clusterUrl }}:30110
+            url: https://diagrams.home.me
           - title: ServerEmulator
             description: Backup
             icon: serveremulator.png
-            url: http://{{ .clusterUrl }}:30108
+            url: https://server.home.me
           - title: Synology
             description: NAS
             icon: /png/synology.png
-            url: https://192.168.1.20:5001
+            url: https://nas.home.me
       - name: Downloaders
         items:
           - title: Radarr
             description: Movies Downloader
             icon: /png/radarr.png
-            url: http://{{ .clusterUrl }}:31003
+            url: https://radarr.home.me
           - title: Readarr
             description: Ebook Library Downloader
             icon: /png/readarr.png
-            url: http://{{ .clusterUrl }}:31002
+            url: https://readarr.home.me
           - title: Sonarr
             description: Shows Downloader
             icon: /png/sonarr.png
-            url: http://{{ .clusterUrl }}:31004
+            url: https://sonarr.home.me
       - name: Monitoring
         items:
           - title: Grafana
             description: Monitoring
             icon: /png/grafana.png
-            url: http://{{ .clusterUrl }}:30010
+            url: https://grafana.home.me
           - title: Prometheus
             description: Monitoring
             icon: /png/prometheus.png
-            url: http://{{ .clusterUrl }}:30011
+            url: https://prometheus.home.me
           - title: Uptime Kuma
             description: Uptime Monitor
             icon: /png/uptime-kuma.png
-            url: http://{{ .clusterUrl }}:30012
-            statusCheck: true
+            url: https://uptimekuma.home.me
       - name: Infrastructure
         items:
           - title: Longhorn Storage
             description: Block Storage for kubernetes
             icon: /png/longhorn.png
-            url: http://{{ .clusterUrl }}:30030
+            url: https://longhorn.home.me
           - title: Nginx Proxy Manager
             description: Best Proxy Ever Web UI
             icon: /png/nginxproxymanager.png
@@ -131,50 +128,41 @@ data:
           - title: Transmission
             description: Torrent
             icon: /png/transmission.png
-            url: http://{{ .clusterUrl }}:30035
-            statusCheck: false
+            url: https://transmission.home.me
           - title: Jackett
             description: Torrent indexer
             icon: /png/jackett.png
             url: http://{{ .clusterUrl }}:30034
-            statusCheck: false
       - name: Databases
         items:
           - title: pgAdmin
             description: PostgreSQL admin pannel
             icon: /png/pgadmin.png
-            url: http://{{ .clusterUrl }}:30033
+            url: https://pgadmin.home.me
       - name: Personal
         items:
           - title: Website
             description: My Website
             url: https://stefangenov.site
-            statusCheck: false
           - title: Docker Hub
             description: Docker Hub
             url: https://hub.docker.com/u/stefangenov
-            statusCheck: false
           - title: Github
             description: My Github Profile
             url: https://github.com/Michaelpalacce
-            statusCheck: false
       - name: External
         items:
           - title: SelfHosted
             description: Reddit r/selfhosted
             url: https://reddit.com/r/selfhosted
-            statusCheck: false
           - title: HomeLab
             description: Reddit r/homelab
             url: https://reddit.com/r/homelab
-            statusCheck: false
           - title: YouTube
             description: Youtube!
             url: https://youtube.com
-            statusCheck: false
           - title: Messenger
             description: Facebook Messenger
             url: https://messenger.com
-            statusCheck: false
 
 {{- end }}

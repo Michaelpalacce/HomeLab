@@ -1,3 +1,7 @@
+#### [V2.0.0]
+* Added new services
+* Using a records now
+
 #### [V1.3.0]
 * Added pi-hole
 * Changed ingress variable
