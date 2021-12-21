@@ -136,6 +136,8 @@ data:
             local-data: "transmission.home.me IN A {{ $ip }}"
             local-data: "jackett.home.me IN A {{ $ip }}"
             local-data: "pgadmin.home.me IN A {{ $ip }}"
+            local-data: "whoogle.home.me IN A {{ $ip }}"
+            local-data: "google.home.me IN A {{ $ip }}"
             {{- end }}
             local-data: "nas.home.me IN A {{ .nasIp }}"
 

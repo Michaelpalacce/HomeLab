@@ -30,6 +30,10 @@ data:
             description: Self-hosted Pocket!
             icon: /png/wallabag.png
             url: http://{{ .clusterUrl }}:30116
+          - title: Whoogle
+            description: Self-Hosted Google
+            icon: /png/whoogle.png
+            url: http://{{ .clusterUrl }}:30018
 
       - name: Automation
         items:

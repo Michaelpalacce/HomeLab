@@ -1,0 +1,12 @@
+whoogle:
+    image: benbusby/whoogle-search
+    tag: latest
+    nodePort: 30018
+    port: 5000
+    resources:
+        requests:
+            cpu: 512m
+            memory: 256Mi
+        limits:
+            cpu: 1
+            memory: 1Gi

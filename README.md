@@ -252,6 +252,7 @@ Service account: jenkins
 ##### radarr.home.me
 ##### transmission.home.me
 ##### jackett.home.me
+##### whoogle.home.me
 
 # NodePorts in use
 
@@ -295,6 +296,7 @@ Service account: jenkins
 ##### Diagrams/Drawio: 30115
 ##### Wallabag: 30116
 ##### Node-Red: 30117
+##### Whoogle: 30018
 
 # Backups
 You can use a longhorn backup. NOTE: XFS does not work correctly with backups. IF you are using a xfs drive, longhorn

@@ -1,0 +1,57 @@
+{{- with .Values.whoogle }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: whoogle
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app: whoogle
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: whoogle
+    template:
+        metadata:
+            labels:
+                app: whoogle
+        spec:
+            containers:
+                - name: whoogle
+                  image: {{ .image }}:{{ .tag }}
+                  imagePullPolicy: IfNotPresent
+{{- if .resources }}
+                  resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+                  ports:
+                      - name: web
+                        containerPort: {{ .port }}
+                  livenessProbe:
+                      failureThreshold: 10
+                      initialDelaySeconds: 120
+                      timeoutSeconds: 5
+                      tcpSocket:
+                          port: {{ .port }}
+
+            restartPolicy: Always
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: whoogle
+    namespace: {{ $.Release.Namespace }}
+spec:
+    type: NodePort
+    selector:
+        app: whoogle
+    ports:
+        - name: whoogle
+          protocol: TCP
+          port: {{ .port }}
+          nodePort: {{ .nodePort }}
+
+{{- end }}
