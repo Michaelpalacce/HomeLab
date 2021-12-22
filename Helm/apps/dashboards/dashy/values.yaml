@@ -5,6 +5,6 @@ dashy:
     port: 80
     resources:
         limits:
-            cpu: 1000m
+            cpu: 500m
             memory: 1Gi
     clusterUrl: 192.168.1.182

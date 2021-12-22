@@ -320,9 +320,9 @@ Longhorn requires a few manual steps to achieve this.
 
 ### Clearing up containerd
 - Go to `./ansible`
-- Run: `ansible -i inventory -m shell -a "k3s crictl rmp -a" -b all`
-- Run: `ansible -i inventory -m shell -a "k3s crictl rmi --prune -b all"`
-- Run: `ansible -i inventory -m shell -a "k3s crictl rm -a" -b all`
+- Run: `ansible -i inventory -m shell -a "k3s crictl rmp -a" -b all` To remove all pods that are not up and running
+- Run: `ansible -i inventory -m shell -a "k3s crictl rmi --prune -b all"` To remove all images
+- Run: `ansible -i inventory -m shell -a "k3s crictl rm -a" -b all` 
 
 ### Orphaned pods.
 There is a chance that you may have force deleted some pods or an error may have occurred. In that case a lot of orphaned pods volumes will be left without being deleted.
