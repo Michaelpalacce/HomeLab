@@ -133,7 +133,7 @@
 
       - name: Ensure new Chart is present
         copy:
-            src: ../../../Helm/nginxproxymanager
+            src: ../../../Helm/apps/nginxproxymanager
             dest: .
 
       - name: Install nginxproxymanager namespace
@@ -197,7 +197,7 @@
 
       - name: Ensure new Chart is present
         copy:
-            src: ../../../Helm/longhorn-system
+            src: ../../../Helm/apps/longhorn-system
             dest: .
 
       - name: Install longhorn-system namespace
@@ -253,7 +253,7 @@
             state: absent
 
 - hosts: init_master
-  name: Setup Longhorn storage
+  name: Setup Unbound DNS Server
   become: yes
   tags:
       - unbound
@@ -267,7 +267,7 @@
 
       - name: Ensure new Chart is present
         copy:
-            src: ../../../Helm/unbound
+            src: ../../../Helm/appsunbound
             dest: .
 
       - name: Install unbound namespace

@@ -40,11 +40,12 @@ spec:
                         mountPath: /app/public/conf.yml
                         subPath: conf.yml
                   livenessProbe:
-                      failureThreshold: 10
-                      initialDelaySeconds: 500
+                      failureThreshold: 20
+                      initialDelaySeconds: 360
                       timeoutSeconds: 5
-                      tcpSocket:
-                          port: {{ .port }}
+                      exec:
+                          command:
+                              - yarn health-check
 
             restartPolicy: Always
             volumes:

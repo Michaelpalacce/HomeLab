@@ -1,0 +1,26 @@
+- hosts: init_master
+  name: "Setup {{ appName }}"
+  become: yes
+  tasks:
+      - name: Cleanup old potential chart
+        file:
+            path: "{{ appName }}"
+            state: absent
+
+      - name: Ensure new Chart is present
+        copy:
+            src: "../../../../Helm/apps/{{ appName }}"
+            dest: .
+
+      - name: "Install {{ appName }} namespace"
+        kubernetes.core.helm:
+            name: "{{ appName }}"
+            create_namespace: true
+            release_namespace: "{{ appName }}"
+            chart_ref: "{{ appName }}/"
+            values_files: "{{ appName }}/values.yaml"
+
+      - name: Cleanup chart, we no longer need this
+        file:
+            path: "{{ appName }}"
+            state: absent

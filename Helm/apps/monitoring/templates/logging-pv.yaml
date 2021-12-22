@@ -1,0 +1,139 @@
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+    name: monitoring-sc
+provisioner: driver.longhorn.io
+allowVolumeExpansion: true
+parameters:
+    numberOfReplicas: "{{ .Values.storage.numberOfReplicas }}"
+    dataLocality: "{{ .Values.storage.dataLocality }}"
+    staleReplicaTimeout: "2800"
+    fromBackup: ""
+
+
+{{- with .Values.grafana }}
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: grafana-pvc
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: monitoring-sc
+    resources:
+        requests:
+            storage: 1Gi
+
+{{- end }}
+
+{{- with .Values.prometheus }}
+---
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: prometheus-nfs-pv
+  labels:
+    type: nfs
+    app: prometheus
+spec:
+  storageClassName: nfs-direct
+  capacity:
+    storage: 50Gi
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    path: "/volume1/k3s/monitoring/prometheus"
+    server: 192.168.1.20
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: prometheus-nfs
+spec:
+  selector:
+    matchLabels:
+      app: prometheus
+      type: nfs
+  storageClassName: nfs-direct
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 50Gi
+
+{{- end }}
+
+{{- with .Values.loki }}
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: loki-pvc
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: monitoring-sc
+    resources:
+        requests:
+            storage: 10Gi
+---
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: loki-logs-nfs-pv
+  labels:
+    type: nfs
+    app: loki
+spec:
+  storageClassName: nfs-direct
+  capacity:
+    storage: 50Gi
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    path: "/volume1/k3s/monitoring/loki"
+    server: 192.168.1.20
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: loki-logs-nfs
+spec:
+  selector:
+    matchLabels:
+      app: loki
+      type: nfs
+  storageClassName: nfs-direct
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 50Gi
+
+{{- end }}
+
+{{- with .Values.promtail }}
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: promtail-position-pvc
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: monitoring-sc
+    resources:
+        requests:
+            storage: 2Gi
+
+{{- end }}

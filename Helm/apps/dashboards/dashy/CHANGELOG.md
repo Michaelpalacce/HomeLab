@@ -1,3 +1,7 @@
+#### [V2.1.0]
+* Improved health check
+* Latest version
+
 #### [V2.0.0]
 * Added new services
 * Using a records now

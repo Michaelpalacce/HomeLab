@@ -124,7 +124,7 @@ dashboard!
 - Run: `ansible-playbook -i inventory playbooks/install/main.yml --tags setup`
 
 ### Setting up monitoring
-- Run `ansible-playbook -i inventory playbooks/monitoring/main.yml` Initialize Prometheus and Grafana
+- Run `ansible-playbook -i inventory playbooks/apps/app/main.yml --extra-vars "appName=monitoring"` Initialize Prometheus and Grafana
 - Go to http://{{CLUSTER_URI}}:30010
 - Username: admin  Password: admin
 - It will prompt you to change the password
@@ -169,50 +169,33 @@ Service account: jenkins
 
 # Setting up apps
 
-### Setting up BabyBuddy
-- Run `ansible-playbook -i inventory playbooks/apps/babybuddy/main.yml`
+### Setting up any app:
+- Run `ansible-playbook -i inventory playbooks/apps/app/main.yml --extra-vars "appName=APP_NAME_HERE"`
 
-### Setting up postgresql
-- Run `ansible-playbook -i inventory playbooks/apps/postgresql/main.yml`
-
-### Setting up grocy
-- Run `ansible-playbook -i inventory playbooks/apps/grocy/main.yml`
 
 ### Setting up n8n
-- Setup: `Setting up postgresql`
+- Setup app postgresql
 - Wait for pgAdmin to be up and running, login with credentials specific in values.
 - Add server. Hostname: `postgresql.postgresql`. Username: `postgresql`. Password: `postgresql`
 - Create new database n8n
 - Create a new user n8n and give it permissions to the n8n db
-- Run `ansible-playbook -i inventory playbooks/apps/n8n/main.yml`
-
-### Setting up archivebox
-- Run `ansible-playbook -i inventory playbooks/apps/archivebox/main.yml`
+- Run `ansible-playbook -i inventory playbooks/apps/app/main.yml --extra-vars "appName=n8n"`
 
 ### Setting up wikijs
-- Setup: `Setting up postgresql`
+- Setup app postgresql
 - Wait for pgAdmin to be up and running, login with credentials specific in values.
 - Add server. Hostname: `postgresql.postgresql`. Username: `postgresql`. Password: `postgresql`
 - Create new database wikijs
 - Create a new user wikijs and give it permissions to the wikijs db
-- Run `ansible-playbook -i inventory playbooks/apps/wikijs/main.yml`
-
-### Setting up diagrams
-- Run `ansible-playbook -i inventory playbooks/apps/diagrams/main.yml`
-
-### Setting up UptimeKuma
-- Run `ansible-playbook -i inventory playbooks/apps/uptimekuma/main.yml`
-
-### Setting up Node-Red
-- Run `ansible-playbook -i inventory playbooks/apps/nodered/main.yml`
+- Run `ansible-playbook -i inventory playbooks/apps/app/main.yml --extra-vars "appName=wikijs"`
 
 ### Setting up storage ( syncthing + ServerEmulator )
-- Run `ansible-playbook -i inventory playbooks/apps/storage/main.yml`
+- Run `ansible-playbook -i inventory playbooks/apps/app/main.yml --extra-vars "appName=storage"`
 - Go to your other device and add this one for syncthing :)
 - For ServerEmulator you can use the root:toor credentials
 
 ### Setting up Vikunja
-- Setup: `Setting up postgresql`
+- Setup app postgresql
 - Wait for pgAdmin to be up and running, login with credentials specific in values.
 - Add server. Hostname: `postgresql.postgresql`. Username: `postgresql`. Password: `postgresql`
 - Create new database vikunja
@@ -220,21 +203,21 @@ Service account: jenkins
 - IF YOU WANT SMTP: Go to the vikunja Helm values and modify the smtp settings. Change enabled to true and enter your 
   email details ( please use an app password instead of your actual password to your mail client ). Note that gmail settings 
   are entered but you can choose to use any smtp client you wish
-- Run `ansible-playbook -i inventory playbooks/apps/vikunja/main.yml`
+- Run `ansible-playbook -i inventory playbooks/apps/app/main.yml --extra-vars "appName=vikunja"`
 - 
 ### Setting up Wallabag
-- Setup: `Setting up postgresql`
+- Setup app postgresql
 - Wait for pgAdmin to be up and running, login with credentials specific in values.
 - Add server. Hostname: `postgresql.postgresql`. Username: `postgresql`. Password: `postgresql`
 - The wallabag docker image creates a postgresql user and db itself
 - Make sure to edit the values.yaml and change the `domainName` to your own one.
-- Run `ansible-playbook -i inventory playbooks/apps/wallabag/main.yml`
+- Run `ansible-playbook -i inventory playbooks/apps/app/main.yml --extra-vars "appName=wallabag"`
 
 ### Setting up Media Services
 - Read `Helm/apps/media/README.md` on some of the decisions taken
 - I have decided I will use a pi called `ubunutu-1` for this purpose
 - Run `kubectl label no ubuntu-1 type=media`
-- Run `ansible-playbook -i inventory playbooks/apps/media/main.yml`
+- Run `ansible-playbook -i inventory playbooks/apps/app/main.yml --extra-vars "appName=media"`
 
 # DNS A records in  unbound
 ##### dashy.home.me
@@ -301,15 +284,6 @@ Service account: jenkins
 # Backups
 You can use a longhorn backup. NOTE: XFS does not work correctly with backups. IF you are using a xfs drive, longhorn
 is not the way.
-
-# Experimental !!!!!!!!!!!!!!!!
-
-### Installing rancher ( Manual process. I personally would not recommend it :) if you won't be installing apps )
-* Run `kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.5.3/cert-manager.yaml` to install cert-manager that rancher needs
-* Run `helm repo add rancher-stable https://releases.rancher.com/server-charts/stable`
-* Run `helm repo update`
-* Run `helm install rancher rancher-stable/rancher --namespace cattle-system --create-namespace --set hostname=rancher.local`
-* Patch the rancher service to port 30031
 
 # Increasing PVC/volume Size
 Longhorn requires a few manual steps to achieve this.

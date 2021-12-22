@@ -1,6 +1,6 @@
 dashy:
     image: stefangenov/dashy
-    tag: v1.8.5-1
+    tag: 1.9.3
     nodePort: 32222
     port: 80
     resources:
