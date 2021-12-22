@@ -28,41 +28,41 @@ data:
             url: https://babybuddy.home.me
           - title: Wallabag
             description: Self-hosted Pocket!
-            icon: /png/wallabag.png
+            icon: hl-wallabag
             url: http://{{ .clusterUrl }}:30116
           - title: Whoogle
             description: Self-Hosted Google
-            icon: /png/whoogle.png
+            icon: hl-whooglesearch
             url: http://{{ .clusterUrl }}:30018
 
       - name: Automation
         items:
           - title: N8N
             description: Self hosted IFTTT
-            icon: /png/n8n.png
+            icon: hl-n8n
             url: https://n8n.home.me
           - title: Node-Red
             description: Low-code automation
-            icon: /png/nodered.png
+            icon: hl-nodered
             url: https://nodered.home.me
 
       - name: Media
         items:
           - title: Jellyfin
             description: Tv Shows Stream
-            icon: /png/jellyfin.png
+            icon: hl-jellyfin
             url: https://jellyfin.home.me
       - name: CI/CD
         items:
           - title: Jenkins
             description: CI/CD Pipeline for my projects
-            icon: /png/jenkins.png
+            icon: hl-jenkins
             url: https://jenkins.home.me
       - name: Knowledge Base And Tasks
         items:
           - title: Wiki.JS
             description: Self hosted wiki
-            icon: /png/wikijs.png
+            icon: hl-wikijs
             url: https://wikijs.home.me
           - title: Vikunja
             description: Tasks
@@ -70,13 +70,13 @@ data:
             url: https://vikunja.home.me
           - title: Diagrams
             description: Make diagrams in your browser
-            icon: /png/draw.png
+            icon: hl-draw
             url: https://diagrams.home.me
       - name: Storage
         items:
           - title: Syncthing
             description: Sync multiple devices
-            icon: /png/syncthing.png
+            icon: hl-syncthing
             url: http://{{ .clusterUrl }}:30110
           - title: ServerEmulator
             description: Backup
@@ -84,45 +84,45 @@ data:
             url: https://server.home.me
           - title: Synology
             description: NAS
-            icon: /png/synology.png
+            icon: hl-synology
             url: https://nas.home.me
       - name: Downloaders
         items:
           - title: Radarr
             description: Movies Downloader
-            icon: /png/radarr.png
+            icon: hl-radarr
             url: https://radarr.home.me
           - title: Readarr
             description: Ebook Library Downloader
-            icon: /png/readarr.png
+            icon: hl-readarr
             url: https://readarr.home.me
           - title: Sonarr
             description: Shows Downloader
-            icon: /png/sonarr.png
+            icon: hl-sonarr
             url: https://sonarr.home.me
       - name: Monitoring
         items:
           - title: Grafana
             description: Monitoring
-            icon: /png/grafana.png
+            icon: hl-grafana
             url: https://grafana.home.me
           - title: Prometheus
             description: Monitoring
-            icon: /png/prometheus.png
+            icon: hl-prometheus
             url: https://prometheus.home.me
           - title: Uptime Kuma
             description: Uptime Monitor
-            icon: /png/uptime-kuma.png
+            icon: hl-uptime-kuma
             url: https://uptimekuma.home.me
       - name: Infrastructure
         items:
           - title: Longhorn Storage
             description: Block Storage for kubernetes
-            icon: /png/longhorn.png
+            icon: hl-longhorn
             url: https://longhorn.home.me
           - title: Nginx Proxy Manager
             description: Best Proxy Ever Web UI
-            icon: /png/nginxproxymanager.png
+            icon: hl-nginxproxymanager
             url: http://{{ .clusterUrl }}:81
           - title: Router
             description: Router location
@@ -131,17 +131,17 @@ data:
         items:
           - title: Transmission
             description: Torrent
-            icon: /png/transmission.png
+            icon: hl-transmission
             url: https://transmission.home.me
           - title: Jackett
             description: Torrent indexer
-            icon: /png/jackett.png
+            icon: hl-jackett
             url: http://{{ .clusterUrl }}:30034
       - name: Databases
         items:
           - title: pgAdmin
             description: PostgreSQL admin pannel
-            icon: /png/pgadmin.png
+            icon: hl-pgadmin
             url: https://pgadmin.home.me
       - name: Personal
         items:

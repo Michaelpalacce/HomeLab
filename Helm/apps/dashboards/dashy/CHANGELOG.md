@@ -1,3 +1,6 @@
+#### [V2.2.0]
+* Changed so dashy no longer uses /png but instead uses the hl- pattern
+
 #### [V2.1.1]
 * Reverted health check
 
