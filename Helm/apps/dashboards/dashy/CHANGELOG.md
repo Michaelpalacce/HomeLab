@@ -1,3 +1,6 @@
+#### [V2.1.1]
+* Reverted health check
+
 #### [V2.1.0]
 * Improved health check
 * Latest version

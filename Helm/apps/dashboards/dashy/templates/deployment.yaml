@@ -43,9 +43,8 @@ spec:
                       failureThreshold: 20
                       initialDelaySeconds: 360
                       timeoutSeconds: 5
-                      exec:
-                          command:
-                              - yarn health-check
+                      tcpSocket:
+                        port: {{ .port }}
 
             restartPolicy: Always
             volumes:
