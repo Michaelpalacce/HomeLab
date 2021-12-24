@@ -127,6 +127,14 @@ data:
           - title: Router
             description: Router location
             url: http://192.168.1.1
+          - title: Pi-Hole-Main
+            description: Main PiHole
+            icon: hl-pihole
+            url: http://192.168.1.63/admin
+          - title: Pi-Hole-Backup
+            description: Backup PiHole
+            icon: hl-pihole
+            url: http://192.168.1.120/admin
       - name: Torrents
         items:
           - title: Transmission
