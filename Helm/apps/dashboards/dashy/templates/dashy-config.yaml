@@ -24,8 +24,8 @@ data:
         items:
           - title: BabyBuddy
             description: Baby Monitor
-            icon: favicon
-            url: https://babybuddy.home.me
+            icon: mdi-baby
+            url: https://babybuddy.stefangenov.site
           - title: Wallabag
             description: Self-hosted Pocket!
             icon: hl-wallabag
@@ -40,38 +40,38 @@ data:
           - title: N8N
             description: Self hosted IFTTT
             icon: hl-n8n
-            url: https://n8n.home.me
+            url: https://n8n.stefangenov.site
           - title: Node-Red
             description: Low-code automation
             icon: hl-nodered
-            url: https://nodered.home.me
+            url: https://nodered.stefangenov.site
 
       - name: Media
         items:
           - title: Jellyfin
             description: Tv Shows Stream
             icon: hl-jellyfin
-            url: https://jellyfin.home.me
+            url: https://jellyfin.stefangenov.site
       - name: CI/CD
         items:
           - title: Jenkins
             description: CI/CD Pipeline for my projects
             icon: hl-jenkins
-            url: https://jenkins.home.me
+            url: https://jenkins.stefangenov.site
       - name: Knowledge Base And Tasks
         items:
           - title: Wiki.JS
             description: Self hosted wiki
             icon: hl-wikijs
-            url: https://wikijs.home.me
+            url: https://wikijs.stefangenov.site
           - title: Vikunja
             description: Tasks
             icon: hl-vikunja
-            url: https://vikunja.home.me
+            url: https://vikunja.stefangenov.site
           - title: Diagrams
             description: Make diagrams in your browser
             icon: hl-draw
-            url: https://diagrams.home.me
+            url: https://diagrams.stefangenov.site
       - name: Storage
         items:
           - title: Syncthing
@@ -80,46 +80,46 @@ data:
             url: http://{{ .clusterUrl }}:30110
           - title: ServerEmulator
             description: Backup
-            icon: serveremulator.png
-            url: https://server.home.me
+            icon: mdi-server
+            url: https://server.stefangenov.site
           - title: Synology
             description: NAS
             icon: hl-synology
-            url: https://nas.home.me
+            url: https://nas.stefangenov.site
       - name: Downloaders
         items:
           - title: Radarr
             description: Movies Downloader
             icon: hl-radarr
-            url: https://radarr.home.me
+            url: https://radarr.stefangenov.site
           - title: Readarr
             description: Ebook Library Downloader
             icon: hl-readarr
-            url: https://readarr.home.me
+            url: https://readarr.stefangenov.site
           - title: Sonarr
             description: Shows Downloader
             icon: hl-sonarr
-            url: https://sonarr.home.me
+            url: https://sonarr.stefangenov.site
       - name: Monitoring
         items:
           - title: Grafana
             description: Monitoring
             icon: hl-grafana
-            url: https://grafana.home.me
+            url: https://grafana.stefangenov.site
           - title: Prometheus
             description: Monitoring
             icon: hl-prometheus
-            url: https://prometheus.home.me
+            url: https://prometheus.stefangenov.site
           - title: Uptime Kuma
             description: Uptime Monitor
             icon: hl-uptime-kuma
-            url: https://uptimekuma.home.me
+            url: https://uptimekuma.stefangenov.site
       - name: Infrastructure
         items:
           - title: Longhorn Storage
             description: Block Storage for kubernetes
             icon: hl-longhorn
-            url: https://longhorn.home.me
+            url: https://longhorn.stefangenov.site
           - title: Nginx Proxy Manager
             description: Best Proxy Ever Web UI
             icon: hl-nginxproxymanager
@@ -141,7 +141,7 @@ data:
           - title: Transmission
             description: Torrent
             icon: hl-transmission
-            url: https://transmission.home.me
+            url: https://transmission.stefangenov.site
           - title: Jackett
             description: Torrent indexer
             icon: hl-jackett
@@ -151,7 +151,7 @@ data:
           - title: pgAdmin
             description: PostgreSQL admin pannel
             icon: hl-pgadmin
-            url: https://pgadmin.home.me
+            url: https://pgadmin.stefangenov.site
       - name: Personal
         items:
           - title: Website

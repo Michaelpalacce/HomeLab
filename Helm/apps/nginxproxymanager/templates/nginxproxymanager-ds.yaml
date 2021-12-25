@@ -31,7 +31,7 @@ spec:
           volumeMounts:
             - mountPath: /data
               name: data
-            - mountPath: /etc/letsencryt
+            - mountPath: /etc/letsencrypt
               name: letsencrypt
           ports:
             - name: http

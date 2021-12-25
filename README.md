@@ -219,23 +219,6 @@ Service account: jenkins
 - Run `kubectl label no ubuntu-1 type=media`
 - Run `ansible-playbook -i inventory playbooks/apps/app/main.yml --extra-vars "appName=media"`
 
-##### dashy.home.me
-##### vikunja.home.me
-##### n8n.home.me
-##### diagrams.home.me
-##### wikijs.home.me
-##### uptimekuma.home.me
-##### babybuddy.home.me
-##### wallabag.home.me
-##### nas.home.me
-##### nodered.home.me
-##### sonarr.home.me
-##### readarr.home.me
-##### radarr.home.me
-##### transmission.home.me
-##### jackett.home.me
-##### whoogle.home.me
-
 # NodePorts in use
 
 ## Monitoring
