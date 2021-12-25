@@ -24,7 +24,7 @@ data:
         items:
           - title: BabyBuddy
             description: Baby Monitor
-            icon: babybuddy.png
+            icon: favicon
             url: https://babybuddy.home.me
           - title: Wallabag
             description: Self-hosted Pocket!
@@ -66,7 +66,7 @@ data:
             url: https://wikijs.home.me
           - title: Vikunja
             description: Tasks
-            icon: vikunja.png
+            icon: hl-vikunja
             url: https://vikunja.home.me
           - title: Diagrams
             description: Make diagrams in your browser
@@ -126,6 +126,7 @@ data:
             url: http://{{ .clusterUrl }}:81
           - title: Router
             description: Router location
+            icon: hl-router
             url: http://192.168.1.1
           - title: Pi-Hole-Main
             description: Main PiHole
