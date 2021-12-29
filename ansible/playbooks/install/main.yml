@@ -13,6 +13,25 @@
 - hosts: all
   name: Setup Logs and log sizes
   become: yes
+  gather_facts: false
+  tags:
+      - preflight
+      - preflight-kubelet
+  vars_files:
+      - "./vars/main.yml"
+  tasks:
+      - name: Stop kubelet
+        systemd:
+            state: stopped
+            name: kubelet
+
+      - name: Disable kubelet
+        shell: systemctl disable kubelet
+
+- hosts: all
+  name: Setup Logs and log sizes
+  gather_facts: false
+  become: yes
   tags:
       - preflight
       - preflight-logs
@@ -46,6 +65,7 @@
 - hosts: all
   name: Setup Storage dependencies
   become: yes
+  gather_facts: false
   tags:
       - preflight
       - preflight-storage-dependencies
@@ -74,11 +94,13 @@
       - name: Get Cluster info
         shell: kubectl cluster-info
         register: cluster_info
+        ignore_errors: true
 
-      - name: Install k3s
+      - name: Install k3s and setup calico CNI
         shell: "{{ item }}"
         with_items:
-            - curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE="644" INSTALL_K3S_EXEC="--flannel-backend=none --cluster-cidr=10.40.0.0/16 --disable-network-policy --disable=traefik" sh -
+            - curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE="644" INSTALL_K3S_EXEC="--flannel-backend=none --cluster-cidr=10.40.0.0/16 --disable-network-policy --disable=traefik" sh - # this needs improvements
+            - mkdir -p ~/.kube
             - cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
             - kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
         when: cluster_info.stdout.find( 'Kubernetes control plane\u001b[0m is running at' ) == -1
@@ -117,6 +139,48 @@
 
       - name: Join the node to cluster
         command: sh /tmp/join-command.sh
+
+- hosts: init_master
+  name: Setup Longhorn storage
+  become: yes
+  tags:
+      - init
+      - storage
+      - storage-setup-longhorn
+  vars_files:
+      - "./vars/main.yml"
+  tasks:
+      - name: Cleanup old potential chart
+        file:
+            path: longhorn-system
+            state: absent
+
+      - name: Ensure new Chart is present
+        copy:
+            src: ../../../Helm/apps/longhorn-system
+            dest: .
+
+      - name: Install longhorn-system namespace
+        kubernetes.core.helm:
+            name: longhorn-system
+            create_namespace: true
+            release_namespace: longhorn-system
+            chart_ref: longhorn-system/
+            values_files: longhorn-system/values.yaml
+
+      - name: Cleanup chart, we no longer need this
+        file:
+            path: longhorn-system
+            state: absent
+
+      - name: Verify everything is in state Running ( This may take a LONG time if you don't have the images and your internet is slow )
+        shell: kubectl get po -n longhorn-system | awk '{ print $3 }'
+        register: storage_pods_running
+        until: storage_pods_running.stdout.find("ContainerCreating") == -1 and storage_pods_running.stdout.find("BackOff") == -1 and storage_pods_running.stdout.find("Error") == -1 and storage_pods_running.stdout.find("Init") == -1
+        retries: 360
+        delay: 5
+        when: verify_running
+
 
 - hosts: init_master
   name: Setup nginxproxymanager
@@ -181,47 +245,6 @@
             state: absent
 
 - hosts: init_master
-  name: Setup Longhorn storage
-  become: yes
-  tags:
-      - init
-      - storage
-      - storage-setup-longhorn
-  vars_files:
-      - "./vars/main.yml"
-  tasks:
-      - name: Cleanup old potential chart
-        file:
-            path: longhorn-system
-            state: absent
-
-      - name: Ensure new Chart is present
-        copy:
-            src: ../../../Helm/apps/longhorn-system
-            dest: .
-
-      - name: Install longhorn-system namespace
-        kubernetes.core.helm:
-            name: longhorn-system
-            create_namespace: true
-            release_namespace: longhorn-system
-            chart_ref: longhorn-system/
-            values_files: longhorn-system/values.yaml
-
-      - name: Cleanup chart, we no longer need this
-        file:
-            path: longhorn-system
-            state: absent
-
-      - name: Verify everything is in state Running ( This may take a LONG time if you don't have the images and your internet is slow )
-        shell: kubectl get po -n longhorn-system | awk '{ print $3 }'
-        register: storage_pods_running
-        until: storage_pods_running.stdout.find("ContainerCreating") == -1 and storage_pods_running.stdout.find("BackOff") == -1 and storage_pods_running.stdout.find("Error") == -1 and storage_pods_running.stdout.find("Init") == -1
-        retries: 360
-        delay: 5
-        when: verify_running
-
-- hosts: init_master
   name: Setup cgroup-gc to help cleanup cgroups
   become: yes
   tags:
@@ -252,33 +275,46 @@
             path: cgroup-gc
             state: absent
 
-- hosts: init_master
-  name: Setup Unbound DNS Server
+
+- hosts: all
+  name: Fix Multipath
   become: yes
   tags:
-      - unbound
-  vars_files:
-      - "./vars/main.yml"
+      - init
+      - init_multipath
   tasks:
-      - name: Cleanup old potential chart
+      - name: Make sure multipath conf file is missing
         file:
-            path: unbound
+            path: /etc/multipath.conf
             state: absent
 
-      - name: Ensure new Chart is present
+      - name: Copy Multipath File
         copy:
-            src: ../../../Helm/appsunbound
-            dest: .
+            src: ./files/multipath.conf
+            dest: /etc/multipath.conf
 
-      - name: Install unbound namespace
-        kubernetes.core.helm:
-            name: unbound
-            create_namespace: true
-            release_namespace: unbound
-            chart_ref: unbound/
-            values_files: unbound/values.yaml
+      - name: Restart multipath service
+        systemd:
+            state: restarted
+            name: multipathd
 
-      - name: Cleanup chart, we no longer need this
+- hosts: all
+  name: Fix Orphaned Pods
+  become: yes
+  tags:
+      - init
+      - init_orphaned
+  tasks:
+      - name: Make sure multipath conf file is missing
         file:
-            path: unbound
+            path: /home/ubuntu/cleanUpOrphanedPods.py
             state: absent
+
+      - name: Copy cleanUpOrphanedPods File
+        copy:
+            src: ./files/cleanUpOrphanedPods.py
+            dest: /home/ubuntu/cleanUpOrphanedPods.py
+
+      - name: Run in background
+        shell:
+            cmd: python3 /home/ubuntu/clean.py > /var/log/orphanedPodsCleaner &

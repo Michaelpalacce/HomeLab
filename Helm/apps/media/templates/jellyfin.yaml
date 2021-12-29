@@ -17,8 +17,6 @@ spec:
             labels:
                 app: jellyfin
         spec:
-            nodeSelector:
-                type: media
             containers:
                 - name: jellyfin
                   image: {{ .image }}:{{ .tag }}

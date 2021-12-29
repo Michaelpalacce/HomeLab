@@ -7,7 +7,6 @@ metadata:
 spec:
     updateStrategy:
         rollingUpdate:
-            maxSurge: 4
             maxUnavailable: 4
     selector:
         matchLabels:

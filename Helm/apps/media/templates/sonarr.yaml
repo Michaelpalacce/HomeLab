@@ -17,8 +17,6 @@ spec:
             labels:
                 app: sonarr
         spec:
-            nodeSelector:
-                type: media
             containers:
                 - name: sonarr
                   image: {{ .image }}:{{ .tag }}

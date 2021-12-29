@@ -3464,8 +3464,8 @@
 				"allValue": null,
 				"current": {
 					"selected": false,
-					"text": "192.168.1.109:9100",
-					"value": "192.168.1.109:9100"
+					"text": "192.168.1.181:9100",
+					"value": "192.168.1.181:9100"
 				},
 				"datasource": "Prometheus",
 				"definition": "label_values(node_uname_info{job=\"$job\"}, instance)",

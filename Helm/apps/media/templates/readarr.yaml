@@ -17,8 +17,6 @@ spec:
             labels:
                 app: readarr
         spec:
-            nodeSelector:
-                type: media
             containers:
                 - name: readarr
                   image: {{ .image }}:{{ .tag }}

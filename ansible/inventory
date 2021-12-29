@@ -1,11 +1,11 @@
 [init_master]
-192.168.1.109
+PI48-ubuntu
 
 # All the workers with the logging too
 [workers]
-192.168.1.182
-192.168.1.149
-192.168.1.16
+PI48-ubuntu-1
+PI48-ubuntu-2
+PI48-ubuntu-3
 
 # This group has all the servers
 [all:children]

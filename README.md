@@ -32,9 +32,10 @@ Oh boy are you in for a treat :)
 - Now the problem here is not all manufacturers who claim UASP support actually do. The problem may also come from the enclosure.
 - What I noticed is that if you ... ahem "connect the usb half-assed ( aka not fully connected )" the pi boots fine.
  ( easiest way to do this is to first boot it without anything and start slowly inserting the usb ). So do that and let the pi boot
-- After that, login to the Ubuntu Server and run `lsusb`. Get the ID of your SSD ( make sure it's the SSD, it will be named accordingly )
 - `sudo nano /etc/modprobe.d/blacklist.conf` and add a new directive `blacklist uas` somewhere in the file
-- `echo options usb-storage quirks={{ID_OF_YOUR_SSD}}:u | sudo tee /etc/modprobe.d/ssd_quirks.conf`
+- After that, login to the Ubuntu Server and run `lsusb`. Get the ID of your SSD ( make sure it's the SSD, it will be named accordingly )
+- `echo options usb-storage quirks=152d:0562:u | sudo tee /etc/modprobe.d/ssd_quirks.conf` where 152d:0562 was my ID I got from lsusb
+- `echo options usb-storage quirks=152d:0578:u | sudo tee /etc/modprobe.d/ssd_quirks.conf` where 152d:0578 was my ID I got from lsusb
 - `sudo update-initramfs -u` wait for operation to finish and you should be safe to plug in the SSD all the way and boot.
 - This should be all :) Pi will now boot from SSD
 
@@ -46,21 +47,11 @@ Oh boy are you in for a treat :)
 ~~~bash 
 sudo hostnamectl set-hostname {something_unique}
 ~~~
-- Setup openssh-server an ansible user and your admin user
+- Setup an ansible user and do a fix for cgroups
 ~~~bash
-sudo adduser {USERNAME_HERE} # Follow prompts
 sudo adduser ansible # Follow prompts and set password to ansible as well
 sudo usermod -aG sudo ansible # Make ansible user root
-sudo usermod -aG sudo {USERNAME_HERE} # Make your own user root
 sudo sed -i '$ s/$/ cgroup_enable=cpuset cgroup_enable=memory cgroup_memory=1 swapaccount=1/' /boot/firmware/cmdline.txt
-
-sudo apt install -y openssh-server
-sudo vi /etc/ssh/ssh_config
-# Go down and add the following: `AllowUsers ansible ubuntu {USERNAME_HERE}
-~~~
-- Setup python 3.x ( if it isn't already )
-~~~bash
-sudo ln -s /usr/bin/python3 /usr/bin/python
 ~~~
 - That's it. At this point you can abandon the raspberry pis and go to your own machine to continue setup :) 
 
@@ -104,7 +95,6 @@ If you scroll down a bit you will find a list of ports that the services are run
 - Run `ansible-playbook -i inventory playbooks/install/main.yml --tags preflight` At this point you have everything needed to setup kubernetes ( all the needed binaries )
 - Run `ansible-playbook -i inventory playbooks/install/main.yml --tags setup` This will initialize the master on the init_master PI and add all the workers
 - Run `ansible-playbook -i inventory playbooks/install/main.yml --tags init` Inits dashy, longhorn, nginxproxymanager and cgroup-gc
-- Run `ansible-playbook -i inventory playbooks/install/main.yml --tags unbound` Sets up unbound with all the services mapped to the cluster Ips provided. Make sure to edit the values to your own cluster IPs. I am using a Pi-Hole Setup instead of unbound.
 
 ### cgroup-gc
 This is a helm chart that installs a daemonset that will be deployed on all nodes with the purpose of clearing up cgroups.
@@ -312,7 +302,7 @@ I have written a script that will tail /var/log/syslog for the orphaned pod mess
 one. Copy the ./utils/cleanUpOrphanedPods.py script to your pods and run it. When you stop seeing messages that means that there
 are no more orphaned pods, and you can stop the script. This script may take a bit to complete if you have not cleaned any pods for a long time
 so be patient. In the future this may be moved to a CRON job that will do this for you
-If you put the file under /home/ubuntu/clean.py you can execute it with: `ansible -i inventory all -m shell -a "python3 /home/ubuntu/clean.py > /var/log/orphanedPodsCleaner &" -b`
+If you put the file under /home/ubuntu/clean.py you can execute it with: `ansible -i inventory all -m shell -a "python3 /home/ubuntu/cleanUpOrphanedPods.py > /var/log/orphanedPodsCleaner &" -b`
 
 ### Wallabag doesn't want to work correctly, it's giving me a wallabag_internal_settings talbe is not created
 Restarting the deployment helps. No idea why?
@@ -328,3 +318,6 @@ changing the replicas to the failing services to zero and slowly increasing it t
 Check if Longhorn nodes are up or down. If they are down, identify the manager that is failing and see why it is failing.
 In a few cases it has been due to not being able to patch one volume, at that point you can scale down that service to 0 so it can start and later on start it back up and
 all will be good.
+
+### Missing iscsi_tcp kernel module
+Run: `apt install -y linux-modules-extra-raspi && echo 'iscsi_tcp' >> /etc/modules`. Reboot and it should be loaded
