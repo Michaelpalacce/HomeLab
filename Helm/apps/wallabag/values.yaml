@@ -3,7 +3,7 @@ wallabag:
     tag: 2.4.2
     nodePort: 30116
     port: 80
-    domainName: http://192.168.1.182:30116 # change this to yours
+    domainName: https://wallabag.stefangenov.site # change this to yours
     db:
         name: "wallabag"
         username: "wallabag"

@@ -29,7 +29,7 @@ data:
           - title: Wallabag
             description: Self-hosted Pocket!
             icon: hl-wallabag
-            url: http://{{ .clusterUrl }}:30116
+            url: https://wallabag.stefangenov.site
           - title: Whoogle
             description: Self-Hosted Google
             icon: hl-whooglesearch
