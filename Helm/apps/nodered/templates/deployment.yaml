@@ -16,20 +16,11 @@ spec:
         metadata:
             labels:
                 app: nodered
-            annotations:
-              {{- with $ }}
-                checksum/config: {{ include (print $.Template.BasePath "/package-json-config.yaml") . | sha256sum }}
-              {{- end }}
         spec:
             containers:
                 - name: nodered
                   image: {{ .image }}:{{ .tag }}
                   imagePullPolicy: IfNotPresent
-{{/*                  lifecycle:*/}}
-{{/*                      postStart:*/}}
-{{/*                          exec:*/}}
-{{/*                              command:*/}}
-{{/*                                  - /usr/src/node-red && npm i*/}}
 {{- if .resources }}
                   resources:
 {{ toYaml .resources | indent 22 }}
@@ -40,9 +31,6 @@ spec:
                   volumeMounts:
                       - name: data-config
                         mountPath: /data
-{{/*                      - name: config-volume*/}}
-{{/*                        mountPath: /usr/src/node-red/package.json*/}}
-{{/*                        subPath: package.json*/}}
                   livenessProbe:
                       failureThreshold: 5
                       initialDelaySeconds: 120
@@ -61,9 +49,6 @@ spec:
                 - name: data-config
                   persistentVolumeClaim:
                       claimName: nodered-pvc
-                - name: config-volume
-                  configMap:
-                      name: package-json-config
 
 ---
 

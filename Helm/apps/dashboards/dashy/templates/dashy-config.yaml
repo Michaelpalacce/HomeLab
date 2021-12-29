@@ -22,10 +22,10 @@ data:
     sections:
       - name: Apps
         items:
-          - title: BabyBuddy
-            description: Baby Monitor
-            icon: mdi-baby
-            url: https://babybuddy.stefangenov.site
+{{/*          - title: BabyBuddy*/}}
+{{/*            description: Baby Monitor*/}}
+{{/*            icon: mdi-baby*/}}
+{{/*            url: https://babybuddy.stefangenov.site*/}}
           - title: Wallabag
             description: Self-hosted Pocket!
             icon: hl-wallabag
@@ -52,12 +52,12 @@ data:
             description: Tv Shows Stream
             icon: hl-jellyfin
             url: https://jellyfin.stefangenov.site
-      - name: CI/CD
-        items:
-          - title: Jenkins
-            description: CI/CD Pipeline for my projects
-            icon: hl-jenkins
-            url: https://jenkins.stefangenov.site
+{{/*      - name: CI/CD*/}}
+{{/*        items:*/}}
+{{/*          - title: Jenkins*/}}
+{{/*            description: CI/CD Pipeline for my projects*/}}
+{{/*            icon: hl-jenkins*/}}
+{{/*            url: https://jenkins.stefangenov.site*/}}
       - name: Knowledge Base And Tasks
         items:
           - title: Wiki.JS
@@ -157,25 +157,32 @@ data:
           - title: Website
             description: My Website
             url: https://stefangenov.site
+            icon: favicon
           - title: Docker Hub
             description: Docker Hub
             url: https://hub.docker.com/u/stefangenov
+            icon: favicon
           - title: Github
             description: My Github Profile
             url: https://github.com/Michaelpalacce
+            icon: favicon
       - name: External
         items:
           - title: SelfHosted
             description: Reddit r/selfhosted
             url: https://reddit.com/r/selfhosted
+            icon: favicon
           - title: HomeLab
             description: Reddit r/homelab
             url: https://reddit.com/r/homelab
+            icon: favicon
           - title: YouTube
             description: Youtube!
             url: https://youtube.com
+            icon: favicon
           - title: Messenger
             description: Facebook Messenger
             url: https://messenger.com
+            icon: favicon
 
 {{- end }}

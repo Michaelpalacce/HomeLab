@@ -94,7 +94,7 @@ If you scroll down a bit you will find a list of ports that the services are run
 - Run `ansible-galaxy collection install -r playbooks/install/requirements-collections.yml` to install all the needed ansible collections
 - Run `ansible-playbook -i inventory playbooks/install/main.yml --tags preflight` At this point you have everything needed to setup kubernetes ( all the needed binaries )
 - Run `ansible-playbook -i inventory playbooks/install/main.yml --tags setup` This will initialize the master on the init_master PI and add all the workers
-- Run `ansible-playbook -i inventory playbooks/install/main.yml --tags init` Inits dashy, longhorn, nginxproxymanager and cgroup-gc
+- Run `ansible-playbook -i inventory playbooks/install/main.yml --tags init` Inits longhorn, nginxproxymanager and cgroup-gc
 
 ### cgroup-gc
 This is a helm chart that installs a daemonset that will be deployed on all nodes with the purpose of clearing up cgroups.
@@ -206,7 +206,7 @@ Service account: jenkins
 ### Setting up Media Services
 - Read `Helm/apps/media/README.md` on some of the decisions taken
 - I have decided I will use a pi called `ubunutu-1` for this purpose
-- Run `kubectl label no ubuntu-1 type=media`
+- Run `kubectl label no PI48-ubuntu-3 type=media`
 - Run `ansible-playbook -i inventory playbooks/apps/app/main.yml --extra-vars "appName=media"`
 
 # NodePorts in use
@@ -245,17 +245,18 @@ Service account: jenkins
 ##### Vikunja: 30109
 ##### Syncthing: 30110
 ##### WikiJS: 30111
-##### Grocy: 30112
-##### Archivebox: 30113
 ##### N8N: 30114
 ##### Diagrams/Drawio: 30115
 ##### Wallabag: 30116
 ##### Node-Red: 30117
-##### Whoogle: 30018
+##### Whoogle: 30118
 
 # Backups
 You can use a longhorn backup. NOTE: XFS does not work correctly with backups. IF you are using a xfs drive, longhorn
 is not the way.
+
+# Restoring postgres database
+Copy the dump to the postgresql pod and run: `psql -f Backupfile -u postgres` and pray
 
 # Increasing PVC/volume Size
 Longhorn requires a few manual steps to achieve this.
