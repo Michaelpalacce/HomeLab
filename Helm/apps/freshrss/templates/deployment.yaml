@@ -1,0 +1,71 @@
+{{- with .Values.freshrss }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: freshrss
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app: freshrss
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: freshrss
+    template:
+        metadata:
+            labels:
+                app: freshrss
+        spec:
+            containers:
+                - name: freshrss
+                  image: {{ .image }}:{{ .tag }}
+                  imagePullPolicy: IfNotPresent
+{{- if .resources }}
+                  resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+                  ports:
+                      - name: web
+                        containerPort: {{ .port }}
+                  volumeMounts:
+                      - name: app-config
+                        mountPath: /config
+                  env:
+                      - name: PUID
+                        value: "1000"
+                      - name: PGID
+                        value: "1000"
+                      - name: TZ
+                        value: "Europe/Sofia"
+                  livenessProbe:
+                      failureThreshold: 5
+                      initialDelaySeconds: 120
+                      timeoutSeconds: 5
+                      tcpSocket:
+                          port: {{ .port }}
+
+            restartPolicy: Always
+            volumes:
+                - name: app-config
+                  persistentVolumeClaim:
+                      claimName: freshrss-pvc
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: freshrss
+    namespace: {{ $.Release.Namespace }}
+spec:
+    type: NodePort
+    selector:
+        app: freshrss
+    ports:
+        - name: freshrss
+          protocol: TCP
+          port: {{ .port }}
+          nodePort: {{ .nodePort }}
+
+{{- end }}

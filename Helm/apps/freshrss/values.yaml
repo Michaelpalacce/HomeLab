@@ -1,0 +1,17 @@
+freshrss:
+    image: linuxserver/freshrss
+    tag: 1.18.1
+    nodePort: 30119
+    port: 80
+    resources:
+        requests:
+            cpu: 125m
+            memory: 125Mi
+        limits:
+            cpu: 500m
+            memory: 512Mi
+
+storage:
+    dataLocality: "disabled" # or disabled
+    numberOfReplicas: 1
+    configSize: 1Gi

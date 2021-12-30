@@ -179,6 +179,14 @@ Service account: jenkins
 - Create a new user wikijs and give it permissions to the wikijs db
 - Run `ansible-playbook -i inventory playbooks/apps/app/main.yml --extra-vars "appName=wikijs"`
 
+### Setting up freshrss
+- Setup app postgresql
+- Wait for pgAdmin to be up and running, login with credentials specific in values.
+- Add server. Hostname: `postgresql.postgresql`. Username: `postgresql`. Password: `postgresql`
+- Create new database freshrss
+- Create a new user freshrss and give it permissions to the freshrss db
+- Run `ansible-playbook -i inventory playbooks/apps/app/main.yml --extra-vars "appName=freshrss"`
+
 ### Setting up storage ( syncthing + ServerEmulator )
 - Run `ansible-playbook -i inventory playbooks/apps/app/main.yml --extra-vars "appName=storage"`
 - Go to your other device and add this one for syncthing :)
@@ -250,6 +258,7 @@ Service account: jenkins
 ##### Wallabag: 30116
 ##### Node-Red: 30117
 ##### Whoogle: 30118
+##### FreshRSS: 30119
 
 # Backups
 You can use a longhorn backup. NOTE: XFS does not work correctly with backups. IF you are using a xfs drive, longhorn

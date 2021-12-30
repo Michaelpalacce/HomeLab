@@ -17,7 +17,7 @@ data:
           path: https://github.com/Michaelpalacce/HomeLab
     appConfig:
       theme: dracula
-      statusCheck: false
+      statusCheck: true
       enableServiceWorker: true
     sections:
       - name: Apps
@@ -34,6 +34,10 @@ data:
             description: Self-Hosted Google
             icon: hl-whooglesearch
             url: https://whoogle.stefangenov.site
+          - title: FreshRSS
+            description: RSS reader
+            icon: hl-freshrss
+            url: https://freshrss.stefangenov.site
 
       - name: Automation
         items:
