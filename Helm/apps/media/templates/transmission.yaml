@@ -17,6 +17,8 @@ spec:
             labels:
                 app: transmission
         spec:
+            nodeSelector:
+                type: media
             containers:
                 - name: transmission
                   image: {{ .image }}:{{ .tag }}

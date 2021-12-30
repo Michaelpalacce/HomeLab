@@ -45,6 +45,7 @@ data:
             description: Self hosted IFTTT
             icon: hl-n8n
             url: https://n8n.stefangenov.site
+            statusCheck: false
           - title: Node-Red
             description: Low-code automation
             icon: hl-nodered
@@ -146,10 +147,12 @@ data:
             description: Torrent
             icon: hl-transmission
             url: https://transmission.stefangenov.site
+            statusCheck: false
           - title: Jackett
             description: Torrent indexer
             icon: hl-jackett
             url: http://{{ .clusterUrl }}:30034
+            statusCheck: false
       - name: Databases
         items:
           - title: pgAdmin

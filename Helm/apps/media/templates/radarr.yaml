@@ -17,6 +17,8 @@ spec:
             labels:
                 app: radarr
         spec:
+            nodeSelector:
+                type: media
             containers:
                 - name: radarr
                   image: {{ .image }}:{{ .tag }}
