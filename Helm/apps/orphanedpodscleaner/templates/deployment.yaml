@@ -1,0 +1,97 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: orphanedpodscleaner
+    namespace: {{ $.Release.Namespace }}
+data:
+    orphanedpodscleaner: |
+
+        import subprocess
+        import select
+        import re
+        import shutil
+
+        logfile = '/var/log/syslog'
+        f = subprocess.Popen(['tail', '-F', logfile], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        p = select.poll()
+        p.register(f.stdout)
+
+        print(f"Started polling {logfile}")
+        while True:
+            if p.poll(1):
+                line = f.stdout.readline().decode('utf-8')
+                result = re.search('orphaned pod \\\\"([0-9a-zA-Z-]*)\\\\"', line)
+                if result:
+                    toDelete = '/var/lib/kubelet/pods/' + result.group(1)
+                    try:
+                        shutil.rmtree(toDelete)
+                        print(toDelete + " was deleted")
+                    except:
+                        print(toDelete + " could not be deleted")
+
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+    name: orphanedpodscleaner
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app: orphanedpodscleaner
+spec:
+    updateStrategy:
+        rollingUpdate:
+            maxUnavailable: 4
+    selector:
+        matchLabels:
+            name: orphanedpodscleaner
+    template:
+        metadata:
+            labels:
+                name: orphanedpodscleaner
+        spec:
+            {{- with .Values.tolerations }}
+            tolerations:
+              {{- range . }}
+                 - key: {{ .key }}
+                   effect: {{ .effect }}
+                   {{- if .value }}
+                   value: {{ .value }}
+                   {{- end }}
+              {{- end }}
+            {{- end }}
+            containers:
+                - resources:
+                      requests:
+                          cpu: 5m
+                          memory: 500Ki
+                      limits:
+                          cpu: 5m
+                          memory: 50Mi  # This crashes on startup with a 5Mi limit, but only uses about 320Ki after that.
+                  securityContext:
+                      privileged: true
+                  image: python:3.9
+                  name: orphanedpodscleaner
+                  command: ["python3"]
+                  args:
+                      - /usr/local/bin/orphanedpodscleaner
+                  volumeMounts:
+                      - name: scriptsrc
+                        mountPath: /usr/local/bin
+                      - name: logs
+                        mountPath: /var/log
+                        readOnly: true
+                      - name: kubeletpath
+                        mountPath: /var/lib/kubelet/pods
+            volumes:
+                - name: scriptsrc
+                  configMap:
+                      name: orphanedpodscleaner
+                      defaultMode: 0755
+                - name: kubeletpath
+                  hostPath:
+                      path: /var/lib/kubelet/pods
+                      type: Directory
+                - name: logs
+                  hostPath:
+                      path: /var/log
+                      type: Directory
