@@ -308,13 +308,10 @@ Longhorn requires a few manual steps to achieve this.
 
 ### Orphaned pods.
 There is a chance that you may have force deleted some pods or an error may have occurred. In that case a lot of orphaned pods volumes will be left without being deleted.
-I have written a script that will tail /var/log/syslog for the orphaned pod messages and delete them once it has matched
-one. Copy the ./utils/cleanUpOrphanedPods.py script to your pods and run it. When you stop seeing messages that means that there
-are no more orphaned pods, and you can stop the script. This script may take a bit to complete if you have not cleaned any pods for a long time
-so be patient. In the future this may be moved to a CRON job that will do this for you
-If you put the file under /home/ubuntu/clean.py you can execute it with: `ansible -i inventory all -m shell -a "python3 /home/ubuntu/cleanUpOrphanedPods.py > /var/log/orphanedPodsCleaner &" -b`
 
-### Wallabag doesn't want to work correctly, it's giving me a wallabag_internal_settings talbe is not created
+If you want a solution to this there is an `orphanedpodscleaner` app under `Helm/apps` that will deploy a daemonset to solve this issue.
+
+### Wallabag doesn't want to work correctly, it's giving me a wallabag_internal_settings table is not created
 Restarting the deployment helps. No idea why?
 
 ### Issues with Longhorn volumes mounting
