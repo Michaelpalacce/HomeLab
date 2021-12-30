@@ -128,7 +128,7 @@ data:
           - title: Nginx Proxy Manager
             description: Best Proxy Ever Web UI
             icon: hl-nginxproxymanager
-            url: http://{{ .clusterUrl }}:81
+            url: https://nginx.stefangenov.site
           - title: Router
             description: Router location
             icon: hl-router
