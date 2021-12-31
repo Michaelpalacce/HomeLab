@@ -1,0 +1,18 @@
+authelia:
+    image: authelia/authelia
+    tag: 4.33
+    nodePort: 30119
+    port: 9091
+    resources:
+        requests:
+            cpu: 256m
+            memory: 256Mi
+        limits:
+            cpu: 1
+            memory: 1.5Gi
+
+
+storage:
+    dataLocality: "disabled" # or disabled
+    numberOfReplicas: 1
+    configSize: 2Gi

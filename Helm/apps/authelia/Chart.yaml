@@ -1,0 +1,9 @@
+apiVersion: v2
+appVersion: 1.0.0
+description: This chart is used to install authelia
+maintainers:
+- email: sgenov94@gmail.com
+  name: Stefan Genov
+name: authelia
+type: application
+version: 1.0.0

@@ -1,0 +1,62 @@
+{{- with .Values.redis }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: redis
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app: redis
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: redis
+    template:
+        metadata:
+            labels:
+                app: redis
+        spec:
+            containers:
+                - name: redis
+                  image: {{ .image }}:{{ .tag }}
+                  imagePullPolicy: IfNotPresent
+{{- if .resources }}
+                  resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+                  ports:
+                      - name: redis
+                        containerPort: {{ .port }}
+                  volumeMounts:
+                      - name: data
+                        mountPath: /data
+                  livenessProbe:
+                      failureThreshold: 5
+                      initialDelaySeconds: 60
+                      timeoutSeconds: 5
+                      tcpSocket:
+                          port: {{ .port }}
+
+            restartPolicy: Always
+            volumes:
+                - name: data
+                  persistentVolumeClaim:
+                      claimName: redis-pvc
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: redis
+    namespace: {{ $.Release.Namespace }}
+spec:
+    selector:
+        app: redis
+    ports:
+        - name: redis
+          protocol: TCP
+          port: {{ .port }}
+
+{{- end }}
