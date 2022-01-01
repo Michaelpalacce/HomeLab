@@ -1,7 +1,7 @@
 kind: StorageClass
 apiVersion: storage.k8s.io/v1
 metadata:
-    name: authelia-sc
+    name: readflow-sc
 provisioner: driver.longhorn.io
 allowVolumeExpansion: true
 parameters:
@@ -15,11 +15,11 @@ parameters:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-    name: authelia-pvc
+    name: readflow-pvc
 spec:
     accessModes:
         - ReadWriteMany
-    storageClassName: authelia-sc
+    storageClassName: readflow-sc
     resources:
         requests:
-            storage: {{ .Values.storage.configSize }}
+            storage: {{ .Values.storage.dataSize }}

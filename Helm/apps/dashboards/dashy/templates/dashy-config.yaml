@@ -30,6 +30,10 @@ data:
             description: Self-hosted Pocket!
             icon: hl-wallabag
             url: https://wallabag.stefangenov.site
+          - title: Readflow
+            description: Self-hosted Pocket!
+            icon: hl-readflow
+            url: https://readflow.stefangenov.site
           - title: Whoogle
             description: Self-Hosted Google
             icon: hl-whooglesearch

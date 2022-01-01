@@ -1,32 +1,39 @@
-{{- with .Values.redis }}
+{{- with .Values.readflow }}
 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: redis
+    name: readflow
     namespace: {{ $.Release.Namespace }}
     labels:
-        app: redis
+        app: readflow
 spec:
     replicas: 1
     selector:
         matchLabels:
-            app: redis
+            app: readflow
     template:
         metadata:
             labels:
-                app: redis
+                app: readflow
         spec:
             containers:
-                - name: redis
+                - name: readflow
                   image: {{ .image }}:{{ .tag }}
                   imagePullPolicy: IfNotPresent
+                  env:
+                      - name: READFLOW_DB
+                        value: "postgres://{{ .db.username }}:{{ .db.password }}@{{ .db.host }}:{{ .db.port}}/{{ .db.name }}?sslmode=disable"
+                      - name: READFLOW_PUBLIC_URL
+                        value: "{{ .publicUri }}"
+{{/*                      - name: READFLOW_LISTEN_METRICS*/}}
+{{/*                        value: ":9090"*/}}
 {{- if .resources }}
                   resources:
 {{ toYaml .resources | indent 22 }}
 {{- end }}
                   ports:
-                      - name: redis
+                      - name: readflow
                         containerPort: {{ .port }}
                   volumeMounts:
                       - name: data
@@ -42,20 +49,22 @@ spec:
             volumes:
                 - name: data
                   persistentVolumeClaim:
-                      claimName: redis-pvc
+                      claimName: readflow-pvc
 
 ---
 
 apiVersion: v1
 kind: Service
 metadata:
-    name: redis
+    name: readflow
     namespace: {{ $.Release.Namespace }}
 spec:
+    type: NodePort
     selector:
-        app: redis
+        app: readflow
     ports:
-        - name: redis
+        - name: readflow
           port: {{ .port }}
+          nodePort: {{ .nodePort }}
 
 {{- end }}

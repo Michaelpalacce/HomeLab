@@ -3,7 +3,7 @@ nginxporxymanager:
   tag: 2.9.12
 
 storage:
-  numberOfReplicas: 1
+  numberOfReplicas: 3
   dataLocality: "best-effort"
   dataSize: 5Gi
   letsencryptSize: 5Gi

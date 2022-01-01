@@ -13,5 +13,5 @@ nodered:
 
 storage:
     dataLocality: "best-effort" # or disabled
-    numberOfReplicas: 1
+    numberOfReplicas: 3
     configSize: 5Gi
