@@ -1,0 +1,82 @@
+{{- with .Values.postgresql14 }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: postgresql14
+    namespace: {{ $.Release.Namespace }}
+spec:
+    replicas: 1
+    strategy:
+        rollingUpdate:
+            maxUnavailable: 0
+    selector:
+        matchLabels:
+            app: postgresql14
+    template:
+        metadata:
+            labels:
+                app: postgresql14
+            name: postgresql14
+        spec:
+            securityContext:
+                runAsUser: 0
+                runAsGroup: 0
+                fsGroup: 0
+            containers:
+                - name: postgresql14
+                  image: {{ .image }}:{{ .tag }}
+                  imagePullPolicy: IfNotPresent
+                  ports:
+                      - containerPort: {{ .port }}
+                        name: postgresql14
+                        protocol: TCP
+                  env:
+                      - name: POSTGRES_USER
+                        value: {{ .db.username }}
+                      - name: POSTGRES_PASSWORD
+                        value: {{ .db.password }}
+                  livenessProbe:
+                      exec:
+                          command:
+                              - /bin/sh
+                              - -c
+                              - exec pg_isready -U "postgres" -h 127.0.0.1 -p {{ .port }}
+                      failureThreshold: 6
+                      initialDelaySeconds: 30
+                      periodSeconds: 10
+                      successThreshold: 1
+                      timeoutSeconds: 5
+{{- if .resources }}
+                  resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+                  volumeMounts:
+                      - mountPath: /dev/shm
+                        name: dshm
+                      - mountPath: /var/lib/postgresql/data
+                        subPath: data
+                        name: data
+            volumes:
+                - name: data
+                  persistentVolumeClaim:
+                      claimName: postgresql14-data-pvc
+                - name: dshm
+                  persistentVolumeClaim:
+                      claimName: postgresql14-dshm-pvc
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: postgresql14
+    namespace: {{ $.Release.Namespace }}
+spec:
+    selector:
+        app: postgresql14
+    ports:
+        - name: postgresql14
+          protocol: TCP
+          port: {{ .port }}
+
+{{- end }}

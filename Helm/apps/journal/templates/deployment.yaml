@@ -1,0 +1,67 @@
+{{- with .Values.journal }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: journal
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app: journal
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: journal
+    template:
+        metadata:
+            labels:
+                app: journal
+        spec:
+            containers:
+                - name: journal
+                  image: {{ .image }}:{{ .tag }}
+                  imagePullPolicy: IfNotPresent
+{{- if .resources }}
+                  resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+                  env:
+                      - name: DATABASE_URL
+                        value: "postgres://{{ .db.username }}:{{ .db.password }}@{{ .db.host }}:{{ .db.port }}/{{ .db.name }}?sslmode=disable"
+                      - name: SITE_DOMAIN
+                        value: "journal.stefangenov.site"
+                      - name: CIPHER_KEY
+                        value: "YZ8gUJUjyR690iTxEMsg7MdYfLkJilb7J57y4R3ShWc="
+                      - name: SHARING_TOKEN_CIPHER_IV
+                        value: "Wylr3MaHUjI1u54u6XRc9A=="
+                      - name: SECRET_KEY_BASE
+                        value: "H6zywX6ps8GR7nsCJU2GeTeh7ZuH4Q"
+                  ports:
+                      - name: web
+                        containerPort: {{ .port }}
+                  livenessProbe:
+                      failureThreshold: 5
+                      initialDelaySeconds: 120
+                      timeoutSeconds: 5
+                      tcpSocket:
+                          port: {{ .port }}
+
+            restartPolicy: Always
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: journal
+    namespace: {{ $.Release.Namespace }}
+spec:
+    type: NodePort
+    selector:
+        app: journal
+    ports:
+        - name: journal
+          protocol: TCP
+          port: {{ .port }}
+          nodePort: {{ .nodePort }}
+
+{{- end }}

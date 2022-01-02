@@ -30,10 +30,6 @@ data:
             description: Self-hosted Pocket!
             icon: hl-wallabag
             url: https://wallabag.stefangenov.site
-          - title: Readflow
-            description: Self-hosted Pocket!
-            icon: hl-readflow
-            url: https://readflow.stefangenov.site
           - title: Whoogle
             description: Self-Hosted Google
             icon: hl-whooglesearch
@@ -42,6 +38,10 @@ data:
             description: RSS reader
             icon: hl-freshrss
             url: https://freshrss.stefangenov.site
+          - title: Journal
+            description: Diary!
+            icon: favicon
+            url: https://journal.stefangenov.site
 
       - name: Automation
         items:

@@ -20,6 +20,21 @@ postgresql:
             cpu: 1
             memory: 2Gi
 
+postgresql14:
+    image: postgres
+    tag: 14.1
+    port: 5432
+    db:
+        username: postgres
+        password: postgres
+    resources:
+        requests:
+            cpu: 250m
+            memory: 256Mi
+        limits:
+            cpu: 1
+            memory: 2Gi
+
 pgadmin:
     image: dpage/pgadmin4
     tag: 6.1

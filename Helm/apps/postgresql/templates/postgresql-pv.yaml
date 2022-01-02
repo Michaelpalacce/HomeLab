@@ -55,6 +55,33 @@ spec:
             storage: {{ .dataSize }}
 
 ---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: postgresql14-dshm-pvc
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: postgresql-sc
+    resources:
+        requests:
+            storage: {{ .dshmSize }}
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: postgresql14-data-pvc
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: postgresql-sc
+    resources:
+        requests:
+            storage: {{ .dataSize }}
+
+---
 
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -70,4 +97,4 @@ spec:
 
 ---
 
-  {{- end }}
+{{- end }}

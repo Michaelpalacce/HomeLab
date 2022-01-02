@@ -1,0 +1,19 @@
+journal:
+    image: stefangenov/journal
+    tag: 1.0.0
+    nodePort: 30120
+    port: 3000
+    db:
+        username: journal
+        password: journal
+        name: journal
+        host: postgresql.postgresql
+        port: 5432
+    resources:
+        requests:
+            cpu: 100m
+            memory: 100Mi
+        limits:
+            cpu: 250m
+            memory: 512Mi
+
