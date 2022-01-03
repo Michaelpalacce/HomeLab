@@ -38,10 +38,6 @@ data:
             description: RSS reader
             icon: hl-freshrss
             url: https://freshrss.stefangenov.site
-          - title: Journal
-            description: Diary!
-            icon: favicon
-            url: https://journal.stefangenov.site
 
       - name: Automation
         items:
@@ -94,7 +90,7 @@ data:
           - title: Synology
             description: NAS
             icon: hl-synology
-            url: https://nas.stefangenov.site
+            url: http://192.168.1.20
       - name: Downloaders
         items:
           - title: Radarr

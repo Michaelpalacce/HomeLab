@@ -39,7 +39,7 @@ spec:
                       - name: web
                         containerPort: {{ .port }}
                   volumeMounts:
-                      - name: app-data
+                      - name: config-data
                         mountPath: /config
                       - name: downloads-data
                         mountPath: /downloads
@@ -54,9 +54,9 @@ spec:
 
             restartPolicy: Always
             volumes:
-                - name: app-data
-                  persistentVolumeClaim:
-                      claimName: sonarr-config-volume
+                - name: config-data
+                  hostPath:
+                      path: /mnt/media/sonarr
                 - name: shows-data-nfs
                   persistentVolumeClaim:
                       claimName: shows-volume-nfs

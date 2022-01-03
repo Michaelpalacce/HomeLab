@@ -60,14 +60,14 @@ spec:
                       timeoutSeconds: 5
                       httpGet:
                           port: {{ .port }}
-                          path: /api/info
+                          path: /login
                   readinessProbe:
                       failureThreshold: 5
                       initialDelaySeconds: 30
                       timeoutSeconds: 5
                       httpGet:
                           port: {{ .port }}
-                          path: /api/info
+                          path: /login
 
             restartPolicy: Always
 

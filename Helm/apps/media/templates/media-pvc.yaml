@@ -83,20 +83,6 @@ spec:
 ---
 
 apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-    name: sonarr-config-volume
-spec:
-    accessModes:
-        - ReadWriteMany
-    storageClassName: media-config-sc
-    resources:
-        requests:
-            storage: 1Gi
-
----
-
-apiVersion: v1
 kind: PersistentVolume
 metadata:
     name: shows-volume-nfs-pv
