@@ -259,6 +259,8 @@ Service account: jenkins
 ##### Node-Red: 30117
 ##### Whoogle: 30118
 ##### FreshRSS: 30119
+##### changedetection.io: 30120
+##### Homechart: 30121
 
 # Backups
 You can use a longhorn backup. NOTE: XFS does not work correctly with backups. IF you are using a xfs drive, longhorn

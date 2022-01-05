@@ -1,0 +1,69 @@
+{{- with .Values.homechart }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: homechart
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app: homechart
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: homechart
+    template:
+        metadata:
+            labels:
+                app: homechart
+        spec:
+            containers:
+                - name: homechart
+                  image: {{ .image }}:{{ .tag }}
+                  imagePullPolicy: IfNotPresent
+{{- if .resources }}
+                  resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+                  ports:
+                      - name: web
+                        containerPort: {{ .port }}
+                  env:
+                      - name: PUID
+                        value: "1000"
+                      - name: PGID
+                        value: "1000"
+                      - name: TZ
+                        value: "Europe/Sofia"
+                      - name: HOMECHART_POSTGRESQL_USERNAME
+                        value: "{{ .db.username }}"
+                      - name: HOMECHART_POSTGRESQL_PASSWORD
+                        value: "{{ .db.password }}"
+                      - name: HOMECHART_POSTGRESQL_HOSTNAME
+                        value: "{{ .db.host }}"
+                  livenessProbe:
+                      failureThreshold: 5
+                      initialDelaySeconds: 120
+                      timeoutSeconds: 5
+                      tcpSocket:
+                          port: {{ .port }}
+            restartPolicy: Always
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: homechart
+    namespace: {{ $.Release.Namespace }}
+spec:
+    type: NodePort
+    selector:
+        app: homechart
+    ports:
+        - name: homechart
+          protocol: TCP
+          port: {{ .port }}
+          nodePort: {{ .nodePort }}
+
+{{- end }}

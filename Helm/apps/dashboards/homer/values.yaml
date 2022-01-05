@@ -6,6 +6,6 @@ homer:
         limits:
             cpu: 50m
             memory: 100Mi
-    clusterUrl: 192.168.1.182
+    clusterUrl: 192.168.1.2
     ingress:
         path: /

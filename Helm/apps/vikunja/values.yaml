@@ -10,7 +10,7 @@ vikunja:
         image: vikunja/api
         tag: 0.18.1
         port: 3456
-        frontendUrl: "http://192.168.1.182:30109"
+        frontendUrl: "https://vikunja.stefangenov.site"
         db:
             username: vikunja
             password: vikunja

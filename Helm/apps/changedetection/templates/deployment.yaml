@@ -1,44 +1,45 @@
-{{- with .Values.journal }}
+{{- with .Values.changedetection }}
 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: journal
+    name: changedetection
     namespace: {{ $.Release.Namespace }}
     labels:
-        app: journal
+        app: changedetection
 spec:
     replicas: 1
     selector:
         matchLabels:
-            app: journal
+            app: changedetection
     template:
         metadata:
             labels:
-                app: journal
+                app: changedetection
         spec:
             containers:
-                - name: journal
+                - name: changedetection
                   image: {{ .image }}:{{ .tag }}
                   imagePullPolicy: IfNotPresent
 {{- if .resources }}
                   resources:
 {{ toYaml .resources | indent 22 }}
 {{- end }}
-                  env:
-                      - name: DATABASE_URL
-                        value: "postgres://{{ .db.username }}:{{ .db.password }}@{{ .db.host }}:{{ .db.port }}/{{ .db.name }}?sslmode=disable"
-                      - name: SITE_DOMAIN
-                        value: "journal.stefangenov.site"
-                      - name: CIPHER_KEY
-                        value: "YZ8gUJUjyR690iTxEMsg7MdYfLkJilb7J57y4R3ShWc="
-                      - name: SHARING_TOKEN_CIPHER_IV
-                        value: "Wylr3MaHUjI1u54u6XRc9A=="
-                      - name: SECRET_KEY_BASE
-                        value: "H6zywX6ps8GR7nsCJU2GeTeh7ZuH4Q"
                   ports:
                       - name: web
                         containerPort: {{ .port }}
+                  volumeMounts:
+                      - name: data-config
+                        mountPath: /datastore
+                  env:
+                      - name: PUID
+                        value: "1000"
+                      - name: PGID
+                        value: "1000"
+                      - name: TZ
+                        value: "Europe/Sofia"
+                      - name: BASE_URL
+                        value: "{{ .baseUrl }}"
                   livenessProbe:
                       failureThreshold: 5
                       initialDelaySeconds: 120
@@ -47,19 +48,24 @@ spec:
                           port: {{ .port }}
 
             restartPolicy: Always
+            volumes:
+                - name: data-config
+                  persistentVolumeClaim:
+                      claimName: changedetection-pvc
+
 ---
 
 apiVersion: v1
 kind: Service
 metadata:
-    name: journal
+    name: changedetection
     namespace: {{ $.Release.Namespace }}
 spec:
     type: NodePort
     selector:
-        app: journal
+        app: changedetection
     ports:
-        - name: journal
+        - name: changedetection
           protocol: TCP
           port: {{ .port }}
           nodePort: {{ .nodePort }}

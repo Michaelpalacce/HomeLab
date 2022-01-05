@@ -1,0 +1,18 @@
+homechart:
+    image: candiddev/homechart
+    tag: latest
+    port: 3000
+    nodePort: 30121
+    db:
+        host: postgresql14.postgresql
+        port: 5432
+        username: homechart
+        password: homechart
+        database: homechart
+    resources:
+        requests:
+            cpu: 500m
+            memory: 125Mi
+        limits:
+            cpu: 1
+            memory: 1Gi

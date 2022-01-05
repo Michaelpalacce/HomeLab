@@ -38,6 +38,10 @@ data:
             description: RSS reader
             icon: hl-freshrss
             url: https://freshrss.stefangenov.site
+          - title: Homechart
+            description: Home EVERYTHING!
+            icon: favicon
+            url: https://homechart.stefangenov.site
 
       - name: Automation
         items:
@@ -50,6 +54,10 @@ data:
             description: Low-code automation
             icon: hl-nodered
             url: https://nodered.stefangenov.site
+          - title: Changedetection
+            description: Monitors changes to websites
+            icon: hl-changedetection-io
+            url: https://changedetection.stefangenov.site
 
       - name: Media
         items:
