@@ -1,3 +1,6 @@
+#### [V2.3.0]
+* Removed homechart added budgeting
+
 #### [V2.2.0]
 * Changed so dashy no longer uses /png but instead uses the hl- pattern
 

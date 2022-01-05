@@ -50,6 +50,12 @@ spec:
                       timeoutSeconds: 5
                       tcpSocket:
                           port: {{ .port }}
+                  readinessProbe:
+                      failureThreshold: 30
+                      initialDelaySeconds: 30
+                      timeoutSeconds: 5
+                      tcpSocket:
+                          port: {{ .port }}
 
             restartPolicy: Always
             volumes:

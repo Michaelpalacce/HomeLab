@@ -38,10 +38,10 @@ data:
             description: RSS reader
             icon: hl-freshrss
             url: https://freshrss.stefangenov.site
-          - title: Homechart
-            description: Home EVERYTHING!
+          - title: Firefly III
+            description: Budget Buddy!
             icon: favicon
-            url: https://homechart.stefangenov.site
+            url: https://firefly.stefangenov.site/login
 
       - name: Automation
         items:

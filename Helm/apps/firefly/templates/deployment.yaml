@@ -1,24 +1,24 @@
-{{- with .Values.homechart }}
+{{- with .Values.firefly }}
 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: homechart
+    name: firefly
     namespace: {{ $.Release.Namespace }}
     labels:
-        app: homechart
+        app: firefly
 spec:
     replicas: 1
     selector:
         matchLabels:
-            app: homechart
+            app: firefly
     template:
         metadata:
             labels:
-                app: homechart
+                app: firefly
         spec:
             containers:
-                - name: homechart
+                - name: firefly
                   image: {{ .image }}:{{ .tag }}
                   imagePullPolicy: IfNotPresent
 {{- if .resources }}
@@ -28,6 +28,9 @@ spec:
                   ports:
                       - name: web
                         containerPort: {{ .port }}
+                  volumeMounts:
+                      - name: data
+                        mountPath: /var/www/html/storage/upload
                   env:
                       - name: PUID
                         value: "1000"
@@ -35,33 +38,55 @@ spec:
                         value: "1000"
                       - name: TZ
                         value: "Europe/Sofia"
-                      - name: HOMECHART_POSTGRESQL_USERNAME
+                      - name: DB_USERNAME
                         value: "{{ .db.username }}"
-                      - name: HOMECHART_POSTGRESQL_PASSWORD
+                      - name: DB_PASSWORD
                         value: "{{ .db.password }}"
-                      - name: HOMECHART_POSTGRESQL_HOSTNAME
+                      - name: DB_DATABASE
+                        value: "{{ .db.database }}"
+                      - name: DB_HOST
                         value: "{{ .db.host }}"
+                      - name: DB_PORT
+                        value: "{{ .db.port }}"
+                      - name: DB_CONNECTION
+                        value: "{{ .db.type }}"
+                      - name: APP_KEY
+                        value: "{{ .appKey }}"
+                      - name: APP_URL
+                        value: "{{ .appUrl }}"
+                      - name: TRUSTED_PROXIES
+                        value: "**"
                   livenessProbe:
                       failureThreshold: 5
                       initialDelaySeconds: 120
                       timeoutSeconds: 5
                       tcpSocket:
                           port: {{ .port }}
+                  readinessProbe:
+                      failureThreshold: 30
+                      initialDelaySeconds: 30
+                      timeoutSeconds: 5
+                      tcpSocket:
+                          port: {{ .port }}
             restartPolicy: Always
+            volumes:
+                - name: data
+                  persistentVolumeClaim:
+                      claimName: firefly-pvc
 
 ---
 
 apiVersion: v1
 kind: Service
 metadata:
-    name: homechart
+    name: firefly
     namespace: {{ $.Release.Namespace }}
 spec:
     type: NodePort
     selector:
-        app: homechart
+        app: firefly
     ports:
-        - name: homechart
+        - name: firefly
           protocol: TCP
           port: {{ .port }}
           nodePort: {{ .nodePort }}

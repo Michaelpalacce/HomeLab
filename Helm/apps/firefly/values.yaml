@@ -1,0 +1,26 @@
+firefly:
+    image: fireflyiii/core
+    tag: version-5.6.9
+    port: 8080
+    nodePort: 30121
+    appKey: IGzZKLcitjq34dbKJLy8A5IDoCiR1Csl
+    appUrl: https://firefly.stefangenov.site
+    db:
+        type: pgsql
+        host: postgresql14.postgresql
+        port: 5432
+        username: firefly
+        password: firefly
+        database: firefly
+    resources:
+        requests:
+            cpu: 300m
+            memory: 500Mi
+        limits:
+            cpu: 1500m
+            memory: 1.5Gi
+
+storage:
+    dataLocality: "disabled"
+    numberOfReplicas: 1
+    configSize: 5Gi
