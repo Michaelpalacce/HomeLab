@@ -5,13 +5,13 @@ nodered:
     port: 1880
     resources:
         requests:
-            cpu: 512m
+            cpu: 100m
             memory: 512Mi
         limits:
-            cpu: 1000m
+            cpu: 750m
             memory: 2Gi
 
 storage:
     dataLocality: "best-effort" # or disabled
-    numberOfReplicas: 3
+    numberOfReplicas: 1
     configSize: 5Gi

@@ -6,10 +6,10 @@ changedetection:
     baseUrl: changedetection.stefangenov.site
     resources:
         requests:
-            cpu: 125m
+            cpu: 100m
             memory: 125Mi
         limits:
-            cpu: 250m
+            cpu: 150m
             memory: 512Mi
 
 storage:

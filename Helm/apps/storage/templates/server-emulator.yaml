@@ -40,7 +40,7 @@ spec:
                           memory: 250Mi
                       limits:
                           cpu: 250m
-                          memory: 1Gi
+                          memory: 512Mi
                   ports:
                       - containerPort: {{ .port }}
                         protocol: TCP

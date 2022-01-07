@@ -30,7 +30,7 @@ spec:
                         value: "0"
                   resources:
                       requests:
-                          cpu: 125m
+                          cpu: 100m
                           memory: 100Mi
                       limits:
                           cpu: 500m

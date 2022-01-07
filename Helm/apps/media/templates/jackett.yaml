@@ -30,10 +30,10 @@ spec:
                         value: "1000"
                   resources:
                       requests:
-                          cpu: 250m
-                          memory: 250Mi
+                          cpu: 100m
+                          memory: 100Mi
                       limits:
-                          cpu: 1000m
+                          cpu: 750m
                           memory: 1Gi
                   ports:
                       - name: web

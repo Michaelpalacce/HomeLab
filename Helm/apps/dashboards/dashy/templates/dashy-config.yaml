@@ -40,16 +40,16 @@ data:
             url: https://freshrss.stefangenov.site
           - title: Firefly III
             description: Budget Buddy!
-            icon: favicon
+            icon: hl-firefly
             url: https://firefly.stefangenov.site/login
 
       - name: Automation
         items:
-          - title: N8N
-            description: Self hosted IFTTT
-            icon: hl-n8n
-            url: https://n8n.stefangenov.site
-            statusCheck: false
+{{/*          - title: N8N*/}}
+{{/*            description: Self hosted IFTTT*/}}
+{{/*            icon: hl-n8n*/}}
+{{/*            url: https://n8n.stefangenov.site*/}}
+{{/*            statusCheck: false*/}}
           - title: Node-Red
             description: Low-code automation
             icon: hl-nodered
@@ -59,12 +59,12 @@ data:
             icon: hl-changedetection-io
             url: https://changedetection.stefangenov.site
 
-      - name: Media
-        items:
-          - title: Jellyfin
-            description: Tv Shows Stream
-            icon: hl-jellyfin
-            url: https://jellyfin.stefangenov.site
+{{/*      - name: Media*/}}
+{{/*        items:*/}}
+{{/*          - title: Jellyfin*/}}
+{{/*            description: Tv Shows Stream*/}}
+{{/*            icon: hl-jellyfin*/}}
+{{/*            url: https://jellyfin.stefangenov.site*/}}
 {{/*      - name: CI/CD*/}}
 {{/*        items:*/}}
 {{/*          - title: Jenkins*/}}

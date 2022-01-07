@@ -14,10 +14,10 @@ firefly:
         database: firefly
     resources:
         requests:
-            cpu: 300m
-            memory: 500Mi
+            cpu: 100m
+            memory: 100Mi
         limits:
-            cpu: 1500m
+            cpu: 750m
             memory: 1.5Gi
 
 storage:

@@ -5,8 +5,8 @@ diagrams:
     port: 8080 #8443 for https
     resources:
         requests:
-            cpu: 250m
-            memory: 512Mi
+            cpu: 10m
+            memory: 10Mi
         limits:
-            cpu: 500m
-            memory: 1Gi
+            cpu: 150m
+            memory: 250Mi

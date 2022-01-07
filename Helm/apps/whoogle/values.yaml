@@ -5,8 +5,8 @@ whoogle:
     port: 5000
     resources:
         requests:
-            cpu: 512m
-            memory: 256Mi
+            cpu: 10m
+            memory: 100Mi
         limits:
             cpu: 1
             memory: 1Gi

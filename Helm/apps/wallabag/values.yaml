@@ -13,8 +13,8 @@ wallabag:
 
     resources:
         requests:
+            cpu: 100m
+            memory: 100Mi
+        limits:
             cpu: 250m
             memory: 512Mi
-        limits:
-            cpu: 1
-            memory: 1.5Gi

@@ -93,6 +93,22 @@ spec:
                                 key: password
 
                   imagePullPolicy: IfNotPresent
+                  livenessProbe:
+                      failureThreshold: 5
+                      periodSeconds: 10
+                      initialDelaySeconds: 60
+                      successThreshold: 1
+                      tcpSocket:
+                          port: {{ .port }}
+                      timeoutSeconds: 2
+                  readinessProbe:
+                      failureThreshold: 5
+                      periodSeconds: 10
+                      initialDelaySeconds: 5
+                      successThreshold: 1
+                      tcpSocket:
+                          port: {{ .port }}
+                      timeoutSeconds: 2
                   ports:
                       - containerPort: {{ .port }}
                         name: api
@@ -103,6 +119,22 @@ spec:
                 - name: frontend
                   image: {{ .image }}:{{ .tag }}
                   imagePullPolicy: IfNotPresent
+                  livenessProbe:
+                      failureThreshold: 5
+                      periodSeconds: 10
+                      initialDelaySeconds: 60
+                      successThreshold: 1
+                      tcpSocket:
+                          port: {{ .port }}
+                      timeoutSeconds: 2
+                  readinessProbe:
+                      failureThreshold: 5
+                      periodSeconds: 10
+                      initialDelaySeconds: 5
+                      successThreshold: 1
+                      tcpSocket:
+                          port: {{ .port }}
+                      timeoutSeconds: 2
                   ports:
                       - containerPort: {{ .port }}
                         name: frontend
@@ -122,16 +154,19 @@ metadata:
     name: vikunja
     namespace: {{ $.Release.Namespace }}
 spec:
-    type: NodePort
+{{/*    type: NodePort*/}}
     selector:
         app: vikunja
     ports:
-        - name: vikunja
+{{/*        - name: vikunja*/}}
+{{/*          protocol: TCP*/}}
+{{/*          port: {{ .nginx.port }}*/}}
+{{/*          nodePort: {{ .nodePort }}*/}}
+        - name: frontend
           protocol: TCP
-          port: {{ .nginx.port }}
-          nodePort: {{ .nodePort }}
+          port: {{ .frontend.port }}
         - name: api
           protocol: TCP
           port: 3456
-          nodePort: 31111
+{{/*          nodePort: 31111*/}}
 {{- end }}

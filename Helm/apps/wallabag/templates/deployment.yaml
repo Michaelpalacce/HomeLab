@@ -55,14 +55,14 @@ spec:
                       - name: web
                         containerPort: {{ .port }}
                   livenessProbe:
-                      failureThreshold: 5
+                      failureThreshold: 10
                       initialDelaySeconds: 120
                       timeoutSeconds: 5
                       httpGet:
                           port: {{ .port }}
                           path: /login
                   readinessProbe:
-                      failureThreshold: 5
+                      failureThreshold: 30
                       initialDelaySeconds: 30
                       timeoutSeconds: 5
                       httpGet:

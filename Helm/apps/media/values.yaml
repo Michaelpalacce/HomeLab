@@ -14,10 +14,10 @@ jackett:
     tag: 0.20.173
     port: 9117
 
-jellyfin:
-    nodePort: 31001
-    image: jellyfin/jellyfin
-    tag: 10.7.7
+#jellyfin:
+#    nodePort: 31001
+#    image: jellyfin/jellyfin
+#    tag: 10.7.7
 
 radarr:
     nodePort: 31003
