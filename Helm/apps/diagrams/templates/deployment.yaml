@@ -31,13 +31,6 @@ spec:
                   ports:
                       - name: web
                         containerPort: {{ .port }}
-                  livenessProbe:
-                      failureThreshold: 5
-                      initialDelaySeconds: 60
-                      timeoutSeconds: 5
-                      tcpSocket:
-                          port: {{ .port }}
-
             restartPolicy: Always
 
 ---

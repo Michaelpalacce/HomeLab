@@ -28,12 +28,6 @@ spec:
                         value: "/data"
                       - name: SUDO
                         value: "1"
-                  livenessProbe:
-                      failureThreshold: 5
-                      initialDelaySeconds: 60
-                      timeoutSeconds: 5
-                      tcpSocket:
-                          port: {{ .port }}
                   resources:
                       requests:
                           cpu: 100m

@@ -45,15 +45,10 @@ spec:
                       - name: DB_NAME
                         value: "{{ .db.name }}"
                   livenessProbe:
-                      failureThreshold: 5
+                      failureThreshold: 2
                       initialDelaySeconds: 120
-                      timeoutSeconds: 5
-                      tcpSocket:
-                          port: {{ .port }}
-                  readinessProbe:
-                      failureThreshold: 30
-                      initialDelaySeconds: 30
-                      timeoutSeconds: 5
+                      periodSeconds: 120
+                      timeoutSeconds: 2
                       tcpSocket:
                           port: {{ .port }}
 

@@ -45,12 +45,6 @@ spec:
                         mountPath: /downloads
                       - name: shows-data-nfs
                         mountPath: /shows
-                  livenessProbe:
-                      failureThreshold: 5
-                      initialDelaySeconds: 300
-                      timeoutSeconds: 5
-                      tcpSocket:
-                          port: {{ .port }}
 
             restartPolicy: Always
             volumes:

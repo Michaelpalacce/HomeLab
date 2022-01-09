@@ -55,15 +55,9 @@ spec:
                       - name: web
                         containerPort: {{ .port }}
                   livenessProbe:
-                      failureThreshold: 10
+                      failureThreshold: 2
                       initialDelaySeconds: 120
-                      timeoutSeconds: 5
-                      httpGet:
-                          port: {{ .port }}
-                          path: /login
-                  readinessProbe:
-                      failureThreshold: 30
-                      initialDelaySeconds: 30
+                      periodSeconds: 120
                       timeoutSeconds: 5
                       httpGet:
                           port: {{ .port }}

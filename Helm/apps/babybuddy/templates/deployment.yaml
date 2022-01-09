@@ -54,18 +54,6 @@ spec:
                   volumeMounts:
                       - name: app-data
                         mountPath: /config
-                  livenessProbe:
-                      failureThreshold: 5
-                      initialDelaySeconds: 60
-                      timeoutSeconds: 5
-                      tcpSocket:
-                          port: {{ .port }}
-                  readinessProbe:
-                      failureThreshold: 5
-                      initialDelaySeconds: 5
-                      timeoutSeconds: 5
-                      tcpSocket:
-                          port: {{ .port }}
 
             restartPolicy: Always
             volumes:

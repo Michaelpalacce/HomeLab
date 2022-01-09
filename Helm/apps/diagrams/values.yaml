@@ -8,5 +8,5 @@ diagrams:
             cpu: 10m
             memory: 10Mi
         limits:
-            cpu: 150m
+            cpu: 250m
             memory: 250Mi

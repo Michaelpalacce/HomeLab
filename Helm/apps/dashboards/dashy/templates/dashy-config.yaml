@@ -26,10 +26,10 @@ data:
 {{/*            description: Baby Monitor*/}}
 {{/*            icon: mdi-baby*/}}
 {{/*            url: https://babybuddy.stefangenov.site*/}}
-          - title: Wallabag
-            description: Self-hosted Pocket!
-            icon: hl-wallabag
-            url: https://wallabag.stefangenov.site
+{{/*          - title: Wallabag*/}}
+{{/*            description: Self-hosted Pocket!*/}}
+{{/*            icon: hl-wallabag*/}}
+{{/*            url: https://wallabag.stefangenov.site*/}}
           - title: Whoogle
             description: Self-Hosted Google
             icon: hl-whooglesearch
@@ -159,7 +159,7 @@ data:
           - title: Jackett
             description: Torrent indexer
             icon: hl-jackett
-            url: http://{{ .clusterUrl }}:30034
+            url: http://{{ .clusterUrl }}:30034/UI/Dashboard
             statusCheck: false
       - name: Databases
         items:

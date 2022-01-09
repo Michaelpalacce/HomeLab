@@ -28,22 +28,6 @@ spec:
                       - containerPort: {{ .port }}
                         name: http
                         protocol: TCP
-                  livenessProbe:
-                      failureThreshold: 5
-                      periodSeconds: 10
-                      initialDelaySeconds: 60
-                      successThreshold: 1
-                      tcpSocket:
-                          port: {{ .port }}
-                      timeoutSeconds: 2
-                  readinessProbe:
-                      failureThreshold: 5
-                      periodSeconds: 10
-                      initialDelaySeconds: 5
-                      successThreshold: 1
-                      tcpSocket:
-                          port: {{ .port }}
-                      timeoutSeconds: 2
                   volumeMounts:
                       - name: nginx-config-volume
                         mountPath: /etc/nginx/conf.d/default.conf
@@ -94,17 +78,9 @@ spec:
 
                   imagePullPolicy: IfNotPresent
                   livenessProbe:
-                      failureThreshold: 5
-                      periodSeconds: 10
-                      initialDelaySeconds: 60
-                      successThreshold: 1
-                      tcpSocket:
-                          port: {{ .port }}
-                      timeoutSeconds: 2
-                  readinessProbe:
-                      failureThreshold: 5
-                      periodSeconds: 10
-                      initialDelaySeconds: 5
+                      failureThreshold: 2
+                      periodSeconds: 120
+                      initialDelaySeconds: 120
                       successThreshold: 1
                       tcpSocket:
                           port: {{ .port }}
@@ -119,22 +95,6 @@ spec:
                 - name: frontend
                   image: {{ .image }}:{{ .tag }}
                   imagePullPolicy: IfNotPresent
-                  livenessProbe:
-                      failureThreshold: 5
-                      periodSeconds: 10
-                      initialDelaySeconds: 60
-                      successThreshold: 1
-                      tcpSocket:
-                          port: {{ .port }}
-                      timeoutSeconds: 2
-                  readinessProbe:
-                      failureThreshold: 5
-                      periodSeconds: 10
-                      initialDelaySeconds: 5
-                      successThreshold: 1
-                      tcpSocket:
-                          port: {{ .port }}
-                      timeoutSeconds: 2
                   ports:
                       - containerPort: {{ .port }}
                         name: frontend

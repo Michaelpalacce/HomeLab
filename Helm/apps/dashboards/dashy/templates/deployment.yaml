@@ -39,12 +39,6 @@ spec:
                       - name: config-volume
                         mountPath: /app/public/conf.yml
                         subPath: conf.yml
-                  livenessProbe:
-                      failureThreshold: 20
-                      initialDelaySeconds: 360
-                      timeoutSeconds: 5
-                      tcpSocket:
-                        port: {{ .port }}
 
             restartPolicy: Always
             volumes:

@@ -35,17 +35,6 @@ spec:
                   volumeMounts:
                       - name: config-volume
                         mountPath: /www/assets
-                  readinessProbe:
-                      failureThreshold: 10
-                      timeoutSeconds: 5
-                      tcpSocket:
-                          port: 8080
-                  livenessProbe:
-                      failureThreshold: 5
-                      initialDelaySeconds: 10
-                      timeoutSeconds: 5
-                      tcpSocket:
-                          port: 8080
 
             restartPolicy: Always
             volumes:

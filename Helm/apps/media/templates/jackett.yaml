@@ -42,9 +42,10 @@ spec:
                       - name: app-data
                         mountPath: /config
                   livenessProbe:
-                      failureThreshold: 5
-                      initialDelaySeconds: 300
+                      failureThreshold: 2
+                      initialDelaySeconds: 120
                       timeoutSeconds: 5
+                      periodSeconds: 120
                       tcpSocket:
                           port: {{ .port }}
 

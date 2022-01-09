@@ -13,5 +13,5 @@ uptimekuma:
 
 storage:
     dataLocality: "best-effort" # or disabled
-    numberOfReplicas: 2
+    numberOfReplicas: 1
     size: 10Gi

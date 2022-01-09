@@ -43,14 +43,6 @@ spec:
                         value: {{ .security.username }}
                       - name: PGADMIN_DEFAULT_PASSWORD
                         value: {{ .security.password }}
-                  livenessProbe:
-                      tcpSocket:
-                          port: {{ .port }}
-                      failureThreshold: 6
-                      initialDelaySeconds: 60
-                      periodSeconds: 10
-                      successThreshold: 1
-                      timeoutSeconds: 5
 ---
 
 apiVersion: v1

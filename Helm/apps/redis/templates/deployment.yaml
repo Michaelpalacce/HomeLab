@@ -32,8 +32,9 @@ spec:
                       - name: data
                         mountPath: /data
                   livenessProbe:
-                      failureThreshold: 5
-                      initialDelaySeconds: 60
+                      failureThreshold: 2
+                      initialDelaySeconds: 120
+                      periodSeconds: 120
                       timeoutSeconds: 5
                       tcpSocket:
                           port: {{ .port }}

@@ -32,14 +32,9 @@ spec:
                       - name: data-config
                         mountPath: /data
                   livenessProbe:
-                      failureThreshold: 5
+                      failureThreshold: 2
                       initialDelaySeconds: 120
-                      timeoutSeconds: 5
-                      tcpSocket:
-                          port: {{ .port }}
-                  readinessProbe:
-                      failureThreshold: 100
-                      initialDelaySeconds: 30
+                      periodSeconds: 120
                       timeoutSeconds: 5
                       tcpSocket:
                           port: {{ .port }}

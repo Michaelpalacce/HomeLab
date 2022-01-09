@@ -45,13 +45,6 @@ spec:
                         mountPath: /downloads
                       - name: books-data-nfs
                         mountPath: /books
-                  livenessProbe:
-                      failureThreshold: 5
-                      initialDelaySeconds: 300
-                      timeoutSeconds: 5
-                      tcpSocket:
-                          port: {{ .port }}
-
             restartPolicy: Always
             volumes:
                 - name: app-data

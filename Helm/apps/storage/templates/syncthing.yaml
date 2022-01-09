@@ -48,12 +48,6 @@ spec:
                         mountPath: /config
                       - name: data-volume
                         mountPath: /data
-                  livenessProbe:
-                      failureThreshold: 5
-                      initialDelaySeconds: 60
-                      timeoutSeconds: 5
-                      tcpSocket:
-                          port: {{ .port }}
 
             restartPolicy: Always
             volumes:

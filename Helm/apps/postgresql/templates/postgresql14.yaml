@@ -41,10 +41,9 @@ spec:
                               - /bin/sh
                               - -c
                               - exec pg_isready -U "postgres" -h 127.0.0.1 -p {{ .port }}
-                      failureThreshold: 6
-                      initialDelaySeconds: 30
-                      periodSeconds: 10
-                      successThreshold: 1
+                      failureThreshold: 2
+                      initialDelaySeconds: 120
+                      periodSeconds: 120
                       timeoutSeconds: 5
 {{- if .resources }}
                   resources:
