@@ -24,6 +24,14 @@ data:
         # A scrape configuration containing exactly one endpoint to scrape:
         # Here it's Prometheus itself.
         scrape_configs:
+          - job_name: 'uptimekuma'
+            scheme: http
+            static_configs:
+                - targets:
+                      - 'uptimekuma.uptimekuma.svc.cluster.local:3001'
+            basic_auth: # Only needed if authentication is enabled (default)
+                username: "{{ .scrapers.uptimekuma.username }}"
+                password: "{{ .scrapers.uptimekuma.password }}"
           - job_name: 'kubernetes-nodes'
             scheme: https
             tls_config:
@@ -69,4 +77,4 @@ data:
               replacement: hostName
               target_label: hostName
 
-{{- end }}
+        {{- end }}

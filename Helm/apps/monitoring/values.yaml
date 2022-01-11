@@ -15,6 +15,10 @@ prometheus:
     nodePort: 30011
 #   How long will data scraped by prometheus be kept on the fs
     retentionTime: 7d
+    scrapers:
+        uptimekuma:
+            username: admin
+            password: admin123
 
 nodeExporter:
     image: prom/node-exporter

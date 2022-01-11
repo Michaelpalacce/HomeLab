@@ -84,6 +84,24 @@
 
 - hosts: init_master
   name: Setup master k3s
+  gather_facts: no
+  become: yes
+  tags:
+      - TEST
+  vars_files:
+      - "./vars/main.yml"
+  tasks:
+      - name: Get installation script
+        get_url:
+            url: https://get.k3s.io
+            dest: ./k3s-install.sh
+            mode: 0750
+
+      - name: Install k3s and setup calico CNI
+        shell: "K3S_KUBECONFIG_MODE=\"644\" INSTALL_K3S_EXEC=\"--flannel-backend=none --cluster-cidr=10.40.0.0/16 --disable-network-policy --disable=traefik\" ./k3s-install.sh"
+
+- hosts: init_master
+  name: Setup master k3s
   become: yes
   tags:
       - setup
@@ -96,10 +114,18 @@
         register: cluster_info
         ignore_errors: true
 
-      - name: Install k3s and setup calico CNI
+      - name: Get installation script
+        get_url:
+            url: https://get.k3s.io
+            dest: ./k3s-install.sh
+            mode: 0750
+
+      - name: Install k3s
+        shell: "K3S_KUBECONFIG_MODE=\"644\" INSTALL_K3S_EXEC=\"--flannel-backend=none --cluster-cidr=10.40.0.0/16 --disable-network-policy --disable=traefik\" ./k3s-install.sh"
+
+      - name: Setup k3s and setup calico CNI
         shell: "{{ item }}"
         with_items:
-            - curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE="644" INSTALL_K3S_EXEC="--flannel-backend=none --cluster-cidr=10.40.0.0/16 --disable-network-policy --disable=traefik" sh - # this needs improvements
             - mkdir -p ~/.kube
             - cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
             - kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
