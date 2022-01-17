@@ -43,3 +43,4 @@
 ##### changedetection.io: 30120
 ##### Firefly III: 30121
 ##### Trilium: 30122
+##### CyberChef: 30123

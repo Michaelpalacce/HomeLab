@@ -1,9 +1,9 @@
 apiVersion: v2
 appVersion: 1.0.0
-description: This chart is used to install trilium
+description: This chart is used to install cyberchef
 maintainers:
 - email: sgenov94@gmail.com
   name: Stefan Genov
-name: trilium
+name: cyberchef
 type: application
 version: 1.0.0

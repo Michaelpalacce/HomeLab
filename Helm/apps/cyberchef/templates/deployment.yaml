@@ -1,0 +1,63 @@
+{{- with .Values.cyberchef }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: cyberchef
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app: cyberchef
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: cyberchef
+    template:
+        metadata:
+            labels:
+                app: cyberchef
+        spec:
+            containers:
+                - name: cyberchef
+                  image: {{ .image }}:{{ .tag }}
+                  imagePullPolicy: IfNotPresent
+{{- if .resources }}
+                  resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+                  ports:
+                      - name: web
+                        containerPort: {{ .port }}
+                  env:
+                      - name: PUID
+                        value: "1000"
+                      - name: PGID
+                        value: "1000"
+                  livenessProbe:
+                      failureThreshold: 2
+                      initialDelaySeconds: 120
+                      periodSeconds: 120
+                      timeoutSeconds: 2
+                      tcpSocket:
+                          port: {{ .port }}
+
+            restartPolicy: Always
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: cyberchef
+    namespace: {{ $.Release.Namespace }}
+spec:
+    type: NodePort
+    selector:
+        app: cyberchef
+    ports:
+        - name: cyberchef
+          protocol: TCP
+          port: {{ .port }}
+          nodePort: {{ .nodePort }}
+
+{{- end }}

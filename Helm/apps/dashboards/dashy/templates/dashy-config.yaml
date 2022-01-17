@@ -59,6 +59,13 @@ data:
             icon: hl-changedetection-io
             url: https://changedetection.stefangenov.site
 
+      - name: Tools
+        items:
+          - title: CyberChef
+            description: Swiss Army Knife of the internet
+            icon: hl-cyberchef
+            url: https://cyberchef.stefangenov.site
+
 {{/*      - name: Media*/}}
 {{/*        items:*/}}
 {{/*          - title: Jellyfin*/}}
