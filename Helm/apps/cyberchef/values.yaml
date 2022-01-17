@@ -5,8 +5,8 @@ cyberchef:
     port: 8000
     resources:
         requests:
-            cpu: 100m
+            cpu: 10m
             memory: 100Mi
         limits:
-            cpu: 200m
-            memory: 500Mi
+            cpu: 150m
+            memory: 200Mi
