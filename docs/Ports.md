@@ -42,3 +42,4 @@
 ##### FreshRSS: 30119
 ##### changedetection.io: 30120
 ##### Firefly III: 30121
+##### Trilium: 30122

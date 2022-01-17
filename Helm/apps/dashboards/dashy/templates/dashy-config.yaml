@@ -81,6 +81,10 @@ data:
             description: Tasks
             icon: hl-vikunja
             url: https://vikunja.stefangenov.site
+          - title: Trilium
+            description: Note taking
+            icon: hl-trilium
+            url: https://trilium.stefangenov.site
           - title: Diagrams
             description: Make diagrams in your browser
             icon: hl-draw
