@@ -1,7 +1,7 @@
 nodered:
     image: nodered/node-red
-    tag: 2.1.4-1-16
-    nodePort: 30117
+    tag: 2.1.6-16
+#    nodePort: 30117
     port: 1880
     resources:
         requests:

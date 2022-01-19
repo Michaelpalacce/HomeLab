@@ -1,3 +1,7 @@
+#### [V2.0.0]
+* Removed NodePort
+* Moved to official image as they now have an arm build
+
 #### [V1.3.0]
 * Latest version
 

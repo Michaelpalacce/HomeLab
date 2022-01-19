@@ -77,13 +77,17 @@ metadata:
     name: firefly
     namespace: {{ $.Release.Namespace }}
 spec:
+    {{- with .nodePort }}
     type: NodePort
+    {{- end }}
     selector:
         app: firefly
     ports:
         - name: firefly
           protocol: TCP
           port: {{ .port }}
+          {{- with .nodePort }}
           nodePort: {{ .nodePort }}
+          {{- end }}
 
 {{- end }}

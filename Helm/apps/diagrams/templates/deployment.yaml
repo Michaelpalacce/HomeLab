@@ -41,13 +41,17 @@ metadata:
     name: diagrams
     namespace: {{ $.Release.Namespace }}
 spec:
+    {{- with .nodePort }}
     type: NodePort
+    {{- end }}
     selector:
         app: diagrams
     ports:
         - name: diagrams
           protocol: TCP
           port: {{ .port }}
-          nodePort: {{ .nodePort }}
+          {{- with .nodePort }}
+          nodePort: {{ . }}
+          {{- end }}
 
 {{- end }}

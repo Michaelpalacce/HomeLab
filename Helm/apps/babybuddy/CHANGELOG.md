@@ -1,3 +1,6 @@
+#### [V2.1.0]
+* Removed NodePort
+
 #### [V2.0.0]
 * Migrated to postgres
 

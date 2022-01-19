@@ -49,13 +49,17 @@ metadata:
     name: uptimekuma
     namespace: {{ $.Release.Namespace }}
 spec:
+    {{- with .nodePort }}
     type: NodePort
+    {{- end }}
     selector:
         app: uptimekuma
     ports:
         - name: uptimekuma
           protocol: TCP
           port: {{ .port }}
-          nodePort: {{ .nodePort }}
+          {{- with .nodePort }}
+          nodePort: {{ . }}
+          {{- end }}
 
 {{- end }}

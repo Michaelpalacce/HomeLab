@@ -1,3 +1,7 @@
+#### [V2.0.0]
+* Removed NodePort
+* New Version
+
 #### [V1.1.0]
 * Removed the unnecessary configmap
 

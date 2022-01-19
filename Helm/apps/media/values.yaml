@@ -3,15 +3,15 @@ storage:
 
 transmission:
     image: linuxserver/transmission
-    tag: 2021.11.18
-    nodePort: 30035
+    tag: version-3.00-r2
+#    nodePort: 30035
     username: username
     password: password
 
 jackett:
     nodePort: 30034
     image: linuxserver/jackett
-    tag: 0.20.173
+    tag: 0.20.399
     port: 9117
 
 #jellyfin:
@@ -20,20 +20,20 @@ jackett:
 #    tag: 10.7.7
 
 radarr:
-    nodePort: 31003
+#    nodePort: 31003
     image: linuxserver/radarr
-    tag: nightly-version-4.0.0.5597
+    tag: 4.0.2-develop
     port: 7878
 
 readarr:
-    nodePort: 31002
+#    nodePort: 31002
     image: linuxserver/readarr
     tag: nightly-version-0.1.0.1137
     port: 8787
 
 sonarr:
-    nodePort: 31004
+#    nodePort: 31004
     image: linuxserver/sonarr
-    tag: develop-version-3.0.6.1405
+    tag: 3.0.6
     port: 8989
 

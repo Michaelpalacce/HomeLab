@@ -1,13 +1,13 @@
 syncthing:
     image: linuxserver/syncthing
-    tag: v1.18.2-ls61
-    nodePort: 30110
+    tag: 1.18.6
+#    nodePort: 30110
     port: 8384
 
 serveremulator:
     image: stefangenov/server
-    tag: 22.4.1
-    nodePort: 30108
+    tag: 23.0.0
+#    nodePort: 30108
     port: 80
 
 storage:

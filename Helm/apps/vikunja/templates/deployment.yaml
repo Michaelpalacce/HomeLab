@@ -50,6 +50,7 @@ spec:
                         value: postgres
                       - name: VIKUNJA_DATABASE_DATABASE
                         value: {{ .db.name }}
+                      {{- with $.Values.vikunja.smtp }}
                       - name: VIKUNJA_MAILER_ENABLED
                         valueFrom:
                             secretKeyRef:
@@ -75,6 +76,7 @@ spec:
                             secretKeyRef:
                                 name: smtp-settings
                                 key: password
+                      {{- end }}
 
                   imagePullPolicy: IfNotPresent
                   livenessProbe:

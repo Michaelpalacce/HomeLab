@@ -1,3 +1,6 @@
+#### [V2.3.0]
+* Removed NodePort
+
 #### [V2.2.0]
 * Moved logs and monitoring data to nfs
 

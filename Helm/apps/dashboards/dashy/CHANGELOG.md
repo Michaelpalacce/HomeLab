@@ -1,3 +1,6 @@
+#### [V2.4.0]
+* Removed NodePort
+
 #### [V2.3.0]
 * Removed homechart added budgeting
 

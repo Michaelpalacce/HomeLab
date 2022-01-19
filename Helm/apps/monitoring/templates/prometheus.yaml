@@ -102,13 +102,17 @@ metadata:
     name: prometheus
     namespace: {{ $.Release.Namespace }}
 spec:
+    {{- with .nodePort }}
     type: NodePort
+    {{- end }}
     selector:
         app: prometheus
     ports:
         - name: prometheus
           protocol: TCP
           port: {{ .port }}
-          nodePort: {{ .nodePort }}
+          {{- with .nodePort }}
+          nodePort: {{ . }}
+          {{- end }}
 
 {{- end }}

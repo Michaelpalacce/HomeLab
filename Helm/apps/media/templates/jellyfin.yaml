@@ -85,12 +85,16 @@ metadata:
 spec:
     selector:
         app: jellyfin
+    {{- with .nodePort }}
     type: NodePort
+    {{- end }}
     ports:
         - name: web
           port: 8096
           protocol: TCP
           targetPort: 8096
-          nodePort: {{ .nodePort }}
+          {{- with .nodePort }}
+          nodePort: {{ . }}
+          {{- end }}
 
 {{- end }}

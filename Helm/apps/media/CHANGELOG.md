@@ -1,3 +1,7 @@
+#### [V4.0.0]
+* Removed NodePort mostly
+* Newer versions of apps
+
 #### [V3.0.0]
 * Improved image tags, updated old ones
 * Migrated to NFS

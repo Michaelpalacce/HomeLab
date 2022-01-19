@@ -1,3 +1,7 @@
+#### [V2.0.0]
+* New version
+* Removed NodePort
+
 #### [V1.3.0]
 * New version
 

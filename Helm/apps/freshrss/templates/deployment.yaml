@@ -53,13 +53,17 @@ metadata:
     name: freshrss
     namespace: {{ $.Release.Namespace }}
 spec:
+    {{- with .nodePort }}
     type: NodePort
+    {{- end }}
     selector:
         app: freshrss
     ports:
         - name: freshrss
           protocol: TCP
           port: {{ .port }}
-          nodePort: {{ .nodePort }}
+          {{- with .nodePort }}
+          nodePort: {{ . }}
+          {{- end }}
 
 {{- end }}

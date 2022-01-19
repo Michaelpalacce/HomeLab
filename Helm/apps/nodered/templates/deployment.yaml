@@ -53,13 +53,17 @@ metadata:
     name: nodered
     namespace: {{ $.Release.Namespace }}
 spec:
+    {{- with .nodePort }}
     type: NodePort
+    {{- end }}
     selector:
         app: nodered
     ports:
         - name: nodered
           protocol: TCP
           port: {{ .port }}
-          nodePort: {{ .nodePort }}
+          {{- with .nodePort }}
+          nodePort: {{ . }}
+          {{- end }}
 
 {{- end }}

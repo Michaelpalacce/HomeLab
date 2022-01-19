@@ -1,3 +1,6 @@
+#### [V1.4.0]
+* Removed NodePort
+
 #### [V1.3.0]
 * Now using postgres as a database
 

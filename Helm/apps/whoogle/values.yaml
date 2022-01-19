@@ -1,12 +1,12 @@
 whoogle:
     image: benbusby/whoogle-search
     tag: latest
-    nodePort: 30118
+#    nodePort: 30118
     port: 5000
     resources:
         requests:
             cpu: 10m
             memory: 100Mi
         limits:
-            cpu: 1
-            memory: 1Gi
+            cpu: 500
+            memory: 500Mi

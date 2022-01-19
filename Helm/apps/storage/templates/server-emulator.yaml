@@ -62,12 +62,16 @@ metadata:
 spec:
     selector:
         app: serveremulator
+    {{- with .nodePort }}
     type: NodePort
+    {{- end }}
     ports:
         - name: web
           port: {{ .port }}
           protocol: TCP
           targetPort: {{ .port }}
-          nodePort: {{ .nodePort }}
+          {{- with .nodePort }}
+          nodePort: {{ . }}
+          {{- end }}
 
 {{- end }}

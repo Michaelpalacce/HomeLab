@@ -86,13 +86,18 @@ metadata:
     name: transmission
     namespace: {{ $.Release.Namespace }}
 spec:
+    {{- with .nodePort }}
     type: NodePort
+    {{- end }}
     selector:
         app: transmission
     ports:
         - name: transmission
           protocol: TCP
           port: 9091
-          nodePort: {{ .nodePort }}
+          {{- with .nodePort }}
+          nodePort: {{ . }}
+          {{- end }}
+
 
 {{- end }}

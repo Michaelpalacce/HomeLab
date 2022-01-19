@@ -1,7 +1,7 @@
 babybuddy:
     image: linuxserver/babybuddy
     tag: 1.9.1
-    nodePort: 30100
+#    nodePort: 30100
     port: 8000
     replicas: 1
     db:

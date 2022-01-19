@@ -69,13 +69,17 @@ metadata:
     name: babybuddy
     namespace: {{ $.Release.Namespace }}
 spec:
+{{- with .nodePort }}
     type: NodePort
+{{- end }}
     selector:
         app: babybuddy
     ports:
         - name: babybuddy
           protocol: TCP
           port: {{ .port }}
-          nodePort: {{ .nodePort }}
+          {{- with .nodePort }}
+          nodePort: {{ . }}
+          {{- end }}
 
 {{- end }}

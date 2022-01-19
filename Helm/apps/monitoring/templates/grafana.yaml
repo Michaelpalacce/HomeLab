@@ -1,3 +1,4 @@
+{{- with .Values.grafana }}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -5,7 +6,7 @@ metadata:
     labels:
         app: grafana
     name: grafana
-    namespace: {{ .Release.Namespace }}
+    namespace: {{ $.Release.Namespace }}
 spec:
     strategy:
         rollingUpdate:
@@ -25,11 +26,11 @@ spec:
                 fsGroup: 472
             restartPolicy: Always
             containers:
-                - image: {{ .Values.grafana.image }}:{{ .Values.grafana.tag }}
+                - image: {{ .image }}:{{ .tag }}
                   imagePullPolicy: IfNotPresent
                   name: grafana
                   ports:
-                      - containerPort: {{ .Values.grafana.port }}
+                      - containerPort: {{ .port }}
                         name: http-grafana
                         protocol: TCP
                   resources:
@@ -37,8 +38,8 @@ spec:
                           cpu: 100m
                           memory: 500Mi
                       limits:
-                          cpu: {{ .Values.grafana.limits.cpu }}
-                          memory: {{ .Values.grafana.limits.memory }}
+                          cpu: {{ .limits.cpu }}
+                          memory: {{ .limits.memory }}
                   volumeMounts:
                       - mountPath: /var/lib/grafana
                         name: grafana
@@ -52,15 +53,21 @@ apiVersion: v1
 kind: Service
 metadata:
     name: grafana
-    namespace: {{ .Release.Namespace }}
+    namespace: {{ $.Release.Namespace }}
 spec:
     ports:
-        - port: {{ .Values.grafana.port }}
-          nodePort: {{ .Values.grafana.nodePort }}
+        - port: {{ .port }}
+          {{- with .nodePort }}
+          nodePort: {{ . }}
+          {{- end }}
           protocol: TCP
           targetPort: http-grafana
           name: grafana
     selector:
         app: grafana
     sessionAffinity: None
+    {{- with .nodePort }}
     type: NodePort
+    {{- end }}
+
+{{- end }}

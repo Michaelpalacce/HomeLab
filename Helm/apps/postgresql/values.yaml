@@ -37,9 +37,9 @@ postgresql14:
 
 pgadmin:
     image: dpage/pgadmin4
-    tag: 6.1
+    tag: 6.4
     port: 80
-    nodePort: 30033
+#    nodePort: 30033
     security:
         username: postgres@local.dev
         password: postgres
@@ -48,5 +48,5 @@ pgadmin:
             cpu: 100m
             memory: 250Mi
         limits:
-            cpu: 250m
+            cpu: 500m
             memory: 1Gi

@@ -1,5 +1,7 @@
 # NodePorts in use
 
+Currently, the nodePorts are not in use ( with a few exceptions ). I use Nginx Proxy Manager to reverse proxy to my services instead
+
 ## Monitoring
 #### Used Port range: 30010-30019
 ##### Grafana: 30010

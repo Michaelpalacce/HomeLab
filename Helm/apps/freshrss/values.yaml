@@ -1,7 +1,7 @@
 freshrss:
     image: linuxserver/freshrss
-    tag: 1.18.1
-    nodePort: 30119
+    tag: 1.19.1
+#    nodePort: 30119
     port: 80
     resources:
         requests:

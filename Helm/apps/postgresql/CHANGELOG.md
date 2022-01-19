@@ -1,3 +1,6 @@
+#### [V2.0.0]
+* Removed NodePort
+
 #### [V1.3.0]
 * Updated replicas to 3
 * Pg admin separate storage class
