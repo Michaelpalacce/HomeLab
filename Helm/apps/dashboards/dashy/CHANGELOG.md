@@ -1,5 +1,6 @@
 #### [V2.5.0]
 * Added pyLoad
+* Added Snapdrop
 
 #### [V2.4.0]
 * Removed NodePort

@@ -42,6 +42,10 @@ data:
             description: Budget Buddy!
             icon: hl-firefly
             url: https://firefly.stefangenov.site/login
+          - title: Snapdrop
+            description: Share files on local network
+            icon: hl-favicon
+            url: https://snapdrop.net/
 
       - name: Automation
         items:
