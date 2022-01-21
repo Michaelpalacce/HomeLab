@@ -1,3 +1,6 @@
+#### [V2.5.0]
+* Added pyLoad
+
 #### [V2.4.0]
 * Removed NodePort
 

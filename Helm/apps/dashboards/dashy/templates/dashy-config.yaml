@@ -124,6 +124,10 @@ data:
             description: Shows Downloader
             icon: hl-sonarr
             url: https://sonarr.stefangenov.site
+          - title: pyLoad
+            description: python Downloader
+            icon: hl-pyload
+            url: https://pyload.stefangenov.site
       - name: Monitoring
         items:
           - title: Grafana

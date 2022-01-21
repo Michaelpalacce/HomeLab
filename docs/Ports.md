@@ -28,6 +28,7 @@ Currently, the nodePorts are not in use ( with a few exceptions ). I use Nginx P
 ##### Readarr: 31002
 ##### Radarr: 31003
 ##### Sonarr: 31004
+##### Prowlarr: 31005
 
 ## Apps
 #### Used Port range: 30100 - 31000

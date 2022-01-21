@@ -1,3 +1,6 @@
+#### [V4.1.0]
+* Added Prowlarr
+
 #### [V4.0.0]
 * Removed NodePort mostly
 * Newer versions of apps

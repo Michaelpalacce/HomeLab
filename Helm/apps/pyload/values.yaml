@@ -1,0 +1,16 @@
+pyload:
+    image: linuxserver/pyload
+    tag: version-4bb5578c
+#    nodePort: 30124
+    port: 8000
+    baseUrl: "pyload.stefangenov.site"
+    resources:
+        requests:
+            cpu: 100m
+            memory: 100Mi
+        limits:
+            cpu: 250m
+            memory: 250Mi
+
+storage:
+    nasIp: 192.168.1.20

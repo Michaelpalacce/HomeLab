@@ -31,6 +31,12 @@ readarr:
     tag: nightly-version-0.1.0.1137
     port: 8787
 
+#prowlarr:
+##    nodePort: 31005
+#    image: linuxserver/prowlarr
+#    tag: 0.2.0-nightly
+#    port: 9696
+
 sonarr:
 #    nodePort: 31004
     image: linuxserver/sonarr

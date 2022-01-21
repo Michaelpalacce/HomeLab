@@ -1,0 +1,62 @@
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+    name: pyload-config-sc
+provisioner: driver.longhorn.io
+allowVolumeExpansion: true
+parameters:
+    numberOfReplicas: "1"
+    dataLocality: "best-effort"
+    staleReplicaTimeout: "2800"
+    fromBackup: ""
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: pyload-config-volume
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: pyload-config-sc
+    resources:
+        requests:
+            storage: 1Gi
+
+---
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: pyload-nfs-pv
+    labels:
+        type: nfs
+        app: pyload
+spec:
+    storageClassName: nfs-direct
+    capacity:
+        storage: 200Gi
+    accessModes:
+        - ReadWriteMany
+    nfs:
+        path: "/volume1/k3s/pyload/pyload"
+        server: {{ .Values.storage.nasIp }}
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: pyload-nfs
+spec:
+    selector:
+        matchLabels:
+            type: nfs
+            app: pyload
+    storageClassName: nfs-direct
+    accessModes:
+        - ReadWriteMany
+    resources:
+        requests:
+            storage: 200Gi

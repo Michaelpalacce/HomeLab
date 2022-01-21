@@ -1,0 +1,71 @@
+{{- with .Values.prowlarr }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: prowlarr
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app: prowlarr
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: prowlarr
+    template:
+        metadata:
+            labels:
+                app: prowlarr
+        spec:
+            nodeSelector:
+                type: media
+            containers:
+                - name: prowlarr
+                  image: {{ .image }}:{{ .tag }}
+                  imagePullPolicy: IfNotPresent
+                  env:
+                      - name: PUID
+                        value: "1000"
+                      - name: GUID
+                        value: "1000"
+                  resources:
+                      requests:
+                          cpu: 100m
+                          memory: 100Mi
+                      limits:
+                          cpu: 750m
+                          memory: 1Gi
+                  ports:
+                      - name: web
+                        containerPort: {{ .port }}
+                  volumeMounts:
+                      - name: app-data
+                        mountPath: /config
+
+            restartPolicy: Always
+            volumes:
+                - name: app-data
+                  persistentVolumeClaim:
+                      claimName: jackett-config-volume
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: prowlarr
+    namespace: {{ $.Release.Namespace }}
+spec:
+    {{- with .nodePort }}
+    type: NodePort
+    {{- end }}
+    selector:
+        app: prowlarr
+    ports:
+        - name: prowlarr
+          protocol: TCP
+          port: {{ .port }}
+          {{- with .nodePort }}
+          nodePort: {{ . }}
+          {{- end }}
+
+{{- end }}
