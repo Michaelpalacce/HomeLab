@@ -1,3 +1,6 @@
+#### [V2.6.0]
+* domainName added as a variable
+
 #### [V2.5.0]
 * Added pyLoad
 * Added Snapdrop
