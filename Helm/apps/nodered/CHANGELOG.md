@@ -1,3 +1,6 @@
+#### [V2.1.0]
+* Updated resource limits
+
 #### [V2.0.0]
 * Removed NodePort
 * New Version
