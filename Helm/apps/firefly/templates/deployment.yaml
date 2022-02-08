@@ -39,17 +39,35 @@ spec:
                       - name: TZ
                         value: "Europe/Sofia"
                       - name: DB_USERNAME
-                        value: "{{ .db.username }}"
+                        valueFrom:
+                            secretKeyRef:
+                                name: db
+                                key: username
                       - name: DB_PASSWORD
-                        value: "{{ .db.password }}"
+                        valueFrom:
+                            secretKeyRef:
+                                name: db
+                                key: password
                       - name: DB_DATABASE
-                        value: "{{ .db.database }}"
+                        valueFrom:
+                            secretKeyRef:
+                                name: db
+                                key: database
                       - name: DB_HOST
-                        value: "{{ .db.host }}"
+                        valueFrom:
+                            secretKeyRef:
+                                name: db
+                                key: host
                       - name: DB_PORT
-                        value: "{{ .db.port }}"
+                        valueFrom:
+                            secretKeyRef:
+                                name: db
+                                key: port
                       - name: DB_CONNECTION
-                        value: "{{ .db.type }}"
+                        valueFrom:
+                            secretKeyRef:
+                                name: db
+                                key: type
                       - name: APP_KEY
                         value: "{{ .appKey }}"
                       - name: APP_URL
