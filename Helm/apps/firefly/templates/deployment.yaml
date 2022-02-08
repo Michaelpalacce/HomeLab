@@ -69,7 +69,10 @@ spec:
                                 name: db
                                 key: type
                       - name: APP_KEY
-                        value: "{{ .appKey }}"
+                        valueFrom:
+                            secretKeyRef:
+                                name: app
+                                key: key
                       - name: APP_URL
                         value: "{{ .appUrl }}"
                       - name: TRUSTED_PROXIES

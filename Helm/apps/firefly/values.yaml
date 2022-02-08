@@ -3,15 +3,7 @@ firefly:
     tag: version-5.6.10
     port: 8080
 #    nodePort: 30121
-    appKey: IGzZKLcitjq34dbKJLy8A5IDoCiR1Csl
     appUrl: https://firefly.stefangenov.site
-    db:
-        type: pgsql
-        host: postgresql14.postgresql
-        port: 5432
-        username: firefly
-        password: firefly
-        database: firefly
     resources:
         requests:
             cpu: 100m
