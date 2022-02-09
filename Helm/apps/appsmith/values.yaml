@@ -1,0 +1,17 @@
+appsmith:
+    image: appsmith/appsmith-ce
+    tag: v1.6.8
+#    nodePort: 30021
+    port: 80
+    resources:
+        requests:
+            cpu: 500m
+            memory: 1Gi
+        limits:
+            cpu: 1
+            memory: 2Gi
+
+storage:
+    dataLocality: "best-effort" # or disabled
+    numberOfReplicas: 1
+    configSize: 10Gi

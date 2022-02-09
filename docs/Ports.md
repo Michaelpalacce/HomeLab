@@ -11,7 +11,7 @@ Currently, the nodePorts are not in use ( with a few exceptions ). I use Nginx P
 ## CI/CD
 #### Used Port range: 30020-30029
 ##### Jenkins CI/CD: 30020
-##### ToolJet: 30021
+##### _appsmith: 30021
 
 ## Infrastructure
 #### Used Port range: 30030-30099 / 32222
