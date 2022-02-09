@@ -44,7 +44,7 @@ data:
             url: https://firefly.{{ .domainName }}/login
           - title: Snapdrop
             description: Share files on local network
-            icon: hl-favicon
+            icon: favicon
             url: https://snapdrop.net/
 
       - name: Automation
@@ -62,6 +62,10 @@ data:
             description: Monitors changes to websites
             icon: hl-changedetection-io
             url: https://changedetection.{{ .domainName }}
+          - title: Appsmith
+            description: Builds Websites
+            icon: favicon
+            url: https://appsmith.{{ .domainName }}
 
       - name: Tools
         items:
@@ -128,10 +132,10 @@ data:
             description: Shows Downloader
             icon: hl-sonarr
             url: https://sonarr.{{ .domainName }}
-          - title: pyLoad
-            description: python Downloader
-            icon: hl-pyload
-            url: https://pyload.{{ .domainName }}
+{{/*          - title: pyLoad*/}}
+{{/*            description: python Downloader*/}}
+{{/*            icon: hl-pyload*/}}
+{{/*            url: https://pyload.{{ .domainName }}*/}}
       - name: Monitoring
         items:
           - title: Grafana

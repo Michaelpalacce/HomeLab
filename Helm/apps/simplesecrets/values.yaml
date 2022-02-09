@@ -1,6 +1,6 @@
 simplesecrets:
     image: stefangenov/simplesecrets
-    tag: 1.0.7-sqlite3
+    tag: 1.0.9-sqlite3
 #    nodePort: 30036
     port: 80
     resources:
