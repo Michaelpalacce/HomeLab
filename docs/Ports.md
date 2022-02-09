@@ -11,6 +11,7 @@ Currently, the nodePorts are not in use ( with a few exceptions ). I use Nginx P
 ## CI/CD
 #### Used Port range: 30020-30029
 ##### Jenkins CI/CD: 30020
+##### ToolJet: 30021
 
 ## Infrastructure
 #### Used Port range: 30030-30099 / 32222
@@ -21,6 +22,7 @@ Currently, the nodePorts are not in use ( with a few exceptions ). I use Nginx P
 ##### Homer/Dashy ( Dashboard ): 32222
 ##### Jackett: 30034
 ##### Transmission: 30035
+##### SimpleSecrets: 30036
 
 ## Media
 #### Used Port range: 31001 - 31050
@@ -47,3 +49,4 @@ Currently, the nodePorts are not in use ( with a few exceptions ). I use Nginx P
 ##### Firefly III: 30121
 ##### Trilium: 30122
 ##### CyberChef: 30123
+##### PyLoad: 30124

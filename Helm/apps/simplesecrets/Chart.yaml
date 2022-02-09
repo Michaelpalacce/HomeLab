@@ -1,0 +1,9 @@
+apiVersion: v2
+appVersion: 1.0.0
+description: This chart is used to deploy SimpleSecrets and all needed CRDs
+maintainers:
+- email: sgenov94@gmail.com
+  name: Stefan Genov
+name: SimpleSecrets
+type: application
+version: 1.0.0

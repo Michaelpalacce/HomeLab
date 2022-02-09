@@ -22,7 +22,7 @@
 ### Clearing up containerd
 - Go to `./ansible`
 - Run: `ansible -i inventory -m shell -a "k3s crictl rmp -a" -b all` To remove all pods that are not up and running
-- Run: `ansible -i inventory -m shell -a "k3s crictl rmi --prune -b all"` To remove all images
+- Run: `ansible -i inventory -m shell -a "k3s crictl rmi --prune" -b all` To remove all images
 - Run: `ansible -i inventory -m shell -a "k3s crictl rm -a" -b all`
 
 ### Orphaned pods.

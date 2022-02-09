@@ -1,0 +1,73 @@
+{{- with .Values.simplesecrets }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: simplesecrets
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app: simplesecrets
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: simplesecrets
+    template:
+        metadata:
+            labels:
+                app: simplesecrets
+        spec:
+            serviceAccountName: k8s-101-role
+            containers:
+                - name: simplesecrets
+                  image: {{ .image }}:{{ .tag }}
+                  imagePullPolicy: IfNotPresent
+                  env:
+                      - name: DB_PATH
+                        value: "/data/db.sqlite"
+{{- if .resources }}
+                  resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+                  ports:
+                      - name: web
+                        containerPort: {{ .port }}
+                  volumeMounts:
+                      - name: data-config
+                        mountPath: /data
+                  livenessProbe:
+                      failureThreshold: 2
+                      initialDelaySeconds: 120
+                      periodSeconds: 120
+                      timeoutSeconds: 5
+                      tcpSocket:
+                          port: {{ .port }}
+
+            restartPolicy: Always
+            volumes:
+                - name: data-config
+                  persistentVolumeClaim:
+                      claimName: simplesecrets-pvc
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: simplesecrets
+    namespace: {{ $.Release.Namespace }}
+spec:
+    {{- with .nodePort }}
+    type: NodePort
+    {{- end }}
+    selector:
+        app: simplesecrets
+    ports:
+        - name: simplesecrets
+          protocol: TCP
+          port: {{ .port }}
+          {{- with .nodePort }}
+          nodePort: {{ . }}
+          {{- end }}
+
+{{- end }}

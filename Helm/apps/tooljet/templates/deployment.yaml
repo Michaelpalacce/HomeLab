@@ -1,0 +1,109 @@
+{{- with .Values.tooljet }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: tooljet
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app: tooljet
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: tooljet
+    template:
+        metadata:
+            labels:
+                app: tooljet
+        spec:
+            containers:
+                - name: tooljet
+                  image: {{ .image }}:{{ .tag }}
+                  imagePullPolicy: IfNotPresent
+                  args: [ "npm", "run", "start:prod" ]
+{{- if .resources }}
+                  resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+                  ports:
+                      - name: web
+                        containerPort: {{ .port }}
+                  env:
+                      - name: PG_HOST
+                        valueFrom:
+                            secretKeyRef:
+                                name: db
+                                key: host
+                      - name: PG_USER
+                        valueFrom:
+                            secretKeyRef:
+                                name: db
+                                key: user
+                      - name: PG_PASS
+                        valueFrom:
+                            secretKeyRef:
+                                name: db
+                                key: password
+                      - name: PG_DB
+                        valueFrom:
+                            secretKeyRef:
+                                name: db
+                                key: database
+                      - name: LOCKBOX_MASTER_KEY
+                        valueFrom:
+                            secretKeyRef:
+                                name: app
+                                key: lockbox_key
+                      - name: SECRET_KEY_BASE
+                        valueFrom:
+                            secretKeyRef:
+                                name: app
+                                key: secret_key_base
+                      - name: SMTP_USERNAME
+                        valueFrom:
+                            secretKeyRef:
+                                name: smtp
+                                key: user
+                      - name: SMTP_PASSWORD
+                        valueFrom:
+                            secretKeyRef:
+                                name: smtp
+                                key: password
+                      - name: SMTP_DOMAIN
+                        valueFrom:
+                            secretKeyRef:
+                                name: smtp
+                                key: domain
+                      - name: SMTP_PORT
+                        valueFrom:
+                            secretKeyRef:
+                                name: smtp
+                                key: port
+                      - name: TOOLJET_HOST
+                        value: "{{ .baseUrl }}"
+
+            restartPolicy: Always
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: tooljet
+    namespace: {{ $.Release.Namespace }}
+spec:
+    {{- with .nodePort }}
+    type: NodePort
+    {{- end }}
+    selector:
+        app: tooljet
+    ports:
+        - name: tooljet
+          protocol: TCP
+          port: {{ .port }}
+          {{- with .nodePort }}
+          nodePort: {{ . }}
+          {{- end }}
+
+{{- end }}
