@@ -1,6 +1,6 @@
 whoogle:
     image: benbusby/whoogle-search
-    tag: latest
+    tag: 0.7.1
 #    nodePort: 30118
     port: 5000
     resources:
