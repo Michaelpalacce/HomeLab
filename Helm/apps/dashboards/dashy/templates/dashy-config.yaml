@@ -172,6 +172,10 @@ data:
             description: Backup PiHole
             icon: hl-pihole
             url: http://192.168.1.120/admin
+          - title: Simple Secrets
+            description: K8S Secrets Operator
+            icon: favicon
+            url: https://simplesecrets.{{ .domainName }}
       - name: Torrents
         items:
           - title: Transmission
