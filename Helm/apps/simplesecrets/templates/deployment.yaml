@@ -34,7 +34,7 @@ spec:
                       - name: api
                         containerPort: {{ .port }}
                   volumeMounts:
-                      - name: data-config
+                      - name: data
                         mountPath: /data
                   livenessProbe:
                       failureThreshold: 2
@@ -65,7 +65,7 @@ spec:
 {{- end }}
             restartPolicy: Always
             volumes:
-                - name: data-config
+                - name: data
                   persistentVolumeClaim:
                       claimName: simplesecrets-pvc
 
