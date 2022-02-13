@@ -13,7 +13,7 @@ simplesecrets:
                 memory: 1Gi
     web:
         image: stefangenov/simplesecrets-frontend
-        tag: 0.7.0
+        tag: 0.7.1
 #        nodePort: 30036
         port: 3000
         resources:
