@@ -58,6 +58,10 @@ data:
             description: Low-code automation
             icon: hl-nodered
             url: https://nodered.{{ .domainName }}
+          - title: Node-Red Dashboard
+            description: Low-code automation Dashboard
+            icon: hl-nodered
+            url: https://nodered.{{ .domainName }}/ui
           - title: Changedetection
             description: Monitors changes to websites
             icon: hl-changedetection-io
@@ -174,7 +178,7 @@ data:
             url: http://192.168.1.120/admin
           - title: Simple Secrets
             description: K8S Secrets Operator
-            icon: favicon
+            icon: https://raw.githubusercontent.com/Michaelpalacce/SimpleSecretsFrontend/main/public/img/icons/android-chrome-512x512.png
             url: https://simplesecrets.{{ .domainName }}
       - name: Torrents
         items:
