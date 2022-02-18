@@ -46,6 +46,10 @@ data:
             description: Share files on local network
             icon: favicon
             url: https://snapdrop.net/
+          - title: Appsmith
+            description: Builds Websites
+            icon: https://raw.githubusercontent.com/appsmithorg/appsmith/release/static/logo.png
+            url: https://appsmith.{{ .domainName }}
 
       - name: Automation
         items:
@@ -66,10 +70,6 @@ data:
             description: Monitors changes to websites
             icon: hl-changedetection-io
             url: https://changedetection.{{ .domainName }}
-          - title: Appsmith
-            description: Builds Websites
-            icon: favicon
-            url: https://appsmith.{{ .domainName }}
 
       - name: Tools
         items:
@@ -128,6 +128,10 @@ data:
             description: Movies Downloader
             icon: hl-radarr
             url: https://radarr.{{ .domainName }}
+          - title: Openbooks
+            description: IRC Book Downloader
+            icon: https://raw.githubusercontent.com/evan-buss/openbooks/master/server/app/public/favicon-32x32.png
+            url: https://openbooks.{{ .domainName }}
           - title: Readarr
             description: Ebook Library Downloader
             icon: hl-readarr

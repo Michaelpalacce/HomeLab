@@ -1,0 +1,17 @@
+openbooks:
+    image: evanbuss/openbooks
+    tag: sha-8639492
+    # nodePort: 31006
+    port: 80
+    resources:
+        requests:
+            cpu: 250m
+            memory: 512Mi
+        limits:
+            cpu: 750m
+            memory: 1Gi
+
+storage:
+    dataLocality: "best-effort" # or disabled
+    numberOfReplicas: 1
+    configSize: 10Gi

@@ -1,3 +1,7 @@
+#### [V2.7.0]
+* Added new Openbooks app
+* Moved appsmith
+
 #### [V2.6.0]
 * domainName added as a variable
 

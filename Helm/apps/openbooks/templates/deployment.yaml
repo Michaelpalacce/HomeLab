@@ -1,0 +1,64 @@
+{{- with .Values.openbooks }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: openbooks
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app: openbooks
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: openbooks
+    template:
+        metadata:
+            labels:
+                app: openbooks
+        spec:
+            containers:
+                - name: openbooks
+                  image: {{ .image }}:{{ .tag }}
+                  imagePullPolicy: IfNotPresent
+                  args:
+                      - --persist
+{{- if .resources }}
+                  resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+                  ports:
+                      - name: web
+                        containerPort: {{ .port }}
+                  volumeMounts:
+                      - name: data-config
+                        mountPath: /openbooks-stacks
+
+            restartPolicy: Always
+            volumes:
+                - name: data-config
+                  persistentVolumeClaim:
+                      claimName: openbooks-pvc
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: openbooks
+    namespace: {{ $.Release.Namespace }}
+spec:
+    {{- with .nodePort }}
+    type: NodePort
+    {{- end }}
+    selector:
+        app: openbooks
+    ports:
+        - name: openbooks
+          protocol: TCP
+          port: {{ .port }}
+          {{- with .nodePort }}
+          nodePort: {{ . }}
+          {{- end }}
+
+{{- end }}
