@@ -26,17 +26,35 @@ spec:
                   imagePullPolicy: IfNotPresent
                   env:
                       - name: DB_ENGINE
-                        value: "{{ .db.engine }}"
+                        valueFrom:
+                            secretKeyRef:
+                                name: db
+                                key: engine
                       - name: DB_HOST
-                        value: "{{ .db.host }}"
+                        valueFrom:
+                            secretKeyRef:
+                                name: db
+                                key: host
                       - name: DB_PORT
-                        value: "5432"
+                        valueFrom:
+                            secretKeyRef:
+                                name: db
+                                key: port
                       - name: DB_NAME
-                        value: "{{ .db.name }}"
+                        valueFrom:
+                            secretKeyRef:
+                                name: db
+                                key: name
                       - name: DB_USER
-                        value: "{{ .db.username }}"
+                        valueFrom:
+                            secretKeyRef:
+                                name: db
+                                key: username
                       - name: DB_PASSWORD
-                        value: "{{ .db.password }}"
+                        valueFrom:
+                            secretKeyRef:
+                                name: db
+                                key: password
                       - name: TIME_ZONE
                         value: "UTC"
                       - name: USE_24_HOUR_TIME_FORMAT

@@ -40,9 +40,15 @@ spec:
                         protocol: TCP
                   env:
                       - name: PGADMIN_DEFAULT_EMAIL
-                        value: {{ .security.username }}
+                        valueFrom:
+                            secretKeyRef:
+                                name: pgadmin
+                                key:  username
                       - name: PGADMIN_DEFAULT_PASSWORD
-                        value: {{ .security.password }}
+                        valueFrom:
+                            secretKeyRef:
+                                name: pgadmin
+                                key:  password
 ---
 
 apiVersion: v1

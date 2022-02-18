@@ -1,3 +1,6 @@
+#### [V1.3.0]
+* Added simplesecret
+
 #### [V1.2.0]
 * Added from email and frontendurl setting, as well as readiness probes and a better recreation strategy
 

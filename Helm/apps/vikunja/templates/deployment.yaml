@@ -41,42 +41,52 @@ spec:
                       - name: VIKUNJA_SERVICE_FRONTENDURL
                         value: "{{ .frontendUrl }}"
                       - name: VIKUNJA_DATABASE_HOST
-                        value: postgresql.postgresql
-                      - name: VIKUNJA_DATABASE_USER
-                        value: {{ .db.username }}
-                      - name: VIKUNJA_DATABASE_PASSWORD
-                        value: {{ .db.password }}
-                      - name: VIKUNJA_DATABASE_TYPE
-                        value: postgres
-                      - name: VIKUNJA_DATABASE_DATABASE
-                        value: {{ .db.name }}
-                      {{- with $.Values.vikunja.smtp }}
-                      - name: VIKUNJA_MAILER_ENABLED
                         valueFrom:
                             secretKeyRef:
-                                name: smtp-settings
-                                key: enabled
+                                name: db
+                                key: host
+                      - name: VIKUNJA_DATABASE_USER
+                        valueFrom:
+                            secretKeyRef:
+                                name: db
+                                key: username
+                      - name: VIKUNJA_DATABASE_PASSWORD
+                        valueFrom:
+                            secretKeyRef:
+                                name: db
+                                key: password
+                      - name: VIKUNJA_DATABASE_TYPE
+                        valueFrom:
+                            secretKeyRef:
+                                name: db
+                                key: type
+                      - name: VIKUNJA_DATABASE_DATABASE
+                        valueFrom:
+                            secretKeyRef:
+                                name: db
+                                key: name
+                      - name: VIKUNJA_MAILER_ENABLED
+                        value: "true"
                       - name: VIKUNJA_MAILER_HOST
                         valueFrom:
                             secretKeyRef:
-                                name: smtp-settings
+                                name: smtp
                                 key: host
                       - name: VIKUNJA_MAILER_PORT
                         valueFrom:
                             secretKeyRef:
-                                name: smtp-settings
+                                name: smtp
                                 key: port
                       - name: VIKUNJA_MAILER_USERNAME
                         valueFrom:
                             secretKeyRef:
-                                name: smtp-settings
+                                name: smtp
                                 key: username
                       - name: VIKUNJA_MAILER_PASSWORD
                         valueFrom:
                             secretKeyRef:
-                                name: smtp-settings
+                                name: smtp
                                 key: password
-                      {{- end }}
 
                   imagePullPolicy: IfNotPresent
                   livenessProbe:

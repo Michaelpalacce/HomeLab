@@ -9,9 +9,6 @@ postgresql:
     image: postgres
     tag: 9.6
     port: 5432
-    db:
-        username: postgres
-        password: postgres
     resources:
         requests:
             cpu: 250m
@@ -24,9 +21,6 @@ postgresql14:
     image: postgres
     tag: 14.1
     port: 5432
-    db:
-        username: postgres
-        password: postgres
     resources:
         requests:
             cpu: 250m
@@ -40,9 +34,6 @@ pgadmin:
     tag: 6.4
     port: 80
 #    nodePort: 30033
-    security:
-        username: postgres@local.dev
-        password: postgres
     resources:
         requests:
             cpu: 100m

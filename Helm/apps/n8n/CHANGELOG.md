@@ -1,3 +1,6 @@
+#### [V1.3.0]
+* Added simplesecret
+
 #### [V1.2.0]
 * Added ingress
 

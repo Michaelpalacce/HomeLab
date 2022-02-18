@@ -1,25 +1,10 @@
 vikunja:
-#    nodePort: 30109
-#    smtp:
-#        enabled: "true"
-#        host: "smtp.gmail.com"
-#        port: "465"
-#        username: ""
-#        password: ""
     api:
         image: vikunja/api
         tag: 0.18.1
         port: 3456
         frontendUrl: "https://vikunja.stefangenov.site"
-        db:
-            username: vikunja
-            password: vikunja
-            name: vikunja
     frontend:
         image: vikunja/frontend
         tag: 0.18.2
         port: 80
-#    nginx:
-#        image: nginx
-#        tag: 1.21.3
-#        port: 8080

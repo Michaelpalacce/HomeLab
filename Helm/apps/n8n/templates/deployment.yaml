@@ -8,7 +8,7 @@ metadata:
     labels:
         app: n8n
 spec:
-    replicas: 1
+    replicas: {{ .replicas }}
     strategy:
         rollingUpdate:
             maxUnavailable: 0
@@ -28,27 +28,57 @@ spec:
                       - name: N8N_BASIC_AUTH_ACTIVE
                         value: "true"
                       - name: N8N_BASIC_AUTH_USER
-                        value: {{ .username }}
+                        valueFrom:
+                            secretKeyRef:
+                                name: app
+                                key:  username
                       - name: N8N_BASIC_AUTH_PASSWORD
-                        value: {{ .password }}
+                        valueFrom:
+                            secretKeyRef:
+                                name: app
+                                key:  password
                       - name: DB_POSTGRESDB_DATABASE
-                        value: {{ .db.name }}
+                        valueFrom:
+                            secretKeyRef:
+                                name: db
+                                key:  name
                       - name: DB_POSTGRESDB_HOST
-                        value: "postgresql.postgresql"
+                        valueFrom:
+                            secretKeyRef:
+                                name: db
+                                key:  host
                       - name: DB_POSTGRESDB_PORT
-                        value: "5432"
+                        valueFrom:
+                            secretKeyRef:
+                                name: db
+                                key:  port
                       - name: DB_POSTGRESDB_USER
-                        value: {{ .db.username }}
+                        valueFrom:
+                            secretKeyRef:
+                                name: db
+                                key:  username
                       - name: DB_POSTGRESDB_PASSWORD
-                        value: {{ .db.password }}
+                        valueFrom:
+                            secretKeyRef:
+                                name: db
+                                key:  password
                       - name: DB_TYPE
-                        value: "postgresdb"
+                        valueFrom:
+                            secretKeyRef:
+                                name: db
+                                key:  type
                       - name: N8N_PORT
                         value: "{{ .port }}"
                       - name: N8N_ENCRYPTION_KEY
-                        value: "{{ .encryption_key }}"
+                        valueFrom:
+                            secretKeyRef:
+                                name: app
+                                key:  encryption_key
                       - name: N8N_PAYLOAD_SIZE_MAX
-                        value: "{{ .maxFileSizeMb }}"
+                        valueFrom:
+                            secretKeyRef:
+                                name: app
+                                key:  maxFileSizeMb
 
 {{- if .resources }}
                   resources:

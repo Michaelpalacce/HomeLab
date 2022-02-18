@@ -1,3 +1,6 @@
+#### [V2.2.0]
+* Added simplesecret
+
 #### [V2.1.0]
 * Removed NodePort
 

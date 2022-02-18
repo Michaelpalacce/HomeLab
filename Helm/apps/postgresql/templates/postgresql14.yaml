@@ -32,9 +32,15 @@ spec:
                         protocol: TCP
                   env:
                       - name: POSTGRES_USER
-                        value: {{ .db.username }}
+                        valueFrom:
+                            secretKeyRef:
+                                name: postgresql14
+                                key:  username
                       - name: POSTGRES_PASSWORD
-                        value: {{ .db.password }}
+                        valueFrom:
+                            secretKeyRef:
+                                name: postgresql14
+                                key:  password
                   livenessProbe:
                       exec:
                           command:

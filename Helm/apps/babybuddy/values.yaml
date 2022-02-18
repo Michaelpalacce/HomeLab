@@ -3,13 +3,7 @@ babybuddy:
     tag: 1.9.1
 #    nodePort: 30100
     port: 8000
-    replicas: 1
-    db:
-        engine: django.db.backends.postgresql
-        host: postgresql.postgresql
-        username: babybuddy
-        password: babybuddy
-        name: babybuddy
+    replicas: 0
 
 storage:
     dataLocality: "best-effort" # or disabled
