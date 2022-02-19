@@ -24,6 +24,10 @@ Currently, the nodePorts are not in use ( with a few exceptions ). I use Nginx P
 ##### Transmission: 30035
 ##### SimpleSecrets: 30036
 
+## Security
+#### Used Port range: 31001 - 31050
+##### Vaultwarden: 31001
+
 ## Media
 #### Used Port range: 31001 - 31050
 ##### Jellyfin: 31001

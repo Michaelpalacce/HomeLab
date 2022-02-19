@@ -50,6 +50,13 @@ data:
             icon: hl-freshrss
             url: https://freshrss.{{ .domainName }}
 
+      - name: Security
+        items:
+          - title: Vaultwarden
+            description: Web Vault
+            icon: hl-bitwarden
+            url: https://vault.{{ .domainName }}
+
       - name: Automation
         items:
 {{/*          - title: N8N*/}}
@@ -113,7 +120,7 @@ data:
             url: https://diagrams.{{ .domainName }}
           - title: TandoorRecipes
             description: Recipe Manager
-            icon: hl-tandoorrecipes
+            icon: hl-vaultwarden
             url: https://recipes.{{ .domainName }}
 
       - name: Storage

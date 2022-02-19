@@ -1,0 +1,62 @@
+{{- with .Values.vaultwarden }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: vaultwarden
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app: vaultwarden
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: vaultwarden
+    template:
+        metadata:
+            labels:
+                app: vaultwarden
+        spec:
+            containers:
+                - name: vaultwarden
+                  image: {{ .image }}:{{ .tag }}
+                  imagePullPolicy: IfNotPresent
+{{- if .resources }}
+                  resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+                  ports:
+                      - name: web
+                        containerPort: {{ .port }}
+                  volumeMounts:
+                      - name: data
+                        mountPath: /data
+
+            restartPolicy: Always
+            volumes:
+                - name: data
+                  persistentVolumeClaim:
+                      claimName: vaultwarden-pvc
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: vaultwarden
+    namespace: {{ $.Release.Namespace }}
+spec:
+    {{- with .nodePort }}
+    type: NodePort
+    {{- end }}
+    selector:
+        app: vaultwarden
+    ports:
+        - name: vaultwarden
+          protocol: TCP
+          port: {{ .port }}
+          {{- with .nodePort }}
+          nodePort: {{ . }}
+          {{- end }}
+
+{{- end }}

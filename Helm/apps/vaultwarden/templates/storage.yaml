@@ -15,24 +15,11 @@ parameters:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-    name: vaultwarden-media-pvc
+    name: vaultwarden-pvc
 spec:
     accessModes:
         - ReadWriteMany
     storageClassName: vaultwarden-sc
     resources:
         requests:
-            storage: {{ .Values.storage.mediaSize }}
----
-
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-    name: vaultwarden-static-pvc
-spec:
-    accessModes:
-        - ReadWriteMany
-    storageClassName: vaultwarden-sc
-    resources:
-        requests:
-            storage: {{ .Values.storage.staticSize }}
+            storage: {{ .Values.storage.dataSize }}

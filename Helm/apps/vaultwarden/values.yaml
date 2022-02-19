@@ -1,8 +1,8 @@
 vaultwarden:
-    image: vabene1111/recipes
-    tag: 1.0.8
-    # nodePort: 30125
-    port: 8080
+    image: vaultwarden/server
+    tag: 1.24.0
+    # nodePort: 31001
+    port: 80
     resources:
         requests:
             cpu: 250m
@@ -14,5 +14,4 @@ vaultwarden:
 storage:
     dataLocality: "best-effort" # or disabled
     numberOfReplicas: 1
-    mediaSize: 1Gi
-    staticSize: 1Gi
+    dataSize: 5Gi
