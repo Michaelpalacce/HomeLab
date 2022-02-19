@@ -26,6 +26,10 @@ spec:
 {{ toYaml .resources | indent 22 }}
 {{- end }}
                   env:
+                      - name: DEBUG
+                        value: "0"
+                      - name: GUNICORN_MEDIA
+                        value: "0"
                       - name: SECRET_KEY
                         valueFrom:
                             secretKeyRef:
