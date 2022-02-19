@@ -1,0 +1,103 @@
+{{- with .Values.tandoorrecipes }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: tandoorrecipes
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app: tandoorrecipes
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: tandoorrecipes
+    template:
+        metadata:
+            labels:
+                app: tandoorrecipes
+        spec:
+            containers:
+                - name: tandoorrecipes
+                  image: {{ .image }}:{{ .tag }}
+                  imagePullPolicy: IfNotPresent
+{{- if .resources }}
+                  resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+                  env:
+                      - name: SECRET_KEY
+                        valueFrom:
+                            secretKeyRef:
+                                name: app
+                                key: secretKey
+                      - name: DB_ENGINE
+                        valueFrom:
+                            secretKeyRef:
+                                name: db
+                                key: engine
+                      - name: POSTGRES_HOST
+                        valueFrom:
+                            secretKeyRef:
+                                name: db
+                                key: host
+                      - name: POSTGRES_PORT
+                        valueFrom:
+                            secretKeyRef:
+                                name: db
+                                key: port
+                      - name: POSTGRES_USER
+                        valueFrom:
+                            secretKeyRef:
+                                name: db
+                                key: username
+                      - name: POSTGRES_PASSWORD
+                        valueFrom:
+                            secretKeyRef:
+                                name: db
+                                key: password
+                      - name: POSTGRES_DB
+                        valueFrom:
+                            secretKeyRef:
+                                name: db
+                                key: db
+                  ports:
+                      - name: web
+                        containerPort: {{ .port }}
+                  volumeMounts:
+                      - name: static
+                        mountPath: /opt/recipes/staticfiles
+                      - name: media
+                        mountPath: /opt/recipes/mediafiles
+
+            restartPolicy: Always
+            volumes:
+                - name: media
+                  persistentVolumeClaim:
+                      claimName: tandoorrecipes-media-pvc
+                - name: static
+                  persistentVolumeClaim:
+                      claimName: tandoorrecipes-static-pvc
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: tandoorrecipes
+    namespace: {{ $.Release.Namespace }}
+spec:
+    {{- with .nodePort }}
+    type: NodePort
+    {{- end }}
+    selector:
+        app: tandoorrecipes
+    ports:
+        - name: tandoorrecipes
+          protocol: TCP
+          port: {{ .port }}
+          {{- with .nodePort }}
+          nodePort: {{ . }}
+          {{- end }}
+
+{{- end }}

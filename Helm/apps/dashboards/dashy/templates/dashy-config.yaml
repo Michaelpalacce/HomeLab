@@ -50,6 +50,10 @@ data:
             description: Builds Websites
             icon: https://raw.githubusercontent.com/appsmithorg/appsmith/release/static/logo.png
             url: https://appsmith.{{ .domainName }}
+          - title: TandoorRecipes
+            description: Recipe Manager
+            icon: hl-tandoorrecipes
+            url: https://recipes.{{ .domainName }}
 
       - name: Automation
         items:

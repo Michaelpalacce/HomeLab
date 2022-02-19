@@ -8,7 +8,7 @@ uptimekuma:
             cpu: 100m
             memory: 512Mi
         limits:
-            cpu: 250m
+            cpu: 500m
             memory: 750Mi
 
 storage:
