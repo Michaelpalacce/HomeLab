@@ -30,14 +30,6 @@ data:
 {{/*            description: Self-hosted Pocket!*/}}
 {{/*            icon: hl-wallabag*/}}
 {{/*            url: https://wallabag.{{ .domainName }}*/}}
-          - title: Whoogle
-            description: Self-Hosted Google
-            icon: hl-whooglesearch
-            url: https://whoogle.{{ .domainName }}
-          - title: FreshRSS
-            description: RSS reader
-            icon: hl-freshrss
-            url: https://freshrss.{{ .domainName }}
           - title: Firefly III
             description: Budget Buddy!
             icon: hl-firefly
@@ -50,10 +42,13 @@ data:
             description: Builds Websites
             icon: https://raw.githubusercontent.com/appsmithorg/appsmith/release/static/logo.png
             url: https://appsmith.{{ .domainName }}
-          - title: TandoorRecipes
-            description: Recipe Manager
-            icon: hl-tandoorrecipes
-            url: https://recipes.{{ .domainName }}
+
+      - name: News
+        items:
+          - title: FreshRSS
+            description: RSS reader
+            icon: hl-freshrss
+            url: https://freshrss.{{ .domainName }}
 
       - name: Automation
         items:
@@ -81,6 +76,10 @@ data:
             description: Swiss Army Knife of the internet
             icon: hl-cyberchef
             url: https://cyberchef.{{ .domainName }}
+          - title: Whoogle
+            description: Self-Hosted Google
+            icon: hl-whooglesearch
+            url: https://whoogle.{{ .domainName }}
 
 {{/*      - name: Media*/}}
 {{/*        items:*/}}
@@ -112,6 +111,11 @@ data:
             description: Make diagrams in your browser
             icon: hl-draw
             url: https://diagrams.{{ .domainName }}
+          - title: TandoorRecipes
+            description: Recipe Manager
+            icon: hl-tandoorrecipes
+            url: https://recipes.{{ .domainName }}
+
       - name: Storage
         items:
           - title: Syncthing
