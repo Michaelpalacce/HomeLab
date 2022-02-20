@@ -1,3 +1,6 @@
+#### [V2.7.1]
+* Fixed tandoor recipes icon
+
 #### [V2.7.0]
 * Added new Openbooks app
 * Moved appsmith

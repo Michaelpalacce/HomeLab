@@ -120,7 +120,7 @@ data:
             url: https://diagrams.{{ .domainName }}
           - title: TandoorRecipes
             description: Recipe Manager
-            icon: hl-vaultwarden
+            icon: hl-tandoorrecipes
             url: https://recipes.{{ .domainName }}
 
       - name: Storage
