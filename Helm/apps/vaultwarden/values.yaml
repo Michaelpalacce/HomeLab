@@ -3,6 +3,16 @@ vaultwarden:
     tag: 1.24.0
     # nodePort: 31001
     port: 80
+    backup:
+        image: stefangenov/vaultwarden-backup
+        tag: 1.0.0
+        resources:
+            requests:
+                cpu: 10m
+                memory: 10Mi
+            limits:
+                cpu: 100m
+                memory: 200Mi
     resources:
         requests:
             cpu: 250m
@@ -15,3 +25,4 @@ storage:
     dataLocality: "best-effort" # or disabled
     numberOfReplicas: 1
     dataSize: 5Gi
+    backupSize: 10Gi

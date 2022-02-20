@@ -23,3 +23,16 @@ spec:
     resources:
         requests:
             storage: {{ .Values.storage.dataSize }}
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: vaultwarden-backup-pvc
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: vaultwarden-sc
+    resources:
+        requests:
+            storage: {{ .Values.storage.backupSize }}
