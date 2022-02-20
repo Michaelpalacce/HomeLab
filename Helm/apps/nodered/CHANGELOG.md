@@ -1,3 +1,6 @@
+#### [V2.2.0]
+* Added NFS drive as well for backups
+
 #### [V2.1.0]
 * Updated resource limits
 

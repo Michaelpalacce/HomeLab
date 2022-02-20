@@ -15,3 +15,4 @@ storage:
     dataLocality: "best-effort" # or disabled
     numberOfReplicas: 1
     configSize: 5Gi
+    nasIp: 192.168.1.20

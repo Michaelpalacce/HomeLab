@@ -204,7 +204,7 @@ data:
           - title: Transmission
             description: Torrent
             icon: hl-transmission
-            url: https://transmission.{{ .domainName }}
+            url: http://192.168.1.2:30035/
             statusCheck: false
           - title: Jackett
             description: Torrent indexer

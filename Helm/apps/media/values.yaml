@@ -4,7 +4,7 @@ storage:
 transmission:
     image: linuxserver/transmission
     tag: version-3.00-r2
-#    nodePort: 30035
+    nodePort: 30035
     username: username
     password: password
 
