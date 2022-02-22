@@ -56,6 +56,10 @@ data:
             description: Web Vault
             icon: hl-bitwarden
             url: https://vault.{{ .domainName }}
+          - title: Simple Secrets
+            description: K8S Secrets Operator
+            icon: https://raw.githubusercontent.com/Michaelpalacce/SimpleSecretsFrontend/main/public/img/icons/android-chrome-512x512.png
+            url: https://simplesecrets.{{ .domainName }}
 
       - name: Automation
         items:
@@ -173,6 +177,7 @@ data:
             description: Uptime Monitor
             icon: hl-uptime-kuma
             url: https://uptimekuma.{{ .domainName }}
+
       - name: Infrastructure
         items:
           - title: Longhorn Storage
@@ -183,22 +188,22 @@ data:
             description: Best Proxy Ever Web UI
             icon: hl-nginxproxymanager
             url: https://nginx.{{ .domainName }}
-          - title: Router
-            description: Router location
-            icon: hl-router
-            url: http://192.168.1.1
-          - title: Pi-Hole-Main
-            description: Main PiHole
-            icon: hl-pihole
-            url: http://192.168.1.63/admin
-          - title: Pi-Hole-Backup
-            description: Backup PiHole
-            icon: hl-pihole
-            url: http://192.168.1.120/admin
-          - title: Simple Secrets
-            description: K8S Secrets Operator
-            icon: https://raw.githubusercontent.com/Michaelpalacce/SimpleSecretsFrontend/main/public/img/icons/android-chrome-512x512.png
-            url: https://simplesecrets.{{ .domainName }}
+
+      - name: Networking
+        items:
+            - title: Router
+              description: Router location
+              icon: hl-router
+              url: http://192.168.1.1
+            - title: Pi-Hole-Main
+              description: Main PiHole
+              icon: hl-pihole
+              url: http://192.168.1.63/admin
+            - title: Pi-Hole-Backup
+              description: Backup PiHole
+              icon: hl-pihole
+              url: http://192.168.1.120/admin
+
       - name: Torrents
         items:
           - title: Transmission

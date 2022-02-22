@@ -1,3 +1,6 @@
+#### [V2.8.0]
+* Reordering
+
 #### [V2.7.1]
 * Fixed tandoor recipes icon
 
