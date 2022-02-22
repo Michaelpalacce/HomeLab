@@ -1,4 +1,4 @@
-vaultwarden:
+tandoorrecipes:
     image: vabene1111/recipes
     tag: 1.0.8
     # nodePort: 30125

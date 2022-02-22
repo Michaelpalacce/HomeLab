@@ -1,1 +1,1 @@
-This chart is used to install vaultwarden
+This chart is used to install tandoorrecipes

@@ -1,7 +1,7 @@
 kind: StorageClass
 apiVersion: storage.k8s.io/v1
 metadata:
-    name: vaultwarden-sc
+    name: tandoorrecipes-sc
 provisioner: driver.longhorn.io
 allowVolumeExpansion: true
 parameters:
@@ -15,11 +15,11 @@ parameters:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-    name: vaultwarden-media-pvc
+    name: tandoorrecipes-media-pvc
 spec:
     accessModes:
         - ReadWriteMany
-    storageClassName: vaultwarden-sc
+    storageClassName: tandoorrecipes-sc
     resources:
         requests:
             storage: {{ .Values.storage.mediaSize }}
@@ -28,11 +28,11 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-    name: vaultwarden-static-pvc
+    name: tandoorrecipes-static-pvc
 spec:
     accessModes:
         - ReadWriteMany
-    storageClassName: vaultwarden-sc
+    storageClassName: tandoorrecipes-sc
     resources:
         requests:
             storage: {{ .Values.storage.staticSize }}

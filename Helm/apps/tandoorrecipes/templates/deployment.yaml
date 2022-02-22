@@ -1,24 +1,24 @@
-{{- with .Values.vaultwarden }}
+{{- with .Values.tandoorrecipes }}
 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: vaultwarden
+    name: tandoorrecipes
     namespace: {{ $.Release.Namespace }}
     labels:
-        app: vaultwarden
+        app: tandoorrecipes
 spec:
     replicas: 1
     selector:
         matchLabels:
-            app: vaultwarden
+            app: tandoorrecipes
     template:
         metadata:
             labels:
-                app: vaultwarden
+                app: tandoorrecipes
         spec:
             containers:
-                - name: vaultwarden
+                - name: tandoorrecipes
                   image: {{ .image }}:{{ .tag }}
                   imagePullPolicy: IfNotPresent
 {{- if .resources }}
@@ -78,26 +78,26 @@ spec:
             volumes:
                 - name: media
                   persistentVolumeClaim:
-                      claimName: vaultwarden-media-pvc
+                      claimName: tandoorrecipes-media-pvc
                 - name: static
                   persistentVolumeClaim:
-                      claimName: vaultwarden-static-pvc
+                      claimName: tandoorrecipes-static-pvc
 
 ---
 
 apiVersion: v1
 kind: Service
 metadata:
-    name: vaultwarden
+    name: tandoorrecipes
     namespace: {{ $.Release.Namespace }}
 spec:
     {{- with .nodePort }}
     type: NodePort
     {{- end }}
     selector:
-        app: vaultwarden
+        app: tandoorrecipes
     ports:
-        - name: vaultwarden
+        - name: tandoorrecipes
           protocol: TCP
           port: {{ .port }}
           {{- with .nodePort }}
