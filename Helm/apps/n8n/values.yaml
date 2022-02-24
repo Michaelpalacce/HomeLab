@@ -1,9 +1,9 @@
 n8n:
     image: n8nio/n8n
-    tag: 0.148.0
+    tag: 0.164.1
     nodePort: 30114
     port: 5678
-    replicas: 0
+    replicas: 1
     resources:
         limits:
             cpu: 750m
