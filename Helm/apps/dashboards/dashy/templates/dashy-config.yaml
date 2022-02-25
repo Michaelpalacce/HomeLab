@@ -92,12 +92,12 @@ data:
             icon: hl-whooglesearch
             url: https://whoogle.{{ .domainName }}
 
-{{/*      - name: Media*/}}
-{{/*        items:*/}}
-{{/*          - title: Jellyfin*/}}
-{{/*            description: Tv Shows Stream*/}}
-{{/*            icon: hl-jellyfin*/}}
-{{/*            url: https://jellyfin.{{ .domainName }}*/}}
+          - name: Media
+            items:
+              - title: Jellyfin
+                description: Tv Shows Stream
+                icon: hl-jellyfin
+                url: https://jellyfin.{{ .domainName }}
 {{/*      - name: CI/CD*/}}
 {{/*        items:*/}}
 {{/*          - title: Jenkins*/}}
