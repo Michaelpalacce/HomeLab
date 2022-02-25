@@ -7,13 +7,22 @@ PI48-ubuntu-1
 PI48-ubuntu-2
 PI48-ubuntu-3
 
+# Separate servers
+[servers]
+amd-ubuntu1
+
 # This group has all the servers
 [all:children]
 init_master
 workers
 
+[_all:children]
+init_master
+workers
+servers
+
 #Variables for all the servers
-[all:vars]
+[_all:vars]
 ansible_connection=ssh
 ansible_user=ansible
 ansible_ssh_pass=ansible
