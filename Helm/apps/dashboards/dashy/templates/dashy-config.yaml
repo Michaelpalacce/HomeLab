@@ -97,10 +97,10 @@ data:
 
       - name: Media
         items:
-          - title: Jellyfin
+          - title: Plex
             description: Tv Shows Stream
-            icon: hl-jellyfin
-            url: https://jellyfin.{{ .domainName }}
+            icon: hl-plex
+            url: https://plex.{{ .domainName }}
 {{/*      - name: CI/CD*/}}
 {{/*        items:*/}}
 {{/*          - title: Jenkins*/}}
