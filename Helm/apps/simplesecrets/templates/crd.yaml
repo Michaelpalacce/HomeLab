@@ -22,6 +22,7 @@ spec:
                           required:
                           properties:
                               version:
+                                  nullable: true
                                   type: number
 
     # either Namespaced or Cluster
