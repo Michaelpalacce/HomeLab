@@ -26,6 +26,8 @@ spec:
                   env:
                       - name: DB_PATH
                         value: "/data/db.sqlite"
+                      - name: APP_PORT
+                        value: "80"
 {{- if .resources }}
                   resources:
 {{ toYaml .resources | indent 22 }}
