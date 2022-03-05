@@ -162,6 +162,10 @@ data:
             description: Shows Downloader
             icon: hl-sonarr
             url: https://sonarr.{{ .domainName }}
+          - title: Bazarr
+            description: Subtitles Downloader
+            icon: hl-bazarr
+            url: https://bazarr.{{ .domainName }}
 {{/*          - title: pyLoad*/}}
 {{/*            description: python Downloader*/}}
 {{/*            icon: hl-pyload*/}}

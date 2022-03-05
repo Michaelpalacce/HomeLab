@@ -1,0 +1,6 @@
+- [ ] Move Playbooks in roles
+- [ ] Use k3s ansible role
+- [ ] Harden security
+- [ ] Migrate NginxProxyManager to cert-manager and ingress
+- [ ] Try Flux
+- [ ] Migrate over to helm charts

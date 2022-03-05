@@ -1,0 +1,80 @@
+{{- with .Values.bazarr }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: bazarr
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app: bazarr
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: bazarr
+    template:
+        metadata:
+            labels:
+                app: bazarr
+        spec:
+            nodeSelector:
+                type: media
+            containers:
+                - name: bazarr
+                  image: {{ .image }}:{{ .tag }}
+                  imagePullPolicy: IfNotPresent
+                  env:
+                      - name: PUID
+                        value: "0"
+                      - name: GUID
+                        value: "0"
+                  resources:
+                      requests:
+                          cpu: 100m
+                          memory: 100Mi
+                      limits:
+                          cpu: 500m
+                          memory: 500Gi
+                  ports:
+                      - name: web
+                        containerPort: {{ .port }}
+                  volumeMounts:
+                      - name: config-data
+                        mountPath: /config
+                      - name: shows-data-nfs
+                        mountPath: /shows
+                      - name: movies-data-nfs
+                        mountPath: /tv
+
+            restartPolicy: Always
+            volumes:
+                - name: config-data
+                  hostPath:
+                      path: /mnt/media/bazarr
+                - name: shows-data-nfs
+                  persistentVolumeClaim:
+                      claimName: shows-volume-nfs
+                - name: movies-data-nfs
+                  persistentVolumeClaim:
+                      claimName: movies-volume-nfs
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: bazarr
+    namespace: {{ $.Release.Namespace }}
+spec:
+    {{- with .nodePort }}
+    type: NodePort
+    {{- end }}
+    selector:
+        app: bazarr
+    ports:
+        - name: bazarr
+          protocol: TCP
+          port: {{ .port }}
+          {{- with .nodePort }}
+          nodePort: {{ . }}
+          {{- end }}
+
+{{- end }}

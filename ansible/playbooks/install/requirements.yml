@@ -1,2 +1,7 @@
-- src: michaelpalacce.helm
-- src: michaelpalacce.kubernetes_preflight
+---
+collections:
+    - name: kubernetes.core
+      version: 2.2.3
+roles:
+    - src: michaelpalacce.helm
+    - src: michaelpalacce.kubernetes_preflight

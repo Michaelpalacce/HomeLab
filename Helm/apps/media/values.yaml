@@ -43,3 +43,10 @@ sonarr:
     tag: 3.0.6
     port: 8989
 
+
+bazarr:
+#    nodePort: 31007
+    image: linuxserver/bazarr
+    tag: 1.0.4-development
+    port: 6767
+
