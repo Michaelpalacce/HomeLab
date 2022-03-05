@@ -20,7 +20,7 @@ jackett:
 #    tag: 10.7.7
 
 radarr:
-#    nodePort: 31003
+    nodePort: 31003
     image: linuxserver/radarr
     tag: 4.0.2-develop
     port: 7878
@@ -38,14 +38,14 @@ readarr:
 #    port: 9696
 
 sonarr:
-#    nodePort: 31004
+    nodePort: 31004
     image: linuxserver/sonarr
-    tag: 3.0.6
+    tag: version-3.0.7.1477
     port: 8989
 
 
 bazarr:
-#    nodePort: 31007
+    nodePort: 31007
     image: linuxserver/bazarr
     tag: 1.0.4-development
     port: 6767
