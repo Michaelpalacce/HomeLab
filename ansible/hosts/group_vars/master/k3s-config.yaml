@@ -1,0 +1,20 @@
+---
+k3s_control_node: true
+
+k3s_server:
+    node-ip: "{{ ansible_default_ipv4.address }}"
+    tls-san:
+        - "{{ k3s_registration_address }}"
+    docker: false
+    flannel-backend: "none"
+    disable:
+        - flannel
+        - traefik
+        - metrics-server
+        - local-storage
+    disable-network-policy: true
+    disable-cloud-controller: true
+    write-kubeconfig-mode: "644"
+    cluster-cidr: "10.40.0.0/16"
+    service-cidr: "10.96.0.0/16"
+    etcd-expose-metrics: true

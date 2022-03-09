@@ -1,4 +1,4 @@
-- hosts: init_master
+- hosts: master
   name: Setup Jenkins CI/CD
   become: yes
   tags:

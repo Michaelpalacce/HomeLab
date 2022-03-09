@@ -3,3 +3,4 @@ TestingEnv
 output/
 .secret
 testing
+ansible/playbooks/restore/files/backup

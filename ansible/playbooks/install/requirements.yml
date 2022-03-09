@@ -3,5 +3,6 @@ collections:
     - name: kubernetes.core
       version: 2.2.3
 roles:
+    - src: xanmanning.k3s
     - src: michaelpalacce.helm
     - src: michaelpalacce.kubernetes_preflight

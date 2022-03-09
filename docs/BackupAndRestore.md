@@ -11,7 +11,7 @@ Postgresql can be backed up via:  ( change the app=postgresql to postgresql14 to
 Then you can Backup /tmp/Backup
 
 ### Restoring
-Copy the dump to the postgresql pod  and run: `psql -f Backupfile -u postgres` and pray
+Copy the dump to the postgresql pod  and run: `psql -f Backupfile -U postgres` and pray
 
 
 

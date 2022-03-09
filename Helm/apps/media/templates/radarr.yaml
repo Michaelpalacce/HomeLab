@@ -25,9 +25,9 @@ spec:
                   imagePullPolicy: IfNotPresent
                   env:
                       - name: PUID
-                        value: "1000"
+                        value: "0"
                       - name: GUID
-                        value: "1000"
+                        value: "0"
                   resources:
                       requests:
                           cpu: 125m

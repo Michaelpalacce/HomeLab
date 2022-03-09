@@ -1,4 +1,4 @@
-- hosts: init_master
+- hosts: master
   name: "Setup {{ appName }}"
   become: yes
   tasks:

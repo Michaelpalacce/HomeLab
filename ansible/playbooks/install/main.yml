@@ -82,26 +82,21 @@
                 - nfs-common
                 - jq
 
-- hosts: init_master
-  name: Setup master k3s
-  gather_facts: no
-  become: yes
+- hosts:
+    - master
+    - workers
+  become: true
+  any_errors_fatal: true
   tags:
-      - TEST
+      - setup
+      - setup-k3s
   vars_files:
       - "./vars/main.yml"
-  tasks:
-      - name: Get installation script
-        get_url:
-            url: https://get.k3s.io
-            dest: ./k3s-install.sh
-            mode: 0750
+  roles:
+      - xanmanning.k3s
 
-      - name: Install k3s and setup calico CNI
-        shell: "K3S_KUBECONFIG_MODE=\"644\" INSTALL_K3S_EXEC=\"--flannel-backend=none --cluster-cidr=10.40.0.0/16 --disable-network-policy --disable=traefik\" ./k3s-install.sh"
-
-- hosts: init_master
-  name: Setup master k3s
+- hosts: master
+  name: Setup master k3s calico and fetch config
   become: yes
   tags:
       - setup
@@ -109,19 +104,6 @@
   vars_files:
       - "./vars/main.yml"
   tasks:
-      - name: Get Cluster info
-        shell: kubectl cluster-info
-        register: cluster_info
-        ignore_errors: true
-
-      - name: Get installation script
-        get_url:
-            url: https://get.k3s.io
-            dest: ./k3s-install.sh
-            mode: 0750
-
-      - name: Install k3s
-        shell: "K3S_KUBECONFIG_MODE=\"644\" INSTALL_K3S_EXEC=\"--flannel-backend=none --cluster-cidr=10.40.0.0/16 --disable-network-policy --disable=traefik\" ./k3s-install.sh"
 
       - name: Setup k3s and setup calico CNI
         shell: "{{ item }}"
@@ -129,14 +111,6 @@
             - mkdir -p ~/.kube
             - cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
             - kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
-        when: cluster_info.stdout.find( 'Kubernetes control plane\u001b[0m is running at' ) == -1
-
-      - name: Get token
-        shell: cat /var/lib/rancher/k3s/server/node-token
-        register: nodeToken
-
-      - name: Generate join commands
-        shell: "echo 'curl -sfL https://get.k3s.io | K3S_URL={{ k3s_master_url }} K3S_TOKEN={{ nodeToken.stdout }} sh -' >> /tmp/join-command"
 
       - name: Copy output to local files
         fetch:
@@ -144,35 +118,17 @@
             dest: "{{ item.dest }}"
             flat: yes
         with_items:
-            - src: /tmp/join-command
-              dest: "{{ output_dir }}/join-command"
-            - src: ~/.kube/config
+            - src: /etc/rancher/k3s/k3s.yaml
               dest: "{{ output_dir }}/config"
 
-- hosts: workers
-  name: Joins all the workers to the cluster
-  tags:
-      - setup
-      - setup-join-workers
-  become: yes
-  any_errors_fatal: true
-  tasks:
-      - name: Copy the join command to server location
-        copy:
-            src: "output/join-command"
-            dest: /tmp/join-command.sh
-            mode: 0755
 
-      - name: Join the node to cluster
-        command: sh /tmp/join-command.sh
-
-- hosts: init_master
+- hosts: master
   name: Setup Longhorn storage
   become: yes
   tags:
       - init
       - storage
-      - storage-setup-longhorn
+      - storage-setup-longhorn-system
   vars_files:
       - "./vars/main.yml"
   tasks:
@@ -186,12 +142,17 @@
             src: ../../../Helm/apps/longhorn-system
             dest: .
 
+      - name: Add stable chart repo
+        kubernetes.core.helm_repository:
+            name: longhorn-system
+            repo_url: "https://charts.longhorn.io"
+
       - name: Install longhorn-system namespace
         kubernetes.core.helm:
             name: longhorn-system
             create_namespace: true
             release_namespace: longhorn-system
-            chart_ref: longhorn-system/
+            chart_ref: longhorn/longhorn
             values_files: longhorn-system/values.yaml
 
       - name: Cleanup chart, we no longer need this
@@ -207,8 +168,7 @@
         delay: 5
         when: verify_running
 
-
-- hosts: init_master
+- hosts: master
   name: Setup nginxproxymanager
   become: yes
   tags:
@@ -239,38 +199,7 @@
             path: nginxproxymanager
             state: absent
 
-- hosts: init_master
-  name: Setup dashboard
-  become: yes
-  tags:
-      - init
-      - dashboard
-      - dashboard-setup
-  tasks:
-      - name: Cleanup old potential chart
-        file:
-            path: "{{ dashboard }}"
-            state: absent
-
-      - name: Ensure new Chart is present
-        copy:
-            src: "../../../Helm/apps/dashboards/{{ dashboard }}"
-            dest: .
-
-      - name: Install dashboard namespace
-        kubernetes.core.helm:
-            name: "{{ dashboard }}"
-            create_namespace: true
-            release_namespace: "{{ dashboard }}"
-            chart_ref: "{{ dashboard }}/"
-            values_files: "{{ dashboard }}/values.yaml"
-
-      - name: Cleanup chart, we no longer need this
-        file:
-            path: "{{ dashboard }}"
-            state: absent
-
-- hosts: init_master
+- hosts: master
   name: Setup cgroup-gc to help cleanup cgroups
   become: yes
   tags:
