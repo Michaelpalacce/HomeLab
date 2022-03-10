@@ -199,3 +199,91 @@
 
       - name: Restart deploy
         shell: kubectl rollout restart -n vaultwarden deploy vaultwarden
+
+- hosts: master
+  name: Restore trilium
+  become: yes
+  any_errors_fatal: yes
+  vars_files:
+      - "./vars/main.yml"
+  tags:
+      - trilium
+  tasks:
+      - name: Ensure dir exists
+        file:
+            path: /tmp/trilium
+            state: directory
+
+      - name: Ensure backup is present
+        copy:
+            src: "{{ item.src }}"
+            dest: "{{ item.dest }}"
+        with_items:
+            - dest: /tmp/trilium/trilium.db
+              src: files/backup/trilium/trilium.db
+
+      - name: Register Name
+        shell: kubectl get po -n trilium -l app=trilium | awk 'NR==2{ print $1 }'
+        register: container_name
+
+      - name: Delete old data
+        shell: "kubectl exec -n trilium {{container_name.stdout}} -- sh -c 'rm -rf /home/node/trilium-data/*.db*'"
+
+      - name: Transfer backup
+        shell: "kubectl cp -n trilium /tmp/trilium/trilium.db {{container_name.stdout}}:/home/node/trilium-data/document.db"
+
+      - name: Make it read/writable
+        shell: "kubectl exec -n trilium {{container_name.stdout}} -- sh -c 'chmod 0600 /home/node/trilium-data/document.db'"
+
+      - name: Restart deploy
+        shell: kubectl rollout restart -n trilium deploy trilium
+
+#- hosts: master
+#  name: Restore changedetection
+#  become: yes
+#  any_errors_fatal: yes
+#  vars_files:
+#      - "./vars/main.yml"
+#  tags:
+#      - changedetection
+#  tasks:
+#      - name: Ensure dir exists
+#        file:
+#            path: /tmp/changedetection
+#            state: directory
+#
+#      - name: Ensure backup is present
+#        copy:
+#            src: "{{ item.src }}"
+#            dest: "{{ item.dest }}"
+#        with_items:
+#            - dest: /tmp/changedetection/changedetection.zip
+#              src: files/backup/changedetection/changedetection.zip
+#
+#      - name: Ensure we have unzip
+#        apt:
+#            name: unzip
+#            state: present
+#
+#      - name: Convert zip to tar.gz
+#        shell: "{{ item }}"
+#        with_items:
+#            - unzip -o /tmp/changedetection/changedetection.zip -d /tmp/changedetection/
+#            - rm -rf /tmp/changedetection/changedetection.zip
+#            - tar -zcvf /tmp/changedetection/changedetection.tar.gz /tmp/changedetection/
+#
+#      - name: Register Name
+#        shell: kubectl get po -n changedetection -l app=changedetection | awk 'NR==2{ print $1 }'
+#        register: container_name
+#
+#      - name: Delete old data
+#        shell: "kubectl exec -n changedetection {{container_name.stdout}} -- sh -c 'rm -rf /datastore/*'"
+#
+#      - name: Transfer backup
+#        shell: "kubectl cp -n changedetection /tmp/changedetection/changedetection.tar.gz {{container_name.stdout}}:/datastore/changedetection.tar.gz"
+#
+#      - name: Unzip
+#        shell: "kubectl exec -n changedetection {{container_name.stdout}} -- sh -c 'tar -xf /datastore/changedetection.tar.gz -C /datastore/'"
+#
+#      - name: Restart deploy
+#        shell: kubectl rollout restart -n changedetection deploy changedetection

@@ -41,7 +41,7 @@ promtail:
 
 grafana:
     image: grafana/grafana
-    tag: 8.1.2
+    tag: 8.4.2
     port: 3000
 #    nodePort: 30010
     limits:
@@ -58,4 +58,4 @@ loki:
             memory: 100Mi
         limits:
             cpu: 250m
-            memory: 200Mi
+            memory: 2Gi
