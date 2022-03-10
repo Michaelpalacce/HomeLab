@@ -37,6 +37,7 @@ Currently, the nodePorts are not in use ( with a few exceptions ). I use Nginx P
 ##### Prowlarr: 31005
 ##### Openbooks: 31006
 ##### Bazarr: 31007
+##### Overseerr: 31008
 
 ## Apps
 #### Used Port range: 30100 - 31000

@@ -1,0 +1,71 @@
+{{- with .Values.overseerr }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: overseerr
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app: overseerr
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: overseerr
+    template:
+        metadata:
+            labels:
+                app: overseerr
+        spec:
+            nodeSelector:
+                type: media
+            containers:
+                - name: overseerr
+                  image: {{ .image }}:{{ .tag }}
+                  imagePullPolicy: IfNotPresent
+                  env:
+                      - name: PUID
+                        value: "0"
+                      - name: GUID
+                        value: "0"
+                  resources:
+                      requests:
+                          cpu: 100m
+                          memory: 100Mi
+                      limits:
+                          cpu: 500m
+                          memory: 500Mi
+                  ports:
+                      - name: web
+                        containerPort: {{ .port }}
+                  volumeMounts:
+                      - name: config-data
+                        mountPath: /config
+
+            restartPolicy: Always
+            volumes:
+                - name: config-data
+                  hostPath:
+                      path: /mnt/media/overseerr
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: overseerr
+    namespace: {{ $.Release.Namespace }}
+spec:
+    {{- with .nodePort }}
+    type: NodePort
+    {{- end }}
+    selector:
+        app: overseerr
+    ports:
+        - name: overseerr
+          protocol: TCP
+          port: {{ .port }}
+          {{- with .nodePort }}
+          nodePort: {{ . }}
+          {{- end }}
+
+{{- end }}

@@ -166,6 +166,10 @@ data:
             description: Subtitles Downloader
             icon: hl-bazarr
             url: https://bazarr.{{ .domainName }}
+          - title: Overseer
+            description: Media Requests
+            icon: hl-overseerr
+            url: https://overseerr.{{ .domainName }}
 {{/*          - title: pyLoad*/}}
 {{/*            description: python Downloader*/}}
 {{/*            icon: hl-pyload*/}}
