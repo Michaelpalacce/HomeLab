@@ -1,3 +1,6 @@
+#### [V2.4.0]
+* Added namespace as scraped data from promtail
+
 #### [V2.3.0]
 * Removed NodePort
 

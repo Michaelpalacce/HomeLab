@@ -238,52 +238,55 @@
       - name: Restart deploy
         shell: kubectl rollout restart -n trilium deploy trilium
 
-#- hosts: master
-#  name: Restore changedetection
-#  become: yes
-#  any_errors_fatal: yes
-#  vars_files:
-#      - "./vars/main.yml"
-#  tags:
-#      - changedetection
-#  tasks:
-#      - name: Ensure dir exists
-#        file:
-#            path: /tmp/changedetection
-#            state: directory
-#
-#      - name: Ensure backup is present
-#        copy:
-#            src: "{{ item.src }}"
-#            dest: "{{ item.dest }}"
-#        with_items:
-#            - dest: /tmp/changedetection/changedetection.zip
-#              src: files/backup/changedetection/changedetection.zip
-#
-#      - name: Ensure we have unzip
-#        apt:
-#            name: unzip
-#            state: present
-#
-#      - name: Convert zip to tar.gz
-#        shell: "{{ item }}"
-#        with_items:
-#            - unzip -o /tmp/changedetection/changedetection.zip -d /tmp/changedetection/
-#            - rm -rf /tmp/changedetection/changedetection.zip
-#            - tar -zcvf /tmp/changedetection/changedetection.tar.gz /tmp/changedetection/
-#
-#      - name: Register Name
-#        shell: kubectl get po -n changedetection -l app=changedetection | awk 'NR==2{ print $1 }'
-#        register: container_name
-#
-#      - name: Delete old data
-#        shell: "kubectl exec -n changedetection {{container_name.stdout}} -- sh -c 'rm -rf /datastore/*'"
-#
-#      - name: Transfer backup
-#        shell: "kubectl cp -n changedetection /tmp/changedetection/changedetection.tar.gz {{container_name.stdout}}:/datastore/changedetection.tar.gz"
-#
-#      - name: Unzip
-#        shell: "kubectl exec -n changedetection {{container_name.stdout}} -- sh -c 'tar -xf /datastore/changedetection.tar.gz -C /datastore/'"
-#
-#      - name: Restart deploy
-#        shell: kubectl rollout restart -n changedetection deploy changedetection
+- hosts: master
+  name: Restore changedetection
+  become: yes
+  any_errors_fatal: yes
+  vars_files:
+      - "./vars/main.yml"
+  tags:
+      - changedetection
+  tasks:
+      - name: Ensure dir exists
+        file:
+            path: /tmp/changedetection
+            state: directory
+
+      - name: Ensure backup is present
+        copy:
+            src: "{{ item.src }}"
+            dest: "{{ item.dest }}"
+        with_items:
+            - dest: /tmp/changedetection/changedetection.zip
+              src: files/backup/changedetection/changedetection.zip
+
+      - name: Ensure we have unzip
+        apt:
+            name: unzip
+            state: present
+
+      - name: Convert zip to tar.gz
+        shell: "{{ item }}"
+        with_items:
+            - unzip -o /tmp/changedetection/changedetection.zip -d /tmp/changedetection/
+            - rm -rf /tmp/changedetection/changedetection.zip
+            - tar -zcvf /tmp/changedetection/changedetection.tar.gz /tmp/changedetection/
+
+      - name: Register Name
+        shell: kubectl get po -n changedetection -l app=changedetection | awk 'NR==2{ print $1 }'
+        register: container_name
+
+      - name: Delete old data
+        shell: "kubectl exec -n changedetection {{container_name.stdout}} -- sh -c 'rm -rf /datastore/*'"
+
+      - name: Transfer backup
+        shell: "kubectl cp -n changedetection /tmp/changedetection/changedetection.tar.gz {{container_name.stdout}}:/tmp/changedetection.tar.gz"
+
+      - name: Unzip
+        shell: "kubectl exec -n changedetection {{container_name.stdout}} -- sh -c 'tar -xf /tmp/changedetection.tar.gz -C /tmp/'"
+
+      - name: Apply Restore
+        shell: "kubectl exec -n changedetection {{container_name.stdout}} -- bash -c '/bin/cp -rf /tmp/tmp/changedetection/* /datastore/'"
+
+      - name: Restart deploy
+        shell: kubectl rollout restart -n changedetection deploy changedetection

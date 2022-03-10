@@ -28,9 +28,10 @@ data:
                   - cri: {}
                   - regex:
                       source: filename
-                      expression: "/var/log/pods/[\\S]+/(?P<container>[\\S]+)/[\\S]+log"
+                      expression: "/var/log/pods/(?P<namespace>[\\S]+?)_[\\S]+/(?P<container>[\\S]+)/[\\S]+log"
                   - labels:
                         container: container
+                        namespace: namespace
 
             - job_name: system
               static_configs:

@@ -118,5 +118,8 @@ data:
                 - selector: '{job="containerlogs"}'
                   priority: 1
                   period: 48h
+                - selector: '{job="varlogs"}'
+                  priority: 1
+                  period: 48h
 
 {{- end }}

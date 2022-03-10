@@ -1,0 +1,237 @@
+{
+  "annotations": {
+	"list": [
+	  {
+		"builtIn": 1,
+		"datasource": "-- Grafana --",
+		"enable": true,
+		"hide": true,
+		"iconColor": "rgba(0, 211, 255, 1)",
+		"name": "Annotations & Alerts",
+		"target": {
+		  "limit": 100,
+		  "matchAny": false,
+		  "tags": [],
+		  "type": "dashboard"
+		},
+		"type": "dashboard"
+	  }
+	]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 3,
+  "iteration": 1646925337334,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+	{
+	  "datasource": {
+		"type": "loki",
+		"uid": "JmIN-_Ynk"
+	  },
+	  "gridPos": {
+		"h": 14,
+		"w": 24,
+		"x": 0,
+		"y": 0
+	  },
+	  "id": 4,
+	  "options": {
+		"dedupStrategy": "none",
+		"enableLogDetails": true,
+		"prettifyLogMessage": false,
+		"showCommonLabels": false,
+		"showLabels": false,
+		"showTime": true,
+		"sortOrder": "Descending",
+		"wrapLogMessage": false
+	  },
+	  "targets": [
+		{
+		  "datasource": {
+			"type": "loki",
+			"uid": "JmIN-_Ynk"
+		  },
+		  "expr": "{container=~\"$container\",job=~\"containerlogs\",namespace=~\"$namespace\",stream=~\"$log_type\"} |~ \"$search\"",
+		  "refId": "A"
+		}
+	  ],
+	  "title": "Container Logs",
+	  "type": "logs"
+	},
+	{
+	  "datasource": {
+		"type": "loki",
+		"uid": "JmIN-_Ynk"
+	  },
+	  "gridPos": {
+		"h": 17,
+		"w": 24,
+		"x": 0,
+		"y": 14
+	  },
+	  "id": 2,
+	  "options": {
+		"dedupStrategy": "none",
+		"enableLogDetails": true,
+		"prettifyLogMessage": true,
+		"showCommonLabels": false,
+		"showLabels": false,
+		"showTime": false,
+		"sortOrder": "Descending",
+		"wrapLogMessage": true
+	  },
+	  "targets": [
+		{
+		  "datasource": {
+			"type": "loki",
+			"uid": "JmIN-_Ynk"
+		  },
+		  "expr": "{job=\"varlogs\"}",
+		  "queryType": "range",
+		  "refId": "A"
+		}
+	  ],
+	  "title": "Var Logs",
+	  "type": "logs"
+	}
+  ],
+  "refresh": "",
+  "schemaVersion": 35,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+	"list": [
+	  {
+		"allValue": "stderr|stdout",
+		"current": {
+		  "selected": true,
+		  "text": [
+			"All"
+		  ],
+		  "value": [
+			"$__all"
+		  ]
+		},
+		"description": "Show stderr or stdout",
+		"hide": 0,
+		"includeAll": true,
+		"label": "Logs Type",
+		"multi": true,
+		"name": "log_type",
+		"options": [
+		  {
+			"selected": true,
+			"text": "All",
+			"value": "$__all"
+		  },
+		  {
+			"selected": false,
+			"text": "stderr",
+			"value": "stderr"
+		  },
+		  {
+			"selected": false,
+			"text": "stdout",
+			"value": "stdout"
+		  }
+		],
+		"query": "stderr,stdout",
+		"queryValue": "",
+		"skipUrlSync": false,
+		"type": "custom"
+	  },
+	  {
+		"allValue": ".*",
+		"current": {
+		  "selected": true,
+		  "text": [
+			"All"
+		  ],
+		  "value": [
+			"$__all"
+		  ]
+		},
+		"definition": "label_values(kubelet_container_log_filesystem_used_bytes,namespace)",
+		"description": "Namespace for the logs",
+		"hide": 0,
+		"includeAll": true,
+		"label": "Namespace",
+		"multi": true,
+		"name": "namespace",
+		"options": [],
+		"query": {
+		  "query": "label_values(kubelet_container_log_filesystem_used_bytes,namespace)",
+		  "refId": "StandardVariableQuery"
+		},
+		"refresh": 1,
+		"regex": "",
+		"skipUrlSync": false,
+		"sort": 0,
+		"type": "query"
+	  },
+	  {
+		"allValue": ".*",
+		"current": {
+		  "selected": true,
+		  "text": [
+			"All"
+		  ],
+		  "value": [
+			"$__all"
+		  ]
+		},
+		"definition": "label_values(kubelet_container_log_filesystem_used_bytes,container)",
+		"description": "Container to search in",
+		"hide": 0,
+		"includeAll": true,
+		"label": "Container",
+		"multi": true,
+		"name": "container",
+		"options": [],
+		"query": {
+		  "query": "label_values(kubelet_container_log_filesystem_used_bytes,container)",
+		  "refId": "StandardVariableQuery"
+		},
+		"refresh": 1,
+		"regex": "",
+		"skipUrlSync": false,
+		"sort": 0,
+		"type": "query"
+	  },
+	  {
+		"current": {
+		  "selected": false,
+		  "text": "",
+		  "value": ""
+		},
+		"description": "What to search for in the logs?",
+		"hide": 0,
+		"label": "Search",
+		"name": "search",
+		"options": [
+		  {
+			"selected": true,
+			"text": "",
+			"value": ""
+		  }
+		],
+		"query": "",
+		"skipUrlSync": false,
+		"type": "textbox"
+	  }
+	]
+  },
+  "time": {
+	"from": "now-6h",
+	"to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Logs Dashboard",
+  "uid": "AX2Go9Y7k",
+  "version": 5,
+  "weekStart": ""
+}
