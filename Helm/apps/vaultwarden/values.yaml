@@ -1,6 +1,5 @@
 vaultwarden:
-    image: vaultwarden/server
-    tag: 1.24.0
+    image: vaultwarden/server:1.24.0
     # nodePort: 31001
     port: 80
     backup:

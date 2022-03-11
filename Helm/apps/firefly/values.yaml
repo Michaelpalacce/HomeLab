@@ -1,6 +1,5 @@
 firefly:
-    image: fireflyiii/core
-    tag: version-5.6.10
+    image: fireflyiii/core:version-5.6.10
     port: 8080
 #    nodePort: 30121
     appUrl: https://firefly.stefangenov.site

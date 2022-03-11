@@ -1,6 +1,5 @@
 changedetection:
-    image: dgtlmoon/changedetection.io
-    tag: 0.39.9
+    image: dgtlmoon/changedetection.io:0.39.9
 #    nodePort: 30120
     port: 5000
     baseUrl: changedetection.stefangenov.site

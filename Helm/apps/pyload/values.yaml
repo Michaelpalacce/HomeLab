@@ -1,6 +1,5 @@
 pyload:
-    image: linuxserver/pyload
-    tag: version-4bb5578c
+    image: linuxserver/pyload:version-4bb5578c
 #    nodePort: 30124
     port: 8000
     baseUrl: "pyload.stefangenov.site"

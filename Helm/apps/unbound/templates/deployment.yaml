@@ -29,7 +29,7 @@ spec:
                 node-role.kubernetes.io/control-plane: "true"
             containers:
                 - name: unbound
-                  image: {{ .image }}:{{ .tag }}
+                  image: {{ .image }}
                   imagePullPolicy: IfNotPresent
                   securityContext:
                       privileged: true

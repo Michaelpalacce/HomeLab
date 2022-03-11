@@ -22,7 +22,7 @@ spec:
         spec:
             containers:
                 - name: wallabag
-                  image: {{ .image }}:{{ .tag }}
+                  image: {{ .image }}
                   imagePullPolicy: IfNotPresent
                   env:
                       - name: PUID

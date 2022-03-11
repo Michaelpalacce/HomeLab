@@ -1,6 +1,5 @@
 dashy:
-    image: stefangenov/dashy
-    tag: 2.0.4
+    image: stefangenov/dashy:2.0.4
 #    nodePort: 32222
     port: 80
     resources:

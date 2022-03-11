@@ -26,7 +26,7 @@ spec:
         spec:
             containers:
                 - name: dashy
-                  image: {{ .image }}:{{ .tag }}
+                  image: {{ .image }}
                   imagePullPolicy: IfNotPresent
 {{- if .resources }}
                   resources:

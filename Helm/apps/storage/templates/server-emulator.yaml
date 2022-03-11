@@ -19,7 +19,7 @@ spec:
         spec:
             containers:
                 - name: serveremulator
-                  image: {{ .image }}:{{ .tag }}
+                  image: {{ .image }}
                   imagePullPolicy: IfNotPresent
                   env:
                       - name: SERVER_CONFIG_PATH

@@ -1,6 +1,5 @@
 homer:
-    image: stefangenov/homer
-    tag: 21.07.1-1
+    image: stefangenov/homer:21.07.1-1
     nodePort: 32222
     resources:
         limits:

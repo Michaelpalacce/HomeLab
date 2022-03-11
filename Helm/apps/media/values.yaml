@@ -2,16 +2,14 @@ storage:
     nasIp: 192.168.1.20
 
 transmission:
-    image: linuxserver/transmission
-    tag: version-3.00-r2
+    image: linuxserver/transmission:version-3.00-r2
 #    nodePort: 30035
     username: username
     password: password
 
 jackett:
     nodePort: 30034
-    image: linuxserver/jackett
-    tag: 0.20.399
+    image: linuxserver/jackett:0.20.399
     port: 9117
 
 #jellyfin:
@@ -21,14 +19,12 @@ jackett:
 
 radarr:
 #    nodePort: 31003
-    image: linuxserver/radarr
-    tag: 4.0.2-develop
+    image: linuxserver/radarr:4.0.2-develop
     port: 7878
 
 overseerr:
 #    nodePort: 31008
-    image: lscr.io/linuxserver/overseerr
-    tag: 1.28.0
+    image: linuxserver/overseerr:1.28.0
     port: 5055
 
 readarr:
@@ -39,19 +35,16 @@ readarr:
 
 #prowlarr:
 ##    nodePort: 31005
-#    image: linuxserver/prowlarr
-#    tag: 0.2.0-nightly
+#    image: linuxserver/prowlarr:0.2.0-nightly
 #    port: 9696
 
 sonarr:
 #    nodePort: 31004
-    image: linuxserver/sonarr
-    tag: version-3.0.7.1477
+    image: linuxserver/sonarr:version-3.0.7.1477
     port: 8989
 
 bazarr:
 #    nodePort: 31007
-    image: linuxserver/bazarr
-    tag: 1.0.4-development
+    image: linuxserver/bazarr:1.0.4-development
     port: 6767
 

@@ -1,6 +1,5 @@
 trilium:
-    image: zadam/trilium
-    tag: 0.48-latest
+    image: zadam/trilium:0.48-latest
 #    nodePort: 30122
     port: 8080
     baseUrl: "trilium.stefangenov.site"

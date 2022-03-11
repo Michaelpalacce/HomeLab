@@ -19,7 +19,7 @@ spec:
         spec:
             containers:
                 - name: vaultwarden
-                  image: {{ .image }}:{{ .tag }}
+                  image: {{ .image }}
                   imagePullPolicy: IfNotPresent
 {{- if .resources }}
                   resources:

@@ -21,7 +21,7 @@ spec:
         spec:
             containers:
                 {{- with .nginx }}
-                - image: {{ .image }}:{{ .tag }}
+                - image: {{ .image }}
                   name: vikunja
                   imagePullPolicy: IfNotPresent
                   ports:
@@ -36,7 +36,7 @@ spec:
 
                 {{- with .api }}
                 - name: api
-                  image: {{ .image }}:{{ .tag }}
+                  image: {{ .image }}
                   env:
                       - name: VIKUNJA_SERVICE_FRONTENDURL
                         value: "{{ .frontendUrl }}"
@@ -105,7 +105,7 @@ spec:
 
                 {{- with .frontend }}
                 - name: frontend
-                  image: {{ .image }}:{{ .tag }}
+                  image: {{ .image }}
                   imagePullPolicy: IfNotPresent
                   ports:
                       - containerPort: {{ .port }}

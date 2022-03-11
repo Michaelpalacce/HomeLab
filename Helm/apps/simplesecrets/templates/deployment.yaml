@@ -21,7 +21,7 @@ spec:
             containers:
 {{- with .api }}
                 - name: api
-                  image: {{ .image }}:{{ .tag }}
+                  image: {{ .image }}
                   imagePullPolicy: IfNotPresent
                   env:
                       - name: DB_PATH
@@ -48,7 +48,7 @@ spec:
 {{- end }}
 {{- with .web }}
                 - name: web
-                  image: {{ .image }}:{{ .tag }}
+                  image: {{ .image }}
                   imagePullPolicy: IfNotPresent
 {{- if .resources }}
                   resources:

@@ -22,7 +22,7 @@ spec:
         spec:
             containers:
                 - name: uptimekuma
-                  image: {{ .image }}:{{ .tag }}
+                  image: {{ .image }}
                   imagePullPolicy: IfNotPresent
 {{- if .resources }}
                   resources:

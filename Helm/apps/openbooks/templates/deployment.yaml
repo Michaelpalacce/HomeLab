@@ -19,7 +19,7 @@ spec:
         spec:
             containers:
                 - name: openbooks
-                  image: {{ .image }}:{{ .tag }}
+                  image: {{ .image }}
                   imagePullPolicy: IfNotPresent
                   args:
                       - --persist

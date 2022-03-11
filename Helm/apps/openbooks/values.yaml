@@ -1,6 +1,5 @@
 openbooks:
-    image: evanbuss/openbooks
-    tag: sha-8639492
+    image: evanbuss/openbooks:sha-8639492
     # nodePort: 31006
     port: 80
     resources:

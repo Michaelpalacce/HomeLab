@@ -21,7 +21,7 @@ spec:
                 type: media
             containers:
                 - name: transmission
-                  image: {{ .image }}:{{ .tag }}
+                  image: {{ .image }}
                   imagePullPolicy: IfNotPresent
                   resources:
                       requests:

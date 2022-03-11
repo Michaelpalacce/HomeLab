@@ -21,7 +21,7 @@ spec:
                 type: media
             containers:
                 - name: overseerr
-                  image: {{ .image }}:{{ .tag }}
+                  image: {{ .image }}
                   imagePullPolicy: IfNotPresent
                   env:
                       - name: PUID

@@ -25,7 +25,7 @@ spec:
                       claimName: pgadmin-data-pvc
             containers:
                 - name: pgadmin
-                  image: {{ .image }}:{{ .tag }}
+                  image: {{ .image }}
                   imagePullPolicy: IfNotPresent
 {{- if .resources }}
                   resources:

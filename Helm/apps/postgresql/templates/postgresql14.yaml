@@ -24,7 +24,7 @@ spec:
                 fsGroup: 0
             containers:
                 - name: postgresql14
-                  image: {{ .image }}:{{ .tag }}
+                  image: {{ .image }}
                   imagePullPolicy: IfNotPresent
                   ports:
                       - containerPort: {{ .port }}

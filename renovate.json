@@ -9,15 +9,5 @@
 	"fileMatch": [
 	  "Helm/.+\\.yaml$"
 	]
-  },"regexManagers": [
-  {
-	"fileMatch": [
-	  "Helm/.+\\.yaml$"
-	],
-	"matchStrings": [
-	  "image:(?<registryUrl>.*?)\n *tag: (?<depName>[a-zA-Z-]+)-(?<currentValue>.*)\n"
-	],
-	"datasourceTemplate": "docker"
   }
-]
 }

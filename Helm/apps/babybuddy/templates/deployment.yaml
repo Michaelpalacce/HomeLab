@@ -22,7 +22,7 @@ spec:
         spec:
             containers:
                 - name: babybuddy
-                  image: {{ .image }}:{{ .tag }}
+                  image: {{ .image }}
                   imagePullPolicy: IfNotPresent
                   env:
                       - name: DB_ENGINE

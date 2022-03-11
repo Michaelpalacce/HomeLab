@@ -33,7 +33,7 @@ spec:
                       claimName: promtail-position-pvc
             containers:
                 - name: promtail-container
-                  image: {{ .image }}:{{ .tag }}
+                  image: {{ .image }}
 {{- if .resources }}
                   resources:
 {{ toYaml .resources | indent 22 }}

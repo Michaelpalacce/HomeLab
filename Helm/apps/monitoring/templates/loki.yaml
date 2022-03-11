@@ -19,7 +19,7 @@ spec:
         spec:
             containers:
                 - name: loki
-                  image: {{ .image }}:{{ .tag }}
+                  image: {{ .image }}
                   imagePullPolicy: IfNotPresent
 {{- if .resources }}
                   resources:

@@ -1,7 +1,6 @@
 simplesecrets:
     api:
-        image: stefangenov/simplesecrets
-        tag: 1.14.0-sqlite3
+        image: stefangenov/simplesecrets:1.14.0-sqlite3
 #        nodePort: 30037
         port: 80
         resources:
@@ -12,8 +11,7 @@ simplesecrets:
                 cpu: 100m
                 memory: 512Mi
     web:
-        image: stefangenov/simplesecrets-frontend
-        tag: 0.9.0
+        image: stefangenov/simplesecrets-frontend:0.9.0
 #        nodePort: 30036
         port: 3000
         resources:

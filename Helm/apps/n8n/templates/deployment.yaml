@@ -22,7 +22,7 @@ spec:
         spec:
             containers:
                 - name: n8n
-                  image: {{ .image }}:{{ .tag }}
+                  image: {{ .image }}
                   imagePullPolicy: IfNotPresent
                   env:
                       - name: N8N_BASIC_AUTH_ACTIVE

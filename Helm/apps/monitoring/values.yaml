@@ -9,8 +9,7 @@ backup:
         defaultRegion: eu-west-1 # CHANGE ME
 
 prometheus:
-    image: quay.io/prometheus/prometheus
-    tag: main
+    image: quay.io/prometheus/prometheus:v2.33.5
     port: 9090
 #    nodePort: 30011
 #   How long will data scraped by prometheus be kept on the fs
@@ -21,16 +20,14 @@ prometheus:
             password: admin123
 
 nodeExporter:
-    image: prom/node-exporter
-    tag: v1.1.2
+    image: prom/node-exporter:v1.1.2
     port: 9100
     tolerations:
         - key: node-role.kubernetes.io/master
           effect: NoSchedule
 
 promtail:
-    image: grafana/promtail
-    tag: 2.4.1
+    image: grafana/promtail:2.4.1
     resources:
         requests:
             cpu: 50m
@@ -40,8 +37,7 @@ promtail:
             memory: 512Mi
 
 grafana:
-    image: grafana/grafana
-    tag: 8.4.2
+    image: grafana/grafana:8.4.2
     port: 3000
 #    nodePort: 30010
     limits:
@@ -49,8 +45,7 @@ grafana:
         memory: 1Gi
 
 loki:
-    image: grafana/loki
-    tag: 2.4.1
+    image: grafana/loki:2.4.1
     port: 3100
     resources:
         requests:

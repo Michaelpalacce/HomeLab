@@ -23,7 +23,7 @@ spec:
         spec:
             containers:
                 - name: homer
-                  image: {{ .image }}:{{ .tag }}
+                  image: {{ .image }}
                   imagePullPolicy: IfNotPresent
 {{- if .resources }}
                   resources:

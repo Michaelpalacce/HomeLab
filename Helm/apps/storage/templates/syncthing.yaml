@@ -22,7 +22,7 @@ spec:
         spec:
             containers:
                 - name: syncthing
-                  image: {{ .image }}:{{ .tag }}
+                  image: {{ .image }}
                   imagePullPolicy: IfNotPresent
                   resources:
                       requests:

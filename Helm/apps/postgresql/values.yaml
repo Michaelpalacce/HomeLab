@@ -6,8 +6,7 @@ storage:
     pgAdmin: 1Gi
 
 postgresql:
-    image: postgres
-    tag: 9.6
+    image: postgres:9.6
     port: 5432
     resources:
         requests:
@@ -18,8 +17,7 @@ postgresql:
             memory: 2Gi
 
 postgresql14:
-    image: postgres
-    tag: 14.1
+    image: postgres:14.1
     port: 5432
     resources:
         requests:
@@ -30,8 +28,7 @@ postgresql14:
             memory: 2Gi
 
 pgadmin:
-    image: dpage/pgadmin4
-    tag: 6.4
+    image: dpage/pgadmin4:6.4
     port: 80
 #    nodePort: 30033
     resources:

@@ -22,7 +22,7 @@ spec:
         spec:
             containers:
                 - name: diagrams
-                  image: {{ .image }}:{{ .tag }}
+                  image: {{ .image }}
                   imagePullPolicy: IfNotPresent
 {{- if .resources }}
                   resources:

@@ -19,7 +19,7 @@ spec:
         spec:
             containers:
                 - name: whoogle
-                  image: {{ .image }}:{{ .tag }}
+                  image: {{ .image }}
                   imagePullPolicy: IfNotPresent
 {{- if .resources }}
                   resources:
