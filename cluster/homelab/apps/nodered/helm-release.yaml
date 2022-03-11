@@ -2,16 +2,16 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
     name: nodered
-    namespace: nodered
+    namespace: flux-system
 spec:
     interval: 5m
     chart:
         spec:
-            chart: nodered
+            chart: ./Helm/apps/nodered
             sourceRef:
                 kind: GitRepository
-                name: nodered
-                namespace: nodered
+                name: flux-system
+                namespace: flux-system
     values:
         nodered:
             image: nodered/node-red:2.2.2-16
