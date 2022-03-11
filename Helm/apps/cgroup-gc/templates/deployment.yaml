@@ -63,7 +63,7 @@ spec:
                           memory: 50Mi  # This crashes on startup with a 5Mi limit, but only uses about 320Ki after that.
                   securityContext:
                       privileged: true
-                  image: ubuntu:16.04
+                  image: ubuntu:20.04
                   name: systemd-cgroup-gc
                   command: ["/bin/bash", "-c"]
                   args:
