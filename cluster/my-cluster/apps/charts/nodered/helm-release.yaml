@@ -1,0 +1,33 @@
+apiVersion: helm.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+    name: nodered
+    namespace: nodered
+spec:
+    interval: 5m
+    chart:
+        spec:
+            chart: nodered
+            sourceRef:
+                kind: GitRepository
+                name: nodered
+                namespace: nodered
+    values:
+        nodered:
+            image: nodered/node-red:2.2.2-16
+            tag:
+                nodePort: 30117
+            port: 1880
+            resources:
+                requests:
+                    cpu: 500m
+                    memory: 1Gi
+                limits:
+                    cpu: 1
+                    memory: 4Gi
+
+        storage:
+            dataLocality: "best-effort" # or disabled
+            numberOfReplicas: 1
+            configSize: 5Gi
+            nasIp: 192.168.1.20

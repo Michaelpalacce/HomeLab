@@ -3,11 +3,6 @@
 	"config:base"
   ],
   "kubernetes": {
-	"fileMatch": ["Helm/.+\\.yaml$"]
-  },
-  "helmv3": {
-	"fileMatch": [
-	  "Helm/.+\\.yaml$"
-	]
+	"fileMatch": ["\\.yaml$"]
   }
 }
