@@ -1,9 +1,15 @@
 {
   "extends": [
-    "config:base",
-	"kubernetes"
+    "config:base"
   ],
   "kubernetes": {
 	"fileMatch": ["Helm/.+\\.yaml$"]
-  }
+  },
+  "packageRules": [
+	{
+	  "matchDatasources": ["docker"],
+	  "matchPackageNames": ["Helm/.+\\.yaml$"],
+	  "versioning": "semver"
+	}
+  ]
 }
