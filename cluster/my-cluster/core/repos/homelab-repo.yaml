@@ -1,8 +1,0 @@
-apiVersion: source.toolkit.fluxcd.io/v1beta1
-kind: GitRepository
-metadata:
-    name: nodered
-    namespace: nodered
-spec:
-    interval: 5m
-    url: https://github.com/Michaelpalacce/HomeLab
