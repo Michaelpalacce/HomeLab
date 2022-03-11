@@ -8,6 +8,7 @@ spec:
     chart:
         spec:
             chart: ./Helm/apps/nodered
+            reconcileStrategy: Revision
             sourceRef:
                 kind: GitRepository
                 name: flux-system
