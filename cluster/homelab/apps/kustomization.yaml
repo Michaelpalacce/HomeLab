@@ -7,4 +7,4 @@ resources:
     - appsmith
     - cgroup-gc
     - babybuddy
-    -
+    - changedetection
