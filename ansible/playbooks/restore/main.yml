@@ -93,6 +93,8 @@
               src: files/backup/nodered/flows_cred.json
             - dest: /tmp/nodered/settings.json
               src: files/backup/nodered/settings.json
+            - dest: /tmp/nodered/package.json
+              src: files/backup/nodered/package.json
 
       - name: Register Name
         shell: kubectl get po -n nodered -l app=nodered | awk 'NR==2{ print $1 }'
@@ -104,6 +106,7 @@
             - flows_cred
             - flows
             - settings
+            - package
 
       - name: Copy backup
         shell: "kubectl exec -n nodered {{container_name.stdout}} -- bash -c '/bin/cp -rf /tmp/{{item}}.json /data/'"
@@ -111,6 +114,7 @@
             - flows_cred
             - flows
             - settings
+            - package
 
       - name: Restart deployment
         shell: kubectl rollout restart -n nodered deploy nodered

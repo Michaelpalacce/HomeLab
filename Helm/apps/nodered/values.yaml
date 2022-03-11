@@ -1,6 +1,5 @@
 nodered:
     image: nodered/node-red:2.2.2-16
-    tag:
 #    nodePort: 30117
     port: 1880
     resources:
@@ -9,10 +8,9 @@ nodered:
             memory: 1Gi
         limits:
             cpu: 1
-            memory: 4Gi
-
-storage:
-    dataLocality: "best-effort" # or disabled
-    numberOfReplicas: 1
-    configSize: 5Gi
-    nasIp: 192.168.1.20
+            memory: 2Gi
+    storage:
+        dataLocality: "best-effort" # or disabled
+        numberOfReplicas: 1
+        configSize: 5Gi
+        nasIp: 192.168.1.20
