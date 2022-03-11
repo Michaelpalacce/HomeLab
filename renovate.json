@@ -17,7 +17,7 @@
 	"matchStrings": [
 	  "image:(?<registryUrl>.*?)\n *tag: (?<depName>[a-zA-Z-]+)-(?<currentValue>.*)\n"
 	],
-	"datasource": "docker"
+	"datasourceTemplate": "docker"
   }
 ]
 }
