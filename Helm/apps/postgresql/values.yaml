@@ -6,7 +6,7 @@ storage:
     pgAdmin: 1Gi
 
 postgresql:
-    image: postgres:9.6
+    image: postgres:14.2
     port: 5432
     resources:
         requests:
@@ -17,7 +17,7 @@ postgresql:
             memory: 2Gi
 
 postgresql14:
-    image: postgres:14.1
+    image: postgres:14.2
     port: 5432
     resources:
         requests:
