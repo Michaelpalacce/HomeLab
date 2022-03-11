@@ -69,7 +69,7 @@ spec:
                           memory: 50Mi  # This crashes on startup with a 5Mi limit, but only uses about 320Ki after that.
                   securityContext:
                       privileged: true
-                  image: python:3.9
+                  image: python:3.10
                   name: orphanedpodscleaner
                   command: ["python3"]
                   args:
