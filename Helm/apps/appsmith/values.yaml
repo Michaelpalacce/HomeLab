@@ -1,5 +1,5 @@
 appsmith:
-    image: appsmith/appsmith-ce:v1.6.8
+    image: appsmith/appsmith-ce:v1.6.14
 #    nodePort: 30021
     port: 80
     resources:
