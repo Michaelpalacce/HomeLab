@@ -4,7 +4,7 @@ metadata:
     name: nodered
     namespace: nodered
 spec:
-    interval: 5m
+    interval: 1m
     chart:
         spec:
             chart: ./Helm/apps/nodered
