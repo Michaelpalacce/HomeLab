@@ -8,7 +8,7 @@ metadata:
     labels:
         app: appsmith
 spec:
-    replicas: 1
+    replicas: {{ .replicas }}
     selector:
         matchLabels:
             app: appsmith

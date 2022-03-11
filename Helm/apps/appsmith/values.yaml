@@ -1,6 +1,7 @@
 appsmith:
     image: appsmith/appsmith-ce:v1.6.14
 #    nodePort: 30021
+    replicas: 1
     port: 80
     resources:
         requests:

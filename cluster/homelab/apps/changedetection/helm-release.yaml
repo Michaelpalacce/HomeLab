@@ -5,6 +5,8 @@ metadata:
     namespace: changedetection
 spec:
     interval: 1m
+    install:
+        createNamespace: true
     values:
         image: dgtlmoon/changedetection.io:0.39.8
     chart:

@@ -5,6 +5,8 @@ metadata:
     namespace: appsmith
 spec:
     interval: 1m
+    install:
+        createNamespace: true
     chart:
         spec:
             chart: ./Helm/apps/appsmith
@@ -13,3 +15,5 @@ spec:
                 kind: GitRepository
                 name: flux-system
                 namespace: flux-system
+    values:
+        replicas: 0

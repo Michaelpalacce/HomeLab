@@ -5,6 +5,8 @@ metadata:
     namespace: wikijs
 spec:
     interval: 1m
+    install:
+        createNamespace: true
     chart:
         spec:
             chart: ./Helm/apps/wikijs
