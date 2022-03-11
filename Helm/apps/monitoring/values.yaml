@@ -20,7 +20,7 @@ prometheus:
             password: admin123
 
 nodeExporter:
-    image: prom/node-exporter:v1.1.2
+    image: prom/node-exporter:v1.3.1
     port: 9100
     tolerations:
         - key: node-role.kubernetes.io/master
