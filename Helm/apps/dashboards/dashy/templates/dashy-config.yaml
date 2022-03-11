@@ -101,6 +101,10 @@ data:
             description: Tv Shows Stream
             icon: hl-plex
             url: https://plex.{{ .domainName }}
+          - title: Plex
+            description: Tv Shows Stream
+            icon: hl-plex
+            url: https://plex.{{ .domainName }}
 {{/*      - name: CI/CD*/}}
 {{/*        items:*/}}
 {{/*          - title: Jenkins*/}}
