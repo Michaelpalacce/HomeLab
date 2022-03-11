@@ -1,0 +1,17 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+    name: freshrss
+    namespace: freshrss
+spec:
+    interval: 1m
+    install:
+        createNamespace: true
+    chart:
+        spec:
+            chart: ./Helm/apps/freshrss
+            reconcileStrategy: Revision
+            sourceRef:
+                kind: GitRepository
+                name: flux-system
+                namespace: flux-system
