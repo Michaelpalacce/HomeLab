@@ -19,7 +19,7 @@ jackett:
 
 radarr:
 #    nodePort: 31003
-    image: linuxserver/radarr:4.0.2-develop
+    image: linuxserver/radarr:4.0.5-develop
     port: 7878
 
 overseerr:
