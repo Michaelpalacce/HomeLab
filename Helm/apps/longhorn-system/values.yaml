@@ -1,4 +1,0 @@
-service:
-    ui:
-        type: NodePort
-        nodePort: 30030
