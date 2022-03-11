@@ -1,0 +1,15 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+    name: babybuddy
+    namespace: babybuddy
+spec:
+    interval: 1m
+    chart:
+        spec:
+            chart: ./Helm/apps/babybuddy
+            reconcileStrategy: Revision
+            sourceRef:
+                kind: GitRepository
+                name: flux-system
+                namespace: flux-system
