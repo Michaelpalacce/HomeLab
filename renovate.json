@@ -1,11 +1,23 @@
 {
   "extends": [
-    "config:base"
+	"config:base"
   ],
   "kubernetes": {
 	"fileMatch": ["Helm/.+\\.yaml$"]
   },
-  "helm": {
-	"fileMatch": ["Helm/.+\\.yaml$"]
+  "helmv3": {
+	"fileMatch": [
+	  "Helm/.+\\.yaml$"
+	]
+  },"regexManagers": [
+  {
+	"fileMatch": [
+	  "Helm/.+\\.yaml$"
+	],
+	"matchStrings": [
+	  "image:(?<registryUrl>.*?)\n *tag: (?<depName>[a-zA-Z-]+)-(?<currentValue>.*)\n"
+	],
+	"datasource": "docker"
   }
+]
 }
