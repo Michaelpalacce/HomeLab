@@ -1,5 +1,5 @@
 babybuddy:
-    image: linuxserver/babybuddy:1.9.1
+    image: linuxserver/babybuddy:1.10.2
 #    nodePort: 30100
     port: 8000
     replicas: 0
