@@ -5,11 +5,7 @@
   "kubernetes": {
 	"fileMatch": ["Helm/.+\\.yaml$"]
   },
-  "packageRules": [
-	{
-	  "matchDatasources": ["docker"],
-	  "matchPackageNames": ["Helm/.+\\.yaml$"],
-	  "versioning": "semver"
-	}
-  ]
+  "helm": {
+	"fileMatch": ["Helm/.+\\.yaml$"]
+  }
 }
