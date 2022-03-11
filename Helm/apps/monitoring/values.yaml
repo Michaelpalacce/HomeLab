@@ -27,7 +27,7 @@ nodeExporter:
           effect: NoSchedule
 
 promtail:
-    image: grafana/promtail:2.4.1
+    image: grafana/promtail:2.4.2
     resources:
         requests:
             cpu: 50m
