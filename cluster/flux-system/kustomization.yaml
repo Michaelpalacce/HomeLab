@@ -5,3 +5,4 @@ resources:
 - gotk-sync.yaml
 - simplesecret.yaml
 - discord-provider.yaml
+- alert.yaml
