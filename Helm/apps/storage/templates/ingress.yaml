@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-    name: dashy
+    name: serveremulator
     namespace: {{ $.Release.Namespace }}
     annotations:
         cert-manager.io/cluster-issuer: "letsencrypt"
@@ -12,23 +12,38 @@ spec:
               - "*.stefangenov.site"
           secretName: ingress
     rules:
-        - host: dashy.stefangenov.site
+        - host: server.stefangenov.site
           http:
               paths:
                   - pathType: Prefix
                     path: "/"
                     backend:
                         service:
-                            name: dashy
+                            name: serveremulator
                             port:
-                                number: 80
-        - host: home.stefangenov.site
+                                number: {{ .Values.serveremulator.port }}
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: syncthing
+    namespace: {{ $.Release.Namespace }}
+    annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt"
+        kubernetes.io/ingress.class: "nginx"
+spec:
+    tls:
+        - hosts:
+              - "*.stefangenov.site"
+          secretName: ingress
+    rules:
+        - host: syncthing.stefangenov.site
           http:
               paths:
                   - pathType: Prefix
                     path: "/"
                     backend:
                         service:
-                            name: dashy
+                            name: syncthing
                             port:
-                                number: 80
+                                number: {{ .Values.syncthing.port }}

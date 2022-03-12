@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-    name: dashy
+    name: uptimekuma
     namespace: {{ $.Release.Namespace }}
     annotations:
         cert-manager.io/cluster-issuer: "letsencrypt"
@@ -12,23 +12,13 @@ spec:
               - "*.stefangenov.site"
           secretName: ingress
     rules:
-        - host: dashy.stefangenov.site
+        - host: uptimekuma.stefangenov.site
           http:
               paths:
                   - pathType: Prefix
                     path: "/"
                     backend:
                         service:
-                            name: dashy
+                            name: uptimekuma
                             port:
-                                number: 80
-        - host: home.stefangenov.site
-          http:
-              paths:
-                  - pathType: Prefix
-                    path: "/"
-                    backend:
-                        service:
-                            name: dashy
-                            port:
-                                number: 80
+                                number: {{ .Values.uptimekuma.port }}

@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-    name: dashy
+    name: vaultwarden
     namespace: {{ $.Release.Namespace }}
     annotations:
         cert-manager.io/cluster-issuer: "letsencrypt"
@@ -12,23 +12,33 @@ spec:
               - "*.stefangenov.site"
           secretName: ingress
     rules:
-        - host: dashy.stefangenov.site
+        - host: vaultwarden.stefangenov.site
           http:
               paths:
                   - pathType: Prefix
                     path: "/"
                     backend:
                         service:
-                            name: dashy
+                            name: vaultwarden
                             port:
-                                number: 80
-        - host: home.stefangenov.site
+                                number: {{ .Values.vaultwarden.port }}
+        - host: vault.stefangenov.site
           http:
               paths:
                   - pathType: Prefix
                     path: "/"
                     backend:
                         service:
-                            name: dashy
+                            name: vaultwarden
                             port:
-                                number: 80
+                                number: {{ .Values.vaultwarden.port }}
+        - host: passwords.stefangenov.site
+          http:
+              paths:
+                  - pathType: Prefix
+                    path: "/"
+                    backend:
+                        service:
+                            name: vaultwarden
+                            port:
+                                number: {{ .Values.vaultwarden.port }}

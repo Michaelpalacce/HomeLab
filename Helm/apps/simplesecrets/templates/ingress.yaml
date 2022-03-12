@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-    name: dashy
+    name: simplesecrets
     namespace: {{ $.Release.Namespace }}
     annotations:
         cert-manager.io/cluster-issuer: "letsencrypt"
@@ -12,23 +12,22 @@ spec:
               - "*.stefangenov.site"
           secretName: ingress
     rules:
-        - host: dashy.stefangenov.site
+        - host: simplesecrets.stefangenov.site
           http:
               paths:
                   - pathType: Prefix
                     path: "/"
                     backend:
                         service:
-                            name: dashy
+                            name: simplesecrets
                             port:
-                                number: 80
-        - host: home.stefangenov.site
-          http:
-              paths:
+                                number: {{ .Values.simplesecrets.web.port }}
                   - pathType: Prefix
-                    path: "/"
+                    path: "/api"
                     backend:
                         service:
-                            name: dashy
+                            name: simplesecrets-api
                             port:
-                                number: 80
+                                number: {{ .Values.simplesecrets.api.port }}
+---
+
