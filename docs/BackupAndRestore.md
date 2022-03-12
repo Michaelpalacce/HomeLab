@@ -1,18 +1,13 @@
 # Backups
-You can use a longhorn backup. NOTE: XFS does not work correctly with backups. IF you are using a xfs drive, longhorn
-is not the way.
+Currently, I do my backups via node-red. Restorations can be done via the restore playbooks however they are very opinionated towards my output from nodered.
 
-# Postgresql
-
-### Backing up
-Postgresql can be backed up via:  ( change the app=postgresql to postgresql14 to backup postgresql14 )
-* `sudo kubectl exec -n postgresql $(sudo kubectl get po -n postgresql -l app=postgresql | awk 'NR>1{ print $1 }') -- pg_dumpall --file "/Backup" --host "localhost" --port "5432" --username "postgres" --no-password --database "postgres" --verbose --role "postgres" > /dev/null`
-* `sudo kubectl exec -n postgresql $(sudo kubectl get po -n postgresql -l app=postgresql | awk 'NR>1{ print $1 }') -- cat /Backup > /tmp/Backup` ( kubeclt cp has issues with big files )
-Then you can Backup /tmp/Backup
-
-### Restoring
-Copy the dump to the postgresql pod  and run: `psql -f Backupfile -U postgres` and pray
-
+`ansible-playbook -i hosts/inventory playbooks/restore/main.yml --tags nodered`
+`ansible-playbook -i hosts/inventory playbooks/restore/main.yml --tags changedetection`
+`ansible-playbook -i hosts/inventory playbooks/restore/main.yml --tags nginxproxymanager`
+`ansible-playbook -i hosts/inventory playbooks/restore/main.yml --tags vaultwarden`
+`ansible-playbook -i hosts/inventory playbooks/restore/main.yml --tags simplesecrets`
+`ansible-playbook -i hosts/inventory playbooks/restore/main.yml --tags postgresql`
+`ansible-playbook -i hosts/inventory playbooks/restore/main.yml --tags trilium`
 
 
 

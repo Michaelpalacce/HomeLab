@@ -201,6 +201,37 @@
             state: absent
 
 - hosts: master
+  name: Setup simplesecrets
+  become: yes
+  tags:
+      - init
+      - init_simplesecrets
+      - init_simplesecrets_setup
+  tasks:
+      - name: Cleanup old potential chart
+        file:
+            path: simplesecrets
+            state: absent
+
+      - name: Ensure new Chart is present
+        copy:
+            src: ../../../Helm/apps/simplesecrets
+            dest: .
+
+      - name: Install simplesecrets namespace
+        kubernetes.core.helm:
+            name: simplesecrets
+            create_namespace: true
+            release_namespace: simplesecrets
+            chart_ref: simplesecrets/
+            values_files: simplesecrets/values.yaml
+
+      - name: Cleanup chart, we no longer need this
+        file:
+            path: simplesecrets
+            state: absent
+
+- hosts: master
   name: Setup cgroup-gc to help cleanup cgroups
   become: yes
   tags:

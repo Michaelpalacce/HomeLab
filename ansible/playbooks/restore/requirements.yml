@@ -2,5 +2,5 @@
 roles:
     -
 collections:
-    - name: kubernetes.core
+    - name: kubernetes.base
       version: 2.2.3

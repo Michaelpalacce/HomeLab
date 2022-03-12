@@ -1,6 +1,6 @@
 ---
 collections:
-    - name: kubernetes.core
+    - name: kubernetes.base
       version: 2.2.3
 roles:
     - src: xanmanning.k3s
