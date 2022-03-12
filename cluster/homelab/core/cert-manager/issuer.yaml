@@ -1,0 +1,25 @@
+---
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+    name: letsencrypt
+spec:
+    acme:
+        # You must replace this email address with your own.
+        # Let's Encrypt will use this to contact you about expiring
+        # certificates, and issues related to your account.
+        email: stefantigro@gmail.com
+        server: https://acme-v02.api.letsencrypt.org/directory
+        privateKeySecretRef:
+            # Secret resource that will be used to store the account's private key.
+            name: issuer-account-key
+        solvers:
+            - http01:
+                  ingress:
+                      class: nginx
+            - dns01:
+                  cloudflare:
+                      email: stefantigro@gmail.com
+                      apiTokenSecretRef:
+                          name: cloudflare
+                          key: apikey
