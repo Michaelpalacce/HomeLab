@@ -4,7 +4,6 @@ kind: Kustomization
 resources:
     - nodered
     - wikijs
-    - appsmith
     - babybuddy
     - changedetection
     - cyberchef
