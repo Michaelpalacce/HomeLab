@@ -8,7 +8,7 @@ spec:
     interval: 5m0s
     dependsOn:
         - name: core
-    path: ./cluster/homelab/apps
+    path: ./cluster/homelab/core
     prune: true
     sourceRef:
         kind: GitRepository
