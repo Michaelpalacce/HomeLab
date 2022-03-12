@@ -10,3 +10,4 @@ resources:
     - orphanedpodscleaner
     - simplesecrets
     - cert-manager
+    - ingress-nginx
