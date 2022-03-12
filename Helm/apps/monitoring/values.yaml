@@ -3,12 +3,6 @@ storage:
     dataLocality: "best-effort" # or disabled
     numberOfReplicas: 1
 
-backup:
-    secret:
-        accessKeyId:  # ADD ME
-        secretAccessKey:  # ADD ME
-        defaultRegion: eu-west-1 # CHANGE ME
-
 prometheus:
     image: quay.io/prometheus/prometheus:v2.33.5
     port: 9090
