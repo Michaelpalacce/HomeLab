@@ -305,3 +305,15 @@
       - name: Run in background
         shell:
             cmd: python3 /home/ubuntu/clean.py > /var/log/orphanedPodsCleaner &
+
+- hosts: all
+  name: Fix calico forwarding
+  become: yes
+  tags:
+      - init
+      - init_calico_forward
+  tasks:
+      - name: Copy configuration
+        copy:
+            src: ./files/20-calico.conflist
+            dest: /etc/cni/net.d/20-calico.conflist

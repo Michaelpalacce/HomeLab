@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-    name: wallabag
+    name: uptimekuma
     namespace: {{ $.Release.Namespace }}
     annotations:
         cert-manager.io/cluster-issuer: "letsencrypt"
@@ -9,16 +9,16 @@ metadata:
 spec:
     tls:
         - hosts:
-              - wallabag.stefangenov.site
+              - uptimekuma.stefangenov.site
           secretName: ingress-tls
     rules:
-        - host: wallabag.stefangenov.site
+        - host: uptimekuma.stefangenov.site
           http:
               paths:
                   - pathType: Prefix
                     path: "/"
                     backend:
                         service:
-                            name: wallabag
+                            name: uptimekuma
                             port:
-                                number: {{ .Values.wallabag.port }}
+                                number: {{ .Values.uptimekuma.port }}

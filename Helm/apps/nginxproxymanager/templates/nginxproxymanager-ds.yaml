@@ -36,10 +36,10 @@ spec:
           ports:
             - name: http
               containerPort: 80
-{{/*              hostPort: 80*/}}
+              hostPort: 80
             - name: https
               containerPort: 443
-{{/*              hostPort: 443*/}}
+              hostPort: 443
             - name: admin
               containerPort: 81
               hostPort: 81
@@ -61,14 +61,14 @@ spec:
   selector:
     name: nginxproxymanager
   ports:
-{{/*    - protocol: TCP*/}}
-{{/*      port: 80*/}}
-{{/*      targetPort: 80*/}}
-{{/*      name: http*/}}
-{{/*    - protocol: TCP*/}}
-{{/*      port: 443*/}}
-{{/*      targetPort: 443*/}}
-{{/*      name: https*/}}
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      name: http
+    - protocol: TCP
+      port: 443
+      targetPort: 443
+      name: https
     - protocol: TCP
       port: 81
       targetPort: 81
