@@ -6,7 +6,7 @@ resources:
     - dashy
     - longhorn-system
     - monitoring
-    - nginxproxymanager
     - orphanedpodscleaner
     - simplesecrets
     - cert-manager
+    - ingress-nginx 
