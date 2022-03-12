@@ -4,7 +4,7 @@ metadata:
     name: dashy
     namespace: {{ $.Release.Namespace }}
     annotations:
-        cert-manager.io/cluster-issuer: "letsencrypt"
+        cert-manager.io/cluster-issuer: "letsencrypt-staging"
         kubernetes.io/ingress.class: "nginx"
 spec:
     tls:
@@ -21,13 +21,13 @@ spec:
                             port:
                                 number: 80
 
-        - host: home.stefangenov.site
-          http:
-              paths:
-                  - pathType: Prefix
-                    path: "/"
-                    backend:
-                        service:
-                            name: dashy
-                            port:
-                                number: 80
+{{/*        - host: home.stefangenov.site*/}}
+{{/*          http:*/}}
+{{/*              paths:*/}}
+{{/*                  - pathType: Prefix*/}}
+{{/*                    path: "/"*/}}
+{{/*                    backend:*/}}
+{{/*                        service:*/}}
+{{/*                            name: dashy*/}}
+{{/*                            port:*/}}
+{{/*                                number: 80*/}}
