@@ -10,7 +10,7 @@ metadata:
 spec:
     tls:
         - hosts:
-              - "sonarr.stefangenov.site"
+              - "*.stefangenov.site"
           secretName: ingress
     rules:
         - host: sonarr.stefangenov.site
@@ -35,7 +35,7 @@ metadata:
 spec:
     tls:
         - hosts:
-              - "bazarr.stefangenov.site"
+              - "*.stefangenov.site"
           secretName: ingress
     rules:
         - host: bazarr.stefangenov.site
@@ -60,7 +60,7 @@ metadata:
 spec:
     tls:
         - hosts:
-              - "readarr.stefangenov.site"
+              - "*.stefangenov.site"
           secretName: ingress
     rules:
         - host: readarr.stefangenov.site
@@ -85,7 +85,7 @@ metadata:
 spec:
     tls:
         - hosts:
-              - "radarr.stefangenov.site"
+              - "*.stefangenov.site"
           secretName: ingress
     rules:
         - host: radarr.stefangenov.site
@@ -110,7 +110,7 @@ metadata:
 spec:
     tls:
         - hosts:
-              - "overseer.stefangenov.site"
+              - "*.stefangenov.site"
           secretName: ingress
     rules:
         - host: overseer.stefangenov.site
@@ -135,7 +135,7 @@ metadata:
 spec:
     tls:
         - hosts:
-              - "transmission.stefangenov.site"
+              - "*.stefangenov.site"
           secretName: ingress
     rules:
         - host: transmission.stefangenov.site
