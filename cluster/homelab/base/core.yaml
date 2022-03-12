@@ -2,11 +2,11 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-    name: apps
+    name: core
     namespace: flux-system
 spec:
     interval: 5m0s
-    path: ./cluster/homelab/apps
+    path: ./cluster/homelab/core
     prune: true
     sourceRef:
         kind: GitRepository
