@@ -10,7 +10,7 @@ spec:
         createNamespace: true
     chart:
         spec:
-            chart: longhorn
+            chart: cert-manager
             version: "v1.7.1"
             interval: 5m
             sourceRef:
