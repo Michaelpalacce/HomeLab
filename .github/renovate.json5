@@ -12,6 +12,7 @@
   "username": "Renovate-Homelab[bot]",
   "repositories": ["Michaelpalacce/HomeLab"],
   "enabled": true,
+  "onboarding": false,
   "semanticCommits": "enabled",
   "dependencyDashboard": true,
   "dependencyDashboardTitle": "Renovate Dashboard",
