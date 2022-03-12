@@ -122,17 +122,6 @@
       "matchDatasources": ["helm"],
       "matchUpdateTypes": ["patch"],
       "labels": ["renovate/helm", "dep/patch"]
-    },
-	{
-	  "matchDatasources": [
-		"docker",
-		"github-tags",
-		"helm"
-	  ],
-	  "automerge": true,
-	  "automergeType": "branch",
-	  "requiredStatusChecks": null,
-	  "matchUpdateTypes": ["minor", "patch"],
-	}
+    }
   ]
 }
