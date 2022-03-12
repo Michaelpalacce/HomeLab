@@ -9,7 +9,7 @@ metadata:
 spec:
     tls:
         - hosts:
-              - "*.stefangenov.site"
+              - "wikijs.stefangenov.site"
           secretName: ingress
     rules:
         - host: wikijs.stefangenov.site

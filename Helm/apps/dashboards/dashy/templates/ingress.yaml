@@ -9,7 +9,8 @@ metadata:
 spec:
     tls:
         - hosts:
-              - "*.stefangenov.site"
+              - "home.stefangenov.site"
+              - "dashy.stefangenov.site"
           secretName: ingress
     rules:
         - host: dashy.stefangenov.site

@@ -9,7 +9,9 @@ metadata:
 spec:
     tls:
         - hosts:
-              - "*.stefangenov.site"
+              - "vaultwarden.stefangenov.site"
+              - "vault.stefangenov.site"
+              - "passwords.stefangenov.site"
           secretName: ingress
     rules:
         - host: vaultwarden.stefangenov.site

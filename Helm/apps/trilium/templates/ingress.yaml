@@ -9,7 +9,7 @@ metadata:
 spec:
     tls:
         - hosts:
-              - "*.stefangenov.site"
+              - "trilium.stefangenov.site"
           secretName: ingress
     rules:
         - host: trilium.stefangenov.site

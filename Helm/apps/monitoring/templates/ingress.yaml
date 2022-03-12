@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-    name: serveremulator
+    name: grafana
     namespace: {{ $.Release.Namespace }}
     annotations:
         cert-manager.io/cluster-issuer: "letsencrypt"
@@ -9,24 +9,24 @@ metadata:
 spec:
     tls:
         - hosts:
-              - "server.stefangenov.site"
+              - "grafana.stefangenov.site"
           secretName: ingress
     rules:
-        - host: server.stefangenov.site
+        - host: grafana.stefangenov.site
           http:
               paths:
                   - pathType: Prefix
                     path: "/"
                     backend:
                         service:
-                            name: serveremulator
+                            name: grafana
                             port:
-                                number: {{ .Values.serveremulator.port }}
+                                number: {{ .Values.grafana.port }}
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-    name: syncthing
+    name: prometheus
     namespace: {{ $.Release.Namespace }}
     annotations:
         cert-manager.io/cluster-issuer: "letsencrypt"
@@ -34,16 +34,17 @@ metadata:
 spec:
     tls:
         - hosts:
-              - "syncthing.stefangenov.site"
+              - "prometheus.stefangenov.site"
           secretName: ingress
     rules:
-        - host: syncthing.stefangenov.site
+        - host: prometheus.stefangenov.site
           http:
               paths:
                   - pathType: Prefix
                     path: "/"
                     backend:
                         service:
-                            name: syncthing
+                            name: prometheus
                             port:
-                                number: {{ .Values.syncthing.port }}
+                                number: {{ .Values.prometheus.port }}
+---

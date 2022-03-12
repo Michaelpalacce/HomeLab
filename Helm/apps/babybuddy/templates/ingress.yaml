@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-    name: wallabag
+    name: babybuddy
     namespace: {{ $.Release.Namespace }}
     annotations:
         cert-manager.io/cluster-issuer: "letsencrypt"
@@ -9,16 +9,16 @@ metadata:
 spec:
     tls:
         - hosts:
-              - "wallabag.stefangenov.site"
+              - "babybuddy.stefangenov.site"
           secretName: ingress
     rules:
-        - host: wallabag.stefangenov.site
+        - host: babybuddy.stefangenov.site
           http:
               paths:
                   - pathType: Prefix
                     path: "/"
                     backend:
                         service:
-                            name: wallabag
+                            name: babybuddy
                             port:
-                                number: {{ .Values.wallabag.port }}
+                                number: {{ .Values.babybuddy.port }}

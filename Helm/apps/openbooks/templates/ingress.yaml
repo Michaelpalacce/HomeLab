@@ -9,7 +9,7 @@ metadata:
 spec:
     tls:
         - hosts:
-              - "*.stefangenov.site"
+              - "openbooks.stefangenov.site"
           secretName: ingress
     rules:
         - host: openbooks.stefangenov.site

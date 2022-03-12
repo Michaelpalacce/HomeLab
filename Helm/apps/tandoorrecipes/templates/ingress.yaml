@@ -9,7 +9,7 @@ metadata:
 spec:
     tls:
         - hosts:
-              - "*.stefangenov.site"
+              - "tandoorrecipes.stefangenov.site"
           secretName: ingress
     rules:
         - host: tandoorrecipes.stefangenov.site

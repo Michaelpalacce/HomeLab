@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-    name: wallabag
+    name: firefly
     namespace: {{ $.Release.Namespace }}
     annotations:
         cert-manager.io/cluster-issuer: "letsencrypt"
@@ -9,16 +9,16 @@ metadata:
 spec:
     tls:
         - hosts:
-              - "wallabag.stefangenov.site"
+              - "firefly.stefangenov.site"
           secretName: ingress
     rules:
-        - host: wallabag.stefangenov.site
+        - host: firefly.stefangenov.site
           http:
               paths:
                   - pathType: Prefix
                     path: "/"
                     backend:
                         service:
-                            name: wallabag
+                            name: firefly
                             port:
-                                number: {{ .Values.wallabag.port }}
+                                number: {{ .Values.firefly.port }}

@@ -9,7 +9,7 @@ metadata:
 spec:
     tls:
         - hosts:
-              - "*.stefangenov.site"
+              - "vikunja.stefangenov.site"
           secretName: ingress
     rules:
         - host: vikunja.stefangenov.site
@@ -22,3 +22,10 @@ spec:
                             name: vikunja
                             port:
                                 number: {{ .Values.vikunja.frontend.port }}
+                  - pathType: Prefix
+                    path: "/api"
+                    backend:
+                        service:
+                            name: vikunja
+                            port:
+                                number: {{ .Values.vikunja.api.port }}

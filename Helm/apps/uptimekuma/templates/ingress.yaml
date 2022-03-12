@@ -9,7 +9,7 @@ metadata:
 spec:
     tls:
         - hosts:
-              - "*.stefangenov.site"
+              - "uptimekuma.stefangenov.site"
           secretName: ingress
     rules:
         - host: uptimekuma.stefangenov.site

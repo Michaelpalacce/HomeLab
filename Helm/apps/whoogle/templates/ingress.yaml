@@ -9,7 +9,7 @@ metadata:
 spec:
     tls:
         - hosts:
-              - "*.stefangenov.site"
+              - "whoogle.stefangenov.site"
           secretName: ingress
     rules:
         - host: whoogle.stefangenov.site

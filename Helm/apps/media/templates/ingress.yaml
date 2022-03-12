@@ -1,0 +1,151 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: sonarr
+    namespace: {{ $.Release.Namespace }}
+    annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt"
+        kubernetes.io/ingress.class: "nginx"
+spec:
+    tls:
+        - hosts:
+              - "sonarr.stefangenov.site"
+          secretName: ingress
+    rules:
+        - host: sonarr.stefangenov.site
+          http:
+              paths:
+                  - pathType: Prefix
+                    path: "/"
+                    backend:
+                        service:
+                            name: sonarr
+                            port:
+                                number: {{ .Values.sonarr.port }}
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: bazarr
+    namespace: {{ $.Release.Namespace }}
+    annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt"
+        kubernetes.io/ingress.class: "nginx"
+spec:
+    tls:
+        - hosts:
+              - "bazarr.stefangenov.site"
+          secretName: ingress
+    rules:
+        - host: bazarr.stefangenov.site
+          http:
+              paths:
+                  - pathType: Prefix
+                    path: "/"
+                    backend:
+                        service:
+                            name: bazarr
+                            port:
+                                number: {{ .Values.bazarr.port }}
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: readarr
+    namespace: {{ $.Release.Namespace }}
+    annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt"
+        kubernetes.io/ingress.class: "nginx"
+spec:
+    tls:
+        - hosts:
+              - "readarr.stefangenov.site"
+          secretName: ingress
+    rules:
+        - host: readarr.stefangenov.site
+          http:
+              paths:
+                  - pathType: Prefix
+                    path: "/"
+                    backend:
+                        service:
+                            name: readarr
+                            port:
+                                number: {{ .Values.readarr.port }}
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: radarr
+    namespace: {{ $.Release.Namespace }}
+    annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt"
+        kubernetes.io/ingress.class: "nginx"
+spec:
+    tls:
+        - hosts:
+              - "radarr.stefangenov.site"
+          secretName: ingress
+    rules:
+        - host: radarr.stefangenov.site
+          http:
+              paths:
+                  - pathType: Prefix
+                    path: "/"
+                    backend:
+                        service:
+                            name: radarr
+                            port:
+                                number: {{ .Values.radarr.port }}
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: overseer
+    namespace: {{ $.Release.Namespace }}
+    annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt"
+        kubernetes.io/ingress.class: "nginx"
+spec:
+    tls:
+        - hosts:
+              - "overseer.stefangenov.site"
+          secretName: ingress
+    rules:
+        - host: overseer.stefangenov.site
+          http:
+              paths:
+                  - pathType: Prefix
+                    path: "/"
+                    backend:
+                        service:
+                            name: overseer
+                            port:
+                                number: {{ .Values.overseer.port }}
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: transmission
+    namespace: {{ $.Release.Namespace }}
+    annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt"
+        kubernetes.io/ingress.class: "nginx"
+spec:
+    tls:
+        - hosts:
+              - "transmission.stefangenov.site"
+          secretName: ingress
+    rules:
+        - host: transmission.stefangenov.site
+          http:
+              paths:
+                  - pathType: Prefix
+                    path: "/"
+                    backend:
+                        service:
+                            name: transmission
+                            port:
+                                number: {{ .Values.transmission.port }}
+---
