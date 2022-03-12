@@ -14,8 +14,7 @@ jackett:
 
 #jellyfin:
 #    nodePort: 31001
-#    image: jellyfin/jellyfin
-#    tag: 10.7.7
+#    image: jellyfin/jellyfin:10.7.7
 
 radarr:
 #    nodePort: 31003
@@ -29,8 +28,7 @@ overseerr:
 
 readarr:
 #    nodePort: 31002
-    image: linuxserver/readarr
-    tag: nightly-version-0.1.0.1137
+    image: linuxserver/readarr:nightly-version-0.1.0.1137
     port: 8787
 
 #prowlarr:

@@ -32,7 +32,7 @@ spec:
                       - name: data
                         mountPath: /data
                 - name: backup
-                  image: {{ .backup.image }}:{{ .backup.tag }}
+                  image: {{ .backup.image }}
                   imagePullPolicy: IfNotPresent
                   env:
                       - name: BACKUP_ENCRYPTION_KEY

@@ -3,8 +3,7 @@ vaultwarden:
     # nodePort: 31001
     port: 80
     backup:
-        image: stefangenov/vaultwarden-backup
-        tag: 1.0.0
+        image: stefangenov/vaultwarden-backup:1.0.0
         resources:
             requests:
                 cpu: 10m
