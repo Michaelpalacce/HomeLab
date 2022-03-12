@@ -7,8 +7,6 @@ spec:
     interval: 5m
     install:
         createNamespace: true
-    values:
-        image: dgtlmoon/changedetection.io:0.39.8
     chart:
         spec:
             chart: ./Helm/apps/changedetection
@@ -17,3 +15,5 @@ spec:
                 kind: GitRepository
                 name: flux-system
                 namespace: flux-system
+    values:
+        image: dgtlmoon/changedetection.io:0.39.7
