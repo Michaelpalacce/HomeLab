@@ -14,3 +14,20 @@ resources:
     - freshrss
     - firefly
     - longhorn-system
+    - media
+    - monitoring
+    - n8n
+    - nginxproxymanager
+    - openbooks
+    - orphanedpodscleaner
+    - postgresql
+    - pyload
+    - simplesecrets
+    - storage
+    - tandoorrecipes
+    - trilium
+    - uptimekuma
+    - vaultwarden
+    - vikunja
+    - wallabag
+    - whoogle

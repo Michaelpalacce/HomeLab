@@ -4,7 +4,7 @@ metadata:
     name: wikijs
     namespace: wikijs
 spec:
-    interval: 1m
+    interval: 5m
     install:
         createNamespace: true
     chart:

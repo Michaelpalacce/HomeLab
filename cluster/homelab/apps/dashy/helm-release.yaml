@@ -4,7 +4,7 @@ metadata:
     name: dashy
     namespace: dashy
 spec:
-    interval: 1m
+    interval: 5m
     install:
         createNamespace: true
     chart:

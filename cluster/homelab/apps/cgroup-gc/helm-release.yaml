@@ -4,7 +4,7 @@ metadata:
     name: cgroup-gc
     namespace: cgroup-gc
 spec:
-    interval: 1m
+    interval: 5m
     install:
         createNamespace: true
     chart:
