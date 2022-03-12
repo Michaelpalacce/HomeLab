@@ -1,4 +1,16 @@
 {
+  "extends": [
+	":enableRenovate",
+	"config:base",
+	":disableRateLimiting",
+	":dependencyDashboard",
+	":semanticCommits",
+	":separatePatchReleases",
+	"docker:enableMajor"
+  ],
+  "platform": "github",
+  "username": "Renovate-Homelab[bot]",
+  "repositories": ["Michaelpalacce/HomeLab"],
   "enabled": true,
   "semanticCommits": "enabled",
   "dependencyDashboard": true,
