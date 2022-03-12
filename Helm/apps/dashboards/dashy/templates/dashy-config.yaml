@@ -98,13 +98,13 @@ data:
       - name: Media
         items:
           - title: Plex
-            description: Tv Shows Stream
+            description: Stream Linux ISOs To My TV
             icon: hl-plex
             url: https://plex.{{ .domainName }}
-          - title: Plex
-            description: Tv Shows Stream
-            icon: hl-plex
-            url: https://plex.{{ .domainName }}
+          - title: Jellyfin
+            description: Stream Linux ISOs
+            icon: hl-jellyfin
+            url: https://jellyfin.{{ .domainName }}
 {{/*      - name: CI/CD*/}}
 {{/*        items:*/}}
 {{/*          - title: Jenkins*/}}
