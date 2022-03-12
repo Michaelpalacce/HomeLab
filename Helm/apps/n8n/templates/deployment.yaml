@@ -1,3 +1,4 @@
+---
 {{- with .Values.n8n }}
 
 apiVersion: apps/v1

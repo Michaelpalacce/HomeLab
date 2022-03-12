@@ -1,3 +1,4 @@
+---
 - hosts: servers
   name: Setup prereqs
   become: yes

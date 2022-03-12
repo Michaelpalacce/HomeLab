@@ -1,3 +1,4 @@
+---
 - hosts: master
   name: "Setup {{ appName }}"
   become: yes

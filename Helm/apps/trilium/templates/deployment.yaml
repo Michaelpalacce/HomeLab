@@ -1,3 +1,4 @@
+---
 {{- with .Values.trilium }}
 
 apiVersion: apps/v1

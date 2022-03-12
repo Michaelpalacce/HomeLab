@@ -1,3 +1,4 @@
+---
 {{- with .Values.openbooks }}
 
 apiVersion: apps/v1

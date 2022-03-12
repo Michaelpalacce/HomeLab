@@ -1,3 +1,4 @@
+---
 {{- with .Values.redis }}
 
 apiVersion: apps/v1

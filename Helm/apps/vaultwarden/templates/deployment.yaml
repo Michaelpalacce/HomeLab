@@ -1,3 +1,4 @@
+---
 {{- with .Values.vaultwarden }}
 
 apiVersion: apps/v1

@@ -1,3 +1,4 @@
+---
 - hosts: master
   name: Restore nginxproxymanager
   become: yes

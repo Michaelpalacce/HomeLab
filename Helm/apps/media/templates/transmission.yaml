@@ -1,3 +1,4 @@
+---
 {{- with .Values.transmission }}
 
 apiVersion: apps/v1

@@ -1,3 +1,4 @@
+---
 {{- with .Values.prometheus }}
 
 apiVersion: v1

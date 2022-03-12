@@ -1,3 +1,4 @@
+---
 simplesecrets:
     api:
         image: stefangenov/simplesecrets:1.15.0-sqlite3

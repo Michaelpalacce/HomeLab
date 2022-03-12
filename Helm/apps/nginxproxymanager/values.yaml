@@ -1,3 +1,4 @@
+---
 nginxporxymanager:
   image: jc21/nginx-proxy-manager:2.9.16
 

@@ -1,3 +1,4 @@
+---
 homer:
     image: stefangenov/homer:21.07.1-1
     nodePort: 32222

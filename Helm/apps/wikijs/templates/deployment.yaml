@@ -1,3 +1,4 @@
+---
 {{- with .Values.wikijs }}
 
 apiVersion: apps/v1

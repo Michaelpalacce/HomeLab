@@ -1,3 +1,4 @@
+---
 uptimekuma:
     image: louislam/uptime-kuma:1.12.1-alpine
 #    nodePort: 30012

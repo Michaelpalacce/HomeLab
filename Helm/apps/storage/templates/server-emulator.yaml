@@ -1,3 +1,4 @@
+---
 {{- with .Values.serveremulator }}
 
 apiVersion: apps/v1

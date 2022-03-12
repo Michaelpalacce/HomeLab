@@ -1,3 +1,4 @@
+---
 tandoorrecipes:
     image: vabene1111/recipes:1.1.2
     # nodePort: 30125

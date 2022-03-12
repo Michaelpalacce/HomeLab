@@ -1,3 +1,4 @@
+---
 openbooks:
     image: evanbuss/openbooks:sha-8639492
     # nodePort: 31006

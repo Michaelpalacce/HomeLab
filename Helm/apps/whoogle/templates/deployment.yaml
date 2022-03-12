@@ -1,3 +1,4 @@
+---
 {{- with .Values.whoogle }}
 
 apiVersion: apps/v1

@@ -1,3 +1,4 @@
+---
 {{- with .Values.promtail }}
 apiVersion: apps/v1
 kind: DaemonSet

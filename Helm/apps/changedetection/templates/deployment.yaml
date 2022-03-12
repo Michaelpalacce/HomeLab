@@ -1,3 +1,4 @@
+---
 {{- with .Values.changedetection }}
 
 apiVersion: apps/v1

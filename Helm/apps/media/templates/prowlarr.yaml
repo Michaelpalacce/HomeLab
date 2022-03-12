@@ -1,3 +1,4 @@
+---
 {{- with .Values.prowlarr }}
 
 apiVersion: apps/v1

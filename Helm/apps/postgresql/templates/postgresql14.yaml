@@ -1,3 +1,4 @@
+---
 {{- with .Values.postgresql14 }}
 apiVersion: apps/v1
 kind: Deployment

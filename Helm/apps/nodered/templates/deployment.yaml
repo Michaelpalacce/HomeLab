@@ -1,3 +1,4 @@
+---
 {{- with .Values.nodered }}
 
 apiVersion: apps/v1

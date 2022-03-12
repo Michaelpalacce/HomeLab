@@ -1,3 +1,4 @@
+---
 trilium:
     image: zadam/trilium:0.50-latest
 #    nodePort: 30122

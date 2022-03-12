@@ -1,3 +1,4 @@
+---
 {{- with .Values.sonarr }}
 
 apiVersion: apps/v1

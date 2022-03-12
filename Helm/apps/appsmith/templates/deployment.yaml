@@ -1,3 +1,4 @@
+---
 {{- with .Values.appsmith }}
 
 apiVersion: apps/v1

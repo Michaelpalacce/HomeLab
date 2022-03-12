@@ -1,3 +1,4 @@
+---
 - hosts: master
   name: Setup Jenkins CI/CD
   become: yes

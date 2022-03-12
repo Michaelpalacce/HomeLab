@@ -1,3 +1,4 @@
+---
 syncthing:
     image: linuxserver/syncthing:1.19.1
 #    nodePort: 30110

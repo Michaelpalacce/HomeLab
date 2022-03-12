@@ -1,3 +1,4 @@
+---
 {{- with .Values.cyberchef }}
 
 apiVersion: apps/v1

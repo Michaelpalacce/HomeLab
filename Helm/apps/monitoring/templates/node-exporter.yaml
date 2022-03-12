@@ -1,3 +1,4 @@
+---
 {{- $relNamespace := .Release.Namespace -}}
 
 {{- with .Values.nodeExporter }}

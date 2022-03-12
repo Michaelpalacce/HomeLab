@@ -1,3 +1,4 @@
+---
 {{- with .Values.nginxporxymanager }}
 kind: DaemonSet
 apiVersion: apps/v1

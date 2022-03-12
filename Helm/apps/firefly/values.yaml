@@ -1,3 +1,4 @@
+---
 firefly:
     image: fireflyiii/core:version-5.6.10
     port: 8080

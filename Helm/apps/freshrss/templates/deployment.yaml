@@ -1,3 +1,4 @@
+---
 {{- with .Values.freshrss }}
 
 apiVersion: apps/v1

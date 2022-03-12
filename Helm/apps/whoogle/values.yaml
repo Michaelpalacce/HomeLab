@@ -1,3 +1,4 @@
+---
 whoogle:
     image: benbusby/whoogle-search:0.7.1
 #    nodePort: 30118

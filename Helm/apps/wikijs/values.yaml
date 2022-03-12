@@ -1,3 +1,4 @@
+---
 wikijs:
     image: requarks/wiki:2.5.276
 #    nodePort: 30111

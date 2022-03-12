@@ -1,3 +1,4 @@
+---
 {{- with .Values.loki }}
 
 apiVersion: apps/v1

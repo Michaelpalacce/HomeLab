@@ -1,3 +1,4 @@
+---
 dashy:
     image: stefangenov/dashy:2.0.4
 #    nodePort: 32222

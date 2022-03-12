@@ -1,3 +1,4 @@
+---
 {{- with .Values.radarr }}
 
 apiVersion: apps/v1

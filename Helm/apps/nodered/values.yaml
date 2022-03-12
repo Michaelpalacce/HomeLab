@@ -1,3 +1,4 @@
+---
 nodered:
     image: nodered/node-red:2.2.2-16
 #    nodePort: 30117

@@ -1,3 +1,4 @@
+---
 pyload:
     image: linuxserver/pyload:version-4bb5578c
     replicas: 0

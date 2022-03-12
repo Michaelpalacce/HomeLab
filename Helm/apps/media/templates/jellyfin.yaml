@@ -1,3 +1,4 @@
+---
 {{- with .Values.jellyfin }}
 
 apiVersion: apps/v1
