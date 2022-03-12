@@ -11,7 +11,7 @@ spec:
         - hosts:
               - dashy.stefangenov.site
               - home.stefangenov.site
-          secretName: ingress-tls
+          secretName: {{ .Values.dashy.secretName }}
     rules:
         - host: dashy.stefangenov.site
           http:
