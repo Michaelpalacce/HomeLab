@@ -4,3 +4,4 @@ resources:
 - gotk-components.yaml
 - gotk-sync.yaml
 - simplesecret.yaml
+- discord-provider.yaml
