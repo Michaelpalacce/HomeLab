@@ -28,13 +28,13 @@
         register: container_name
       #
       - name: Transfer backup
-        shell: "kubectl cp -n kube-system /tmp/nginx/{{item}}.tar.gz {{container_name.stdout}}:/tmp/{{item}}.tar.gz"
+        shell: "kubectl cp -n kube-system /tmp/nginx/{{ item}}.tar.gz {{ container_name.stdout }}:/tmp/{{ item}}.tar.gz"
         with_items:
             - nginxdata
             - nginxletsencrypt
 
       - name: Extract Data
-        shell: "kubectl exec -n kube-system {{container_name.stdout}} -- bash -c 'tar -xf /tmp/{{item.name}}.tar.gz -C /tmp'"
+        shell: "kubectl exec -n kube-system {{ container_name.stdout }} -- bash -c 'tar -xf /tmp/{{ item.name }}}.tar.gz -C /tmp'"
         with_items:
             - name: nginxdata
               path: data
@@ -42,7 +42,7 @@
               path: etc/letsencrypt
 
       - name: Apply patch
-        shell: "kubectl exec -n kube-system {{container_name.stdout}} -- bash -c '/bin/cp -rf /tmp/{{item.path}}/* /{{item.path}}'"
+        shell: "kubectl exec -n kube-system {{ container_name.stdout }} -- bash -c '/bin/cp -rf /tmp/{{ item.path }}/* /{{ item.path }}'"
         with_items:
             - name: nginxdata
               path: data
@@ -102,7 +102,7 @@
         register: container_name
 
       - name: Transfer backup
-        shell: "kubectl cp -n nodered /tmp/nodered/{{item}}.json {{container_name.stdout}}:/tmp/{{item}}.json"
+        shell: "kubectl cp -n nodered /tmp/nodered/{{ item}}.json {{ container_name.stdout }}:/tmp/{{ item}}.json"
         with_items:
             - flows_cred
             - flows
@@ -110,7 +110,7 @@
             - package
 
       - name: Copy backup
-        shell: "kubectl exec -n nodered {{container_name.stdout}} -- bash -c '/bin/cp -rf /tmp/{{item}}.json /data/'"
+        shell: "kubectl exec -n nodered {{ container_name.stdout }} -- bash -c '/bin/cp -rf /tmp/{{ item}}.json /data/'"
         with_items:
             - flows_cred
             - flows
@@ -153,16 +153,16 @@
         register: container_name_postgresql14
 
       - name: Transfer postgresql backup
-        shell: "kubectl cp -n postgresql /tmp/postgresql/PostgresBackup {{container_name_postgresql.stdout}}:/tmp/PostgresBackup"
+        shell: "kubectl cp -n postgresql /tmp/postgresql/PostgresBackup {{ container_name_postgresql.stdout }}:/tmp/PostgresBackup"
 
       - name: Transfer postgresql14 backup
-        shell: "kubectl cp -n postgresql /tmp/postgresql/Postgres14Backup {{container_name_postgresql14.stdout}}:/tmp/Postgres14Backup"
+        shell: "kubectl cp -n postgresql /tmp/postgresql/Postgres14Backup {{ container_name_postgresql14.stdout }}:/tmp/Postgres14Backup"
 
       - name: Restore Postgresql
-        shell: "kubectl exec -n postgresql {{container_name_postgresql.stdout}} -- bash -c 'psql -f /tmp/PostgresBackup -U postgres'"
+        shell: "kubectl exec -n postgresql {{ container_name_postgresql.stdout }} -- bash -c 'psql -f /tmp/PostgresBackup -U postgres'"
 
       - name: Restore Postgresql14
-        shell: "kubectl exec -n postgresql {{container_name_postgresql14.stdout}} -- bash -c 'psql -f /tmp/Postgres14Backup -U postgres'"
+        shell: "kubectl exec -n postgresql {{ container_name_postgresql14.stdout }} -- bash -c 'psql -f /tmp/Postgres14Backup -U postgres'"
 
       - name: Restart daemonset
         shell: kubectl rollout restart -n kube-system daemonset nginxproxymanager
@@ -194,13 +194,13 @@
         register: container_name
 
       - name: Transfer backup
-        shell: "kubectl cp -n vaultwarden /tmp/vaultwarden/vaultwarden.tar.gz {{container_name.stdout}}:/tmp/vaultwarden.tar.gz -c backup"
+        shell: "kubectl cp -n vaultwarden /tmp/vaultwarden/vaultwarden.tar.gz {{ container_name.stdout }}:/tmp/vaultwarden.tar.gz -c backup"
 
       - name: Extract data
-        shell: "kubectl exec -n vaultwarden {{container_name.stdout}} -c backup -- bash -c 'openssl enc -d -aes256 -salt -pbkdf2 -pass pass:$(echo $BACKUP_ENCRYPTION_KEY) -in /tmp/vaultwarden.tar.gz | tar xz -C /tmp/'"
+        shell: "kubectl exec -n vaultwarden {{ container_name.stdout }} -c backup -- bash -c 'openssl enc -d -aes256 -salt -pbkdf2 -pass pass:$(echo $BACKUP_ENCRYPTION_KEY) -in /tmp/vaultwarden.tar.gz | tar xz -C /tmp/'"
 
       - name: Copy data
-        shell: "kubectl exec -n vaultwarden {{container_name.stdout}} -c backup -- bash -c '/bin/cp -rf /tmp/tmp/currBackup/* /data/'"
+        shell: "kubectl exec -n vaultwarden {{ container_name.stdout }} -c backup -- bash -c '/bin/cp -rf /tmp/tmp/currBackup/* /data/'"
 
       - name: Restart deploy
         shell: kubectl rollout restart -n vaultwarden deploy vaultwarden
@@ -232,13 +232,13 @@
         register: container_name
 
       - name: Delete old data
-        shell: "kubectl exec -n trilium {{container_name.stdout}} -- sh -c 'rm -rf /home/node/trilium-data/*.db*'"
+        shell: "kubectl exec -n trilium {{ container_name.stdout }} -- sh -c 'rm -rf /home/node/trilium-data/*.db*'"
 
       - name: Transfer backup
-        shell: "kubectl cp -n trilium /tmp/trilium/trilium.db {{container_name.stdout}}:/home/node/trilium-data/document.db"
+        shell: "kubectl cp -n trilium /tmp/trilium/trilium.db {{ container_name.stdout }}:/home/node/trilium-data/document.db"
 
       - name: Make it read/writable
-        shell: "kubectl exec -n trilium {{container_name.stdout}} -- sh -c 'chmod 0600 /home/node/trilium-data/document.db'"
+        shell: "kubectl exec -n trilium {{ container_name.stdout }} -- sh -c 'chmod 0600 /home/node/trilium-data/document.db'"
 
       - name: Restart deploy
         shell: kubectl rollout restart -n trilium deploy trilium
@@ -282,16 +282,16 @@
         register: container_name
 
       - name: Delete old data
-        shell: "kubectl exec -n changedetection {{container_name.stdout}} -- sh -c 'rm -rf /datastore/*'"
+        shell: "kubectl exec -n changedetection {{ container_name.stdout }} -- sh -c 'rm -rf /datastore/*'"
 
       - name: Transfer backup
-        shell: "kubectl cp -n changedetection /tmp/changedetection/changedetection.tar.gz {{container_name.stdout}}:/tmp/changedetection.tar.gz"
+        shell: "kubectl cp -n changedetection /tmp/changedetection/changedetection.tar.gz {{ container_name.stdout }}:/tmp/changedetection.tar.gz"
 
       - name: Unzip
-        shell: "kubectl exec -n changedetection {{container_name.stdout}} -- sh -c 'tar -xf /tmp/changedetection.tar.gz -C /tmp/'"
+        shell: "kubectl exec -n changedetection {{ container_name.stdout }} -- sh -c 'tar -xf /tmp/changedetection.tar.gz -C /tmp/'"
 
       - name: Apply Restore
-        shell: "kubectl exec -n changedetection {{container_name.stdout}} -- bash -c '/bin/cp -rf /tmp/tmp/changedetection/* /datastore/'"
+        shell: "kubectl exec -n changedetection {{ container_name.stdout }} -- bash -c '/bin/cp -rf /tmp/tmp/changedetection/* /datastore/'"
 
       - name: Restart deploy
         shell: kubectl rollout restart -n changedetection deploy changedetection
