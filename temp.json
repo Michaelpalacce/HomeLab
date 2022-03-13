@@ -1,0 +1,60 @@
+{
+  "apiVersion": "v1",
+  "kind": "Namespace",
+  "metadata": {
+    "creationTimestamp": "2022-03-09T11:20:28Z",
+    "deletionTimestamp": "2022-03-13T23:08:53Z",
+    "labels": {
+      "kubernetes.io/metadata.name": "longhorn-system",
+      "kustomize.toolkit.fluxcd.io/name": "flux-system",
+      "kustomize.toolkit.fluxcd.io/namespace": "flux-system",
+      "name": "longhorn-system"
+    },
+    "name": "longhorn-system",
+    "resourceVersion": "2098601",
+    "uid": "215512d3-a13c-49b5-90f0-c49b5238f0f8"
+  },
+  "spec": {
+    "finalizers": []
+  },
+  "status": {
+    "conditions": [
+      {
+        "lastTransitionTime": "2022-03-13T23:11:11Z",
+        "message": "All resources successfully discovered",
+        "reason": "ResourcesDiscovered",
+        "status": "False",
+        "type": "NamespaceDeletionDiscoveryFailure"
+      },
+      {
+        "lastTransitionTime": "2022-03-13T23:11:11Z",
+        "message": "All legacy kube types successfully parsed",
+        "reason": "ParsedGroupVersions",
+        "status": "False",
+        "type": "NamespaceDeletionGroupVersionParsingFailure"
+      },
+      {
+        "lastTransitionTime": "2022-03-13T23:11:11Z",
+        "message": "All content successfully deleted, may be waiting on finalization",
+        "reason": "ContentDeleted",
+        "status": "False",
+        "type": "NamespaceDeletionContentFailure"
+      },
+      {
+        "lastTransitionTime": "2022-03-13T23:11:11Z",
+        "message": "Some resources are remaining: engineimages.longhorn.io has 1 resource instances, engines.longhorn.io has 30 resource instances, nodes.longhorn.io has 4 resource instances, replicas.longhorn.io has 40 resource instances, sharemanagers.longhorn.io has 30 resource instances, volumes.longhorn.io has 30 resource instances",
+        "reason": "SomeResourcesRemain",
+        "status": "True",
+        "type": "NamespaceContentRemaining"
+      },
+      {
+        "lastTransitionTime": "2022-03-13T23:11:11Z",
+        "message": "Some content in the namespace has finalizers remaining: longhorn.io in 135 resource instances",
+        "reason": "SomeFinalizersRemain",
+        "status": "True",
+        "type": "NamespaceFinalizersRemaining"
+      }
+    ],
+    "phase": "Terminating"
+  }
+}

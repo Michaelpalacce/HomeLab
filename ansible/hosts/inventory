@@ -7,10 +7,6 @@ PI48-ubuntu-1
 PI48-ubuntu-2
 PI48-ubuntu-3
 
-# Separate servers
-[servers]
-amd-ubuntu1
-
 # This group has all the servers
 [all:children]
 master
@@ -19,7 +15,6 @@ workers
 [_all:children]
 master
 workers
-servers
 
 #Variables for all the servers
 [_all:vars]
