@@ -3,8 +3,6 @@ name: Renovate
 on:
     workflow_dispatch:
     schedule:
-        # The "*" (#42, asterisk) character has special semantics in YAML, so this
-        # string has to be quoted.
         - cron: '0/15 * * * *'
 
 env:
@@ -18,9 +16,6 @@ jobs:
         steps:
             - name: Checkout
               uses: actions/checkout@v3
-
-#            - name: Verify Renovate Configuration
-#              uses: suzuki-shunsuke/github-action-renovate-config-validator@v0.1.2
 
             - name: Generate Token
               uses: tibdex/github-app-token@v1
