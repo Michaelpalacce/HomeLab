@@ -4,12 +4,12 @@ metadata:
     name: serveremulator
     namespace: {{ $.Release.Namespace }}
     annotations:
-        cert-manager.io/cluster-issuer: "letsencrypt"
+        cert-manager.io/cluster-issuer: "letsencrypt-staging"
         kubernetes.io/ingress.class: "nginx"
 spec:
     tls:
         - hosts:
-              - "server.stefangenov.site"
+              - "*.stefangenov.site"
           secretName: ingress
     rules:
         - host: server.stefangenov.site
@@ -29,12 +29,12 @@ metadata:
     name: syncthing
     namespace: {{ $.Release.Namespace }}
     annotations:
-        cert-manager.io/cluster-issuer: "letsencrypt"
+        cert-manager.io/cluster-issuer: "letsencrypt-staging"
         kubernetes.io/ingress.class: "nginx"
 spec:
     tls:
         - hosts:
-              - "syncthing.stefangenov.site"
+              - "*.stefangenov.site"
           secretName: ingress
     rules:
         - host: syncthing.stefangenov.site

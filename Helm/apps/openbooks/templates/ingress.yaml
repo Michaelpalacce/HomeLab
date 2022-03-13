@@ -4,12 +4,12 @@ metadata:
     name: openbooks
     namespace: {{ $.Release.Namespace }}
     annotations:
-        cert-manager.io/cluster-issuer: "letsencrypt"
+        cert-manager.io/cluster-issuer: "letsencrypt-staging"
         kubernetes.io/ingress.class: "nginx"
 spec:
     tls:
         - hosts:
-              - "openbooks.stefangenov.site"
+              - "*.stefangenov.site"
           secretName: ingress
     rules:
         - host: openbooks.stefangenov.site

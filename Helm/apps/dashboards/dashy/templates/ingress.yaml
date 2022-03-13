@@ -4,13 +4,12 @@ metadata:
     name: dashy
     namespace: {{ $.Release.Namespace }}
     annotations:
-        cert-manager.io/cluster-issuer: "letsencrypt"
+        cert-manager.io/cluster-issuer: "letsencrypt-staging"
         kubernetes.io/ingress.class: "nginx"
 spec:
     tls:
         - hosts:
-              - "home.stefangenov.site"
-              - "dashy.stefangenov.site"
+              - "*.stefangenov.site"
           secretName: ingress
     rules:
         - host: dashy.stefangenov.site
