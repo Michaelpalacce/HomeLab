@@ -138,7 +138,6 @@ data:
             local-data: "pgadmin.home.me IN A {{ .clusterIp }}"
             local-data: "whoogle.home.me IN A {{ .clusterIp }}"
             local-data: "google.home.me IN A {{ .clusterIp }}"
-            local-data: "nas.home.me IN A {{ .nasIp }}"
 
             forward-zone:
                 # Forward all queries (except those in cache and local zone) to
