@@ -12,7 +12,7 @@ spec:
               - "*.stefangenov.site"
           secretName: ingress
     rules:
-        - host: tandoorrecipes.stefangenov.site
+        - host: recipes.stefangenov.site
           http:
               paths:
                   - pathType: Prefix
