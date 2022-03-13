@@ -6,3 +6,9 @@ resources:
   - orphanedpodscleaner
   - dashy
   - monitoring
+  - reflector
+  - cert-manager
+  - longhorn-system
+  - simplesecrets
+  - ingress-nginx
+  - nfs-subdir-external-provisioner
