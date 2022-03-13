@@ -34,7 +34,7 @@ spec:
                           memory: 100Mi
                       limits:
                           cpu: 500m
-                          memory: 500Gi
+                          memory: 500Mi
                   ports:
                       - name: web
                         containerPort: {{ .port }}

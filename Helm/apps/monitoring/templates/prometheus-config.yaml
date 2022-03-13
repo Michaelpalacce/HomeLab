@@ -78,4 +78,4 @@ data:
               replacement: hostName
               target_label: hostName
 
-        {{- end }}
+{{- end }}

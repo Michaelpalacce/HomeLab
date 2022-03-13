@@ -8,5 +8,5 @@ whoogle:
       cpu: 10m
       memory: 100Mi
     limits:
-      cpu: 500
+      cpu: 500m
       memory: 500Mi

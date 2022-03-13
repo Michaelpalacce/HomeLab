@@ -61,7 +61,7 @@ iptables -F && update-alternatives --set iptables /usr/sbin/iptables-legacy && u
 ~~~
 
 ### Software needed on your machine
-* Ansible 2.9.x [Install Instructions for Ubuntu Server](https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-ansible-on-ubuntu-20-04)
+* Ansible 3.9.x [Install Instructions for Ubuntu Server](https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-ansible-on-ubuntu-20-04)
   ( I am using WSL to run my commands )
 * sshpass ( if you are going to use password based authentication for the RPIs which I am ). If you want better security then configure key based authentication.
 

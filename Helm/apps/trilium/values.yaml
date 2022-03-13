@@ -9,7 +9,7 @@ trilium:
       cpu: 100m
       memory: 100Mi
     limits:
-      cpu: 500m
+      cpu: 250m
       memory: 1Gi
 
 storage:

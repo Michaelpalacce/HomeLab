@@ -51,3 +51,7 @@ Run: `apt install -y linux-modules-extra-raspi && echo 'iscsi_tcp' >> /etc/modul
 ### High CPU Usage udisksd
 After around 4-5 months of debugging I figured out that using my current setup if I issue too many mount commands ( readiness and liveness probes do that )
 leads to udisksd reaching 100% cpu. Nothing else I tried helped, so this is why I only have some basic readiness and liveness probes
+
+### cgroup-gc
+This is a helm chart that installs a daemonset that will be deployed on all nodes with the purpose of clearing up cgroups.
+For more information: `https://serverfault.com/questions/976233/context-deadline-exceeded-preventing-pods-from-being-created-in-aks`

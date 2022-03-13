@@ -12,4 +12,4 @@
 * Added readinessprobe
 
 #### [V1.0.0]
-- Initial Deployment
+* Initial Deployment

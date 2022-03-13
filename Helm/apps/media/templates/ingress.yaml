@@ -73,4 +73,3 @@ spec:
                             name: transmission
                             port:
                                 number: {{ .Values.transmission.port }}
-

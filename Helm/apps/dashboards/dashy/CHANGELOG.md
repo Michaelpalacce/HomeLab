@@ -47,4 +47,4 @@
 * Moved resources to values.yaml
 
 #### [V1.0.0]
-- Initial Deployment
+* Initial Deployment
