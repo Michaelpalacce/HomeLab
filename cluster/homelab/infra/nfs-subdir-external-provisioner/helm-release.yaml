@@ -11,7 +11,7 @@ spec:
     chart:
         spec:
             chart: nfs-subdir-external-provisioner
-            version: 4.0.2
+            version: 4.0.16
             interval: 5m
             sourceRef:
                 kind: HelmRepository
