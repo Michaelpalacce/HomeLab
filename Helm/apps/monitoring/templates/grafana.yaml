@@ -9,7 +9,7 @@ metadata:
     name: grafana
     namespace: {{ $.Release.Namespace }}
 spec:
-    replicas: 0
+    replicas: 1
     strategy:
         rollingUpdate:
             maxUnavailable: 0
