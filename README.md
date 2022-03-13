@@ -24,6 +24,5 @@ removing the commented out nodePort values in the Helm Charts.
 
 All the available nodePorts can be checked [here](./docs/Ports.md)
 
-Otherwise, apps are exposed by NginxProxyManager.
-
-WIP: Migrate to nginx-ingress and cert-manager
+Apps are currently exposed by ingress-nginx and have SSL certificates provided by cert-manager.
+A wildcard certificate is issued for my domain `*.stefangenov.site` and when the secret is created it is replicated in all namespace as `ingress` to be consumed by the ingress resources. This replication is needed because `Let's encrypt` rate limits certificate requests. 
