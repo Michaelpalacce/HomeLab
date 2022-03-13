@@ -2,20 +2,20 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-    name: n8n
-    namespace: n8n
+  name: n8n
+  namespace: n8n
 spec:
-    interval: 5m
-    install:
-        createNamespace: true
-    chart:
-        spec:
-            chart: ./Helm/apps/n8n
-            reconcileStrategy: Revision
-            sourceRef:
-                kind: GitRepository
-                name: flux-system
-                namespace: flux-system
-    values:
-        n8n:
-            replicas: 1
+  interval: 5m
+  install:
+    createNamespace: true
+  chart:
+    spec:
+      chart: ./Helm/apps/n8n
+      reconcileStrategy: Revision
+      sourceRef:
+        kind: GitRepository
+        name: flux-system
+        namespace: flux-system
+  values:
+    n8n:
+      replicas: 1

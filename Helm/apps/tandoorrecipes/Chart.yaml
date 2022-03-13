@@ -3,8 +3,8 @@ apiVersion: v2
 appVersion: 1.0.0
 description: This chart is used to install tandoorrecipes
 maintainers:
-- email: sgenov94@gmail.com
-  name: Stefan Genov
+  - email: sgenov94@gmail.com
+    name: Stefan Genov
 name: tandoorrecipes
 type: application
 version: 1.0.0

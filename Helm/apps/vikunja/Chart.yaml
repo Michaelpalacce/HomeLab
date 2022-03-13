@@ -3,8 +3,8 @@ apiVersion: v2
 appVersion: 1.0.0
 description: This chart is used to install vikunja
 maintainers:
-- email: sgenov94@gmail.com
-  name: Stefan Genov
+  - email: sgenov94@gmail.com
+    name: Stefan Genov
 name: vikunja
 type: application
 version: 1.3.0

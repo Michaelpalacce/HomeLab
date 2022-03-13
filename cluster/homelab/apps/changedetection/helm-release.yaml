@@ -2,19 +2,19 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-    name: changedetection
-    namespace: changedetection
+  name: changedetection
+  namespace: changedetection
 spec:
-    interval: 5m
-    install:
-        createNamespace: true
-    chart:
-        spec:
-            chart: ./Helm/apps/changedetection
-            reconcileStrategy: Revision
-            sourceRef:
-                kind: GitRepository
-                name: flux-system
-                namespace: flux-system
-    values:
-        image: dgtlmoon/changedetection.io:0.39.10
+  interval: 5m
+  install:
+    createNamespace: true
+  chart:
+    spec:
+      chart: ./Helm/apps/changedetection
+      reconcileStrategy: Revision
+      sourceRef:
+        kind: GitRepository
+        name: flux-system
+        namespace: flux-system
+  values:
+    image: dgtlmoon/changedetection.io:0.39.10

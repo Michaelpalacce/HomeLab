@@ -1,18 +1,18 @@
 ---
 tandoorrecipes:
-    image: vabene1111/recipes:1.1.2
+  image: vabene1111/recipes:1.1.2
     # nodePort: 30125
-    port: 8080
-    resources:
-        requests:
-            cpu: 250m
-            memory: 512Mi
-        limits:
-            cpu: 500m
-            memory: 1Gi
+  port: 8080
+  resources:
+    requests:
+      cpu: 250m
+      memory: 512Mi
+    limits:
+      cpu: 500m
+      memory: 1Gi
 
 storage:
-    dataLocality: "best-effort" # or disabled
-    numberOfReplicas: 1
-    mediaSize: 1Gi
-    staticSize: 1Gi
+  dataLocality: best-effort      # or disabled
+  numberOfReplicas: 1
+  mediaSize: 1Gi
+  staticSize: 1Gi

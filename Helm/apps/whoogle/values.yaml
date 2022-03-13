@@ -1,12 +1,12 @@
 ---
 whoogle:
-    image: benbusby/whoogle-search:0.7.1
+  image: benbusby/whoogle-search:0.7.1
 #    nodePort: 30118
-    port: 5000
-    resources:
-        requests:
-            cpu: 10m
-            memory: 100Mi
-        limits:
-            cpu: 500
-            memory: 500Mi
+  port: 5000
+  resources:
+    requests:
+      cpu: 10m
+      memory: 100Mi
+    limits:
+      cpu: 500
+      memory: 500Mi

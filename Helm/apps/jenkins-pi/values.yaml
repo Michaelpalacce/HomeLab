@@ -12,63 +12,63 @@
 
 # For FQDN resolving of the controller service. Change this value to match your existing configuration.
 # ref: https://github.com/kubernetes/dns/blob/master/docs/specification.md
-clusterZone: "cluster.local"
+clusterZone: cluster.local
 
 renderHelmLabels: true
 
 controller:
     # Used for label app.kubernetes.io/component
-    componentName: "jenkins-controller"
-    image: "jenkins/jenkins"
-    tag: "2.324"
-    imagePullPolicy: "IfNotPresent"
-    imagePullSecretName:
+  componentName: jenkins-controller
+  image: jenkins/jenkins
+  tag: '2.324'
+  imagePullPolicy: IfNotPresent
+  imagePullSecretName:
     # Optionally configure lifetime for controller-container
-    lifecycle:
+  lifecycle:
     #  postStart:æ
     #    exec:
     #      command:
     #      - "uname"
     #      - "-a"
-    disableRememberMe: false
-    numExecutors: 0
+  disableRememberMe: false
+  numExecutors: 0
     # configures the executor mode of the Jenkins node. Possible values are: NORMAL or EXCLUSIVE
-    executorMode: "NORMAL"
+  executorMode: NORMAL
     # This is ignored if enableRawHtmlMarkupFormatter is true
-    markupFormatter: plainText
-    customJenkinsLabels: []
+  markupFormatter: plainText
+  customJenkinsLabels: []
     # The default configuration uses this secret to configure an admin user
     # If you don't need that user or use a different security realm then you can disable it
-    adminSecret: true
+  adminSecret: true
 
-    hostNetworking: false
+  hostNetworking: false
     # When enabling LDAP or another non-Jenkins identity source, the built-in admin account will no longer exist.
     # If you disable the non-Jenkins identity store and instead use the Jenkins internal one,
     # you should revert controller.adminUser to your preferred admin user:
-    adminUser: "admin"
+  adminUser: admin
     # adminPassword: <defaults to random>
-    admin:
-        existingSecret: ""
-        userKey: jenkins-admin-user
-        passwordKey: jenkins-admin-password
+  admin:
+    existingSecret: ''
+    userKey: jenkins-admin-user
+    passwordKey: jenkins-admin-password
     # This values should not be changed unless you use your custom image of jenkins or any devired from. If you want to use
     # Cloudbees Jenkins Distribution docker, you should set jenkinsHome: "/var/cloudbees-jenkins-distribution"
-    jenkinsHome: "/var/jenkins_home"
+  jenkinsHome: /var/jenkins_home
     # This values should not be changed unless you use your custom image of jenkins or any devired from. If you want to use
     # Cloudbees Jenkins Distribution docker, you should set jenkinsRef: "/usr/share/cloudbees-jenkins-distribution/ref"
-    jenkinsRef: "/usr/share/jenkins/ref"
+  jenkinsRef: /usr/share/jenkins/ref
     # Path to the jenkins war file which is used by jenkins-plugin-cli.
-    jenkinsWar: "/usr/share/jenkins/jenkins.war"
+  jenkinsWar: /usr/share/jenkins/jenkins.war
     # Overrides the default arguments passed to the war
     # overrideArgs:
     #   - --httpPort=8080
-    resources:
-        requests:
-            cpu: "50m"
-            memory: "256Mi"
-        limits:
-            cpu: "1000m"
-            memory: "2048Mi"
+  resources:
+    requests:
+      cpu: 50m
+      memory: 256Mi
+    limits:
+      cpu: 1000m
+      memory: 2048Mi
     # Overrides the init container default values
     # initContainerResources:
     #   requests:
@@ -95,15 +95,15 @@ controller:
     # If you set this prefix and use ingress controller then you might want to set the ingress path below
     # jenkinsUriPrefix: "/jenkins"
     # Enable pod security context (must be `true` if podSecurityContextOverride, runAsUser or fsGroup are set)
-    usePodSecurityContext: true
+  usePodSecurityContext: true
     # Note that `runAsUser`, `fsGroup`, and `securityContextCapabilities` are
     # being deprecated and replaced by `podSecurityContextOverride`.
     # Set runAsUser to 1000 to let Jenkins run as non-root user 'jenkins' which exists in 'jenkins/jenkins' docker image.
     # When setting runAsUser to a different value than 0 also set fsGroup to the same value:
-    runAsUser: 1000
-    fsGroup: 1000
+  runAsUser: 1000
+  fsGroup: 1000
     # If you have PodSecurityPolicies that require dropping of capabilities as suggested by CIS K8s benchmark, put them here
-    securityContextCapabilities: {}
+  securityContextCapabilities: {}
     #  drop:
     #    - NET_RAW
     # Completely overwrites the contents of the `securityContext`, ignoring the
@@ -116,83 +116,83 @@ controller:
     #   runAsNonRoot: true
     #   supplementalGroups: [1000]
     #   # capabilities: {}
-    servicePort: 8080
-    targetPort: 8080
-    nodePort: 30020
+  servicePort: 8080
+  targetPort: 8080
+  nodePort: 30020
     # For minikube, set this to NodePort, elsewhere use LoadBalancer
     # Use ClusterIP if your setup includes ingress controller
-    serviceType: NodePort
+  serviceType: NodePort
     # Use Local to preserve the client source IP and avoids a second hop for LoadBalancer and Nodeport type services,
     # but risks potentially imbalanced traffic spreading.
-    serviceExternalTrafficPolicy:
+  serviceExternalTrafficPolicy:
     # Jenkins controller service annotations
-    serviceAnnotations: {}
+  serviceAnnotations: {}
     # Jenkins controller custom labels
-    statefulSetLabels: {}
+  statefulSetLabels: {}
     #   foo: bar
     #   bar: foo
     # Jenkins controller service labels
-    serviceLabels: {}
+  serviceLabels: {}
     #   service.beta.kubernetes.io/aws-load-balancer-backend-protocol: https
     # Put labels on Jenkins controller pod
-    podLabels: {}
+  podLabels: {}
     # Used to create Ingress record (should used with ServiceType: ClusterIP)
     # nodePort: <to set explicitly, choose port between 30000-32767
     # Enable Kubernetes Liveness and Readiness Probes
     # if Startup Probe is supported, enable it too
     # ~ 2 minutes to allow Jenkins to restart when upgrading plugins. Set ReadinessTimeout to be shorter than LivenessTimeout.
-    healthProbes: true
-    probes:
-        startupProbe:
-            httpGet:
-                path: '{{ default "" .Values.controller.jenkinsUriPrefix }}/login'
-                port: http
-            periodSeconds: 10
-            timeoutSeconds: 5
-            failureThreshold: 60
-        livenessProbe:
-            failureThreshold: 5
-            httpGet:
-                path: '{{ default "" .Values.controller.jenkinsUriPrefix }}/login'
-                port: http
-            periodSeconds: 10
-            timeoutSeconds: 5
+  healthProbes: true
+  probes:
+    startupProbe:
+      httpGet:
+        path: '{{ default "" .Values.controller.jenkinsUriPrefix }}/login'
+        port: http
+      periodSeconds: 10
+      timeoutSeconds: 5
+      failureThreshold: 60
+    livenessProbe:
+      failureThreshold: 5
+      httpGet:
+        path: '{{ default "" .Values.controller.jenkinsUriPrefix }}/login'
+        port: http
+      periodSeconds: 10
+      timeoutSeconds: 5
             # If Startup Probe is not supported on your Kubernetes cluster, you might want to use "initialDelaySeconds" instead.
             # It delays the initial liveness probe while Jenkins is starting
             # initialDelaySeconds: 60
-        readinessProbe:
-            failureThreshold: 3
-            httpGet:
-                path: '{{ default "" .Values.controller.jenkinsUriPrefix }}/login'
-                port: http
-            periodSeconds: 10
-            timeoutSeconds: 5
+    readinessProbe:
+      failureThreshold: 3
+      httpGet:
+        path: '{{ default "" .Values.controller.jenkinsUriPrefix }}/login'
+        port: http
+      periodSeconds: 10
+      timeoutSeconds: 5
             # If Startup Probe is not supported on your Kubernetes cluster, you might want to use "initialDelaySeconds" instead.
             # It delays the initial readyness probe while Jenkins is starting
             # initialDelaySeconds: 60
 
-    agentListenerEnabled: true
-    agentListenerPort: 50000
-    agentListenerHostPort:
-    agentListenerNodePort:
-    disabledAgentProtocols:
-        - JNLP-connect
-        - JNLP2-connect
-    csrf:
-        defaultCrumbIssuer:
-            enabled: true
-            proxyCompatability: true
+  agentListenerEnabled: true
+  agentListenerPort: 50000
+  agentListenerHostPort:
+  agentListenerNodePort:
+  disabledAgentProtocols:
+    - JNLP-connect
+    - JNLP2-connect
+  csrf:
+    defaultCrumbIssuer:
+      enabled: true
+      proxyCompatability: true
     # Kubernetes service type for the JNLP agent service
     # agentListenerServiceType is the Kubernetes Service type for the JNLP agent service,
     # either 'LoadBalancer', 'NodePort', or 'ClusterIP'
     # Note if you set this to 'LoadBalancer', you *must* define annotations to secure it. By default
     # this will be an external load balancer and allowing inbound 0.0.0.0/0, a HUGE
     # security risk:  https://github.com/kubernetes/charts/issues/1341
-    agentListenerServiceType: "ClusterIP"
+  agentListenerServiceType: ClusterIP
     # Optionally assign an IP to the LoadBalancer agentListenerService LoadBalancer
     # GKE users: only regional static IPs will work for Service Load balancer.
-    agentListenerLoadBalancerIP:
-    agentListenerServiceAnnotations: {}
+  agentListenerLoadBalancerIP:
+  agentListenerServiceAnnotations: {}
 
     # Example of 'LoadBalancer' type of agent listener with annotations securing it
     # agentListenerServiceType: LoadBalancer
@@ -202,8 +202,8 @@ controller:
 
     # LoadBalancerSourcesRange is a list of allowed CIDR values, which are combined with ServicePort to
     # set allowed inbound rules on the security group assigned to the controller load balancer
-    loadBalancerSourceRanges:
-        - 0.0.0.0/0
+  loadBalancerSourceRanges:
+    - 0.0.0.0/0
     # Optionally assign a known public LB IP
     # loadBalancerIP: 1.2.3.4
     # Optionally configure a JMX port
@@ -214,46 +214,46 @@ controller:
     #   -Dcom.sun.management.jmxremote.ssl=false
     # jmxPort: 4000
     # Optionally configure other ports to expose in the controller container
-    extraPorts: []
+  extraPorts: []
     # - name: BuildInfoProxy
     #   port: 9000
 
     # List of plugins to be install during Jenkins controller start
-    installPlugins:
+  installPlugins:
 #        - kubernetes:1.29.4
 #        - workflow-aggregator:2.6
 #        - git:4.7.1
 #        - configuration-as-code:1.51
 
     # Set to false to download the minimum required version of all dependencies.
-    installLatestPlugins: true
+  installLatestPlugins: true
 
     # Set to true to download latest dependencies of any plugin that is requested to have the latest version.
-    installLatestSpecifiedPlugins: false
+  installLatestSpecifiedPlugins: false
 
     # List of plugins to install in addition to those listed in controller.installPlugins
-    additionalPlugins: []
+  additionalPlugins: []
 
     # Enable to initialize the Jenkins controller only once on initial installation.
     # Without this, whenever the controller gets restarted (Evicted, etc.) it will fetch plugin updates which has the potential to cause breakage.
     # Note that for this to work, `persistence.enabled` needs to be set to `true`
-    initializeOnce: false
+  initializeOnce: false
 
     # Enable to always override the installed plugins with the values of 'controller.installPlugins' on upgrade or redeployment.
     # overwritePlugins: true
 
     # Configures if plugins bundled with `controller.image` should be overwritten with the values of 'controller.installPlugins' on upgrade or redeployment.
-    overwritePluginsFromImage: true
+  overwritePluginsFromImage: true
 
     # Enable HTML parsing using OWASP Markup Formatter Plugin (antisamy-markup-formatter), useful with ghprb plugin.
     # The plugin is not installed by default, please update controller.installPlugins.
-    enableRawHtmlMarkupFormatter: false
+  enableRawHtmlMarkupFormatter: false
     # Used to approve a list of groovy functions in pipelines used the script-security plugin. Can be viewed under /scriptApproval
-    scriptApproval: []
+  scriptApproval: []
     #  - "method groovy.json.JsonSlurperClassic parseText java.lang.String"
     #  - "new groovy.json.JsonSlurperClassic"
     # List of groovy init scripts to be executed during Jenkins controller start
-    initScripts: []
+  initScripts: []
     #  - |
     #    print 'adding global pipeline libraries, register properties, bootstrap jobs...'
 
@@ -263,7 +263,7 @@ controller:
     # an existing secret "secret-credentials" and a key inside it named "github-password" should be used in Jcasc as ${secret-credentials-github-password}
     # 'name' and 'keyName' must be lowercase RFC 1123 label must consist of lower case alphanumeric characters or '-',
     # and must start and end with an alphanumeric character (e.g. 'my-name',  or '123-abc')
-    additionalExistingSecrets: []
+  additionalExistingSecrets: []
     #  - name: secret-name-1
     #    keyName: username
     #  - name: secret-name-1
@@ -271,7 +271,7 @@ controller:
 
 
     # Name of default cloud configuration.
-    cloudName: "kubernetes"
+  cloudName: kubernetes
 
     # Below is the implementation of Jenkins Configuration as Code.  Add a key under configScripts for each configuration area,
     # where each corresponds to a plugin or section of the UI.  Each key (prior to | character) is just a label, and can be any value.
@@ -280,42 +280,42 @@ controller:
     # /var/jenkins_home/casc_configs (by default) and will be processed by the Configuration as Code Plugin.  The lines after each |
     # become the content of the configuration yaml file.  The first line after this is a JCasC root element, eg jenkins, credentials,
     # etc.  Best reference is https://<jenkins_url>/configuration-as-code/reference.  The example below creates a welcome message:
-    JCasC:
-        defaultConfig: true
-        configScripts: {}
+  JCasC:
+    defaultConfig: true
+    configScripts: {}
         #  welcome-message: |
         #    jenkins:
         #      systemMessage: Welcome to our CI\CD server.  This Jenkins is configured and managed 'as code'.
         # Ignored if securityRealm is defined in controller.JCasC.configScripts and
         # ignored if controller.enableXmlConfig=true as controller.securityRealm takes precedence
-        securityRealm: |-
-            local:
-              allowsSignup: false
-              enableCaptcha: false
-              users:
-              - id: "${chart-admin-username}"
-                name: "Jenkins Admin"
-                password: "${chart-admin-password}"
-        # Ignored if authorizationStrategy is defined in controller.JCasC.configScripts
-        authorizationStrategy: |-
-            loggedInUsersCanDoAnything:
-              allowAnonymousRead: false
+    securityRealm: |-
+      local:
+        allowsSignup: false
+        enableCaptcha: false
+        users:
+        - id: "${chart-admin-username}"
+          name: "Jenkins Admin"
+          password: "${chart-admin-password}"
+     # Ignored if authorizationStrategy is defined in controller.JCasC.configScripts
+    authorizationStrategy: |-
+      loggedInUsersCanDoAnything:
+        allowAnonymousRead: false
     # Optionally specify additional init-containers
-    customInitContainers: []
+  customInitContainers: []
     # - name: custom-init
     #   image: "alpine:3.7"
     #   imagePullPolicy: Always
     #   command: [ "uname", "-a" ]
 
-    sidecars:
-        configAutoReload:
+  sidecars:
+    configAutoReload:
             # If enabled: true, Jenkins Configuration as Code will be reloaded on-the-fly without a reboot.  If false or not-specified,
             # jcasc changes will cause a reboot and will only be applied at the subsequent start-up.  Auto-reload uses the
             # http://<jenkins_url>/reload-configuration-as-code endpoint to reapply config when changes to the configScripts are detected.
-            enabled: true
-            image: kiwigrid/k8s-sidecar:1.15.7
-            imagePullPolicy: IfNotPresent
-            resources: {}
+      enabled: true
+      image: kiwigrid/k8s-sidecar:1.15.7
+      imagePullPolicy: IfNotPresent
+      resources: {}
               #   limits:
               #     cpu: 100m
               #     memory: 100Mi
@@ -323,7 +323,7 @@ controller:
               #     cpu: 50m
             #     memory: 50Mi
             # How many connection-related errors to retry on
-            reqRetryConnect: 10
+      reqRetryConnect: 10
             # env:
             #   - name: REQ_TIMEOUT
             #     value: "30"
@@ -332,16 +332,16 @@ controller:
             # This TCP port will not be open in the pod (unless you specifically configure this), so Jenkins will not be
             # accessible via SSH from outside of the pod.  Note if you use non-root pod privileges (runAsUser & fsGroup),
             # this must be > 1024:
-            sshTcpPort: 1044
+      sshTcpPort: 1044
             # folder in the pod that should hold the collected dashboards:
-            folder: "/var/jenkins_home/casc_configs"
+      folder: /var/jenkins_home/casc_configs
             # If specified, the sidecar will search for JCasC config-maps inside this namespace.
             # Otherwise the namespace in which the sidecar is running will be used.
             # It's also possible to specify ALL to search in all namespaces:
             # searchNamespace:
 
         # Allows you to inject additional/other sidecars
-        other: []
+    other: []
         ## The example below runs the client for https://smee.io as sidecar container next to Jenkins,
         ## that allows to trigger build behind a secure firewall.
         ## https://jenkins.io/blog/2019/01/07/webhook-firewalls/#triggering-builds-with-webhooks-behind-a-secure-firewall
@@ -358,32 +358,32 @@ controller:
         #       cpu: 10m
         #       memory: 32Mi
     # Name of the Kubernetes scheduler to use
-    schedulerName: ""
+  schedulerName: ''
     # Node labels and tolerations for pod assignment
     # ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#nodeselector
     # ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#taints-and-tolerations-beta-feature
-    nodeSelector: {}
+  nodeSelector: {}
 
-    terminationGracePeriodSeconds:
+  terminationGracePeriodSeconds:
 
-    tolerations: []
+  tolerations: []
 
-    affinity: {}
+  affinity: {}
     # Leverage a priorityClass to ensure your pods survive resource shortages
     # ref: https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/
-    priorityClassName:
+  priorityClassName:
 
-    podAnnotations: {}
+  podAnnotations: {}
     # Add StatefulSet annotations
-    statefulSetAnnotations: {}
+  statefulSetAnnotations: {}
 
     # StatefulSet updateStrategy
     # ref: https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#update-strategies
-    updateStrategy: {}
+  updateStrategy: {}
 
     # controller.hostAliases allows for adding entries to Pod /etc/hosts:
     # https://kubernetes.io/docs/concepts/services-networking/add-entries-to-pod-etc-hosts-with-host-aliases/
-    hostAliases: []
+  hostAliases: []
     # - ip: 192.168.50.50
     #   hostnames:
     #     - something.local
@@ -392,102 +392,102 @@ controller:
     #     - other.local
 
     # Can be used to disable rendering controller test resources when using helm template
-    testEnabled: true
+  testEnabled: true
 
-    httpsKeyStore:
-        jenkinsHttpsJksSecretName: ''
-        enable: false
-        httpPort: 8081
-        path: "/var/jenkins_keystore"
-        fileName: "keystore.jks"
-        password: "password"
+  httpsKeyStore:
+    jenkinsHttpsJksSecretName: ''
+    enable: false
+    httpPort: 8081
+    path: /var/jenkins_keystore
+    fileName: keystore.jks
+    password: password
         # Convert keystore.jks files content to base64 ( cat keystore.jks | base64 ) and put the output here
-        jenkinsKeyStoreBase64Encoded: |
-            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
+    jenkinsKeyStoreBase64Encoded: |
+      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
 
 agent:
-    enabled: true
-    defaultsProviderTemplate: ""
+  enabled: true
+  defaultsProviderTemplate: ''
     # URL for connecting to the Jenkins contoller
-    jenkinsUrl:
+  jenkinsUrl:
     # connect to the specified host and port, instead of connecting directly to the Jenkins controller
-    jenkinsTunnel:
-    kubernetesConnectTimeout: 5
-    kubernetesReadTimeout: 15
-    maxRequestsPerHostStr: "32"
-    namespace:
-    image: "jenkins/inbound-agent"
-    tag: "4.6-1"
-    workingDir: "/home/jenkins"
-    nodeUsageMode: "NORMAL"
-    customJenkinsLabels: []
+  jenkinsTunnel:
+  kubernetesConnectTimeout: 5
+  kubernetesReadTimeout: 15
+  maxRequestsPerHostStr: '32'
+  namespace:
+  image: jenkins/inbound-agent
+  tag: 4.6-1
+  workingDir: /home/jenkins
+  nodeUsageMode: NORMAL
+  customJenkinsLabels: []
     # name of the secret to be used for image pulling
-    imagePullSecretName:
-    componentName: "jenkins-agent"
-    websocket: false
-    privileged: false
-    runAsUser:
-    runAsGroup:
-    resources:
-        requests:
-            cpu: "512m"
-            memory: "512Mi"
-        limits:
-            cpu: "512m"
-            memory: "512Mi"
+  imagePullSecretName:
+  componentName: jenkins-agent
+  websocket: false
+  privileged: false
+  runAsUser:
+  runAsGroup:
+  resources:
+    requests:
+      cpu: 512m
+      memory: 512Mi
+    limits:
+      cpu: 512m
+      memory: 512Mi
     # You may want to change this to true while testing a new image
-    alwaysPullImage: false
+  alwaysPullImage: false
     # Controls how agent pods are retained after the Jenkins build completes
     # Possible values: Always, Never, OnFailure
-    podRetention: "Never"
+  podRetention: Never
     # Disable if you do not want the Yaml the agent pod template to show up
     # in the job Console Output. This can be helpful for either security reasons
     # or simply to clean up the output to make it easier to read.
-    showRawYaml: true
+  showRawYaml: true
     # You can define the volumes that you want to mount for this container
     # Allowed types are: ConfigMap, EmptyDir, HostPath, Nfs, PVC, Secret
     # Configure the attributes as they appear in the corresponding Java class for that type
     # https://github.com/jenkinsci/kubernetes-plugin/tree/master/src/main/java/org/csanchez/jenkins/plugins/kubernetes/volumes
-    volumes: []
+  volumes: []
     # - type: ConfigMap
     #   configMapName: myconfigmap
     #   mountPath: /var/myapp/myconfigmap
@@ -516,7 +516,7 @@ agent:
     # Allowed types are: DynamicPVC, EmptyDir, HostPath, Nfs, PVC
     # Configure the attributes as they appear in the corresponding Java class for that type
     # https://github.com/jenkinsci/kubernetes-plugin/tree/master/src/main/java/org/csanchez/jenkins/plugins/kubernetes/volumes/workspace
-    workspaceVolume: {}
+  workspaceVolume: {}
     # - type: DynamicPVC
     #   configMapName: myconfigmap
     # - type: EmptyDir
@@ -531,31 +531,31 @@ agent:
     #   claimName: mypvc
     #   readOnly: false
     # Pod-wide environment, these vars are visible to any container in the agent pod
-    envVars: []
+  envVars: []
     # - name: PATH
     #   value: /usr/local/bin
-    nodeSelector: {}
+  nodeSelector: {}
     # Key Value selectors. Ex:
     # jenkins-agent: v1
 
     # Executed command when side container gets started
-    command:
-    args: "${computer.jnlpmac} ${computer.name}"
+  command:
+  args: ${computer.jnlpmac} ${computer.name}
     # Side container name
-    sideContainerName: "jnlp"
+  sideContainerName: jnlp
     # Doesn't allocate pseudo TTY by default
-    TTYEnabled: false
+  TTYEnabled: false
     # Max number of spawned agent
-    containerCap: 10
+  containerCap: 10
     # Pod name
-    podName: "default"
+  podName: default
     # Allows the Pod to remain active for reuse until the configured number of
     # minutes has passed since the last step was executed on it.
-    idleMinutes: 0
+  idleMinutes: 0
     # Raw yaml template for the Pod. For example this allows usage of toleration for agent pods.
     # https://github.com/jenkinsci/kubernetes-plugin#using-yaml-to-define-pod-templates
     # https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
-    yamlTemplate: ""
+  yamlTemplate: ''
     # yamlTemplate: |-
     #   apiVersion: v1
     #   kind: Pod
@@ -565,11 +565,11 @@ agent:
     #       operator: "Equal"
     #       value: "value"
     # Defines how the raw yaml field gets merged with yaml definitions from inherited pod templates: merge or override
-    yamlMergeStrategy: "override"
+  yamlMergeStrategy: override
     # Timeout in seconds for an agent to be online
-    connectTimeout: 100
+  connectTimeout: 100
     # Annotations to apply to the pod.
-    annotations: {}
+  annotations: {}
 
     # Below is the implementation of custom pod templates for the default configured kubernetes cloud.
     # Add a key under podTemplates for each pod template. Each key (prior to | character) is just a label, and can be any value.
@@ -578,7 +578,7 @@ agent:
     # For this pod templates configuration to be loaded the following values must be set:
     # controller.JCasC.defaultConfig: true
     # Best reference is https://<jenkins_url>/configuration-as-code/reference#Cloud-kubernetes. The example below creates a python pod template.
-    podTemplates: {}
+  podTemplates: {}
     #  python: |
     #    - name: python
     #      label: jenkins-python
@@ -616,11 +616,11 @@ additionalAgents: {}
 #    TTYEnabled: true
 
 persistence:
-    enabled: true
+  enabled: true
     ## A manually managed Persistent Volume and Claim
     ## Requires persistence.enabled: true
     ## If defined, PVC must be created manually before volume will be bound
-    existingClaim: jenkins-pvc
+  existingClaim: jenkins-pvc
     ## jenkins data Persistent Volume Storage Class
     ## If defined, storageClassName: <storageClass>
     ## If set to "-", storageClassName: "", which disables dynamic provisioning
@@ -628,38 +628,38 @@ persistence:
     ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
     ##   GKE, AWS & OpenStack)
     ##
-    storageClass: jenkins-pi
-    annotations: {}
-    accessMode: "ReadWriteOnce"
-    size: "25Gi"
-    volumes:
+  storageClass: jenkins-pi
+  annotations: {}
+  accessMode: ReadWriteOnce
+  size: 25Gi
+  volumes:
     #  - name: nothing
     #    emptyDir: {}
-    mounts:
+  mounts:
     #  - mountPath: /var/nothing
     #    name: nothing
     #    readOnly: true
 
 ## Install Default RBAC roles and bindings
 rbac:
-    create: true
-    readSecrets: false
+  create: true
+  readSecrets: false
 
 serviceAccount:
-    create: false
+  create: false
     # The name of the service account is autogenerated by default
-    name: jenkins
-    annotations: {}
-    imagePullSecretName:
+  name: jenkins
+  annotations: {}
+  imagePullSecretName:
 
 
 serviceAccountAgent:
     # Specifies whether a ServiceAccount should be created
-    create: false
+  create: false
     # The name of the ServiceAccount to use.
     # If not set and create is true, a name is generated using the fullname template
-    name: jenkins
-    annotations: {}
-    imagePullSecretName:
+  name: jenkins
+  annotations: {}
+  imagePullSecretName:
 
 checkDeprecation: true

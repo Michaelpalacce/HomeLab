@@ -1,12 +1,12 @@
 ---
 diagrams:
-    image: jgraph/drawio:17.1.2
+  image: jgraph/drawio:17.1.2
 #    nodePort: 30115
-    port: 8080 #8443 for https
-    resources:
-        requests:
-            cpu: 10m
-            memory: 10Mi
-        limits:
-            cpu: 500m
-            memory: 500Mi
+  port: 8080    # 8443 for https
+  resources:
+    requests:
+      cpu: 10m
+      memory: 10Mi
+    limits:
+      cpu: 500m
+      memory: 500Mi

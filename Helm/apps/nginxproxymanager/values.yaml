@@ -4,6 +4,6 @@ nginxporxymanager:
 
 storage:
   numberOfReplicas: 1
-  dataLocality: "best-effort"
+  dataLocality: best-effort
   dataSize: 5Gi
   letsencryptSize: 5Gi

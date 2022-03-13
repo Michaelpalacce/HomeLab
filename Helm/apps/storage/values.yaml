@@ -1,17 +1,17 @@
 ---
 syncthing:
-    image: linuxserver/syncthing:1.19.1
+  image: linuxserver/syncthing:1.19.1
 #    nodePort: 30110
-    port: 8384
+  port: 8384
 
 serveremulator:
-    image: stefangenov/server:v23.1.2
+  image: stefangenov/server:v23.1.2
 #    nodePort: 30108
-    port: 80
+  port: 80
 
 storage:
-    dataLocality: "disabled" # or disabled
-    numberOfReplicas: 1
-    syncthingConfigSize: 1Gi
-    serverEmulatorConfigSize: 1Gi
-    nasIp: 192.168.1.20
+  dataLocality: disabled      # or disabled
+  numberOfReplicas: 1
+  syncthingConfigSize: 1Gi
+  serverEmulatorConfigSize: 1Gi
+  nasIp: 192.168.1.20

@@ -1,29 +1,29 @@
 ---
 simplesecrets:
-    api:
-        image: stefangenov/simplesecrets:1.15.0-sqlite3
+  api:
+    image: stefangenov/simplesecrets:1.15.0-sqlite3
 #        nodePort: 30037
-        port: 80
-        resources:
-            requests:
-                cpu: 10m
-                memory: 100Mi
-            limits:
-                cpu: 100m
-                memory: 512Mi
-    web:
-        image: stefangenov/simplesecrets-frontend:0.9.0
+    port: 80
+    resources:
+      requests:
+        cpu: 10m
+        memory: 100Mi
+      limits:
+        cpu: 100m
+        memory: 512Mi
+  web:
+    image: stefangenov/simplesecrets-frontend:0.9.0
 #        nodePort: 30036
-        port: 3000
-        resources:
-            requests:
-                cpu: 10m
-                memory: 100Mi
-            limits:
-                cpu: 50m
-                memory: 200Mi
+    port: 3000
+    resources:
+      requests:
+        cpu: 10m
+        memory: 100Mi
+      limits:
+        cpu: 50m
+        memory: 200Mi
 
 storage:
-    dataLocality: "best-effort" # or disabled
-    numberOfReplicas: 3
-    configSize: 1Gi
+  dataLocality: best-effort      # or disabled
+  numberOfReplicas: 3
+  configSize: 1Gi

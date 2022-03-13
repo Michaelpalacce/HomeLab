@@ -1,17 +1,17 @@
 ---
 redis:
-    image: redis:6.2.6
-    replicas: 0
-    port: 6379
-    resources:
-        requests:
-            cpu: 100m
-            memory: 100Mi
-        limits:
-            cpu: 250m
-            memory: 750Mi
+  image: redis:6.2.6
+  replicas: 0
+  port: 6379
+  resources:
+    requests:
+      cpu: 100m
+      memory: 100Mi
+    limits:
+      cpu: 250m
+      memory: 750Mi
 
 storage:
-    dataLocality: "disabled" # or disabled
-    numberOfReplicas: 1
-    dataSize: 10Gi
+  dataLocality: disabled      # or disabled
+  numberOfReplicas: 1
+  dataSize: 10Gi

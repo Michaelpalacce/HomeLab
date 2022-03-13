@@ -1,17 +1,17 @@
 ---
 uptimekuma:
-    image: louislam/uptime-kuma:1.12.1-alpine
+  image: louislam/uptime-kuma:1.12.1-alpine
 #    nodePort: 30012
-    port: 3001
-    resources:
-        requests:
-            cpu: 100m
-            memory: 512Mi
-        limits:
-            cpu: 500m
-            memory: 750Mi
+  port: 3001
+  resources:
+    requests:
+      cpu: 100m
+      memory: 512Mi
+    limits:
+      cpu: 500m
+      memory: 750Mi
 
 storage:
-    dataLocality: "best-effort" # or disabled
-    numberOfReplicas: 1
-    size: 10Gi
+  dataLocality: best-effort      # or disabled
+  numberOfReplicas: 1
+  size: 10Gi

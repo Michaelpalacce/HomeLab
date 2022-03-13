@@ -2,17 +2,17 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-    name: simplesecrets
-    namespace: simplesecrets
+  name: simplesecrets
+  namespace: simplesecrets
 spec:
-    interval: 5m
-    install:
-        createNamespace: true
-    chart:
-        spec:
-            chart: ./Helm/apps/simplesecrets
-            reconcileStrategy: Revision
-            sourceRef:
-                kind: GitRepository
-                name: flux-system
-                namespace: flux-system
+  interval: 5m
+  install:
+    createNamespace: true
+  chart:
+    spec:
+      chart: ./Helm/apps/simplesecrets
+      reconcileStrategy: Revision
+      sourceRef:
+        kind: GitRepository
+        name: flux-system
+        namespace: flux-system

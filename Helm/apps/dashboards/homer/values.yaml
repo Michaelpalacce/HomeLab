@@ -1,11 +1,11 @@
 ---
 homer:
-    image: stefangenov/homer:21.07.1-1
-    nodePort: 32222
-    resources:
-        limits:
-            cpu: 50m
-            memory: 100Mi
-    clusterUrl: 192.168.1.2
-    ingress:
-        path: /
+  image: stefangenov/homer:21.07.1-1
+  nodePort: 32222
+  resources:
+    limits:
+      cpu: 50m
+      memory: 100Mi
+  clusterUrl: 192.168.1.2
+  ingress:
+    path: /

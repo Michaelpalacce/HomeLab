@@ -1,41 +1,41 @@
 ---
 storage:
-    dataLocality: "best-effort" # or disabled
-    numberOfReplicas: 3 # 1
-    dshmSize: 1Gi
-    dataSize: 25Gi
-    pgAdmin: 1Gi
+  dataLocality: best-effort      # or disabled
+  numberOfReplicas: 3    # 1
+  dshmSize: 1Gi
+  dataSize: 25Gi
+  pgAdmin: 1Gi
 
 postgresql:
-    image: postgres:9.6
-    port: 5432
-    resources:
-        requests:
-            cpu: 250m
-            memory: 256Mi
-        limits:
-            cpu: 1
-            memory: 2Gi
+  image: postgres:9.6
+  port: 5432
+  resources:
+    requests:
+      cpu: 250m
+      memory: 256Mi
+    limits:
+      cpu: 1
+      memory: 2Gi
 
 postgresql14:
-    image: postgres:14.1
-    port: 5432
-    resources:
-        requests:
-            cpu: 250m
-            memory: 256Mi
-        limits:
-            cpu: 1
-            memory: 2Gi
+  image: postgres:14.1
+  port: 5432
+  resources:
+    requests:
+      cpu: 250m
+      memory: 256Mi
+    limits:
+      cpu: 1
+      memory: 2Gi
 
 pgadmin:
-    image: dpage/pgadmin4:6.6
-    port: 80
+  image: dpage/pgadmin4:6.6
+  port: 80
 #    nodePort: 30033
-    resources:
-        requests:
-            cpu: 100m
-            memory: 250Mi
-        limits:
-            cpu: 500m
-            memory: 1Gi
+  resources:
+    requests:
+      cpu: 100m
+      memory: 250Mi
+    limits:
+      cpu: 500m
+      memory: 1Gi
