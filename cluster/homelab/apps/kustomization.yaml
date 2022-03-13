@@ -23,3 +23,4 @@ resources:
     - vikunja
     - wallabag
     - whoogle
+    - external-ingress

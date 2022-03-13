@@ -6,3 +6,4 @@ resources:
     - namespace.yaml
     - simplesecret.yaml
     - issuer.yaml
+#    - wildcard-certificate.yaml # Enable me in a week :)
