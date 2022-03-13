@@ -5,7 +5,7 @@ dashy:
   port: 80
   resources:
     limits:
-      cpu: 1500m
+      cpu: 500m
       memory: 1Gi
   clusterUrl: 192.168.1.2
   domainName: stefangenov.site
