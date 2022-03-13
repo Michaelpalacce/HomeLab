@@ -200,10 +200,10 @@ data:
             description: Block Storage for kubernetes
             icon: hl-longhorn
             url: https://longhorn.{{ .domainName }}
-          - title: Nginx Proxy Manager
-            description: Best Proxy Ever Web UI
-            icon: hl-nginxproxymanager
-            url: https://nginx.{{ .domainName }}
+#          - title: Nginx Proxy Manager
+#            description: Best Proxy Ever Web UI
+#            icon: hl-nginxproxymanager
+#            url: https://nginx.{{ .domainName }}
 
       - name: Networking
         items:
