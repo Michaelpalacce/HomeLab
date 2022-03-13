@@ -8,5 +8,6 @@ resources:
     - monitoring
     - orphanedpodscleaner
     - simplesecrets
+    - reflector
     - cert-manager
     - ingress-nginx

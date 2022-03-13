@@ -5,3 +5,4 @@ resources:
     - longhorn-system
     - cert-manager
     - ingress-nginx
+    - reflector
