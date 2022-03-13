@@ -1,0 +1,25 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+    name: nfs-subdir-external-provisioner
+    namespace: nfs-subdir-external-provisioner
+spec:
+    interval: 5m
+    install:
+        createNamespace: true
+    chart:
+        spec:
+            chart: nfs-subdir-external-provisioner
+            version: 4.0.2
+            interval: 5m
+            sourceRef:
+                kind: HelmRepository
+                name: nfs-subdir-external-provisioner
+                namespace: flux-system
+    values:
+        storageClass:
+            name: nas-nfs
+        nfs:
+            path: "/volume1"
+            server: 192.168.1.20
