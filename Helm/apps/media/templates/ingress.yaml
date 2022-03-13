@@ -2,7 +2,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-    name: sonarr
+    name: media
     namespace: {{ $.Release.Namespace }}
     annotations:
         cert-manager.io/cluster-issuer: "letsencrypt"
@@ -73,4 +73,4 @@ spec:
                             name: transmission
                             port:
                                 number: {{ .Values.transmission.port }}
----
+
