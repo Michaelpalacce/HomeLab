@@ -1,6 +1,10 @@
 - [ ] Move Playbooks in roles
-- [ ] Use k3s ansible role
+- [x] Use k3s ansible role
 - [ ] Harden security
-- [ ] Migrate NginxProxyManager to cert-manager and ingress
-- [ ] Try Flux
+- [x] Migrate NginxProxyManager to cert-manager and ingress
+- [x] Try Flux
 - [ ] Migrate over to helm charts
+- [ ] Enable certificate request with wildcard on the 20th March
+- [ ] Better folder structure
+- [ ] Dependencies between Kustomizations
+- [ ] 
