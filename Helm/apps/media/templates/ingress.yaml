@@ -53,16 +53,16 @@ spec:
                             name: radarr
                             port:
                                 number: {{ .Values.radarr.port }}
-        - host: overseer.stefangenov.site
+        - host: overseerr.stefangenov.site
           http:
               paths:
                   - pathType: Prefix
                     path: "/"
                     backend:
                         service:
-                            name: overseer
+                            name: overseerr
                             port:
-                                number: {{ .Values.overseer.port }}
+                                number: {{ .Values.overseerr.port }}
         - host: transmission.stefangenov.site
           http:
               paths:

@@ -42,7 +42,7 @@ spec:
                         value: "1000"
                   ports:
                       - name: web
-                        containerPort: 9091
+                        containerPort: {{ .port }}
                       - name: torrent-tcp
                         protocol: TCP
                         containerPort: 51413
@@ -95,7 +95,7 @@ spec:
     ports:
         - name: transmission
           protocol: TCP
-          port: 9091
+          port: {{ .port }}
           {{- with .nodePort }}
           nodePort: {{ . }}
           {{- end }}
