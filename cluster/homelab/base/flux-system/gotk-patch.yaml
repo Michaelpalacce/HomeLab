@@ -11,8 +11,7 @@ spec:
                 - name: manager
                   resources:
                       limits:
-                          memory: 4Gi
-                          cpu: 2000m
+                          memory: 2Gi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -26,8 +25,7 @@ spec:
                 - name: manager
                   resources:
                       limits:
-                          memory: 4Gi
-                          cpu: 2000m
+                          memory: 2Gi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -41,8 +39,7 @@ spec:
                 - name: manager
                   resources:
                       limits:
-                          memory: 4Gi
-                          cpu: 2000m
+                          memory: 2Gi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -56,8 +53,7 @@ spec:
                 - name: manager
                   resources:
                       limits:
-                          memory: 4Gi
-                          cpu: 2000m
+                          memory: 2Gi
 ---
 apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: GitRepository
@@ -65,4 +61,4 @@ metadata:
     name: flux-system
     namespace: flux-system
 spec:
-    interval: 5m0s
+    interval: 2m0s
