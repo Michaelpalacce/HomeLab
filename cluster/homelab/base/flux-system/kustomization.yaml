@@ -3,5 +3,6 @@ kind: Kustomization
 resources:
     - gotk-components.yaml
     - gotk-sync.yaml
+    - allow-all.yaml # Don't know why I need this but its the only thing that worked :/
 patchesStrategicMerge:
     - gotk-patch.yaml
