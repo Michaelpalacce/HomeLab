@@ -12,6 +12,7 @@ spec:
                   resources:
                       limits:
                           memory: 2Gi
+                          cpu: 2000m
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -26,6 +27,7 @@ spec:
                   resources:
                       limits:
                           memory: 2Gi
+                          cpu: 2000m
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -40,6 +42,7 @@ spec:
                   resources:
                       limits:
                           memory: 2Gi
+                          cpu: 2000m
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -54,3 +57,4 @@ spec:
                   resources:
                       limits:
                           memory: 2Gi
+                          cpu: 2000m
