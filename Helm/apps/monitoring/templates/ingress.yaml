@@ -4,7 +4,6 @@ metadata:
     name: grafana
     namespace: {{ $.Release.Namespace }}
     annotations:
-        cert-manager.io/cluster-issuer: "letsencrypt-staging"
         kubernetes.io/ingress.class: "nginx"
 spec:
     tls:
@@ -29,7 +28,6 @@ metadata:
     name: prometheus
     namespace: {{ $.Release.Namespace }}
     annotations:
-        cert-manager.io/cluster-issuer: "letsencrypt-staging"
         kubernetes.io/ingress.class: "nginx"
 spec:
     tls:
