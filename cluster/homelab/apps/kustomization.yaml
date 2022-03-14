@@ -23,6 +23,6 @@ resources:
   - vikunja
   - wallabag
   - whoogle
-  #- external-ingress
+  - external-ingress
   - dashy
   - monitoring

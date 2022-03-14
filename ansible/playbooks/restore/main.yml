@@ -169,8 +169,8 @@
       - name: Restore Postgresql
         shell: "kubectl exec -n postgresql {{ container_name_postgresql.stdout }} -- bash -c 'psql -f /tmp/PostgresBackup -U postgres'"
 
-      - name: Restore Postgresql14
-        shell: "kubectl exec -n postgresql {{ container_name_postgresql14.stdout }} -- bash -c 'psql -f /tmp/Postgres14Backup -U postgres'"
+#      - name: Restore Postgresql14
+#        shell: "kubectl exec -n postgresql {{ container_name_postgresql14.stdout }} -- bash -c 'psql -f /tmp/Postgres14Backup -U postgres'"
 
       - name: Restart deployments
         shell: "kubectl rollout restart -n postgresql deploy {{ item }}"
