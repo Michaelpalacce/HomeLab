@@ -1,56 +1,56 @@
 ---
-- hosts: master
-  name: Restore nginxproxymanager
-  become: yes
-  any_errors_fatal: yes
-  vars_files:
-      - "./vars/main.yml"
-  tags:
-      - nginxproxymanager
-  tasks:
-      - name: Ensure dir exists
-        file:
-            path: /tmp/nginx
-            state: directory
-
-      - name: Ensure backup is present
-        copy:
-            src: "{{ item.src }}"
-            dest: "{{ item.dest }}"
-        with_items:
-            - dest: /tmp/nginx/nginxdata.tar.gz
-              src: files/backup/nginx/nginxdata.tar.gz
-            - dest: /tmp/nginx/nginxletsencrypt.tar.gz
-              src: files/backup/nginx/nginxletsencrypt.tar.gz
-      #
-      - name: Register Name
-        shell: kubectl get po -n kube-system -l name=nginxproxymanager | awk 'NR==2{ print $1 }'
-        register: container_name
-      #
-      - name: Transfer backup
-        shell: "kubectl cp -n kube-system /tmp/nginx/{{ item}}.tar.gz {{ container_name.stdout }}:/tmp/{{ item}}.tar.gz"
-        with_items:
-            - nginxdata
-            - nginxletsencrypt
-
-      - name: Extract Data
-        shell: "kubectl exec -n kube-system {{ container_name.stdout }} -- bash -c 'tar -xf /tmp/{{ item.name }}}.tar.gz -C /tmp'"
-        with_items:
-            - name: nginxdata
-              path: data
-            - name: nginxletsencrypt
-              path: etc/letsencrypt
-
-      - name: Apply patch
-        shell: "kubectl exec -n kube-system {{ container_name.stdout }} -- bash -c '/bin/cp -rf /tmp/{{ item.path }}/* /{{ item.path }}'"
-        with_items:
-            - name: nginxdata
-              path: data
-            - name: nginxletsencrypt
-              path: etc/letsencrypt
-
-      - name: Restart daemonset
-        shell: kubectl rollout restart -n kube-system daemonset nginxproxymanager
+#- hosts: master
+#  name: Restore nginxproxymanager
+#  become: yes
+#  any_errors_fatal: yes
+#  vars_files:
+#      - "./vars/main.yml"
+#  tags:
+#      - nginxproxymanager
+#  tasks:
+#      - name: Ensure dir exists
+#        file:
+#            path: /tmp/nginx
+#            state: directory
+#
+#      - name: Ensure backup is present
+#        copy:
+#            src: "{{ item.src }}"
+#            dest: "{{ item.dest }}"
+#        with_items:
+#            - dest: /tmp/nginx/nginxdata.tar.gz
+#              src: files/backup/nginx/nginxdata.tar.gz
+#            - dest: /tmp/nginx/nginxletsencrypt.tar.gz
+#              src: files/backup/nginx/nginxletsencrypt.tar.gz
+#      #
+#      - name: Register Name
+#        shell: kubectl get po -n kube-system -l name=nginxproxymanager | awk 'NR==2{ print $1 }'
+#        register: container_name
+#      #
+#      - name: Transfer backup
+#        shell: "kubectl cp -n kube-system /tmp/nginx/{{ item}}.tar.gz {{ container_name.stdout }}:/tmp/{{ item}}.tar.gz"
+#        with_items:
+#            - nginxdata
+#            - nginxletsencrypt
+#
+#      - name: Extract Data
+#        shell: "kubectl exec -n kube-system {{ container_name.stdout }} -- bash -c 'tar -xf /tmp/{{ item.name }}}.tar.gz -C /tmp'"
+#        with_items:
+#            - name: nginxdata
+#              path: data
+#            - name: nginxletsencrypt
+#              path: etc/letsencrypt
+#
+#      - name: Apply patch
+#        shell: "kubectl exec -n kube-system {{ container_name.stdout }} -- bash -c '/bin/cp -rf /tmp/{{ item.path }}/* /{{ item.path }}'"
+#        with_items:
+#            - name: nginxdata
+#              path: data
+#            - name: nginxletsencrypt
+#              path: etc/letsencrypt
+#
+#      - name: Restart daemonset
+#        shell: kubectl rollout restart -n kube-system daemonset nginxproxymanager
 
 - hosts: master
   name: Restore simplesecrets
