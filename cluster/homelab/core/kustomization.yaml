@@ -5,7 +5,7 @@ resources:
   - cgroup-gc
   - orphanedpodscleaner
   - reflector
-  - cert-ma}nager
+  - cert-manager
   - longhorn-system
   - simplesecrets
   - ingress-nginx
