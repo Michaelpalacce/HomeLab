@@ -25,13 +25,35 @@ spec:
         requests:
             storage: {{ .Values.storage.configSize }}
 ---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: backup-nfs-pv
+    labels:
+        type: nfs
+        app: shows
+spec:
+    storageClassName: nfs-direct
+    capacity:
+        storage: 50Gi
+    accessModes:
+        - ReadWriteMany
+    nfs:
+        path: "/volume1/k3s/backup"
+        server: {{ .Values.storage.nasIp }}
+
+---
 
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
     name: backup-nfs
 spec:
-    storageClassName: nas-nfs
+    selector:
+        matchLabels:
+            type: nfs
+            app: shows
+    storageClassName: nfs-direct
     accessModes:
         - ReadWriteMany
     resources:
