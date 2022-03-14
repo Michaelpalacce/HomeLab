@@ -122,6 +122,23 @@
             - src: /etc/rancher/k3s/k3s.yaml
               dest: "{{ output_dir }}/config"
 
+- name: Fix Config URL
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  become: yes
+  tags:
+      - setup
+      - setup-fix-kubeconfig
+  vars_files:
+      - "./vars/main.yml"
+  tasks:
+      - replace:
+            path: ./output/config
+            regexp: '127.0.0.1'
+            replace: '{{ k3s_registration_address }}'
+            backup: yes
+
 - hosts: all
   name: Fix Multipath
   become: yes
