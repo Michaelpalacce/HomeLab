@@ -164,8 +164,11 @@
       - name: Restore Postgresql14
         shell: "kubectl exec -n postgresql {{ container_name_postgresql14.stdout }} -- bash -c 'psql -f /tmp/Postgres14Backup -U postgres'"
 
-      - name: Restart daemonset
-        shell: kubectl rollout restart -n kube-system daemonset nginxproxymanager
+      - name: Restart deployments
+        shell: "kubectl rollout restart -n postgresql deploy {{ item }}"
+        with_items:
+            - postgresql14
+            - postgresql
 
 - hosts: master
   name: Restore vaultwarden

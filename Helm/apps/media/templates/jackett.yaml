@@ -53,8 +53,8 @@ spec:
             restartPolicy: Always
             volumes:
                 - name: app-data
-                  persistentVolumeClaim:
-                      claimName: jackett-config-volume
+                  hostPath:
+                      path: /mnt/media/jackett
 
 ---
 

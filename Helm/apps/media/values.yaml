@@ -14,10 +14,6 @@ jackett:
   image: linuxserver/jackett:0.20.708
   port: 9117
 
-# jellyfin:
-#    nodePort: 31001
-#    image: jellyfin/jellyfin:10.7.7
-
 radarr:
 #    nodePort: 31003
   image: linuxserver/radarr:4.0.5-develop
@@ -32,11 +28,6 @@ readarr:
 #    nodePort: 31002
   image: linuxserver/readarr:nightly-version-0.1.0.1137
   port: 8787
-
-# prowlarr:
-##    nodePort: 31005
-#    image: linuxserver/prowlarr:0.2.0-nightly
-#    port: 9696
 
 sonarr:
 #    nodePort: 31004

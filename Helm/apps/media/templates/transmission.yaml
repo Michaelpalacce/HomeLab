@@ -64,8 +64,8 @@ spec:
             restartPolicy: Always
             volumes:
                 - name: transmission-data
-                  persistentVolumeClaim:
-                      claimName: transmission-config-volume
+                  hostPath:
+                      path: /mnt/media/transmission
                 - name: downloads-data
                   persistentVolumeClaim:
                       claimName: downloads-volume

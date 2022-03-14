@@ -49,8 +49,8 @@ spec:
             restartPolicy: Always
             volumes:
                 - name: app-data
-                  persistentVolumeClaim:
-                      claimName: radarr-config-volume
+                  hostPath:
+                      path: /mnt/media/radarr
                 - name: movies-data-nfs
                   persistentVolumeClaim:
                       claimName: movies-volume-nfs

@@ -49,8 +49,8 @@ spec:
             restartPolicy: Always
             volumes:
                 - name: app-data
-                  persistentVolumeClaim:
-                      claimName: readarr-config-volume
+                  hostPath:
+                      path: /mnt/media/readarr
                 - name: books-data-nfs
                   persistentVolumeClaim:
                       claimName: books-volume-nfs
