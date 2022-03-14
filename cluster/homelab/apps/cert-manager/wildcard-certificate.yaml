@@ -1,0 +1,19 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: ingress
+  namespace: cert-manager
+spec:
+  secretTemplate:
+    annotations:
+      reflector.v1.k8s.emberstack.com/reflection-auto-enabled: 'true'
+      reflector.v1.k8s.emberstack.com/reflection-allowed: 'true'
+  secretName: ingress
+  issuerRef:
+    name: letsencrypt
+    kind: ClusterIssuer
+  commonName: stefangenov.site
+  dnsNames:
+    - stefangenov.site
+    - '*.stefangenov.site'
