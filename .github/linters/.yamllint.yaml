@@ -4,8 +4,7 @@ ignore: |
   gotk-components.yaml
 extends: default
 rules:
-  truthy:
-    allowed-values: ['true', 'false', on]
+  truthy: false
   comments:
     min-spaces-from-content: 1
   line-length: disable
