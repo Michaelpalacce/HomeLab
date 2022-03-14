@@ -29,7 +29,7 @@ postgresql14:
       memory: 2Gi
 
 pgadmin:
-  image: dpage/pgadmin4:6.6
+  image: dpage/pgadmin4:6.7
   port: 80
 #    nodePort: 30033
   resources:
