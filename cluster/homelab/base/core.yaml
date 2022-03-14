@@ -6,6 +6,8 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m0s
+  dependsOn:
+      - name: helm
   path: ./cluster/homelab/core
   prune: true
   sourceRef:
