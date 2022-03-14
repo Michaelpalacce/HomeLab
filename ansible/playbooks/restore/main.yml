@@ -117,6 +117,14 @@
             - settings
             - package
 
+      - name: Npm i
+        shell: "kubectl exec -n nodered {{ container_name.stdout }} -- bash -c 'cd /data && npm i'"
+        with_items:
+            - flows_cred
+            - flows
+            - settings
+            - package
+
       - name: Restart deployment
         shell: kubectl rollout restart -n nodered deploy nodered
 
