@@ -4,8 +4,6 @@ kind: Kustomization
 resources:
   - cgroup-gc
   - orphanedpodscleaner
-  - dashy
-  - monitoring
   - reflector
   - cert-manager
   - longhorn-system
