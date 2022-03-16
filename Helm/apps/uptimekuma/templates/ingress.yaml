@@ -1,4 +1,4 @@
-apiVersion: networking.k8s.io/v1
+\apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
     name: uptimekuma
@@ -12,6 +12,16 @@ spec:
           secretName: ingress
     rules:
         - host: uptimekuma.stefangenov.site
+          http:
+              paths:
+                  - pathType: Prefix
+                    path: "/"
+                    backend:
+                        service:
+                            name: uptimekuma
+                            port:
+                                number: {{ .Values.uptimekuma.port }}
+        - host: uptime.stefangenov.site
           http:
               paths:
                   - pathType: Prefix

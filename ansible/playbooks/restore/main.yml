@@ -169,8 +169,8 @@
       - name: Restore Postgresql
         shell: "kubectl exec -n postgresql {{ container_name_postgresql.stdout }} -- bash -c 'psql -f /tmp/PostgresBackup -U postgres'"
 
-#      - name: Restore Postgresql14
-#        shell: "kubectl exec -n postgresql {{ container_name_postgresql14.stdout }} -- bash -c 'psql -f /tmp/Postgres14Backup -U postgres'"
+      - name: Restore Postgresql14
+        shell: "kubectl exec -n postgresql {{ container_name_postgresql14.stdout }} -- bash -c 'psql -f /tmp/Postgres14Backup -U postgres'"
 
       - name: Restart deployments
         shell: "kubectl rollout restart -n postgresql deploy {{ item }}"
@@ -253,6 +253,44 @@
 
       - name: Restart deploy
         shell: kubectl rollout restart -n trilium deploy trilium
+
+- hosts: master
+  name: Restore uptimekuma
+  become: yes
+  any_errors_fatal: yes
+  vars_files:
+      - "./vars/main.yml"
+  tags:
+      - uptimekuma
+  tasks:
+      - name: Ensure dir exists
+        file:
+            path: /tmp/uptimekuma
+            state: directory
+
+      - name: Ensure backup is present
+        copy:
+            src: "{{ item.src }}"
+            dest: "{{ item.dest }}"
+        with_items:
+            - dest: /tmp/uptimekuma/kuma.db
+              src: files/backup/kuma/kuma.db
+
+      - name: Register Name
+        shell: kubectl get po -n uptimekuma -l app=uptimekuma | awk 'NR==2{ print $1 }'
+        register: container_name
+
+      - name: Delete old data
+        shell: "kubectl exec -n uptimekuma {{ container_name.stdout }} -- sh -c 'rm -rf /app/data/*.db*'"
+
+      - name: Transfer backup
+        shell: "kubectl cp -n uptimekuma /tmp/uptimekuma/kuma.db {{ container_name.stdout }}:/app/data/kuma.db"
+
+      - name: Make it read/writable
+        shell: "kubectl exec -n uptimekuma {{ container_name.stdout }} -- sh -c 'chmod 0600 /app/data/kuma.db'"
+
+      - name: Restart deploy
+        shell: kubectl rollout restart -n uptimekuma deploy uptimekuma
 
 - hosts: master
   name: Restore changedetection
