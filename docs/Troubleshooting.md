@@ -55,3 +55,14 @@ leads to udisksd reaching 100% cpu. Nothing else I tried helped, so this is why 
 ### cgroup-gc
 This is a helm chart that installs a daemonset that will be deployed on all nodes with the purpose of clearing up cgroups.
 For more information: `https://serverfault.com/questions/976233/context-deadline-exceeded-preventing-pods-from-being-created-in-aks`
+
+### Svclb is in crash loop back off
+I still need to fix this behavior. There is a configmap in kube-system namespace
+called calico-config needs to be edited and ip forwarding needs to be enabled 
+This needs to be put after the `ipam` setting 
+---yaml
+"container_settings": {
+    "allow_ip_forwarding": true
+} 
+---
+
