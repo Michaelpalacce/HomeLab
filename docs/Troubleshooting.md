@@ -65,4 +65,4 @@ This needs to be put after the `ipam` setting
     "allow_ip_forwarding": true
 } 
 ---
-
+After this a reboot is required 
