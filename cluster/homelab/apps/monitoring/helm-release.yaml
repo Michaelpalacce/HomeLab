@@ -18,4 +18,4 @@ spec:
         namespace: flux-system
   values:
     grafana:
-      image: grafana/grafana:8.4.3
+      image: grafana/grafana:8.4.4
