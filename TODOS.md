@@ -7,4 +7,6 @@
 - [ ] Enable certificate request with wildcard on the 20th March
 - [ ] Better folder structure
 - [ ] Dependencies between Kustomizations
-- [ ] 
+- [ ] Calico Cni enable ip forwarding - edit this the gitops way 
+- [ ] Simple secrets better restore 
+
