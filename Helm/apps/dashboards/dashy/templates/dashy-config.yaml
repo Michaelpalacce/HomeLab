@@ -102,6 +102,7 @@ data:
             description: Stream Linux ISOs To My TV
             icon: hl-plex
             url: https://plex.{{ .domainName }}
+            statusCheck: false
           - title: Jellyfin
             description: Stream Linux ISOs
             icon: hl-jellyfin
@@ -248,28 +249,34 @@ data:
             description: Docker Hub
             url: https://hub.docker.com/u/stefangenov
             icon: favicon
+            statusCheck: false
           - title: Github
             description: My Github Profile
             url: https://github.com/Michaelpalacce
             icon: favicon
+            statusCheck: false
       - name: External
         items:
           - title: SelfHosted
             description: Reddit r/selfhosted
             url: https://reddit.com/r/selfhosted
             icon: favicon
+            statusCheck: false
           - title: HomeLab
             description: Reddit r/homelab
             url: https://reddit.com/r/homelab
             icon: favicon
+            statusCheck: false
           - title: YouTube
             description: Youtube!
             url: https://youtube.com
             icon: favicon
+            statusCheck: false
           - title: Messenger
             description: Facebook Messenger
             url: https://messenger.com
             icon: favicon
+            statusCheck: false
 
 {{/*      - name: Widgets*/}}
 {{/*        widgets:*/}}
