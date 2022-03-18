@@ -6,4 +6,5 @@ resources:
   - cert-manager
   - ingress-nginx
   - reflector
+  - calico
   - nfs-subdir-external-provisioner

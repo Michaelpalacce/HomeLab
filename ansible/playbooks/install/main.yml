@@ -97,7 +97,7 @@
       - xanmanning.k3s
 
 - hosts: master
-  name: Setup master k3s calico and fetch config
+  name: Setup master k3s and fetch config
   become: yes
   tags:
       - setup
@@ -106,12 +106,11 @@
       - "./vars/main.yml"
   tasks:
 
-      - name: Setup k3s and setup calico CNI
+      - name: Setup k3s
         shell: "{{ item }}"
         with_items:
             - mkdir -p ~/.kube
             - cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
-            - kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
 
       - name: Copy output to local files
         fetch:
@@ -143,8 +142,8 @@
   name: Fix Multipath
   become: yes
   tags:
-      - init
-      - init_multipath
+      - setup
+      - setup-multipath
   tasks:
       - name: Make sure multipath conf file is missing
         file:

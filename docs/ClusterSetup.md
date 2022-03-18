@@ -18,5 +18,4 @@ If you scroll down a bit you will find a list of ports that the services are run
 - Run `ansible-galaxy install -r playbooks/install/requirements.yml` to install all the needed ansible roles from Ansible Galaxy
 - Run `ansible-playbook -i hosts/inventory playbooks/install/main.yml --tags preflight` At this point you have everything needed to setup kubernetes ( all the needed binaries )
 - Run `ansible-playbook -i hosts/inventory playbooks/install/main.yml --tags setup` This will initialize the master on the master PI and add all the workers
-- Run `ansible-playbook -i hosts/inventory playbooks/install/main.yml --tags init` Inits longhorn, cgroup-gc and orphaned pods cleaner and a CNI
 - You should check the Troubleshooting options regarding svclb and enable container ip forwarding. 
