@@ -1,0 +1,63 @@
+{{- with .Values.focalboard }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: focalboard
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app: focalboard
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: focalboard
+    template:
+        metadata:
+            labels:
+                app: focalboard
+        spec:
+            containers:
+                - name: focalboard
+                  image: {{ .image }}
+                  imagePullPolicy: IfNotPresent
+{{- if .resources }}
+                  resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+                  ports:
+                      - name: web
+                        containerPort: {{ .port }}
+
+                  volumeMounts:
+                      - name: config
+                        mountPath: /opt/focalboard
+            volumes:
+                - name: config
+                  configMap:
+                      name: config
+
+            restartPolicy: Always
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: focalboard
+    namespace: {{ $.Release.Namespace }}
+spec:
+    {{- with .nodePort }}
+    type: NodePort
+    {{- end }}
+    selector:
+        app: focalboard
+    ports:
+        - name: focalboard
+          protocol: TCP
+          port: {{ .port }}
+          {{- with .nodePort }}
+          nodePort: {{ . }}
+          {{- end }}
+
+{{- end }}
