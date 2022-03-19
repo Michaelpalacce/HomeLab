@@ -8,6 +8,9 @@ spec:
   interval: 5m
   install:
     createNamespace: false
+    remediation:
+      retries: 3
+      remediateLastFailure: true
   chart:
     spec:
       chart: tigera-operator
