@@ -58,3 +58,4 @@ Currently, the nodePorts are not in use ( with a few exceptions ). I use Nginx P
 ##### CyberChef: 30123
 ##### PyLoad: 30124
 ##### TandoorRecipes: 30125
+##### Shiori: 30128
