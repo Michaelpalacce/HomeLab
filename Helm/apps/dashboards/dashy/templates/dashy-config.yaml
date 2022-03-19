@@ -95,6 +95,10 @@ data:
             description: Self-Hosted Google
             icon: hl-whooglesearch
             url: https://whoogle.{{ .domainName }}
+          - title: Shiori
+            description: Self-Hosted Pocket
+            icon: hl-favicon
+            url: https://shiori.{{ .domainName }}
 
       - name: Media
         items:

@@ -26,3 +26,4 @@ resources:
   - external-ingress
   - dashy
   - monitoring
+  - shiori
