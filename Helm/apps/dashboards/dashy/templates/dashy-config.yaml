@@ -49,7 +49,7 @@ data:
           - title: Timelite
             description: Time Tracker
             icon: https://raw.githubusercontent.com/overshard/timelite/master/public/static/logo.png
-            url: https://timelite.{{ .domainName }}
+            url: https://timelite.app/
 
       - name: News
         items:
