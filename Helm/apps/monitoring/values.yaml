@@ -1,51 +1,62 @@
 ---
 storage:
-  dataLocality: best-effort      # or disabled
-  numberOfReplicas: 1
+    dataLocality: best-effort      # or disabled
+    numberOfReplicas: 1
 
 prometheus:
-  image: quay.io/prometheus/prometheus:v2.34.0
-  port: 9090
-#    nodePort: 30011
-#   How long will data scraped by prometheus be kept on the fs
-  retentionTime: 7d
-  scrapers:
-    uptimekuma:
-      username: admin
-      password: admin123
+    image: quay.io/prometheus/prometheus:v2.34.0
+    port: 9090
+    #    nodePort: 30011
+    #   How long will data scraped by prometheus be kept on the fs
+    retentionTime: 7d
+    scrapers:
+        uptimekuma:
+            username: admin
+            password: admin123
 
 nodeExporter:
-  image: prom/node-exporter:v1.3.1
-  port: 9100
-  tolerations:
-    - key: node-role.kubernetes.io/master
-      effect: NoSchedule
+    image: prom/node-exporter:v1.3.1
+    port: 9100
+    tolerations:
+        - key: node-role.kubernetes.io/master
+          effect: NoSchedule
 
 promtail:
-  image: grafana/promtail:2.4.2
-  resources:
-    requests:
-      cpu: 50m
-      memory: 250Mi
-    limits:
-      cpu: 100m
-      memory: 512Mi
+    image: grafana/promtail:2.4.2
+    resources:
+        requests:
+            cpu: 50m
+            memory: 250Mi
+        limits:
+            cpu: 100m
+            memory: 512Mi
+
+cAdvisor:
+    image: zcube/cadvisor:v0.39.3
+    port: 8080
+    resources:
+        requests:
+            memory: 400Mi
+            cpu: 400m
+        limits:
+            memory: 2000Mi
+            cpu: 800m
 
 grafana:
-  image: grafana/grafana:8.4.4
-  port: 3000
-#    nodePort: 30010
-  limits:
-    cpu: 250m
-    memory: 1Gi
+    image: grafana/grafana:8.4.4
+    port: 3000
+    #    nodePort: 30010
+    limits:
+        cpu: 250m
+        memory: 1Gi
 
 loki:
-  image: grafana/loki:2.4.2
-  port: 3100
-  resources:
-    requests:
-      cpu: 125m
-      memory: 100Mi
-    limits:
-      cpu: 250m
-      memory: 2Gi
+    image: grafana/loki:2.4.2
+    port: 3100
+    resources:
+        requests:
+            cpu: 125m
+            memory: 100Mi
+        limits:
+            cpu: 250m
+            memory: 2Gi
