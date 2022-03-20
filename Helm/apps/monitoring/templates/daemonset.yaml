@@ -42,6 +42,12 @@ spec:
                       - name: disk
                         mountPath: /dev/disk
                         readOnly: true
+                      - name: kmsg
+                        mountPath: /dev/kmsg
+                        readOnly: true
+                      - name: machine-id
+                        mountPath: /etc/machine-id
+                        readOnly: true
                       - name: docker
                         mountPath: /var/lib/docker
                         readOnly: true
@@ -67,4 +73,10 @@ spec:
                 - name: disk
                   hostPath:
                       path: /dev/disk
+                - name: kmsg
+                  hostPath:
+                      path: /dev/kmsg
+                - name: machine-id
+                  hostPath:
+                      path: /etc/machine-id
 {{- end }}
