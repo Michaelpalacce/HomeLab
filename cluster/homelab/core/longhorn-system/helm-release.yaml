@@ -2,30 +2,30 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: longhorn-system
-  namespace: longhorn-system
+    name: longhorn-system
+    namespace: longhorn-system
 spec:
-  interval: 5m
-  install:
-    createNamespace: true
-  chart:
-    spec:
-      chart: longhorn
-      version: 1.2.4
-      interval: 5m
-      sourceRef:
-        kind: HelmRepository
-        name: longhorn-system
-        namespace: flux-system
-  values:
-    ingress:
-      enabled: true
-      host: longhorn.stefangenov.site
-      ingressClassName: nginx
-      tls: true
-      tlsSecret: ingress
+    interval: 5m
+    install:
+        createNamespace: true
+    chart:
+        spec:
+            chart: longhorn
+            version: 1.2.4
+            interval: 5m
+            sourceRef:
+                kind: HelmRepository
+                name: longhorn-system
+                namespace: flux-system
+    values:
+        ingress:
+            enabled: true
+            host: longhorn.stefangenov.site
+            ingressClassName: nginx
+            tls: true
+            tlsSecret: ingress
 
-    service:
-      ui:
-        type: NodePort
-        nodePort: 30030
+        service:
+            ui:
+                type: NodePort
+                nodePort: 30030

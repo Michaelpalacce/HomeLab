@@ -27,4 +27,5 @@ resources:
   - dashy
   - monitoring
   - shiori
+  - emulatorjs
   - cert-manager

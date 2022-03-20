@@ -6,40 +6,40 @@ metadata:
     name: calico-config
     namespace: kube-system
 data:
-  calico_backend: bird
-  cni_network_config: |-
-    {
-      "name": "k8s-pod-network",
-      "cniVersion": "0.3.1",
-      "plugins": [
+    calico_backend: bird
+    cni_network_config: |-
         {
-          "type": "calico",
-          "log_level": "info",
-          "log_file_path": "/var/log/calico/cni/cni.log",
-          "datastore_type": "kubernetes",
-          "nodename": "__KUBERNETES_NODE_NAME__",
-          "mtu": __CNI_MTU__,
-          "ipam": {
-              "type": "calico-ipam"
-          },
-          "policy": {
-              "type": "k8s"
-          },
-          "kubernetes": {
-              "kubeconfig": "__KUBECONFIG_FILEPATH__"
-          },
-          "container_settings": { "allow_ip_forwarding": true }
-        },
-        {
-          "type": "portmap",
-          "snat": true,
-          "capabilities": {"portMappings": true}
-        },
-        {
-          "type": "bandwidth",
-          "capabilities": {"bandwidth": true}
+          "name": "k8s-pod-network",
+          "cniVersion": "0.3.1",
+          "plugins": [
+            {
+              "type": "calico",
+              "log_level": "info",
+              "log_file_path": "/var/log/calico/cni/cni.log",
+              "datastore_type": "kubernetes",
+              "nodename": "__KUBERNETES_NODE_NAME__",
+              "mtu": __CNI_MTU__,
+              "ipam": {
+                  "type": "calico-ipam"
+              },
+              "policy": {
+                  "type": "k8s"
+              },
+              "kubernetes": {
+                  "kubeconfig": "__KUBECONFIG_FILEPATH__"
+              },
+              "container_settings": { "allow_ip_forwarding": true }
+            },
+            {
+              "type": "portmap",
+              "snat": true,
+              "capabilities": {"portMappings": true}
+            },
+            {
+              "type": "bandwidth",
+              "capabilities": {"bandwidth": true}
+            }
+          ]
         }
-      ]
-    }
-  typha_service_name: none
-  veth_mtu: "0"
+    typha_service_name: none
+    veth_mtu: "0"

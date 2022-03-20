@@ -2,17 +2,17 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: tandoorrecipes
-  namespace: tandoorrecipes
+    name: tandoorrecipes
+    namespace: tandoorrecipes
 spec:
-  interval: 5m
-  install:
-    createNamespace: true
-  chart:
-    spec:
-      chart: ./Helm/apps/tandoorrecipes
-      reconcileStrategy: Revision
-      sourceRef:
-        kind: GitRepository
-        name: flux-system
-        namespace: flux-system
+    interval: 5m
+    install:
+        createNamespace: true
+    chart:
+        spec:
+            chart: ./Helm/apps/tandoorrecipes
+            reconcileStrategy: Revision
+            sourceRef:
+                kind: GitRepository
+                name: flux-system
+                namespace: flux-system

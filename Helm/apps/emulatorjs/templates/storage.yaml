@@ -1,0 +1,39 @@
+---
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+    name: emulatorjs-sc
+provisioner: driver.longhorn.io
+allowVolumeExpansion: true
+parameters:
+    numberOfReplicas: "{{ .Values.storage.numberOfReplicas }}"
+    dataLocality: "{{ .Values.storage.dataLocality }}"
+    staleReplicaTimeout: "2800"
+    fromBackup: ""
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: emulatorjs-config-pvc
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: emulatorjs-sc
+    resources:
+        requests:
+            storage: {{ .Values.storage.dataSize }}
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: emulatorjs-data-pvc
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: emulatorjs-sc
+    resources:
+        requests:
+            storage: {{ .Values.storage.backupSize }}

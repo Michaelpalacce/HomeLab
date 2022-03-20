@@ -60,3 +60,4 @@ Currently, the nodePorts are not in use ( with a few exceptions ). I use Nginx P
 ##### TandoorRecipes: 30125
 ##### Shiori: 30128
 ##### Focalboard: 30129
+##### EmulatorJS: 30130
