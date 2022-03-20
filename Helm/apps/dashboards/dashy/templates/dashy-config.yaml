@@ -198,6 +198,10 @@ data:
             description: Monitoring
             icon: hl-prometheus
             url: https://prometheus.{{ .domainName }}
+          - title: cAdvisor
+            description: Container Monitoring
+            icon: hl-cadvisor
+            url: https://cadvisor.{{ .domainName }}
           - title: Uptime Kuma
             description: Uptime Monitor
             icon: hl-uptime-kuma
