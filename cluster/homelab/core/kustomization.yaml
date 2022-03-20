@@ -10,4 +10,3 @@ resources:
     - longhorn-system
     - simplesecrets
     - ingress-nginx
-    - nfs-subdir-external-provisioner
