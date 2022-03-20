@@ -11,7 +11,7 @@ spec:
       reflector.v1.k8s.emberstack.com/reflection-allowed: 'true'
   secretName: ingress
   issuerRef:
-    name: letsencrypt
+    name: letsencrypt-staging
     kind: ClusterIssuer
   commonName: stefangenov.site
   dnsNames:
