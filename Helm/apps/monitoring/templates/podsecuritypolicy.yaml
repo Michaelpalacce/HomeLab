@@ -18,4 +18,5 @@ spec:
   - pathPrefix: "/"
   - pathPrefix: "/var/run"
   - pathPrefix: "/sys"
+  - pathPrefix: "/var/lib/docker"
   - pathPrefix: "/dev/disk"
