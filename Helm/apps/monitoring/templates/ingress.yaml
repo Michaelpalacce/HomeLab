@@ -46,27 +46,3 @@ spec:
                             port:
                                 number: {{ .Values.prometheus.port }}
 ---
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-    name: cadvisor
-    namespace: {{ $.Release.Namespace }}
-    annotations:
-        kubernetes.io/ingress.class: "nginx"
-spec:
-    tls:
-        - hosts:
-              - "*.stefangenov.site"
-          secretName: ingress
-    rules:
-        - host: cadvisor.stefangenov.site
-          http:
-              paths:
-                  - pathType: Prefix
-                    path: "/"
-                    backend:
-                        service:
-                            name: cadvisor
-                            port:
-                                number: {{ .Values.cAdvisor.port }}
----
