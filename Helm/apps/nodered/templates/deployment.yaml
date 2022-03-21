@@ -37,7 +37,14 @@ spec:
                   livenessProbe:
                       failureThreshold: 2
                       initialDelaySeconds: 120
-                      periodSeconds: 120
+                      periodSeconds: 10
+                      timeoutSeconds: 5
+                      tcpSocket:
+                          port: {{ .port }}
+                  readinessProbe:
+                      failureThreshold: 10
+                      initialDelaySeconds: 10
+                      periodSeconds: 10
                       timeoutSeconds: 5
                       tcpSocket:
                           port: {{ .port }}

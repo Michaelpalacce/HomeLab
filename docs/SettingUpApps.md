@@ -66,7 +66,6 @@
 - Set URL to prometheus:9090
 - Import the dashboard located in ./config/ by clicking on the plus and then import
 - Go to the dashboard :) It will take a few minutes to populate data
-- If you want to setup backing up with s3 read the `BACKUP` section
 
 ### Setting up Jenkins
 - Run `ansible-playbook -i inventory playbooks/apps/jenkins/main.yml` Install Jenkins CI/CD.
