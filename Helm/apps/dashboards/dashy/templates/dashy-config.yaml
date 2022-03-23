@@ -42,10 +42,6 @@ data:
             description: Share files on local network
             icon: favicon
             url: https://snapdrop.net/
-          - title: Appsmith
-            description: Builds Websites
-            icon: https://raw.githubusercontent.com/appsmithorg/appsmith/release/static/logo.png
-            url: https://appsmith.{{ .domainName }}
           - title: Timelite
             description: Time Tracker
             icon: https://raw.githubusercontent.com/overshard/timelite/master/public/static/logo.png

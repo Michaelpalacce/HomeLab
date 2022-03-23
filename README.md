@@ -11,7 +11,10 @@ repository pretty beginner friendly.
 
 # :checkered_flag: Getting Started
 1. [Prerequisites](./docs/Prerequisites.md)
-2. [ClusterSetup](./docs/ClusterSetup.md)
+2. [Cluster Setup](./docs/ClusterSetup.md)
+3. [Cert Manager](./docs/SettingUpCertManager.md)
+4. [Setting Up Renovate](./docs/SettingUpRenovate.md)
+5. [Setting Up Apps](./docs/SettingUpApps.md)
 
 # CI/CD :construction:
 GitOps is applied wherever possible using Flux2.

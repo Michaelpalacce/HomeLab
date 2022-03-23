@@ -1,7 +1,7 @@
 ---
 nodered:
   image: nodered/node-red:2.2.2-16
-#    nodePort: 30117
+#    nodePort: 31102
   port: 1880
   resources:
     requests:

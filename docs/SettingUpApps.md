@@ -69,7 +69,7 @@
 
 ### Setting up Jenkins
 - Run `ansible-playbook -i inventory playbooks/apps/jenkins/main.yml` Install Jenkins CI/CD.
-- Go to http://{{CLUSTER_URI}}:30020
+- Go to http://{{CLUSTER_URI}}:31100
 - Install all the kubernetes pluguins and any other plugins you may need.
 - How to configure:
 ~~~
@@ -79,7 +79,7 @@ Kubernetes Namespace: jenkins-pi
 Credentials: {{ADD new with Service Account}}
 WebSocket: yes
 Direct: no
-Jenkins URL: http://{{CLUSTER_IP}}:30020 # had to put in my whole ip here, service name did not work
+Jenkins URL: http://{{CLUSTER_IP}}:31100 # had to put in my whole ip here, service name did not work
 Jenkins tunnel: <blank>
 # Add new pod template
 name: whatever

@@ -1,7 +1,7 @@
 ---
 vaultwarden:
   image: vaultwarden/server:1.24.0
-    # nodePort: 31001
+    # nodePort: 31051
   port: 80
   backup:
     image: stefangenov/vaultwarden-backup:1.0.0

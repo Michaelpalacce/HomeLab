@@ -8,10 +8,11 @@ Currently, the nodePorts are not in use ( with a few exceptions ). I use Nginx P
 ##### Prometheus: 30011
 ##### UptimeKuma: 30012
 
-## CI/CD
-#### Used Port range: 30020-30029
-##### Jenkins CI/CD: 30020
-##### _appsmith: 30021
+## CI/CD And Automation
+#### Used Port range: 31100-31200
+##### Jenkins CI/CD: 31100
+##### changedetection.io: 31101
+##### Node-Red: 31102
 
 ## Infrastructure
 #### Used Port range: 30030-30099 / 32222
@@ -25,12 +26,11 @@ Currently, the nodePorts are not in use ( with a few exceptions ). I use Nginx P
 ##### SimpleSecrets: 30036
 
 ## Security
-#### Used Port range: 31001 - 31050
-##### Vaultwarden: 31001
+#### Used Port range: 31051 - 31100
+##### Vaultwarden: 31051
 
 ## Media
 #### Used Port range: 31001 - 31050
-##### Jellyfin: 31001
 ##### Readarr: 31002
 ##### Radarr: 31003
 ##### Sonarr: 31004
@@ -49,10 +49,8 @@ Currently, the nodePorts are not in use ( with a few exceptions ). I use Nginx P
 ##### N8N: 30114
 ##### Diagrams/Drawio: 30115
 ##### Wallabag: 30116
-##### Node-Red: 30117
 ##### Whoogle: 30118
 ##### FreshRSS: 30119
-##### changedetection.io: 30120
 ##### Firefly III: 30121
 ##### Trilium: 30122
 ##### CyberChef: 30123
