@@ -22,4 +22,3 @@ spec:
         cert-manager:
             deploymentAnnotations:
                 certmanager.k8s.io/disable-validation: "true"
-
