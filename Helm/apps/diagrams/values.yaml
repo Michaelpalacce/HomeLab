@@ -1,6 +1,6 @@
 ---
 diagrams:
-  image: jgraph/drawio:17.1.4
+  image: jgraph/drawio:17.1.5
 #    nodePort: 30115
   port: 8080    # 8443 for https
   resources:
