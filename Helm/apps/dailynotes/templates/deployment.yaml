@@ -43,7 +43,7 @@ spec:
                       - name: config
                         mountPath: /app/config
                   readinessProbe:
-                      initialDelaySeconds: 30
+                      initialDelaySeconds: 15
                       httpGet:
                           port: 5000
                           path: /auth
