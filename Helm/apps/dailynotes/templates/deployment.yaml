@@ -1,0 +1,71 @@
+{{- with .Values.dailynotes }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: dailynotes
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app: dailynotes
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: dailynotes
+    template:
+        metadata:
+            labels:
+                app: dailynotes
+        spec:
+            containers:
+                - name: dailynotes
+                  image: {{ .image }}
+                  imagePullPolicy: IfNotPresent
+{{- if .resources }}
+                  resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+                  env:
+                      - name: API_SECRET_KEY
+                        valueFrom:
+                            secretKeyRef:
+                                name: app
+                                key: API_SECRET_KEY
+                      - name: DATABASE_URI
+                        valueFrom:
+                            secretKeyRef:
+                                name: db
+                                key: DATABASE_URI
+                      - name: DB_ENCRYPTION_KEY
+                        valueFrom:
+                            secretKeyRef:
+                                name: db
+                                key: DB_ENCRYPTION_KEY
+                  ports:
+                      - name: web
+                        containerPort: {{ .port }}
+
+            restartPolicy: Always
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: dailynotes
+    namespace: {{ $.Release.Namespace }}
+spec:
+    {{- with .nodePort }}
+    type: NodePort
+    {{- end }}
+    selector:
+        app: dailynotes
+    ports:
+        - name: dailynotes
+          protocol: TCP
+          port: {{ .port }}
+          {{- with .nodePort }}
+          nodePort: {{ . }}
+          {{- end }}
+
+{{- end }}

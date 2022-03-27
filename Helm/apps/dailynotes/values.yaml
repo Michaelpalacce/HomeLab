@@ -1,0 +1,16 @@
+---
+dailynotes:
+  image: stefangenov/dailynotes:v1.0-beta18
+    # nodePort: 30131
+  port: 5000
+  resources:
+    requests:
+      cpu: 100m
+      memory: 100Mi
+    limits:
+      cpu: 250m
+      memory: 512Mi
+
+# Hack so renovate will tell me when there is a new version of dailynotes on docker hub. Doesn't actually do anything
+dailynotes-update:
+    image: m0ngr31/dailynotes:v1.0-beta18
