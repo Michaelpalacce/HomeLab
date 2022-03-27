@@ -1,7 +1,7 @@
 ---
 - hosts: master
   name: Setup Jenkins CI/CD
-  become: yes
+  become: true
   tags:
       - deploy
       - deploy-jenkins

@@ -1,8 +1,8 @@
 ---
 - hosts: all
   name: Setup prereqs
-  become: yes
-  any_errors_fatal: yes
+  become: true
+  any_errors_fatal: true
   tags:
       - preflight
   vars_files:
@@ -13,7 +13,7 @@
 
 - hosts: all
   name: Setup Logs and log sizes
-  become: yes
+  become: true
   gather_facts: false
   tags:
       - preflight
@@ -32,7 +32,7 @@
 - hosts: all
   name: Setup Logs and log sizes
   gather_facts: false
-  become: yes
+  become: true
   tags:
       - preflight
       - preflight-logs
@@ -65,7 +65,7 @@
 
 - hosts: all
   name: Setup Storage dependencies
-  become: yes
+  become: true
   gather_facts: false
   tags:
       - preflight
@@ -84,8 +84,8 @@
                 - jq
 
 - hosts:
-    - master
-    - workers
+      - master
+      - workers
   become: true
   any_errors_fatal: true
   tags:
@@ -98,7 +98,7 @@
 
 - hosts: master
   name: Setup master k3s and fetch config
-  become: yes
+  become: true
   tags:
       - setup
       - setup-init-master
@@ -116,7 +116,7 @@
         fetch:
             src: "{{ item.src }}"
             dest: "{{ item.dest }}"
-            flat: yes
+            flat: true
         with_items:
             - src: /etc/rancher/k3s/k3s.yaml
               dest: "{{ output_dir }}/config"
@@ -125,7 +125,7 @@
   hosts: localhost
   connection: local
   gather_facts: no
-  become: yes
+  become: true
   tags:
       - setup
       - setup-fix-kubeconfig
@@ -136,11 +136,11 @@
             path: ./output/config
             regexp: '127.0.0.1'
             replace: '{{ k3s_registration_address }}'
-            backup: yes
+            backup: true
 
 - hosts: all
   name: Fix Multipath
-  become: yes
+  become: true
   tags:
       - setup
       - setup-multipath

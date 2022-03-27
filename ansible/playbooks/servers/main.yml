@@ -1,8 +1,8 @@
 ---
 - hosts: servers
   name: Setup prereqs
-  become: yes
-  any_errors_fatal: yes
+  become: true
+  any_errors_fatal: true
   tags:
       - preflight
   vars_files:
@@ -13,7 +13,7 @@
 
 - hosts: servers
   name: Setup Storage dependencies
-  become: yes
+  become: true
   gather_facts: false
   tags:
       - preflight

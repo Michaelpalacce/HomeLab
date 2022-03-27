@@ -1,8 +1,8 @@
 ---
 #- hosts: master
 #  name: Restore nginxproxymanager
-#  become: yes
-#  any_errors_fatal: yes
+#  become: true
+#  any_errors_fatal: true
 #  vars_files:
 #      - "./vars/main.yml"
 #  tags:
@@ -54,8 +54,8 @@
 
 - hosts: master
   name: Restore simplesecrets
-  become: yes
-  any_errors_fatal: yes
+  become: true
+  any_errors_fatal: true
   vars_files:
       - "./vars/main.yml"
   tags:
@@ -71,8 +71,8 @@
 
 - hosts: master
   name: Restore nodered
-  become: yes
-  any_errors_fatal: yes
+  become: true
+  any_errors_fatal: true
   vars_files:
       - "./vars/main.yml"
   tags:
@@ -130,8 +130,8 @@
 
 - hosts: master
   name: Restore postgresql
-  become: yes
-  any_errors_fatal: yes
+  become: true
+  any_errors_fatal: true
   vars_files:
       - "./vars/main.yml"
   tags:
@@ -180,8 +180,8 @@
 
 - hosts: master
   name: Restore vaultwarden
-  become: yes
-  any_errors_fatal: yes
+  become: true
+  any_errors_fatal: true
   vars_files:
       - "./vars/main.yml"
   tags:
@@ -218,8 +218,8 @@
 
 - hosts: master
   name: Restore trilium
-  become: yes
-  any_errors_fatal: yes
+  become: true
+  any_errors_fatal: true
   vars_files:
       - "./vars/main.yml"
   tags:
@@ -256,8 +256,8 @@
 
 - hosts: master
   name: Restore uptimekuma
-  become: yes
-  any_errors_fatal: yes
+  become: true
+  any_errors_fatal: true
   vars_files:
       - "./vars/main.yml"
   tags:
@@ -294,8 +294,8 @@
 
 - hosts: master
   name: Restore changedetection
-  become: yes
-  any_errors_fatal: yes
+  become: true
+  any_errors_fatal: true
   vars_files:
       - "./vars/main.yml"
   tags:

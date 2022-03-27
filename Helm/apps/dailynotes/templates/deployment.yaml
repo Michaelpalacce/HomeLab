@@ -31,11 +31,6 @@ spec:
                             secretKeyRef:
                                 name: app
                                 key: API_SECRET_KEY
-                      - name: DATABASE_URI
-                        valueFrom:
-                            secretKeyRef:
-                                name: db
-                                key: DATABASE_URI
                       - name: DB_ENCRYPTION_KEY
                         valueFrom:
                             secretKeyRef:
@@ -44,8 +39,15 @@ spec:
                   ports:
                       - name: web
                         containerPort: {{ .port }}
+                  volumeMounts:
+                      - name: config
+                        mountPath: /app/config
 
             restartPolicy: Always
+            volumes:
+                - name: config
+                  persistentVolumeClaim:
+                      claimName: dailynotes-config-pvc
 
 ---
 
