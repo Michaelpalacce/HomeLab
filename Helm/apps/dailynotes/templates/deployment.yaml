@@ -42,6 +42,16 @@ spec:
                   volumeMounts:
                       - name: config
                         mountPath: /app/config
+                  readinessProbe:
+                      initialDelaySeconds: 30
+                      httpGet:
+                          port: 5000
+                          path: /auth
+                  livenessProbe:
+                      initialDelaySeconds: 120
+                      httpGet:
+                          port: 5000
+                          path: /auth
 
             restartPolicy: Always
             volumes:
