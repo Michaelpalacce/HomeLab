@@ -18,3 +18,4 @@ spec:
                 namespace: flux-system
     values:
         dailynotes:
+            replicas: 0 # Until the IV bug is fixed
