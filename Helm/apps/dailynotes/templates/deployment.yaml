@@ -25,17 +25,6 @@ spec:
                   resources:
 {{ toYaml .resources | indent 22 }}
 {{- end }}
-                  env:
-                      - name: API_SECRET_KEY
-                        valueFrom:
-                            secretKeyRef:
-                                name: app
-                                key: API_SECRET_KEY
-                      - name: DB_ENCRYPTION_KEY
-                        valueFrom:
-                            secretKeyRef:
-                                name: db
-                                key: DB_ENCRYPTION_KEY
                   ports:
                       - name: web
                         containerPort: {{ .port }}
