@@ -10,8 +10,8 @@ vaultwarden:
         cpu: 10m
         memory: 10Mi
       limits:
-        cpu: 100m
-        memory: 200Mi
+        cpu: 500m
+        memory: 512Mi
   resources:
     requests:
       cpu: 250m
