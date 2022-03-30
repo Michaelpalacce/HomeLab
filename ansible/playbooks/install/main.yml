@@ -124,7 +124,7 @@
 - name: Fix Config URL
   hosts: localhost
   connection: local
-  gather_facts: no
+  gather_facts: false
   become: true
   tags:
       - setup
