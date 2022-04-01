@@ -8,18 +8,15 @@
 It is highly advisory to go to each helm chart values.yaml file and check the different options and modify them as you wish.
 Things like ports, storage size etc are good to be checked out. You may also want to check out the variables for the ansible scripts
 
-### Where are my services
-If you scroll down a bit you will find a list of ports that the services are running on
-
 ### Setting up the cluster
 - First thing we are going to do is navigate to the `./ansible` folder
-- Set up your inventory file ( use mine as an example, the only thing different will probably be the IPs, but if you chose a different ansible user, make sure to modify accordingly )
-- If you did not fix the iptables, do it now: `ansible -i inventory -b -m shell -a "iptables -F && update-alternatives --set iptables /usr/sbin/iptables-legacy && update-alternatives --set ip6tables /usr/sbin/ip6tables-legacy && reboot" all`
+- Set up your inventory file ( use mine as an example, the only thing different will probably be the IPs, 
+but if you chose a different ansible user, make sure to modify accordingly ) **Note: This is not secure. 
+Ideally you should either pass in your password every time or setup passwordless authentication**
+- **If you did not fix the iptables**, do it now: `ansible -i inventory -b -m shell -a "iptables -F && update-alternatives --set iptables /usr/sbin/iptables-legacy && update-alternatives --set ip6tables /usr/sbin/ip6tables-legacy && reboot" all`
 - Run `ansible-galaxy install -r playbooks/install/requirements.yml` to install all the needed ansible roles from Ansible Galaxy
-- Run `ansible-playbook -i hosts/inventory playbooks/install/main.yml --tags preflight` At this point you have everything needed to setup kubernetes ( all the needed binaries )
-- Run `ansible-playbook -i hosts/inventory playbooks/install/main.yml --tags setup` This will initialize the master on the master PI and add all the workers
+- Run `ansible-playbook -i hosts/inventory playbooks/install/main.yml --tags preflight` At this point you have 
+everything needed to setup kubernetes ( all the needed binaries )
+- Run `ansible-playbook -i hosts/inventory playbooks/install/main.yml --tags setup` This will initialize the 
+master on the master PI and add all the workers
 - You should check the Troubleshooting options regarding svclb and enable container ip forwarding.
-
-### Flux bootstrap
-1. Add env variable GITHUB_TOKEN
-2. Run: `flux bootstrap github --owner=Michaelpalacce --repository=HomeLab --branch=master --path=./cluster/homelab/base --personal`
