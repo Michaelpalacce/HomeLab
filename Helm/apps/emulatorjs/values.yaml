@@ -1,6 +1,6 @@
 ---
 emulatorjs:
-    replicas: 1
+    replicas: 0
     image: lscr.io/linuxserver/emulatorjs
     # nodePort: 30130
     backendPort: 3000

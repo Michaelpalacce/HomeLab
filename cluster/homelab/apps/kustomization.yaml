@@ -28,4 +28,5 @@ resources:
   - monitoring
   - shiori
   - emulatorjs
+  - dailynotes
   - cert-manager
