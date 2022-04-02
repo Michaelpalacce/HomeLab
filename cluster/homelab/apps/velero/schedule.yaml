@@ -1,14 +1,16 @@
 apiVersion: velero.io/v1
 kind: Schedule
 metadata:
-  name: uptimekuma
+  name: general
   namespace: velero
 spec:
   schedule: '@every 24h'
   template:
     hooks: {}
     includedNamespaces:
-    - uptimekuma
+      - uptimekuma
+      - vaultwarden
+      - postgres
     snapshotVolumes: true
     ttl: 168h0m0s
   useOwnerReferencesInBackup: false

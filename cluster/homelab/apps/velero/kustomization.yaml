@@ -5,3 +5,4 @@ resources:
     - helm-release.yaml
     - namespace.yaml
     - simplesecret.yaml
+    - schedule.yaml

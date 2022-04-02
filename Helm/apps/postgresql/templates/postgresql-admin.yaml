@@ -14,8 +14,9 @@ spec:
         matchLabels:
             app: pgadmin
     template:
-
         metadata:
+            annotations:
+              backup.velero.io/backup-volumes: pgadminstorage
             labels:
                 app: pgadmin
             name: pgadmin
