@@ -26,7 +26,8 @@ spec:
                 namespace: flux-system
     values:
         kubectl:
-            image: rancher/kubectl
+            image:
+               repository: rancher/kubectl
         initContainers:
             - name: velero-plugin-for-aws
               image: velero/velero-plugin-for-aws:v1.4.1
