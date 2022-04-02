@@ -20,7 +20,7 @@ aws_secret_access_key=<AWS_SECRET_ACCESS_KEY>
 
 ## Creating backups:
 
-`velero backup create uptimekuma --include-namespaces uptimekuma --snapshot-volumes=true -o yaml` Will backup the namespace uptimekuma
+`velero backup create uptimekuma --include-namespaces uptimekuma --snapshot-volumes=true` Will backup the namespace uptimekuma
 
 ## Restoring backups:
 
