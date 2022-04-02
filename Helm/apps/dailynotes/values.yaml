@@ -1,6 +1,6 @@
 ---
 dailynotes:
-    replicas: 1
+    replicas: 0
     image: stefangenov/dailynotes:v1.0-beta18
     # nodePort: 30131
     port: 5000

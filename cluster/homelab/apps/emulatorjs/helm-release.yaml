@@ -17,4 +17,5 @@ spec:
                 name: flux-system
                 namespace: flux-system
     values:
-        replicas: 0
+       emulatorjs:
+            replicas: 0

@@ -1,11 +1,11 @@
 [master]
-PI48-ubuntu
+192.168.1.181
 
 # All the workers with the logging too
 [workers]
-PI48-ubuntu-1
-PI48-ubuntu-2
-PI48-ubuntu-3
+192.168.1.15
+192.168.1.109
+192.168.1.146
 
 # This group has all the servers
 [all:children]

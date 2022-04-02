@@ -18,6 +18,8 @@ spec:
             app: uptimekuma
     template:
         metadata:
+            annotations:
+                backup.velero.io/backup-volumes: app-data
             labels:
                 app: uptimekuma
         spec:

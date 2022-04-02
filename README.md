@@ -15,6 +15,7 @@ repository pretty beginner friendly.
 3. [Cert Manager](./docs/SettingUpCertManager.md)
 4. [Setting Up Renovate](./docs/SettingUpRenovate.md)
 5. [Setting Up Apps](./docs/SettingUpApps.md)
+6. [Backups](./docs/Backups.md)
 
 # Main tools used
 1. **FluxCD 2** - GitOps for my HomeLab.
