@@ -1,0 +1,46 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+    name: k10
+    namespace: kasten-io
+spec:
+    interval: 5m
+    install:
+        createNamespace: true
+        crds: CreateReplace
+        remediation:
+            retries: 3
+    upgrade:
+        crds: CreateReplace
+        remediation:
+            retries: 3
+    chart:
+        spec:
+            chart: k10
+            version: 4.5.12
+            interval: 5m
+            sourceRef:
+                kind: HelmRepository
+                name: kasten
+                namespace: flux-system
+    values:
+        global:
+          persistence:
+            storageClass: longhorn
+        auth:
+          tokenAuth:
+            enabled: true
+        clusterName: k8s
+        ingress:
+          host: k10.stefangenov.site
+          hosts:
+            - "*.stefangenov.site"
+          class: nginx
+          create: true
+          urlPath: k10
+          tls:
+            enabled: true
+            secretName: ingress
+        grafana:
+          enabled: false

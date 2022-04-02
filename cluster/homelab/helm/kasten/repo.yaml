@@ -1,0 +1,9 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
+metadata:
+    name: kasten
+    namespace: flux-system
+spec:
+    url: https://charts.kasten.io/
+    interval: 10m

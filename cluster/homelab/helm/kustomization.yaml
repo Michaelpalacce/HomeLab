@@ -7,4 +7,5 @@ resources:
     - ingress-nginx
     - reflector
     - calico
-    - nfs-subdir-external-provisioner
+#    - nfs-subdir-external-provisioner
+    - kasten
