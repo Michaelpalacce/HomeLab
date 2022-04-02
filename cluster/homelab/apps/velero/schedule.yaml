@@ -10,7 +10,7 @@ spec:
     includedNamespaces:
       - uptimekuma
       - vaultwarden
-      - postgres
+      - postgresql
     snapshotVolumes: true
     ttl: 168h0m0s
   useOwnerReferencesInBackup: false
