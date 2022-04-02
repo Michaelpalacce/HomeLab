@@ -26,7 +26,8 @@ spec:
                 namespace: flux-system
     values:
         initContainers:
-            - image: velero/velero-plugin-for-aws:v1.4.1
+            - name: velero-plugin-for-aws
+              image: velero/velero-plugin-for-aws:v1.4.1
         metrics:
             enabled: false
             scrapeInterval: 30s
