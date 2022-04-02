@@ -1,0 +1,45 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+    name: velero
+    namespace: velero
+spec:
+    interval: 5m
+    install:
+        createNamespace: true
+        crds: CreateReplace
+        remediation:
+          retries: 3
+    upgrade:
+        crds: CreateReplace
+        remediation:
+          retries: 3
+    chart:
+        spec:
+            chart: longhorn
+            version: 2.29.4
+            interval: 5m
+            sourceRef:
+                kind: HelmRepository
+                name: velero
+                namespace: flux-system
+    values:
+        initContainers:
+            - image: velero/velero-plugin-for-aws:v1.4.1
+        metrics:
+            enabled: false
+            scrapeInterval: 30s
+            scrapeTimeout: 10s
+        deployRestic: true
+        credentials:
+            existingSecret: cloud-credentials
+        configuration:
+            provider: aws
+            backupStorageLocation:
+                bucket: sgenov-velero-backup
+                config:
+                    region: eu-west-1
+            volumeSnapshotLocation:
+                config:
+                    region: eu-west-1
