@@ -30,4 +30,4 @@ resources:
   - emulatorjs
   - dailynotes
   - cert-manager
-#  - velero
+  - velero
