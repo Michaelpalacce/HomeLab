@@ -25,4 +25,4 @@ aws_secret_access_key=<AWS_SECRET_ACCESS_KEY>
 ## Restoring backups:
 
 1. Clear up namespace
-2. Run `velero restore create uptimekuma1 --from-backup uptimekuma`
+2. Run `velero restore create uptimekuma1 --from-backup uptimekuma --restore-volumes=true`
