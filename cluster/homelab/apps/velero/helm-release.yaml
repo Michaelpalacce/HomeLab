@@ -28,6 +28,7 @@ spec:
         kubectl:
             image:
                repository: rancher/kubectl
+               tag: v1.23.3
         initContainers:
             - name: velero-plugin-for-aws
               image: velero/velero-plugin-for-aws:v1.4.1
