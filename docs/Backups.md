@@ -20,9 +20,20 @@ aws_secret_access_key=<AWS_SECRET_ACCESS_KEY>
 
 ## Creating backups:
 
+#### Manual:
 `velero backup create uptimekuma --include-namespaces uptimekuma --snapshot-volumes=true` Will backup the namespace uptimekuma
+
+#### From Schedule:
+`velero create backup --from-schedule general`
+
 
 ## Restoring backups:
 
+
+#### Manual:
 1. Clear up namespace
 2. Run `velero restore create uptimekuma1 --from-backup uptimekuma --restore-volumes=true`
+
+#### From Schedule:
+1. Clear up any resources you wish to backup
+2. Run: `velero restore create --from-schedule general --restore-volumes=true`. Optionally add: `--include-namespaces postgresql`
