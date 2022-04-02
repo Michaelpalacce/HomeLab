@@ -18,6 +18,8 @@ spec:
             app: syncthing
     template:
         metadata:
+            annotations:
+                backup.velero.io/backup-volumes: app-config
             labels:
                 app: syncthing
         spec:
