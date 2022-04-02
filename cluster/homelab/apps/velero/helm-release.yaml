@@ -17,7 +17,7 @@ spec:
           retries: 3
     chart:
         spec:
-            chart: longhorn
+            chart: velero
             version: 2.29.4
             interval: 5m
             sourceRef:
