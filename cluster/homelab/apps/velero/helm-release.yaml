@@ -37,9 +37,9 @@ spec:
                   - mountPath: /target
                     name: plugins
         metrics:
-            enabled: false
-            scrapeInterval: 30s
-            scrapeTimeout: 10s
+            enabled: true
+            scrapeInterval: 60s
+            scrapeTimeout: 30s
         deployRestic: true
         credentials:
             existingSecret: cloud-credentials
