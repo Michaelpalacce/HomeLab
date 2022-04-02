@@ -27,7 +27,10 @@ spec:
     values:
         initContainers:
             - name: velero-plugin-for-aws
-              image: velero/velero-plugin-for-aws:v1.4.1
+              image: velero/velero-plugin-for-aws:v1.4.1volumeMounts:
+              volumeMounts:
+                  - mountPath: /target
+                    name: plugins
         metrics:
             enabled: false
             scrapeInterval: 30s
