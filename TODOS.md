@@ -4,6 +4,7 @@
 - [x] Calico Cni enable ip forwarding - edit this the gitops way
 - [x] Dependencies between Kustomizations
 - [x] Better folder structure
+- [x] Better backup and restore 
 - [x] Enable certificate request with wildcard on the 20th March
 - [ ] `system-upgrades` core app for k3s upgrades
 - [ ] Move Playbooks in roles
