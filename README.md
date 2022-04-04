@@ -27,6 +27,7 @@ certificate secret to all the namespaces. The secret is called `ingress`.
 6. **SimpleSecrets** - Kubernetes secret manager.
 7. **Calico** - Provides Networking for my HomeLab
 8. **Ansible** - Used to provision the architecture
+9. **Velero** - K8S and PVC backup. Free and open source by VMware 
 
 # CI/CD :construction:
 GitOps is applied wherever possible using Flux2.
@@ -60,6 +61,12 @@ Calico is a great and mature CNI/IPAM software that is fast, scalable and featur
 This is a tool that I've been developing in my spare time. **It is not audited or tested by security professionals !**
 It allows for you to store secrets via the UI/API and create K8S Secrets by creating a SimpleSecrets object instead, allowing
 me to commit `SimpleSecrets` to git, while not exposing anything to the internet.
+
+# Backup ( Velero ) 
+Velero allows me to backup selected namespaces and ( with the help of restic ) ship the data to different sources. 
+In my case in using the velero AWS plugin. 
+
+The velero backup runs on a schedule every day during the evening hours. 
 
 # What if I don't want to use Flux
 Well it's absolutely fine. You can go to `Helm/apps` and install any app you want
