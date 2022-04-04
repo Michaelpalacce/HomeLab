@@ -1,6 +1,12 @@
-# Backups ( WIP )
+# Backups
 
 Backups are done via [Velero](https://github.com/vmware-tanzu/velero).
+
+Currently my backups are done using the Velero helm chart. 
+A Velero Schedule Custom resource is created for every day at 5 in the morning that backups a bunch of my services.
+
+
+# Manual steps and General Knowledge :
 
 ## Installation:
 1. Create a bucket in AWS S3 ( Mine is called `sgenov-backup` )
@@ -29,6 +35,7 @@ aws_secret_access_key=<AWS_SECRET_ACCESS_KEY>
 
 ## Restoring backups:
 
+When restoring backups Velero will not restore objects that are already existing, so whatever you need to restore must be deleted first. 
 
 #### Manual:
 1. Clear up namespace
