@@ -4,7 +4,7 @@ metadata:
   name: general
   namespace: velero
 spec:
-  schedule: '@every 24h'
+  schedule: '00 05 * * *'
   template:
     hooks: {}
     includedNamespaces:
