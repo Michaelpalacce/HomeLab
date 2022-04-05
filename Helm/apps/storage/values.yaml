@@ -1,6 +1,6 @@
 ---
 syncthing:
-  image: linuxserver/syncthing:1.19.1
+  image: linuxserver/syncthing:1.19.2
 #    nodePort: 30110
   port: 8384
 
