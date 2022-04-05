@@ -11,7 +11,7 @@ transmission:
 
 jackett:
   nodePort: 30034
-  image: linuxserver/jackett:0.20.790
+  image: linuxserver/jackett:0.20.794
   port: 9117
 
 radarr:
