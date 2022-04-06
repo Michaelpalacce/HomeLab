@@ -25,7 +25,7 @@ spec:
                 name: velero
                 namespace: flux-system
     values:
-        upgradeCRDs: true
+        upgradeCRDs: false
         kubectl:
             image:
                repository: stefangenov/kubectl
