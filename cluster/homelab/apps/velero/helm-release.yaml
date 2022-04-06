@@ -38,7 +38,7 @@ spec:
                     name: plugins
         metrics:
             enabled: true
-            scrapeInterval: 60s
+            scrapeInterval: 120s
             scrapeTimeout: 30s
         deployRestic: true
         credentials:
