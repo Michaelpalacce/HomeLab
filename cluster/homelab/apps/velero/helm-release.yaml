@@ -25,11 +25,11 @@ spec:
                 name: velero
                 namespace: flux-system
     values:
-        upgradeCRDs: false
-#        kubectl:
-#            image:
-#               repository: rancher/kubectl
-#               tag: v1.23.3
+        upgradeCRDs: true
+        kubectl:
+            image:
+               repository: stefangenov/kubectl
+               tag: v1.23.5
         initContainers:
             - name: velero-plugin-for-aws
               image: velero/velero-plugin-for-aws:v1.4.1
