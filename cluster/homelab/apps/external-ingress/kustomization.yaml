@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
     - jellyfin-ingress.yaml
     - plex-ingress.yaml
+    - siteinspector-ingress.yaml
