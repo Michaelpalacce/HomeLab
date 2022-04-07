@@ -1,7 +1,7 @@
 name: 'Dependency Review'
 
 on:
-    pull_eeqyest:
+    pull_request:
     workflow_dispatch:
     schedule:
         - cron: '0 0 * * *'
