@@ -25,6 +25,7 @@ spec:
                 runAsUser: 0
                 runAsGroup: 0
                 fsGroup: 0
+            terminationGracePeriodSeconds: 180
             affinity:
                 podAntiAffinity:
                     preferredDuringSchedulingIgnoredDuringExecution:
