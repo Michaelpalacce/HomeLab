@@ -40,7 +40,7 @@ grafana:
         memory: 1Gi
 
 loki:
-    image: grafana/loki:2.4.2
+    image: grafana/loki:2.5.0
     port: 3100
     resources:
         requests:
