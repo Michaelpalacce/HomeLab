@@ -64,7 +64,7 @@ me to commit `SimpleSecrets` to git, while not exposing anything to the internet
 
 # Backup ( Velero ) 
 Velero allows me to backup selected namespaces and ( with the help of restic ) ship the data to different sources. 
-In my case in using the velero AWS plugin. 
+In my case I'm using the velero AWS plugin. 
 
 The velero backup runs on a schedule every day during the evening hours. 
 
