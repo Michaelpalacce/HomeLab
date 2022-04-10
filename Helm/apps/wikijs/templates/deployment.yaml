@@ -29,22 +29,10 @@ spec:
                   ports:
                       - name: web
                         containerPort: {{ .port }}
-                  volumeMounts:
-                      - name: app-config
-                        mountPath: /config
-                  env:
-                      - name: DB_TYPE
-                        value: "postgres"
-                      - name: DB_HOST
-                        value: "{{ .db.host }}"
-                      - name: DB_PORT
-                        value: "{{ .db.port }}"
-                      - name: DB_USER
-                        value: "{{ .db.username }}"
-                      - name: DB_PASS
-                        value: "{{ .db.password }}"
-                      - name: DB_NAME
-                        value: "{{ .db.name }}"
+                  envFrom:
+                      - secretRef:
+                            name: db
+                            optional: false
                   livenessProbe:
                       failureThreshold: 2
                       initialDelaySeconds: 120
@@ -52,12 +40,15 @@ spec:
                       timeoutSeconds: 2
                       tcpSocket:
                           port: {{ .port }}
+                  readinessProbe:
+                      failureThreshold: 10
+                      initialDelaySeconds: 15
+                      periodSeconds: 10
+                      timeoutSeconds: 2
+                      tcpSocket:
+                          port: {{ .port }}
 
             restartPolicy: Always
-            volumes:
-                - name: app-config
-                  persistentVolumeClaim:
-                      claimName: wikijs-pvc
 
 ---
 

@@ -3,13 +3,6 @@ wikijs:
   image: requarks/wiki:2.5.277
 #    nodePort: 30111
   port: 3000
-  db:
-    type: postgres
-    host: postgresql.postgresql
-    port: 5432
-    name: wikijs
-    username: wikijs
-    password: wikijs
   resources:
     requests:
       cpu: 100m
@@ -17,8 +10,3 @@ wikijs:
     limits:
       cpu: 750m
       memory: 1Gi
-
-storage:
-  dataLocality: best-effort      # or disabled
-  numberOfReplicas: 1
-  configSize: 1Gi

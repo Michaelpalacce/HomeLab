@@ -1,3 +1,8 @@
+#### [V2.0.0]
+* Removed unused volume mount
+* Added readiness probe
+* Moved creds to a simplesecret
+
 #### [V1.5.0]
 * Version 
 
