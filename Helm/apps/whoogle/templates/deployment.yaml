@@ -36,6 +36,13 @@ spec:
                       timeoutSeconds: 2
                       tcpSocket:
                           port: {{ .port }}
+                  readinessProbe:
+                      failureThreshold: 10
+                      initialDelaySeconds: 30
+                      periodSeconds: 10
+                      timeoutSeconds: 2
+                      tcpSocket:
+                          port: {{ .port }}
 
             restartPolicy: Always
 

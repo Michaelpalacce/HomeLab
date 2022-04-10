@@ -1,3 +1,7 @@
+#### [V2.2.0]
+* Increased resources
+* Probes
+
 #### [V2.1.0]
 * New Version
 
