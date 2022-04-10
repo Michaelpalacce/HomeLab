@@ -35,7 +35,8 @@ aws_secret_access_key=<AWS_SECRET_ACCESS_KEY>
 
 ## Restoring backups:
 
-When restoring backups Velero will not restore objects that are already existing, so whatever you need to restore must be deleted first. 
+When restoring backups Velero will not restore objects that are already existing, so whatever you need to restore must be deleted first.
+If you are restoring pods from a deployment/statefulset/daemonsets/etc make sure to delete them too. Velero nee
 
 #### Manual:
 1. Clear up namespace
