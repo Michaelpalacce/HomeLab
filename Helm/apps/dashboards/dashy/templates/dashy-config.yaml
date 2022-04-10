@@ -26,14 +26,6 @@ data:
     sections:
       - name: Apps
         items:
-{{/*          - title: BabyBuddy*/}}
-{{/*            description: Baby Monitor*/}}
-{{/*            icon: mdi-baby*/}}
-{{/*            url: https://babybuddy.{{ .domainName }}*/}}
-{{/*          - title: Wallabag*/}}
-{{/*            description: Self-hosted Pocket!*/}}
-{{/*            icon: hl-wallabag*/}}
-{{/*            url: https://wallabag.{{ .domainName }}*/}}
           - title: Firefly III
             description: Budget Buddy!
             icon: hl-firefly
@@ -114,12 +106,6 @@ data:
             description: Stream Linux ISOs To My TV
             icon: hl-plex
             url: https://plex.{{ .domainName }}/identity
-{{/*      - name: CI/CD*/}}
-{{/*        items:*/}}
-{{/*          - title: Jenkins*/}}
-{{/*            description: CI/CD Pipeline for my projects*/}}
-{{/*            icon: hl-jenkins*/}}
-{{/*            url: https://jenkins.{{ .domainName }}*/}}
       - name: Knowledge Base And Tasks
         items:
           - title: Wiki.JS
@@ -130,18 +116,10 @@ data:
             description: Tasks
             icon: hl-vikunja
             url: https://vikunja.{{ .domainName }}
-          - title: Trilium
-            description: Note taking
-            icon: hl-trilium
-            url: https://trilium.{{ .domainName }}
           - title: Diagrams
             description: Make diagrams in your browser
             icon: hl-draw
             url: https://diagrams.{{ .domainName }}
-{{/*          - title: DailyNotes*/}}
-{{/*            description: Daily Notes / Journaling*/}}
-{{/*            icon: hl-favicon*/}}
-{{/*            url: https://dailynotes.{{ .domainName }}*/}}
 
       - name: Storage
         items:
@@ -183,10 +161,6 @@ data:
             description: Media Requests
             icon: hl-overseerr
             url: https://overseerr.{{ .domainName }}
-{{/*          - title: pyLoad*/}}
-{{/*            description: python Downloader*/}}
-{{/*            icon: hl-pyload*/}}
-{{/*            url: https://pyload.{{ .domainName }}*/}}
       - name: Monitoring
         items:
           - title: Grafana
@@ -208,10 +182,6 @@ data:
             description: Block Storage for kubernetes
             icon: hl-longhorn
             url: https://longhorn.{{ .domainName }}
-{{/*          - title: Nginx Proxy Manager*/}}
-{{/*            description: Best Proxy Ever Web UI*/}}
-{{/*            icon: hl-nginxproxymanager*/}}
-{{/*            url: https://nginx.{{ .domainName }}*/}}
 
       - name: Networking
         items:

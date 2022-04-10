@@ -1,3 +1,6 @@
+#### [V2.9.0]
+* Removed unnecessary bookmarks
+
 #### [V2.8.0]
 * Reordering
 

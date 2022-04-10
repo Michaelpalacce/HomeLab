@@ -9,7 +9,7 @@ metadata:
     labels:
         app: trilium
 spec:
-    replicas: 1
+    replicas: {{ .replicas }}
     selector:
         matchLabels:
             app: trilium
