@@ -1,3 +1,7 @@
+#### [V2.0.0]
+* Fully removed nginx 
+* Probes added
+
 #### [V1.3.0]
 * Added simplesecret
 

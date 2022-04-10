@@ -3,7 +3,6 @@ trilium:
   image: zadam/trilium:0.51-latest
 #    nodePort: 30122
   port: 8080
-  baseUrl: trilium.stefangenov.site
   resources:
     requests:
       cpu: 100m
@@ -13,6 +12,6 @@ trilium:
       memory: 1Gi
 
 storage:
-  dataLocality: disabled      # or disabled
+  dataLocality: disabled
   numberOfReplicas: 1
   dataSize: 20Gi
