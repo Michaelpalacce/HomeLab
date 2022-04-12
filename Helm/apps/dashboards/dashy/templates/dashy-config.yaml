@@ -41,7 +41,7 @@ data:
           - title: Mealie
             description: Recipe Manager
             icon: hl-mealie
-            url: https://recipes.{{ .domainName }}
+            url: https://mealie.{{ .domainName }}
           - title: Worldtime Buddy
             description: Timezone Manager
             icon: favicon
