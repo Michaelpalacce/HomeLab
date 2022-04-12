@@ -1,5 +1,6 @@
 ---
 tandoorrecipes:
+  replicas: 1
   image: vabene1111/recipes:1.1.4
     # nodePort: 30125
   port: 8080

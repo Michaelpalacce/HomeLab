@@ -1,0 +1,87 @@
+{{- with .Values.mealie }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: mealie
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app: mealie
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: mealie
+    template:
+        metadata:
+            annotations:
+                backup.velero.io/backup-volumes: data
+            labels:
+                app: mealie
+        spec:
+            containers:
+                - name: mealie
+                  image: {{ .image }}
+                  imagePullPolicy: IfNotPresent
+{{- if .resources }}
+                  resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+                  envFrom:
+                      - secretRef:
+                           name: db
+                  env:
+                      - name: PUID
+                        value: "1000"
+                      - name: GUID
+                        value: "1000"
+                      - name: TZ
+                        value: "Europe/Sofia"
+                      - name: RECIPE_PUBLIC
+                        value: "true"
+                      - name: RECIPE_SHOW_NUTRITION
+                        value: "true"
+                      - name: RECIPE_SHOW_ASSETS
+                        value: "true"
+                      - name: RECIPE_LANDSCAPE_VIEW
+                        value: "true"
+                      - name: RECIPE_DISABLE_COMMENTS
+                        value: "false"
+                      - name: RECIPE_DISABLE_AMOUNT
+                        value: "false"
+
+                  ports:
+                      - name: web
+                        containerPort: {{ .port }}
+                  volumeMounts:
+                      - name: data
+                        mountPath: /app/data
+
+            restartPolicy: Always
+            volumes:
+                - name: data
+                  persistentVolumeClaim:
+                      claimName: mealie-pvc
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: mealie
+    namespace: {{ $.Release.Namespace }}
+spec:
+    {{- with .nodePort }}
+    type: NodePort
+    {{- end }}
+    selector:
+        app: mealie
+    ports:
+        - name: mealie
+          protocol: TCP
+          port: {{ .port }}
+          {{- with .nodePort }}
+          nodePort: {{ . }}
+          {{- end }}
+
+{{- end }}
