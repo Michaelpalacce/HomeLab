@@ -32,7 +32,7 @@ promtail:
             memory: 512Mi
 
 grafana:
-    image: grafana/grafana:8.4.5
+    image: grafana/grafana:8.4.6
     port: 3000
     #    nodePort: 30010
     limits:
