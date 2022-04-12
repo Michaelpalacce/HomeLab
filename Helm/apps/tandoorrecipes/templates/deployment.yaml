@@ -29,7 +29,7 @@ spec:
                       - name: DEBUG
                         value: "0"
                       - name: GUNICORN_MEDIA
-                        value: "0"
+                        value: "1"
                       - name: SECRET_KEY
                         valueFrom:
                             secretKeyRef:
