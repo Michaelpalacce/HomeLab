@@ -38,9 +38,9 @@ data:
             description: Time Tracker
             icon: https://raw.githubusercontent.com/overshard/timelite/master/public/static/logo.png
             url: https://timelite.app/
-          - title: TandoorRecipes
+          - title: Mealie
             description: Recipe Manager
-            icon: hl-tandoorrecipes
+            icon: hl-mealie
             url: https://recipes.{{ .domainName }}
           - title: Worldtime Buddy
             description: Timezone Manager
