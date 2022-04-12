@@ -22,3 +22,13 @@ spec:
                             name: mealie
                             port:
                                 number: {{ .Values.mealie.port }}
+        - host: recipes.stefangenov.site
+          http:
+              paths:
+                  - pathType: Prefix
+                    path: "/"
+                    backend:
+                        service:
+                            name: mealie
+                            port:
+                                number: {{ .Values.mealie.port }}

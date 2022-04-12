@@ -16,3 +16,6 @@ spec:
                 kind: GitRepository
                 name: flux-system
                 namespace: flux-system
+    values:
+        whoogle:
+            replicas: 2

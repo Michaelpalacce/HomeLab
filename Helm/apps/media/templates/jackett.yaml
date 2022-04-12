@@ -9,7 +9,7 @@ metadata:
     labels:
         app: jackett
 spec:
-    replicas: 2
+    replicas: {{ .replicas }}
     selector:
         matchLabels:
             app: jackett
