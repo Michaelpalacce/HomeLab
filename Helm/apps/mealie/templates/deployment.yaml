@@ -27,9 +27,6 @@ spec:
                   resources:
 {{ toYaml .resources | indent 22 }}
 {{- end }}
-                  envFrom:
-                      - secretRef:
-                           name: db
                   env:
                       - name: PUID
                         value: "1000"
@@ -56,6 +53,21 @@ spec:
                   volumeMounts:
                       - name: data
                         mountPath: /app/data
+                  livenessProbe:
+                      failureThreshold: 2
+                      periodSeconds: 120
+                      initialDelaySeconds: 120
+                      successThreshold: 1
+                      tcpSocket:
+                          port: {{ .port }}
+                      timeoutSeconds: 2
+                  readinessProbe:
+                      failureThreshold: 10
+                      initialDelaySeconds: 30
+                      periodSeconds: 10
+                      timeoutSeconds: 2
+                      tcpSocket:
+                          port: {{ .port }}
 
             restartPolicy: Always
             volumes:
