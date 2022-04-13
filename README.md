@@ -29,7 +29,7 @@ certificate secret to all the namespaces. The secret is called `ingress`.
 8. **Ansible** - Used to provision the architecture
 9. **Velero** - K8S and PVC backup. Free and open source by VMware 
 
-# CI/CD :construction:
+# GitOps :construction:
 GitOps is applied wherever possible using Flux2.
 CI/CD is done by bootstrapping flux into my cluster. Flux polls GitHub for changes and applies them automatically on my server.
 It is currently pretty stable and works fine
