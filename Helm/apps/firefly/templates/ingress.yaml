@@ -21,3 +21,13 @@ spec:
                             name: firefly
                             port:
                                 number: {{ .Values.firefly.port }}
+        - host: budget.stefangenov.site
+          http:
+              paths:
+                  - pathType: Prefix
+                    path: "/"
+                    backend:
+                        service:
+                            name: firefly
+                            port:
+                                number: {{ .Values.firefly.port }}
