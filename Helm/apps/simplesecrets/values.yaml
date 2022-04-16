@@ -1,7 +1,7 @@
 ---
 simplesecrets:
   api:
-    image: stefangenov/simplesecrets:2.0.2
+    image: stefangenov/simplesecrets:2.1.0
 #        nodePort: 30037
     port: 80
     resources:
