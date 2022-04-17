@@ -1,0 +1,16 @@
+{{- if .Values.prometheus.serviceMonitor.create -}}
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+  {{- include "common.labels" . | nindent 4 }}
+  name: {{ include "common.names.fullname" . }}
+spec:
+  endpoints:
+    - port: http-metrics
+      scrapeTimeout: {{ .Values.prometheus.serviceMonitor.scrapeTimeout }}
+      interval: {{ .Values.prometheus.serviceMonitor.interval }}
+  selector:
+    matchLabels:
+  {{- include "common.labels" . | nindent 6 }}
+  {{- end }}

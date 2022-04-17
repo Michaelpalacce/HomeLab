@@ -1,0 +1,211 @@
+# -- Server replicas
+replicas: 1
+# -- Custom priority class for different treatment by the scheduler
+priorityClassName:
+
+worker:
+  # -- worker replicas
+  replicas: 1
+  # -- Custom priority class for different treatment by the scheduler
+  priorityClassName:
+
+image:
+  repository: ghcr.io/goauthentik/server
+  tag: 2022.4.1
+  pullPolicy: IfNotPresent
+  pullSecrets: []
+
+# -- See https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#values
+initContainers: {}
+
+# -- See https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common#values
+additionalContainers: {}
+
+ingress:
+  enabled: false
+  ingressClassName: ""
+  annotations: {}
+  labels: {}
+  hosts:
+    - host: authentik.domain.tld
+      paths:
+        - path: "/"
+          pathType: Prefix
+  tls:
+    - hosts: []
+      secretName: ""
+
+authentik:
+  # -- Log level for server and worker
+  log_level: info
+  # -- Secret key used for cookie singing and unique user IDs,
+  # don't change this after the first install
+  secret_key: ""
+  # -- Path for the geoip database. If the file doesn't exist, GeoIP features are disabled.
+  geoip: /geoip/GeoLite2-City.mmdb
+  # -- Mode for the avatars. Defaults to gravatar. Possible options 'gravatar' and 'none'
+  avatars: gravatar
+  email:
+    # -- SMTP Server emails are sent from, fully optional
+    host: ""
+    port: 587
+    # -- SMTP credentials, when left empty, not authentication will be done
+    username: ""
+    # -- SMTP credentials, when left empty, not authentication will be done
+    password: ""
+    # -- Enable either use_tls or use_ssl, they can't be enabled at the same time.
+    use_tls: false
+    # -- Enable either use_tls or use_ssl, they can't be enabled at the same time.
+    use_ssl: false
+    # -- Connection timeout
+    timeout: 30
+    # -- Email from address, can either be in the format "foo@bar.baz" or "authentik <foo@bar.baz>"
+    from: ""
+  outposts:
+    # -- Template used for managed outposts. The following placeholders can be used
+    # %(type)s - the type of the outpost
+    # %(version)s - version of your authentik install
+    # %(build_hash)s - only for beta versions, the build hash of the image
+    container_image_base: ghcr.io/goauthentik/%(type)s:%(version)s
+  error_reporting:
+    # -- This sends anonymous usage-data, stack traces on errors and
+    # performance data to sentry.beryju.org, and is fully opt-in
+    enabled: false
+    # -- This is a string that is sent to sentry with your error reports
+    environment: "k8s"
+    # -- Send PII (Personally identifiable information) data to sentry
+    send_pii: false
+  postgresql:
+    # -- set the postgresql hostname to talk to
+    # if unset and .Values.postgresql.enabled == true, will generate the default
+    # @default -- `{{ .Release.Name }}-postgresql`
+    host: '{{ .Release.Name }}-postgresql'
+    # -- postgresql Database name
+    # @default -- `authentik`
+    name: "authentik"
+    # -- postgresql Username
+    # @default -- `authentik`
+    user: "authentik"
+    password: ""
+    port: 5432
+    s3_backup:
+      # -- optional S3 backup, access key
+      access_key: ""
+      # -- optional S3 backup, secret key
+      secret_key: ""
+      # -- optional S3 backup, bucket
+      bucket: ""
+      # -- optional S3 backup, region
+      region: ""
+      # -- optional S3 backup, host, including protocol (https://minio.domain.tld)
+      host: ""
+      # -- optional S3 backup, location in the bucket
+      # @default -- `"/"`
+      location: ""
+      # -- optional S3 backup, set to `true` to disable SSL certificate verification
+      insecure_skip_verify: false
+  redis:
+    # -- set the redis hostname to talk to
+    # @default -- `{{ .Release.Name }}-redis-master`
+    host: '{{ .Release.Name }}-redis-master'
+    password: ""
+
+# -- see configuration options at https://goauthentik.io/docs/installation/configuration/
+env: {}
+# AUTHENTIK_VAR_NAME: VALUE
+
+envFrom: []
+#  - configMapRef:
+#      name: special-config
+
+envValueFrom: {}
+#  AUTHENTIK_VAR_NAME:
+#    secretKeyRef:
+#      key: password
+#      name: my-secret
+
+service:
+  # -- Service that is created to access authentik
+  enabled: true
+  type: ClusterIP
+  port: 80
+  name: http
+  protocol: TCP
+  labels: {}
+  annotations: {}
+
+volumes: []
+
+volumeMounts: []
+
+# -- affinity applied to the deployments
+affinity: {}
+
+# -- nodeSelector applied to the deployments
+nodeSelector: {}
+
+resources:
+  server: {}
+  worker: {}
+
+# WARNING! When initially deploying, authentik has to do a few DB migrations. This may cause it to die from probe
+# failure, but will continue on reboot. You can disable this during deployment if this is not desired
+livenessProbe:
+  # -- enables or disables the livenessProbe
+  enabled: true
+  httpGet:
+    # -- liveness probe url path
+    path: /-/health/live/
+    port: http
+  initialDelaySeconds: 50
+  periodSeconds: 10
+
+readinessProbe:
+  enabled: true
+  httpGet:
+    path: /-/health/ready/
+    port: http
+  initialDelaySeconds: 50
+  periodSeconds: 10
+
+serviceAccount:
+  # -- Service account is needed for managed outposts
+  create: true
+
+prometheus:
+  serviceMonitor:
+    create: false
+    interval: 30s
+    scrapeTimeout: 3s
+  rules:
+    create: false
+
+geoip:
+  # -- optional GeoIP, deploys a cronjob to download the maxmind database
+  enabled: false
+  # -- sign up under https://www.maxmind.com/en/geolite2/signup
+  accountId: ""
+  # -- sign up under https://www.maxmind.com/en/geolite2/signup
+  licenseKey: ""
+  editionIds: "GeoLite2-City"
+  image: maxmindinc/geoipupdate:v4.8
+  # -- number of hours between update runs
+  updateInterval: 8
+
+postgresql:
+  # -- enable the bundled bitnami postgresql chart
+  enabled: false
+  postgresqlUsername: "authentik"
+  # postgresqlPassword: ""
+  postgresqlDatabase: "authentik"
+  # persistence:
+  #   enabled: true
+  #   storageClass:
+  #   accessModes:
+  #     - ReadWriteOnce
+redis:
+  # -- enable the bundled bitnami redis chart
+  enabled: false
+  architecture: standalone
+  auth:
+    enabled: false

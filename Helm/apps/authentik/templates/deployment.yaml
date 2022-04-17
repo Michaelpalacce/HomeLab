@@ -1,0 +1,136 @@
+{{- range list "server" "worker" }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ printf "%s-%s" (include "common.names.fullname" $) . }}
+  labels:
+    {{- include "common.labels" $ | nindent 4 }}
+    app.kubernetes.io/component: "{{ . }}"
+spec:
+  {{ if eq . "server" -}}
+  replicas: {{ $.Values.replicas }}
+  {{- else -}}
+  replicas: {{ $.Values.worker.replicas }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "common.labels.selectorLabels" $ | nindent 6 }}
+      app.kubernetes.io/component: "{{ . }}"
+  template:
+    metadata:
+      labels:
+        {{- include "common.labels.selectorLabels" $ | nindent 8 }}
+        app.kubernetes.io/component: "{{ . }}"
+        app.kubernetes.io/version: "{{ $.Values.image.tag }}"
+    spec:
+      {{- if $.Values.image.pullSecrets }}
+      imagePullSecrets:
+        {{- toYaml $.Values.image.pullSecrets | nindent 8 }}
+      {{- end }}
+      {{- if $.Values.serviceAccount.create }}
+      serviceAccountName: {{ include "common.names.fullname" $ }}
+      {{- end }}
+      {{- with $.Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with $.Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      enableServiceLinks: true
+      {{- if $.Values.initContainers }}
+      initContainers:
+        {{- $initContainers := list }}
+        {{- range $index, $key := (keys $.Values.initContainers | uniq | sortAlpha) }}
+          {{- $container := get $.Values.initContainers $key }}
+          {{- if not $container.name -}}
+            {{- $_ := set $container "name" $key }}
+          {{- end }}
+          {{- $initContainers = append $initContainers $container }}
+        {{- end }}
+        {{- tpl (toYaml $initContainers) $ | nindent 8 }}
+      {{- end }}
+      {{ if eq . "server" -}}
+      priorityClassName: {{ $.Values.priorityClassName }}
+      {{- else -}}
+      priorityClassName: {{ $.Values.worker.priorityClassName }}
+      {{- end }}
+      containers:
+        - name: {{ $.Chart.Name }}
+          image: "{{ $.Values.image.repository }}:{{ $.Values.image.tag }}"
+          imagePullPolicy: "{{ $.Values.image.pullPolicy }}"
+          args: [{{ quote . }}]
+          envFrom:
+              {{- toYaml . | nindent 12 }}
+            {{- end }}
+          volumeMounts:
+            - name: geoip-db
+              mountPath: /geoip
+            {{- with $.Values.volumeMounts }}
+            {{- toYaml . | nindent 12 }}
+            {{- end }}
+            {{- if eq . "server" }}
+          ports:
+            - name: http
+              containerPort: 9000
+              protocol: TCP
+            - name: http-metrics
+              containerPort: 9300
+              protocol: TCP
+            - name: https
+              containerPort: 9443
+              protocol: TCP
+              {{- if $.Values.livenessProbe.enabled }}
+                {{- with omit $.Values.livenessProbe "enabled" }}
+          livenessProbe:
+                  {{- toYaml . | nindent 12 }}
+                {{- end }}
+              {{- end }}
+              {{- if $.Values.readinessProbe.enabled }}
+                {{- with omit $.Values.readinessProbe "enabled" }}
+          readinessProbe:
+                  {{- toYaml . | nindent 12 }}
+                {{- end }}
+              {{- end }}
+            {{- end }}
+            {{- with index $.Values.resources . }}
+          resources:
+              {{- toYaml . | nindent 12 }}
+            {{- end }}
+      {{- if $.Values.geoip.enabled }}
+        - name: geoip-sidecar
+          image: "{{ $.Values.geoip.image }}"
+          env:
+            - name: GEOIPUPDATE_FREQUENCY
+              value: {{ $.Values.geoip.updateInterval | quote }}
+            - name: GEOIPUPDATE_PRESERVE_FILE_TIMES
+              value: "1"
+            - name: GEOIPUPDATE_ACCOUNT_ID
+              value: {{ required "geoip account id required" $.Values.geoip.accountId | quote }}
+            - name: GEOIPUPDATE_LICENSE_KEY
+              value: {{ required "geoip license key required" $.Values.geoip.licenseKey | quote }}
+            - name: GEOIPUPDATE_EDITION_IDS
+              value: {{ required "geoip edition id required" $.Values.geoip.editionIds | quote }}
+          volumeMounts:
+            - name: geoip-db
+              mountPath: /usr/share/GeoIP
+      {{- end }}
+      {{- with $.Values.additionalContainers }}
+        {{- $additionalContainers := list }}
+        {{- range $name, $container := . }}
+          {{- if not $container.name -}}
+            {{- $_ := set $container "name" $name }}
+          {{- end }}
+          {{- $additionalContainers = append $additionalContainers $container }}
+        {{- end }}
+        {{- tpl (toYaml $additionalContainers) $ | nindent 8 }}
+      {{- end }}
+      volumes:
+        - name: geoip-db
+          emptyDir: {}
+      {{- with $.Values.volumes }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+{{- end }}

@@ -17,12 +17,11 @@ spec:
           retries: 3
     chart:
         spec:
-            chart: authentik
-            version: 2022.4.1
-            interval: 5m
+            chart: ./Helm/apps/authentik
+            reconcileStrategy: Revision
             sourceRef:
-                kind: HelmRepository
-                name: authentik
+                kind: GitRepository
+                name: flux-system
                 namespace: flux-system
     values:
         env: null
