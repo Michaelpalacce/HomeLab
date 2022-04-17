@@ -1,3 +1,0 @@
-authentik:
-    replicas: 1
-    image: ghcr.io/goauthentik/server:2022.4.1
