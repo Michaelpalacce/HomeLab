@@ -32,3 +32,4 @@ resources:
   - dailynotes
   - cert-manager
   - velero
+  - redis
