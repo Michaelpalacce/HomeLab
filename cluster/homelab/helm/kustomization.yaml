@@ -8,4 +8,5 @@ resources:
     - reflector
     - calico
     - velero
+    - authentik
 #    - nfs-subdir-external-provisioner

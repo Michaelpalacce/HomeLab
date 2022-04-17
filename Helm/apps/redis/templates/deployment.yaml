@@ -29,9 +29,6 @@ spec:
                   ports:
                       - name: redis
                         containerPort: {{ .port }}
-                  volumeMounts:
-                      - name: data
-                        mountPath: /data
                   livenessProbe:
                       failureThreshold: 2
                       initialDelaySeconds: 120
@@ -41,10 +38,6 @@ spec:
                           port: {{ .port }}
 
             restartPolicy: Always
-            volumes:
-                - name: data
-                  persistentVolumeClaim:
-                      claimName: redis-pvc
 
 ---
 
