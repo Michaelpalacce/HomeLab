@@ -1,64 +1,10 @@
+---
 apiVersion: v2
-description: authentik is an open-source Identity Provider focused on flexibility and versatility
-name: authentik
-home: https://goauthentik.io
-sources:
-  - https://github.com/goauthentik/authentik
-  - https://goauthentik.io/docs/
-keywords:
-  - proxy
-  - oauth
-  - authentication
-  - saml
-  - sso
-  - identity
-  - single-sign-on
-  - ldap
-  - idp
-  - sp
-version: 2022.4.1
-appVersion: 2022.4.1
-icon: https://raw.githubusercontent.com/BeryJu/authentik/master/web/icons/icon.svg
+appVersion: 1.0.0
+description: This chart is used to install authentik
 maintainers:
-  - name: BeryJu
-    email: jens@beryju.org
-    url: https://github.com/BeryJu
-  - name: dirtycajunrice
-    email: nick@cajun.pro
-    url: https://github.com/dirtycajunrice
-dependencies:
-  - name: postgresql
-    version: 10.9.5
-    repository: https://charts.bitnami.com/bitnami
-    condition: postgresql.enabled
-  - name: redis
-    version: 15.3.2
-    repository: https://charts.bitnami.com/bitnami
-    condition: redis.enabled
-  - name: common
-    repository: https://library-charts.k8s-at-home.com
-    version: 4.2.0
-annotations:
-  artifacthub.io/changes: |
-    - kind: changed
-      description: upgrade to authentik 2022.4.1
-  artifacthub.io/license: GPL-3.0-only
-  artifacthub.io/links: |
-    - name: Github
-      url: https://github.com/goauthentik/authentik
-    - name: Docs
-      url: https://goauthentik.io/docs/
-  artifacthub.io/maintainers: |
-    - name: Jens L. BeryJu
-      email: jens@beryju.org
-      url: https://beryju.org
-    - name: Nicholas St. Germain
-      email: nick@cajun.pro
-      url: https://github.com/dirtycajunrice
-  artifacthub.io/images: |
-    - name: authentik
-      image: ghcr.io/goauthentik/server:2022.4.1
-    - name: authentik-outpost-proxy
-      image: ghcr.io/goauthentik/proxy:2022.4.1
-    - name: authentik-outpost-ldap
-      image: ghcr.io/goauthentik/ldap:2022.4.1
+  - email: sgenov94@gmail.com
+    name: Stefan Genov
+name: authentik
+type: application
+version: 1.0.0

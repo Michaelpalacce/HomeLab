@@ -1,43 +1,23 @@
-{{- if .Values.ingress.enabled -}}
-  {{- $apiIsStable := include "authentik.ingress.isStable" . -}}
-apiVersion: {{ include "common.capabilities.ingress.apiVersion" . }}
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ include "common.names.fullname" . }}
-  labels:
-    {{- include "common.labels" . | nindent 4 }}
-  {{- with .Values.ingress.annotations }}
-  annotations:
-    {{- toYaml . | nindent 4 }}
-  {{- end }}
+    name: authentik
+    namespace: {{ $.Release.Namespace }}
+    annotations:
+        kubernetes.io/ingress.class: "nginx"
 spec:
-  {{- if and $apiIsStable .Values.ingress.ingressClassName }}
-  ingressClassName: {{ $.Values.ingress.ingressClassName }}
-  {{- end }}
-  {{- with .Values.ingress.tls }}
-  tls:
-    {{- toYaml . | nindent 4 }}
-  {{- end }}
-  rules:
-    {{- range .Values.ingress.hosts }}
-    - host: {{ .host | quote }}
-      http:
-        paths:
-          {{- range .paths }}
-          - path: {{ .path | quote }}
-            {{- if $apiIsStable }}
-            pathType: {{ default "Prefix" .pathType }}
-            {{- end }}
-            backend:
-              {{- if $apiIsStable }}
-              service:
-                name: {{ include "common.names.fullname" $ }}
-                port:
-                  name: http
-              {{- else }}
-              serviceName: {{ include "common.names.fullname" $ }}
-              servicePort: {{ $.Values.service.port }}
-              {{- end }}
-          {{- end }}
-    {{- end }}
-{{- end }}
+    tls:
+        - hosts:
+              - "*.stefangenov.site"
+          secretName: ingress
+    rules:
+        - host: authentik.stefangenov.site
+          http:
+              paths:
+                  - pathType: Prefix
+                    path: "/"
+                    backend:
+                        service:
+                            name: authentik
+                            port:
+                                number: {{ .Values.authentik.port }}
