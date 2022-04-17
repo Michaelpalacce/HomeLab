@@ -25,7 +25,7 @@ spec:
                 name: authentik
                 namespace: flux-system
     values:
-        env:
+        env: null
         envFrom:
             - secretRef:
                   name: db
@@ -33,10 +33,6 @@ spec:
                   name: smtp
             - secretRef:
                   name: authentik
-        authentik:
-            error_reporting:
-                enabled: true
-
         ingress:
             enabled: true
             tls:
