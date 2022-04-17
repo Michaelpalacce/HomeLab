@@ -32,7 +32,7 @@ dependencies:
     repository: https://charts.bitnami.com/bitnami
     condition: postgresql.enabled
   - name: redis
-    version: 15.3.2
+    version: 16.8.5
     repository: https://charts.bitnami.com/bitnami
     condition: redis.enabled
   - name: common
