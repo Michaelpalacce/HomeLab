@@ -188,7 +188,7 @@ geoip:
   # -- sign up under https://www.maxmind.com/en/geolite2/signup
   licenseKey: ""
   editionIds: "GeoLite2-City"
-  image: maxmindinc/geoipupdate:v4.8
+  image: maxmindinc/geoipupdate:v4.9
   # -- number of hours between update runs
   updateInterval: 8
 
