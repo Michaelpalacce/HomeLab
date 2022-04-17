@@ -28,7 +28,7 @@ maintainers:
     url: https://github.com/dirtycajunrice
 dependencies:
   - name: postgresql
-    version: 10.9.5
+    version: 11.1.20
     repository: https://charts.bitnami.com/bitnami
     condition: postgresql.enabled
   - name: redis
