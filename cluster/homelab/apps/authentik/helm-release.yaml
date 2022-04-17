@@ -25,7 +25,19 @@ spec:
                 name: authentik
                 namespace: flux-system
     values:
-        env: null
+        env:
+            - name: AUTHENTIK_EMAIL__HOST
+            - name: AUTHENTIK_EMAIL__PORT
+            - name: AUTHENTIK_EMAIL__USERNAME
+            - name: AUTHENTIK_EMAIL__PASSWORD
+            - name: AUTHENTIK_EMAIL__USE_SSL
+            - name: AUTHENTIK_EMAIL__FROM
+            - name: AUTHENTIK_POSTGRESQL__HOST
+            - name: AUTHENTIK_POSTGRESQL__USER
+            - name: AUTHENTIK_POSTGRESQL__PASSWORD
+            - name: AUTHENTIK_POSTGRESQL__NAME
+            - name: AUTHENTIK_REDIS__HOST
+            - name: AUTHENTIK_SECRET_KEY
         envFrom:
             - secretRef:
                   name: db
