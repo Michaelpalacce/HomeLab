@@ -20,4 +20,11 @@ spec:
                         service:
                             name: authentik
                             port:
-                                number: {{ .Values.authentik.port }}
+                                name: http
+                  - pathType: Prefix
+                    path: "/"
+                    backend:
+                        service:
+                            name: authentik
+                            port:
+                                name: https
