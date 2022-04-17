@@ -25,6 +25,7 @@ spec:
                 name: authentik
                 namespace: flux-system
     values:
+        env:
         envFrom:
             - secretRef:
                   name: db
