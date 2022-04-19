@@ -1,6 +1,6 @@
 ---
 uptimekuma:
-  image: louislam/uptime-kuma:1.14.0-alpine
+  image: louislam/uptime-kuma:1.14.1-alpine
   replicas: 1
 #    nodePort: 30012
   port: 3001
