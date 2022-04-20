@@ -26,7 +26,7 @@ data:
         # Here it's Prometheus itself.
         scrape_configs:
           - job_name: 'speedtest-exporter'
-            scrape_interval: 1h
+            scrape_interval: 1m
             scrape_timeout: 1m
             static_configs:
                 - targets: ['speedtest.monitoring:{{ $.Values.speedtest.port }}']
