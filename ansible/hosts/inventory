@@ -6,18 +6,15 @@
 192.168.1.15
 192.168.1.109
 192.168.1.146
+192.168.1.151
 
 # This group has all the servers
 [all:children]
 master
 workers
 
-[_all:children]
-master
-workers
-
 #Variables for all the servers
-[_all:vars]
+[all:vars]
 ansible_connection=ssh
 ansible_user=ubuntu
 ansible_ssh_common_args='-o StrictHostKeyChecking=no'
