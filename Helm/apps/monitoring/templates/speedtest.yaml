@@ -1,0 +1,53 @@
+---
+{{- with .Values.speedtest }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: speedtest
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app: speedtest
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: speedtest
+    template:
+        metadata:
+            labels:
+                app: speedtest
+        spec:
+            containers:
+                - name: speedtest
+                  image: {{ .image }}
+                  imagePullPolicy: IfNotPresent
+                  env:
+                      - name: SPEEDTEST_PORT
+                        value: "{{ .port }}"
+{{- if .resources }}
+                  resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+                  ports:
+                      - name: web
+                        containerPort: {{ .port }}
+
+            restartPolicy: Always
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: speedtest
+    namespace: {{ $.Release.Namespace }}
+spec:
+    selector:
+        app: speedtest
+    ports:
+        - name: speedtest
+          protocol: TCP
+          port: {{ .port }}
+
+{{- end }}

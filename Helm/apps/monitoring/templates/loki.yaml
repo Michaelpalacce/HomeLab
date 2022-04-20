@@ -65,14 +65,12 @@ metadata:
     name: loki
     namespace: {{ $.Release.Namespace }}
 spec:
-    type: NodePort
     selector:
         app: loki
     ports:
         - name: loki
           protocol: TCP
           port: {{ .port }}
-          nodePort: 30013
 
 ---
 

@@ -1,4 +1,16 @@
 ---
+speedtest:
+    image: ghcr.io/miguelndecarvalho/speedtest-exporter:v3.5.1
+    port: 9798
+    resources:
+        requests:
+            cpu: 125m
+            memory: 100Mi
+        limits:
+            cpu: 250m
+            memory: 512Mi
+
+
 storage:
     dataLocality: best-effort      # or disabled
     numberOfReplicas: 1
