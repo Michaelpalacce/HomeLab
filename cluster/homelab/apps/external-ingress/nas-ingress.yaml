@@ -2,7 +2,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-    name: plex-ingress
+    name: nas-ingress
     namespace: ingress-nginx
     annotations:
         kubernetes.io/ingress.class: nginx
@@ -12,29 +12,29 @@ spec:
               - '*.stefangenov.site'
           secretName: ingress
     rules:
-        - host: plex.stefangenov.site
+        - host: nas.stefangenov.site
           http:
               paths:
                   - pathType: Prefix
                     path: /
                     backend:
                         service:
-                            name: plex
+                            name: nas
                             port:
-                                number: 32400
+                                number: 5001
 ---
 
 apiVersion: v1
 kind: Service
 metadata:
-    name: plex
+    name: nas
     namespace: ingress-nginx
 spec:
     ports:
-        - name: plex
-          port: 32400
+        - name: nas
+          port: 5001
           protocol: TCP
-          targetPort: 32400
+          targetPort: 5001
     clusterIP: None
     type: ClusterIP
 ---
@@ -42,12 +42,12 @@ spec:
 apiVersion: v1
 kind: Endpoints
 metadata:
-    name: plex
+    name: nas
     namespace: ingress-nginx
 subsets:
     - addresses:
-          - ip: 192.168.1.151
+          - ip: 192.168.1.20
       ports:
           - name: app
-            port: 32400
+            port: 5001
             protocol: TCP
