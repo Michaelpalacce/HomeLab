@@ -79,6 +79,6 @@ spec:
                     path: "/"
                     backend:
                         service:
-                            name: transmission
+                            name: plex
                             port:
                                 number: {{ .Values.plex.port }}
