@@ -72,3 +72,13 @@ spec:
                             name: transmission
                             port:
                                 number: {{ .Values.transmission.port }}
+        - host: plex.stefangenov.site
+          http:
+              paths:
+                  - pathType: Prefix
+                    path: "/"
+                    backend:
+                        service:
+                            name: transmission
+                            port:
+                                number: {{ .Values.plex.port }}

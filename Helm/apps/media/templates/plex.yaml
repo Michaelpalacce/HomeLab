@@ -1,0 +1,82 @@
+---
+{{- with .Values.plex }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: plex
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app: plex
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: plex
+    template:
+        metadata:
+            labels:
+                app: plex
+        spec:
+            nodeSelector:
+                type: media
+            containers:
+                - name: plex
+                  image: {{ .image }}
+                  imagePullPolicy: IfNotPresent
+                  env:
+                      - name: PUID
+                        value: "1000"
+                      - name: GUID
+                        value: "1000"
+                  resources:
+                      requests:
+                          cpu: 250m
+                          memory: 100Mi
+                      limits:
+                          cpu: 500m
+                          memory: 1Gi
+                  ports:
+                      - name: web
+                        containerPort: {{ .port }}
+                  volumeMounts:
+                      - name: config-data
+                        mountPath: /config
+                      - name: shows-data-nfs
+                        mountPath: /data/shows
+                      - name: shows-data-nfs
+                        mountPath: /data/movies
+
+            restartPolicy: Always
+            volumes:
+                - name: config-data
+                  hostPath:
+                      path: /mnt/media/plex
+                - name: shows-data-nfs
+                  persistentVolumeClaim:
+                      claimName: shows-volume-nfs
+                - name: movies-data-nfs
+                  persistentVolumeClaim:
+                      claimName: movies-volume-nfs
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: plex
+    namespace: {{ $.Release.Namespace }}
+spec:
+    {{- with .nodePort }}
+    type: NodePort
+    {{- end }}
+    selector:
+        app: plex
+    ports:
+        - name: plex
+          protocol: TCP
+          port: {{ .port }}
+          {{- with .nodePort }}
+          nodePort: {{ . }}
+          {{- end }}
+
+{{- end }}

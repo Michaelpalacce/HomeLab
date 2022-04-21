@@ -5,12 +5,12 @@ trilium:
     #    nodePort: 30122
     port: 8080
     resources:
-    requests:
-        cpu: 100m
-        memory: 100Mi
-    limits:
-        cpu: 250m
-        memory: 1Gi
+        requests:
+            cpu: 100m
+            memory: 100Mi
+        limits:
+            cpu: 250m
+            memory: 1Gi
 
 storage:
     dataLocality: disabled
