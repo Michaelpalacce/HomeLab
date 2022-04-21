@@ -16,7 +16,7 @@ storage:
     numberOfReplicas: 1
 
 prometheus:
-    image: quay.io/prometheus/prometheus:v2.34.0
+    image: quay.io/prometheus/prometheus:v2.35.0
     port: 9090
     #    nodePort: 30011
     #   How long will data scraped by prometheus be kept on the fs
