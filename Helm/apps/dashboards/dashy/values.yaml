@@ -4,7 +4,7 @@ dashy:
 #    nodePort: 32222
   port: 80
   resources:
-    limits:
+    requests:
       cpu: 500m
       memory: 1Gi
   clusterUrl: 192.168.1.2

@@ -5,9 +5,6 @@ n8n:
   port: 5678
   replicas: 1
   resources:
-    limits:
-      cpu: 500m
-      memory: 1Gi
     requests:
       cpu: 125m
       memory: 512Mi

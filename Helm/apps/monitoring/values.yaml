@@ -6,9 +6,6 @@ speedtest:
         requests:
             cpu: 125m
             memory: 100Mi
-        limits:
-            cpu: 250m
-            memory: 512Mi
 
 
 storage:
@@ -39,9 +36,6 @@ promtail:
         requests:
             cpu: 50m
             memory: 250Mi
-        limits:
-            cpu: 100m
-            memory: 512Mi
 
 grafana:
     image: grafana/grafana:8.5.0
@@ -59,5 +53,4 @@ loki:
             cpu: 125m
             memory: 100Mi
         limits:
-            cpu: 250m
             memory: 2Gi

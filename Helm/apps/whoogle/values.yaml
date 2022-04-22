@@ -8,6 +8,3 @@ whoogle:
     requests:
       cpu: 250m
       memory: 100Mi
-    limits:
-      cpu: 1000m
-      memory: 500Mi

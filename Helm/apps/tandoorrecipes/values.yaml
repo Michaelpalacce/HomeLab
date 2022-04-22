@@ -8,9 +8,6 @@ tandoorrecipes:
     requests:
       cpu: 250m
       memory: 512Mi
-    limits:
-      cpu: 250m
-      memory: 1Gi
 
 storage:
   dataLocality: best-effort      # or disabled

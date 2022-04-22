@@ -7,6 +7,3 @@ diagrams:
     requests:
       cpu: 10m
       memory: 10Mi
-    limits:
-      cpu: 500m
-      memory: 500Mi

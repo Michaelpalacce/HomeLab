@@ -7,6 +7,3 @@ cyberchef:
     requests:
       cpu: 10m
       memory: 100Mi
-    limits:
-      cpu: 150m
-      memory: 200Mi

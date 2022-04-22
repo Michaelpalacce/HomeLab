@@ -7,9 +7,6 @@ freshrss:
     requests:
       cpu: 100m
       memory: 100Mi
-    limits:
-      cpu: 250m
-      memory: 512Mi
 
 storage:
   dataLocality: disabled      # or disabled

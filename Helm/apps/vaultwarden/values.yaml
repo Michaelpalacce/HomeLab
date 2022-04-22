@@ -7,18 +7,12 @@ vaultwarden:
     image: stefangenov/vaultwarden-backup:1.0.0
     resources:
       requests:
-        cpu: 10m
-        memory: 10Mi
-      limits:
-        cpu: 500m
-        memory: 512Mi
+        cpu: 100m
+        memory: 100Mi
   resources:
     requests:
       cpu: 250m
       memory: 512Mi
-    limits:
-      cpu: 1
-      memory: 1Gi
 
 storage:
   dataLocality: best-effort      # or disabled

@@ -8,9 +8,6 @@ trilium:
         requests:
             cpu: 100m
             memory: 100Mi
-        limits:
-            cpu: 250m
-            memory: 1Gi
 
 storage:
     dataLocality: disabled

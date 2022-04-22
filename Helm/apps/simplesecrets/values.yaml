@@ -8,9 +8,6 @@ simplesecrets:
       requests:
         cpu: 10m
         memory: 100Mi
-      limits:
-        cpu: 100m
-        memory: 512Mi
   web:
     image: stefangenov/simplesecrets-frontend:0.10.0
 #        nodePort: 30036
@@ -19,9 +16,6 @@ simplesecrets:
       requests:
         cpu: 10m
         memory: 100Mi
-      limits:
-        cpu: 50m
-        memory: 200Mi
 
 storage:
   dataLocality: best-effort      # or disabled
