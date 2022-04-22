@@ -44,7 +44,7 @@ plex:
             cpu: 1000m
             memory: 1Gi
         limits:
-            cpu: 2
+            cpu: 4
             memory: 4Gi
 
 
