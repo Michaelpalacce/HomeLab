@@ -25,11 +25,11 @@ data:
         # A scrape configuration containing exactly one endpoint to scrape:
         # Here it's Prometheus itself.
         scrape_configs:
-          - job_name: 'speedtest-exporter'
-            scrape_interval: 1h
-            scrape_timeout: 2m
-            static_configs:
-                - targets: ['speedtest.monitoring:{{ $.Values.speedtest.port }}']
+        #  - job_name: 'speedtest-exporter'
+        #    scrape_interval: 1h
+        #    scrape_timeout: 2m
+         #   static_configs:
+     #           - targets: ['speedtest.monitoring:{{ $.Values.speedtest.port }}']
 
           - job_name: 'kubernetes-nodes'
             scheme: https
