@@ -50,7 +50,7 @@ spec:
     replicas: 1
     strategy:
         rollingUpdate:
-            maxUnavailable: 0
+            maxUnavailable: 1
     selector:
         matchLabels:
             app: prometheus
