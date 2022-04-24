@@ -30,7 +30,7 @@ Currently, the nodePorts are not in use ( with a few exceptions ). I use Nginx P
 ##### Vaultwarden: 31051
 
 ## Media
-#### Used Port range: 31001 - 31050
+#### Used Port range: 31001 - 31050 / 32400
 ##### Readarr: 31002
 ##### Radarr: 31003
 ##### Sonarr: 31004
@@ -38,7 +38,7 @@ Currently, the nodePorts are not in use ( with a few exceptions ). I use Nginx P
 ##### Openbooks: 31006
 ##### Bazarr: 31007
 ##### Overseerr: 31008
-##### Plex: 31009
+##### Plex: 32400
 
 ## Apps
 #### Used Port range: 30100 - 31000
