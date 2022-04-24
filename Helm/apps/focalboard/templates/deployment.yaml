@@ -9,7 +9,7 @@ metadata:
     labels:
         app: focalboard
 spec:
-    replicas: 1
+    replicas: {{ .replicas }}
     selector:
         matchLabels:
             app: focalboard
