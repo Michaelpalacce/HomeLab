@@ -9,7 +9,8 @@ metadata:
 data:
     config.json: |
         {
-            "port": 8000,
+            "serverRoot": "https://focalboard.stefangenov.site",
+            "port": "8000",
             "dbtype": "sqlite3",
             "dbconfig": "/var/lib/focalboard/focalboard.db",
             "postgres_dbconfig": "dbname=focalboard sslmode=disable",

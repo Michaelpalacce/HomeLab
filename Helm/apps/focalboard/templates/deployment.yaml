@@ -22,6 +22,7 @@ spec:
             labels:
                 app: focalboard
         spec:
+            enableServiceLinks: false
             containers:
                 - name: focalboard
                   image: {{ .image }}
