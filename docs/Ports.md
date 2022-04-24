@@ -61,3 +61,4 @@ Currently, the nodePorts are not in use ( with a few exceptions ). I use Nginx P
 ##### Focalboard: 30129
 ##### EmulatorJS: 30130
 ##### DailyNotes: 30131
+##### Focalboard: 30132

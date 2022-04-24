@@ -32,3 +32,4 @@ resources:
   - cert-manager
   - velero
   - redis
+  - focalboard

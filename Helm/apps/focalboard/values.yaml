@@ -1,0 +1,14 @@
+---
+focalboard:
+  image: stefangenov/focalboard:v0.15.0
+#    nodePort: 30132
+  port: 8000
+  resources:
+    requests:
+      cpu: 100m
+      memory: 100Mi
+
+storage:
+    numberOfReplicas: 1
+    dataLocality: "disabled"
+    dataSize: 5Gi
