@@ -20,60 +20,60 @@ spec:
                 app: mealie
         spec:
             containers:
-                - name: mealie
-                  image: {{ .image }}
-                  imagePullPolicy: IfNotPresent
+                -   name: mealie
+                    image: {{ .image }}
+                    imagePullPolicy: IfNotPresent
 {{- if .resources }}
-                  resources:
+                    resources:
 {{ toYaml .resources | indent 22 }}
 {{- end }}
-                  env:
-                      - name: PUID
-                        value: "1000"
-                      - name: GUID
-                        value: "1000"
-                      - name: TZ
-                        value: "Europe/Sofia"
-                      - name: RECIPE_PUBLIC
-                        value: "true"
-                      - name: RECIPE_SHOW_NUTRITION
-                        value: "true"
-                      - name: RECIPE_SHOW_ASSETS
-                        value: "true"
-                      - name: RECIPE_LANDSCAPE_VIEW
-                        value: "true"
-                      - name: RECIPE_DISABLE_COMMENTS
-                        value: "false"
-                      - name: RECIPE_DISABLE_AMOUNT
-                        value: "false"
+                    env:
+                        -   name: PUID
+                            value: "1000"
+                        -   name: GUID
+                            value: "1000"
+                        -   name: TZ
+                            value: "Europe/Sofia"
+                        -   name: RECIPE_PUBLIC
+                            value: "true"
+                        -   name: RECIPE_SHOW_NUTRITION
+                            value: "true"
+                        -   name: RECIPE_SHOW_ASSETS
+                            value: "true"
+                        -   name: RECIPE_LANDSCAPE_VIEW
+                            value: "true"
+                        -   name: RECIPE_DISABLE_COMMENTS
+                            value: "false"
+                        -   name: RECIPE_DISABLE_AMOUNT
+                            value: "false"
 
-                  ports:
-                      - name: web
-                        containerPort: {{ .port }}
-                  volumeMounts:
-                      - name: data
-                        mountPath: /app/data
-                  livenessProbe:
-                      failureThreshold: 2
-                      periodSeconds: 120
-                      initialDelaySeconds: 120
-                      successThreshold: 1
-                      tcpSocket:
-                          port: {{ .port }}
-                      timeoutSeconds: 2
-                  readinessProbe:
-                      failureThreshold: 10
-                      initialDelaySeconds: 30
-                      periodSeconds: 10
-                      timeoutSeconds: 2
-                      tcpSocket:
-                          port: {{ .port }}
+                    ports:
+                        -   name: web
+                            containerPort: {{ .port }}
+                    volumeMounts:
+                        -   name: data
+                            mountPath: /app/data
+                    livenessProbe:
+                        failureThreshold: 2
+                        periodSeconds: 120
+                        initialDelaySeconds: 120
+                        successThreshold: 1
+                        tcpSocket:
+                            port: {{ .port }}
+                        timeoutSeconds: 2
+                    readinessProbe:
+                        failureThreshold: 10
+                        initialDelaySeconds: 30
+                        periodSeconds: 10
+                        timeoutSeconds: 2
+                        tcpSocket:
+                            port: {{ .port }}
 
             restartPolicy: Always
             volumes:
-                - name: data
-                  persistentVolumeClaim:
-                      claimName: mealie-pvc
+                -   name: data
+                    persistentVolumeClaim:
+                        claimName: mealie-pvc
 
 ---
 
@@ -89,11 +89,11 @@ spec:
     selector:
         app: mealie
     ports:
-        - name: mealie
-          protocol: TCP
-          port: {{ .port }}
+        -   name: mealie
+            protocol: TCP
+            port: {{ .port }}
           {{- with .nodePort }}
-          nodePort: {{ . }}
+            nodePort: {{ . }}
           {{- end }}
 
 {{- end }}

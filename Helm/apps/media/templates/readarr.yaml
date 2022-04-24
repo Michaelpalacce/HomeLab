@@ -21,42 +21,42 @@ spec:
             nodeSelector:
                 type: media
             containers:
-                - name: readarr
-                  image: {{ .image }}
-                  imagePullPolicy: IfNotPresent
-                  env:
-                      - name: PUID
-                        value: "0"
-                      - name: GUID
-                        value: "0"
-                  resources:
-                      requests:
-                          cpu: 125m
-                          memory: 100Mi
-                      limits:
-                          cpu: 250m
-                          memory: 512Mi
-                  ports:
-                      - name: web
-                        containerPort: {{ .port }}
-                  volumeMounts:
-                      - name: app-data
-                        mountPath: /config
-                      - name: downloads-data
-                        mountPath: /downloads
-                      - name: books-data-nfs
-                        mountPath: /books
+                -   name: readarr
+                    image: {{ .image }}
+                    imagePullPolicy: IfNotPresent
+                    env:
+                        -   name: PUID
+                            value: "0"
+                        -   name: GUID
+                            value: "0"
+                    resources:
+                        requests:
+                            cpu: 125m
+                            memory: 100Mi
+                        limits:
+                            cpu: 250m
+                            memory: 512Mi
+                    ports:
+                        -   name: web
+                            containerPort: {{ .port }}
+                    volumeMounts:
+                        -   name: app-data
+                            mountPath: /config
+                        -   name: downloads-data
+                            mountPath: /downloads
+                        -   name: books-data-nfs
+                            mountPath: /books
             restartPolicy: Always
             volumes:
-                - name: app-data
-                  hostPath:
-                      path: /mnt/media/readarr
-                - name: books-data-nfs
-                  persistentVolumeClaim:
-                      claimName: books-volume-nfs
-                - name: downloads-data
-                  persistentVolumeClaim:
-                      claimName: downloads-volume
+                -   name: app-data
+                    hostPath:
+                        path: /mnt/media/readarr
+                -   name: books-data-nfs
+                    persistentVolumeClaim:
+                        claimName: books-volume-nfs
+                -   name: downloads-data
+                    persistentVolumeClaim:
+                        claimName: downloads-volume
 ---
 
 apiVersion: v1
@@ -71,11 +71,11 @@ spec:
     selector:
         app: readarr
     ports:
-        - name: readarr
-          protocol: TCP
-          port: {{ .port }}
+        -   name: readarr
+            protocol: TCP
+            port: {{ .port }}
           {{- with .nodePort }}
-          nodePort: {{ . }}
+            nodePort: {{ . }}
           {{- end }}
 
 {{- end }}

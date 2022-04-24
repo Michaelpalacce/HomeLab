@@ -20,33 +20,33 @@ spec:
             nodeSelector:
                 type: media
             containers:
-                - name: overseerr
-                  image: {{ .image }}
-                  imagePullPolicy: IfNotPresent
-                  env:
-                      - name: PUID
-                        value: "0"
-                      - name: GUID
-                        value: "0"
-                  resources:
-                      requests:
-                          cpu: 250m
-                          memory: 100Mi
-                      limits:
-                          cpu: 750m
-                          memory: 500Mi
-                  ports:
-                      - name: web
-                        containerPort: {{ .port }}
-                  volumeMounts:
-                      - name: config-data
-                        mountPath: /config
+                -   name: overseerr
+                    image: {{ .image }}
+                    imagePullPolicy: IfNotPresent
+                    env:
+                        -   name: PUID
+                            value: "0"
+                        -   name: GUID
+                            value: "0"
+                    resources:
+                        requests:
+                            cpu: 250m
+                            memory: 100Mi
+                        limits:
+                            cpu: 750m
+                            memory: 500Mi
+                    ports:
+                        -   name: web
+                            containerPort: {{ .port }}
+                    volumeMounts:
+                        -   name: config-data
+                            mountPath: /config
 
             restartPolicy: Always
             volumes:
-                - name: config-data
-                  hostPath:
-                      path: /mnt/media/overseerr
+                -   name: config-data
+                    hostPath:
+                        path: /mnt/media/overseerr
 ---
 
 apiVersion: v1
@@ -61,11 +61,11 @@ spec:
     selector:
         app: overseerr
     ports:
-        - name: overseerr
-          protocol: TCP
-          port: {{ .port }}
+        -   name: overseerr
+            protocol: TCP
+            port: {{ .port }}
           {{- with .nodePort }}
-          nodePort: {{ . }}
+            nodePort: {{ . }}
           {{- end }}
 
 {{- end }}

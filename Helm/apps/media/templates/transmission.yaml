@@ -21,63 +21,63 @@ spec:
             nodeSelector:
                 type: media
             containers:
-                - name: transmission
-                  image: {{ .image }}
-                  imagePullPolicy: IfNotPresent
-                  resources:
-                      requests:
-                          cpu: 250m
-                          memory: 256Mi
-                      limits:
-                          cpu: 500m
-                          memory: 512Mi
-                  env:
-                      - name: USER
-                        value: {{ .username }}
-                      - name: PASS
-                        value: {{ .password }}
-                      - name: PUID
-                        value: "1000"
-                      - name: GUID
-                        value: "1000"
-                  ports:
-                      - name: web
-                        containerPort: {{ .port }}
-                      - name: torrent-tcp
-                        protocol: TCP
-                        containerPort: 51413
-                      - name: torrent-udp
-                        protocol: UDP
-                        containerPort: 51413
-                  volumeMounts:
-                      - name: transmission-data
-                        mountPath: /config
-                      - name: downloads-data
-                        mountPath: /downloads
-                      - name: shows-data
-                        mountPath: /shows
-                      - name: books-data
-                        mountPath: /books
-                      - name: movies-data
-                        mountPath: /tv
+                -   name: transmission
+                    image: {{ .image }}
+                    imagePullPolicy: IfNotPresent
+                    resources:
+                        requests:
+                            cpu: 250m
+                            memory: 256Mi
+                        limits:
+                            cpu: 500m
+                            memory: 512Mi
+                    env:
+                        -   name: USER
+                            value: {{ .username }}
+                        -   name: PASS
+                            value: {{ .password }}
+                        -   name: PUID
+                            value: "1000"
+                        -   name: GUID
+                            value: "1000"
+                    ports:
+                        -   name: web
+                            containerPort: {{ .port }}
+                        -   name: torrent-tcp
+                            protocol: TCP
+                            containerPort: 51413
+                        -   name: torrent-udp
+                            protocol: UDP
+                            containerPort: 51413
+                    volumeMounts:
+                        -   name: transmission-data
+                            mountPath: /config
+                        -   name: downloads-data
+                            mountPath: /downloads
+                        -   name: shows-data
+                            mountPath: /shows
+                        -   name: books-data
+                            mountPath: /books
+                        -   name: movies-data
+                            mountPath: /tv
 
             restartPolicy: Always
             volumes:
-                - name: transmission-data
-                  hostPath:
-                      path: /mnt/media/transmission
-                - name: downloads-data
-                  persistentVolumeClaim:
-                      claimName: downloads-volume
-                - name: shows-data
-                  persistentVolumeClaim:
-                    claimName: shows-volume-nfs
-                - name: books-data
-                  persistentVolumeClaim:
-                    claimName: books-volume-nfs
-                - name: movies-data
-                  persistentVolumeClaim:
-                    claimName: movies-volume-nfs
+                -   name: transmission-data
+                    hostPath:
+                        path: /mnt/media/transmission
+                -   name: downloads-data
+                    persistentVolumeClaim:
+                        claimName: downloads-volume
+                -   name: shows-data
+                    persistentVolumeClaim:
+                        claimName: shows-volume-nfs
+                -   name: books-data
+                    persistentVolumeClaim:
+                        claimName: books-volume-nfs
+                -   name: movies-data
+                    persistentVolumeClaim:
+                        claimName: movies-volume-nfs
 
 ---
 
@@ -93,11 +93,11 @@ spec:
     selector:
         app: transmission
     ports:
-        - name: transmission
-          protocol: TCP
-          port: {{ .port }}
+        -   name: transmission
+            protocol: TCP
+            port: {{ .port }}
           {{- with .nodePort }}
-          nodePort: {{ . }}
+            nodePort: {{ . }}
           {{- end }}
 
 

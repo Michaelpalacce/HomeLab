@@ -8,77 +8,77 @@ metadata:
         kubernetes.io/ingress.class: "nginx"
 spec:
     tls:
-        - hosts:
-              - "*.stefangenov.site"
-          secretName: ingress
+        -   hosts:
+                - "*.stefangenov.site"
+            secretName: ingress
     rules:
-        - host: sonarr.stefangenov.site
-          http:
-              paths:
-                  - pathType: Prefix
-                    path: "/"
-                    backend:
-                        service:
-                            name: sonarr
-                            port:
-                                number: {{ .Values.sonarr.port }}
-        - host: bazarr.stefangenov.site
-          http:
-              paths:
-                  - pathType: Prefix
-                    path: "/"
-                    backend:
-                        service:
-                            name: bazarr
-                            port:
-                                number: {{ .Values.bazarr.port }}
-        - host: readarr.stefangenov.site
-          http:
-              paths:
-                  - pathType: Prefix
-                    path: "/"
-                    backend:
-                        service:
-                            name: readarr
-                            port:
-                                number: {{ .Values.readarr.port }}
-        - host: radarr.stefangenov.site
-          http:
-              paths:
-                  - pathType: Prefix
-                    path: "/"
-                    backend:
-                        service:
-                            name: radarr
-                            port:
-                                number: {{ .Values.radarr.port }}
-        - host: overseerr.stefangenov.site
-          http:
-              paths:
-                  - pathType: Prefix
-                    path: "/"
-                    backend:
-                        service:
-                            name: overseerr
-                            port:
-                                number: {{ .Values.overseerr.port }}
-        - host: transmission.stefangenov.site
-          http:
-              paths:
-                  - pathType: Prefix
-                    path: "/"
-                    backend:
-                        service:
-                            name: transmission
-                            port:
-                                number: {{ .Values.transmission.port }}
-        - host: plex.stefangenov.site
-          http:
-              paths:
-                  - pathType: Prefix
-                    path: "/"
-                    backend:
-                        service:
-                            name: plex
-                            port:
-                                number: {{ .Values.plex.port }}
+        -   host: sonarr.stefangenov.site
+            http:
+                paths:
+                    -   pathType: Prefix
+                        path: "/"
+                        backend:
+                            service:
+                                name: sonarr
+                                port:
+                                    number: {{ .Values.sonarr.port }}
+        -   host: bazarr.stefangenov.site
+            http:
+                paths:
+                    -   pathType: Prefix
+                        path: "/"
+                        backend:
+                            service:
+                                name: bazarr
+                                port:
+                                    number: {{ .Values.bazarr.port }}
+        -   host: readarr.stefangenov.site
+            http:
+                paths:
+                    -   pathType: Prefix
+                        path: "/"
+                        backend:
+                            service:
+                                name: readarr
+                                port:
+                                    number: {{ .Values.readarr.port }}
+        -   host: radarr.stefangenov.site
+            http:
+                paths:
+                    -   pathType: Prefix
+                        path: "/"
+                        backend:
+                            service:
+                                name: radarr
+                                port:
+                                    number: {{ .Values.radarr.port }}
+        -   host: overseerr.stefangenov.site
+            http:
+                paths:
+                    -   pathType: Prefix
+                        path: "/"
+                        backend:
+                            service:
+                                name: overseerr
+                                port:
+                                    number: {{ .Values.overseerr.port }}
+        -   host: transmission.stefangenov.site
+            http:
+                paths:
+                    -   pathType: Prefix
+                        path: "/"
+                        backend:
+                            service:
+                                name: transmission
+                                port:
+                                    number: {{ .Values.transmission.port }}
+        -   host: plex.stefangenov.site
+            http:
+                paths:
+                    -   pathType: Prefix
+                        path: "/"
+                        backend:
+                            service:
+                                name: plex
+                                port:
+                                    number: {{ .Values.plex.port }}
