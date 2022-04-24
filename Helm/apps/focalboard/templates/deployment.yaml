@@ -16,6 +16,7 @@ spec:
     template:
         metadata:
             annotations:
+                backup.velero.io/backup-volumes: app-data
                 {{- with $ }}
                 checksum/config: {{ include (print $.Template.BasePath "/focalboard-config.yaml") . | sha256sum }}
                 {{- end }}

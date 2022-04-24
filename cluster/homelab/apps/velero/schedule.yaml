@@ -17,6 +17,7 @@ spec:
       - trilium
       - mealie
       - monitoring
+      - focalboard
     snapshotVolumes: true
     ttl: 168h0m0s
   useOwnerReferencesInBackup: false
