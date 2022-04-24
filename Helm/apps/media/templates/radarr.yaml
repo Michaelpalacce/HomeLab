@@ -31,11 +31,8 @@ spec:
                             value: "0"
                     resources:
                         requests:
-                            cpu: 125m
-                            memory: 100Mi
-                        limits:
                             cpu: 250m
-                            memory: 512Mi
+                            memory: 100Mi
                     ports:
                         -   name: web
                             containerPort: {{ .port }}
