@@ -62,9 +62,9 @@ metadata:
     name: readarr
     namespace: {{ $.Release.Namespace }}
 spec:
-    {{- with .nodePort }}
+{{- with .nodePort }}
     type: NodePort
-    {{- end }}
+{{- end }}
     selector:
         app: readarr
     ports:
