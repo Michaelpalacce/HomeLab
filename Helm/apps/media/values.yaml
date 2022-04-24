@@ -41,7 +41,7 @@ plex:
     port: 32400
     resources:
         requests:
-            cpu: 1000m
+            cpu: 500m
             memory: 1Gi
         limits:
             cpu: 4
