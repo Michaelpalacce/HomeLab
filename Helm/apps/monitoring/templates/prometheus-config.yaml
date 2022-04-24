@@ -31,6 +31,12 @@ data:
             static_configs:
                 - targets: ['speedtest.monitoring:{{ $.Values.speedtest.port }}']
 
+          - job_name: 'uptimekuma'
+            scrape_interval: 1m
+            scheme: http
+            static_configs:
+                - targets: ['uptimekuma.uptimekuma']
+
           - job_name: 'kubernetes-nodes'
             scheme: https
             tls_config:
