@@ -35,7 +35,7 @@ data:
             scrape_interval: 1m
             scheme: http
             static_configs:
-                - targets: ['uptimekuma.uptimekuma']
+                - targets: ['uptimekuma.uptimekuma:3001']
 
           - job_name: 'kubernetes-nodes'
             scheme: https
