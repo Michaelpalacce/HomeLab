@@ -21,43 +21,40 @@ spec:
             nodeSelector:
                 type: media
             containers:
-                - name: sonarr
-                  image: {{ .image }}
-                  imagePullPolicy: IfNotPresent
-                  env:
-                      - name: PUID
-                        value: "0"
-                      - name: GUID
-                        value: "0"
-                  resources:
-                      requests:
-                          cpu: 250m
-                          memory: 100Mi
-                      limits:
-                          cpu: 500m
-                          memory: 1Gi
-                  ports:
-                      - name: web
-                        containerPort: {{ .port }}
-                  volumeMounts:
-                      - name: config-data
-                        mountPath: /config
-                      - name: downloads-data
-                        mountPath: /downloads
-                      - name: shows-data-nfs
-                        mountPath: /shows
+                -   name: sonarr
+                    image: {{ .image }}
+                    imagePullPolicy: IfNotPresent
+                    env:
+                        -   name: PUID
+                            value: "0"
+                        -   name: GUID
+                            value: "0"
+                    resources:
+                        requests:
+                            cpu: 250m
+                            memory: 100Mi
+                    ports:
+                        -   name: web
+                            containerPort: {{ .port }}
+                    volumeMounts:
+                        -   name: config-data
+                            mountPath: /config
+                        -   name: downloads-data
+                            mountPath: /downloads
+                        -   name: shows-data-nfs
+                            mountPath: /shows
 
             restartPolicy: Always
             volumes:
-                - name: config-data
-                  hostPath:
-                      path: /mnt/media/sonarr
-                - name: shows-data-nfs
-                  persistentVolumeClaim:
-                      claimName: shows-volume-nfs
-                - name: downloads-data
-                  persistentVolumeClaim:
-                      claimName: downloads-volume
+                -   name: config-data
+                    hostPath:
+                        path: /mnt/media/sonarr
+                -   name: shows-data-nfs
+                    persistentVolumeClaim:
+                        claimName: shows-volume-nfs
+                -   name: downloads-data
+                    persistentVolumeClaim:
+                        claimName: downloads-volume
 ---
 
 apiVersion: v1
@@ -72,11 +69,11 @@ spec:
     selector:
         app: sonarr
     ports:
-        - name: sonarr
-          protocol: TCP
-          port: {{ .port }}
+        -   name: sonarr
+            protocol: TCP
+            port: {{ .port }}
           {{- with .nodePort }}
-          nodePort: {{ . }}
+            nodePort: {{ . }}
           {{- end }}
 
 {{- end }}

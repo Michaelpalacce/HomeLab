@@ -8,27 +8,27 @@ metadata:
         nginx.ingress.kubernetes.io/proxy-body-size: "0"
 spec:
     tls:
-        - hosts:
-              - "*.stefangenov.site"
-          secretName: ingress
+        -   hosts:
+                - "*.stefangenov.site"
+            secretName: ingress
     rules:
-        - host: mealie.stefangenov.site
-          http:
-              paths:
-                  - pathType: Prefix
-                    path: "/"
-                    backend:
-                        service:
-                            name: mealie
-                            port:
-                                number: {{ .Values.mealie.port }}
-        - host: recipes.stefangenov.site
-          http:
-              paths:
-                  - pathType: Prefix
-                    path: "/"
-                    backend:
-                        service:
-                            name: mealie
-                            port:
-                                number: {{ .Values.mealie.port }}
+        -   host: mealie.stefangenov.site
+            http:
+                paths:
+                    -   pathType: Prefix
+                        path: "/"
+                        backend:
+                            service:
+                                name: mealie
+                                port:
+                                    number: {{ .Values.mealie.port }}
+        -   host: recipes.stefangenov.site
+            http:
+                paths:
+                    -   pathType: Prefix
+                        path: "/"
+                        backend:
+                            service:
+                                name: mealie
+                                port:
+                                    number: {{ .Values.mealie.port }}

@@ -21,40 +21,37 @@ spec:
             nodeSelector:
                 type: media
             containers:
-                - name: jackett
-                  image: {{ .image }}
-                  imagePullPolicy: IfNotPresent
-                  env:
-                      - name: PUID
-                        value: "1000"
-                      - name: GUID
-                        value: "1000"
-                  resources:
-                      requests:
-                          cpu: 100m
-                          memory: 100Mi
-                      limits:
-                          cpu: 750m
-                          memory: 1Gi
-                  ports:
-                      - name: web
-                        containerPort: {{ .port }}
-                  volumeMounts:
-                      - name: app-data
-                        mountPath: /config
-                  livenessProbe:
-                      failureThreshold: 2
-                      initialDelaySeconds: 120
-                      timeoutSeconds: 5
-                      periodSeconds: 120
-                      tcpSocket:
-                          port: {{ .port }}
+                -   name: jackett
+                    image: {{ .image }}
+                    imagePullPolicy: IfNotPresent
+                    env:
+                        -   name: PUID
+                            value: "1000"
+                        -   name: GUID
+                            value: "1000"
+                    resources:
+                        requests:
+                            cpu: 250m
+                            memory: 200Mi
+                    ports:
+                        -   name: web
+                            containerPort: {{ .port }}
+                    volumeMounts:
+                        -   name: app-data
+                            mountPath: /config
+                    livenessProbe:
+                        failureThreshold: 2
+                        initialDelaySeconds: 120
+                        timeoutSeconds: 5
+                        periodSeconds: 120
+                        tcpSocket:
+                            port: {{ .port }}
 
             restartPolicy: Always
             volumes:
-                - name: app-data
-                  hostPath:
-                      path: /mnt/media/jackett
+                -   name: app-data
+                    hostPath:
+                        path: /mnt/media/jackett
 
 ---
 
@@ -68,9 +65,9 @@ spec:
     selector:
         app: jackett
     ports:
-        - name: jackett
-          protocol: TCP
-          port: {{ .port }}
-          nodePort: {{ .nodePort }}
+        -   name: jackett
+            protocol: TCP
+            port: {{ .port }}
+            nodePort: {{ .nodePort }}
 
 {{- end }}

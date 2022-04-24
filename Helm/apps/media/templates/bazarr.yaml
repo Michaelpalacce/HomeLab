@@ -20,43 +20,40 @@ spec:
             nodeSelector:
                 type: media
             containers:
-                - name: bazarr
-                  image: {{ .image }}
-                  imagePullPolicy: IfNotPresent
-                  env:
-                      - name: PUID
-                        value: "0"
-                      - name: GUID
-                        value: "0"
-                  resources:
-                      requests:
-                          cpu: 100m
-                          memory: 100Mi
-                      limits:
-                          cpu: 500m
-                          memory: 500Mi
-                  ports:
-                      - name: web
-                        containerPort: {{ .port }}
-                  volumeMounts:
-                      - name: config-data
-                        mountPath: /config
-                      - name: shows-data-nfs
-                        mountPath: /shows
-                      - name: movies-data-nfs
-                        mountPath: /tv
+                -   name: bazarr
+                    image: {{ .image }}
+                    imagePullPolicy: IfNotPresent
+                    env:
+                        -   name: PUID
+                            value: "0"
+                        -   name: GUID
+                            value: "0"
+                    resources:
+                        requests:
+                            cpu: 100m
+                            memory: 100Mi
+                    ports:
+                        -   name: web
+                            containerPort: {{ .port }}
+                    volumeMounts:
+                        -   name: config-data
+                            mountPath: /config
+                        -   name: shows-data-nfs
+                            mountPath: /shows
+                        -   name: movies-data-nfs
+                            mountPath: /tv
 
             restartPolicy: Always
             volumes:
-                - name: config-data
-                  hostPath:
-                      path: /mnt/media/bazarr
-                - name: shows-data-nfs
-                  persistentVolumeClaim:
-                      claimName: shows-volume-nfs
-                - name: movies-data-nfs
-                  persistentVolumeClaim:
-                      claimName: movies-volume-nfs
+                -   name: config-data
+                    hostPath:
+                        path: /mnt/media/bazarr
+                -   name: shows-data-nfs
+                    persistentVolumeClaim:
+                        claimName: shows-volume-nfs
+                -   name: movies-data-nfs
+                    persistentVolumeClaim:
+                        claimName: movies-volume-nfs
 ---
 apiVersion: v1
 kind: Service
@@ -70,11 +67,11 @@ spec:
     selector:
         app: bazarr
     ports:
-        - name: bazarr
-          protocol: TCP
-          port: {{ .port }}
+        -   name: bazarr
+            protocol: TCP
+            port: {{ .port }}
           {{- with .nodePort }}
-          nodePort: {{ . }}
+            nodePort: {{ . }}
           {{- end }}
 
 {{- end }}
