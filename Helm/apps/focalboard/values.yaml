@@ -1,6 +1,6 @@
 ---
 focalboard:
-    image: stefangenov/focalboard:v0.15.0
+    image: stefangenov/focalboard:v0.16.0
 #    nodePort: 30132
     port: 8000
     replicas: 1
