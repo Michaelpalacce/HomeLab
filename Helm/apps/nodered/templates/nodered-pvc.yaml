@@ -12,7 +12,6 @@ parameters:
     fromBackup: ""
 
 ---
-
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -28,34 +27,33 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-    name: backup-nfs-pv
+    name: nas-pv
     labels:
         type: nfs
-        app: shows
+        app: nodered-nas
 spec:
     storageClassName: nfs-direct
     capacity:
-        storage: 50Gi
+        storage: 100Gi
     accessModes:
         - ReadWriteMany
     nfs:
-        path: "/volume1/k3s/backup"
+        path: "/volume1/k3s"
         server: {{ .Values.storage.nasIp }}
-
 ---
 
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-    name: backup-nfs
+    name: nas
 spec:
     selector:
         matchLabels:
             type: nfs
-            app: shows
+            app: nodered-nas
     storageClassName: nfs-direct
     accessModes:
         - ReadWriteMany
     resources:
         requests:
-            storage: 50Gi
+            storage: 100Gi

@@ -34,8 +34,8 @@ spec:
                   volumeMounts:
                       - name: data-config
                         mountPath: /data
-                      - name: backup
-                        mountPath: /backup
+                      - name: nas
+                        mountPath: /nas
                   livenessProbe:
                       failureThreshold: 2
                       initialDelaySeconds: 120
@@ -56,9 +56,9 @@ spec:
                 - name: data-config
                   persistentVolumeClaim:
                       claimName: nodered-pvc
-                - name: backup
+                - name: nas
                   persistentVolumeClaim:
-                      claimName: backup-nfs
+                      claimName: nas
 
 ---
 
