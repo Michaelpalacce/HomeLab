@@ -35,17 +35,17 @@ sonarr:
     image: linuxserver/sonarr:version-3.0.7.1477
     port: 8989
 
-plex:
-#    nodePort: 31009
-    image: lscr.io/linuxserver/plex:1.26.0
-    port: 32400
-    resources:
-        requests:
-            cpu: 500m
-            memory: 1Gi
-        limits:
-            cpu: 4
-            memory: 8Gi
+#plex:
+##    nodePort: 31009
+#    image: lscr.io/linuxserver/plex:1.26.0
+#    port: 32400
+#    resources:
+#        requests:
+#            cpu: 500m
+#            memory: 1Gi
+#        limits:
+#            cpu: 4
+#            memory: 8Gi
 
 
 bazarr:
