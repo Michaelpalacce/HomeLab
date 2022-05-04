@@ -104,10 +104,6 @@ data:
             statusCheckUrl: https://plex.{{ .domainName }}/identity
       - name: Knowledge Base And Tasks
         items:
-          - title: Wiki.JS
-            description: Self hosted wiki
-            icon: hl-wikijs
-            url: https://wikijs.{{ .domainName }}
           - title: Vikunja
             description: Tasks
             icon: hl-vikunja
