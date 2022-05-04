@@ -67,11 +67,6 @@ data:
 
       - name: Automation
         items:
-          - title: N8N
-            description: Self hosted IFTTT
-            icon: hl-n8n
-            url: https://n8n.{{ .domainName }}
-            statusCheck: false
           - title: Node-Red
             description: Low-code automation
             icon: hl-nodered
@@ -105,7 +100,8 @@ data:
           - title: Plex
             description: Stream Linux ISOs To My TV
             icon: hl-plex
-            url: https://plex.{{ .domainName }}/identity
+            url: https://plex.{{ .domainName }}
+            statusCheckUrl: https://plex.{{ .domainName }}/identity
       - name: Knowledge Base And Tasks
         items:
           - title: Wiki.JS
