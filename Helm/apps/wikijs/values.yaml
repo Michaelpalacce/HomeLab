@@ -1,7 +1,6 @@
 ---
 wikijs:
-  replicas: 1
-  image: requarks/wiki:2.5.279
+  image: requarks/wiki:2.5.280
 #    nodePort: 30111
   port: 3000
   resources:

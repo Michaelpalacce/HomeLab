@@ -12,7 +12,7 @@ transmission:
 jackett:
     nodePort: 30034
     replicas: 1
-    image: linuxserver/jackett:0.20.993
+    image: linuxserver/jackett:0.20.1005
     port: 9117
 
 radarr:
@@ -50,5 +50,5 @@ sonarr:
 
 bazarr:
 #    nodePort: 31007
-    image: linuxserver/bazarr:1.0.4-development
+    image: linuxserver/bazarr:1.0.5-development
     port: 6767
