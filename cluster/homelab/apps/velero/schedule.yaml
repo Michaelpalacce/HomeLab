@@ -19,5 +19,5 @@ spec:
       - monitoring
       - focalboard
     snapshotVolumes: true
-    ttl: 168h0m0s
+    ttl: 72h0m0s
   useOwnerReferencesInBackup: false
