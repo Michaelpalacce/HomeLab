@@ -52,7 +52,7 @@ spec:
                       claimName: loki-pvc
                 - name: loki-logs
                   persistentVolumeClaim:
-                      claimName: loki-logs-nfs
+                      claimName: loki-logs
                 - name: loki-config
                   configMap:
                       name: loki-config

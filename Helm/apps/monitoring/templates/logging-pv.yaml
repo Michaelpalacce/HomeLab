@@ -33,39 +33,15 @@ spec:
 ---
 
 apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: prometheus-nfs-pv
-  labels:
-    type: nfs
-    app: prometheus
-spec:
-  storageClassName: nfs-direct
-  capacity:
-    storage: 50Gi
-  accessModes:
-    - ReadWriteMany
-  nfs:
-    path: "/volume1/k3s/monitoring/prometheus"
-    server: 192.168.1.20
-
----
-
-apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: prometheus-nfs
+  name: prometheus
 spec:
-  selector:
-    matchLabels:
-      app: prometheus
-      type: nfs
-  storageClassName: nfs-direct
   accessModes:
     - ReadWriteMany
   resources:
     requests:
-      storage: 50Gi
+      storage: 10Gi
 
 {{- end }}
 
@@ -86,39 +62,15 @@ spec:
 ---
 
 apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: loki-logs-nfs-pv
-  labels:
-    type: nfs
-    app: loki
-spec:
-  storageClassName: nfs-direct
-  capacity:
-    storage: 50Gi
-  accessModes:
-    - ReadWriteMany
-  nfs:
-    path: "/volume1/k3s/monitoring/loki"
-    server: 192.168.1.20
-
----
-
-apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: loki-logs-nfs
+  name: loki-logs
 spec:
-  selector:
-    matchLabels:
-      app: loki
-      type: nfs
-  storageClassName: nfs-direct
   accessModes:
     - ReadWriteMany
   resources:
     requests:
-      storage: 50Gi
+      storage: 25Gi
 
 {{- end }}
 
