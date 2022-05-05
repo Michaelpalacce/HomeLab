@@ -64,8 +64,8 @@ spec:
                               - exec pg_isready -U "postgres" -h 127.0.0.1 -p {{ .port }}
                       failureThreshold: 2
                       initialDelaySeconds: 120
-                      periodSeconds: 30
-                      timeoutSeconds: 5
+                      periodSeconds: 60
+                      timeoutSeconds: 30
                   readinessProbe:
                       exec:
                           command:
@@ -74,8 +74,8 @@ spec:
                               - exec pg_isready -U "postgres" -h 127.0.0.1 -p {{ .port }}
                       failureThreshold: 10
                       initialDelaySeconds: 30
-                      periodSeconds: 5
-                      timeoutSeconds: 5
+                      periodSeconds: 60
+                      timeoutSeconds: 30
 {{- if .resources }}
                   resources:
 {{ toYaml .resources | indent 22 }}
