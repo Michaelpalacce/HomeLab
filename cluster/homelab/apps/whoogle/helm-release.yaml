@@ -18,4 +18,4 @@ spec:
                 namespace: flux-system
     values:
         whoogle:
-            replicas: 2
+            replicas: 1
