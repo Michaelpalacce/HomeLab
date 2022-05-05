@@ -66,16 +66,7 @@ spec:
                       initialDelaySeconds: 120
                       periodSeconds: 60
                       timeoutSeconds: 30
-                  readinessProbe:
-                      exec:
-                          command:
-                              - /bin/sh
-                              - -c
-                              - exec pg_isready -U "postgres" -h 127.0.0.1 -p {{ .port }}
-                      failureThreshold: 10
-                      initialDelaySeconds: 30
-                      periodSeconds: 60
-                      timeoutSeconds: 30
+
 {{- if .resources }}
                   resources:
 {{ toYaml .resources | indent 22 }}
