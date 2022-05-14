@@ -1,0 +1,78 @@
+{{- with .Values.audiobookshelf }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: audiobookshelf
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app: audiobookshelf
+spec:
+    replicas: {{ .replicas }}
+    selector:
+        matchLabels:
+            app: audiobookshelf
+    template:
+        metadata:
+            labels:
+                app: audiobookshelf
+        spec:
+            nodeSelector:
+                type: media
+            containers:
+                -   name: audiobookshelf
+                    image: {{ .image }}
+                    imagePullPolicy: IfNotPresent
+                    env:
+                        - name: PUID
+                          value: "99"
+                        - name: GUID
+                          value: "100"
+                    resources:
+                        requests:
+                            cpu: 250m
+                            memory: 100Mi
+                    ports:
+                        - name: web
+                          containerPort: {{ .port }}
+                    volumeMounts:
+                        - name: config-data
+                          mountPath: /config
+                        - name: metadata-data
+                          mountPath: /metadata
+                        - name: books-data-nfs
+                          mountPath: /audiobooks
+
+            restartPolicy: Always
+            volumes:
+                - name: config-data
+                  hostPath:
+                      path: /mnt/media/audiobookshelf/config
+                - name: metadata-data
+                  hostPath:
+                      path: /mnt/media/audiobookshelf/metadata
+                - name: books-data-nfs
+                  persistentVolumeClaim:
+                    claimName: books-volume-nfs
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: audiobookshelf
+    namespace: {{ $.Release.Namespace }}
+spec:
+    {{- with .nodePort }}
+    type: NodePort
+    {{- end }}
+    selector:
+        app: audiobookshelf
+    ports:
+        -   name: audiobookshelf
+            protocol: TCP
+            port: {{ .port }}
+          {{- with .nodePort }}
+            nodePort: {{ . }}
+          {{- end }}
+
+{{- end }}

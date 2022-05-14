@@ -52,3 +52,8 @@ bazarr:
 #    nodePort: 31007
     image: linuxserver/bazarr:1.0.5-development
     port: 6767
+
+audiobookshelf:
+#    nodePort: 31009
+    image: ghcr.io/advplyr/audiobookshelf:2.0.13
+    port: 80
