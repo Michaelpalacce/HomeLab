@@ -49,9 +49,9 @@ spec:
 
             restartPolicy: Always
             volumes:
-                -   name: app-data
-                    hostPath:
-                        path: /mnt/media/jackett
+                - name: app-data
+                  hostPath:
+                      path: /mnt/media/jackett
 
 ---
 
