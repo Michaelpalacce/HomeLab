@@ -30,6 +30,10 @@ data:
             description: Budget Buddy!
             icon: hl-firefly
             url: https://firefly.{{ .domainName }}/login
+          - title: Mealie
+            description: Recipe Manager
+            icon: hl-mealie
+            url: https://mealie.{{ .domainName }}
           - title: Snapdrop
             description: Share files on local network
             icon: favicon
@@ -38,14 +42,14 @@ data:
             description: Time Tracker
             icon: https://raw.githubusercontent.com/overshard/timelite/master/public/static/logo.png
             url: https://timelite.app/
-          - title: Mealie
-            description: Recipe Manager
-            icon: hl-mealie
-            url: https://mealie.{{ .domainName }}
           - title: Worldtime Buddy
             description: Timezone Manager
             icon: favicon
             url: https://www.worldtimebuddy.com/
+          - title: Chalk.ist
+            description: Beautiful Code Images
+            icon: favicon
+            url: https://chalk.ist/
 
       - name: News
         items:
@@ -102,6 +106,10 @@ data:
             icon: hl-plex
             url: https://plex.{{ .domainName }}
             statusCheckUrl: https://plex.{{ .domainName }}/identity
+          - title: AudioBookShelf
+            description: Audiobook Streams
+            icon: hl-audiobookshelf
+            url: https://audiobookshelf.{{ .domainName }}
       - name: Knowledge Base And Tasks
         items:
           - title: Vikunja
