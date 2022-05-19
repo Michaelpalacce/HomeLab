@@ -49,6 +49,8 @@ spec:
                   volumeMounts:
                       - name: app-config
                         mountPath: /config
+                      - name: data-volume
+                        mountPath: /data
                       - name: nfs-volume
                         mountPath: /volume1
 
