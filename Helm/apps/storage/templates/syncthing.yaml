@@ -49,8 +49,8 @@ spec:
                   volumeMounts:
                       - name: app-config
                         mountPath: /config
-                      - name: data-volume
-                        mountPath: /data
+                      - name: nfs-volume
+                        mountPath: /volume1
 
             restartPolicy: Always
             volumes:
@@ -60,6 +60,9 @@ spec:
                 - name: data-volume
                   persistentVolumeClaim:
                       claimName: syncthing-data-nfs
+                - name: nfs-volume
+                  persistentVolumeClaim:
+                      claimName: serveremulator-data-nfs
 
 ---
 
