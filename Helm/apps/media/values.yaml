@@ -55,5 +55,5 @@ bazarr:
 
 audiobookshelf:
 #    nodePort: 31009
-    image: ghcr.io/advplyr/audiobookshelf:2.0.15
+    image: ghcr.io/advplyr/audiobookshelf:2.0.17
     port: 80
