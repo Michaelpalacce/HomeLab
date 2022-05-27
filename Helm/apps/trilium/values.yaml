@@ -1,6 +1,6 @@
 ---
 trilium:
-    image: zadam/trilium:0.51-latest
+    image: zadam/trilium:0.52-latest
     replicas: 1
     #    nodePort: 30122
     port: 8080
