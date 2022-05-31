@@ -32,7 +32,7 @@ readarr:
 
 sonarr:
 #    nodePort: 31004
-    image: linuxserver/sonarr:version-3.0.8.1507
+    image: linuxserver/sonarr:3.0.8.1507-ls148
     port: 8989
 
 #plex:
