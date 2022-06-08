@@ -1,6 +1,6 @@
 ---
 redis:
-  image: redis:7.0.0
+  image: redis:7.0.1
   replicas: 1
   port: 6379
   resources:
