@@ -1,6 +1,6 @@
 ---
 cyberchef:
-  image: mpepping/cyberchef:v9.38.9
+  image: mpepping/cyberchef:v9.39.1
 #    nodePort: 30123
   port: 8000
   resources:
