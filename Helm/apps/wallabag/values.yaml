@@ -1,6 +1,6 @@
 ---
 wallabag:
-  image: stefangenov/wallabag:2.4.3    # official image does not have an ARM build :)
+  image: stefangenov/wallabag:2.5.1    # official image does not have an ARM build :)
   nodePort: 30116
   replicas: 0
   port: 80
