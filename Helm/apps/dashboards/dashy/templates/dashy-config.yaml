@@ -185,6 +185,10 @@ data:
 
       - name: Networking
         items:
+            - title: Pi Alert
+              description: Network Intrusion Detection
+              icon: hl-pi-alert
+              url: https://pialert.{{ .domainName }}/pialert
             - title: Router
               description: Router location
               icon: hl-router
