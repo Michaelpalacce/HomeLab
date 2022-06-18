@@ -29,7 +29,7 @@ spec:
         kubectl:
             image:
                repository: stefangenov/kubectl
-               tag: v1.23.6
+               tag: v1.24.1
         initContainers:
             - name: velero-plugin-for-aws
               image: velero/velero-plugin-for-aws:v1.4.1
