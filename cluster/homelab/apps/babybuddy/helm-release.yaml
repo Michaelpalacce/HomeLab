@@ -18,5 +18,5 @@ spec:
                 namespace: flux-system
     values:
         babybuddy:
-            image: linuxserver/babybuddy:1.10.2
+            image: linuxserver/babybuddy:1.11.1
             replicas: 0

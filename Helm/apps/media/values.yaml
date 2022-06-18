@@ -12,7 +12,7 @@ transmission:
 jackett:
     nodePort: 30034
     replicas: 1
-    image: linuxserver/jackett:0.20.1053
+    image: linuxserver/jackett:0.20.1197
     port: 9117
 
 radarr:
@@ -22,7 +22,7 @@ radarr:
 
 overseerr:
 #    nodePort: 31008
-    image: linuxserver/overseerr:2021.12.12
+    image: linuxserver/overseerr:1.29.1
     port: 5055
 
 readarr:
@@ -32,7 +32,7 @@ readarr:
 
 sonarr:
 #    nodePort: 31004
-    image: linuxserver/sonarr:version-3.0.7.1477
+    image: linuxserver/sonarr:3.0.8.1507-ls148
     port: 8989
 
 #plex:
@@ -55,5 +55,5 @@ bazarr:
 
 audiobookshelf:
 #    nodePort: 31009
-    image: ghcr.io/advplyr/audiobookshelf:2.0.13
+    image: ghcr.io/advplyr/audiobookshelf:2.0.21
     port: 80
