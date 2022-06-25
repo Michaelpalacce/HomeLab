@@ -14,7 +14,7 @@ spec:
     chart:
         spec:
             chart: tigera-operator
-            version: v3.23.1
+            version: v3.23.2
             interval: 5m
             sourceRef:
                 kind: HelmRepository
