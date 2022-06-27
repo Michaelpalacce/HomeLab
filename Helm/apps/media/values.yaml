@@ -22,7 +22,7 @@ radarr:
 
 overseerr:
 #    nodePort: 31008
-    image: linuxserver/overseerr:1.29.1
+    image: linuxserver/overseerr:2021.12.12
     port: 5055
 
 readarr:
