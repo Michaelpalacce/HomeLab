@@ -50,7 +50,7 @@ sonarr:
 
 bazarr:
 #    nodePort: 31007
-    image: linuxserver/bazarr:1.0.5-development
+    image: linuxserver/bazarr:1.1.0-development
     port: 6767
 
 audiobookshelf:
