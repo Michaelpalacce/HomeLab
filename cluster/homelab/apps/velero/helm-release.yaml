@@ -18,7 +18,7 @@ spec:
     chart:
         spec:
             chart: velero
-            version: 2.29.8
+            version: 2.30.1
             interval: 5m
             sourceRef:
                 kind: HelmRepository
@@ -32,7 +32,7 @@ spec:
                tag: v1.24.1
         initContainers:
             - name: velero-plugin-for-aws
-              image: velero/velero-plugin-for-aws:v1.4.1
+              image: velero/velero-plugin-for-aws:v1.5.0
               volumeMounts:
                   - mountPath: /target
                     name: plugins
