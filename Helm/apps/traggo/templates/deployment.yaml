@@ -13,10 +13,12 @@ spec:
         matchLabels:
             app: traggo
     template:
+
         metadata:
             labels:
                 app: traggo
         spec:
+            enableServiceLinks: false
             containers:
                 - name: traggo
                   image: {{ .image }}
