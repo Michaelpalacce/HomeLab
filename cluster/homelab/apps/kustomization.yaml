@@ -30,6 +30,7 @@ resources:
   - emulatorjs
   - dailynotes
   - cert-manager
+  - traggo
   - velero
   - redis
   - focalboard
