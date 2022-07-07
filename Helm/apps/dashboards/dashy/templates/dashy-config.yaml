@@ -42,6 +42,10 @@ data:
             description: Time Tracker
             icon: https://raw.githubusercontent.com/overshard/timelite/master/public/static/logo.png
             url: https://timelite.app/
+          - title: Traggo
+            description: Self Hosted Time Tracker
+            icon: https://github.com/traggo/logo/blob/master/logo.png?raw=true
+            url: https://traggo.{{ .domainName }}
           - title: Worldtime Buddy
             description: Timezone Manager
             icon: favicon
@@ -110,6 +114,10 @@ data:
             description: Audiobook Streams
             icon: hl-audiobookshelf
             url: https://audiobookshelf.{{ .domainName }}
+          - title: Jelu
+            description: Book Tracking
+            icon: https://raw.githubusercontent.com/bayang/jelu/main/src/jelu-ui/public/favicon.ico
+            url: https://jelu.{{ .domainName }}
       - name: Knowledge Base And Tasks
         items:
           - title: Vikunja

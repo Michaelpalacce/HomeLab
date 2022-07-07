@@ -20,6 +20,7 @@ resources:
   - trilium
   - uptimekuma
   - vaultwarden
+  - jelu
   - vikunja
   - wallabag
   - whoogle

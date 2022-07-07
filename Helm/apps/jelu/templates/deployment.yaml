@@ -1,66 +1,74 @@
-{{- with .Values.traggo }}
+{{- with .Values.jelu }}
 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: traggo
+    name: jelu
     namespace: {{ $.Release.Namespace }}
     labels:
-        app: traggo
+        app: jelu
 spec:
     replicas: {{ .replicas }}
     selector:
         matchLabels:
-            app: traggo
+            app: jelu
     template:
 
         metadata:
             labels:
-                app: traggo
+                app: jelu
         spec:
-            enableServiceLinks: false
             containers:
-                - name: traggo
+                - name: jelu
                   image: {{ .image }}
                   imagePullPolicy: IfNotPresent
 {{- if .resources }}
                   resources:
 {{ toYaml .resources | indent 22 }}
 {{- end }}
-                  env:
-                    - name: TRAGGO_PORT
-                      value: {{ .port }}
-                  envFrom:
-                    - secretRef:
-                        name: app
                   ports:
                       - name: web
                         containerPort: {{ .port }}
                   volumeMounts:
-                    - mountPath: /opt/traggo/data
+                    - mountPath: /config
                       name: config
+                    - mountPath: /database
+                      name: database
+                    - mountPath: /files/images
+                      name: images
+                    - mountPath: /files/imports
+                      name: imports
 
             restartPolicy: Always
             volumes:
               - name: config
                 persistentVolumeClaim:
-                  claimName: traggo-pvc
+                  claimName: config-pvc
+              - name: database
+                persistentVolumeClaim:
+                  claimName: database-pvc
+              - name: images
+                persistentVolumeClaim:
+                  claimName: images-pvc
+              - name: imports
+                persistentVolumeClaim:
+                  claimName: imports-pvc
 
 ---
 
 apiVersion: v1
 kind: Service
 metadata:
-    name: traggo
+    name: jelu
     namespace: {{ $.Release.Namespace }}
 spec:
     {{- with .nodePort }}
     type: NodePort
     {{- end }}
     selector:
-        app: traggo
+        app: jelu
     ports:
-        - name: traggo
+        - name: jelu
           protocol: TCP
           port: {{ .port }}
           {{- with .nodePort }}

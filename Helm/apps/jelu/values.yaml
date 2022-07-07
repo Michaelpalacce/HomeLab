@@ -1,0 +1,17 @@
+---
+jelu:
+  image: wabayang/jelu:0.25.1
+  replicas: 1
+  port: 11111
+  resources:
+    requests:
+      cpu: 10m
+      memory: 128Mi
+
+storage:
+  dataLocality: disabled      # or disabled
+  numberOfReplicas: 1
+  configSize: 1Gi
+  databaseSize: 1Gi
+  imagesSize: 1Gi
+  importsSize: 1Gi
