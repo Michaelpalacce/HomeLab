@@ -1,0 +1,58 @@
+{{- with .Values.traggo }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: traggo
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app: traggo
+spec:
+    replicas: {{ .replicas }}
+    selector:
+        matchLabels:
+            app: traggo
+    template:
+        metadata:
+            labels:
+                app: traggo
+        spec:
+            containers:
+                - name: traggo
+                  image: {{ .image }}
+                  imagePullPolicy: IfNotPresent
+{{- if .resources }}
+                  resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+                  envFrom:
+                    - secretRef:
+                        name: app
+                  ports:
+                      - name: web
+                        containerPort: {{ .port }}
+
+            restartPolicy: Always
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: traggo
+    namespace: {{ $.Release.Namespace }}
+spec:
+    {{- with .nodePort }}
+    type: NodePort
+    {{- end }}
+    selector:
+        app: traggo
+    ports:
+        - name: traggo
+          protocol: TCP
+          port: {{ .port }}
+          {{- with .nodePort }}
+          nodePort: {{ . }}
+          {{- end }}
+
+{{- end }}

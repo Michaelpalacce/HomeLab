@@ -1,0 +1,26 @@
+    ---
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+    name: traggo-sc
+provisioner: driver.longhorn.io
+allowVolumeExpansion: true
+parameters:
+    numberOfReplicas: "{{ .Values.storage.numberOfReplicas }}"
+    dataLocality: "{{ .Values.storage.dataLocality }}"
+    staleReplicaTimeout: "2800"
+    fromBackup: ""
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: traggo-pvc
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: traggo-sc
+    resources:
+        requests:
+            storage: {{ .Values.storage.dataSize }}

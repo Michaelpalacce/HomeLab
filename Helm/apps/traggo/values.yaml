@@ -1,0 +1,14 @@
+---
+traggo:
+  image: traggo/server:0.2.3
+  replicas: 1
+  port: 3030
+  resources:
+    requests:
+      cpu: 10m
+      memory: 128Mi
+
+storage:
+  dataLocality: disabled      # or disabled
+  numberOfReplicas: 1
+  dataSize: 1Gi

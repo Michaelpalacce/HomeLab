@@ -1,7 +1,6 @@
 ---
 mealie:
   image: hkotel/mealie:v0.5.6
-    # nodePort: 30132
   port: 80
   resources:
     requests:
