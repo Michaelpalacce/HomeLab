@@ -25,6 +25,9 @@ spec:
                   resources:
 {{ toYaml .resources | indent 22 }}
 {{- end }}
+                  env:
+                    - name: TRAGGO_PORT
+                      value: {{ .port }}
                   envFrom:
                     - secretRef:
                         name: app
