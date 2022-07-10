@@ -31,7 +31,7 @@ nodeExporter:
           effect: NoSchedule
 
 promtail:
-    image: grafana/promtail:2.5.0
+    image: grafana/promtail:2.6.0
     resources:
         requests:
             cpu: 50m
@@ -46,7 +46,7 @@ grafana:
         memory: 1Gi
 
 loki:
-    image: grafana/loki:2.5.0
+    image: grafana/loki:2.6.0
     port: 3100
     resources:
         requests:
