@@ -29,7 +29,7 @@ spec:
 {{- end }}
                   env:
                     - name: TRAGGO_PORT
-                      value: {{ .port }}
+                      value: "{{ .port }}"
                   envFrom:
                     - secretRef:
                         name: app
