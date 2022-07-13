@@ -1,9 +1,0 @@
----
-apiVersion: source.toolkit.fluxcd.io/v1beta2
-kind: HelmRepository
-metadata:
-    name: calico
-    namespace: flux-system
-spec:
-    url: https://projectcalico.docs.tigera.io/charts
-    interval: 10m

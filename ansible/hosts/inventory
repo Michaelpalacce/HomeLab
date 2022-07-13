@@ -1,12 +1,13 @@
 [master]
-192.168.1.181
+192.168.1.61
 
 # All the workers with the logging too
 [workers]
-192.168.1.15
-192.168.1.109
-192.168.1.146
-192.168.1.151
+192.168.1.99
+192.168.1.191
+192.168.1.179
+192.168.1.244
+192.168.1.22
 
 # This group has all the servers
 [all:children]
@@ -16,5 +17,6 @@ workers
 #Variables for all the servers
 [all:vars]
 ansible_connection=ssh
-ansible_user=ubuntu
+ansible_user=ansible
+ansible_password=ansible
 ansible_ssh_common_args='-o StrictHostKeyChecking=no'
