@@ -16,7 +16,7 @@ resources:
   - postgresql
   - pyload
   - storage
-  - tandoorrecipes
+  - mealie
   - trilium
   - uptimekuma
   - vaultwarden

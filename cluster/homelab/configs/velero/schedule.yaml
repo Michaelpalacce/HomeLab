@@ -14,10 +14,8 @@ spec:
       - nodered
       - changedetection
       - storage
-      - trilium
       - mealie
       - monitoring
-      - focalboard
     snapshotVolumes: true
     ttl: 72h0m0s
   useOwnerReferencesInBackup: false

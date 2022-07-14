@@ -45,7 +45,7 @@ If you are restoring pods from a deployment/statefulset/daemonsets/etc make sure
 2. Run `velero restore create uptimekuma1 --from-backup uptimekuma --restore-volumes=true`
 
 #### From Schedule:
-1. Clear up any resources you wish to backup
+1. Clear up any resources you wish to restore
 2. Run: `velero restore create --from-schedule general --restore-volumes=true`. Optionally add: `--include-namespaces postgresql`
 
 ***
