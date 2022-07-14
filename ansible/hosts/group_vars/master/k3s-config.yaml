@@ -6,9 +6,9 @@ k3s_server:
     tls-san:
         - "{{ k3s_registration_address }}"
     docker: false
-    flannel-backend: "none"
+#    flannel-backend: "none"
     disable:
-        - flannel
+#        - flannel
         - traefik
         - metrics-server
         - local-storage
