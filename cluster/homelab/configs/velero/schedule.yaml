@@ -14,7 +14,6 @@ spec:
       - nodered
       - changedetection
       - storage
-      - mealie
       - monitoring
     snapshotVolumes: true
     ttl: 72h0m0s
