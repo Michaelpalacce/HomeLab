@@ -6,6 +6,6 @@ resources:
     - cgroup-gc
     - orphanedpodscleaner
     - reflector
-#    - cert-manager
+    - cert-manager
     - longhorn-system
-#    - ingress-nginx
+    - ingress-nginx
