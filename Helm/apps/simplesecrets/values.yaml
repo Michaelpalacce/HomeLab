@@ -2,7 +2,7 @@
 simplesecrets:
   api:
     image: stefangenov/simplesecrets:2.1.0
-#        nodePort: 30037
+    nodePort: 30037
     port: 80
     resources:
       requests:
@@ -10,7 +10,7 @@ simplesecrets:
         memory: 100Mi
   web:
     image: stefangenov/simplesecrets-frontend:0.10.0
-#        nodePort: 30036
+    nodePort: 30036
     port: 3000
     resources:
       requests:
