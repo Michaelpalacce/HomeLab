@@ -1,0 +1,73 @@
+{{- with .Values.rss }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: rss
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app: rss
+spec:
+    replicas: {{ .replicas }}
+    selector:
+        matchLabels:
+            app: rss
+    template:
+        metadata:
+            annotations:
+                {{- with $ }}
+                checksum/config: {{ include (print $.Template.BasePath "/rss-config.yaml") . | sha256sum }}
+                {{- end }}
+            labels:
+                app: rss
+        spec:
+            enableServiceLinks: false
+            containers:
+                - name: rss
+                  image: {{ .image }}
+                  imagePullPolicy: IfNotPresent
+{{- if .resources }}
+                  resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+                  ports:
+                      - name: web
+                        containerPort: {{ .port }}
+                  volumeMounts:
+                    - mountPath: /app/storage
+                      name: data
+                    - mountPath: /app/storage/feeds.txt
+                      subPath: feeds.txt
+                      name: config-volume
+
+            restartPolicy: Always
+            volumes:
+              - name: config-volume
+                configMap:
+                    name: rss-config
+              - name: data
+                persistentVolumeClaim:
+                  claimName: rss-pvc
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: rss
+    namespace: {{ $.Release.Namespace }}
+spec:
+    {{- with .nodePort }}
+    type: NodePort
+    {{- end }}
+    selector:
+        app: rss
+    ports:
+        - name: rss
+          protocol: TCP
+          port: {{ .port }}
+          {{- with .nodePort }}
+          nodePort: {{ . }}
+          {{- end }}
+
+{{- end }}

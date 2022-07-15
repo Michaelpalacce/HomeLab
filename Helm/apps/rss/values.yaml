@@ -1,0 +1,14 @@
+---
+rss:
+  image: ghcr.io/ssddanbrown/rss:v1.0.5
+  replicas: 1
+  port: 80
+  resources:
+    requests:
+      cpu: 10m
+      memory: 128Mi
+
+storage:
+  dataLocality: disabled      # or disabled
+  numberOfReplicas: 1
+  dataSize: 10Gi
