@@ -30,22 +30,14 @@ data:
             description: Budget Buddy!
             icon: hl-firefly
             url: https://firefly.{{ .domainName }}/login
-{{/*          - title: Mealie*/}}
-{{/*            description: Recipe Manager*/}}
-{{/*            icon: hl-mealie*/}}
-{{/*            url: https://mealie.{{ .domainName }}*/}}
+          - title: Mealie
+            description: Recipe Manager
+            icon: hl-mealie
+            url: https://mealie.{{ .domainName }}
           - title: Snapdrop
             description: Share files on local network
             icon: favicon
             url: https://snapdrop.net/
-          - title: Timelite
-            description: Time Tracker
-            icon: https://raw.githubusercontent.com/overshard/timelite/master/public/static/logo.png
-            url: https://timelite.app/
-          - title: Traggo
-            description: Self Hosted Time Tracker
-            icon: https://github.com/traggo/logo/blob/master/logo.png?raw=true
-            url: https://traggo.{{ .domainName }}
           - title: Worldtime Buddy
             description: Timezone Manager
             icon: favicon
@@ -102,6 +94,10 @@ data:
             description: Self-Hosted Pocket
             icon: favicon
             url: https://shiori.{{ .domainName }}
+          - title: Traggo
+            description: Self Hosted Time Tracker
+            icon: https://github.com/traggo/logo/blob/master/logo.png?raw=true
+            url: https://traggo.{{ .domainName }}
 
       - name: Media
         items:
@@ -118,6 +114,7 @@ data:
             description: Book Tracking
             icon: https://raw.githubusercontent.com/bayang/jelu/main/src/jelu-ui/public/favicon.ico
             url: https://jelu.{{ .domainName }}
+
       - name: Knowledge Base And Tasks
         items:
           - title: Vikunja
@@ -143,6 +140,7 @@ data:
             description: NAS
             icon: hl-synology
             url: http://192.168.1.20
+
       - name: Downloaders
         items:
           - title: Radarr
@@ -190,13 +188,17 @@ data:
             description: Block Storage for kubernetes
             icon: hl-longhorn
             url: https://longhorn.{{ .domainName }}
+          - title: Proxmox Cluster
+            description: Virtual Machines go Brrrr
+            icon: hl-proxmox
+            url: https://192.168.1.145:8006
 
       - name: Networking
         items:
-{{/*            - title: Pi Alert*/}}
-{{/*              description: Network Intrusion Detection*/}}
-{{/*              icon: hl-pi-alert*/}}
-{{/*              url: https://pialert.{{ .domainName }}/pialert*/}}
+            - title: Pi Alert
+              description: Network Intrusion Detection
+              icon: hl-pi-alert
+              url: https://pialert.{{ .domainName }}/pialert
             - title: Router
               description: Router location
               icon: hl-router
