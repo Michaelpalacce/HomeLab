@@ -1,5 +1,5 @@
 ---
-- hosts: servers
+- hosts: master
   name: Setup prereqs
   become: true
   any_errors_fatal: true
@@ -11,7 +11,7 @@
       - michaelpalacce.docker
       - michaelpalacce.docker_compose
 
-- hosts: servers
+- hosts: master
   name: Setup Storage dependencies
   become: true
   gather_facts: false
