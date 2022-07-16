@@ -55,7 +55,7 @@ data:
             url: https://freshrss.{{ .domainName }}
           - title: RSS
             description: Twitter RSS reader
-            icon: fa-rss
+            icon: fa-solid fa-rss
             url: https://rss.{{ .domainName }}
 
       - name: Security
