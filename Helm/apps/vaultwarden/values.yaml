@@ -1,6 +1,6 @@
 ---
 vaultwarden:
-  image: vaultwarden/server:1.25.0
+  image: vaultwarden/server:1.25.1
     # nodePort: 31051
   port: 80
   backup:
