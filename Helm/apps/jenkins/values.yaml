@@ -20,7 +20,7 @@ controller:
     # Used for label app.kubernetes.io/component
   componentName: jenkins-controller
   image: jenkins/jenkins
-  tag: '2.324'
+  tag: '2.359'
   imagePullPolicy: IfNotPresent
   imagePullSecretName:
     # Optionally configure lifetime for controller-container
@@ -64,11 +64,8 @@ controller:
     #   - --httpPort=8080
   resources:
     requests:
-      cpu: 50m
+      cpu: 100m
       memory: 256Mi
-    limits:
-      cpu: 1000m
-      memory: 2048Mi
     # Overrides the init container default values
     # initContainerResources:
     #   requests:
@@ -118,10 +115,10 @@ controller:
     #   # capabilities: {}
   servicePort: 8080
   targetPort: 8080
-  nodePort: 31100
+#  nodePort: 31100
     # For minikube, set this to NodePort, elsewhere use LoadBalancer
     # Use ClusterIP if your setup includes ingress controller
-  serviceType: NodePort
+#  serviceType: NodePort
     # Use Local to preserve the client source IP and avoids a second hop for LoadBalancer and Nodeport type services,
     # but risks potentially imbalanced traffic spreading.
   serviceExternalTrafficPolicy:
@@ -456,7 +453,7 @@ agent:
   maxRequestsPerHostStr: '32'
   namespace:
   image: jenkins/inbound-agent
-  tag: 4.6-1
+  tag: 4.13.2-1
   workingDir: /home/jenkins
   nodeUsageMode: NORMAL
   customJenkinsLabels: []
@@ -628,7 +625,7 @@ persistence:
     ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
     ##   GKE, AWS & OpenStack)
     ##
-  storageClass: jenkins-pi
+  storageClass: jenkins
   annotations: {}
   accessMode: ReadWriteOnce
   size: 25Gi

@@ -1,0 +1,18 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+    name: jenkins
+    namespace: jenkins
+spec:
+    interval: 5m
+    install:
+        createNamespace: true
+    chart:
+        spec:
+            chart: ./Helm/apps/jenkins
+            reconcileStrategy: Revision
+            sourceRef:
+                kind: GitRepository
+                name: flux-system
+                namespace: flux-system

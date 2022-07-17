@@ -15,6 +15,7 @@ resources:
   - n8n
   - openbooks
   - postgresql
+  - jenkins
   - pyload
   - storage
   - mealie

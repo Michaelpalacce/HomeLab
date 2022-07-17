@@ -1,0 +1,25 @@
+1. Get your '{{ .Values.controller.adminUser }}' user password by running:
+  kubectl exec --namespace {{ template "jenkins.namespace" . }} -it svc/{{ template "jenkins.fullname" . }} -c jenkins -- /bin/cat /run/secrets/chart-admin-password && echo
+
+3. Login with the password from step 1 and the username: {{ .Values.controller.adminUser }}
+4. Configure security realm and authorization strategy
+
+For more information on running Jenkins on Kubernetes, visit:
+https://cloud.google.com/solutions/jenkins-on-container-engine
+
+For more information about Jenkins Configuration as Code, visit:
+https://jenkins.io/projects/jcasc/
+
+{{ if (eq .Values.controller.image "jenkins/jenkins") }}
+NOTE: Consider using a custom image with pre-installed plugins
+{{- else if .Values.controller.installPlugins }}
+NOTE: Consider disabling `installPlugins` if your image already contains plugins.
+{{- end }}
+
+{{- if .Values.persistence.enabled }}
+{{- else }}
+#################################################################################
+######   WARNING: Persistence is disabled!!! You will lose your data when   #####
+######            the Jenkins pod is terminated.                            #####
+#################################################################################
+{{- end }}
