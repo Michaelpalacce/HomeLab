@@ -84,6 +84,13 @@ data:
             icon: hl-changedetection-io
             url: https://changedetection.{{ .domainName }}
 
+      - name: DevOps
+        items:
+          - title: Jenkins
+            description: CI/CD Server
+            icon: hl-jenkins
+            url: https://jenkins.{{ .domainName }}
+
       - name: Tools
         items:
           - title: CyberChef
