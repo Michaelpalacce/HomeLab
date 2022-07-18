@@ -18,8 +18,6 @@ spec:
             labels:
                 app: tdarr-node
         spec:
-            nodeSelector:
-                type: media
             containers:
                 -   name: tdarr-node
                     image: ghcr.io/haveagitgat/tdarr_node:2.00.18.2

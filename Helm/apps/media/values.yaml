@@ -58,8 +58,8 @@ audiobookshelf:
     image: ghcr.io/advplyr/audiobookshelf:2.0.24
     port: 80
 
-tdarr:
-    image: haveagitgat/tdarr:2.00.18.2
-    port: 8265
-    serverPort: 8266
-    configSize: 10Gi
+#tdarr:
+#    image: haveagitgat/tdarr:2.00.18.2
+#    port: 8265
+#    serverPort: 8266
+#    configSize: 10Gi
