@@ -18,4 +18,4 @@ spec:
                 namespace: flux-system
     values:
         jelu:
-            replicas: 1
+            replicas: 0
