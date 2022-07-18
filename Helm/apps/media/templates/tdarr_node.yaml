@@ -22,7 +22,7 @@ spec:
                 type: media
             containers:
                 -   name: tdarr
-                    image: {{ .image }}
+                    image: ghcr.io/haveagitgat/tdarr_node:2.00.18.2
                     imagePullPolicy: IfNotPresent
                     env:
                         -   name: PUID
@@ -30,9 +30,9 @@ spec:
                         -   name: GUID
                             value: "1000"
                         -   name: serverIP
-                            value: "0.0.0.0"
-                        -   name: internalNode
-                            value: "true"
+                            value: "tdarr-server"
+                        -   name: serverPort
+                            value: "{{ .serverPort }}"
                     resources:
                         requests:
                             cpu: 100m
@@ -80,34 +80,11 @@ metadata:
     name: tdarr
     namespace: {{ $.Release.Namespace }}
 spec:
-    {{- with .nodePort }}
-    type: NodePort
-    {{- end }}
     selector:
         app: tdarr
     ports:
         -   name: tdarr
             protocol: TCP
             port: {{ .port }}
-          {{- with .nodePort }}
-            nodePort: {{ . }}
-          {{- end }}
----
-
-apiVersion: v1
-kind: Service
-metadata:
-    name: tdarr-server
-    namespace: {{ $.Release.Namespace }}
-spec:
-    {{- with .nodePort }}
-    type: NodePort
-    {{- end }}
-    selector:
-        app: tdarr
-    ports:
-        -   name: tdarr
-            protocol: TCP
-            port: {{ .serverPort }}
 
 {{- end }}
