@@ -42,10 +42,6 @@ data:
             description: Beautiful Code Images
             icon: favicon
             url: https://chalk.ist/
-          - title: Traggo
-            description: Self Hosted Time Tracker
-            icon: https://github.com/traggo/logo/blob/master/logo.png?raw=true
-            url: https://traggo.{{ .domainName }}
 
       - name: News
         items:
@@ -117,10 +113,10 @@ data:
             description: Audiobook Streams
             icon: hl-audiobookshelf
             url: https://audiobookshelf.{{ .domainName }}
-          - title: Jelu
-            description: Book Tracking
-            icon: https://raw.githubusercontent.com/bayang/jelu/main/src/jelu-ui/public/favicon.ico
-            url: https://jelu.{{ .domainName }}
+          - title: Kavita
+            description: Book Reader And Tracker
+            icon: hl-kavita
+            url: https://kavita.{{ .domainName }}
 
       - name: Knowledge Base And Tasks
         items:
