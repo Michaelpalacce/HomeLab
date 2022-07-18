@@ -109,10 +109,10 @@ data:
             icon: hl-plex
             url: https://plex.{{ .domainName }}
             statusCheckUrl: https://plex.{{ .domainName }}/identity
-          - title: AudioBookShelf
-            description: Audiobook Streams
-            icon: hl-audiobookshelf
-            url: https://audiobookshelf.{{ .domainName }}
+{{/*          - title: AudioBookShelf*/}}
+{{/*            description: Audiobook Streams*/}}
+{{/*            icon: hl-audiobookshelf*/}}
+{{/*            url: https://audiobookshelf.{{ .domainName }}*/}}
           - title: Kavita
             description: Book Reader And Tracker
             icon: hl-kavita
