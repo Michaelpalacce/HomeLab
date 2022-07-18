@@ -30,9 +30,11 @@ spec:
                         -   name: GUID
                             value: "1000"
                         -   name: serverIP
-                            value: "tdarr-server"
+                            value: "tdarr"
+                        -   name: nodeID
+                            value: "NODE-1"
                         -   name: serverPort
-                            value: "{{ .serverPort }}"
+                            value: "8266"
                     resources:
                         requests:
                             cpu: 100m
@@ -43,9 +45,6 @@ spec:
                         -   name: server
                             containerPort: {{ .serverPort }}
                     volumeMounts:
-                        -   name: config-data
-                            mountPath: /app/server
-                            subPath: server
                         -   name: config-data
                             mountPath: /app/logs
                             subPath: logs

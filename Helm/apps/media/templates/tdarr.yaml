@@ -33,6 +33,8 @@ spec:
                             value: "0.0.0.0"
                         -   name: internalNode
                             value: "true"
+                        -   name: nodeID
+                            value: "InternalNode"
                     resources:
                         requests:
                             cpu: 100m
@@ -92,21 +94,7 @@ spec:
           {{- with .nodePort }}
             nodePort: {{ . }}
           {{- end }}
----
-
-apiVersion: v1
-kind: Service
-metadata:
-    name: tdarr-server
-    namespace: {{ $.Release.Namespace }}
-spec:
-    {{- with .nodePort }}
-    type: NodePort
-    {{- end }}
-    selector:
-        app: tdarr
-    ports:
-        -   name: tdarr
+        -   name: tdarr-server
             protocol: TCP
             port: {{ .serverPort }}
 
