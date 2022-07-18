@@ -37,7 +37,7 @@ sonarr:
 
 jellyfin:
     replicas: 1
-    image: lscr.io/linuxserver/jellyfin:10.8.1
+    image: lscr.io/linuxserver/jellyfin:2021.12.16
     port: 8096
     resources:
         requests:
