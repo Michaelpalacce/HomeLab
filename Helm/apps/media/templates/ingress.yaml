@@ -42,6 +42,16 @@ spec:
                                 name: bazarr
                                 port:
                                     number: {{ .Values.bazarr.port }}
+        -   host: kavita.stefangenov.site
+            http:
+                paths:
+                    -   pathType: Prefix
+                        path: "/"
+                        backend:
+                            service:
+                                name: kavita
+                                port:
+                                    number: {{ .Values.kavita.port }}
         -   host: readarr.stefangenov.site
             http:
                 paths:

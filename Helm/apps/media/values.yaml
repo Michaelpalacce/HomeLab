@@ -63,3 +63,7 @@ audiobookshelf:
 #    port: 8265
 #    serverPort: 8266
 #    configSize: 10Gi
+
+kavita:
+  image: kizaing/kavita:0.5.4
+  port: 5000

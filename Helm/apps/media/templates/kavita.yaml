@@ -1,0 +1,69 @@
+---
+{{- with .Values.kavita }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: kavita
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app: kavita
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: kavita
+    template:
+        metadata:
+            labels:
+                app: kavita
+        spec:
+            nodeSelector:
+                type: media
+            containers:
+                -   name: kavita
+                    image: {{ .image }}
+                    imagePullPolicy: IfNotPresent
+                    resources:
+                        requests:
+                            cpu: 100m
+                            memory: 100Mi
+                    ports:
+                        -   name: web
+                            containerPort: {{ .port }}
+                    volumeMounts:
+                        -   name: config-data
+                            mountPath: /kavita/config
+                        -   name: books-data-nfs
+                            mountPath: /books
+
+            restartPolicy: Always
+            volumes:
+                -   name: config-data
+                    hostPath:
+                        path: /mnt/media/kavita
+                -   name: books-data-nfs
+                    persistentVolumeClaim:
+                        claimName: books-volume-nfs
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: kavita
+    namespace: {{ $.Release.Namespace }}
+spec:
+    {{- with .nodePort }}
+    type: NodePort
+    {{- end }}
+    selector:
+        app: kavita
+    ports:
+        -   name: kavita
+            protocol: TCP
+            port: {{ .port }}
+          {{- with .nodePort }}
+            nodePort: {{ . }}
+          {{- end }}
+
+{{- end }}
