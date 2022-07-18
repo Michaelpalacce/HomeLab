@@ -52,6 +52,16 @@ spec:
                                 name: kavita
                                 port:
                                     number: {{ .Values.kavita.port }}
+        -   host: jellyfin.stefangenov.site
+            http:
+                paths:
+                    -   pathType: Prefix
+                        path: "/"
+                        backend:
+                            service:
+                                name: jellyfin
+                                port:
+                                    number: {{ .Values.jellyfin.port }}
         -   host: readarr.stefangenov.site
             http:
                 paths:
@@ -102,13 +112,3 @@ spec:
                                 name: audiobookshelf
                                 port:
                                     number: {{ .Values.audiobookshelf.port }}
-{{/*        -   host: plex.stefangenov.site*/}}
-{{/*            http:*/}}
-{{/*                paths:*/}}
-{{/*                    -   pathType: Prefix*/}}
-{{/*                        path: "/"*/}}
-{{/*                        backend:*/}}
-{{/*                            service:*/}}
-{{/*                                name: plex*/}}
-{{/*                                port:*/}}
-{{/*                                    number: {{ .Values.plex.port }}*/}}
