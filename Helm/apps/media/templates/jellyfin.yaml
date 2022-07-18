@@ -46,7 +46,7 @@ spec:
                             mountPath: /config
                         -   name: shows-data-nfs
                             mountPath: /data/shows
-                        -   name: shows-data-nfs
+                        -   name: movies-data-nfs
                             mountPath: /data/movies
                         -   name: books-data-nfs
                             mountPath: /data/books
