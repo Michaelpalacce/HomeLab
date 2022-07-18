@@ -4,24 +4,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: tdarr
+    name: tdarr-node
     namespace: {{ $.Release.Namespace }}
     labels:
-        app: tdarr
+        app: tdarr-node
 spec:
     replicas: 1
     selector:
         matchLabels:
-            app: tdarr
+            app: tdarr-node
     template:
         metadata:
             labels:
-                app: tdarr
+                app: tdarr-node
         spec:
             nodeSelector:
                 type: media
             containers:
-                -   name: tdarr
+                -   name: tdarr-node
                     image: ghcr.io/haveagitgat/tdarr_node:2.00.18.2
                     imagePullPolicy: IfNotPresent
                     env:
@@ -77,13 +77,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-    name: tdarr
+    name: tdarr-node
     namespace: {{ $.Release.Namespace }}
 spec:
     selector:
-        app: tdarr
+        app: tdarr-node
     ports:
-        -   name: tdarr
+        -   name: tdarr-node
             protocol: TCP
             port: {{ .port }}
 
