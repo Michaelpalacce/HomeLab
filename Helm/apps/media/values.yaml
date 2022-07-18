@@ -55,6 +55,7 @@ bazarr:
 
 audiobookshelf:
 #    nodePort: 31009
+    replicas: 0
     image: ghcr.io/advplyr/audiobookshelf:2.0.24
     port: 80
 
@@ -67,3 +68,4 @@ audiobookshelf:
 kavita:
   image: kizaing/kavita:0.5.4
   port: 5000
+  replicas: 1
