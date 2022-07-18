@@ -62,3 +62,4 @@ tdarr:
     image: haveagitgat/tdarr:2.00.18.2
     port: 8265
     serverPort: 8266
+    configSize: 10Gi

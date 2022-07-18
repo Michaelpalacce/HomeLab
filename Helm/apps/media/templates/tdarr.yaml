@@ -64,8 +64,8 @@ spec:
             restartPolicy: Always
             volumes:
                 -   name: config-data
-                    hostPath:
-                        path: /mnt/media/tdarr
+                    persistentVolumeClaim:
+                        claimName: tdarr-pvc
                 -   name: temp
                     emptyDir: {}
                 -   name: shows-data-nfs

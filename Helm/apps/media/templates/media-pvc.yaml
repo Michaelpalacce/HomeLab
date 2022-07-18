@@ -159,3 +159,15 @@ spec:
             storage: 5Gi
 
 ---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: tdarr-pvc
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: media-config-sc
+    resources:
+        requests:
+            storage: {{ .Values.tdarr.configSize }}
