@@ -31,6 +31,8 @@ spec:
                             value: "1000"
                         -   name: serverIP
                             value: "0.0.0.0"
+                        -   name: internalNode
+                            value: "true"
                     resources:
                         requests:
                             cpu: 100m
