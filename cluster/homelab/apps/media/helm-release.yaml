@@ -18,4 +18,4 @@ spec:
                 namespace: flux-system
     values:
         jackett:
-            replicas: 1
+            replicas: 2

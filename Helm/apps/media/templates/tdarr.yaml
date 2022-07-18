@@ -1,0 +1,94 @@
+---
+{{- with .Values.tdarr }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: tdarr
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app: tdarr
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: tdarr
+    template:
+        metadata:
+            labels:
+                app: tdarr
+        spec:
+            nodeSelector:
+                type: media
+            containers:
+                -   name: tdarr
+                    image: {{ .image }}
+                    imagePullPolicy: IfNotPresent
+                    env:
+                        -   name: PUID
+                            value: "1000"
+                        -   name: GUID
+                            value: "1000"
+                        -   name: serverIP
+                            value: "0.0.0.0"
+                    resources:
+                        requests:
+                            cpu: 100m
+                            memory: 100Mi
+                    ports:
+                        -   name: web
+                            containerPort: {{ .port }}
+                        -   name: server
+                            containerPort: {{ .serverPort }}
+                    volumeMounts:
+                        -   name: config-data
+                            mountPath: /app/server
+                            subPath: server
+                        -   name: config-data
+                            mountPath: /app/logs
+                            subPath: logs
+                        -   name: config-data
+                            mountPath: /app/configs
+                            subPath: configs
+                        -   name: temp
+                            mountPath: /temp
+                        -   name: shows-data-nfs
+                            mountPath: /home/Tdarr/Media/shows
+                        -   name: movies-data-nfs
+                            mountPath: /home/Tdarr/Media/movies
+
+            restartPolicy: Always
+            volumes:
+                -   name: config-data
+                    hostPath:
+                        path: /mnt/media/tdarr
+                -   name: temp
+                    emptyDir: {}
+                -   name: shows-data-nfs
+                    persistentVolumeClaim:
+                        claimName: shows-volume-nfs
+                -   name: movies-data-nfs
+                    persistentVolumeClaim:
+                        claimName: movies-volume-nfs
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: tdarr
+    namespace: {{ $.Release.Namespace }}
+spec:
+    {{- with .nodePort }}
+    type: NodePort
+    {{- end }}
+    selector:
+        app: tdarr
+    ports:
+        -   name: tdarr
+            protocol: TCP
+            port: {{ .port }}
+          {{- with .nodePort }}
+            nodePort: {{ . }}
+          {{- end }}
+
+{{- end }}

@@ -22,6 +22,16 @@ spec:
                                 name: sonarr
                                 port:
                                     number: {{ .Values.sonarr.port }}
+        -   host: tdarr.stefangenov.site
+            http:
+                paths:
+                    -   pathType: Prefix
+                        path: "/"
+                        backend:
+                            service:
+                                name: tdarr
+                                port:
+                                    number: {{ .Values.tdarr.port }}
         -   host: bazarr.stefangenov.site
             http:
                 paths:
