@@ -104,6 +104,11 @@ data:
 
       - name: Media
         items:
+          - title: Plex
+            description: Stream Linux ISOs To My TV
+            icon: hl-plex
+            url: https://plex.{{ .domainName }}
+            statusCheckUrl: https://plex.{{ .domainName }}/identity
           - title: Jellyfin
             description: Stream Linux ISOs To My TV
             icon: hl-jellyfin
