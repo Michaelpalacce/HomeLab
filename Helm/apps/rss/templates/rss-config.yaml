@@ -9,6 +9,4 @@ metadata:
 data:
     feeds.txt: |
         https://noted.lol/rss Noted⭐[#9233B1] #self-hosting
-        https://feeds.fireside.fm/selfhosted/rss Self Hosted[#0078b9] #self-hosting
-
 {{- end }}
