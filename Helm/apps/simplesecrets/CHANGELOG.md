@@ -1,3 +1,6 @@
+#### [V2.0.0]
+- Using new redesigned image
+
 #### [V1.2.0]
 * 3 replicas of the storage
 

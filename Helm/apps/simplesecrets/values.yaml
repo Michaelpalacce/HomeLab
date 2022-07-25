@@ -1,21 +1,12 @@
 ---
 simplesecrets:
-  api:
-    image: stefangenov/simplesecrets:2.1.0
-    nodePort: 30037
-    port: 80
-    resources:
-      requests:
-        cpu: 10m
-        memory: 100Mi
-  web:
-    image: stefangenov/simplesecrets-frontend:0.10.0
-    nodePort: 30036
-    port: 3000
-    resources:
-      requests:
-        cpu: 10m
-        memory: 100Mi
+  image: stefangenov/simplesecrets:3.0.0-sqlite3
+  nodePort: 30037
+  port: 80
+  resources:
+    requests:
+      cpu: 10m
+      memory: 100Mi
 
 storage:
   dataLocality: best-effort      # or disabled

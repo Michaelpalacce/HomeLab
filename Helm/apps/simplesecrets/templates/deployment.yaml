@@ -19,7 +19,6 @@ spec:
         spec:
             serviceAccountName: k8s-101-role
             containers:
-{{- with .api }}
                 - name: api
                   image: {{ .image }}
                   imagePullPolicy: IfNotPresent
@@ -33,7 +32,7 @@ spec:
 {{ toYaml .resources | indent 22 }}
 {{- end }}
                   ports:
-                      - name: api
+                      - name: web
                         containerPort: {{ .port }}
                   volumeMounts:
                       - name: data
@@ -45,26 +44,7 @@ spec:
                       timeoutSeconds: 5
                       tcpSocket:
                           port: {{ .port }}
-{{- end }}
-{{- with .web }}
-                - name: web
-                  image: {{ .image }}
-                  imagePullPolicy: IfNotPresent
-{{- if .resources }}
-                  resources:
-{{ toYaml .resources | indent 22 }}
-{{- end }}
-                  ports:
-                      - name: web
-                        containerPort: {{ .port }}
-                  livenessProbe:
-                      failureThreshold: 2
-                      initialDelaySeconds: 120
-                      periodSeconds: 120
-                      timeoutSeconds: 5
-                      tcpSocket:
-                          port: {{ .port }}
-{{- end }}
+
             restartPolicy: Always
             volumes:
                 - name: data
@@ -79,7 +59,7 @@ metadata:
     name: simplesecrets
     namespace: {{ $.Release.Namespace }}
 spec:
-    {{- with .web.nodePort }}
+    {{- with .nodePort }}
     type: NodePort
     {{- end }}
     selector:
@@ -87,28 +67,9 @@ spec:
     ports:
         - name: web
           protocol: TCP
-          port: {{ .web.port }}
-          {{- with .web.nodePort }}
+          port: {{ .port }}
+          {{- with .nodePort }}
           nodePort: {{ . }}
           {{- end }}
----
 
-apiVersion: v1
-kind: Service
-metadata:
-    name: simplesecrets-api
-    namespace: {{ $.Release.Namespace }}
-spec:
-    {{- with .api.nodePort }}
-    type: NodePort
-    {{- end }}
-    selector:
-        app: simplesecrets
-    ports:
-        - name: api
-          protocol: TCP
-          port: {{ .api.port }}
-          {{- with .api.nodePort }}
-          nodePort: {{ . }}
-          {{- end }}
 {{- end }}

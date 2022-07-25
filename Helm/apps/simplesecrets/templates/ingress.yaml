@@ -20,12 +20,5 @@ spec:
                         service:
                             name: simplesecrets
                             port:
-                                number: {{ .Values.simplesecrets.web.port }}
-                  - pathType: Prefix
-                    path: "/api"
-                    backend:
-                        service:
-                            name: simplesecrets-api
-                            port:
-                                number: {{ .Values.simplesecrets.api.port }}
+                                number: {{ .Values.simplesecrets.port }}
 ---
