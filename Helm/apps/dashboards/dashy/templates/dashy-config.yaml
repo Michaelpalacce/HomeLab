@@ -273,48 +273,57 @@ data:
             icon: favicon
             statusCheck: false
 
-{{/*      - name: Widgets*/}}
-{{/*        widgets:*/}}
-{{/*          - type: covid-stats*/}}
-{{/*            options:*/}}
-{{/*                showChart: true*/}}
-{{/*                showCountries: true*/}}
-{{/*                countries:*/}}
-{{/*                    - BGR*/}}
+      - name: Widgets
+        widgets:
+          - type: public-ip
+          - type: covid-stats
+            options:
+                showChart: true
+                showCountries: true
+                countries:
+                    - BGR
+          - type: public-holidays
+            options:
+                country: BGR
+                holidayType: all
+                monthsToShow: 12
 
-{{/*      - name: Github*/}}
-{{/*        widgets:*/}}
-{{/*          - type: github-profile-stats*/}}
-{{/*            options:*/}}
-{{/*                username: Michaelpalacce*/}}
-{{/*                hideLanguagesCard: true*/}}
-{{/*                repos:*/}}
-{{/*                    - Michaelpalacce/SimpleSecrets*/}}
-{{/*                    - Michaelpalacce/Homelab*/}}
-{{/*                    - Michaelpalacce/EventRequest*/}}
-{{/*                    - Michaelpalacce/Server*/}}
+      - name: Github
+        widgets:
+          - type: github-profile-stats
+            options:
+                username: Michaelpalacce
+                hideLanguagesCard: true
+                repos:
+                    - Michaelpalacce/SimpleSecrets
+                    - Michaelpalacce/Homelab
+                    - Michaelpalacce/EventRequest
+                    - Michaelpalacce/Server
+          - type: code-stats
+            options:
+                username: Michaelpalacce
 
-{{/*      - name: Speedtest*/}}
-{{/*        widgets:*/}}
-{{/*          - type: embed*/}}
-{{/*            options:*/}}
-{{/*                scriptSrc: https://cdn.speedcheck.org/basic/scbjs.min.js*/}}
-{{/*                html: |*/}}
-{{/*                    <div id="sc-container">*/}}
-{{/*                    <div id="sc-branding" class="sc-bb">*/}}
-{{/*                    <a target="_blank" href="https://www.speedcheck.org/">*/}}
-{{/*                    <img src="https://cdn.speedcheck.org/branding/speedcheck-logo-18.png" alt="Speedcheck"/>*/}}
-{{/*                    </a>*/}}
-{{/*                    </div>*/}}
-{{/*                    </div>*/}}
+      - name: Speedtest
+        widgets:
+          - type: embed
+            options:
+                scriptSrc: https://cdn.speedcheck.org/basic/scbjs.min.js
+                html: |
+                    <div id="sc-container">
+                    <div id="sc-branding" class="sc-bb">
+                    <a target="_blank" href="https://www.speedcheck.org/">
+                    <img src="https://cdn.speedcheck.org/branding/speedcheck-logo-18.png" alt="Speedcheck"/>
+                    </a>
+                    </div>
+                    </div>
 
-{{/*      - name: PiHole*/}}
-{{/*        widgets:*/}}
-{{/*          - type: pi-hole-stats*/}}
-{{/*            options:*/}}
-{{/*              hostname: http://192.168.1.63*/}}
-{{/*          - type: pi-hole-stats*/}}
-{{/*            options:*/}}
-{{/*              hostname: http://192.168.1.120*/}}
+      - name: PiHole
+        widgets:
+          - type: pi-hole-stats
+            options:
+              hostname: http://192.168.1.63
+          - type: pi-hole-stats
+            options:
+              hostname: http://192.168.1.120
 
 {{- end }}
