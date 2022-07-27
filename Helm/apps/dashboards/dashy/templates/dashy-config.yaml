@@ -276,15 +276,9 @@ data:
       - name: Widgets
         widgets:
           - type: public-ip
-          - type: covid-stats
-            options:
-                showChart: true
-                showCountries: true
-                countries:
-                    - BGR
           - type: public-holidays
             options:
-                country: BGR
+                country: BG
                 holidayType: all
                 monthsToShow: 12
 
@@ -299,9 +293,6 @@ data:
                     - Michaelpalacce/Homelab
                     - Michaelpalacce/EventRequest
                     - Michaelpalacce/Server
-          - type: code-stats
-            options:
-                username: Michaelpalacce
 
       - name: Speedtest
         widgets:
@@ -316,14 +307,5 @@ data:
                     </a>
                     </div>
                     </div>
-
-      - name: PiHole
-        widgets:
-          - type: pi-hole-stats
-            options:
-              hostname: http://192.168.1.63
-          - type: pi-hole-stats
-            options:
-              hostname: http://192.168.1.120
 
 {{- end }}
