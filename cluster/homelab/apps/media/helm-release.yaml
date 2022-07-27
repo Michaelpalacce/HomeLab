@@ -19,3 +19,5 @@ spec:
     values:
         jackett:
             replicas: 2
+        jellyfin:
+            replicas: 1
