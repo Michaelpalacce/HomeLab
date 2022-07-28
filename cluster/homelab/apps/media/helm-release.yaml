@@ -20,4 +20,4 @@ spec:
         jackett:
             replicas: 2
         jellyfin:
-            replicas: 1
+            replicas: 0
