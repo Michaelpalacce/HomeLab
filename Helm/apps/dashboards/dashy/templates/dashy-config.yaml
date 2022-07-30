@@ -109,10 +109,6 @@ data:
             icon: hl-plex
             url: https://plex.{{ .domainName }}
             statusCheckUrl: https://plex.{{ .domainName }}/identity
-          - title: Jellyfin
-            description: Stream Linux ISOs To My TV
-            icon: hl-jellyfin
-            url: https://jellyfin.{{ .domainName }}
           - title: Kavita
             description: Book Reader And Tracker
             icon: hl-kavita
