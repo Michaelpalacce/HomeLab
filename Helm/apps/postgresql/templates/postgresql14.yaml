@@ -16,7 +16,7 @@ spec:
     template:
         metadata:
             annotations:
-              backup.velero.io/backup-volumes: data,dshm
+                backup.velero.io/backup-volumes: data,dshm
             labels:
                 app: postgresql14
             name: postgresql14
@@ -27,51 +27,51 @@ spec:
                 fsGroup: 0
             terminationGracePeriodSeconds: 180
             containers:
-                - name: postgresql14
-                  image: {{ .image }}
-                  imagePullPolicy: IfNotPresent
-                  ports:
-                      - containerPort: {{ .port }}
-                        name: postgresql14
-                        protocol: TCP
-                  env:
-                      - name: POSTGRES_USER
-                        valueFrom:
-                            secretKeyRef:
-                                name: postgresql14
-                                key:  username
-                      - name: POSTGRES_PASSWORD
-                        valueFrom:
-                            secretKeyRef:
-                                name: postgresql14
-                                key:  password
-                  livenessProbe:
-                      exec:
-                          command:
-                              - /bin/sh
-                              - -c
-                              - exec pg_isready -U "postgres" -h 127.0.0.1 -p {{ .port }}
-                      failureThreshold: 2
-                      initialDelaySeconds: 120
-                      periodSeconds: 30
-                      timeoutSeconds: 30
+                -   name: postgresql14
+                    image: {{ .image }}
+                    imagePullPolicy: IfNotPresent
+                    ports:
+                        -   containerPort: {{ .port }}
+                            name: postgresql14
+                            protocol: TCP
+                    env:
+                        -   name: POSTGRES_USER
+                            valueFrom:
+                                secretKeyRef:
+                                    name: postgresql14
+                                    key: username
+                        -   name: POSTGRES_PASSWORD
+                            valueFrom:
+                                secretKeyRef:
+                                    name: postgresql14
+                                    key: password
+                    livenessProbe:
+                        exec:
+                            command:
+                                - /bin/sh
+                                - -c
+                                - exec pg_isready -U "postgres" -h 127.0.0.1 -p {{ .port }}
+                        failureThreshold: 2
+                        initialDelaySeconds: 120
+                        periodSeconds: 30
+                        timeoutSeconds: 30
 {{- if .resources }}
-                  resources:
+                    resources:
 {{ toYaml .resources | indent 22 }}
 {{- end }}
-                  volumeMounts:
-                      - mountPath: /dev/shm
-                        name: dshm
-                      - mountPath: /var/lib/postgresql/data
-                        subPath: data
-                        name: data
+                    volumeMounts:
+                        -   mountPath: /dev/shm
+                            name: dshm
+                        -   mountPath: /var/lib/postgresql/data
+                            subPath: data
+                            name: data
             volumes:
-                - name: data
-                  persistentVolumeClaim:
-                      claimName: postgresql14-data-pvc
-                - name: dshm
-                  persistentVolumeClaim:
-                      claimName: postgresql14-dshm-pvc
+                -   name: data
+                    persistentVolumeClaim:
+                        claimName: postgresql14-data-pvc
+                -   name: dshm
+                    persistentVolumeClaim:
+                        claimName: postgresql14-dshm-pvc
 
 ---
 
@@ -84,8 +84,8 @@ spec:
     selector:
         app: postgresql14
     ports:
-        - name: postgresql14
-          protocol: TCP
-          port: {{ .port }}
+        -   name: postgresql14
+            protocol: TCP
+            port: {{ .port }}
 
 {{- end }}

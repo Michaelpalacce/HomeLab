@@ -1,13 +1,12 @@
 ---
 focalboard:
     image: stefangenov/focalboard:v0.16.0
-#    nodePort: 30132
     port: 8000
     replicas: 1
     resources:
-    requests:
-        cpu: 100m
-        memory: 100Mi
+        requests:
+            cpu: 100m
+            memory: 100Mi
 
 storage:
     numberOfReplicas: 1

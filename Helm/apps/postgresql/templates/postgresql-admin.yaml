@@ -16,55 +16,55 @@ spec:
     template:
         metadata:
             annotations:
-              backup.velero.io/backup-volumes: pgadminstorage
+                backup.velero.io/backup-volumes: pgadminstorage
             labels:
                 app: pgadmin
             name: pgadmin
         spec:
             volumes:
-                - name: pgadminstorage
-                  persistentVolumeClaim:
-                      claimName: pgadmin-data-pvc
+                -   name: pgadminstorage
+                    persistentVolumeClaim:
+                        claimName: pgadmin-data-pvc
             containers:
-                - name: pgadmin
-                  image: {{ .image }}
-                  imagePullPolicy: IfNotPresent
-                  readinessProbe:
-                      tcpSocket:
-                          port: {{ .port }}
-                      failureThreshold: 10
-                      initialDelaySeconds: 10
-                      periodSeconds: 5
-                      timeoutSeconds: 5
-                  livenessProbe:
-                      tcpSocket:
-                          port: {{ .port }}
-                      failureThreshold: 2
-                      initialDelaySeconds: 120
-                      periodSeconds: 5
-                      timeoutSeconds: 5
+                -   name: pgadmin
+                    image: {{ .image }}
+                    imagePullPolicy: IfNotPresent
+                    readinessProbe:
+                        tcpSocket:
+                            port: {{ .port }}
+                        failureThreshold: 10
+                        initialDelaySeconds: 10
+                        periodSeconds: 5
+                        timeoutSeconds: 5
+                    livenessProbe:
+                        tcpSocket:
+                            port: {{ .port }}
+                        failureThreshold: 2
+                        initialDelaySeconds: 120
+                        periodSeconds: 5
+                        timeoutSeconds: 5
 {{- if .resources }}
-                  resources:
+                    resources:
 {{ toYaml .resources | indent 22 }}
 {{- end }}
-                  volumeMounts:
-                      - mountPath: /var/lib/pgadmin
-                        name: pgadminstorage
-                  ports:
-                      - containerPort: {{ .port }}
-                        name: tcp-pgadmin
-                        protocol: TCP
-                  env:
-                      - name: PGADMIN_DEFAULT_EMAIL
-                        valueFrom:
-                            secretKeyRef:
-                                name: pgadmin
-                                key:  username
-                      - name: PGADMIN_DEFAULT_PASSWORD
-                        valueFrom:
-                            secretKeyRef:
-                                name: pgadmin
-                                key:  password
+                    volumeMounts:
+                        -   mountPath: /var/lib/pgadmin
+                            name: pgadminstorage
+                    ports:
+                        -   containerPort: {{ .port }}
+                            name: tcp-pgadmin
+                            protocol: TCP
+                    env:
+                        -   name: PGADMIN_DEFAULT_EMAIL
+                            valueFrom:
+                                secretKeyRef:
+                                    name: pgadmin
+                                    key: username
+                        -   name: PGADMIN_DEFAULT_PASSWORD
+                            valueFrom:
+                                secretKeyRef:
+                                    name: pgadmin
+                                    key: password
 ---
 
 apiVersion: v1
@@ -79,11 +79,11 @@ spec:
     selector:
         app: pgadmin
     ports:
-        - name: pgadmin
-          protocol: TCP
-          port: {{ .port }}
+        -   name: pgadmin
+            protocol: TCP
+            port: {{ .port }}
           {{- with .nodePort }}
-          nodePort: {{ . }}
+            nodePort: {{ . }}
           {{- end }}
 
 {{- end }}

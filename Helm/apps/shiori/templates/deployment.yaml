@@ -18,47 +18,47 @@ spec:
                 app: shiori
         spec:
             containers:
-                - name: shiori
-                  image: {{ .image }}
-                  imagePullPolicy: IfNotPresent
+                -   name: shiori
+                    image: {{ .image }}
+                    imagePullPolicy: IfNotPresent
 {{- if .resources }}
-                  resources:
+                    resources:
 {{ toYaml .resources | indent 22 }}
 {{- end }}
-                  env:
-                      - name: SHIORI_DBMS
-                        valueFrom:
-                            secretKeyRef:
-                                name: db
-                                key: SHIORI_DBMS
-                      - name: SHIORI_PG_USER
-                        valueFrom:
-                            secretKeyRef:
-                                name: db
-                                key: SHIORI_PG_USER
-                      - name: SHIORI_PG_PASS
-                        valueFrom:
-                            secretKeyRef:
-                                name: db
-                                key: SHIORI_PG_PASS
-                      - name: SHIORI_PG_NAME
-                        valueFrom:
-                            secretKeyRef:
-                                name: db
-                                key: SHIORI_PG_NAME
-                      - name: SHIORI_PG_HOST
-                        valueFrom:
-                            secretKeyRef:
-                                name: db
-                                key: SHIORI_PG_HOST
-                      - name: SHIORI_PG_PORT
-                        valueFrom:
-                            secretKeyRef:
-                                name: db
-                                key: SHIORI_PG_PORT
-                  ports:
-                      - name: web
-                        containerPort: {{ .port }}
+                    env:
+                        -   name: SHIORI_DBMS
+                            valueFrom:
+                                secretKeyRef:
+                                    name: db
+                                    key: SHIORI_DBMS
+                        -   name: SHIORI_PG_USER
+                            valueFrom:
+                                secretKeyRef:
+                                    name: db
+                                    key: SHIORI_PG_USER
+                        -   name: SHIORI_PG_PASS
+                            valueFrom:
+                                secretKeyRef:
+                                    name: db
+                                    key: SHIORI_PG_PASS
+                        -   name: SHIORI_PG_NAME
+                            valueFrom:
+                                secretKeyRef:
+                                    name: db
+                                    key: SHIORI_PG_NAME
+                        -   name: SHIORI_PG_HOST
+                            valueFrom:
+                                secretKeyRef:
+                                    name: db
+                                    key: SHIORI_PG_HOST
+                        -   name: SHIORI_PG_PORT
+                            valueFrom:
+                                secretKeyRef:
+                                    name: db
+                                    key: SHIORI_PG_PORT
+                    ports:
+                        -   name: web
+                            containerPort: {{ .port }}
 
             restartPolicy: Always
 
@@ -76,11 +76,11 @@ spec:
     selector:
         app: shiori
     ports:
-        - name: shiori
-          protocol: TCP
-          port: {{ .port }}
+        -   name: shiori
+            protocol: TCP
+            port: {{ .port }}
           {{- with .nodePort }}
-          nodePort: {{ . }}
+            nodePort: {{ . }}
           {{- end }}
 
 {{- end }}

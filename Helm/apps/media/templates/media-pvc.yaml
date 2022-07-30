@@ -11,7 +11,6 @@ parameters:
     staleReplicaTimeout: "2800"
     fromBackup: ""
 
-
 ---
 
 apiVersion: v1
@@ -157,17 +156,3 @@ spec:
     resources:
         requests:
             storage: 5Gi
-
----
-
-{{/*apiVersion: v1*/}}
-{{/*kind: PersistentVolumeClaim*/}}
-{{/*metadata:*/}}
-{{/*    name: tdarr-pvc*/}}
-{{/*spec:*/}}
-{{/*    accessModes:*/}}
-{{/*        - ReadWriteMany*/}}
-{{/*    storageClassName: media-config-sc*/}}
-{{/*    resources:*/}}
-{{/*        requests:*/}}
-{{/*            storage: {{ .Values.tdarr.configSize }}*/}}

@@ -18,43 +18,43 @@ spec:
                 app: pyload
         spec:
             containers:
-                - name: pyload
-                  image: {{ .image }}
-                  imagePullPolicy: IfNotPresent
+                -   name: pyload
+                    image: {{ .image }}
+                    imagePullPolicy: IfNotPresent
 {{- if .resources }}
-                  resources:
+                    resources:
 {{ toYaml .resources | indent 22 }}
 {{- end }}
-                  ports:
-                      - name: web
-                        containerPort: {{ .port }}
-                  volumeMounts:
-                      - mountPath: /downloads
-                        name: data
-                      - mountPath: /config
-                        name: config
-                  env:
-                      - name: PUID
-                        value: "1000"
-                      - name: PGID
-                        value: "1000"
-                  livenessProbe:
-                      failureThreshold: 2
-                      initialDelaySeconds: 120
-                      periodSeconds: 120
-                      timeoutSeconds: 2
-                      tcpSocket:
-                          port: {{ .port }}
+                    ports:
+                        -   name: web
+                            containerPort: {{ .port }}
+                    volumeMounts:
+                        -   mountPath: /downloads
+                            name: data
+                        -   mountPath: /config
+                            name: config
+                    env:
+                        -   name: PUID
+                            value: "1000"
+                        -   name: PGID
+                            value: "1000"
+                    livenessProbe:
+                        failureThreshold: 2
+                        initialDelaySeconds: 120
+                        periodSeconds: 120
+                        timeoutSeconds: 2
+                        tcpSocket:
+                            port: {{ .port }}
 
             restartPolicy: Always
             volumes:
-                - name: config
-                  persistentVolumeClaim:
-                      claimName: pyload-config-volume
+                -   name: config
+                    persistentVolumeClaim:
+                        claimName: pyload-config-volume
 
-                - name: data
-                  persistentVolumeClaim:
-                      claimName: pyload-nfs
+                -   name: data
+                    persistentVolumeClaim:
+                        claimName: pyload-nfs
 
 ---
 
@@ -70,11 +70,11 @@ spec:
     selector:
         app: pyload
     ports:
-        - name: pyload
-          protocol: TCP
-          port: {{ .port }}
+        -   name: pyload
+            protocol: TCP
+            port: {{ .port }}
           {{- with .nodePort }}
-          nodePort: {{ . }}
+            nodePort: {{ . }}
           {{- end }}
 
 {{- end }}

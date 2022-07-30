@@ -9,14 +9,12 @@ speedtest:
 
 
 storage:
-    dataLocality: best-effort      # or disabled
+    dataLocality: best-effort
     numberOfReplicas: 1
 
 prometheus:
     image: quay.io/prometheus/prometheus:v2.37.0
     port: 9090
-    #    nodePort: 30011
-    #   How long will data scraped by prometheus be kept on the fs
     retentionTime: 7d
     scrapers:
         uptimekuma:
@@ -40,7 +38,6 @@ promtail:
 grafana:
     image: grafana/grafana:9.0.5
     port: 3000
-    #    nodePort: 30010
     limits:
         cpu: 250m
         memory: 1Gi

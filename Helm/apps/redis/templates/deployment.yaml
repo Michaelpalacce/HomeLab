@@ -19,23 +19,23 @@ spec:
                 app: redis
         spec:
             containers:
-                - name: redis
-                  image: {{ .image }}
-                  imagePullPolicy: IfNotPresent
+                -   name: redis
+                    image: {{ .image }}
+                    imagePullPolicy: IfNotPresent
 {{- if .resources }}
-                  resources:
+                    resources:
 {{ toYaml .resources | indent 22 }}
 {{- end }}
-                  ports:
-                      - name: redis
-                        containerPort: {{ .port }}
-                  livenessProbe:
-                      failureThreshold: 2
-                      initialDelaySeconds: 120
-                      periodSeconds: 120
-                      timeoutSeconds: 5
-                      tcpSocket:
-                          port: {{ .port }}
+                    ports:
+                        -   name: redis
+                            containerPort: {{ .port }}
+                    livenessProbe:
+                        failureThreshold: 2
+                        initialDelaySeconds: 120
+                        periodSeconds: 120
+                        timeoutSeconds: 5
+                        tcpSocket:
+                            port: {{ .port }}
 
             restartPolicy: Always
 
@@ -50,7 +50,7 @@ spec:
     selector:
         app: redis
     ports:
-        - name: redis
-          port: {{ .port }}
+        -   name: redis
+            port: {{ .port }}
 
 {{- end }}

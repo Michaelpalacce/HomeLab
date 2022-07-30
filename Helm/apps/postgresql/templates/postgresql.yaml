@@ -29,61 +29,61 @@ spec:
             affinity:
                 podAntiAffinity:
                     preferredDuringSchedulingIgnoredDuringExecution:
-                        - podAffinityTerm:
-                              labelSelector:
-                                  matchLabels:
-                                      app.kubernetes.io/name: postgresql
-                              namespaces:
-                                  - {{ $.Release.Namespace }}
-                              topologyKey: kubernetes.io/hostname
-                          weight: 1
+                        -   podAffinityTerm:
+                                labelSelector:
+                                    matchLabels:
+                                        app.kubernetes.io/name: postgresql
+                                namespaces:
+                                    - {{ $.Release.Namespace }}
+                                topologyKey: kubernetes.io/hostname
+                            weight: 1
             containers:
-                - name: postgresql
-                  image: {{ .image }}
-                  imagePullPolicy: IfNotPresent
-                  ports:
-                      - containerPort: {{ .port }}
-                        name: tcp-postgresql
-                        protocol: TCP
-                  env:
-                      - name: POSTGRES_USER
-                        valueFrom:
-                            secretKeyRef:
-                                name: postgresql
-                                key:  username
-                      - name: POSTGRES_PASSWORD
-                        valueFrom:
-                            secretKeyRef:
-                                name: postgresql
-                                key:  password
-                  livenessProbe:
-                      exec:
-                          command:
-                              - /bin/sh
-                              - -c
-                              - exec pg_isready -U "postgres" -h 127.0.0.1 -p {{ .port }}
-                      failureThreshold: 2
-                      initialDelaySeconds: 120
-                      periodSeconds: 60
-                      timeoutSeconds: 30
+                -   name: postgresql
+                    image: {{ .image }}
+                    imagePullPolicy: IfNotPresent
+                    ports:
+                        -   containerPort: {{ .port }}
+                            name: tcp-postgresql
+                            protocol: TCP
+                    env:
+                        -   name: POSTGRES_USER
+                            valueFrom:
+                                secretKeyRef:
+                                    name: postgresql
+                                    key: username
+                        -   name: POSTGRES_PASSWORD
+                            valueFrom:
+                                secretKeyRef:
+                                    name: postgresql
+                                    key: password
+                    livenessProbe:
+                        exec:
+                            command:
+                                - /bin/sh
+                                - -c
+                                - exec pg_isready -U "postgres" -h 127.0.0.1 -p {{ .port }}
+                        failureThreshold: 2
+                        initialDelaySeconds: 120
+                        periodSeconds: 60
+                        timeoutSeconds: 30
 
 {{- if .resources }}
-                  resources:
+                    resources:
 {{ toYaml .resources | indent 22 }}
 {{- end }}
-                  volumeMounts:
-                      - mountPath: /dev/shm
-                        name: dshm
-                      - mountPath: /var/lib/postgresql/data
-                        subPath: data
-                        name: data
+                    volumeMounts:
+                        -   mountPath: /dev/shm
+                            name: dshm
+                        -   mountPath: /var/lib/postgresql/data
+                            subPath: data
+                            name: data
             volumes:
-                - name: data
-                  persistentVolumeClaim:
-                      claimName: postgresql-data-pvc
-                - name: dshm
-                  persistentVolumeClaim:
-                      claimName: postgresql-dshm-pvc
+                -   name: data
+                    persistentVolumeClaim:
+                        claimName: postgresql-data-pvc
+                -   name: dshm
+                    persistentVolumeClaim:
+                        claimName: postgresql-dshm-pvc
 
 ---
 
@@ -96,8 +96,8 @@ spec:
     selector:
         app: postgresql
     ports:
-        - name: postgresql
-          protocol: TCP
-          port: {{ .port }}
+        -   name: postgresql
+            protocol: TCP
+            port: {{ .port }}
 
 {{- end }}

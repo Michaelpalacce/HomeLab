@@ -7,4 +7,3 @@ resources:
     - ingress-nginx
     - reflector
     - velero
-#    - nfs-subdir-external-provisioner

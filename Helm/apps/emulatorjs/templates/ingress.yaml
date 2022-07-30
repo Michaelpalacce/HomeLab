@@ -7,28 +7,28 @@ metadata:
         kubernetes.io/ingress.class: "nginx"
 spec:
     tls:
-        - hosts:
-              - "*.stefangenov.site"
-          secretName: ingress
+        -   hosts:
+                - "*.stefangenov.site"
+            secretName: ingress
     rules:
-        - host: emulatorjs.stefangenov.site
-          http:
-              paths:
-                  - pathType: Prefix
-                    path: "/"
-                    backend:
-                        service:
-                            name: emulatorjs
-                            port:
-                                number: {{ .Values.emulatorjs.frontendPort }}
+        -   host: emulatorjs.stefangenov.site
+            http:
+                paths:
+                    -   pathType: Prefix
+                        path: "/"
+                        backend:
+                            service:
+                                name: emulatorjs
+                                port:
+                                    number: {{ .Values.emulatorjs.frontendPort }}
 
-        - host: emulatorjs-backend.stefangenov.site
-          http:
-              paths:
-                  - pathType: Prefix
-                    path: "/"
-                    backend:
-                        service:
-                            name: emulatorjs
-                            port:
-                                number: {{ .Values.emulatorjs.backendPort }}
+        -   host: emulatorjs-backend.stefangenov.site
+            http:
+                paths:
+                    -   pathType: Prefix
+                        path: "/"
+                        backend:
+                            service:
+                                name: emulatorjs
+                                port:
+                                    number: {{ .Values.emulatorjs.backendPort }}

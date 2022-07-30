@@ -1,9 +1,8 @@
 ---
 shiori:
-  image: stefangenov/shiori:v1.5.3
-    # nodePort: 30128
-  port: 8080
-  resources:
-    requests:
-      cpu: 100m
-      memory: 512Mi
+    image: stefangenov/shiori:v1.5.3
+    port: 8080
+    resources:
+        requests:
+            cpu: 100m
+            memory: 512Mi

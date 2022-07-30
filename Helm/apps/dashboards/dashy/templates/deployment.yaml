@@ -26,26 +26,26 @@ spec:
                 {{- end }}
         spec:
             containers:
-                - name: dashy
-                  image: {{ .image }}
-                  imagePullPolicy: IfNotPresent
+                -   name: dashy
+                    image: {{ .image }}
+                    imagePullPolicy: IfNotPresent
 {{- if .resources }}
-                  resources:
+                    resources:
 {{ toYaml .resources | indent 22 }}
 {{- end }}
-                  ports:
-                      - name: web
-                        containerPort: {{ .port }}
-                  volumeMounts:
-                      - name: config-volume
-                        mountPath: /app/public/conf.yml
-                        subPath: conf.yml
+                    ports:
+                        -   name: web
+                            containerPort: {{ .port }}
+                    volumeMounts:
+                        -   name: config-volume
+                            mountPath: /app/public/conf.yml
+                            subPath: conf.yml
 
             restartPolicy: Always
             volumes:
-                - name: config-volume
-                  configMap:
-                      name: dashy-config
+                -   name: config-volume
+                    configMap:
+                        name: dashy-config
 
 ---
 
@@ -61,11 +61,11 @@ spec:
     selector:
         app: dashy
     ports:
-        - name: dashy
-          protocol: TCP
-          port: {{ .port }}
+        -   name: dashy
+            protocol: TCP
+            port: {{ .port }}
           {{- with .nodePort }}
-          nodePort: {{ . }}
+            nodePort: {{ . }}
           {{- end }}
 
 {{- end }}

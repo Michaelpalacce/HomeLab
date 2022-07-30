@@ -19,39 +19,39 @@ spec:
                 app: emulatorjs
         spec:
             containers:
-                - name: emulatorjs
-                  image: {{ .image }}
-                  imagePullPolicy: IfNotPresent
-                  env:
-                      - name: PUID
-                        value: "1000"
-                      - name: GUID
-                        value: "1000"
-                      - name: TZ
-                        value: "Europe/Sofia"
+                -   name: emulatorjs
+                    image: {{ .image }}
+                    imagePullPolicy: IfNotPresent
+                    env:
+                        -   name: PUID
+                            value: "1000"
+                        -   name: GUID
+                            value: "1000"
+                        -   name: TZ
+                            value: "Europe/Sofia"
 {{- if .resources }}
-                  resources:
+                    resources:
 {{ toYaml .resources | indent 22 }}
 {{- end }}
-                  ports:
-                      - name: web
-                        containerPort: {{ .frontendPort }}
-                      - name: api
-                        containerPort: {{ .backendPort }}
-                  volumeMounts:
-                      - name: data
-                        mountPath: /data
-                      - name: config
-                        mountPath: /config
+                    ports:
+                        -   name: web
+                            containerPort: {{ .frontendPort }}
+                        -   name: api
+                            containerPort: {{ .backendPort }}
+                    volumeMounts:
+                        -   name: data
+                            mountPath: /data
+                        -   name: config
+                            mountPath: /config
 
             restartPolicy: Always
             volumes:
-                - name: config
-                  persistentVolumeClaim:
-                      claimName: emulatorjs-config-pvc
-                - name: data
-                  persistentVolumeClaim:
-                      claimName: emulatorjs-data-pvc
+                -   name: config
+                    persistentVolumeClaim:
+                        claimName: emulatorjs-config-pvc
+                -   name: data
+                    persistentVolumeClaim:
+                        claimName: emulatorjs-data-pvc
 
 ---
 
@@ -67,14 +67,14 @@ spec:
     selector:
         app: emulatorjs
     ports:
-        - name: frontend
-          protocol: TCP
-          port: {{ .frontendPort }}
+        -   name: frontend
+            protocol: TCP
+            port: {{ .frontendPort }}
           {{- with .nodePort }}
-          nodePort: {{ . }}
+            nodePort: {{ . }}
           {{- end }}
-        - name: backend
-          protocol: TCP
-          port: {{ .backendPort }}
+        -   name: backend
+            protocol: TCP
+            port: {{ .backendPort }}
 
 {{- end }}

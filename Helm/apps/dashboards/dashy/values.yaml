@@ -1,11 +1,10 @@
 ---
 dashy:
-  image: stefangenov/dashy:2.0.9
-#    nodePort: 32222
-  port: 80
-  resources:
-    requests:
-      cpu: 500m
-      memory: 1Gi
-  clusterUrl: 192.168.1.2
-  domainName: stefangenov.site
+    image: stefangenov/dashy:2.0.9
+    port: 80
+    resources:
+        requests:
+            cpu: 250m
+            memory: 1Gi
+    clusterUrl: 192.168.1.2
+    domainName: stefangenov.site

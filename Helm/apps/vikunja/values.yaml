@@ -1,9 +1,9 @@
 ---
 vikunja:
-  api:
-    image: vikunja/api:0.18.1
-    port: 3456
-    frontendUrl: https://vikunja.stefangenov.site
-  frontend:
-    image: vikunja/frontend:0.18.2
-    port: 80
+    api:
+        image: vikunja/api:0.18.1
+        port: 3456
+        frontendUrl: https://vikunja.stefangenov.site
+    frontend:
+        image: vikunja/frontend:0.18.2
+        port: 80

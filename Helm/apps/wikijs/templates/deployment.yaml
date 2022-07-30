@@ -19,34 +19,34 @@ spec:
                 app: wikijs
         spec:
             containers:
-                - name: wikijs
-                  image: {{ .image }}
-                  imagePullPolicy: IfNotPresent
+                -   name: wikijs
+                    image: {{ .image }}
+                    imagePullPolicy: IfNotPresent
 {{- if .resources }}
-                  resources:
+                    resources:
 {{ toYaml .resources | indent 22 }}
 {{- end }}
-                  ports:
-                      - name: web
-                        containerPort: {{ .port }}
-                  envFrom:
-                      - secretRef:
-                            name: db
-                            optional: false
-                  livenessProbe:
-                      failureThreshold: 2
-                      initialDelaySeconds: 120
-                      periodSeconds: 120
-                      timeoutSeconds: 2
-                      tcpSocket:
-                          port: {{ .port }}
-                  readinessProbe:
-                      failureThreshold: 10
-                      initialDelaySeconds: 15
-                      periodSeconds: 10
-                      timeoutSeconds: 2
-                      tcpSocket:
-                          port: {{ .port }}
+                    ports:
+                        -   name: web
+                            containerPort: {{ .port }}
+                    envFrom:
+                        -   secretRef:
+                                name: db
+                                optional: false
+                    livenessProbe:
+                        failureThreshold: 2
+                        initialDelaySeconds: 120
+                        periodSeconds: 120
+                        timeoutSeconds: 2
+                        tcpSocket:
+                            port: {{ .port }}
+                    readinessProbe:
+                        failureThreshold: 10
+                        initialDelaySeconds: 15
+                        periodSeconds: 10
+                        timeoutSeconds: 2
+                        tcpSocket:
+                            port: {{ .port }}
 
             restartPolicy: Always
 
@@ -64,11 +64,11 @@ spec:
     selector:
         app: wikijs
     ports:
-        - name: wikijs
-          protocol: TCP
-          port: {{ .port }}
+        -   name: wikijs
+            protocol: TCP
+            port: {{ .port }}
           {{- with .nodePort }}
-          nodePort: {{ . }}
+            nodePort: {{ . }}
           {{- end }}
 
 {{- end }}

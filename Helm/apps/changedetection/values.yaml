@@ -1,15 +1,14 @@
 ---
 changedetection:
-  image: dgtlmoon/changedetection.io:0.39.17
-#    nodePort: 31101
-  port: 5000
-  baseUrl: changedetection.stefangenov.site
-  resources:
-    requests:
-      cpu: 100m
-      memory: 125Mi
+    image: dgtlmoon/changedetection.io:0.39.17
+    port: 5000
+    baseUrl: changedetection.stefangenov.site
+    resources:
+        requests:
+            cpu: 100m
+            memory: 125Mi
 
 storage:
-  dataLocality: disabled      # or disabled
-  numberOfReplicas: 1
-  configSize: 1Gi
+    dataLocality: disabled
+    numberOfReplicas: 1
+    configSize: 1Gi

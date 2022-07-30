@@ -1,15 +1,14 @@
 ---
 uptimekuma:
-  image: louislam/uptime-kuma:1.17.1-debian
-  replicas: 1
-#    nodePort: 30012
-  port: 3001
-  resources:
-    requests:
-      cpu: 100m
-      memory: 512Mi
+    image: louislam/uptime-kuma:1.17.1-debian
+    replicas: 1
+    port: 3001
+    resources:
+        requests:
+            cpu: 100m
+            memory: 512Mi
 
 storage:
-  dataLocality: best-effort      # or disabled
-  numberOfReplicas: 1
-  size: 10Gi
+    dataLocality: best-effort
+    numberOfReplicas: 1
+    size: 10Gi

@@ -2,7 +2,6 @@
 emulatorjs:
     replicas: 0
     image: lscr.io/linuxserver/emulatorjs
-    # nodePort: 30130
     backendPort: 3000
     frontendPort: 80
     resources:
@@ -11,7 +10,7 @@ emulatorjs:
             memory: 512Mi
 
 storage:
-    dataLocality: best-effort      # or disabled
+    dataLocality: best-effort
     numberOfReplicas: 1
     dataSize: 5Gi
     backupSize: 10Gi

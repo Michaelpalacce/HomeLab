@@ -18,77 +18,77 @@ spec:
                 app: firefly
         spec:
             containers:
-                - name: firefly
-                  image: {{ .image }}
-                  imagePullPolicy: IfNotPresent
+                -   name: firefly
+                    image: {{ .image }}
+                    imagePullPolicy: IfNotPresent
 {{- if .resources }}
-                  resources:
+                    resources:
 {{ toYaml .resources | indent 22 }}
 {{- end }}
-                  ports:
-                      - name: web
-                        containerPort: {{ .port }}
-                  volumeMounts:
-                      - name: data
-                        mountPath: /var/www/html/storage/upload
-                  env:
-                      - name: PUID
-                        value: "1000"
-                      - name: PGID
-                        value: "1000"
-                      - name: TZ
-                        value: "Europe/Sofia"
-                      - name: DB_USERNAME
-                        valueFrom:
-                            secretKeyRef:
-                                name: db
-                                key: username
-                      - name: DB_PASSWORD
-                        valueFrom:
-                            secretKeyRef:
-                                name: db
-                                key: password
-                      - name: DB_DATABASE
-                        valueFrom:
-                            secretKeyRef:
-                                name: db
-                                key: database
-                      - name: DB_HOST
-                        valueFrom:
-                            secretKeyRef:
-                                name: db
-                                key: host
-                      - name: DB_PORT
-                        valueFrom:
-                            secretKeyRef:
-                                name: db
-                                key: port
-                      - name: DB_CONNECTION
-                        valueFrom:
-                            secretKeyRef:
-                                name: db
-                                key: type
-                      - name: APP_KEY
-                        valueFrom:
-                            secretKeyRef:
-                                name: app
-                                key: key
-                      - name: APP_URL
-                        value: "{{ .appUrl }}"
-                      - name: TRUSTED_PROXIES
-                        value: "**"
-                  livenessProbe:
-                      failureThreshold: 2
-                      initialDelaySeconds: 120
-                      periodSeconds: 120
-                      timeoutSeconds: 5
-                      tcpSocket:
-                          port: {{ .port }}
+                    ports:
+                        -   name: web
+                            containerPort: {{ .port }}
+                    volumeMounts:
+                        -   name: data
+                            mountPath: /var/www/html/storage/upload
+                    env:
+                        -   name: PUID
+                            value: "1000"
+                        -   name: PGID
+                            value: "1000"
+                        -   name: TZ
+                            value: "Europe/Sofia"
+                        -   name: DB_USERNAME
+                            valueFrom:
+                                secretKeyRef:
+                                    name: db
+                                    key: username
+                        -   name: DB_PASSWORD
+                            valueFrom:
+                                secretKeyRef:
+                                    name: db
+                                    key: password
+                        -   name: DB_DATABASE
+                            valueFrom:
+                                secretKeyRef:
+                                    name: db
+                                    key: database
+                        -   name: DB_HOST
+                            valueFrom:
+                                secretKeyRef:
+                                    name: db
+                                    key: host
+                        -   name: DB_PORT
+                            valueFrom:
+                                secretKeyRef:
+                                    name: db
+                                    key: port
+                        -   name: DB_CONNECTION
+                            valueFrom:
+                                secretKeyRef:
+                                    name: db
+                                    key: type
+                        -   name: APP_KEY
+                            valueFrom:
+                                secretKeyRef:
+                                    name: app
+                                    key: key
+                        -   name: APP_URL
+                            value: "{{ .appUrl }}"
+                        -   name: TRUSTED_PROXIES
+                            value: "**"
+                    livenessProbe:
+                        failureThreshold: 2
+                        initialDelaySeconds: 120
+                        periodSeconds: 120
+                        timeoutSeconds: 5
+                        tcpSocket:
+                            port: {{ .port }}
             restartPolicy: Always
             volumes:
-                - name: data
-                  persistentVolumeClaim:
-                      claimName: firefly-pvc
+                -   name: data
+                    persistentVolumeClaim:
+                        claimName: firefly-pvc
 
 ---
 
@@ -104,11 +104,11 @@ spec:
     selector:
         app: firefly
     ports:
-        - name: firefly
-          protocol: TCP
-          port: {{ .port }}
+        -   name: firefly
+            protocol: TCP
+            port: {{ .port }}
           {{- with .nodePort }}
-          nodePort: {{ .nodePort }}
+            nodePort: {{ .nodePort }}
           {{- end }}
 
 {{- end }}

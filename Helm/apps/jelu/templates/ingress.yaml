@@ -7,17 +7,17 @@ metadata:
         kubernetes.io/ingress.class: "nginx"
 spec:
     tls:
-        - hosts:
-              - "*.stefangenov.site"
-          secretName: ingress
+        -   hosts:
+                - "*.stefangenov.site"
+            secretName: ingress
     rules:
-        - host: jelu.stefangenov.site
-          http:
-              paths:
-                  - pathType: Prefix
-                    path: "/"
-                    backend:
-                        service:
-                            name: jelu
-                            port:
-                                number: {{ .Values.jelu.port }}
+        -   host: jelu.stefangenov.site
+            http:
+                paths:
+                    -   pathType: Prefix
+                        path: "/"
+                        backend:
+                            service:
+                                name: jelu
+                                port:
+                                    number: {{ .Values.jelu.port }}

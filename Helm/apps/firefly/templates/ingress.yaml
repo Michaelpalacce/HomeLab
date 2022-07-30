@@ -7,27 +7,27 @@ metadata:
         kubernetes.io/ingress.class: "nginx"
 spec:
     tls:
-        - hosts:
-              - "*.stefangenov.site"
-          secretName: ingress
+        -   hosts:
+                - "*.stefangenov.site"
+            secretName: ingress
     rules:
-        - host: firefly.stefangenov.site
-          http:
-              paths:
-                  - pathType: Prefix
-                    path: "/"
-                    backend:
-                        service:
-                            name: firefly
-                            port:
-                                number: {{ .Values.firefly.port }}
-        - host: budget.stefangenov.site
-          http:
-              paths:
-                  - pathType: Prefix
-                    path: "/"
-                    backend:
-                        service:
-                            name: firefly
-                            port:
-                                number: {{ .Values.firefly.port }}
+        -   host: firefly.stefangenov.site
+            http:
+                paths:
+                    -   pathType: Prefix
+                        path: "/"
+                        backend:
+                            service:
+                                name: firefly
+                                port:
+                                    number: {{ .Values.firefly.port }}
+        -   host: budget.stefangenov.site
+            http:
+                paths:
+                    -   pathType: Prefix
+                        path: "/"
+                        backend:
+                            service:
+                                name: firefly
+                                port:
+                                    number: {{ .Values.firefly.port }}

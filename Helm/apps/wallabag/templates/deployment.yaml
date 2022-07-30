@@ -22,47 +22,47 @@ spec:
                 app: wallabag
         spec:
             containers:
-                - name: wallabag
-                  image: {{ .image }}
-                  imagePullPolicy: IfNotPresent
-                  env:
-                      - name: PUID
-                        value: "1000"
-                      - name: GUID
-                        value: "1000"
-                      - name: SYMFONY__ENV__DATABASE_DRIVER
-                        value: "pdo_pgsql"
-                      - name: SYMFONY__ENV__DATABASE_PORT
-                        value: "{{ .db.port }}"
-                      - name: SYMFONY__ENV__DATABASE_NAME
-                        value: {{ .db.name }}
-                      - name: SYMFONY__ENV__DATABASE_USER
-                        value: {{ .db.username }}
-                      - name: SYMFONY__ENV__DATABASE_PASSWORD
-                        value: {{ .db.password }}
-                      - name: SYMFONY__ENV__DATABASE_HOST
-                        value: {{ .db.host }}
-                      - name: SYMFONY__ENV__DOMAIN_NAME
-                        value: {{ .domainName }}
-                      - name: POSTGRES_USER
-                        value: postgres
-                      - name: POSTGRES_PASSWORD
-                        value: postgres
+                -   name: wallabag
+                    image: {{ .image }}
+                    imagePullPolicy: IfNotPresent
+                    env:
+                        -   name: PUID
+                            value: "1000"
+                        -   name: GUID
+                            value: "1000"
+                        -   name: SYMFONY__ENV__DATABASE_DRIVER
+                            value: "pdo_pgsql"
+                        -   name: SYMFONY__ENV__DATABASE_PORT
+                            value: "{{ .db.port }}"
+                        -   name: SYMFONY__ENV__DATABASE_NAME
+                            value: {{ .db.name }}
+                        -   name: SYMFONY__ENV__DATABASE_USER
+                            value: {{ .db.username }}
+                        -   name: SYMFONY__ENV__DATABASE_PASSWORD
+                            value: {{ .db.password }}
+                        -   name: SYMFONY__ENV__DATABASE_HOST
+                            value: {{ .db.host }}
+                        -   name: SYMFONY__ENV__DOMAIN_NAME
+                            value: {{ .domainName }}
+                        -   name: POSTGRES_USER
+                            value: postgres
+                        -   name: POSTGRES_PASSWORD
+                            value: postgres
 {{- if .resources }}
-                  resources:
+                    resources:
 {{ toYaml .resources | indent 22 }}
 {{- end }}
-                  ports:
-                      - name: web
-                        containerPort: {{ .port }}
-                  livenessProbe:
-                      failureThreshold: 2
-                      initialDelaySeconds: 120
-                      periodSeconds: 120
-                      timeoutSeconds: 5
-                      httpGet:
-                          port: {{ .port }}
-                          path: /login
+                    ports:
+                        -   name: web
+                            containerPort: {{ .port }}
+                    livenessProbe:
+                        failureThreshold: 2
+                        initialDelaySeconds: 120
+                        periodSeconds: 120
+                        timeoutSeconds: 5
+                        httpGet:
+                            port: {{ .port }}
+                            path: /login
 
             restartPolicy: Always
 
@@ -78,9 +78,9 @@ spec:
     selector:
         app: wallabag
     ports:
-        - name: wallabag
-          protocol: TCP
-          port: {{ .port }}
-          nodePort: {{ .nodePort }}
+        -   name: wallabag
+            protocol: TCP
+            port: {{ .port }}
+            nodePort: {{ .nodePort }}
 
 {{- end }}

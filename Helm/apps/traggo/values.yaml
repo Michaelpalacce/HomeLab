@@ -9,6 +9,6 @@ traggo:
       memory: 128Mi
 
 storage:
-  dataLocality: disabled      # or disabled
+  dataLocality: disabled
   numberOfReplicas: 1
   dataSize: 1Gi

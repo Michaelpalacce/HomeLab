@@ -51,46 +51,46 @@ spec:
             {{- with .Values.tolerations }}
             tolerations:
               {{- range . }}
-                 - key: {{ .key }}
-                   effect: {{ .effect }}
+                -   key: {{ .key }}
+                    effect: {{ .effect }}
                    {{- if .value }}
-                   value: {{ .value }}
+                    value: {{ .value }}
                    {{- end }}
               {{- end }}
             {{- end }}
             containers:
-                - resources:
-                      requests:
-                          cpu: 5m
-                          memory: 500Ki
-                      limits:
-                          cpu: 5m
-                          memory: 50Mi  # This crashes on startup with a 5Mi limit, but only uses about 320Ki after that.
-                  securityContext:
-                      privileged: true
-                  image: python:3.10
-                  name: orphanedpodscleaner
-                  command: ["python3"]
-                  args:
-                      - /usr/local/bin/orphanedpodscleaner
-                  volumeMounts:
-                      - name: scriptsrc
-                        mountPath: /usr/local/bin
-                      - name: logs
-                        mountPath: /var/log
-                        readOnly: true
-                      - name: kubeletpath
-                        mountPath: /var/lib/kubelet/pods
+                -   resources:
+                        requests:
+                            cpu: 5m
+                            memory: 500Ki
+                        limits:
+                            cpu: 5m
+                            memory: 50Mi  # This crashes on startup with a 5Mi limit, but only uses about 320Ki after that.
+                    securityContext:
+                        privileged: true
+                    image: python:3.10
+                    name: orphanedpodscleaner
+                    command: [ "python3" ]
+                    args:
+                        - /usr/local/bin/orphanedpodscleaner
+                    volumeMounts:
+                        -   name: scriptsrc
+                            mountPath: /usr/local/bin
+                        -   name: logs
+                            mountPath: /var/log
+                            readOnly: true
+                        -   name: kubeletpath
+                            mountPath: /var/lib/kubelet/pods
             volumes:
-                - name: scriptsrc
-                  configMap:
-                      name: orphanedpodscleaner
-                      defaultMode: 0755
-                - name: kubeletpath
-                  hostPath:
-                      path: /var/lib/kubelet/pods
-                      type: Directory
-                - name: logs
-                  hostPath:
-                      path: /var/log
-                      type: Directory
+                -   name: scriptsrc
+                    configMap:
+                        name: orphanedpodscleaner
+                        defaultMode: 0755
+                -   name: kubeletpath
+                    hostPath:
+                        path: /var/lib/kubelet/pods
+                        type: Directory
+                -   name: logs
+                    hostPath:
+                        path: /var/log
+                        type: Directory

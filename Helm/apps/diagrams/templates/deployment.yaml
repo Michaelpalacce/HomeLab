@@ -22,16 +22,16 @@ spec:
                 app: diagrams
         spec:
             containers:
-                - name: diagrams
-                  image: {{ .image }}
-                  imagePullPolicy: IfNotPresent
+                -   name: diagrams
+                    image: {{ .image }}
+                    imagePullPolicy: IfNotPresent
 {{- if .resources }}
-                  resources:
+                    resources:
 {{ toYaml .resources | indent 22 }}
 {{- end }}
-                  ports:
-                      - name: web
-                        containerPort: {{ .port }}
+                    ports:
+                        -   name: web
+                            containerPort: {{ .port }}
             restartPolicy: Always
 
 ---
@@ -48,11 +48,11 @@ spec:
     selector:
         app: diagrams
     ports:
-        - name: diagrams
-          protocol: TCP
-          port: {{ .port }}
+        -   name: diagrams
+            protocol: TCP
+            port: {{ .port }}
           {{- with .nodePort }}
-          nodePort: {{ . }}
+            nodePort: {{ . }}
           {{- end }}
 
 {{- end }}

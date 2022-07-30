@@ -1,21 +1,20 @@
 ---
 vaultwarden:
-  image: vaultwarden/server:1.25.2
-    # nodePort: 31051
-  port: 80
-  backup:
-    image: stefangenov/vaultwarden-backup:1.0.0
+    image: vaultwarden/server:1.25.2
+    port: 80
     resources:
-      requests:
-        cpu: 100m
-        memory: 100Mi
-  resources:
-    requests:
-      cpu: 500m
-      memory: 512Mi
+        requests:
+            cpu: 500m
+            memory: 512Mi
+    backup:
+        image: stefangenov/vaultwarden-backup:1.0.0
+        resources:
+            requests:
+                cpu: 100m
+                memory: 100Mi
 
 storage:
-  dataLocality: best-effort      # or disabled
-  numberOfReplicas: 1
-  dataSize: 5Gi
-  backupSize: 10Gi
+    dataLocality: best-effort
+    numberOfReplicas: 1
+    dataSize: 5Gi
+    backupSize: 10Gi

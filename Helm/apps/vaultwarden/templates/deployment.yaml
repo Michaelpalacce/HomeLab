@@ -16,69 +16,69 @@ spec:
     template:
         metadata:
             annotations:
-              backup.velero.io/backup-volumes: data
+                backup.velero.io/backup-volumes: data
             labels:
                 app: vaultwarden
         spec:
             containers:
-                - name: vaultwarden
-                  image: {{ .image }}
-                  imagePullPolicy: IfNotPresent
+                -   name: vaultwarden
+                    image: {{ .image }}
+                    imagePullPolicy: IfNotPresent
 {{- if .resources }}
-                  resources:
+                    resources:
 {{ toYaml .resources | indent 22 }}
 {{- end }}
-                  readinessProbe:
-                      tcpSocket:
-                          port: {{ .port }}
-                      failureThreshold: 10
-                      initialDelaySeconds: 10
-                      periodSeconds: 10
-                      timeoutSeconds: 5
-                  livenessProbe:
-                      tcpSocket:
-                          port: {{ .port }}
-                      failureThreshold: 2
-                      initialDelaySeconds: 120
-                      periodSeconds: 10
-                      timeoutSeconds: 5
-                  ports:
-                      - name: web
-                        containerPort: {{ .port }}
-                  volumeMounts:
-                      - name: data
-                        mountPath: /data
-                - name: backup
-                  image: {{ .backup.image }}
-                  imagePullPolicy: IfNotPresent
-                  env:
-                      - name: BACKUP_ENCRYPTION_KEY
-                        valueFrom:
-                            secretKeyRef:
-                                name: backup
-                                key: encryptionKey
-                      - name: RETENTION_TIME_DAYS
-                        value: "7"
-                      - name: CRON_SCHEDULE
-                        value: "0 * */1 * *"
+                    readinessProbe:
+                        tcpSocket:
+                            port: {{ .port }}
+                        failureThreshold: 10
+                        initialDelaySeconds: 10
+                        periodSeconds: 10
+                        timeoutSeconds: 5
+                    livenessProbe:
+                        tcpSocket:
+                            port: {{ .port }}
+                        failureThreshold: 2
+                        initialDelaySeconds: 120
+                        periodSeconds: 10
+                        timeoutSeconds: 5
+                    ports:
+                        -   name: web
+                            containerPort: {{ .port }}
+                    volumeMounts:
+                        -   name: data
+                            mountPath: /data
+                -   name: backup
+                    image: {{ .backup.image }}
+                    imagePullPolicy: IfNotPresent
+                    env:
+                        -   name: BACKUP_ENCRYPTION_KEY
+                            valueFrom:
+                                secretKeyRef:
+                                    name: backup
+                                    key: encryptionKey
+                        -   name: RETENTION_TIME_DAYS
+                            value: "7"
+                        -   name: CRON_SCHEDULE
+                            value: "0 * */1 * *"
 {{- if .backup.resources }}
-                  resources:
+                    resources:
 {{ toYaml .backup.resources | indent 22 }}
 {{- end }}
-                  volumeMounts:
-                      - name: data
-                        mountPath: /data
-                      - name: backup
-                        mountPath: /backups
+                    volumeMounts:
+                        -   name: data
+                            mountPath: /data
+                        -   name: backup
+                            mountPath: /backups
 
             restartPolicy: Always
             volumes:
-                - name: data
-                  persistentVolumeClaim:
-                      claimName: vaultwarden-pvc
-                - name: backup
-                  persistentVolumeClaim:
-                      claimName: vaultwarden-backup-pvc
+                -   name: data
+                    persistentVolumeClaim:
+                        claimName: vaultwarden-pvc
+                -   name: backup
+                    persistentVolumeClaim:
+                        claimName: vaultwarden-backup-pvc
 
 ---
 
@@ -94,11 +94,11 @@ spec:
     selector:
         app: vaultwarden
     ports:
-        - name: vaultwarden
-          protocol: TCP
-          port: {{ .port }}
+        -   name: vaultwarden
+            protocol: TCP
+            port: {{ .port }}
           {{- with .nodePort }}
-          nodePort: {{ . }}
+            nodePort: {{ . }}
           {{- end }}
 
 {{- end }}

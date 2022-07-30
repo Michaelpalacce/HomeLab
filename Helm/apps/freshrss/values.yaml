@@ -1,14 +1,13 @@
 ---
 freshrss:
-  image: linuxserver/freshrss:1.19.2
-#    nodePort: 30119
-  port: 80
-  resources:
-    requests:
-      cpu: 100m
-      memory: 100Mi
+    image: linuxserver/freshrss:1.19.2
+    port: 80
+    resources:
+        requests:
+            cpu: 100m
+            memory: 100Mi
 
 storage:
-  dataLocality: disabled      # or disabled
-  numberOfReplicas: 1
-  configSize: 1Gi
+    dataLocality: disabled
+    numberOfReplicas: 1
+    configSize: 1Gi

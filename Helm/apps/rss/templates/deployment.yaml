@@ -23,31 +23,31 @@ spec:
         spec:
             enableServiceLinks: false
             containers:
-                - name: rss
-                  image: {{ .image }}
-                  imagePullPolicy: IfNotPresent
+                -   name: rss
+                    image: {{ .image }}
+                    imagePullPolicy: IfNotPresent
 {{- if .resources }}
-                  resources:
+                    resources:
 {{ toYaml .resources | indent 22 }}
 {{- end }}
-                  ports:
-                      - name: web
-                        containerPort: {{ .port }}
-                  volumeMounts:
-                    - mountPath: /app/storage
-                      name: data
-                    - mountPath: /app/storage/feeds.txt
-                      subPath: feeds.txt
-                      name: config-volume
+                    ports:
+                        -   name: web
+                            containerPort: {{ .port }}
+                    volumeMounts:
+                        -   mountPath: /app/storage
+                            name: data
+                        -   mountPath: /app/storage/feeds.txt
+                            subPath: feeds.txt
+                            name: config-volume
 
             restartPolicy: Always
             volumes:
-              - name: config-volume
-                configMap:
-                    name: rss-config
-              - name: data
-                persistentVolumeClaim:
-                  claimName: rss-pvc
+                -   name: config-volume
+                    configMap:
+                        name: rss-config
+                -   name: data
+                    persistentVolumeClaim:
+                        claimName: rss-pvc
 
 ---
 
@@ -63,11 +63,11 @@ spec:
     selector:
         app: rss
     ports:
-        - name: rss
-          protocol: TCP
-          port: {{ .port }}
+        -   name: rss
+            protocol: TCP
+            port: {{ .port }}
           {{- with .nodePort }}
-          nodePort: {{ . }}
+            nodePort: {{ . }}
           {{- end }}
 
 {{- end }}

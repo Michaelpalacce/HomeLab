@@ -1,10 +1,9 @@
 ---
 n8n:
-  image: n8nio/n8n:0.188.0
-  nodePort: 30114
-  port: 5678
-  replicas: 1
-  resources:
-    requests:
-      cpu: 125m
-      memory: 512Mi
+    image: n8nio/n8n:0.188.0
+    port: 5678
+    replicas: 1
+    resources:
+        requests:
+            cpu: 125m
+            memory: 512Mi

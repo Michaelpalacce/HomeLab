@@ -3,8 +3,8 @@ apiVersion: v2
 appVersion: 1.0.0
 description: This chart is used to install orphanedpodscleaner that cleans up orphanedpodscleaner
 maintainers:
-  - email: sgenov94@gmail.com
-    name: Stefan Genov
+    - email: sgenov94@gmail.com
+      name: Stefan Genov
 name: orphanedpodscleaner
 type: application
 version: 1.0.0

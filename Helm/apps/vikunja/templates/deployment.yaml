@@ -23,104 +23,104 @@ spec:
             containers:
 
                 {{- with .api }}
-                - name: api
-                  image: {{ .image }}
-                  env:
-                      - name: VIKUNJA_SERVICE_FRONTENDURL
-                        value: "{{ .frontendUrl }}"
-                      - name: VIKUNJA_DATABASE_HOST
-                        valueFrom:
-                            secretKeyRef:
-                                name: db
-                                key: host
-                      - name: VIKUNJA_DATABASE_USER
-                        valueFrom:
-                            secretKeyRef:
-                                name: db
-                                key: username
-                      - name: VIKUNJA_DATABASE_PASSWORD
-                        valueFrom:
-                            secretKeyRef:
-                                name: db
-                                key: password
-                      - name: VIKUNJA_DATABASE_TYPE
-                        valueFrom:
-                            secretKeyRef:
-                                name: db
-                                key: type
-                      - name: VIKUNJA_DATABASE_DATABASE
-                        valueFrom:
-                            secretKeyRef:
-                                name: db
-                                key: name
-                      - name: VIKUNJA_MAILER_ENABLED
-                        value: "true"
-                      - name: VIKUNJA_MAILER_HOST
-                        valueFrom:
-                            secretKeyRef:
-                                name: smtp
-                                key: host
-                      - name: VIKUNJA_MAILER_PORT
-                        valueFrom:
-                            secretKeyRef:
-                                name: smtp
-                                key: port
-                      - name: VIKUNJA_MAILER_USERNAME
-                        valueFrom:
-                            secretKeyRef:
-                                name: smtp
-                                key: username
-                      - name: VIKUNJA_MAILER_PASSWORD
-                        valueFrom:
-                            secretKeyRef:
-                                name: smtp
-                                key: password
+                -   name: api
+                    image: {{ .image }}
+                    env:
+                        -   name: VIKUNJA_SERVICE_FRONTENDURL
+                            value: "{{ .frontendUrl }}"
+                        -   name: VIKUNJA_DATABASE_HOST
+                            valueFrom:
+                                secretKeyRef:
+                                    name: db
+                                    key: host
+                        -   name: VIKUNJA_DATABASE_USER
+                            valueFrom:
+                                secretKeyRef:
+                                    name: db
+                                    key: username
+                        -   name: VIKUNJA_DATABASE_PASSWORD
+                            valueFrom:
+                                secretKeyRef:
+                                    name: db
+                                    key: password
+                        -   name: VIKUNJA_DATABASE_TYPE
+                            valueFrom:
+                                secretKeyRef:
+                                    name: db
+                                    key: type
+                        -   name: VIKUNJA_DATABASE_DATABASE
+                            valueFrom:
+                                secretKeyRef:
+                                    name: db
+                                    key: name
+                        -   name: VIKUNJA_MAILER_ENABLED
+                            value: "true"
+                        -   name: VIKUNJA_MAILER_HOST
+                            valueFrom:
+                                secretKeyRef:
+                                    name: smtp
+                                    key: host
+                        -   name: VIKUNJA_MAILER_PORT
+                            valueFrom:
+                                secretKeyRef:
+                                    name: smtp
+                                    key: port
+                        -   name: VIKUNJA_MAILER_USERNAME
+                            valueFrom:
+                                secretKeyRef:
+                                    name: smtp
+                                    key: username
+                        -   name: VIKUNJA_MAILER_PASSWORD
+                            valueFrom:
+                                secretKeyRef:
+                                    name: smtp
+                                    key: password
 
-                  imagePullPolicy: IfNotPresent
-                  livenessProbe:
-                      failureThreshold: 2
-                      periodSeconds: 120
-                      initialDelaySeconds: 120
-                      successThreshold: 1
-                      tcpSocket:
-                          port: {{ .port }}
-                      timeoutSeconds: 2
-                  readinessProbe:
-                      failureThreshold: 10
-                      initialDelaySeconds: 30
-                      periodSeconds: 10
-                      timeoutSeconds: 2
-                      tcpSocket:
-                          port: {{ .port }}
-                  ports:
-                      - containerPort: {{ .port }}
-                        name: api
-                        protocol: TCP
+                    imagePullPolicy: IfNotPresent
+                    livenessProbe:
+                        failureThreshold: 2
+                        periodSeconds: 120
+                        initialDelaySeconds: 120
+                        successThreshold: 1
+                        tcpSocket:
+                            port: {{ .port }}
+                        timeoutSeconds: 2
+                    readinessProbe:
+                        failureThreshold: 10
+                        initialDelaySeconds: 30
+                        periodSeconds: 10
+                        timeoutSeconds: 2
+                        tcpSocket:
+                            port: {{ .port }}
+                    ports:
+                        -   containerPort: {{ .port }}
+                            name: api
+                            protocol: TCP
                 {{- end }}
 
                 {{- with .frontend }}
-                - name: frontend
-                  image: {{ .image }}
-                  imagePullPolicy: IfNotPresent
-                  livenessProbe:
-                      failureThreshold: 2
-                      periodSeconds: 120
-                      initialDelaySeconds: 120
-                      successThreshold: 1
-                      tcpSocket:
-                          port: {{ .port }}
-                      timeoutSeconds: 2
-                  readinessProbe:
-                      failureThreshold: 10
-                      initialDelaySeconds: 30
-                      periodSeconds: 10
-                      timeoutSeconds: 2
-                      tcpSocket:
-                          port: {{ .port }}
-                  ports:
-                      - containerPort: {{ .port }}
-                        name: frontend
-                        protocol: TCP
+                -   name: frontend
+                    image: {{ .image }}
+                    imagePullPolicy: IfNotPresent
+                    livenessProbe:
+                        failureThreshold: 2
+                        periodSeconds: 120
+                        initialDelaySeconds: 120
+                        successThreshold: 1
+                        tcpSocket:
+                            port: {{ .port }}
+                        timeoutSeconds: 2
+                    readinessProbe:
+                        failureThreshold: 10
+                        initialDelaySeconds: 30
+                        periodSeconds: 10
+                        timeoutSeconds: 2
+                        tcpSocket:
+                            port: {{ .port }}
+                    ports:
+                        -   containerPort: {{ .port }}
+                            name: frontend
+                            protocol: TCP
                 {{- end }}
 
 ---
@@ -134,10 +134,10 @@ spec:
     selector:
         app: vikunja
     ports:
-        - name: frontend
-          protocol: TCP
-          port: {{ .frontend.port }}
-        - name: api
-          protocol: TCP
-          port: 3456
+        -   name: frontend
+            protocol: TCP
+            port: {{ .frontend.port }}
+        -   name: api
+            protocol: TCP
+            port: 3456
 {{- end }}

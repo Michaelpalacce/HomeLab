@@ -25,46 +25,46 @@ spec:
         spec:
             enableServiceLinks: false
             containers:
-                - name: focalboard
-                  image: {{ .image }}
-                  imagePullPolicy: IfNotPresent
+                -   name: focalboard
+                    image: {{ .image }}
+                    imagePullPolicy: IfNotPresent
 {{- if .resources }}
-                  resources:
+                    resources:
 {{ toYaml .resources | indent 22 }}
 {{- end }}
-                  volumeMounts:
-                      - mountPath: /var/lib/focalboard
-                        name: app-data
-                      - mountPath: /var/lib/focalboard/config.json
-                        name: config-volume
-                        subPath: config.json
-                  ports:
-                      - name: web
-                        containerPort: {{ .port }}
-                  livenessProbe:
-                      failureThreshold: 2
-                      initialDelaySeconds: 120
-                      periodSeconds: 120
-                      timeoutSeconds: 2
-                      tcpSocket:
-                          port: {{ .port }}
-                  readinessProbe:
-                      failureThreshold: 10
-                      initialDelaySeconds: 15
-                      periodSeconds: 10
-                      timeoutSeconds: 2
-                      tcpSocket:
-                          port: {{ .port }}
+                    volumeMounts:
+                        -   mountPath: /var/lib/focalboard
+                            name: app-data
+                        -   mountPath: /var/lib/focalboard/config.json
+                            name: config-volume
+                            subPath: config.json
+                    ports:
+                        -   name: web
+                            containerPort: {{ .port }}
+                    livenessProbe:
+                        failureThreshold: 2
+                        initialDelaySeconds: 120
+                        periodSeconds: 120
+                        timeoutSeconds: 2
+                        tcpSocket:
+                            port: {{ .port }}
+                    readinessProbe:
+                        failureThreshold: 10
+                        initialDelaySeconds: 15
+                        periodSeconds: 10
+                        timeoutSeconds: 2
+                        tcpSocket:
+                            port: {{ .port }}
 
             restartPolicy: Always
             volumes:
-                - name: app-data
-                  persistentVolumeClaim:
-                      claimName: focalboard-pvc
+                -   name: app-data
+                    persistentVolumeClaim:
+                        claimName: focalboard-pvc
 
-                - name: config-volume
-                  configMap:
-                      name: focalboard-config
+                -   name: config-volume
+                    configMap:
+                        name: focalboard-config
 
 ---
 
@@ -80,11 +80,11 @@ spec:
     selector:
         app: focalboard
     ports:
-        - name: focalboard
-          protocol: TCP
-          port: {{ .port }}
+        -   name: focalboard
+            protocol: TCP
+            port: {{ .port }}
           {{- with .nodePort }}
-          nodePort: {{ . }}
+            nodePort: {{ . }}
           {{- end }}
 
 {{- end }}

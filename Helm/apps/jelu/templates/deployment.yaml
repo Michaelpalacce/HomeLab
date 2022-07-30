@@ -19,40 +19,40 @@ spec:
                 app: jelu
         spec:
             containers:
-                - name: jelu
-                  image: {{ .image }}
-                  imagePullPolicy: IfNotPresent
+                -   name: jelu
+                    image: {{ .image }}
+                    imagePullPolicy: IfNotPresent
 {{- if .resources }}
-                  resources:
+                    resources:
 {{ toYaml .resources | indent 22 }}
 {{- end }}
-                  ports:
-                      - name: web
-                        containerPort: {{ .port }}
-                  volumeMounts:
-                    - mountPath: /config
-                      name: config
-                    - mountPath: /database
-                      name: database
-                    - mountPath: /files/images
-                      name: images
-                    - mountPath: /files/imports
-                      name: imports
+                    ports:
+                        -   name: web
+                            containerPort: {{ .port }}
+                    volumeMounts:
+                        -   mountPath: /config
+                            name: config
+                        -   mountPath: /database
+                            name: database
+                        -   mountPath: /files/images
+                            name: images
+                        -   mountPath: /files/imports
+                            name: imports
 
             restartPolicy: Always
             volumes:
-              - name: config
-                persistentVolumeClaim:
-                  claimName: config-pvc
-              - name: database
-                persistentVolumeClaim:
-                  claimName: database-pvc
-              - name: images
-                persistentVolumeClaim:
-                  claimName: images-pvc
-              - name: imports
-                persistentVolumeClaim:
-                  claimName: imports-pvc
+                -   name: config
+                    persistentVolumeClaim:
+                        claimName: config-pvc
+                -   name: database
+                    persistentVolumeClaim:
+                        claimName: database-pvc
+                -   name: images
+                    persistentVolumeClaim:
+                        claimName: images-pvc
+                -   name: imports
+                    persistentVolumeClaim:
+                        claimName: imports-pvc
 
 ---
 
@@ -68,11 +68,11 @@ spec:
     selector:
         app: jelu
     ports:
-        - name: jelu
-          protocol: TCP
-          port: {{ .port }}
+        -   name: jelu
+            protocol: TCP
+            port: {{ .port }}
           {{- with .nodePort }}
-          nodePort: {{ . }}
+            nodePort: {{ . }}
           {{- end }}
 
 {{- end }}

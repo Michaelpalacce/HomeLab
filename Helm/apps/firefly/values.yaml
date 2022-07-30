@@ -1,15 +1,14 @@
 ---
 firefly:
-  image: fireflyiii/core:version-5.7.5
-  port: 8080
-#    nodePort: 30121
-  appUrl: https://firefly.stefangenov.site
-  resources:
-    requests:
-      cpu: 250m
-      memory: 500Mi
+    image: fireflyiii/core:version-5.7.5
+    port: 8080
+    appUrl: https://firefly.stefangenov.site
+    resources:
+        requests:
+            cpu: 250m
+            memory: 500Mi
 
 storage:
-  dataLocality: disabled
-  numberOfReplicas: 1
-  configSize: 5Gi
+    dataLocality: disabled
+    numberOfReplicas: 1
+    configSize: 5Gi

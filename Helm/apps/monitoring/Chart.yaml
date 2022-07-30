@@ -1,11 +1,10 @@
 ---
 apiVersion: v2
 appVersion: 1.0.0
-description: Installs Prometheus with Grafana. Sets up scrapers -> Node-Exporter.
-  Limited resources of the PIs are kept in mind
+description: Installs Prometheus with Grafana. Sets up scrapers -> Node-Exporter.Limited resources of the PIs are kept in mind
 maintainers:
-  - email: sgenov94@gmail.com
-    name: Stefan Genov
+    - email: sgenov94@gmail.com
+      name: Stefan Genov
 name: monitoring
 type: application
 version: 2.4.0

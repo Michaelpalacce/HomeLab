@@ -1,11 +1,10 @@
 ---
 babybuddy:
-  image: linuxserver/babybuddy:1.12.0
-#    nodePort: 30100
-  port: 8000
-  replicas: 1
+    image: linuxserver/babybuddy:1.12.0
+    port: 8000
+    replicas: 1
 
 storage:
-  dataLocality: best-effort      # or disabled
-  numberOfReplicas: 1
-  size: 2Gi
+    dataLocality: best-effort
+    numberOfReplicas: 1
+    size: 2Gi

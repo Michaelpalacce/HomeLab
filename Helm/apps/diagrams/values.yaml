@@ -1,9 +1,8 @@
 ---
 diagrams:
-  image: jgraph/drawio:20.2.1
-# nodePort: 30115
-  port: 8080
-  resources:
-    requests:
-      cpu: 10m
-      memory: 10Mi
+    image: jgraph/drawio:20.2.1
+    port: 8080
+    resources:
+        requests:
+            cpu: 10m
+            memory: 10Mi

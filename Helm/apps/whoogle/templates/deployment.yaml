@@ -19,30 +19,30 @@ spec:
                 app: whoogle
         spec:
             containers:
-                - name: whoogle
-                  image: {{ .image }}
-                  imagePullPolicy: IfNotPresent
+                -   name: whoogle
+                    image: {{ .image }}
+                    imagePullPolicy: IfNotPresent
 {{- if .resources }}
-                  resources:
+                    resources:
 {{ toYaml .resources | indent 22 }}
 {{- end }}
-                  ports:
-                      - name: web
-                        containerPort: {{ .port }}
-                  livenessProbe:
-                      failureThreshold: 2
-                      initialDelaySeconds: 120
-                      periodSeconds: 120
-                      timeoutSeconds: 2
-                      tcpSocket:
-                          port: {{ .port }}
-                  readinessProbe:
-                      failureThreshold: 10
-                      initialDelaySeconds: 30
-                      periodSeconds: 10
-                      timeoutSeconds: 2
-                      tcpSocket:
-                          port: {{ .port }}
+                    ports:
+                        -   name: web
+                            containerPort: {{ .port }}
+                    livenessProbe:
+                        failureThreshold: 2
+                        initialDelaySeconds: 120
+                        periodSeconds: 120
+                        timeoutSeconds: 2
+                        tcpSocket:
+                            port: {{ .port }}
+                    readinessProbe:
+                        failureThreshold: 10
+                        initialDelaySeconds: 30
+                        periodSeconds: 10
+                        timeoutSeconds: 2
+                        tcpSocket:
+                            port: {{ .port }}
 
             restartPolicy: Always
 
@@ -60,11 +60,11 @@ spec:
     selector:
         app: whoogle
     ports:
-        - name: whoogle
-          protocol: TCP
-          port: {{ .port }}
+        -   name: whoogle
+            protocol: TCP
+            port: {{ .port }}
           {{- with .nodePort }}
-          nodePort: {{ . }}
+            nodePort: {{ . }}
           {{- end }}
 
 {{- end }}

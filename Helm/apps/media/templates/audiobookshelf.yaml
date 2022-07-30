@@ -24,36 +24,36 @@ spec:
                     image: {{ .image }}
                     imagePullPolicy: IfNotPresent
                     env:
-                        - name: PUID
-                          value: "99"
-                        - name: GUID
-                          value: "100"
+                        -   name: PUID
+                            value: "99"
+                        -   name: GUID
+                            value: "100"
                     resources:
                         requests:
                             cpu: 250m
                             memory: 100Mi
                     ports:
-                        - name: web
-                          containerPort: {{ .port }}
+                        -   name: web
+                            containerPort: {{ .port }}
                     volumeMounts:
-                        - name: config-data
-                          mountPath: /config
-                        - name: metadata-data
-                          mountPath: /metadata
-                        - name: books-data-nfs
-                          mountPath: /audiobooks
+                        -   name: config-data
+                            mountPath: /config
+                        -   name: metadata-data
+                            mountPath: /metadata
+                        -   name: books-data-nfs
+                            mountPath: /audiobooks
 
             restartPolicy: Always
             volumes:
-                - name: config-data
-                  hostPath:
-                      path: /mnt/media/audiobookshelf/config
-                - name: metadata-data
-                  hostPath:
-                      path: /mnt/media/audiobookshelf/metadata
-                - name: books-data-nfs
-                  persistentVolumeClaim:
-                    claimName: books-volume-nfs
+                -   name: config-data
+                    hostPath:
+                        path: /mnt/media/audiobookshelf/config
+                -   name: metadata-data
+                    hostPath:
+                        path: /mnt/media/audiobookshelf/metadata
+                -   name: books-data-nfs
+                    persistentVolumeClaim:
+                        claimName: books-volume-nfs
 ---
 
 apiVersion: v1

@@ -5,7 +5,6 @@ storage:
 transmission:
     image: linuxserver/transmission:version-3.00-r2
     port: 9091
-#    nodePort: 30035
     username: username
     password: password
 
@@ -16,22 +15,18 @@ jackett:
     port: 9117
 
 radarr:
-#    nodePort: 31003
     image: linuxserver/radarr:4.2.0-develop
     port: 7878
 
 overseerr:
-#    nodePort: 31008
     image: linuxserver/overseerr:1.29.1
     port: 5055
 
 readarr:
-#    nodePort: 31002
     image: linuxserver/readarr:0.1.1-nightly
     port: 8787
 
 sonarr:
-#    nodePort: 31004
     image: linuxserver/sonarr:3.0.8.1507-ls148
     port: 8989
 
@@ -48,23 +43,15 @@ jellyfin:
             memory: 8Gi
 
 bazarr:
-#    nodePort: 31007
     image: linuxserver/bazarr:1.1.1-development
     port: 6767
 
 audiobookshelf:
-#    nodePort: 31009
     replicas: 0
     image: ghcr.io/advplyr/audiobookshelf:2.1.0
     port: 80
 
-#tdarr:
-#    image: haveagitgat/tdarr:2.00.18.2
-#    port: 8265
-#    serverPort: 8266
-#    configSize: 10Gi
-
 kavita:
-  image: kizaing/kavita:0.5.4
-  port: 5000
-  replicas: 1
+    image: kizaing/kavita:0.5.4
+    port: 5000
+    replicas: 1

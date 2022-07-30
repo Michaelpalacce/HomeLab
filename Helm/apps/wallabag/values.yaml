@@ -1,18 +1,17 @@
 ---
 wallabag:
-  image: stefangenov/wallabag:2.5.1    # official image does not have an ARM build :)
-  nodePort: 30116
-  replicas: 0
-  port: 80
-  domainName: https://wallabag.stefangenov.site    # change this to yours
-  db:
-    name: wallabag
-    username: wallabag
-    password: wallabag
-    host: postgresql.postgresql
-    port: '5432'
+    image: wallabag/wallabag:2.5.1
+    replicas: 1
+    port: 80
+    domainName: https://wallabag.stefangenov.site
+    db:
+        name: wallabag
+        username: wallabag
+        password: wallabag
+        host: postgresql.postgresql
+        port: '5432'
 
-  resources:
-    requests:
-      cpu: 100m
-      memory: 100Mi
+    resources:
+        requests:
+            cpu: 100m
+            memory: 100Mi

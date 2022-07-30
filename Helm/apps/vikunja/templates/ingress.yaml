@@ -7,24 +7,24 @@ metadata:
         kubernetes.io/ingress.class: "nginx"
 spec:
     tls:
-        - hosts:
-              - "*.stefangenov.site"
-          secretName: ingress
+        -   hosts:
+                - "*.stefangenov.site"
+            secretName: ingress
     rules:
-        - host: vikunja.stefangenov.site
-          http:
-              paths:
-                  - pathType: Prefix
-                    path: "/"
-                    backend:
-                        service:
-                            name: vikunja
-                            port:
-                                number: {{ .Values.vikunja.frontend.port }}
-                  - pathType: Prefix
-                    path: "/api"
-                    backend:
-                        service:
-                            name: vikunja
-                            port:
-                                number: {{ .Values.vikunja.api.port }}
+        -   host: vikunja.stefangenov.site
+            http:
+                paths:
+                    -   pathType: Prefix
+                        path: "/"
+                        backend:
+                            service:
+                                name: vikunja
+                                port:
+                                    number: {{ .Values.vikunja.frontend.port }}
+                    -   pathType: Prefix
+                        path: "/api"
+                        backend:
+                            service:
+                                name: vikunja
+                                port:
+                                    number: {{ .Values.vikunja.api.port }}
