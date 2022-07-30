@@ -97,10 +97,10 @@ data:
                 description: Self-Hosted Google
                 icon: hl-whooglesearch
                 url: https://whoogle.{{ .domainName }}
-              - title: Shiori
+              - title: Wallabag
                 description: Self-Hosted Pocket
-                icon: favicon
-                url: https://shiori.{{ .domainName }}
+                icon: hl-wallabag
+                url: https://wallabag.{{ .domainName }}
 
           - name: Media
             items:
