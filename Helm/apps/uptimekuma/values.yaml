@@ -9,6 +9,4 @@ uptimekuma:
             memory: 512Mi
 
 storage:
-    dataLocality: best-effort
-    numberOfReplicas: 1
     size: 10Gi
