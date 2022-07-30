@@ -272,11 +272,6 @@ data:
       - name: Widgets
         widgets:
           - type: public-ip
-          - type: public-holidays
-            options:
-                country: BG
-                holidayType: all
-                monthsToShow: 12
 
       - name: Github
         widgets:
