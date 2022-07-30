@@ -10,11 +10,11 @@ spec:
         createNamespace: true
         crds: CreateReplace
         remediation:
-          retries: 3
+            retries: 3
     upgrade:
         crds: CreateReplace
         remediation:
-          retries: 3
+            retries: 3
     chart:
         spec:
             chart: velero
@@ -28,8 +28,8 @@ spec:
         upgradeCRDs: true
         kubectl:
             image:
-               repository: stefangenov/kubectl
-               tag: v1.24.3
+                repository: stefangenov/kubectl
+                tag: v1.24.3
         initContainers:
             - name: velero-plugin-for-aws
               image: velero/velero-plugin-for-aws:v1.5.0

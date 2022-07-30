@@ -1,3 +1,4 @@
+---
 {{- with .Values.overseerr }}
 
 apiVersion: apps/v1

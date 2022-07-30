@@ -1,3 +1,4 @@
+---
 {{- with .Values.tandoorrecipes }}
 
 apiVersion: apps/v1

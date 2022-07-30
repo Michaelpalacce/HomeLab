@@ -1,3 +1,4 @@
+---
 {{- with .Values.traggo }}
 
 apiVersion: apps/v1

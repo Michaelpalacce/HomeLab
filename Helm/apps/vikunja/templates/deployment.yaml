@@ -21,7 +21,6 @@ spec:
                 app: vikunja
         spec:
             containers:
-
                 {{- with .api }}
                 -   name: api
                     image: {{ .image }}

@@ -1,3 +1,4 @@
+---
 {{- with .Values.pyload }}
 
 apiVersion: apps/v1

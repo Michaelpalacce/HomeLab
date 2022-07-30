@@ -1,7 +1,7 @@
 ---
 ignore: |
-    *.sops.*
-    gotk-components.yaml
+    gotk-*.yaml
+    *jenkins*
 extends: default
 rules:
     truthy: false

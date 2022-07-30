@@ -1,3 +1,4 @@
+---
 {{- with .Values.audiobookshelf }}
 
 apiVersion: apps/v1

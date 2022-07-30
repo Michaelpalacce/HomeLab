@@ -1,32 +1,32 @@
 ---
-- hosts: master
-  name: Setup prereqs
-  become: true
-  any_errors_fatal: true
-  tags:
-      - preflight
-  vars_files:
-      - "./vars/main.yml"
-  roles:
-      - michaelpalacce.docker
-      - michaelpalacce.docker_compose
+-   hosts: master
+    name: Setup prereqs
+    become: true
+    any_errors_fatal: true
+    tags:
+        - preflight
+    vars_files:
+        - "./vars/main.yml"
+    roles:
+        - michaelpalacce.docker
+        - michaelpalacce.docker_compose
 
-- hosts: master
-  name: Setup Storage dependencies
-  become: true
-  gather_facts: false
-  tags:
-      - preflight
-      - preflight-storage-dependencies
-  vars_files:
-      - "./vars/main.yml"
-  tasks:
-      - name: Ensure dependencies are installed
-        apt:
-            name: "{{ packages }}"
-            state: present
-        vars:
-            packages:
-                - open-iscsi
-                - nfs-common
-                - jq
+-   hosts: master
+    name: Setup Storage dependencies
+    become: true
+    gather_facts: false
+    tags:
+        - preflight
+        - preflight-storage-dependencies
+    vars_files:
+        - "./vars/main.yml"
+    tasks:
+        -   name: Ensure dependencies are installed
+            apt:
+                name: "{{ packages }}"
+                state: present
+            vars:
+                packages:
+                    - open-iscsi
+                    - nfs-common
+                    - jq

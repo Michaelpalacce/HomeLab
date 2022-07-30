@@ -1,3 +1,4 @@
+---
 {{- with .Values.shiori }}
 
 apiVersion: apps/v1
