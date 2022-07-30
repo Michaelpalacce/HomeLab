@@ -190,7 +190,7 @@ data:
               - title: Proxmox Cluster
                 description: Virtual Machines go Brrrr
                 icon: hl-proxmox
-                url: https://192.168.1.145:8006
+                url: https://prox-1.{{ .domainName }}:8006
 
           - name: Networking
             items:
