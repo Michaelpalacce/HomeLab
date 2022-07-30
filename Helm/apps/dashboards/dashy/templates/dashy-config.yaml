@@ -49,10 +49,6 @@ data:
                 description: RSS reader
                 icon: hl-freshrss
                 url: https://freshrss.{{ .domainName }}
-              - title: RSS
-                description: Twitter RSS reader
-                icon: fa-solid fa-rss
-                url: https://rss.{{ .domainName }}
 
           - name: Security
             items:
