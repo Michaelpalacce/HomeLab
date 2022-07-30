@@ -14,7 +14,5 @@ vaultwarden:
                 memory: 100Mi
 
 storage:
-    dataLocality: best-effort
-    numberOfReplicas: 1
     dataSize: 5Gi
     backupSize: 10Gi
