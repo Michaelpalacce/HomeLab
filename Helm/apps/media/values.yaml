@@ -48,7 +48,7 @@ bazarr:
 
 audiobookshelf:
     replicas: 0
-    image: ghcr.io/advplyr/audiobookshelf:2.1.0
+    image: ghcr.io/advplyr/audiobookshelf:2.1.1
     port: 80
 
 kavita:
