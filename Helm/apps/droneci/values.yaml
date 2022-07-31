@@ -8,6 +8,10 @@ droneci:
             cpu: 250m
             memory: 1Gi
 
+    runner:
+        image: drone/drone-runner-kube:1.0.0-rc.3
+        replicas: 1
+
 storage:
     scClass: longhorn
     dataSize: 50Gi

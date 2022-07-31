@@ -21,9 +21,9 @@ spec:
                 -   name: droneci
                     image: {{ .image }}
                     envFrom:
-                        - secretRef:
-                              name: env
-                              optional: false
+                        -   secretRef:
+                                name: env
+                                optional: false
                     imagePullPolicy: IfNotPresent
 {{- if .resources }}
                     resources:
@@ -41,6 +41,39 @@ spec:
                 -   name: data
                     persistentVolumeClaim:
                         claimName: droneci-pvc
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: drone-runner
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app.kubernetes.io/name: drone-runner
+spec:
+    replicas: {{ .runner.replicas }}
+    selector:
+        matchLabels:
+            app.kubernetes.io/name: drone-runner
+    template:
+        metadata:
+            labels:
+                app.kubernetes.io/name: drone-runner
+        spec:
+            containers:
+                -   name: drone-runner
+                    image: {{ .runner.image }}
+                    ports:
+                        -   containerPort: 3000
+                    env:
+                        -   name: DRONE_RPC_HOST
+                            value: droneci
+                        -   name: DRONE_RPC_PROTO
+                            value: https
+                        -   name: DRONE_RPC_SECRET
+                            valueFrom:
+                                secretKeyRef:
+                                    key: DRONE_RPC_SECRET
+                                    name: env
 
 ---
 
