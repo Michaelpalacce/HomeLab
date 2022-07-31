@@ -66,9 +66,9 @@ spec:
                         -   containerPort: 3000
                     env:
                         -   name: DRONE_RPC_HOST
-                            value: droneci
+                            value: droneci.droneci
                         -   name: DRONE_RPC_PROTO
-                            value: https
+                            value: http
                         -   name: DRONE_RPC_SECRET
                             valueFrom:
                                 secretKeyRef:
