@@ -36,3 +36,4 @@ resources:
   - velero
   - redis
   - focalboard
+  - droneci

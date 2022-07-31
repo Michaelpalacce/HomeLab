@@ -1,0 +1,35 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: droneci
+    namespace: {{ $.Release.Namespace }}
+    annotations:
+        kubernetes.io/ingress.class: "nginx"
+spec:
+    tls:
+        -   hosts:
+                - "*.stefangenov.site"
+            secretName: ingress
+    rules:
+        -   host: droneci.stefangenov.site
+            http:
+                paths:
+                    -   pathType: Prefix
+                        path: "/"
+                        backend:
+                            service:
+                                name: droneci
+                                port:
+                                    number: {{ .Values.droneci.port }}
+
+        -   host: drone.stefangenov.site
+            http:
+                paths:
+                    -   pathType: Prefix
+                        path: "/"
+                        backend:
+                            service:
+                                name: droneci
+                                port:
+                                    number: {{ .Values.droneci.port }}

@@ -1,0 +1,13 @@
+---
+droneci:
+    image: drone/drone:2
+    replicas: 1
+    port: 80
+    resources:
+        requests:
+            cpu: 250m
+            memory: 1Gi
+
+storage:
+    scClass: longhorn
+    dataSize: 50Gi

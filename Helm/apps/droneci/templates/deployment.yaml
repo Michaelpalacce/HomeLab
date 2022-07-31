@@ -1,0 +1,66 @@
+---
+{{- with .Values.droneci }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: droneci
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app: droneci
+spec:
+    replicas: {{ .replicas }}
+    selector:
+        matchLabels:
+            app: droneci
+    template:
+        metadata:
+            labels:
+                app: droneci
+        spec:
+            containers:
+                -   name: droneci
+                    image: {{ .image }}
+                    envFrom:
+                        - secretRef:
+                              name: env
+                              optional: false
+                    imagePullPolicy: IfNotPresent
+{{- if .resources }}
+                    resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+                    ports:
+                        -   name: web
+                            containerPort: {{ .port }}
+                    volumeMounts:
+                        -   mountPath: /data
+                            name: data
+
+            restartPolicy: Always
+            volumes:
+                -   name: data
+                    persistentVolumeClaim:
+                        claimName: droneci-pvc
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: droneci
+    namespace: {{ $.Release.Namespace }}
+spec:
+    {{- with .nodePort }}
+    type: NodePort
+    {{- end }}
+    selector:
+        app: droneci
+    ports:
+        -   name: droneci
+            protocol: TCP
+            port: {{ .port }}
+          {{- with .nodePort }}
+            nodePort: {{ . }}
+          {{- end }}
+
+{{- end }}
