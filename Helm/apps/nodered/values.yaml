@@ -1,6 +1,6 @@
 ---
 nodered:
-    image: nodered/node-red:3.0.1-16
+    image: nodered/node-red:3.0.2-16
     port: 1880
     resources:
         requests:
