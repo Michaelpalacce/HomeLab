@@ -1,10 +1,8 @@
 ---
 storage:
-    dataLocality: best-effort
-    numberOfReplicas: 3
     dshmSize: 1Gi
-    dataSize: 25Gi
     pgAdmin: 1Gi
+    dataSize: 25Gi
 
 postgresql:
     image: postgres:9.6

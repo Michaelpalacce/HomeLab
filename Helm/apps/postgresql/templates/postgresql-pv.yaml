@@ -1,33 +1,5 @@
 ---
 {{- with .Values.storage }}
-kind: StorageClass
-apiVersion: storage.k8s.io/v1
-metadata:
-    name: postgresql-sc
-provisioner: driver.longhorn.io
-allowVolumeExpansion: true
-parameters:
-    numberOfReplicas: "{{ .numberOfReplicas }}"
-    dataLocality: "{{ .dataLocality }}"
-    staleReplicaTimeout: "2800"
-    fromBackup: ""
-
----
-{{/* Don't want 3 replicas for pgAdmin */}}
-
-kind: StorageClass
-apiVersion: storage.k8s.io/v1
-metadata:
-    name: postgresql-pgadmin-sc
-provisioner: driver.longhorn.io
-allowVolumeExpansion: true
-parameters:
-    numberOfReplicas: "1"
-    dataLocality: "{{ .dataLocality }}"
-    staleReplicaTimeout: "2800"
-    fromBackup: ""
-
----
 
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -36,7 +8,7 @@ metadata:
 spec:
     accessModes:
         - ReadWriteMany
-    storageClassName: postgresql-sc
+    storageClassName: longhorn
     resources:
         requests:
             storage: {{ .dshmSize }}
@@ -50,7 +22,7 @@ metadata:
 spec:
     accessModes:
         - ReadWriteMany
-    storageClassName: postgresql-sc
+    storageClassName: longhorn
     resources:
         requests:
             storage: {{ .dataSize }}
@@ -63,7 +35,7 @@ metadata:
 spec:
     accessModes:
         - ReadWriteMany
-    storageClassName: postgresql-sc
+    storageClassName: longhorn
     resources:
         requests:
             storage: {{ .dshmSize }}
@@ -77,7 +49,7 @@ metadata:
 spec:
     accessModes:
         - ReadWriteMany
-    storageClassName: postgresql-sc
+    storageClassName: longhorn
     resources:
         requests:
             storage: {{ .dataSize }}
@@ -91,7 +63,7 @@ metadata:
 spec:
     accessModes:
         - ReadWriteMany
-    storageClassName: postgresql-pgadmin-sc
+    storageClassName: longhorn-single
     resources:
         requests:
             storage: {{ .pgAdmin }}
