@@ -8,10 +8,6 @@ speedtest:
             memory: 100Mi
 
 
-storage:
-    dataLocality: best-effort
-    numberOfReplicas: 1
-
 prometheus:
     image: quay.io/prometheus/prometheus:v2.37.0
     port: 9090
