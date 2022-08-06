@@ -1,6 +1,6 @@
 ---
 changedetection:
-    image: dgtlmoon/changedetection.io:0.39.16
+    image: dgtlmoon/changedetection.io:0.39.1
     port: 5000
     baseUrl: changedetection.stefangenov.site
     resources:
