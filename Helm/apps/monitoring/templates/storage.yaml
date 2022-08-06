@@ -1,17 +1,3 @@
----
-kind: StorageClass
-apiVersion: storage.k8s.io/v1
-metadata:
-    name: monitoring-sc
-provisioner: driver.longhorn.io
-allowVolumeExpansion: true
-parameters:
-    numberOfReplicas: "{{ .Values.storage.numberOfReplicas }}"
-    dataLocality: "{{ .Values.storage.dataLocality }}"
-    staleReplicaTimeout: "2800"
-    fromBackup: ""
-
-
 {{- with .Values.grafana }}
 ---
 
@@ -22,7 +8,7 @@ metadata:
 spec:
     accessModes:
         - ReadWriteMany
-    storageClassName: monitoring-sc
+    storageClassName: longhorn-single
     resources:
         requests:
             storage: 1Gi
@@ -35,13 +21,14 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: prometheus
+    name: prometheus
 spec:
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 10Gi
+    storageClassName: longhorn-single
+    accessModes:
+        - ReadWriteMany
+    resources:
+        requests:
+            storage: 10Gi
 
 {{- end }}
 
@@ -55,7 +42,7 @@ metadata:
 spec:
     accessModes:
         - ReadWriteMany
-    storageClassName: monitoring-sc
+    storageClassName: longhorn-single
     resources:
         requests:
             storage: 10Gi
@@ -64,13 +51,14 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: loki-logs
+    name: loki-logs
 spec:
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 25Gi
+    storageClassName: longhorn-single
+    accessModes:
+        - ReadWriteMany
+    resources:
+        requests:
+            storage: 25Gi
 
 {{- end }}
 
@@ -84,7 +72,7 @@ metadata:
 spec:
     accessModes:
         - ReadWriteMany
-    storageClassName: monitoring-sc
+    storageClassName: longhorn-single
     resources:
         requests:
             storage: 2Gi
