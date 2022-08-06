@@ -9,6 +9,7 @@ spec:
     hooks: {}
     includedNamespaces:
       - uptimekuma
+      - simplesecrets
       - vaultwarden
       - postgresql
       - nodered
