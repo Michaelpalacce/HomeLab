@@ -1,3 +1,6 @@
+#### [V2.5.0]
+* Decreased speedtest scrape interval to 30m
+
 #### [V2.4.0]
 * Added namespace as scraped data from promtail
 

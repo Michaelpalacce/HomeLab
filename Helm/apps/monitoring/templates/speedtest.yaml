@@ -19,19 +19,19 @@ spec:
                 app: speedtest
         spec:
             containers:
-                - name: speedtest
-                  image: {{ .image }}
-                  imagePullPolicy: IfNotPresent
-                  env:
-                      - name: SPEEDTEST_PORT
-                        value: "{{ .port }}"
+                -   name: speedtest
+                    image: {{ .image }}
+                    imagePullPolicy: IfNotPresent
+                    env:
+                        -   name: SPEEDTEST_PORT
+                            value: "{{ .port }}"
 {{- if .resources }}
-                  resources:
+                    resources:
 {{ toYaml .resources | indent 22 }}
 {{- end }}
-                  ports:
-                      - name: web
-                        containerPort: {{ .port }}
+                    ports:
+                        -   name: web
+                            containerPort: {{ .port }}
 
             restartPolicy: Always
 
@@ -46,8 +46,8 @@ spec:
     selector:
         app: speedtest
     ports:
-        - name: speedtest
-          protocol: TCP
-          port: {{ .port }}
+        -   name: speedtest
+            protocol: TCP
+            port: {{ .port }}
 
 {{- end }}

@@ -12,10 +12,6 @@ prometheus:
     image: quay.io/prometheus/prometheus:v2.37.0
     port: 9090
     retentionTime: 7d
-    scrapers:
-        uptimekuma:
-            username: admin
-            password: admin123
 
 nodeExporter:
     image: prom/node-exporter:v1.3.1

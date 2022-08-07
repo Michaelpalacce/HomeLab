@@ -23,31 +23,31 @@ spec:
         spec:
             serviceAccountName: promtail-serviceaccount
             volumes:
-                - name: logs
-                  hostPath:
-                      path: /var/log
-                - name: promtail-config
-                  configMap:
-                      name: promtail-config
-                - name: promtail-position
-                  persistentVolumeClaim:
-                      claimName: promtail-position-pvc
+                -   name: logs
+                    hostPath:
+                        path: /var/log
+                -   name: promtail-config
+                    configMap:
+                        name: promtail-config
+                -   name: promtail-position
+                    persistentVolumeClaim:
+                        claimName: promtail-position-pvc
             containers:
-                - name: promtail-container
-                  image: {{ .image }}
+                -   name: promtail-container
+                    image: {{ .image }}
 {{- if .resources }}
-                  resources:
+                    resources:
 {{ toYaml .resources | indent 22 }}
 {{- end }}
-                  args:
-                      - -config.file=/etc/promtail/promtail.yaml
-                  volumeMounts:
-                      - name: logs
-                        mountPath: /var/log
-                      - name: promtail-config
-                        mountPath: /etc/promtail
-                      - name: promtail-position
-                        mountPath: /positions
+                    args:
+                        - -config.file=/etc/promtail/promtail.yaml
+                    volumeMounts:
+                        -   name: logs
+                            mountPath: /var/log
+                        -   name: promtail-config
+                            mountPath: /etc/promtail
+                        -   name: promtail-position
+                            mountPath: /positions
 
 ---
 
@@ -57,15 +57,15 @@ metadata:
     name: promtail-clusterrole
     namespace: {{ $.Release.Namespace }}
 rules:
-    - apiGroups: [""]
-      resources:
-          - nodes
-          - services
-          - pods
-      verbs:
-          - get
-          - watch
-          - list
+    -   apiGroups: [ "" ]
+        resources:
+            - nodes
+            - services
+            - pods
+        verbs:
+            - get
+            - watch
+            - list
 
 ---
 
@@ -82,9 +82,9 @@ kind: ClusterRoleBinding
 metadata:
     name: promtail-clusterrolebinding
 subjects:
-    - kind: ServiceAccount
-      name: promtail-serviceaccount
-      namespace: {{ $.Release.Namespace }}
+    -   kind: ServiceAccount
+        name: promtail-serviceaccount
+        namespace: {{ $.Release.Namespace }}
 roleRef:
     kind: ClusterRole
     name: promtail-clusterrole

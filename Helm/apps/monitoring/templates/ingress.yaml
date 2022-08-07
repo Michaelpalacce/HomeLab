@@ -8,20 +8,20 @@ metadata:
         kubernetes.io/ingress.class: "nginx"
 spec:
     tls:
-        - hosts:
-              - "*.stefangenov.site"
-          secretName: ingress
+        -   hosts:
+                - "*.stefangenov.site"
+            secretName: ingress
     rules:
-        - host: grafana.stefangenov.site
-          http:
-              paths:
-                  - pathType: Prefix
-                    path: "/"
-                    backend:
-                        service:
-                            name: grafana
-                            port:
-                                number: {{ .Values.grafana.port }}
+        -   host: grafana.stefangenov.site
+            http:
+                paths:
+                    -   pathType: Prefix
+                        path: "/"
+                        backend:
+                            service:
+                                name: grafana
+                                port:
+                                    number: {{ .Values.grafana.port }}
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -32,18 +32,18 @@ metadata:
         kubernetes.io/ingress.class: "nginx"
 spec:
     tls:
-        - hosts:
-              - "*.stefangenov.site"
-          secretName: ingress
+        -   hosts:
+                - "*.stefangenov.site"
+            secretName: ingress
     rules:
-        - host: prometheus.stefangenov.site
-          http:
-              paths:
-                  - pathType: Prefix
-                    path: "/"
-                    backend:
-                        service:
-                            name: prometheus
-                            port:
-                                number: {{ .Values.prometheus.port }}
+        -   host: prometheus.stefangenov.site
+            http:
+                paths:
+                    -   pathType: Prefix
+                        path: "/"
+                        backend:
+                            service:
+                                name: prometheus
+                                port:
+                                    number: {{ .Values.prometheus.port }}
 ---

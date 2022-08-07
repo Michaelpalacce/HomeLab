@@ -30,28 +30,28 @@ spec:
                 fsGroup: 472
             restartPolicy: Always
             containers:
-                - image: {{ .image }}
-                  imagePullPolicy: IfNotPresent
-                  name: grafana
-                  ports:
-                      - containerPort: {{ .port }}
-                        name: http-grafana
-                        protocol: TCP
-                  resources:
-                      requests:
-                          cpu: 100m
-                          memory: 500Mi
-                      limits:
-                          cpu: {{ .limits.cpu }}
-                          memory: {{ .limits.memory }}
-                  volumeMounts:
-                      - mountPath: /var/lib/grafana
-                        name: grafana
+                -   image: {{ .image }}
+                    imagePullPolicy: IfNotPresent
+                    name: grafana
+                    ports:
+                        -   containerPort: {{ .port }}
+                            name: http-grafana
+                            protocol: TCP
+                    resources:
+                        requests:
+                            cpu: 100m
+                            memory: 500Mi
+                        limits:
+                            cpu: {{ .limits.cpu }}
+                            memory: {{ .limits.memory }}
+                    volumeMounts:
+                        -   mountPath: /var/lib/grafana
+                            name: grafana
 
             volumes:
-                - name: grafana
-                  persistentVolumeClaim:
-                      claimName: grafana-pvc
+                -   name: grafana
+                    persistentVolumeClaim:
+                        claimName: grafana-pvc
 ---
 apiVersion: v1
 kind: Service
@@ -60,13 +60,13 @@ metadata:
     namespace: {{ $.Release.Namespace }}
 spec:
     ports:
-        - port: {{ .port }}
+        -   port: {{ .port }}
           {{- with .nodePort }}
-          nodePort: {{ . }}
+            nodePort: {{ . }}
           {{- end }}
-          protocol: TCP
-          targetPort: http-grafana
-          name: grafana
+            protocol: TCP
+            targetPort: http-grafana
+            name: grafana
     selector:
         app: grafana
     sessionAffinity: None

@@ -19,43 +19,43 @@ spec:
                 app: loki
         spec:
             containers:
-                - name: loki
-                  image: {{ .image }}
-                  imagePullPolicy: IfNotPresent
+                -   name: loki
+                    image: {{ .image }}
+                    imagePullPolicy: IfNotPresent
 {{- if .resources }}
-                  resources:
+                    resources:
 {{ toYaml .resources | indent 22 }}
 {{- end }}
-                  ports:
-                      - name: web
-                        containerPort: {{ .port }}
-                  volumeMounts:
-                      - name: app-config
-                        mountPath: /loki
-                      - name: loki-logs
-                        mountPath: /tmp/loki
-                      - name: loki-config
-                        mountPath: /etc/loki/local-config.yaml
-                        subPath: local-config.yaml
-                  livenessProbe:
-                      failureThreshold: 5
-                      initialDelaySeconds: 120
-                      periodSeconds: 120
-                      timeoutSeconds: 5
-                      tcpSocket:
-                          port: {{ .port }}
+                    ports:
+                        -   name: web
+                            containerPort: {{ .port }}
+                    volumeMounts:
+                        -   name: app-config
+                            mountPath: /loki
+                        -   name: loki-logs
+                            mountPath: /tmp/loki
+                        -   name: loki-config
+                            mountPath: /etc/loki/local-config.yaml
+                            subPath: local-config.yaml
+                    livenessProbe:
+                        failureThreshold: 5
+                        initialDelaySeconds: 120
+                        periodSeconds: 120
+                        timeoutSeconds: 5
+                        tcpSocket:
+                            port: {{ .port }}
 
             restartPolicy: Always
             volumes:
-                - name: app-config
-                  persistentVolumeClaim:
-                      claimName: loki-pvc
-                - name: loki-logs
-                  persistentVolumeClaim:
-                      claimName: loki-logs
-                - name: loki-config
-                  configMap:
-                      name: loki-config
+                -   name: app-config
+                    persistentVolumeClaim:
+                        claimName: loki-pvc
+                -   name: loki-logs
+                    persistentVolumeClaim:
+                        claimName: loki-logs
+                -   name: loki-config
+                    configMap:
+                        name: loki-config
 
 ---
 
@@ -68,9 +68,9 @@ spec:
     selector:
         app: loki
     ports:
-        - name: loki
-          protocol: TCP
-          port: {{ .port }}
+        -   name: loki
+            protocol: TCP
+            port: {{ .port }}
 
 ---
 

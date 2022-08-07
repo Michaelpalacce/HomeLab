@@ -6,21 +6,21 @@ kind: ClusterRole
 metadata:
     name: prometheus
 rules:
-    - apiGroups: [""]
-      resources:
-          - nodes
-          - nodes/proxy
-          - services
-          - endpoints
-          - pods
-      verbs: ["get", "list", "watch"]
-    - apiGroups:
-          - extensions
-      resources:
-          - ingresses
-      verbs: ["get", "list", "watch"]
-    - nonResourceURLs: ["/metrics"]
-      verbs: ["get"]
+    -   apiGroups: [ "" ]
+        resources:
+            - nodes
+            - nodes/proxy
+            - services
+            - endpoints
+            - pods
+        verbs: [ "get", "list", "watch" ]
+    -   apiGroups:
+            - extensions
+        resources:
+            - ingresses
+        verbs: [ "get", "list", "watch" ]
+    -   nonResourceURLs: [ "/metrics" ]
+        verbs: [ "get" ]
 
 ---
 
@@ -33,9 +33,9 @@ roleRef:
     kind: ClusterRole
     name: prometheus
 subjects:
-    - kind: ServiceAccount
-      name: default
-      namespace: {{ $.Release.Namespace }}
+    -   kind: ServiceAccount
+        name: default
+        namespace: {{ $.Release.Namespace }}
 
 ---
 
@@ -66,34 +66,34 @@ spec:
                 prometheus.io/port: "{{ .port }}"
         spec:
             containers:
-                - name: prometheus
-                  image: {{ .image }}
-                  imagePullPolicy: IfNotPresent
-                  securityContext:
-                      privileged: true
-                  args:
-                      - '--storage.tsdb.retention.time={{ .retentionTime }}'
-                      - '--storage.tsdb.path=/prometheus'
-                      - '--config.file=/etc/prometheus/prometheus.yml'
-                  command:
-                      - /bin/prometheus
-                  ports:
-                      - name: web
-                        containerPort: {{ .port }}
-                  volumeMounts:
-                      - name: config-volume
-                        mountPath: /etc/prometheus
-                      - name: data
-                        mountPath: /prometheus
+                -   name: prometheus
+                    image: {{ .image }}
+                    imagePullPolicy: IfNotPresent
+                    securityContext:
+                        privileged: true
+                    args:
+                        - '--storage.tsdb.retention.time={{ .retentionTime }}'
+                        - '--storage.tsdb.path=/prometheus'
+                        - '--config.file=/etc/prometheus/prometheus.yml'
+                    command:
+                        - /bin/prometheus
+                    ports:
+                        -   name: web
+                            containerPort: {{ .port }}
+                    volumeMounts:
+                        -   name: config-volume
+                            mountPath: /etc/prometheus
+                        -   name: data
+                            mountPath: /prometheus
             restartPolicy: Always
             terminationGracePeriodSeconds: 0
             volumes:
-                - name: config-volume
-                  configMap:
-                      name: prometheus-config
-                - name: data
-                  persistentVolumeClaim:
-                      claimName: prometheus
+                -   name: config-volume
+                    configMap:
+                        name: prometheus-config
+                -   name: data
+                    persistentVolumeClaim:
+                        claimName: prometheus
 
 ---
 
@@ -109,11 +109,11 @@ spec:
     selector:
         app: prometheus
     ports:
-        - name: prometheus
-          protocol: TCP
-          port: {{ .port }}
+        -   name: prometheus
+            protocol: TCP
+            port: {{ .port }}
           {{- with .nodePort }}
-          nodePort: {{ . }}
+            nodePort: {{ . }}
           {{- end }}
 
 {{- end }}
