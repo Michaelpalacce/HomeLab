@@ -75,6 +75,10 @@ data:
                 description: Monitors changes to websites
                 icon: hl-changedetection-io
                 url: https://changedetection.{{ .domainName }}
+              - title: N8N
+                description: IFTTT
+                icon: hl-n8n
+                url: https://n8n.{{ .domainName }}
 
           # - name: DevOps
           #   items:
