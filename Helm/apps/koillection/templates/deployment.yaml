@@ -1,0 +1,86 @@
+---
+{{- with .Values.koillection }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: koillection
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app: koillection
+spec:
+    replicas: {{ .replicas }}
+    selector:
+        matchLabels:
+            app: koillection
+    template:
+        metadata:
+            labels:
+                app: koillection
+        spec:
+            containers:
+                -   name: koillection
+                    image: {{ .image }}
+                    imagePullPolicy: IfNotPresent
+{{- if .resources }}
+                    resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+                    ports:
+                        -   name: web
+                            containerPort: {{ .port }}
+                    envFrom:
+                        -   secretRef:
+                                name: koillection
+                                optional: false
+                    volumeMounts:
+                        -   mountPath: /conf
+                            name: config
+                        -   mountPath: /uploads
+                            name: uploads
+                    livenessProbe:
+                        failureThreshold: 2
+                        initialDelaySeconds: 120
+                        periodSeconds: 120
+                        timeoutSeconds: 2
+                        tcpSocket:
+                            port: {{ .port }}
+                    readinessProbe:
+                        failureThreshold: 10
+                        initialDelaySeconds: 15
+                        periodSeconds: 10
+                        timeoutSeconds: 2
+                        tcpSocket:
+                            port: {{ .port }}
+
+            restartPolicy: Always
+            volumes:
+                -   name: config
+                    persistentVolumeClaim:
+                        claimName: config-pvc
+                -   name: uploads
+                    persistentVolumeClaim:
+                        claimName: uploads-pvc
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: koillection
+    namespace: {{ $.Release.Namespace }}
+spec:
+    {{- with .nodePort }}
+    type: NodePort
+    {{- end }}
+    selector:
+        app: koillection
+    ports:
+        -   name: koillection
+            protocol: TCP
+            port: {{ .port }}
+          {{- with .nodePort }}
+            nodePort: {{ . }}
+          {{- end }}
+
+{{- end }}

@@ -120,6 +120,10 @@ data:
                 description: Make diagrams in your browser
                 icon: hl-draw
                 url: https://diagrams.{{ .domainName }}
+              - title: Koillection
+                description: Collections
+                icon: hl-koillection
+                url: https://koillection.{{ .domainName }}
 
           - name: Storage
             items:

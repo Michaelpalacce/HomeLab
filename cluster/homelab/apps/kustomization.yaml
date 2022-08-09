@@ -31,6 +31,7 @@ resources:
   - shiori
   - emulatorjs
   - dailynotes
+  - koillection
   - cert-manager
   - traggo
   - velero
