@@ -29,10 +29,6 @@ spec:
                     ports:
                         -   name: web
                             containerPort: {{ .port }}
-                    envFrom:
-                        -   secretRef:
-                                name: grocy
-                                optional: false
                     volumeMounts:
                         -   mountPath: /config
                             name: config
