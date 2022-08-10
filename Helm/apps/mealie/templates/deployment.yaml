@@ -81,21 +81,15 @@ spec:
                         -   name: backend
                             containerPort: {{ .api.port }}
                     livenessProbe:
-                        failureThreshold: 2
-                        periodSeconds: 120
-                        initialDelaySeconds: 120
+                        failureThreshold: 3
                         successThreshold: 1
                         tcpSocket:
                             port: {{ .api.port }}
-                        timeoutSeconds: 2
-                    readinessProbe:
+                    startupProbe:
                         failureThreshold: 5
-                        periodSeconds: 30
-                        initialDelaySeconds: 10
-                        successThreshold: 2
+                        successThreshold: 1
                         tcpSocket:
                             port: {{ .api.port }}
-                        timeoutSeconds: 2
                     volumeMounts:
                         -   name: data
                             mountPath: /app/data
