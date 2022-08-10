@@ -88,6 +88,14 @@ spec:
                         tcpSocket:
                             port: {{ .api.port }}
                         timeoutSeconds: 2
+                    readinessProbe:
+                        failureThreshold: 5
+                        periodSeconds: 30
+                        initialDelaySeconds: 10
+                        successThreshold: 2
+                        tcpSocket:
+                            port: {{ .api.port }}
+                        timeoutSeconds: 2
                     volumeMounts:
                         -   name: data
                             mountPath: /app/data
