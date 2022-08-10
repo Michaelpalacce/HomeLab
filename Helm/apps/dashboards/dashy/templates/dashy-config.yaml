@@ -45,9 +45,9 @@ data:
                 description: Budget Buddy!
                 icon: hl-firefly
                 url: https://firefly.{{ .domainName }}/login
-              - title: Tandoor Recipes
+              - title: Mealie
                 description: Self-hosted Recipes!
-                icon: hl-tandoor
+                icon: hl-mealie
                 url: https://recipes.{{ .domainName }}
               - title: Grocy
                 description: Household and Fridge Management
