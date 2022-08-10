@@ -22,7 +22,7 @@ spec:
                             service:
                                 name: mealie
                                 port:
-                                    number: {{ .Values.mealie.port }}
+                                    number: {{ .Values.mealie.frontend.port }}
         -   host: recipes.stefangenov.site
             http:
                 paths:
@@ -32,4 +32,4 @@ spec:
                             service:
                                 name: mealie
                                 port:
-                                    number: {{ .Values.mealie.port }}
+                                    number: {{ .Values.mealie.frontend.port }}

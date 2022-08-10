@@ -35,7 +35,7 @@ spec:
                         -   name: TZ
                             value: "Europe/Sofia"
                         -   name: API_URL
-                            value: "api:9000"
+                            value: "api:{{ .api.port }}"
 
                     ports:
                         -   name: web
@@ -78,11 +78,8 @@ spec:
                             value: "{{ .api.baseUrl }}"
 
                     ports:
-                        -   name: web
+                        -   name: api
                             containerPort: {{ .api.port }}
-                    volumeMounts:
-                        -   name: data
-                            mountPath: /app/data
                     livenessProbe:
                         failureThreshold: 2
                         periodSeconds: 120
@@ -112,7 +109,7 @@ spec:
     selector:
         app: mealie
     ports:
-        -   name: mealie
+        -   name: web
             protocol: TCP
             port: {{ .frontend.port }}
           {{- with .frontend.nodePort }}
