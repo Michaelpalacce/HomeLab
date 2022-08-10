@@ -38,4 +38,5 @@ resources:
   - redis
   - focalboard
   - droneci
+  - grocy
 #  - tandoorrecipes
