@@ -38,3 +38,4 @@ resources:
   - redis
   - focalboard
   - droneci
+  - tandoorrecipes
