@@ -9,7 +9,5 @@ tandoorrecipes:
       memory: 512Mi
 
 storage:
-  dataLocality: best-effort
-  numberOfReplicas: 1
-  mediaSize: 1Gi
-  staticSize: 1Gi
+  mediaSize: 2Gi
+  staticSize: 2Gi
