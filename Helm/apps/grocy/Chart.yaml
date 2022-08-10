@@ -1,10 +1,10 @@
 ---
 apiVersion: v2
 appVersion: 1.0.0
-description: This chart is used to install koillection
+description: This chart is used to install grocy
 maintainers:
     - email: sgenov94@gmail.com
       name: Stefan Genov
-name: koillection
+name: grocy
 type: application
 version: 1.0.0

@@ -26,10 +26,6 @@ data:
         sections:
           - name: Apps
             items:
-              - title: Firefly III
-                description: Budget Buddy!
-                icon: hl-firefly
-                url: https://firefly.{{ .domainName }}/login
               - title: Snapdrop
                 description: Share files on local network
                 icon: favicon
@@ -42,6 +38,21 @@ data:
                 description: Beautiful Code Images
                 icon: favicon
                 url: https://chalk.ist/
+
+          - name: Management
+            items:
+              - title: Firefly III
+                description: Budget Buddy!
+                icon: hl-firefly
+                url: https://firefly.{{ .domainName }}/login
+              - title: Tandoor Recipes
+                description: Self-hosted Recipes!
+                icon: hl-tandoor
+                url: https://recipes.{{ .domainName }}
+              - title: Grocy
+                description: Household and Fridge Management
+                icon: hl-grocy
+                url: https://grocy.{{ .domainName }}
 
           - name: News
             items:

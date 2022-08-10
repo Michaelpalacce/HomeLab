@@ -23,3 +23,23 @@ spec:
                             name: tandoorrecipes
                             port:
                                 number: {{ .Values.tandoorrecipes.port }}
+        - host: tandoor.stefangenov.site
+          http:
+              paths:
+                  - pathType: Prefix
+                    path: "/"
+                    backend:
+                        service:
+                            name: tandoorrecipes
+                            port:
+                                number: {{ .Values.tandoorrecipes.port }}
+        - host: tandoorrecipes.stefangenov.site
+          http:
+              paths:
+                  - pathType: Prefix
+                    path: "/"
+                    backend:
+                        service:
+                            name: tandoorrecipes
+                            port:
+                                number: {{ .Values.tandoorrecipes.port }}
