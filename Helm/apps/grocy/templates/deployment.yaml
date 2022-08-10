@@ -15,6 +15,8 @@ spec:
             app: grocy
     template:
         metadata:
+            annotations:
+                backup.velero.io/backup-volumes: config
             labels:
                 app: grocy
         spec:

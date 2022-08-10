@@ -18,6 +18,4 @@ mealie:
                 memory: 100Mi
 
 storage:
-    dataLocality: best-effort
-    numberOfReplicas: 1
-    dataSize: 1Gi
+    dataSize: 2Gi

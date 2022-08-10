@@ -18,4 +18,4 @@ spec:
                 namespace: flux-system
     values:
         koillection:
-            replicas: 1
+            replicas: 0

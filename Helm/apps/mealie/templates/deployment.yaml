@@ -35,7 +35,7 @@ spec:
                         -   name: TZ
                             value: "Europe/Sofia"
                         -   name: API_URL
-                            value: "api:{{ .api.port }}"
+                            value: "http://backend:{{ .api.port }}"
 
                     ports:
                         -   name: web
@@ -51,7 +51,7 @@ spec:
                         tcpSocket:
                             port: {{ .frontend.port }}
                         timeoutSeconds: 2
-                -   name: api
+                -   name: backend
                     image: {{ .api.image }}
                     imagePullPolicy: IfNotPresent
 {{- if .api.resources }}
@@ -78,7 +78,7 @@ spec:
                             value: "{{ .api.baseUrl }}"
 
                     ports:
-                        -   name: api
+                        -   name: backend
                             containerPort: {{ .api.port }}
                     livenessProbe:
                         failureThreshold: 2
@@ -88,12 +88,15 @@ spec:
                         tcpSocket:
                             port: {{ .api.port }}
                         timeoutSeconds: 2
+                    volumeMounts:
+                        -   name: data
+                            mountPath: /app/data
 
             restartPolicy: Always
             volumes:
                 -   name: data
                     persistentVolumeClaim:
-                        claimName: mealie-pvc
+                        claimName: data-pvc
 
 ---
 
@@ -113,6 +116,26 @@ spec:
             protocol: TCP
             port: {{ .frontend.port }}
           {{- with .frontend.nodePort }}
+            nodePort: {{ . }}
+          {{- end }}
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: backend
+    namespace: {{ $.Release.Namespace }}
+spec:
+    {{- with .api.nodePort }}
+    type: NodePort
+    {{- end }}
+    selector:
+        app: mealie
+    ports:
+        -   name: backend
+            protocol: TCP
+            port: {{ .api.port }}
+          {{- with .api.nodePort }}
             nodePort: {{ . }}
           {{- end }}
 
