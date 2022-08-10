@@ -45,14 +45,18 @@ data:
                 description: Budget Buddy!
                 icon: hl-firefly
                 url: https://firefly.{{ .domainName }}/login
-              - title: Mealie
-                description: Self-hosted Recipes!
-                icon: hl-mealie
-                url: https://recipes.{{ .domainName }}
+              - title: Traggo
+                description: Time Management
+                icon: hl-traggo
+                url: https://traggo.{{ .domainName }}
               - title: Grocy
                 description: Household and Fridge Management
                 icon: hl-grocy
                 url: https://grocy.{{ .domainName }}
+              - title: Koillection
+                description: Collections Management
+                icon: hl-koillection
+                url: https://koillection.{{ .domainName }}
 
           - name: News
             items:
@@ -135,6 +139,10 @@ data:
                 description: Make diagrams in your browser
                 icon: hl-draw
                 url: https://diagrams.{{ .domainName }}
+              - title: Mealie
+                description: Self-hosted Recipes!
+                icon: hl-mealie
+                url: https://recipes.{{ .domainName }}
 
           - name: Storage
             items:
