@@ -31,7 +31,7 @@ spec:
                   volumeMounts:
                       - name: config
                         mountPath: /app/config
-                  readinessProbe:
+                  startupProbe:
                       initialDelaySeconds: 15
                       successThreshold: 1
                       periodSeconds: 5
@@ -39,9 +39,7 @@ spec:
                           port: 5000
                           path: /auth
                   livenessProbe:
-                      initialDelaySeconds: 120
                       successThreshold: 1
-                      periodSeconds: 5
                       httpGet:
                           port: 5000
                           path: /auth

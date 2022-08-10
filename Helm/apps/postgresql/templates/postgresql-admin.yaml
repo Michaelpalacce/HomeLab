@@ -29,20 +29,13 @@ spec:
                 -   name: pgadmin
                     image: {{ .image }}
                     imagePullPolicy: IfNotPresent
-                    readinessProbe:
+                    startupProbe:
                         tcpSocket:
                             port: {{ .port }}
-                        failureThreshold: 10
-                        initialDelaySeconds: 10
-                        periodSeconds: 5
-                        timeoutSeconds: 5
                     livenessProbe:
                         tcpSocket:
                             port: {{ .port }}
-                        failureThreshold: 2
-                        initialDelaySeconds: 120
-                        periodSeconds: 5
-                        timeoutSeconds: 5
+                        periodSeconds: 10
 {{- if .resources }}
                     resources:
 {{ toYaml .resources | indent 22 }}

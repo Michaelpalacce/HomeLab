@@ -30,17 +30,11 @@ spec:
                         -   name: web
                             containerPort: {{ .port }}
                     livenessProbe:
-                        failureThreshold: 2
-                        initialDelaySeconds: 120
-                        periodSeconds: 120
-                        timeoutSeconds: 2
+                        periodSeconds: 60
                         tcpSocket:
                             port: {{ .port }}
-                    readinessProbe:
-                        failureThreshold: 10
+                    startupProbe:
                         initialDelaySeconds: 30
-                        periodSeconds: 10
-                        timeoutSeconds: 2
                         tcpSocket:
                             port: {{ .port }}
 

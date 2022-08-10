@@ -28,20 +28,15 @@ spec:
                     resources:
 {{ toYaml .resources | indent 22 }}
 {{- end }}
-                    readinessProbe:
+                    startupProbe:
                         tcpSocket:
                             port: {{ .port }}
-                        failureThreshold: 10
+                        failureThreshold: 5
                         initialDelaySeconds: 10
-                        periodSeconds: 10
-                        timeoutSeconds: 5
                     livenessProbe:
                         tcpSocket:
                             port: {{ .port }}
-                        failureThreshold: 2
-                        initialDelaySeconds: 120
                         periodSeconds: 10
-                        timeoutSeconds: 5
                     ports:
                         -   name: web
                             containerPort: {{ .port }}

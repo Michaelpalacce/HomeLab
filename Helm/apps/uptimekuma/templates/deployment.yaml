@@ -38,18 +38,12 @@ spec:
                       - name: app-data
                         mountPath: /app/data
                   livenessProbe:
-                      failureThreshold: 2
-                      periodSeconds: 120
-                      initialDelaySeconds: 120
-                      successThreshold: 1
+                      periodSeconds: 60
                       tcpSocket:
                           port: {{ .port }}
-                      timeoutSeconds: 2
-                  readinessProbe:
-                      failureThreshold: 10
-                      initialDelaySeconds: 30
-                      periodSeconds: 10
-                      timeoutSeconds: 2
+                  startupProbe:
+                      failureThreshold: 5
+                      initialDelaySeconds: 10
                       tcpSocket:
                           port: {{ .port }}
 
