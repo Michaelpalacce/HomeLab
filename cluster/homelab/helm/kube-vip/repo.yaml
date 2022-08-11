@@ -5,5 +5,5 @@ metadata:
     name: kube-vip
     namespace: flux-system
 spec:
-    url: https://kube-vip.io/helm-charts
+    url: https://kube-vip.github.io/helm-charts
     interval: 10m
