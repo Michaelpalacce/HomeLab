@@ -8,4 +8,4 @@ resources:
     - reflector
     - cert-manager
     - longhorn-system
-    - ingress-nginx
+#    - ingress-nginx
