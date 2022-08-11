@@ -47,7 +47,7 @@ data:
                 url: https://firefly.{{ .domainName }}/login
               - title: Traggo
                 description: Time Management
-                icon: hl-traggo
+                icon: favicon
                 url: https://traggo.{{ .domainName }}
               - title: Grocy
                 description: Household and Fridge Management
