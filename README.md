@@ -28,6 +28,7 @@ certificate secret to all the namespaces. The secret is called `ingress`.
 7. **Calico** - Provides Networking for my HomeLab
 8. **Ansible** - Used to provision the architecture
 9. **Velero** - K8S and PVC backup. Free and open source by VMware 
+10. **Kube-vip** - For a Virtual IP that I can use to access all my servers
 
 # GitOps :construction:
 GitOps is applied wherever possible using Flux2.
