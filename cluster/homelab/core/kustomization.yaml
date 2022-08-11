@@ -9,3 +9,4 @@ resources:
     - cert-manager
     - longhorn-system
     - ingress-nginx
+    - kube-vip

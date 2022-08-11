@@ -25,7 +25,6 @@ resources:
   - vikunja
   - wallabag
   - whoogle
-  - kube-vip
   - external-ingress
   - dashy
   - monitoring
