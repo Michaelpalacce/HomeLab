@@ -1,4 +1,4 @@
-# Keepalived
+# Keepalived ( deprecated for kube-vip )
 
 Keepalived allows me to use one specific ip when communicating with my server, so I can have high availability
 
