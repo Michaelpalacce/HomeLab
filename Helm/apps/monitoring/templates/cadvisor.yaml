@@ -1,0 +1,114 @@
+---
+{{- with .Values.cadvisor }}
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+    name: cadvisor
+    namespace: {{ $.Release.Namespace }}
+
+---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+    name: cadvisor
+    namespace: {{ $.Release.Namespace }}
+rules:
+    -   apiGroups: [ 'policy' ]
+        resources: [ 'podsecuritypolicies' ]
+        verbs: [ 'use' ]
+        resourceNames:
+            - cadvisor
+
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+    name: cadvisor
+    namespace: {{ $.Release.Namespace }}
+roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: cadvisor
+subjects:
+    -   kind: ServiceAccount
+        name: cadvisor
+        namespace: {{ $.Release.Namespace }}
+
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+    name: cadvisor
+    namespace: {{ $.Release.Namespace }}
+spec:
+    updateStrategy:
+        rollingUpdate:
+            maxUnavailable: 2
+    selector:
+        matchLabels:
+            name: cadvisor
+    template:
+        metadata:
+            labels:
+                name: cadvisor
+        spec:
+            serviceAccountName: cadvisor
+            containers:
+                -   name: cadvisor
+                    securityContext:
+                        privileged: true
+                    image: {{ .image }}
+                    args:
+                        - --containerd=/var/run/containerd/containerd.sock
+{{- if .resources }}
+                    resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+                    volumeMounts:
+                        -   name: rootfs
+                            mountPath: /rootfs
+                            readOnly: true
+                        -   name: var-run
+                            mountPath: /var/run
+                            readOnly: true
+                        -   name: sys
+                            mountPath: /sys
+                            readOnly: true
+                        -   name: disk
+                            mountPath: /dev/disk
+                            readOnly: true
+                        -   name: kmsg
+                            mountPath: /dev/kmsg
+                            readOnly: true
+                        -   name: machine-id
+                            mountPath: /etc/machine-id
+                            readOnly: true
+                    ports:
+                        -   name: http
+                            containerPort: {{ .port }}
+{{/*                            Uncomment if you interested in the UI */}}
+                            hostPort: {{ .port }}
+                            protocol: TCP
+            automountServiceAccountToken: false
+            terminationGracePeriodSeconds: 30
+            volumes:
+                -   name: rootfs
+                    hostPath:
+                        path: /
+                -   name: var-run
+                    hostPath:
+                        path: /var/run
+                -   name: sys
+                    hostPath:
+                        path: /sys
+                -   name: disk
+                    hostPath:
+                        path: /dev/disk
+                -   name: kmsg
+                    hostPath:
+                        path: /dev/kmsg
+                -   name: machine-id
+                    hostPath:
+                        path: /etc/machine-id
+
+{{- end }}

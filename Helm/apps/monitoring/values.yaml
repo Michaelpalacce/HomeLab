@@ -7,7 +7,6 @@ speedtest:
             cpu: 125m
             memory: 100Mi
 
-
 prometheus:
     image: quay.io/prometheus/prometheus:v2.37.0
     port: 9090
@@ -33,6 +32,17 @@ grafana:
     limits:
         cpu: 250m
         memory: 1Gi
+
+cadvisor:
+    image: gcr.io/cadvisor/cadvisor:v0.45.0-containerd-cri
+    port: 8080
+    resources:
+        requests:
+            memory: 100Mi
+            cpu: 100m
+        limits:
+            memory: 1000Mi
+            cpu: 400m
 
 loki:
     image: grafana/loki:2.6.1
