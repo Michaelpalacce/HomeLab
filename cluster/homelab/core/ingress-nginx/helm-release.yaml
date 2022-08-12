@@ -19,6 +19,9 @@ spec:
     values:
         installCRDs: true
         controller:
+            podAnnotations:
+                 prometheus.io/scrape: "true"
+                 prometheus.io/port: "10254"
             metrics:
                 enabled: true
                 service:
