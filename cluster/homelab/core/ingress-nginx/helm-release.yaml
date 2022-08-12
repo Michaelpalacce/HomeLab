@@ -18,15 +18,10 @@ spec:
                 namespace: flux-system
     values:
         installCRDs: true
-        podAnnotations:
-             prometheus.io/scrape: "true"
-             prometheus.io/port: "10254"
-        annotations:
-             prometheus.io/scrape: "true"
-             prometheus.io/port: "10254"
-        metrics:
-            enabled: true
-            service:
-                annotations:
-                     prometheus.io/scrape: "true"
-                     prometheus.io/port: "10254"
+        controller:
+            metrics:
+                enabled: true
+                service:
+                    annotations:
+                         prometheus.io/scrape: "true"
+                         prometheus.io/port: "10254"
