@@ -47,7 +47,7 @@ readarr:
             memory: 100Mi
 
 sonarr:
-    image: linuxserver/sonarr:3.0.8.1507-ls148
+    image: linuxserver/sonarr:3.0.9.1549-ls154
     port: 8989
     resources:
         requests:
