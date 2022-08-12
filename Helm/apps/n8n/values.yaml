@@ -5,5 +5,5 @@ n8n:
     replicas: 1
     resources:
         requests:
-            cpu: 125m
-            memory: 512Mi
+            cpu: 10m
+            memory: 250Mi

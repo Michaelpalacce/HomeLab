@@ -8,20 +8,20 @@ metadata:
         kubernetes.io/ingress.class: "nginx"
 spec:
     tls:
-        - hosts:
-              - "*.stefangenov.site"
-          secretName: ingress
+        -   hosts:
+                - "*.stefangenov.site"
+            secretName: ingress
     rules:
-        - host: server.stefangenov.site
-          http:
-              paths:
-                  - pathType: Prefix
-                    path: "/"
-                    backend:
-                        service:
-                            name: serveremulator
-                            port:
-                                number: {{ .Values.serveremulator.port }}
+        -   host: server.stefangenov.site
+            http:
+                paths:
+                    -   pathType: Prefix
+                        path: "/"
+                        backend:
+                            service:
+                                name: serveremulator
+                                port:
+                                    number: {{ .Values.serveremulator.port }}
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -32,17 +32,17 @@ metadata:
         kubernetes.io/ingress.class: "nginx"
 spec:
     tls:
-        - hosts:
-              - "*.stefangenov.site"
-          secretName: ingress
+        -   hosts:
+                - "*.stefangenov.site"
+            secretName: ingress
     rules:
-        - host: syncthing.stefangenov.site
-          http:
-              paths:
-                  - pathType: Prefix
-                    path: "/"
-                    backend:
-                        service:
-                            name: syncthing
-                            port:
-                                number: {{ .Values.syncthing.port }}
+        -   host: syncthing.stefangenov.site
+            http:
+                paths:
+                    -   pathType: Prefix
+                        path: "/"
+                        backend:
+                            service:
+                                name: syncthing
+                                port:
+                                    number: {{ .Values.syncthing.port }}

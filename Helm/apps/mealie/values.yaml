@@ -6,7 +6,7 @@ mealie:
         port: 3001
         resources:
             requests:
-                cpu: 10m
+                cpu: 100m
                 memory: 100Mi
     api:
         image: hkotel/mealie:api-v1.0.0beta-4
@@ -14,7 +14,7 @@ mealie:
         baseUrl: https://mealie.stefangenov.site
         resources:
             requests:
-                cpu: 10m
+                cpu: 100m
                 memory: 100Mi
 
 storage:

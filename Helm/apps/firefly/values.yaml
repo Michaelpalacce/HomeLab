@@ -5,8 +5,8 @@ firefly:
     appUrl: https://firefly.stefangenov.site
     resources:
         requests:
-            cpu: 250m
-            memory: 500Mi
+            cpu: 100m
+            memory: 250Mi
 
 storage:
     dataLocality: disabled

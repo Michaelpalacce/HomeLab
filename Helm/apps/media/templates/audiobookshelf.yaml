@@ -29,10 +29,10 @@ spec:
                             value: "99"
                         -   name: GUID
                             value: "100"
+{{- if .resources }}
                     resources:
-                        requests:
-                            cpu: 250m
-                            memory: 100Mi
+{{ toYaml .resources | indent 22 }}
+{{- end }}
                     ports:
                         -   name: web
                             containerPort: {{ .port }}

@@ -4,8 +4,8 @@ nodered:
     port: 1880
     resources:
         requests:
-            cpu: 500m
-            memory: 1Gi
+            cpu: 250m
+            memory: 512Mi
         limits:
             memory: 2Gi
 storage:

@@ -24,10 +24,10 @@ spec:
                 -   name: transmission
                     image: {{ .image }}
                     imagePullPolicy: IfNotPresent
+{{- if .resources }}
                     resources:
-                        requests:
-                            cpu: 100m
-                            memory: 256Mi
+{{ toYaml .resources | indent 22 }}
+{{- end }}
                     env:
                         -   name: USER
                             value: {{ .username }}

@@ -24,10 +24,10 @@ spec:
                 -   name: kavita
                     image: {{ .image }}
                     imagePullPolicy: IfNotPresent
+{{- if .resources }}
                     resources:
-                        requests:
-                            cpu: 100m
-                            memory: 100Mi
+{{ toYaml .resources | indent 22 }}
+{{- end }}
                     ports:
                         -   name: web
                             containerPort: {{ .port }}

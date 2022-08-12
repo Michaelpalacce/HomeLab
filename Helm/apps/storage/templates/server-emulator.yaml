@@ -21,40 +21,37 @@ spec:
                 app: serveremulator
         spec:
             containers:
-                - name: serveremulator
-                  image: {{ .image }}
-                  imagePullPolicy: IfNotPresent
-                  env:
-                      - name: SERVER_CONFIG_PATH
-                        value: "/config"
-                      - name: USER_DATA_PATH
-                        value: "/data"
-                      - name: SUDO
-                        value: "1"
-                  resources:
-                      requests:
-                          cpu: 100m
-                          memory: 250Mi
-                      limits:
-                          cpu: 250m
-                          memory: 512Mi
-                  ports:
-                      - containerPort: {{ .port }}
-                        protocol: TCP
-                  volumeMounts:
-                      - mountPath: /data
-                        name: data-volume
-                      - mountPath: /config
-                        name: config-data
+                -   name: serveremulator
+                    image: {{ .image }}
+                    imagePullPolicy: IfNotPresent
+                    env:
+                        -   name: SERVER_CONFIG_PATH
+                            value: "/config"
+                        -   name: USER_DATA_PATH
+                            value: "/data"
+                        -   name: SUDO
+                            value: "1"
+{{- if .resources }}
+                    resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+                    ports:
+                        -   containerPort: {{ .port }}
+                            protocol: TCP
+                    volumeMounts:
+                        -   mountPath: /data
+                            name: data-volume
+                        -   mountPath: /config
+                            name: config-data
 
             restartPolicy: Always
             volumes:
-                - name: config-data
-                  persistentVolumeClaim:
-                      claimName: serveremulator-config-volume
-                - name: data-volume
-                  persistentVolumeClaim:
-                      claimName: serveremulator-data-nfs
+                -   name: config-data
+                    persistentVolumeClaim:
+                        claimName: serveremulator-config-volume
+                -   name: data-volume
+                    persistentVolumeClaim:
+                        claimName: serveremulator-data-nfs
 ---
 
 apiVersion: v1
@@ -69,12 +66,12 @@ spec:
     type: NodePort
     {{- end }}
     ports:
-        - name: web
-          port: {{ .port }}
-          protocol: TCP
-          targetPort: {{ .port }}
+        -   name: web
+            port: {{ .port }}
+            protocol: TCP
+            targetPort: {{ .port }}
           {{- with .nodePort }}
-          nodePort: {{ . }}
+            nodePort: {{ . }}
           {{- end }}
 
 {{- end }}

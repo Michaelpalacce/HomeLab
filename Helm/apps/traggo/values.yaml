@@ -5,7 +5,7 @@ traggo:
   port: 3030
   resources:
     requests:
-      cpu: 10m
+      cpu: 100m
       memory: 128Mi
 
 storage:

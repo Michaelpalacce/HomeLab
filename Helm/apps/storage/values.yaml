@@ -2,10 +2,18 @@
 syncthing:
     image: linuxserver/syncthing:1.20.4
     port: 8384
+    resources:
+        requests:
+            cpu: 100m
+            memory: 250Mi
 
 serveremulator:
     image: stefangenov/server:v23.1.2
     port: 80
+    resources:
+        requests:
+            cpu: 100m
+            memory: 100Mi
 
 storage:
     dataLocality: disabled
