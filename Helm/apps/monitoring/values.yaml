@@ -53,3 +53,6 @@ loki:
             memory: 100Mi
         limits:
             memory: 2Gi
+
+kubestatemetrics:
+    image: registry.k8s.io/kube-state-metrics/kube-state-metrics:v2.5.0
