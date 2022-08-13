@@ -5,7 +5,7 @@ simplesecrets:
     resources:
         requests:
             cpu: 10m
-            memory: 100Mi
+            memory: 50Mi
 
 storage:
     dataLocality: best-effort

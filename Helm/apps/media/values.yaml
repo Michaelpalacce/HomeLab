@@ -19,32 +19,32 @@ jackett:
     port: 9117
     resources:
         requests:
-            cpu: 1
-            memory: 2Gi
+            cpu: 500m
+            memory: 1Gi
 
 radarr:
     image: linuxserver/radarr:4.2.0-develop
     port: 7878
     resources:
         requests:
-            cpu: 100m
-            memory: 100Mi
+            cpu: 10m
+            memory: 50Mi
 
 overseerr:
     image: linuxserver/overseerr:1.29.1
     port: 5055
     resources:
         requests:
-            cpu: 100m
-            memory: 100Mi
+            cpu: 10m
+            memory: 50Mi
 
 readarr:
     image: linuxserver/readarr:0.1.1-nightly
     port: 8787
     resources:
         requests:
-            cpu: 100m
-            memory: 100Mi
+            cpu: 10m
+            memory: 50Mi
 
 sonarr:
     image: linuxserver/sonarr:3.0.9.1549-ls154
@@ -68,8 +68,8 @@ bazarr:
     port: 6767
     resources:
         requests:
-            cpu: 100m
-            memory: 100Mi
+            cpu: 10m
+            memory: 50Mi
 
 audiobookshelf:
     replicas: 0
@@ -77,8 +77,8 @@ audiobookshelf:
     port: 80
     resources:
         requests:
-            cpu: 100m
-            memory: 100Mi
+            cpu: 10m
+            memory: 50Mi
 
 kavita:
     image: kizaing/kavita:0.5.4
@@ -86,5 +86,5 @@ kavita:
     replicas: 1
     resources:
         requests:
-            cpu: 100m
-            memory: 100Mi
+            cpu: 10m
+            memory: 50Mi

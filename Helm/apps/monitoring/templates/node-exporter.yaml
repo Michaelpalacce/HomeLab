@@ -41,7 +41,7 @@ spec:
                             protocol: TCP
                     resources:
                         requests:
-                            cpu: 100m
+                            cpu: 10m
                         limits:
                             cpu: 250m
                     securityContext:

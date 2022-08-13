@@ -5,5 +5,5 @@ shiori:
     port: 8080
     resources:
         requests:
-            cpu: 100m
+            cpu: 10m
             memory: 512Mi

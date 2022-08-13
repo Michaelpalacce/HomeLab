@@ -4,7 +4,7 @@ openbooks:
     port: 80
     resources:
         requests:
-            cpu: 100m
+            cpu: 10m
             memory: 256Mi
 
 storage:

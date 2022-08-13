@@ -5,8 +5,8 @@ dailynotes:
     port: 5000
     resources:
         requests:
-            cpu: 100m
-            memory: 100Mi
+            cpu: 10m
+            memory: 50Mi
 
 # Hack so renovate will tell me when there is a new version of dailynotes on docker hub. Doesn't actually do anything
 dailynotes-update:

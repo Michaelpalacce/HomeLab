@@ -5,8 +5,8 @@ koillection:
     replicas: 1
     resources:
         requests:
-            cpu: 100m
-            memory: 100Mi
+            cpu: 10m
+            memory: 50Mi
 
 storage:
     uploadsSize: 5Gi

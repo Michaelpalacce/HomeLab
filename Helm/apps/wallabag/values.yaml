@@ -12,5 +12,5 @@ wallabag:
         port: '5432'
     resources:
         requests:
-            cpu: 100m
-            memory: 100Mi
+            cpu: 10m
+            memory: 50Mi

@@ -5,7 +5,7 @@ uptimekuma:
     port: 3001
     resources:
         requests:
-            cpu: 100m
+            cpu: 10m
             memory: 512Mi
 
 storage:
