@@ -23,7 +23,7 @@ jackett:
             memory: 1Gi
 
 radarr:
-    image: linuxserver/radarr:4.2.0-develop
+    image: linuxserver/radarr:4.2.1-develop
     port: 7878
     resources:
         requests:
