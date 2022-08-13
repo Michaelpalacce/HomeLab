@@ -49,10 +49,10 @@ data:
                 description: Time Management
                 icon: favicon
                 url: https://traggo.{{ .domainName }}
-              - title: Grocy
-                description: Household and Fridge Management
-                icon: hl-grocy
-                url: https://grocy.{{ .domainName }}
+{{/*              - title: Grocy*/}}
+{{/*                description: Household and Fridge Management*/}}
+{{/*                icon: hl-grocy*/}}
+{{/*                url: https://grocy.{{ .domainName }}*/}}
               - title: Koillection
                 description: Collections Management
                 icon: hl-koillection
