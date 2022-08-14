@@ -15,11 +15,11 @@ spec:
             app: sonarr
     template:
         metadata:
+            annotations:
+                backup.velero.io/backup-volumes: config-data
             labels:
                 app: sonarr
         spec:
-            nodeSelector:
-                type: media
             containers:
                 -   name: sonarr
                     image: {{ .image }}
@@ -47,8 +47,8 @@ spec:
             restartPolicy: Always
             volumes:
                 -   name: config-data
-                    hostPath:
-                        path: /mnt/media/sonarr
+                    persistentVolumeClaim:
+                        claimName: sonarr-config-pvc
                 -   name: shows-data-nfs
                     persistentVolumeClaim:
                         claimName: shows-volume-nfs

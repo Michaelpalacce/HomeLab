@@ -15,11 +15,11 @@ spec:
             app: readarr
     template:
         metadata:
+            annotations:
+                backup.velero.io/backup-volumes: config-data
             labels:
                 app: readarr
         spec:
-            nodeSelector:
-                type: media
             containers:
                 -   name: readarr
                     image: {{ .image }}
@@ -37,7 +37,7 @@ spec:
                         -   name: web
                             containerPort: {{ .port }}
                     volumeMounts:
-                        -   name: app-data
+                        -   name: config-data
                             mountPath: /config
                         -   name: downloads-data
                             mountPath: /downloads
@@ -45,9 +45,9 @@ spec:
                             mountPath: /books
             restartPolicy: Always
             volumes:
-                -   name: app-data
-                    hostPath:
-                        path: /mnt/media/readarr
+                -   name: config-data
+                    persistentVolumeClaim:
+                        claimName: readarr-config-pvc
                 -   name: books-data-nfs
                     persistentVolumeClaim:
                         claimName: books-volume-nfs

@@ -1,18 +1,4 @@
 ---
-kind: StorageClass
-apiVersion: storage.k8s.io/v1
-metadata:
-    name: media-config-sc
-provisioner: driver.longhorn.io
-allowVolumeExpansion: true
-parameters:
-    numberOfReplicas: "1"
-    dataLocality: "best-effort"
-    staleReplicaTimeout: "2800"
-    fromBackup: ""
-
----
-
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -31,7 +17,6 @@ spec:
         server: {{ .Values.storage.nasIp }}
 
 ---
-
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -49,7 +34,6 @@ spec:
             storage: 500Gi
 
 ---
-
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -68,7 +52,6 @@ spec:
         server: {{ .Values.storage.nasIp }}
 
 ---
-
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -86,42 +69,6 @@ spec:
             storage: 500Gi
 
 ---
-
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-    name: downloads-volume-pv
-    labels:
-        type: local
-        app: downloads
-spec:
-    storageClassName: manual
-    capacity:
-        storage: 100Gi
-    accessModes:
-        - ReadWriteOnce
-    hostPath:
-        path: "/mnt/media/downloads"
-
----
-
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-    name: downloads-volume
-spec:
-    selector:
-        matchLabels:
-            app: downloads
-    storageClassName: manual
-    accessModes:
-        - ReadWriteOnce
-    resources:
-        requests:
-            storage: 100Gi
-
----
-
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -140,7 +87,6 @@ spec:
         server: {{ .Values.storage.nasIp }}
 
 ---
-
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -156,3 +102,119 @@ spec:
     resources:
         requests:
             storage: 5Gi
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: transmission-config-pvc
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: longhorn
+    resources:
+        requests:
+            storage: {{ .Values.storage.transmission.config }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: bazarr-config-pvc
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: longhorn
+    resources:
+        requests:
+            storage: {{ .Values.storage.bazarr.config }}
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: downloads-volume
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: longhorn-single
+    resources:
+        requests:
+            storage: {{ .Values.storage.transmission.downloads }}
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: kavita-config-pvc
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: longhorn
+    resources:
+        requests:
+            storage: {{ .Values.storage.kavita.config }}
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: overseer-config-pvc
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: longhorn
+    resources:
+        requests:
+            storage: {{ .Values.storage.overseer.config }}
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: radarr-config-pvc
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: longhorn
+    resources:
+        requests:
+            storage: {{ .Values.storage.radarr.config }}
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: readarr-config-pvc
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: longhorn
+    resources:
+        requests:
+            storage: {{ .Values.storage.readarr.config }}
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: sonarr-config-pvc
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: longhorn
+    resources:
+        requests:
+            storage: {{ .Values.storage.sonarr.config }}
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: jackett-config-pvc
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: longhorn
+    resources:
+        requests:
+            storage: {{ .Values.storage.jackett.config }}

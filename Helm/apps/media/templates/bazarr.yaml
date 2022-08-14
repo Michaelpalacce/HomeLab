@@ -14,11 +14,11 @@ spec:
             app: bazarr
     template:
         metadata:
+            annotations:
+                backup.velero.io/backup-volumes: config-data
             labels:
                 app: bazarr
         spec:
-            nodeSelector:
-                type: media
             containers:
                 -   name: bazarr
                     image: {{ .image }}
@@ -46,8 +46,8 @@ spec:
             restartPolicy: Always
             volumes:
                 -   name: config-data
-                    hostPath:
-                        path: /mnt/media/bazarr
+                    persistentVolumeClaim:
+                        claimName: bazarr-config-pvc
                 -   name: shows-data-nfs
                     persistentVolumeClaim:
                         claimName: shows-volume-nfs

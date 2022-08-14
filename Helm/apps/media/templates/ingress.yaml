@@ -42,16 +42,16 @@ spec:
                                 name: kavita
                                 port:
                                     number: {{ .Values.kavita.port }}
-        -   host: jellyfin.stefangenov.site
+        -   host: jackett.stefangenov.site
             http:
                 paths:
                     -   pathType: Prefix
                         path: "/"
                         backend:
                             service:
-                                name: jellyfin
+                                name: jackett
                                 port:
-                                    number: {{ .Values.jellyfin.port }}
+                                    number: {{ .Values.jackett.port }}
         -   host: readarr.stefangenov.site
             http:
                 paths:
@@ -92,13 +92,3 @@ spec:
                                 name: transmission
                                 port:
                                     number: {{ .Values.transmission.port }}
-        -   host: audiobookshelf.stefangenov.site
-            http:
-                paths:
-                    -   pathType: Prefix
-                        path: "/"
-                        backend:
-                            service:
-                                name: audiobookshelf
-                                port:
-                                    number: {{ .Values.audiobookshelf.port }}

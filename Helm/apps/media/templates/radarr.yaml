@@ -15,11 +15,11 @@ spec:
             app: radarr
     template:
         metadata:
+            annotations:
+                backup.velero.io/backup-volumes: config-data
             labels:
                 app: radarr
         spec:
-            nodeSelector:
-                type: media
             containers:
                 -   name: radarr
                     image: {{ .image }}
@@ -37,7 +37,7 @@ spec:
                         -   name: web
                             containerPort: {{ .port }}
                     volumeMounts:
-                        -   name: app-data
+                        -   name: config-data
                             mountPath: /config
                         -   name: downloads-data
                             mountPath: /downloads
@@ -45,9 +45,9 @@ spec:
                             mountPath: /tv
             restartPolicy: Always
             volumes:
-                -   name: app-data
-                    hostPath:
-                        path: /mnt/media/radarr
+                -   name: config-data
+                    persistentVolumeClaim:
+                        claimName: radarr-config-pvc
                 -   name: movies-data-nfs
                     persistentVolumeClaim:
                         claimName: movies-volume-nfs

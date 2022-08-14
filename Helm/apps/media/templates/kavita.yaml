@@ -15,11 +15,11 @@ spec:
             app: kavita
     template:
         metadata:
+            annotations:
+                backup.velero.io/backup-volumes: config-data
             labels:
                 app: kavita
         spec:
-            nodeSelector:
-                type: media
             containers:
                 -   name: kavita
                     image: {{ .image }}
@@ -40,8 +40,8 @@ spec:
             restartPolicy: Always
             volumes:
                 -   name: config-data
-                    hostPath:
-                        path: /mnt/media/kavita
+                    persistentVolumeClaim:
+                        claimName: kavita-config-pvc
                 -   name: books-data-nfs
                     persistentVolumeClaim:
                         claimName: books-volume-nfs

@@ -14,11 +14,11 @@ spec:
             app: jackett
     template:
         metadata:
+            annotations:
+                backup.velero.io/backup-volumes: config-data
             labels:
                 app: jackett
         spec:
-            nodeSelector:
-                type: media
             containers:
                 -   name: jackett
                     image: {{ .image }}
@@ -36,7 +36,7 @@ spec:
                         -   name: web
                             containerPort: {{ .port }}
                     volumeMounts:
-                        -   name: app-data
+                        -   name: config-data
                             mountPath: /config
                     livenessProbe:
                         failureThreshold: 2
@@ -48,9 +48,9 @@ spec:
 
             restartPolicy: Always
             volumes:
-                -   name: app-data
-                    hostPath:
-                        path: /mnt/media/jackett
+                -   name: config-data
+                    persistentVolumeClaim:
+                        claimName: jackett-config-pvc
 
 ---
 

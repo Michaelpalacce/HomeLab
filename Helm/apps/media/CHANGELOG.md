@@ -1,3 +1,6 @@
+#### [V5.0.0]
+* Moved services to pvcs
+
 #### [V4.1.0]
 * Added Prowlarr
 

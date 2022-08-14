@@ -15,11 +15,11 @@ spec:
             app: overseerr
     template:
         metadata:
+            annotations:
+                backup.velero.io/backup-volumes: config-data
             labels:
                 app: overseerr
         spec:
-            nodeSelector:
-                type: media
             containers:
                 -   name: overseerr
                     image: {{ .image }}
@@ -43,8 +43,8 @@ spec:
             restartPolicy: Always
             volumes:
                 -   name: config-data
-                    hostPath:
-                        path: /mnt/media/overseerr
+                    persistentVolumeClaim:
+                        claimName: overseer-config-pvc
 ---
 
 apiVersion: v1

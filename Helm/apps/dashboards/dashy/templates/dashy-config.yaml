@@ -236,7 +236,7 @@ data:
               - title: Jackett
                 description: Torrent indexer
                 icon: hl-jackett
-                url: http://{{ .clusterUrl }}:30034/UI/Dashboard
+                url: http://jackett.{{ .domainName }}/UI/Dashboard
                 statusCheck: false
               - title: Instant.io
                 description: WebTorrent :)

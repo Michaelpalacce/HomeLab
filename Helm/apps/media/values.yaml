@@ -1,6 +1,23 @@
 ---
 storage:
     nasIp: 192.168.1.20
+    transmission:
+        config: 1Gi
+        downloads: 200Gi
+    bazarr:
+        config: 1Gi
+    kavita:
+        config: 1Gi
+    overseer:
+        config: 1Gi
+    radarr:
+        config: 1Gi
+    readarr:
+        config: 1Gi
+    sonarr:
+        config: 1Gi
+    jackett:
+        config: 5Gi
 
 transmission:
     image: linuxserver/transmission:version-3.00-r2
@@ -23,7 +40,7 @@ jackett:
             memory: 1Gi
 
 radarr:
-    image: linuxserver/radarr:4.2.0-develop
+    image: lscr.io/linuxserver/radarr:4.2.1-develop
     port: 7878
     resources:
         requests:
@@ -54,27 +71,9 @@ sonarr:
             cpu: 500m
             memory: 1Gi
 
-jellyfin:
-    replicas: 1
-    image: lscr.io/linuxserver/jellyfin:10.8.3
-    port: 8096
-    resources:
-        limits:
-            cpu: 2
-            memory: 4Gi
-
 bazarr:
     image: linuxserver/bazarr:1.1.1-development
     port: 6767
-    resources:
-        requests:
-            cpu: 10m
-            memory: 50Mi
-
-audiobookshelf:
-    replicas: 0
-    image: ghcr.io/advplyr/audiobookshelf:2.1.2
-    port: 80
     resources:
         requests:
             cpu: 10m

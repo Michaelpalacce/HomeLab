@@ -6,5 +6,4 @@ dashy:
         requests:
             cpu: 10m
             memory: 512Mi
-    clusterUrl: 192.168.1.2
     domainName: stefangenov.site

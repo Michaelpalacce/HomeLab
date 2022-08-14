@@ -1,23 +1,24 @@
 apiVersion: velero.io/v1
 kind: Schedule
 metadata:
-  name: general
-  namespace: velero
+    name: general
+    namespace: velero
 spec:
-  schedule: '00 05 * * *'
-  template:
-    hooks: {}
-    includedNamespaces:
-      - uptimekuma
-      - simplesecrets
-      - vaultwarden
-      - postgresql
-      - nodered
-      - changedetection
-      - storage
-      - monitoring
-      - mealie
-      - grocy
-    snapshotVolumes: true
-    ttl: 72h0m0s
-  useOwnerReferencesInBackup: false
+    schedule: '00 05 * * *'
+    template:
+        hooks: {}
+        includedNamespaces:
+          - uptimekuma
+          - simplesecrets
+          - vaultwarden
+          - postgresql
+          - nodered
+          - changedetection
+          - storage
+          - monitoring
+          - mealie
+          - grocy
+          - media
+        snapshotVolumes: true
+        ttl: 72h0m0s
+    useOwnerReferencesInBackup: false
