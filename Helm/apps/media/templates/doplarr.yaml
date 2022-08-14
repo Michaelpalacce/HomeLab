@@ -1,0 +1,53 @@
+---
+{{- with .Values.doplarr }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: doplarr
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app: doplarr
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: doplarr
+    template:
+        metadata:
+            annotations:
+                backup.velero.io/backup-volumes: config-data
+            labels:
+                app: doplarr
+        spec:
+            containers:
+                -   name: doplarr
+                    image: {{ .image }}
+                    imagePullPolicy: IfNotPresent
+                    env:
+                        -   name: PUID
+                            value: "1000"
+                        -   name: GUID
+                            value: "1000"
+{{- if .resources }}
+                    resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+                    volumeMounts:
+                        -   name: config-data
+                            mountPath: /config
+
+            restartPolicy: Always
+            volumes:
+                -   name: config-data
+                    persistentVolumeClaim:
+                        claimName: doplarr-config-pvc
+
+---
+apiVersion: "simplesecrets.local/v1"
+kind: SimpleSecret
+metadata:
+    name: doplarr
+    namespace: {{ $.Release.Namespace }}
+
+{{- end }}

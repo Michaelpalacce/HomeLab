@@ -18,6 +18,8 @@ storage:
         config: 1Gi
     jackett:
         config: 5Gi
+    doplarr:
+        config: 1Gi
 
 transmission:
     image: lscr.io/linuxserver/transmission:version-3.00-r2
@@ -70,6 +72,13 @@ sonarr:
         requests:
             cpu: 500m
             memory: 1Gi
+
+doplarr:
+    image: lscr.io/linuxserver/doplarr:3.6.0
+    resources:
+        requests:
+            cpu: 10m
+            memory: 100Mi
 
 bazarr:
     image: lscr.io/linuxserver/bazarr:1.1.1-development
