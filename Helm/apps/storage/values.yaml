@@ -1,6 +1,6 @@
 ---
 syncthing:
-    image: linuxserver/syncthing:1.20.4
+    image: lscr.io/linuxserver/syncthing:1.20.4
     port: 8384
     resources:
         requests:
