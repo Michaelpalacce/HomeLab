@@ -29,6 +29,9 @@ spec:
                             value: "1000"
                         -   name: GUID
                             value: "1000"
+                    envFrom:
+                        -   secretRef:
+                                name: doplarr
 {{- if .resources }}
                     resources:
 {{ toYaml .resources | indent 22 }}
