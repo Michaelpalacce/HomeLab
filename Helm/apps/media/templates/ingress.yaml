@@ -92,13 +92,13 @@ spec:
                                 name: transmission
                                 port:
                                     number: {{ .Values.transmission.port }}
-        -   host: tautilli.stefangenov.site
+        -   host: tautulli.stefangenov.site
             http:
                 paths:
                     -   pathType: Prefix
                         path: "/"
                         backend:
                             service:
-                                name: tautilli
+                                name: tautulli
                                 port:
-                                    number: {{ .Values.tautilli.port }}
+                                    number: {{ .Values.tautulli.port }}

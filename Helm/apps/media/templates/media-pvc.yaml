@@ -236,11 +236,11 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-    name: tautilli-config-pvc
+    name: tautulli-config-pvc
 spec:
     accessModes:
         - ReadWriteMany
     storageClassName: longhorn
     resources:
         requests:
-            storage: {{ .Values.storage.tautilli.config }}
+            storage: {{ .Values.storage.tautulli.config }}

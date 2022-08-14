@@ -20,7 +20,7 @@ storage:
         config: 5Gi
     doplarr:
         config: 1Gi
-    tautilli:
+    tautulli:
         config: 1Gi
 
 transmission:
@@ -51,7 +51,7 @@ radarr:
             cpu: 10m
             memory: 50Mi
 
-tautilli:
+tautulli:
     image: lscr.io/linuxserver/tautulli:2.10.3
     port: 8181
     resources:

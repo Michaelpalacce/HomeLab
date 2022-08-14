@@ -1,27 +1,27 @@
 ---
-{{- with .Values.tautilli }}
+{{- with .Values.tautulli }}
 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: tautilli
+    name: tautulli
     namespace: {{ $.Release.Namespace }}
     labels:
-        app: tautilli
+        app: tautulli
 spec:
     replicas: 1
     selector:
         matchLabels:
-            app: tautilli
+            app: tautulli
     template:
         metadata:
             annotations:
                 backup.velero.io/backup-volumes: config-data
             labels:
-                app: tautilli
+                app: tautulli
         spec:
             containers:
-                -   name: tautilli
+                -   name: tautulli
                     image: {{ .image }}
                     imagePullPolicy: IfNotPresent
                     env:
@@ -44,22 +44,22 @@ spec:
             volumes:
                 -   name: config-data
                     persistentVolumeClaim:
-                        claimName: tautilli-config-pvc
+                        claimName: tautulli-config-pvc
 ---
 
 apiVersion: v1
 kind: Service
 metadata:
-    name: tautilli
+    name: tautulli
     namespace: {{ $.Release.Namespace }}
 spec:
     {{- with .nodePort }}
     type: NodePort
     {{- end }}
     selector:
-        app: tautilli
+        app: tautulli
     ports:
-        -   name: tautilli
+        -   name: tautulli
             protocol: TCP
             port: {{ .port }}
           {{- with .nodePort }}
