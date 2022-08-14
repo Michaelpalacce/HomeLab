@@ -56,7 +56,7 @@ sonarr:
 
 jellyfin:
     replicas: 1
-    image: lscr.io/linuxserver/jellyfin:10.8.3
+    image: lscr.io/linuxserver/jellyfin:10.8.4
     port: 8096
     resources:
         limits:
