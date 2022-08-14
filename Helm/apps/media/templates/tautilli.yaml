@@ -1,0 +1,69 @@
+---
+{{- with .Values.tautilli }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: tautilli
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app: tautilli
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: tautilli
+    template:
+        metadata:
+            annotations:
+                backup.velero.io/backup-volumes: config-data
+            labels:
+                app: tautilli
+        spec:
+            containers:
+                -   name: tautilli
+                    image: {{ .image }}
+                    imagePullPolicy: IfNotPresent
+                    env:
+                        -   name: PUID
+                            value: "1000"
+                        -   name: GUID
+                            value: "1000"
+{{- if .resources }}
+                    resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+                    ports:
+                        -   name: web
+                            containerPort: {{ .port }}
+                    volumeMounts:
+                        -   name: config-data
+                            mountPath: /config
+
+            restartPolicy: Always
+            volumes:
+                -   name: config-data
+                    persistentVolumeClaim:
+                        claimName: tautilli-config-pvc
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: tautilli
+    namespace: {{ $.Release.Namespace }}
+spec:
+    {{- with .nodePort }}
+    type: NodePort
+    {{- end }}
+    selector:
+        app: tautilli
+    ports:
+        -   name: tautilli
+            protocol: TCP
+            port: {{ .port }}
+          {{- with .nodePort }}
+            nodePort: {{ . }}
+          {{- end }}
+
+{{- end }}

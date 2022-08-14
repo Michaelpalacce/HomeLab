@@ -20,6 +20,8 @@ storage:
         config: 5Gi
     doplarr:
         config: 1Gi
+    tautilli:
+        config: 1Gi
 
 transmission:
     image: lscr.io/linuxserver/transmission:version-3.00-r2
@@ -44,6 +46,14 @@ jackett:
 radarr:
     image: lscr.io/linuxserver/radarr:4.2.1-develop
     port: 7878
+    resources:
+        requests:
+            cpu: 10m
+            memory: 50Mi
+
+tautilli:
+    image: lscr.io/linuxserver/tautulli:2.10.3
+    port: 8181
     resources:
         requests:
             cpu: 10m
