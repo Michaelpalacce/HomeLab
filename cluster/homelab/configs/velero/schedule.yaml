@@ -17,7 +17,6 @@ spec:
           - storage
           - monitoring
           - mealie
-          - grocy
           - media
         snapshotVolumes: true
         ttl: 72h0m0s
