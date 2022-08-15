@@ -8,13 +8,21 @@ spec:
     interval: 5m
     install:
         createNamespace: true
+        crds: CreateReplace
+        remediation:
+            retries: 3
+    upgrade:
+        crds: CreateReplace
+        remediation:
+            retries: 3
     chart:
         spec:
-            chart: ./Helm/apps/botkube
-            reconcileStrategy: Revision
+            chart: botkube
+            version: v0.12.4
+            interval: 5m
             sourceRef:
-                kind: GitRepository
-                name: flux-system
+                kind: HelmRepository
+                name: botkube
                 namespace: flux-system
     values:
         existingCommunicationsSecretName: "configuration"
