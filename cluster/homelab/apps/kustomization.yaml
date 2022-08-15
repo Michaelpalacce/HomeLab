@@ -6,6 +6,7 @@ resources:
   - rss
   - wikijs
   - babybuddy
+  - botkube
   - changedetection
   - cyberchef
   - diagrams
