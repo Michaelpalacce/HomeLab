@@ -7,4 +7,5 @@ resources:
     - ingress-nginx
     - reflector
     - velero
+    - botkube
     - kube-vip
