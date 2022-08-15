@@ -25,7 +25,7 @@ spec:
                 name: botkube
                 namespace: flux-system
     values:
-        existingCommunicationsSecretName: "configuration"
+        existingCommunicationsSecretName: configuration
         settings:
           # -- Cluster name to differentiate incoming messages.
           clusterName: HomeLab
