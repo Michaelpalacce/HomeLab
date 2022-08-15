@@ -25,246 +25,220 @@ spec:
                 name: botkube
                 namespace: flux-system
     values:
-        existingCommunicationsSecretName: configuration
-        settings:
-          # -- Cluster name to differentiate incoming messages.
-          clusterName: HomeLab
-          # -- If true, restarts the BotKube Pod on config changes.
-          configWatcher: true
-          # -- If true, notifies about new BotKube releases.
-          upgradeNotifier: true
-          ## BotKube logging settings.
-          log:
-            # -- Sets one of the log levels. Allowed values: `info`, `warn`, `debug`, `error`, `fatal`, `panic`.
-            level: info
-            # -- If true, disable ANSI colors in logging.
-            disableColors: false
-        executors:
-          'kubectl-all':
-            ## Kubectl executor configuration.
-            kubectl:
-              namespaces:
-                # -- List of allowed Kubernetes Namespaces for command execution.
-                # It can also contain a regex expressions:
-                #  `- ".*"` - to specify all Namespaces.
-                include:
-                  - ".*"
-                # -- List of ignored Kubernetes Namespace.
-                # It can also contain a regex expressions:
-                #  `- "test-.*"` - to specify all Namespaces.
-                exclude: []
-              # -- If true, enables `kubectl` commands execution.
-              enabled: true
-              ## List of allowed `kubectl` commands.
-              commands:
-                # -- Configures which `kubectl` methods are allowed.
-                verbs: ["*"]
-                # -- Configures which K8s resource are allowed.
-                resources: ["*"]
-              # -- Configures the default Namespace for executing BotKube `kubectl` commands. If not set, uses the 'default'.
-              defaultNamespace: default
-              # -- If true, enables commands execution from configured channel only.
-              restrictAccess: false
-        sources:
-          'k8s-events':
-            # -- Describes Kubernetes source configuration.
-            kubernetes:
-              # -- Describes configuration for various recommendation insights.
-              recommendations:
-                # -- Recommendations for Pod Kubernetes resource.
-                pod:
-                  # -- If true, notifies about Pod containers that use `latest` tag for images.
-                  noLatestImageTag: true
-                  # -- If true, notifies about Pod resources created without labels.
-                  labelsSet: true
-                # -- Recommendations for Ingress Kubernetes resource.
-                ingress:
-                  # -- If true, notifies about Ingress resources with invalid backend service reference.
-                  backendServiceValid: true
-                  # -- If true, notifies about Ingress resources with invalid TLS secret reference.
-                  tlsSecretValid: true
+        image:
+          tag: v0.12.4
+        communications:
+          existingSecret: true
+          existingSecretName: "configuration"
+        config:
+          resources:
+          - events:
+            - create
+            - delete
+            - error
+            name: v1/pods
+            namespaces:
+              ignore:
+              - null
+              include:
+              - all
+          - events:
+            - create
+            - delete
+            - error
+            name: v1/services
+            namespaces:
+              ignore:
+              - null
+              include:
+              - all
+          - events:
+            - create
+            - update
+            - delete
+            - error
+            name: apps/v1/deployments
+            namespaces:
+              ignore:
+              - null
+              include:
+              - all
+            updateSetting:
+              fields:
+              - spec.template.spec.containers[*].image
+              - status.availableReplicas
+              includeDiff: true
+          - events:
+            - create
+            - update
+            - delete
+            - error
+            name: apps/v1/statefulsets
+            namespaces:
+              ignore:
+              - null
+              include:
+              - all
+            updateSetting:
+              fields:
+              - spec.template.spec.containers[*].image
+              - status.readyReplicas
+              includeDiff: true
+          - events:
+            - create
+            - delete
+            - error
+            name: networking.k8s.io/v1beta1/ingresses
+            namespaces:
+              ignore:
+              - null
+              include:
+              - all
+          - events:
+            - create
+            - delete
+            - error
+            name: v1/nodes
+            namespaces:
+              ignore:
+              - null
+              include:
+              - all
+          - events:
+            - create
+            - delete
+            - error
+            name: v1/namespaces
+            namespaces:
+              ignore:
+              - null
+              include:
+              - all
+          - events:
+            - create
+            - delete
+            - error
+            name: v1/persistentvolumes
+            namespaces:
+              ignore:
+              - null
+              include:
+              - all
+          - events:
+            - create
+            - delete
+            - error
+            name: v1/persistentvolumeclaims
+            namespaces:
+              ignore:
+              - null
+              include:
+              - all
+          - events:
+            - create
+            - delete
+            - error
+            name: v1/configmaps
+            namespaces:
+              ignore:
+              - null
+              include:
+              - all
+          - events:
+            - create
+            - update
+            - delete
+            - error
+            name: apps/v1/daemonsets
+            namespaces:
+              ignore:
+              - null
+              include:
+              - all
+            updateSetting:
+              fields:
+              - spec.template.spec.containers[*].image
+              - status.numberReady
+              includeDiff: true
+          - events:
+            - create
+            - update
+            - delete
+            - error
+            name: batch/v1/jobs
+            namespaces:
+              ignore:
+              - null
+              include:
+              - all
+            updateSetting:
+              fields:
+              - spec.template.spec.containers[*].image
+              - status.conditions[*].type
+              includeDiff: true
+          - events:
+            - create
+            - delete
+            - error
+            name: rbac.authorization.k8s.io/v1/roles
+            namespaces:
+              ignore:
+              - null
+              include:
+              - all
+          - events:
+            - create
+            - delete
+            - error
+            name: rbac.authorization.k8s.io/v1/rolebindings
+            namespaces:
+              ignore:
+              - null
+              include:
+              - all
+          - events:
+            - create
+            - delete
+            - error
+            name: rbac.authorization.k8s.io/v1/clusterrolebindings
+            namespaces:
+              ignore:
+              - null
+              include:
+              - all
+          - events:
+            - create
+            - delete
+            - error
+            name: rbac.authorization.k8s.io/v1/clusterroles
+            namespaces:
+              ignore:
+              - null
+              include:
+              - all
 
-              # -- Describes the Kubernetes resources you want to watch.
-              # @default -- Watch all built-in K8s kinds.
-              resources:
-                - name: v1/pods             # Name of the resource. Resource name must be in group/version/resource (G/V/R) format
-                                            # resource name should be plural (e.g apps/v1/deployments, v1/pods)
-                  namespaces:
-                    # Include contains a list of allowed Namespaces.
-                    # It can also contain a regex expressions:
-                    #  `- ".*"` - to specify all Namespaces.
-                    include:
-                      - ".*"
-                    # Exclude contains a list of Namespaces to be ignored even if allowed by Include.
-                    # It can also contain a regex expressions:
-                    #  `- "test-.*"` - to specif all Namespaces with `test-` prefix.
-                    # exclude: []
-                  events:                   # List of lifecycle events you want to receive, e.g create, update, delete, error OR all
-#                    - create
-#                    - delete
-                    - error
-                - name: v1/services
-                  namespaces:
-                    include:
-                      - ".*"
-                  events:
-#                    - create
-#                    - delete
-                    - error
-                - name: apps/v1/deployments
-                  namespaces:
-                    include:
-                      - ".*"
-                  events:
-#                    - create
-#                    - update
-#                    - delete
-                    - error
-                  updateSetting:
-                    includeDiff: true
-                    fields:
-                      - spec.template.spec.containers[*].image
-                      - status.availableReplicas
-                - name: apps/v1/statefulsets
-                  namespaces:
-                    include:
-                      - ".*"
-                  events:
-#                    - create
-#                    - update
-#                    - delete
-                    - error
-                  updateSetting:
-                    includeDiff: true
-                    fields:
-                      - spec.template.spec.containers[*].image
-                      - status.readyReplicas
-                - name: networking.k8s.io/v1/ingresses
-                  namespaces:
-                    include:
-                      - ".*"
-                  events:
-#                    - create
-#                    - delete
-                    - error
-                - name: v1/nodes
-                  namespaces:
-                    include:
-                      - ".*"
-                  events:
-                    - create
-                    - delete
-                    - error
-                - name: v1/namespaces
-                  namespaces:
-                    include:
-                      - ".*"
-                    exclude:
-                      -
-                  events:
-                    - create
-                    - delete
-                    - error
-                - name: v1/persistentvolumes
-                  namespaces:
-                    include:
-                      - ".*"
-                  events:
-                    - create
-                    - delete
-                    - error
-                - name: v1/persistentvolumeclaims
-                  namespaces:
-                    include:
-                      - ".*"
-                  events:
-                    - create
-                    - delete
-                    - error
-                - name: v1/configmaps
-                  namespaces:
-                    include:
-                      - ".*"
-                  events:
-#                    - create
-#                    - delete
-                    - error
-                - name: apps/v1/daemonsets
-                  namespaces:
-                    include:
-                      - ".*"
-                  events:
-#                    - create
-#                    - update
-#                    - delete
-                    - error
-                  updateSetting:
-                    includeDiff: true
-                    fields:
-                      - spec.template.spec.containers[*].image
-                      - status.numberReady
-                - name: batch/v1/jobs
-                  namespaces:
-                    include:
-                      - ".*"
-                  events:
-#                    - create
-#                    - update
-#                    - delete
-                    - error
-                  updateSetting:
-                    includeDiff: true
-                    fields:
-                      - spec.template.spec.containers[*].image
-                      - status.conditions[*].type
-                - name: rbac.authorization.k8s.io/v1/roles
-                  namespaces:
-                    include:
-                      - ".*"
-                  events:
-#                    - create
-#                    - delete
-                    - error
-                - name: rbac.authorization.k8s.io/v1/rolebindings
-                  namespaces:
-                    include:
-                      - ".*"
-                    exclude:
-                      -
-                  events:
-#                    - create
-#                    - delete
-                    - error
-                - name: rbac.authorization.k8s.io/v1/clusterrolebindings
-                  namespaces:
-                    include:
-                      - ".*"
-                  events:
-#                    - create
-#                    - delete
-                    - error
-                - name: rbac.authorization.k8s.io/v1/clusterroles
-                  namespaces:
-                    include:
-                      - ".*"
-                  events:
-#                    - create
-#                    - delete
-                    - error
-               ## Custom resource example
-                - name: velero.io/v1/backups
-                  namespaces:
-                    include:
-                      - ".*"
-                    exclude:
-                      -
-                  events:
-                    - create
-                    - update
-                    - delete
-                    - error
-                  updateSetting:
-                    includeDiff: true
-                    fields:
-                      - status.phase
-
+           ## Custom resource example
+          - name: velero.io/v1/backups
+            namespaces:
+              include:
+                - ".*"
+              exclude:
+                -
+            events:
+              - create
+              - update
+              - delete
+              - error
+            updateSetting:
+              includeDiff: true
+              fields:
+                - status.phase
+          settings:
+            # -- Cluster name to differentiate incoming messages.
+            clustername: HomeLab
+            ## BotKube logging settings.
+            log:
+              # -- Sets one of the log levels. Allowed values: `info`, `warn`, `debug`, `error`, `fatal`, `panic`.
+              level: info
+              # -- If true, disable ANSI colors in logging.
+              disableColors: false
