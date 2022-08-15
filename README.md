@@ -14,8 +14,7 @@ repository pretty beginner friendly.
 2. [Cluster Setup](./docs/ClusterSetup.md)
 3. [Cert Manager](./docs/SettingUpCertManager.md)
 4. [Setting Up Renovate](./docs/SettingUpRenovate.md)
-5. [Setting Up Apps](./docs/SettingUpApps.md)
-6. [Backups](./docs/Backups.md)
+5[Backups](./docs/Backups.md)
 
 # Main tools used
 1. **FluxCD 2** - GitOps for my HomeLab.
@@ -48,8 +47,6 @@ needed because `Let's encrypt` rate limits certificate requests.
 As a legacy approach I used to expose my apps via NodePort. This ability is removed but can be easily enabled by
 removing the commented out nodePort values in the Helm Charts, and I also try to add this functionality to future apps
 and services I install.
-
-All the available nodePorts can be checked [here](./docs/Ports.md)
 
 # Storage ( Longhorn )
 Longhorn is a great replicated storage option with a great UI for better visualisation. It's fast and tailor made for 

@@ -1,3 +1,5 @@
+# DEPRECATED ( I no longer use Raspberry Pis )
+
 # Hardware
 
 ### Hardware needed
