@@ -236,6 +236,8 @@ spec:
           settings:
             # -- Cluster name to differentiate incoming messages.
             clustername: HomeLab
+            kubectl:
+                enabled: true
             ## BotKube logging settings.
             log:
               # -- Sets one of the log levels. Allowed values: `info`, `warn`, `debug`, `error`, `fatal`, `panic`.
