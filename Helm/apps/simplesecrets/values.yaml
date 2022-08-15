@@ -1,6 +1,6 @@
 ---
 simplesecrets:
-    image: stefangenov/simplesecrets:3.0.0-sqlite3
+    image: stefangenov/simplesecrets:3.0.1
     port: 80
     resources:
         requests:
