@@ -88,11 +88,11 @@ sonarr:
         port: 9707
         resources:
             requests:
+                cpu: 25m
+                memory: 64Mi
+            limits:
                 cpu: 50m
                 memory: 100Mi
-            limits:
-                cpu: 100m
-                memory: 200Mi
 
 doplarr:
     image: lscr.io/linuxserver/doplarr:3.6.0

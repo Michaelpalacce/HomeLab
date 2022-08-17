@@ -22,6 +22,16 @@ spec:
                                 name: sonarr
                                 port:
                                     number: {{ .Values.sonarr.port }}
+        -   host: exportarr.stefangenov.site
+            http:
+                paths:
+                    -   pathType: Prefix
+                        path: "/"
+                        backend:
+                            service:
+                                name: sonarr
+                                port:
+                                    number: {{ .Values.sonarr.exportarr.port }}
         -   host: bazarr.stefangenov.site
             http:
                 paths:

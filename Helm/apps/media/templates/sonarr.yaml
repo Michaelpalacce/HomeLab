@@ -18,7 +18,7 @@ spec:
             annotations:
                 backup.velero.io/backup-volumes: config-data
                 prometheus.io/scrape: "true"
-                prometheus.io/port: "monitoring"
+                prometheus.io/port: "{{ .exportarr.port }}"
             labels:
                 app: sonarr
         spec:
@@ -108,5 +108,8 @@ spec:
           {{- with .nodePort }}
             nodePort: {{ . }}
           {{- end }}
+        -   name: monitoring
+            protocol: TCP
+            port: {{ .exportarr.port }}
 
 {{- end }}
