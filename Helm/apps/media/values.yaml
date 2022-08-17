@@ -36,7 +36,7 @@ transmission:
 jackett:
     nodePort: 30034
     replicas: 1
-    image: lscr.io/linuxserver/jackett:0.20.1698
+    image: lscr.io/linuxserver/jackett:0.20.1736
     port: 9117
     resources:
         requests:
@@ -99,7 +99,7 @@ bazarr:
             memory: 50Mi
 
 kavita:
-    image: kizaing/kavita:0.5.4
+    image: kizaing/kavita:0.5.5
     port: 5000
     replicas: 1
     resources:
