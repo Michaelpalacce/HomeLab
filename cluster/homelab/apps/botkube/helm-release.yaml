@@ -33,8 +33,6 @@ spec:
         config:
           resources:
           - events:
-            - create
-            - delete
             - error
             name: v1/pods
             namespaces:
@@ -43,8 +41,6 @@ spec:
               include:
               - all
           - events:
-            - create
-            - delete
             - error
             name: v1/services
             namespaces:
@@ -53,9 +49,6 @@ spec:
               include:
               - all
           - events:
-            - create
-            - update
-            - delete
             - error
             name: apps/v1/deployments
             namespaces:
@@ -69,9 +62,6 @@ spec:
               - status.availableReplicas
               includeDiff: true
           - events:
-            - create
-            - update
-            - delete
             - error
             name: apps/v1/statefulsets
             namespaces:
@@ -85,8 +75,6 @@ spec:
               - status.readyReplicas
               includeDiff: true
           - events:
-            - create
-            - delete
             - error
             name: networking.k8s.io/v1beta1/ingresses
             namespaces:
@@ -95,8 +83,6 @@ spec:
               include:
               - all
           - events:
-            - create
-            - delete
             - error
             name: v1/nodes
             namespaces:
@@ -105,8 +91,6 @@ spec:
               include:
               - all
           - events:
-            - create
-            - delete
             - error
             name: v1/namespaces
             namespaces:
@@ -135,8 +119,6 @@ spec:
               include:
               - all
           - events:
-            - create
-            - delete
             - error
             name: v1/configmaps
             namespaces:
@@ -145,9 +127,6 @@ spec:
               include:
               - all
           - events:
-            - create
-            - update
-            - delete
             - error
             name: apps/v1/daemonsets
             namespaces:
@@ -161,9 +140,6 @@ spec:
               - status.numberReady
               includeDiff: true
           - events:
-            - create
-            - update
-            - delete
             - error
             name: batch/v1/jobs
             namespaces:
@@ -177,8 +153,6 @@ spec:
               - status.conditions[*].type
               includeDiff: true
           - events:
-            - create
-            - delete
             - error
             name: rbac.authorization.k8s.io/v1/roles
             namespaces:
@@ -187,8 +161,6 @@ spec:
               include:
               - all
           - events:
-            - create
-            - delete
             - error
             name: rbac.authorization.k8s.io/v1/rolebindings
             namespaces:
@@ -197,8 +169,6 @@ spec:
               include:
               - all
           - events:
-            - create
-            - delete
             - error
             name: rbac.authorization.k8s.io/v1/clusterrolebindings
             namespaces:
@@ -207,8 +177,6 @@ spec:
               include:
               - all
           - events:
-            - create
-            - delete
             - error
             name: rbac.authorization.k8s.io/v1/clusterroles
             namespaces:
