@@ -33,7 +33,7 @@ spec:
 {{- end }}
                     env:
                         -   name: URL
-                            value: "sonarr:{{ .port }}"
+                            value: "http://sonarr:{{ .port }}"
                         -   name: PORT
                             value: "{{ .exportarr.port }}"
                     envFrom:
