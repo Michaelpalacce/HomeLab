@@ -17,10 +17,43 @@ spec:
         metadata:
             annotations:
                 backup.velero.io/backup-volumes: config-data
+                prometheus.io/scrape: "true"
+                prometheus.io/port: "monitoring"
             labels:
                 app: sonarr
         spec:
             containers:
+                -   name: exportarr
+                    image: {{ .exportarr.image }}
+                    args:
+                        - sonarr
+{{- if .exportarr.resources }}
+                    resources:
+{{ toYaml .exportarr.resources | indent 22 }}
+{{- end }}
+                    env:
+                        -   name: URL
+                            value: "sonarr:{{ .port }}"
+                        -   name: PORT
+                            value: "{{ .exportarr.port }}"
+                    envFrom:
+                        -   secretRef:
+                                name: sonarr-exportarr
+                    ports:
+                        -   name: monitoring
+                            containerPort: {{ .exportarr.port }}
+                    livenessProbe:
+                        httpGet:
+                            path: /healthz
+                            port: monitoring
+                        failureThreshold: 5
+                        periodSeconds: 10
+                    readinessProbe:
+                        httpGet:
+                            path: /healthz
+                            port: monitoring
+                        failureThreshold: 5
+                        periodSeconds: 10
                 -   name: sonarr
                     image: {{ .image }}
                     imagePullPolicy: IfNotPresent
