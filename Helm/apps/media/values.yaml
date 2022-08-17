@@ -99,7 +99,7 @@ bazarr:
             memory: 50Mi
 
 kavita:
-    image: kizaing/kavita:0.5.4
+    image: kizaing/kavita:0.5.5
     port: 5000
     replicas: 1
     resources:
