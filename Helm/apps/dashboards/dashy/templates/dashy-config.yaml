@@ -45,14 +45,6 @@ data:
                 description: Budget Buddy!
                 icon: hl-firefly
                 url: https://firefly.{{ .domainName }}/login
-              - title: Traggo
-                description: Time Management
-                icon: favicon
-                url: https://traggo.{{ .domainName }}
-{{/*              - title: Grocy*/}}
-{{/*                description: Household and Fridge Management*/}}
-{{/*                icon: hl-grocy*/}}
-{{/*                url: https://grocy.{{ .domainName }}*/}}
               - title: Koillection
                 description: Collections Management
                 icon: hl-koillection
@@ -185,10 +177,6 @@ data:
                 description: Media Requests
                 icon: hl-overseerr
                 url: https://overseerr.{{ .domainName }}
-              - title: Tautulli
-                description: Plex Monitor
-                icon: hl-tautulli
-                url: https://tautulli.{{ .domainName }}
           - name: Monitoring
             items:
               - title: Grafana
