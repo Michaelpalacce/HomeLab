@@ -39,5 +39,6 @@ resources:
   - redis
   - focalboard
   - droneci
+  - wireshark
   - grocy
 #  - tandoorrecipes
