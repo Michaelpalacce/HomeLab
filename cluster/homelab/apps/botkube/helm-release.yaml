@@ -178,17 +178,22 @@ spec:
               - all
 
            ## Custom resource example
-          - name: velero.io/v1/Backup
+          - name: velero.io/v1/backups
             namespaces:
               include:
-                - ".*"
-              exclude:
-                -
+                - all
             events:
-              - create
-              - update
-              - delete
-              - error
+              - all
+            updateSetting:
+              includeDiff: true
+              fields:
+                - status.phase
+          - name: velero.io/v1/restores
+            namespaces:
+              include:
+                - all
+            events:
+              - all
             updateSetting:
               includeDiff: true
               fields:
