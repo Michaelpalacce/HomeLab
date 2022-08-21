@@ -1,10 +1,37 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: GitRepository
+metadata:
+  name: system-upgrader
+  namespace: flux-system
+spec:
+  interval: 5m
+  url: https://github.com/rancher/system-upgrade-controller.git
+  ref:
+    branch: v0.9.1
 ---
-apiVersion: kustomize.config.k8s.io/v1beta1
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
+metadata:
+  name: system-upgrader
+  namespace: default
+spec:
+  interval: 5m
+  targetNamespace: system-upgrader
+  sourceRef:
+    kind: GitRepository
+    name: system-upgrader
+    namespace: flux-system
+  path: "."
+  prune: true
 resources:
-    - plans/stable
-#    - plans/latest # Switch to latest if desired
-    - git:https://github.com/rancher/system-upgrade-controller.git # There is a kustomization spec inside of the git repo, may be good to monitor for new releases in the future
+  - plans/stable
 images:
     - name: rancher/system-upgrade-controller
       newTag: v0.9.1 # overwrite since there is a newer version
+#---
+#apiVersion: kustomize.config.k8s.io/v1beta1
+#kind: Kustomization
+#resources:
+#    - plans/stable
+##    - plans/latest # Switch to latest if desired
+#    - git:https://github.com/rancher/system-upgrade-controller.git # There is a kustomization spec inside of the git repo, may be good to monitor for new releases in the future
