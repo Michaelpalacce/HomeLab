@@ -83,6 +83,8 @@ sonarr:
         requests:
             cpu: 500m
             memory: 1Gi
+    metrics:
+        enabled: false
     exportarr:
         image: ghcr.io/onedr0p/exportarr:v1.1.0
         port: 9707

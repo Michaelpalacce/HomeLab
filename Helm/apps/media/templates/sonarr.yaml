@@ -17,8 +17,10 @@ spec:
         metadata:
             annotations:
                 backup.velero.io/backup-volumes: config-data
+{{- if .metrics.enabled }}
                 prometheus.io/scrape: "true"
                 prometheus.io/port: "{{ .exportarr.port }}"
+{{- end }}
             labels:
                 app: sonarr
         spec:
