@@ -34,14 +34,6 @@ spec:
           resources:
           - events:
             - error
-            name: v1/pods
-            namespaces:
-              ignore:
-              - null
-              include:
-              - all
-          - events:
-            - error
             name: v1/services
             namespaces:
               ignore:
@@ -186,7 +178,7 @@ spec:
               - all
 
            ## Custom resource example
-          - name: velero.io/v1/backups
+          - name: velero.io/v1/Backup
             namespaces:
               include:
                 - ".*"
