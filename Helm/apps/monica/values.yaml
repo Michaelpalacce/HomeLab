@@ -1,0 +1,20 @@
+---
+monica:
+    image: monica:3.7.0-fpm
+    port: 80
+    resources:
+        requests:
+            cpu: 500m
+            memory: 512Mi
+
+    mysql:
+        image: mysql:5.7
+        port: 3306
+        resources:
+            requests:
+                cpu: 500m
+                memory: 512Mi
+
+storage:
+    dataSize: 1Gi
+    databaseSize: 5Gi

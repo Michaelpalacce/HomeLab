@@ -1,0 +1,119 @@
+---
+{{- with .Values.monica }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: monica
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app: monica
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: monica
+    template:
+        metadata:
+            annotations:
+                backup.velero.io/backup-volumes: data
+            labels:
+                app: monica
+        spec:
+            containers:
+                -   name: mysql
+                    image: {{ .mysql.image }}
+                    imagePullPolicy: IfNotPresent
+                    env:
+                        - name: MYSQL_RANDOM_ROOT_PASSWORD
+                          value: "true"
+                        - name: MYSQL_DATABASE
+                          value: monica
+                        - name: MYSQL_USER
+                          valueFrom:
+                              secretKeyRef:
+                                  key: DB_USERNAME
+                                  name: app
+                        - name: MYSQL_PASSWORD
+                          valueFrom:
+                              secretKeyRef:
+                                  key: DB_PASSWORD
+                                  name: app
+{{- if .mysql.resources }}
+                    resources:
+{{ toYaml .mysql.resources | indent 22 }}
+{{- end }}
+                    startupProbe:
+                        tcpSocket:
+                            port: {{ .mysql.port }}
+                        failureThreshold: 5
+                        initialDelaySeconds: 10
+                    livenessProbe:
+                        tcpSocket:
+                            port: {{ .mysql.port }}
+                        periodSeconds: 10
+                    ports:
+                        -   name: mysql
+                            containerPort: {{ .mysql.port }}
+                    volumeMounts:
+                        -   name: mysql
+                            mountPath: /var/lib
+                            subPath: mysql
+                -   name: monica
+                    image: {{ .image }}
+                    imagePullPolicy: IfNotPresent
+{{- if .resources }}
+                    resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+                    envFrom:
+                        -   secretRef:
+                                name: app
+                    startupProbe:
+                        tcpSocket:
+                            port: {{ .port }}
+                        failureThreshold: 5
+                        initialDelaySeconds: 10
+                    livenessProbe:
+                        tcpSocket:
+                            port: {{ .port }}
+                        periodSeconds: 10
+                    ports:
+                        -   name: web
+                            containerPort: {{ .port }}
+                    volumeMounts:
+                        -   name: monica
+                            mountPath: /var/www/html
+                            subPath: storage
+
+            restartPolicy: Always
+            volumes:
+                -   name: monica
+                    persistentVolumeClaim:
+                        claimName: monica-pvc
+                -   name: mysql
+                    persistentVolumeClaim:
+                        claimName: mysql-pvc
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: monica
+    namespace: {{ $.Release.Namespace }}
+spec:
+    {{- with .nodePort }}
+    type: NodePort
+    {{- end }}
+    selector:
+        app: monica
+    ports:
+        -   name: monica
+            protocol: TCP
+            port: {{ .port }}
+          {{- with .nodePort }}
+            nodePort: {{ . }}
+          {{- end }}
+
+{{- end }}
