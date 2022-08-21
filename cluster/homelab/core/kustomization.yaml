@@ -10,3 +10,4 @@ resources:
     - longhorn-system
     - ingress-nginx
     - kube-vip
+    - system-upgrader

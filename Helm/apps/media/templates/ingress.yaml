@@ -102,13 +102,3 @@ spec:
                                 name: transmission
                                 port:
                                     number: {{ .Values.transmission.port }}
-        -   host: tautulli.stefangenov.site
-            http:
-                paths:
-                    -   pathType: Prefix
-                        path: "/"
-                        backend:
-                            service:
-                                name: tautulli
-                                port:
-                                    number: {{ .Values.tautulli.port }}
