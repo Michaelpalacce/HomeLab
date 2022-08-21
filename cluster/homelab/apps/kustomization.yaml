@@ -2,43 +2,43 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - nodered
-  - rss
-  - wikijs
-  - babybuddy
   - botkube
+  - cert-manager
   - changedetection
   - cyberchef
+  - dashy
   - diagrams
-  - freshrss
+  - external-ingress
   - firefly
+  - freshrss
+  - koillection
+  - mealie
   - media
+  - monitoring
   - n8n
+  - nodered
   - openbooks
   - postgresql
   - pyload
+  - redis
   - storage
-  - mealie
-  - trilium
   - uptimekuma
   - vaultwarden
-  - jelu
+  - velero
   - vikunja
   - wallabag
   - whoogle
-  - external-ingress
-  - dashy
-  - monitoring
-  - shiori
-  - emulatorjs
-  - dailynotes
-  - koillection
-  - cert-manager
-  - traggo
-  - velero
-  - redis
-  - focalboard
-  - droneci
-  - wireshark
-  - grocy
+#  - droneci
+#  - emulatorjs
+#  - focalboard
+#  - grocy
+#  - jelu
+#  - traggo
+#  - rss
+#  - shiori
+#  - trilium
+#  - dailynotes
+#  - babybuddy
 #  - tandoorrecipes
+#  - wireshark
+#  - wikijs
