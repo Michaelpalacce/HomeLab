@@ -27,6 +27,8 @@ spec:
                     env:
                         - name: MYSQL_RANDOM_ROOT_PASSWORD
                           value: "true"
+                        - name: APP_DISABLE_SIGNUP
+                          value: "false"
                         - name: MYSQL_DATABASE
                           value: monica
                         - name: MYSQL_USER
@@ -43,22 +45,12 @@ spec:
                     resources:
 {{ toYaml .mysql.resources | indent 22 }}
 {{- end }}
-                    startupProbe:
-                        tcpSocket:
-                            port: {{ .mysql.port }}
-                        failureThreshold: 5
-                        initialDelaySeconds: 10
-                    livenessProbe:
-                        tcpSocket:
-                            port: {{ .mysql.port }}
-                        periodSeconds: 10
                     ports:
                         -   name: mysql
                             containerPort: {{ .mysql.port }}
                     volumeMounts:
                         -   name: mysql
-                            mountPath: /var/lib
-                            subPath: mysql
+                            mountPath: /var/lib/mysql
                 -   name: monica
                     image: {{ .image }}
                     imagePullPolicy: IfNotPresent
@@ -69,22 +61,12 @@ spec:
                     envFrom:
                         -   secretRef:
                                 name: app
-                    startupProbe:
-                        tcpSocket:
-                            port: {{ .port }}
-                        failureThreshold: 5
-                        initialDelaySeconds: 10
-                    livenessProbe:
-                        tcpSocket:
-                            port: {{ .port }}
-                        periodSeconds: 10
                     ports:
                         -   name: web
                             containerPort: {{ .port }}
                     volumeMounts:
                         -   name: monica
-                            mountPath: /var/www/html
-                            subPath: storage
+                            mountPath: /var/www/html/storage
 
             restartPolicy: Always
             volumes:
@@ -115,5 +97,18 @@ spec:
           {{- with .nodePort }}
             nodePort: {{ . }}
           {{- end }}
+---
 
+apiVersion: v1
+kind: Service
+metadata:
+    name: mysql
+    namespace: {{ $.Release.Namespace }}
+spec:
+    selector:
+        app: monica
+    ports:
+        -   name: mysql
+            protocol: TCP
+            port: {{ .mysql.port }}
 {{- end }}
