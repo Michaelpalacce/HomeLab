@@ -1,0 +1,73 @@
+---
+{{- with .Values.website }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: website
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app: website
+spec:
+    replicas: {{ .replicas }}
+    selector:
+        matchLabels:
+            app: website
+    template:
+        metadata:
+            labels:
+                app: website
+        spec:
+            containers:
+                -   name: website
+                    image: {{ .image }}
+                    imagePullPolicy: IfNotPresent
+{{- if .resources }}
+                    resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+                    ports:
+                        -   name: web
+                            containerPort: {{ .port }}
+                    envFrom:
+                        -   secretRef:
+                                name: website
+                                optional: false
+                    livenessProbe:
+                        failureThreshold: 2
+                        initialDelaySeconds: 120
+                        periodSeconds: 120
+                        timeoutSeconds: 2
+                        tcpSocket:
+                            port: {{ .port }}
+                    startupProbe:
+                        failureThreshold: 10
+                        periodSeconds: 2
+                        timeoutSeconds: 2
+                        tcpSocket:
+                            port: {{ .port }}
+
+            restartPolicy: Always
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: website
+    namespace: {{ $.Release.Namespace }}
+spec:
+    {{- with .nodePort }}
+    type: NodePort
+    {{- end }}
+    selector:
+        app: website
+    ports:
+        -   name: website
+            protocol: TCP
+            port: {{ .port }}
+          {{- with .nodePort }}
+            nodePort: {{ . }}
+          {{- end }}
+
+{{- end }}

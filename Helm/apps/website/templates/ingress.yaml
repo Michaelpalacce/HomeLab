@@ -1,0 +1,35 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: website
+    namespace: {{ $.Release.Namespace }}
+    annotations:
+        kubernetes.io/ingress.class: "nginx"
+        nginx.ingress.kubernetes.io/proxy-body-size: "100m"
+spec:
+    tls:
+        -   hosts:
+                - "*.stefangenov.site"
+            secretName: ingress
+    rules:
+        -   host: stefangenov.site
+            http:
+                paths:
+                    -   pathType: Prefix
+                        path: "/"
+                        backend:
+                            service:
+                                name: website
+                                port:
+                                    number: {{ .Values.website.port }}
+        -   host: website.stefangenov.site
+            http:
+                paths:
+                    -   pathType: Prefix
+                        path: "/"
+                        backend:
+                            service:
+                                name: website
+                                port:
+                                    number: {{ .Values.website.port }}
