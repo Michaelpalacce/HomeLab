@@ -6,11 +6,11 @@ resources:
   - cert-manager
   - changedetection
   - cyberchef
-  - dashy
   - diagrams
   - external-ingress
   - firefly
   - freshrss
+  - homarr
   - koillection
   - mealie
   - media
@@ -28,6 +28,7 @@ resources:
   - vikunja
   - wallabag
   - whoogle
+#  - dashy
 #  - droneci
 #  - emulatorjs
 #  - focalboard

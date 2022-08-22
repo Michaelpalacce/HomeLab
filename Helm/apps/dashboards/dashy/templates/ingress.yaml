@@ -21,7 +21,7 @@ spec:
                             service:
                                 name: dashy
                                 port:
-                                    number: 80
+                                    number: {{ .Values.dashy.port }}
         -   host: home.stefangenov.site
             http:
                 paths:
@@ -31,4 +31,4 @@ spec:
                             service:
                                 name: dashy
                                 port:
-                                    number: 80
+                                    number: {{ .Values.dashy.port }}
