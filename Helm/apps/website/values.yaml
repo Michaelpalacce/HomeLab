@@ -1,6 +1,6 @@
 ---
 website:
-    image: stefangenov/website:1.28.2
+    image: stefangenov/website:1.28.3
     port: 80
     nodePort: 30600
     replicas: 1
