@@ -1,6 +1,6 @@
 ---
 website:
-    image: stefangenov/website:1.28.1
+    image: stefangenov/website:1.28.2
     port: 80
     nodePort: 30600
     replicas: 1
@@ -9,4 +9,4 @@ website:
             cpu: 200m
             memory: 500Mi
 storage:
-    metricsSize: 500Mi
+    dataSize: 500Mi

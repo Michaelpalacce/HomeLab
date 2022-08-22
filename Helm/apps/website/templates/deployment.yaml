@@ -30,8 +30,8 @@ spec:
                         -   name: web
                             containerPort: {{ .port }}
                     volumeMounts:
-                        -   mountPath: /metrics
-                            name: metrics
+                        -   mountPath: /data
+                            name: data
                     envFrom:
                         -   secretRef:
                                 name: website
@@ -52,9 +52,9 @@ spec:
 
             restartPolicy: Always
             volumes:
-                -   name: metrics
+                -   name: data
                     persistentVolumeClaim:
-                        claimName: metrics-pvc
+                        claimName: data-pvc
 
 ---
 
