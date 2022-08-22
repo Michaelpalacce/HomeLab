@@ -1,3 +1,6 @@
+#### [V2.9.1]
+* New version
+
 #### [V2.9.0]
 * Removed unnecessary bookmarks
 
