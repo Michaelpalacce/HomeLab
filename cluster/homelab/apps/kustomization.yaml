@@ -27,6 +27,7 @@ resources:
   - vaultwarden
   - velero
   - vikunja
+  - website
   - wallabag
   - whoogle
 #  - droneci
