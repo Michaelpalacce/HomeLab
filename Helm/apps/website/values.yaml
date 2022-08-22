@@ -8,3 +8,5 @@ website:
         requests:
             cpu: 200m
             memory: 500Mi
+storage:
+    metricsSize: 500Mi
