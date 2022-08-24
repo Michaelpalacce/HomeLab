@@ -1,0 +1,21 @@
+---
+{{- with .Values.website }}
+apiVersion: v1
+kind: Service
+metadata:
+    name: website
+    namespace: {{ $.Release.Namespace }}
+spec:
+    {{- with .nodePort }}
+    type: NodePort
+    {{- end }}
+    selector:
+        app: website
+    ports:
+        -   name: website
+            protocol: TCP
+            port: {{ .port }}
+          {{- with .nodePort }}
+            nodePort: {{ . }}
+          {{- end }}
+{{- end }}

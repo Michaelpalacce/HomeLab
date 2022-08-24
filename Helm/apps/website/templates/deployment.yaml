@@ -1,6 +1,5 @@
 ---
 {{- with .Values.website }}
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -18,10 +17,21 @@ spec:
             labels:
                 app: website
         spec:
+            restartPolicy: Always
+            securityContext:
+                fsGroup: 1000
+                fsGroupChangePolicy: OnRootMismatch
+            volumes:
+                -   name: data
+                    persistentVolumeClaim:
+                        claimName: data-pvc
             containers:
                 -   name: website
                     image: {{ .image }}
                     imagePullPolicy: IfNotPresent
+                    securityContext:
+                        privileged: false
+                        allowPrivilegeEscalation: false
 {{- if .resources }}
                     resources:
 {{ toYaml .resources | indent 22 }}
@@ -49,32 +59,5 @@ spec:
                         timeoutSeconds: 2
                         tcpSocket:
                             port: {{ .port }}
-
-            restartPolicy: Always
-            volumes:
-                -   name: data
-                    persistentVolumeClaim:
-                        claimName: data-pvc
-
----
-
-apiVersion: v1
-kind: Service
-metadata:
-    name: website
-    namespace: {{ $.Release.Namespace }}
-spec:
-    {{- with .nodePort }}
-    type: NodePort
-    {{- end }}
-    selector:
-        app: website
-    ports:
-        -   name: website
-            protocol: TCP
-            port: {{ .port }}
-          {{- with .nodePort }}
-            nodePort: {{ . }}
-          {{- end }}
 
 {{- end }}
