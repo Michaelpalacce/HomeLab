@@ -21,27 +21,23 @@ spec:
             labels:
                 app: wallabag
         spec:
+            restartPolicy: Always
             containers:
                 -   name: wallabag
                     image: {{ .image }}
                     imagePullPolicy: IfNotPresent
+                    securityContext:
+                        privileged: false
+                        allowPrivilegeEscalation: false
+                    envFrom:
+                        -   secretRef:
+                                name: db
+                                optional: false
                     env:
                         -   name: PUID
                             value: "1000"
                         -   name: GUID
                             value: "1000"
-                        -   name: SYMFONY__ENV__DATABASE_DRIVER
-                            value: "pdo_pgsql"
-                        -   name: SYMFONY__ENV__DATABASE_PORT
-                            value: "{{ .db.port }}"
-                        -   name: SYMFONY__ENV__DATABASE_NAME
-                            value: {{ .db.name }}
-                        -   name: SYMFONY__ENV__DATABASE_USER
-                            value: {{ .db.username }}
-                        -   name: SYMFONY__ENV__DATABASE_PASSWORD
-                            value: {{ .db.password }}
-                        -   name: SYMFONY__ENV__DATABASE_HOST
-                            value: {{ .db.host }}
                         -   name: SYMFONY__ENV__DOMAIN_NAME
                             value: {{ .domainName }}
                         -   name: POSTGRES_USER
@@ -63,24 +59,10 @@ spec:
                         httpGet:
                             port: {{ .port }}
                             path: /login
-
-            restartPolicy: Always
-
----
-
-apiVersion: v1
-kind: Service
-metadata:
-    name: wallabag
-    namespace: {{ $.Release.Namespace }}
-spec:
-    type: NodePort
-    selector:
-        app: wallabag
-    ports:
-        -   name: wallabag
-            protocol: TCP
-            port: {{ .port }}
-            nodePort: {{ .nodePort }}
-
+                    startupProbe:
+                        failureThreshold: 10
+                        periodSeconds: 5
+                        httpGet:
+                            port: {{ .port }}
+                            path: /login
 {{- end }}

@@ -4,13 +4,7 @@ wallabag:
     replicas: 1
     port: 80
     domainName: https://wallabag.stefangenov.site
-    db:
-        name: wallabag
-        username: wallabag
-        password: wallabag
-        host: postgresql.postgresql
-        port: '5432'
     resources:
         requests:
-            cpu: 10m
-            memory: 50Mi
+            cpu: 100m
+            memory: 500Mi

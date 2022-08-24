@@ -1,3 +1,7 @@
+#### [v1.3.0]
+* Moved Env to simplesecret
+* Improved security
+
 #### [v1.2.1]
 * Added probes for wallabag so it will automatically fix itself if failed
 

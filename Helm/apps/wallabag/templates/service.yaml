@@ -1,0 +1,18 @@
+---
+{{- with .Values.wallabag }}
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: wallabag
+    namespace: {{ $.Release.Namespace }}
+spec:
+    type: NodePort
+    selector:
+        app: wallabag
+    ports:
+        -   name: wallabag
+            protocol: TCP
+            port: {{ .port }}
+            nodePort: {{ .nodePort }}
+{{- end }}
