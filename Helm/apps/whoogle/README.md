@@ -1,1 +1,1 @@
-This chart is used to install whoogle
+This chart is used to install whoogle.

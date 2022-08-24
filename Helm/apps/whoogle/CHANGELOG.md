@@ -1,3 +1,8 @@
+#### [V3.0.0]
+* Improved security of the deployment
+* Updated UpdateStrategy
+* Image from ghcr.io instead of docker hub
+
 #### [V2.2.0]
 * Increased resources
 * Probes

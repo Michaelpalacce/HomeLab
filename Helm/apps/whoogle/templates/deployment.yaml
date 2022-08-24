@@ -18,10 +18,22 @@ spec:
             labels:
                 app: whoogle
         spec:
+            restartPolicy: Always
             containers:
                 -   name: whoogle
                     image: {{ .image }}
                     imagePullPolicy: IfNotPresent
+                    env:
+                        -   name: HTTPS_ONLY
+                            value: "true"
+                        -   name: WHOOGLE_CONFIG_THEME
+                            value: "dark"
+                    securityContext:
+                        privileged: false
+                        runAsNonRoot: true
+                        allowPrivilegeEscalation: false
+                        runAsUser: 927
+                        runAsGroup: 927
 {{- if .resources }}
                     resources:
 {{ toYaml .resources | indent 22 }}
@@ -34,31 +46,7 @@ spec:
                         tcpSocket:
                             port: {{ .port }}
                     startupProbe:
-                        initialDelaySeconds: 30
+                        failureThreshold: 10
                         tcpSocket:
                             port: {{ .port }}
-
-            restartPolicy: Always
-
----
-
-apiVersion: v1
-kind: Service
-metadata:
-    name: whoogle
-    namespace: {{ $.Release.Namespace }}
-spec:
-    {{- with .nodePort }}
-    type: NodePort
-    {{- end }}
-    selector:
-        app: whoogle
-    ports:
-        -   name: whoogle
-            protocol: TCP
-            port: {{ .port }}
-          {{- with .nodePort }}
-            nodePort: {{ . }}
-          {{- end }}
-
 {{- end }}
