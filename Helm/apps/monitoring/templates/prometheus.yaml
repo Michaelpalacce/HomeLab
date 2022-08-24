@@ -69,8 +69,6 @@ spec:
                 -   name: prometheus
                     image: {{ .image }}
                     imagePullPolicy: IfNotPresent
-                    securityContext:
-                        privileged: true
                     args:
                         - '--storage.tsdb.retention.time={{ .retentionTime }}'
                         - '--storage.tsdb.path=/prometheus'
