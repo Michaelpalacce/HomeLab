@@ -5,23 +5,23 @@ storage:
         config: 1Gi
         downloads: 200Gi
     bazarr:
-        config: 1Gi
+        config: 5Gi
     kavita:
-        config: 1Gi
+        config: 5Gi
     overseer:
-        config: 1Gi
+        config: 5Gi
     radarr:
-        config: 1Gi
+        config: 5Gi
     readarr:
-        config: 1Gi
+        config: 5Gi
     sonarr:
-        config: 1Gi
+        config: 5Gi
     jackett:
         config: 5Gi
     doplarr:
-        config: 1Gi
+        config: 5Gi
     tautulli:
-        config: 1Gi
+        config: 5Gi
 
 transmission:
     image: lscr.io/linuxserver/transmission:version-3.00-r2
