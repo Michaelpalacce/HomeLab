@@ -73,8 +73,8 @@ readarr:
     port: 8787
     resources:
         requests:
-            cpu: 500m
-            memory: 1Gi
+            cpu: 10m
+            memory: 50Mi
 
 sonarr:
     image: lscr.io/linuxserver/sonarr:3.0.9.1549-ls154
