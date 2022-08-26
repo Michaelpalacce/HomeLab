@@ -1,6 +1,6 @@
 ---
 rss:
-    image: ghcr.io/ssddanbrown/rss:v1.0.5
+    image: ghcr.io/ssddanbrown/rss:v1.1.0
     replicas: 1
     port: 80
     resources:
