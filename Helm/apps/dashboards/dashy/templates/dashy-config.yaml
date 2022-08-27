@@ -116,6 +116,10 @@ data:
                 icon: hl-plex
                 url: https://plex.{{ .domainName }}
                 statusCheckUrl: https://plex.{{ .domainName }}/identity
+              - title: Tautulli
+                description: Plex dashboard
+                icon: hl-tautulli
+                url: https://tautulli.{{ .domainName }}
               - title: Kavita
                 description: Book Reader And Tracker
                 icon: hl-kavita
@@ -177,6 +181,10 @@ data:
                 description: Media Requests
                 icon: hl-overseerr
                 url: https://overseerr.{{ .domainName }}
+              - title: PyLoad
+                description: Download Manager
+                icon: hl-pyload
+                url: https://pyload.{{ .domainName }}
           - name: Monitoring
             items:
               - title: Grafana
