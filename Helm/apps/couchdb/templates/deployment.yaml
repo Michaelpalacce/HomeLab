@@ -15,6 +15,7 @@ spec:
     template:
         metadata:
             annotations:
+                backup.velero.io/backup-volumes: data
                 {{- with $ }}
                 checksum/config: {{ include (print $.Template.BasePath "/couchdb-config.yaml") . | sha256sum }}
                 {{- end }}

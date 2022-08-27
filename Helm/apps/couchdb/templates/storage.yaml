@@ -10,17 +10,3 @@ spec:
     resources:
         requests:
             storage: {{ .Values.storage.dataSize }}
-
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-    name: config-pvc
-spec:
-    accessModes:
-        - ReadWriteMany
-    storageClassName: longhorn
-    resources:
-        requests:
-            storage: 1Gi
-

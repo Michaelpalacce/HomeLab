@@ -18,6 +18,7 @@ spec:
           - monitoring
           - mealie
           - media
+          - couchdb
         snapshotVolumes: true
         ttl: 72h0m0s
     useOwnerReferencesInBackup: false
