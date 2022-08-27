@@ -1,6 +1,6 @@
 ---
 pyload:
-  image: lscr.io/linuxserver/pyload:version-4bb5578c
+  image: lscr.io/linuxserver/pyload-ng:0.5.0
   replicas: 1
   port: 8000
   baseUrl: pyload.stefangenov.site
