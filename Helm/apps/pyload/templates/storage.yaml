@@ -1,17 +1,4 @@
 ---
-kind: StorageClass
-apiVersion: storage.k8s.io/v1
-metadata:
-    name: pyload-config-sc
-provisioner: driver.longhorn.io
-allowVolumeExpansion: true
-parameters:
-    numberOfReplicas: "1"
-    dataLocality: "best-effort"
-    staleReplicaTimeout: "2800"
-    fromBackup: ""
-
----
 
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -20,7 +7,7 @@ metadata:
 spec:
     accessModes:
         - ReadWriteMany
-    storageClassName: pyload-config-sc
+    storageClassName: longhorn
     resources:
         requests:
             storage: 1Gi
