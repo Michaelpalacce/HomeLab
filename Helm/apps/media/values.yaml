@@ -57,8 +57,8 @@ tautulli:
     replicas: 1
     resources:
         requests:
-            cpu: 10m
-            memory: 50Mi
+            cpu: 250m
+            memory: 500Mi
 
 overseerr:
     image: lscr.io/linuxserver/overseerr:2021.12.12
