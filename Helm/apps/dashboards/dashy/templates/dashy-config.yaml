@@ -249,6 +249,10 @@ data:
                 description: PostgreSQL admin pannel
                 icon: hl-pgadmin
                 url: https://pgadmin.{{ .domainName }}
+              - title: CouchDB
+                description: CouchDB
+                icon: hl-couchdb
+                url: https://couchdb.{{ .domainName }}/_utils
           - name: Personal
             items:
               - title: Website

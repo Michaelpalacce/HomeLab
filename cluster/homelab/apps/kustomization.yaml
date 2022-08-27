@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - botkube
   - cert-manager
+  - couchdb
   - changedetection
   - cyberchef
   - dashy

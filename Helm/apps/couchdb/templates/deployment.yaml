@@ -14,27 +14,43 @@ spec:
             app: couchdb
     template:
         metadata:
+            annotations:
+                {{- with $ }}
+                checksum/config: {{ include (print $.Template.BasePath "/couchdb-config.yaml") . | sha256sum }}
+                {{- end }}
             labels:
                 app: couchdb
         spec:
             restartPolicy: Always
-            securityContext:
-                fsGroup: 1000
-                fsGroupChangePolicy: OnRootMismatch
             volumes:
-                -   name: config-volume
-                    configMap:
-                        name: couchdb-config
+                - name: config-storage
+                  emptyDir: {}
+                - name: config
+                  configMap:
+                      name: couchdb-config
+                      items:
+                          - key: inifile
+                            path: chart.ini
                 -   name: data
                     persistentVolumeClaim:
                         claimName: data-pvc
+            initContainers:
+                -   name: init-copy
+                    image: "busybox:latest"
+                    imagePullPolicy: Always
+                    command:
+                        - 'sh'
+                        - '-c'
+                        - 'cp /tmp/chart.ini /default.d'
+                    volumeMounts:
+                        -   name: config
+                            mountPath: /tmp/
+                        -   name: config-storage
+                            mountPath: /default.d
             containers:
                 -   name: couchdb
                     image: {{ .image }}
                     imagePullPolicy: IfNotPresent
-                    securityContext:
-                        privileged: false
-                        allowPrivilegeEscalation: false
 {{- if .resources }}
                     resources:
 {{ toYaml .resources | indent 22 }}
@@ -45,6 +61,8 @@ spec:
                     volumeMounts:
                         -   mountPath: /opt/couchdb/data
                             name: data
+                        -   name: config-storage
+                            mountPath: /opt/couchdb/etc/default.d
                     envFrom:
                         -   secretRef:
                                 name: couchdb

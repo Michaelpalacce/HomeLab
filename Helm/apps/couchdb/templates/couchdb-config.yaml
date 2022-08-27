@@ -1,0 +1,33 @@
+---
+{{- with .Values.couchdb }}
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: couchdb-config
+    namespace: {{ $.Release.Namespace }}
+data:
+    inifile: |
+        [couchdb]
+        single_node=true
+
+        [chttpd]
+        bind_address = any
+        require_valid_user = true
+
+        [chttpd_auth]
+        require_valid_user = true
+        authentication_redirect = /_utils/session.html
+
+        [httpd]
+        WWW-Authenticate = Basic realm="couchdb"
+        enable_cors = true
+
+        [cors]
+        origins = app://obsidian.md,capacitor://localhost,http://localhost
+        credentials = true
+        headers = accept, authorization, content-type, origin, referer
+        methods = GET, PUT, POST, HEAD, DELETE
+        max_age = 3600
+
+{{- end }}
