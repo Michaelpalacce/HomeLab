@@ -1,6 +1,6 @@
 ---
 website:
-    image: stefangenov/website:1.28.4
+    image: ghcr.io/michaelpalacce/website:1.28.6
     port: 80
     replicas: 1
     resources:
