@@ -1,0 +1,66 @@
+---
+{{- with .Values.couchdb }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: couchdb
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app: couchdb
+spec:
+    replicas: {{ .replicas }}
+    selector:
+        matchLabels:
+            app: couchdb
+    template:
+        metadata:
+            labels:
+                app: couchdb
+        spec:
+            restartPolicy: Always
+            securityContext:
+                fsGroup: 1000
+                fsGroupChangePolicy: OnRootMismatch
+            volumes:
+                -   name: config-volume
+                    configMap:
+                        name: couchdb-config
+                -   name: data
+                    persistentVolumeClaim:
+                        claimName: data-pvc
+            containers:
+                -   name: couchdb
+                    image: {{ .image }}
+                    imagePullPolicy: IfNotPresent
+                    securityContext:
+                        privileged: false
+                        allowPrivilegeEscalation: false
+{{- if .resources }}
+                    resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+                    ports:
+                        -   name: web
+                            containerPort: {{ .port }}
+                    volumeMounts:
+                        -   mountPath: /opt/couchdb/data
+                            name: data
+                    envFrom:
+                        -   secretRef:
+                                name: couchdb
+                                optional: false
+                    livenessProbe:
+                        failureThreshold: 2
+                        initialDelaySeconds: 120
+                        periodSeconds: 120
+                        timeoutSeconds: 2
+                        tcpSocket:
+                            port: {{ .port }}
+                    startupProbe:
+                        failureThreshold: 10
+                        periodSeconds: 2
+                        timeoutSeconds: 2
+                        tcpSocket:
+                            port: {{ .port }}
+
+{{- end }}

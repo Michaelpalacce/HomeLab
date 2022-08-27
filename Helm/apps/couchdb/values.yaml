@@ -1,0 +1,11 @@
+---
+couchdb:
+    image: couchdb:3.2.2
+    port: 5984
+    replicas: 1
+    resources:
+        requests:
+            cpu: 500m
+            memory: 1Gi
+storage:
+    dataSize: 2Gi
