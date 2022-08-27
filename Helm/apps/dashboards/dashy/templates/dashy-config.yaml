@@ -181,7 +181,7 @@ data:
                 description: Media Requests
                 icon: hl-overseerr
                 url: https://overseerr.{{ .domainName }}
-              — title: PyLoad
+              - title: PyLoad
                 description: Download Manager
                 icon: hl-pyload
                 url: https://pyload.{{ .domainName }}
