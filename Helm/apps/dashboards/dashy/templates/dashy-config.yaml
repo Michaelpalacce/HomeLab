@@ -116,7 +116,7 @@ data:
                 icon: hl-plex
                 url: https://plex.{{ .domainName }}
                 statusCheckUrl: https://plex.{{ .domainName }}/identity
-             -  title: Tautulli
+              - title: Tautulli
                 description: Plex dashboard
                 icon: hl-tautulli
                 url: https://tautulli.{{ .domainName }}
