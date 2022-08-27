@@ -251,8 +251,9 @@ data:
                 url: https://pgadmin.{{ .domainName }}
               - title: CouchDB
                 description: CouchDB
-                icon: hl-couchdb
+                icon: https://cdn.icon-icons.com/icons2/2415/PNG/512/couchdb_original_logo_icon_146585.png
                 url: https://couchdb.{{ .domainName }}/_utils
+                statusCheckUrl: https://couchdb.{{ .domainName }}
           - name: Personal
             items:
               - title: Website
