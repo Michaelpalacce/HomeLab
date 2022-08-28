@@ -204,7 +204,8 @@ spec:
               include:
                 - all
             events:
-              - all
+              - error
+              - create
             updateSetting:
               includeDiff: true
               fields:
