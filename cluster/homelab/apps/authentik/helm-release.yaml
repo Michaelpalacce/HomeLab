@@ -39,7 +39,8 @@ spec:
                   name: authentik
         ingress:
             enabled: true
-            ingressClassName: nginx
+            annotations:
+                kubernetes.io/ingress.class: "nginx"
             tls:
                 -   hosts:
                         - "*.stefangenov.site"
@@ -53,6 +54,6 @@ spec:
                                 service:
                                     name: authentik
                                     port:
-                                        number: 80
+                                        name: http
         redis:
             enabled: true
