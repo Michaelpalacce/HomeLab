@@ -1,0 +1,47 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+    name: authentik
+    namespace: authentik
+spec:
+    interval: 5m
+    install:
+        createNamespace: true
+        crds: CreateReplace
+        remediation:
+            retries: 3
+    upgrade:
+        crds: CreateReplace
+        remediation:
+            retries: 3
+    chart:
+        spec:
+            chart: authentik
+            version: 2022.8.3
+            interval: 5m
+            sourceRef:
+                kind: HelmRepository
+                name: authentik
+                namespace: flux-system
+    values:
+        authentik:
+            error_reporting:
+                enabled: true
+        envFrom:
+            - secretRef:
+                  name: authentik
+        ingress:
+            enabled: true
+            ingressClassName: nginx
+            tls:
+                -   hosts:
+                        - "*.stefangenov.site"
+                    secretName: ingress
+            hosts:
+                -   host: authentik.stefangnenov.site
+                    paths:
+                        -   path: "/"
+                            pathType: Prefix
+        redis:
+            enabled: true
