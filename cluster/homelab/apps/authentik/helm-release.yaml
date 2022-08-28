@@ -46,7 +46,7 @@ spec:
                         - "*.stefangenov.site"
                     secretName: ingress
             hosts:
-                -   host: authentik.stefangnenov.site
+                -   host: authentik.stefangenov.site
                     paths:
                         -   path: "/"
                             pathType: Prefix
