@@ -86,6 +86,7 @@ data:
                 description: IFTTT
                 icon: hl-n8n
                 url: https://n8n.{{ .domainName }}
+                statusCheck: false
 
           # - name: DevOps
           #   items:
@@ -253,7 +254,7 @@ data:
                 description: CouchDB
                 icon: https://cdn.icon-icons.com/icons2/2415/PNG/512/couchdb_original_logo_icon_146585.png
                 url: https://couchdb.{{ .domainName }}/_utils
-                statusCheckUrl: https://couchdb.{{ .domainName }}
+                statusCheck: false
           - name: Personal
             items:
               - title: Website
