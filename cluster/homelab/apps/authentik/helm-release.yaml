@@ -26,8 +26,6 @@ spec:
                 namespace: flux-system
     values:
         authentik:
-            redis:
-                host: ""
 #            These will be set from the environment
             postgresql:
                 host: ""
