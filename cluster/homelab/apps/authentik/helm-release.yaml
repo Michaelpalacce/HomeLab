@@ -55,5 +55,14 @@ spec:
                                     name: authentik
                                     port:
                                         name: http
+                -   host: stefangenov.site
+                    paths:
+                        -   path: "/outpost.goauthentik.io"
+                            pathType: Prefix
+                            backend:
+                                service:
+                                    name: authentik
+                                    port:
+                                        name: http
         redis:
             enabled: true
