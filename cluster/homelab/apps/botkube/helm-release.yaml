@@ -210,6 +210,16 @@ spec:
               includeDiff: true
               fields:
                 - status.phase
+          - name: upgrade.cattle.io/v1/plans
+            namespaces:
+              include:
+                - all
+            events:
+              - all
+            updateSetting:
+              includeDiff: true
+              fields:
+                - status.latestVersiom
           settings:
             # -- Cluster name to differentiate incoming messages.
             clustername: HomeLab
