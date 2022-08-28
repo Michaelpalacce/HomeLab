@@ -26,6 +26,9 @@ spec:
                 namespace: flux-system
     values:
         authentik:
+            redis:
+                host: ""
+#            These will be set from the environment
             postgresql:
                 host: ""
                 name: ""
@@ -48,5 +51,10 @@ spec:
                     paths:
                         -   path: "/"
                             pathType: Prefix
+                            backend:
+                                service:
+                                    name: authentik
+                                    port:
+                                        number: 80
         redis:
             enabled: true
