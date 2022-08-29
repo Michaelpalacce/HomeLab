@@ -1,6 +1,6 @@
 ---
 koillection:
-    image: koillection/koillection:1.3.10
+    image: koillection/koillection:1.3.12
     port: 80
     replicas: 1
     resources:
