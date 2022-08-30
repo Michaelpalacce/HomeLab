@@ -63,6 +63,7 @@ tautulli:
 overseerr:
     image: lscr.io/linuxserver/overseerr:2021.12.12
     port: 5055
+    replicas: 1
     resources:
         requests:
             cpu: 10m
@@ -111,7 +112,7 @@ bazarr:
 kavita:
     image: kizaing/kavita:0.5.5
     port: 5000
-    replicas: 0
+    replicas: 1
     resources:
         requests:
             cpu: 10m

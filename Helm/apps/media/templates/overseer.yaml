@@ -9,7 +9,7 @@ metadata:
     labels:
         app: overseerr
 spec:
-    replicas: 0
+    replicas: {{ .replicas }}
     selector:
         matchLabels:
             app: overseerr
