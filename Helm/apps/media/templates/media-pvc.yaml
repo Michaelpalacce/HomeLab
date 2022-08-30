@@ -128,18 +128,41 @@ spec:
         requests:
             storage: {{ .Values.storage.bazarr.config }}
 
+
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-    name: downloads-volume
+    name: downloads-volume-nfs
 spec:
+    selector:
+        matchLabels:
+            app: downloads
+            type: nfs
+    storageClassName: nfs-direct
     accessModes:
         - ReadWriteMany
-    storageClassName: longhorn-single
     resources:
         requests:
-            storage: {{ .Values.storage.transmission.downloads }}
+            storage: 500Gi
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: downloads-volume
+    labels:
+        type: nfs
+        app: downloads
+spec:
+    storageClassName: nfs-direct
+    capacity:
+        storage: 500Gi
+    accessModes:
+        - ReadWriteMany
+    nfs:
+        path: "/volume1/k3s/media/books"
+        server: {{ .Values.storage.nasIp }}
 
 ---
 apiVersion: v1
