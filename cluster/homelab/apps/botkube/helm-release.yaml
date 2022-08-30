@@ -18,7 +18,7 @@ spec:
     chart:
         spec:
             chart: botkube
-            version: v0.13.0
+            version: v0.12.4
             interval: 5m
             sourceRef:
                 kind: HelmRepository
@@ -26,8 +26,10 @@ spec:
                 namespace: flux-system
     values:
         image:
-          tag: v0.13.0
-        existingCommunicationsSecretName: "configuration"
+          tag: v0.12.4
+        communications:
+          existingSecret: true
+          existingSecretName: "configuration"
         config:
           resources:
           - events:
