@@ -15,4 +15,3 @@ vaultwarden:
 
 storage:
     dataSize: 5Gi
-    backupSize: 10Gi
