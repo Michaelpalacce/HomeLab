@@ -133,7 +133,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-    name: downloads-volume-nfs
+    name: downloads-volume
 spec:
     selector:
         matchLabels:
@@ -150,7 +150,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-    name: downloads-volume
+    name: downloads-volume-pv
     labels:
         type: nfs
         app: downloads
@@ -161,7 +161,7 @@ spec:
     accessModes:
         - ReadWriteMany
     nfs:
-        path: "/volume1/k3s/media/books"
+        path: "/volume1/k3s/media/downloads"
         server: {{ .Values.storage.nasIp }}
 
 ---
