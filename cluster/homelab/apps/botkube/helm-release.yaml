@@ -26,10 +26,8 @@ spec:
                 namespace: flux-system
     values:
         image:
-          tag: v0.12.4
-        communications:
-          existingSecret: true
-          existingSecretName: "configuration"
+          tag: v0.13.0
+        existingCommunicationsSecretName: "configuration"
         config:
           resources:
           - events:
