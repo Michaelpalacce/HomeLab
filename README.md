@@ -1,10 +1,8 @@
 # Preface
 <img src="https://raw.githubusercontent.com/kubernetes/kubernetes/master/logo/logo.png" width="150px" alt="">
 
-The purpose of this project is to setup my Kubernetes HomeLab environment on a Raspberry PI 4s backbone.
-The OS used is an Ubuntu server 21.04 x64 arm64 ISO ( downloaded from the Raspberry pi Imager ). 
-This repository contains basic HELM local charts for application installation as well as FluxCD2 HelmReleases for CI/CD. I'm not going to move away from the local helm charts where possible as they make this 
-repository pretty beginner friendly.
+This repository contains basic HELM local charts for application installation as well as FluxCD2 HelmReleases for GitOps.
+I'm not going to move away from the local helm charts where possible as they make this repository pretty beginner-friendly.
 
 # :open_book: Check out the Documentation
 * [Documentation](./docs)
@@ -61,16 +59,15 @@ It allows for you to store secrets via the UI/API and create K8S Secrets by crea
 me to commit `SimpleSecrets` to git, while not exposing anything to the internet.
 
 # Backup ( Velero ) 
-Velero allows me to backup selected namespaces and ( with the help of restic ) ship the data to different sources. 
-In my case I'm using the velero AWS plugin. 
+Velero allows me to back up selected namespaces and ( with the help of restic ) ship the data to different sources.
+In my case I'm using the velero AWS plugin.
 
-The velero backup runs on a schedule every day during the evening hours. 
+The velero backup runs on a schedule every day during the evening hours and I pay around ~ $4 each month
 
 # What if I don't want to use Flux
-Well it's absolutely fine. You can go to `Helm/apps` and install any app you want
-( e.g. `helm install media media -n media --create-namespace ). However things like ingress, cert-management, storage
-are handled only via Flux. Information on the helm chart that is used can be found in the `
-helm-release.yaml` for the specific service. Let's look at an example:
+Well it's absolutely fine. You can go to `Helm/apps` and install any app you want ( e.g. `helm install media media -n media --create-namespace` ).
+However things like ingress, cert-management, longhorn are handled only via Flux. Information on the helm chart that is
+used can be found in the `helm-release.yaml` for the specific service. Let's look at an example:
 ~~~yaml
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
@@ -109,20 +106,20 @@ spec:
 
 This would be the same as:
 1. Creating a new file with the content:
-
-`values.yaml`:
-~~~yaml
-ingress:
-    enabled: true
-    host: longhorn.stefangenov.site
-    ingressClassName: nginx
-    tls: true
-    tlsSecret: ingress
-
-service:
-    ui:
-        type: NodePort
-        nodePort: 30030
-~~~
+    
+    `values.yaml`:
+    ~~~yaml
+    ingress:
+        enabled: true
+        host: longhorn.stefangenov.site
+        ingressClassName: nginx
+        tls: true
+        tlsSecret: ingress
+    
+    service:
+        ui:
+            type: NodePort
+            nodePort: 30030
+    ~~~
 2. Running: `helm repo add longhorn https://charts.longhorn.io; helm repo update` to add the longhorn helm repo
 3. Running: `helm install longhorn/longhorn --name longhorn --create-namespace -n longhorn-system -f values.yaml`

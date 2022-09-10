@@ -2,7 +2,7 @@
 [Official Documentation](https://projectcalico.docs.tigera.io/getting-started/kubernetes/helm)
 
 ## Notes
-Currently not in use
+Currently, not in use!
 
 ## Steps
 

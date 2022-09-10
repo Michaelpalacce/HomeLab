@@ -99,13 +99,11 @@ metadata:
     name: n8n
     namespace: {{ $.Release.Namespace }}
 spec:
-    type: NodePort
     selector:
         app: n8n
     ports:
         -   name: n8n
             protocol: TCP
             port: {{ .port }}
-            nodePort: {{ .nodePort }}
 
 {{- end }}
