@@ -1,6 +1,6 @@
 ---
 speedtest:
-    image: ghcr.io/miguelndecarvalho/speedtest-exporter:v3.5.2
+    image: ghcr.io/miguelndecarvalho/speedtest-exporter:v3.5.3
     port: 9798
     resources:
         requests:
