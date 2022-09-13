@@ -10,7 +10,7 @@ speedtest:
 prometheus:
     image: quay.io/prometheus/prometheus:v2.38.0
     port: 9090
-    retentionTime: 7d
+    retentionTime: 3d
 
 nodeExporter:
     image: prom/node-exporter:v1.3.1
