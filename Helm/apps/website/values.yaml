@@ -5,7 +5,7 @@ website:
     replicas: 1
     resources:
         requests:
-            cpu: 200m
-            memory: 500Mi
+            cpu: 750m
+            memory: 1Gi
 storage:
     dataSize: 500Mi
