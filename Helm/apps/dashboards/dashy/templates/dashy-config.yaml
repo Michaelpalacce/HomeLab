@@ -38,6 +38,10 @@ data:
                 description: Beautiful Code Images
                 icon: favicon
                 url: https://chalk.ist/
+              - title: Habitica
+                description: Habits Tracker
+                icon: favicon
+                url: https://habitica.com/
 
           - name: Management
             items:
