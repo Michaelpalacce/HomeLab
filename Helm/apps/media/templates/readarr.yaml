@@ -9,7 +9,7 @@ metadata:
     labels:
         app: readarr
 spec:
-    replicas: 0
+    replicas: {{ .replicas }}
     selector:
         matchLabels:
             app: readarr
