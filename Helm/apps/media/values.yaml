@@ -71,6 +71,7 @@ overseerr:
 
 readarr:
     image: lscr.io/linuxserver/readarr:0.1.1-nightly
+    replicas: 1
     port: 8787
     resources:
         requests:
