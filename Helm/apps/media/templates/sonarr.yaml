@@ -25,6 +25,7 @@ spec:
                 app: sonarr
         spec:
             containers:
+{{- if .metrics.enabled }}
                 -   name: exportarr
                     image: {{ .exportarr.image }}
                     args:
@@ -56,6 +57,8 @@ spec:
                             port: monitoring
                         failureThreshold: 5
                         periodSeconds: 10
+{{- end }}
+
                 -   name: sonarr
                     image: {{ .image }}
                     imagePullPolicy: IfNotPresent
