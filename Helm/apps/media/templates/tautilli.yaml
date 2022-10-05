@@ -9,7 +9,7 @@ metadata:
     labels:
         app: tautulli
 spec:
-    replicas: {{ .replicas }}
+    replicas: 0
     selector:
         matchLabels:
             app: tautulli

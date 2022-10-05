@@ -54,7 +54,6 @@ radarr:
 tautulli:
     image: lscr.io/linuxserver/tautulli:2.10.4
     port: 8181
-    replicas: 0
     resources:
         requests:
             cpu: 250m
