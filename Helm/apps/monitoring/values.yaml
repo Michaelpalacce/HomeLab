@@ -8,7 +8,7 @@ speedtest:
             memory: 50Mi
 
 prometheus:
-    image: quay.io/prometheus/prometheus:v2.39.0
+    image: quay.io/prometheus/prometheus:v2.39.1
     port: 9090
     retentionTime: 3d
 
