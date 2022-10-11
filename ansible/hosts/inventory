@@ -17,5 +17,4 @@ workers
 [all:vars]
 ansible_connection=ssh
 ansible_user=ansible
-ansible_password=ansible
 ansible_ssh_common_args='-o StrictHostKeyChecking=no'
