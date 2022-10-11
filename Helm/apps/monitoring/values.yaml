@@ -8,7 +8,7 @@ speedtest:
             memory: 50Mi
 
 prometheus:
-    image: quay.io/prometheus/prometheus:v2.39.0
+    image: quay.io/prometheus/prometheus:v2.39.1
     port: 9090
     retentionTime: 3d
 
@@ -27,7 +27,7 @@ promtail:
             memory: 250Mi
 
 grafana:
-    image: grafana/grafana:9.1.7
+    image: grafana/grafana:9.2.0
     port: 3000
     limits:
         cpu: 250m
