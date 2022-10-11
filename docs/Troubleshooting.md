@@ -2,7 +2,7 @@
 
 ### Cluster creation failed ( or everything has gone to heck and I want to re-do it)
 - Run the k3s uninstall script https://rancher.com/docs/k3s/latest/en/installation/uninstall/
-- Rerun `ansible-playbook -i inventory playbooks/install/main.yml --tags setup`
+- Rerun `ansible-playbook -i inventory playbooks/install/main.yml --tags setup -k`
 
 ### Grafana is giving an error
 - Try deleting the prometheus data source and re-adding it ( there may be 2 data sources, grafana makes a mistake sometimes )
@@ -21,9 +21,9 @@
 
 ### Clearing up containerd
 - Go to `./ansible`
-- Run: `ansible -i hosts/inventory -m shell -a "k3s crictl rmp -a" -b all` To remove all pods that are not up and running
-- Run: `ansible -i hosts/inventory -m shell -a "k3s crictl rmi --prune" -b all` To remove all images
-- Run: `ansible -i hosts/inventory -m shell -a "k3s crictl rm -a" -b all`
+- Run: `ansible -i hosts/inventory -m shell -a "k3s crictl rmp -a" -b all -k` To remove all pods that are not up and running
+- Run: `ansible -i hosts/inventory -m shell -a "k3s crictl rmi --prune" -b all -k` To remove all images
+- Run: `ansible -i hosts/inventory -m shell -a "k3s crictl rm -a" -b all -k`
 
 ### Orphaned pods.
 There is a chance that you may have force deleted some pods or an error may have occurred. In that case a lot of orphaned pods volumes will be left without being deleted.
