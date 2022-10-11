@@ -27,7 +27,7 @@ promtail:
             memory: 250Mi
 
 grafana:
-    image: grafana/grafana:9.1.7
+    image: grafana/grafana:9.1.8
     port: 3000
     limits:
         cpu: 250m
