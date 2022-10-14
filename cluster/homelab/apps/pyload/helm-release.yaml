@@ -18,4 +18,4 @@ spec:
                 namespace: flux-system
     values:
         pyload:
-            replicas: 0
+            replicas: 1
