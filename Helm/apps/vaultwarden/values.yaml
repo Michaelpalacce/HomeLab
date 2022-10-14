@@ -1,6 +1,6 @@
 ---
 vaultwarden:
-    image: vaultwarden/server:1.25.2
+    image: vaultwarden/server:1.26.0
     port: 80
     resources:
         requests:
