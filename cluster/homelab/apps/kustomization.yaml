@@ -13,7 +13,6 @@ resources:
   - firefly
   - freshrss
 #  - homarr
-  - koillection
   - mealie
   - media
   - monitoring
@@ -36,6 +35,7 @@ resources:
 #  - focalboard
 #  - grocy
 #  - jelu
+#  - koillection 
 #  - traggo
 #  - rss
 #  - shiori
