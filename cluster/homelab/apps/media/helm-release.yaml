@@ -22,4 +22,6 @@ spec:
         jellyfin:
             replicas: 0
         tautulli:
-            replicas: 1
+            replicas: 0
+        readarr:
+            replicas: 0
