@@ -4,7 +4,6 @@ kind: Kustomization
 resources:
   - botkube
   - cert-manager
-  - couchdb
   - changedetection
   - cyberchef
   - dashy
@@ -12,16 +11,12 @@ resources:
   - external-ingress
   - firefly
   - freshrss
-#  - homarr
   - mealie
   - media
   - monitoring
-  - n8n
   - nodered
   - openbooks
   - postgresql
-  - pyload
-  - redis
   - storage
   - uptimekuma
   - vaultwarden
@@ -30,17 +25,22 @@ resources:
   - website
   - wallabag
   - whoogle
+#  - couchdb 
 #  - droneci
 #  - emulatorjs
 #  - focalboard
 #  - grocy
 #  - jelu
+#  - n8n 
 #  - koillection 
+#  - homarr 
 #  - traggo
+#  - redis 
 #  - rss
 #  - shiori
 #  - trilium
 #  - dailynotes
 #  - babybuddy
+#  - pyload 
 #  - tandoorrecipes
 #  - wikijs
