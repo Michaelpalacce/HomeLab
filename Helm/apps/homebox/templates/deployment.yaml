@@ -40,10 +40,6 @@ spec:
                           value: "100"
                         - name: HBOX_ALLOW_REGISTRATION
                           value: "true"
-                    envFrom:
-                        -   secretRef:
-                                name: homebox
-                                optional: false
                     volumeMounts:
                         -   mountPath: /data
                             name: data
