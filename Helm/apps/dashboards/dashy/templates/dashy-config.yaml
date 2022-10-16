@@ -45,7 +45,10 @@ data:
                 description: Budget Buddy!
                 icon: hl-firefly
                 url: https://firefly.{{ .domainName }}/login
-
+              - title: HomeBox
+                description: Home Organizer
+                icon: https://raw.githubusercontent.com/hay-kot/homebox/main/docs/docs/assets/img/lilbox.svg
+                url: https://homebox.{{ .domainName }}
 
           - name: News
             items:
