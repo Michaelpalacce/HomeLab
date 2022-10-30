@@ -1,6 +1,6 @@
 ---
 wikijs:
-    image: requarks/wiki:2.5.289
+    image: requarks/wiki:2.5.290
     port: 3000
     resources:
         requests:
