@@ -32,7 +32,7 @@ spec:
                 tag: v1.25.3
         initContainers:
             - name: velero-plugin-for-aws
-              image: velero/velero-plugin-for-aws:v1.5.1
+              image: velero/velero-plugin-for-aws:v1.5.2
               volumeMounts:
                   - mountPath: /target
                     name: plugins
