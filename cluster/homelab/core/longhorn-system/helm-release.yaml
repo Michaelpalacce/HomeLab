@@ -24,8 +24,3 @@ spec:
             ingressClassName: nginx
             tls: true
             tlsSecret: ingress
-
-        service:
-            ui:
-                type: NodePort
-                nodePort: 30030
