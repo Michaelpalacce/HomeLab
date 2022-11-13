@@ -1,6 +1,9 @@
 # Preface
 <img src="https://raw.githubusercontent.com/kubernetes/kubernetes/master/logo/logo.png" width="150px" alt="">
 
+> WARNING
+> Currently longhorn does not support kubernetes 1.25 ( automatic upgrades have been disabled due to this for the future as well. Going to do it manually )
+
 This repository contains basic HELM local charts for application installation as well as FluxCD2 HelmReleases for GitOps.
 I'm not going to move away from the local helm charts where possible as they make this repository pretty beginner-friendly.
 
