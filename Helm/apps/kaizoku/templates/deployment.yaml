@@ -29,6 +29,12 @@ spec:
                     resources:
 {{ toYaml .resources | indent 22 }}
 {{- end }}
+                    startupProbe:
+                        failureThreshold: 20
+                        periodSeconds: 10
+                        timeoutSeconds: 5
+                        tcpSocket:
+                            port: {{ .port }}
                     ports:
                         -   name: web
                             containerPort: {{ .port }}
