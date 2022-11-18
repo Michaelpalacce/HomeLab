@@ -61,7 +61,7 @@ spec:
                         claimName: logs-pvc
                 -   name: data
                     persistentVolumeClaim:
-                        claimName: books-volume-nas
+                        claimName: data-pvc
 
 ---
 
