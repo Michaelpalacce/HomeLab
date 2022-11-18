@@ -164,7 +164,7 @@ data:
                 url: https://overseerr.{{ .domainName }}
               - title: Kaizoku
                 description: Manga Downloader
-                icon: hl-kaizoku
+                icon: https://github.com/oae/kaizoku/raw/main/public/kaizoku.png
                 url: https://kaizoku.{{ .domainName }}
 
           - name: Monitoring
