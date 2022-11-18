@@ -162,6 +162,10 @@ data:
                 description: Media Requests
                 icon: hl-overseerr
                 url: https://overseerr.{{ .domainName }}
+              - title: Kaizoku
+                description: Manga Downloader
+                icon: hl-kaizoku
+                url: https://kaizoku.{{ .domainName }}
 
           - name: Monitoring
             items:
