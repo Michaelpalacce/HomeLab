@@ -10,6 +10,5 @@ kaizoku:
 
 storage:
     configSize: 2Gi
-    dataSize: 10Gi
     logsSize: 2Gi
     nasIp: 192.168.1.20
