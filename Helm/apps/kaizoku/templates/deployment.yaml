@@ -43,8 +43,6 @@ spec:
                             name: config
                         -   mountPath: /data
                             name: data
-                        -   mountPath: /books/manga
-                            name: books-data-nas
                         -   mountPath: /logs
                             name: logs
 
@@ -53,13 +51,10 @@ spec:
                 -   name: config
                     persistentVolumeClaim:
                         claimName: config-pvc
-                -   name: data
-                    persistentVolumeClaim:
-                        claimName: data-pvc
                 -   name: logs
                     persistentVolumeClaim:
                         claimName: logs-pvc
-                -   name: books-data-nas
+                -   name: data
                     persistentVolumeClaim:
                         claimName: books-volume-nas
 
