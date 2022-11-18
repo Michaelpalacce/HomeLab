@@ -22,6 +22,9 @@ spec:
                 -   name: kaizoku
                     image: {{ .image }}
                     imagePullPolicy: IfNotPresent
+                    envFrom:
+                        - secretRef:
+                              name: kaizoku
 {{- if .resources }}
                     resources:
 {{ toYaml .resources | indent 22 }}
@@ -34,6 +37,8 @@ spec:
                             name: config
                         -   mountPath: /data
                             name: data
+                        -   mountPath: /books/manga
+                            name: books-data-nas
                         -   mountPath: /logs
                             name: logs
 
@@ -48,6 +53,9 @@ spec:
                 -   name: logs
                     persistentVolumeClaim:
                         claimName: logs-pvc
+                -   name: books-data-nas
+                    persistentVolumeClaim:
+                        claimName: books-volume-nas
 
 ---
 

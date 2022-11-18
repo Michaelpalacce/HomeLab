@@ -36,3 +36,36 @@ spec:
         requests:
             storage: {{ .Values.storage.logsSize }}
 ---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: books-volume-nas-pv
+    labels:
+        type: nas
+        app: books
+spec:
+    storageClassName: nfs-direct
+    capacity:
+        storage: 5Gi
+    accessModes:
+        - ReadWriteMany
+    nfs:
+        path: "/volume1/k3s/media/books"
+        server: {{ .Values.storage.nasIp }}
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: books-volume-nas
+spec:
+    selector:
+        matchLabels:
+            app: books
+            type: nas
+    storageClassName: nfs-direct
+    accessModes:
+        - ReadWriteMany
+    resources:
+        requests:
+            storage: 5Gi
