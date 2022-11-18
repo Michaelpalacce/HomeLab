@@ -22,6 +22,11 @@ spec:
                 -   name: kaizoku
                     image: {{ .image }}
                     imagePullPolicy: IfNotPresent
+                    env:
+                        - name: PUID
+                          value: "911"
+                        - name: PGID
+                          value: "911"
                     envFrom:
                         - secretRef:
                               name: kaizoku

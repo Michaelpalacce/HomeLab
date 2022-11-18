@@ -5,8 +5,8 @@ kaizoku:
     port: 3000
     resources:
         requests:
-            cpu: 10m
-            memory: 128Mi
+            cpu: 250m
+            memory: 1Gi
 
 storage:
     configSize: 2Gi
