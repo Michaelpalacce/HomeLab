@@ -1,0 +1,73 @@
+---
+{{- with .Values.kaizoku }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: kaizoku
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app: kaizoku
+spec:
+    replicas: {{ .replicas }}
+    selector:
+        matchLabels:
+            app: kaizoku
+    template:
+
+        metadata:
+            labels:
+                app: kaizoku
+        spec:
+            containers:
+                -   name: kaizoku
+                    image: {{ .image }}
+                    imagePullPolicy: IfNotPresent
+{{- if .resources }}
+                    resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+                    ports:
+                        -   name: web
+                            containerPort: {{ .port }}
+                    volumeMounts:
+                        -   mountPath: /config
+                            name: config
+                        -   mountPath: /data
+                            name: data
+                        -   mountPath: /logs
+                            name: logs
+
+            restartPolicy: Always
+            volumes:
+                -   name: config
+                    persistentVolumeClaim:
+                        claimName: config-pvc
+                -   name: data
+                    persistentVolumeClaim:
+                        claimName: data-pvc
+                -   name: logs
+                    persistentVolumeClaim:
+                        claimName: logs-pvc
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: kaizoku
+    namespace: {{ $.Release.Namespace }}
+spec:
+    {{- with .nodePort }}
+    type: NodePort
+    {{- end }}
+    selector:
+        app: kaizoku
+    ports:
+        -   name: kaizoku
+            protocol: TCP
+            port: {{ .port }}
+          {{- with .nodePort }}
+            nodePort: {{ . }}
+          {{- end }}
+
+{{- end }}

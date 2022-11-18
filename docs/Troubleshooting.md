@@ -21,9 +21,9 @@
 
 ### Clearing up containerd
 - Go to `./ansible`
-- Run: `ansible -i hosts/inventory -m shell -a "k3s crictl rmp -a" -b all -k` To remove all pods that are not up and running
-- Run: `ansible -i hosts/inventory -m shell -a "k3s crictl rmi --prune" -b all -k` To remove all images
-- Run: `ansible -i hosts/inventory -m shell -a "k3s crictl rm -a" -b all -k`
+- Run: `ansible -i hosts/inventory -m shell -a "k3s crictl rmp -a" -b all -K` To remove all pods that are not up and running
+- Run: `ansible -i hosts/inventory -m shell -a "k3s crictl rmi --prune" -b all -K` To remove all images
+- Run: `ansible -i hosts/inventory -m shell -a "k3s crictl rm -a" -b all -K`
 
 ### Orphaned pods.
 There is a chance that you may have force deleted some pods or an error may have occurred. In that case a lot of orphaned pods volumes will be left without being deleted.

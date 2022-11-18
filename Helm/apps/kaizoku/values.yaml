@@ -1,0 +1,14 @@
+---
+kaizoku:
+    image: ghcr.io/oae/kaizoku:v1.2.1
+    replicas: 1
+    port: 3000
+    resources:
+        requests:
+            cpu: 10m
+            memory: 128Mi
+
+storage:
+    configSize: 2Gi
+    dataSize: 2Gi
+    logsSize: 2Gi
