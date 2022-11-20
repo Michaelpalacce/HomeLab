@@ -15,7 +15,7 @@ spec:
     template:
         metadata:
             annotations:
-{{- if .metrics.enabled }}
+{{- if .exporter.enabled }}
                 prometheus.io/scrape: "true"
                 prometheus.io/port: "{{ .exporter.port }}"
 {{- end }}
