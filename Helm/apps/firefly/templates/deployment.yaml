@@ -15,10 +15,6 @@ spec:
     template:
         metadata:
             annotations:
-{{- if .exporter.enabled }}
-                prometheus.io/scrape: "true"
-                prometheus.io/port: "{{ .exporter.port }}"
-{{- end }}
             labels:
                 app: firefly
         spec:
@@ -89,39 +85,6 @@ spec:
                         timeoutSeconds: 5
                         tcpSocket:
                             port: {{ .port }}
-{{- if .exporter.enabled }}
-                -   name: firefly-exporter
-                    image: {{ .exporter.image }}
-                    imagePullPolicy: IfNotPresent
-{{- if .exporter.resources }}
-                    resources:
-{{ toYaml .exporter.resources | indent 22 }}
-{{- end }}
-                    ports:
-                        -   name: web
-                            containerPort: {{ .exporter.port }}
-                    env:
-                        -   name: BASE_URL
-                            value: "firefly:8080"
-                        -   name: API_KEY
-                            valueFrom:
-                                secretKeyRef:
-                                    name: app
-                                    key: "API_KEY"
-                        -   name: PGID
-                            value: "1000"
-                        -   name: PUID
-                            value: "1000"
-                        -   name: TZ
-                            value: "Europe/Sofia"
-                    livenessProbe:
-                        failureThreshold: 2
-                        initialDelaySeconds: 120
-                        periodSeconds: 120
-                        timeoutSeconds: 5
-                        tcpSocket:
-                            port: {{ .exporter.port }}
-{{- end }}
 
             restartPolicy: Always
             volumes:

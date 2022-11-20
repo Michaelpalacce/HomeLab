@@ -7,14 +7,6 @@ firefly:
         requests:
             cpu: 10m
             memory: 250Mi
-    exporter:
-        enabled: true
-        image: kinduff/firefly_iii_exporter:1.0.0
-        port: 4002
-        resources:
-            requests:
-                cpu: 10m
-                memory: 250Mi
 
 storage:
     dataLocality: disabled
