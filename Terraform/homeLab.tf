@@ -25,15 +25,27 @@ provider "proxmox" {
 }
 
 resource "proxmox_vm_qemu" "resource-name" {
-  name        = "terraform-test"
+  name        = "k3s-v1"
+  vmid        = 100
   target_node = "prox-1"
-  iso         = "local:iso/ubuntu-22.04-live-server-amd64.iso"
+#  iso         = "local:iso/ubuntu-22.04-live-server-amd64.iso"
 
-  ### or for a Clone VM operation
-  # clone = "template to clone"
+  cores       = 2
+  sockets     = 2
+  memory      = 11500
 
-  ### or for a PXE boot VM operation
-  # pxe = true
-  # boot = "net0;scsi0"
-  # agent = 0
+
+  disk {
+    // This disk will become scsi0
+    type    = "scsi"
+    storage = "local-lvm"
+    size    = "64G"
+    //<arguments omitted for brevity...>
+  }
+
+  network{
+    model     = "virtio"
+    bridge    = "vmbr0"
+    firewall  = true
+  }
 }
