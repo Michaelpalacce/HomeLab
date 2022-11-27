@@ -8,3 +8,4 @@ velero-credentials
 temp
 *.tfvars
 *.tfstate.backup
+.terraform
