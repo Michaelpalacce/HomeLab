@@ -24,6 +24,29 @@ data:
             searchEngine: custom
             customSearchEngine: 'https://whoogle.{{ .domainName }}/search?q'
         sections:
+          - name: External
+            items:
+              - title: SelfHosted
+                description: Reddit r/selfhosted
+                url: https://reddit.com/r/selfhosted
+                icon: favicon
+                statusCheck: true
+              - title: YouTube
+                description: Youtube!
+                url: https://youtube.com
+                icon: favicon
+                statusCheck: true
+              - title: Steam
+                description: Steam Store
+                url: https://steamcommunity.com/
+                icon: favicon
+                statusCheck: true
+              - title: Genshin Interactive Map
+                description: Get Your Farm ON!
+                url: https://act.hoyolab.com/ys/app/interactive-map/index.html
+                icon: favicon
+                statusCheck: true
+
           - name: Apps
             items:
               - title: Snapdrop
@@ -246,28 +269,6 @@ data:
               - title: Github
                 description: My Github Profile
                 url: https://github.com/Michaelpalacce
-                icon: favicon
-                statusCheck: false
-          - name: External
-            items:
-              - title: SelfHosted
-                description: Reddit r/selfhosted
-                url: https://reddit.com/r/selfhosted
-                icon: favicon
-                statusCheck: false
-              - title: HomeLab
-                description: Reddit r/homelab
-                url: https://reddit.com/r/homelab
-                icon: favicon
-                statusCheck: false
-              - title: YouTube
-                description: Youtube!
-                url: https://youtube.com
-                icon: favicon
-                statusCheck: false
-              - title: Messenger
-                description: Facebook Messenger
-                url: https://messenger.com
                 icon: favicon
                 statusCheck: false
 
