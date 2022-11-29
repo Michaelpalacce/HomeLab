@@ -13,7 +13,7 @@ prometheus:
     retentionTime: 3d
 
 nodeExporter:
-    image: prom/node-exporter:v1.4.1
+    image: prom/node-exporter:v1.5.0
     port: 9100
     tolerations:
         - key: node-role.kubernetes.io/master
