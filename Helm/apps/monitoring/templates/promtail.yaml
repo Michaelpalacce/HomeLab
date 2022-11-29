@@ -21,8 +21,6 @@ spec:
                 checksum/config: {{ include (print $.Template.BasePath "/promtail-config.yaml") . | sha256sum }}
                 {{- end }}
         spec:
-            nodeSelector:
-                non-existing: true 
             serviceAccountName: promtail-serviceaccount
             volumes:
                 -   name: logs
