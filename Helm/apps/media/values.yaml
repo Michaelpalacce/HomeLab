@@ -98,7 +98,7 @@ sonarr:
                 memory: 64Mi
 
 doplarr:
-    image: lscr.io/linuxserver/doplarr:3.6.1
+    image: lscr.io/linuxserver/doplarr:3.6.2
     resources:
         requests:
             cpu: 10m
