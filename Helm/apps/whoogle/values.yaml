@@ -1,6 +1,6 @@
 ---
 whoogle:
-    image: ghcr.io/benbusby/whoogle-search:0.8.0
+    image: ghcr.io/benbusby/whoogle-search:0.8.1
     replicas: 1
     port: 5000
     resources:
