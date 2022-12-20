@@ -12,7 +12,7 @@ resources:
   - firefly
   - freshrss
   - homebox
-  - kaizoku
+ # - kaizoku
   - mealie
   - media
   - monitoring
