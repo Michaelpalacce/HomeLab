@@ -18,7 +18,7 @@ spec:
     chart:
         spec:
             chart: authentik
-            version: 2022.12.0
+            version: 2022.12.1
             interval: 5m
             sourceRef:
                 kind: HelmRepository
