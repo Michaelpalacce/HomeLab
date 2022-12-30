@@ -40,7 +40,7 @@ spec:
             enabled: true
             scrapeInterval: 120s
             scrapeTimeout: 30s
-        deployRestic: true
+        deployNodeAgent: true
         credentials:
             existingSecret: cloud-credentials
         configuration:
