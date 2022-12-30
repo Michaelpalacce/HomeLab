@@ -2,7 +2,6 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - botkube
   - cert-manager
   - changedetection
   - cyberchef
@@ -12,7 +11,6 @@ resources:
   - firefly
   - freshrss
   - homebox
- # - kaizoku
   - mealie
   - media
   - monitoring
@@ -22,20 +20,22 @@ resources:
   - redis 
   - storage
   - uptimekuma
-  - vaultwarden
+  - vaultwarden;
   - velero
   - vikunja
   - website
   - wallabag
   - whoogle
+#  - botkube # Will not work
 #  - couchdb 
 #  - droneci
 #  - emulatorjs
 #  - focalboard
 #  - grocy
 #  - jelu
-#  - n8n 
-#  - koillection 
+#  - n8n
+#  - kaizoku
+#  - koillection
 #  - homarr 
 #  - traggo
 #  - rss
