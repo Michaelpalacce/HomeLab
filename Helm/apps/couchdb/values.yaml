@@ -1,6 +1,6 @@
 ---
 couchdb:
-    image: couchdb:3.2.2
+    image: couchdb:3.3.0
     port: 5984
     replicas: 1
     resources:
