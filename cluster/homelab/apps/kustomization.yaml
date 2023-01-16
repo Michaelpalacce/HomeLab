@@ -17,7 +17,6 @@ resources:
   - nodered
   - openbooks
   - postgresql
-  - redis 
   - storage
   - uptimekuma
   - vaultwarden;
@@ -38,6 +37,7 @@ resources:
 #  - koillection
 #  - homarr 
 #  - traggo
+#  - redis
 #  - rss
 #  - shiori
 #  - trilium
