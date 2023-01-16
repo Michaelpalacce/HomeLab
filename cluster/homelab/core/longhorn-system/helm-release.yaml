@@ -18,6 +18,7 @@ spec:
                 name: longhorn-system
                 namespace: flux-system
     values:
+        enablePSP: false
         ingress:
             enabled: true
             host: longhorn.stefangenov.site
