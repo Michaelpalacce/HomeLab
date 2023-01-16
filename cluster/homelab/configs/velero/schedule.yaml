@@ -9,7 +9,6 @@ spec:
         hooks: {}
         includedNamespaces:
           - uptimekuma
-#          - koillection
           - simplesecrets
           - vaultwarden
           - postgresql
@@ -19,8 +18,10 @@ spec:
           - monitoring
           - mealie
           - media
-#          - couchdb
           - homebox
+          - freshrss
+#          - couchdb
+#          - koillection
         snapshotVolumes: true
         ttl: 72h0m0s
     useOwnerReferencesInBackup: false

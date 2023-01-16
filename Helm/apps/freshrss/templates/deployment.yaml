@@ -15,6 +15,8 @@ spec:
             app: freshrss
     template:
         metadata:
+            annotations:
+                backup.velero.io/backup-volumes: app-config
             labels:
                 app: freshrss
         spec:
