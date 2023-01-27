@@ -1,11 +1,9 @@
 ---
 website:
-    image: ghcr.io/michaelpalacce/website:1.31.0
+    image: ghcr.io/michaelpalacce/website:1.32.0
     port: 80
     replicas: 2
     resources:
         requests:
             cpu: 500m
             memory: 512Mi
-storage:
-    dataSize: 500Mi

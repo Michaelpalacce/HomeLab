@@ -21,10 +21,6 @@ spec:
             securityContext:
                 fsGroup: 1000
                 fsGroupChangePolicy: OnRootMismatch
-            volumes:
-                -   name: data
-                    persistentVolumeClaim:
-                        claimName: data-pvc
             containers:
                 -   name: website
                     image: {{ .image }}
@@ -39,9 +35,6 @@ spec:
                     ports:
                         -   name: web
                             containerPort: {{ .port }}
-                    volumeMounts:
-                        -   mountPath: /data
-                            name: data
                     envFrom:
                         -   secretRef:
                                 name: website
