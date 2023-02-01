@@ -62,6 +62,13 @@ data:
                 icon: favicon
                 url: https://chalk.ist/
 
+          - name: Work
+            items:
+              - title: Reactive Resume
+                description: Build Your Own CV
+                icon: https://camo.githubusercontent.com/ca74273996223fee9d0724e63513129dc2a9d12f9fa2370c66add654ab9346af/68747470733a2f2f7278726573752e6d652f696d616765732f6c6f676f732f6c6f676f2e706e67
+                url: https://resume.{{ .domainName }}
+
           - name: Management
             items:
               - title: Firefly III

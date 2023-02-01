@@ -1,0 +1,105 @@
+---
+{{- with .Values.reactiveresume }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: reactiveresume
+    namespace: {{ $.Release.Namespace }}
+spec:
+    replicas: 1
+    revisionHistoryLimit: 3
+    selector:
+        matchLabels:
+            app: reactiveresume
+    strategy:
+        rollingUpdate:
+            maxUnavailable: 0
+    template:
+        metadata:
+            labels:
+                app: reactiveresume
+        spec:
+            containers:
+                {{- with .api }}
+                -   name: api
+                    image: {{ .image }}
+                    envFrom:
+                      - secretRef:
+                          name: app
+                    imagePullPolicy: IfNotPresent
+                    livenessProbe:
+                        failureThreshold: 2
+                        periodSeconds: 120
+                        initialDelaySeconds: 120
+                        successThreshold: 1
+                        tcpSocket:
+                            port: {{ .port }}
+                        timeoutSeconds: 2
+                    readinessProbe:
+                        failureThreshold: 10
+                        initialDelaySeconds: 30
+                        periodSeconds: 10
+                        timeoutSeconds: 2
+                        tcpSocket:
+                            port: {{ .port }}
+                    ports:
+                        -   containerPort: {{ .port }}
+                            name: api
+                            protocol: TCP
+                {{- end }}
+
+                {{- with .frontend }}
+                -   name: frontend
+                    image: {{ .image }}
+                    imagePullPolicy: IfNotPresent
+                    env:
+                      - name: PUBLIC_URL
+                        valueFrom:
+                          secretKeyRef:
+                            name: app
+                            key: PUBLIC_URL
+                      - name: PUBLIC_SERVER_URL
+                        valueFrom:
+                          secretKeyRef:
+                            name: app
+                            key: PUBLIC_SERVER_URL
+                    livenessProbe:
+                        failureThreshold: 2
+                        periodSeconds: 120
+                        initialDelaySeconds: 120
+                        successThreshold: 1
+                        tcpSocket:
+                            port: {{ .port }}
+                        timeoutSeconds: 2
+                    readinessProbe:
+                        failureThreshold: 10
+                        initialDelaySeconds: 30
+                        periodSeconds: 10
+                        timeoutSeconds: 2
+                        tcpSocket:
+                            port: {{ .port }}
+                    ports:
+                        -   containerPort: {{ .port }}
+                            name: frontend
+                            protocol: TCP
+                {{- end }}
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: reactiveresume
+    namespace: {{ $.Release.Namespace }}
+spec:
+    selector:
+        app: reactiveresume
+    ports:
+        -   name: frontend
+            protocol: TCP
+            port: {{ .frontend.port }}
+        -   name: api
+            protocol: TCP
+            port: {{ .api.port }}
+{{- end }}

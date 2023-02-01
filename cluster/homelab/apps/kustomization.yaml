@@ -17,6 +17,7 @@ resources:
   - nodered
   - openbooks
   - postgresql
+  - reactiveresume
   - storage
   - uptimekuma
   - vaultwarden;

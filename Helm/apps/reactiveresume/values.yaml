@@ -1,0 +1,9 @@
+---
+reactiveresume:
+    api:
+        image: amruthpillai/reactive-resume:server-3.6.18
+        port: 3100
+        frontendUrl: https://reactiveresume.stefangenov.site
+    frontend:
+        image: amruthpillai/reactive-resume:client-3.6.18
+        port: 3000
