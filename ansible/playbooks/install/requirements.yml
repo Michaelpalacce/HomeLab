@@ -1,7 +1,7 @@
 ---
 collections:
     - name: kubernetes.core
-      version: 2.3.2
+      version: 2.4.0
 roles:
     - src: xanmanning.k3s
     - src: michaelpalacce.helm
