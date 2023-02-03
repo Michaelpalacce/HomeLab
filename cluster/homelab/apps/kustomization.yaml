@@ -20,7 +20,7 @@ resources:
   - reactiveresume
   - storage
   - uptimekuma
-  - vaultwarden;
+  - vaultwarden
   - velero
   - vikunja
   - website
