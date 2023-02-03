@@ -114,7 +114,8 @@
     {
       "matchDatasources": ["helm"],
       "matchUpdateTypes": ["major"],
-      "labels": ["renovate/helm", "dep/major"]
+      "labels": ["renovate/helm", "dep/major"],
+      "automerge": false
     },
     {
       "matchDatasources": ["helm"],
@@ -124,9 +125,9 @@
     },
     {
       "matchDatasources": ["helm"],
-      "matchUpdateTypes": ["patch"],
+      "matchUpdateTypes": ["minor"],
       "labels": ["renovate/helm", "dep/patch"],
-      "automerge": true
-    }
+      "automerge": false
+    },
   ]
 }
