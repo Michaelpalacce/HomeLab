@@ -25,170 +25,208 @@ spec:
                 name: botkube
                 namespace: flux-system
     values:
-        image:
-          tag: v0.12.4
-        communications:
-          existingSecret: true
-          existingSecretName: "configuration"
-        config:
-          resources:
+      image:
+        tag: v0.17.0
+      extraEnv:
+        - name: BOTKUBE_COMMUNICATIONS_DEFAULT-GROUP_DISCORD_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: token
+              key: DISCORD_TOKEN
+      communications:
+        default-group:
+          slack:
+            enabled: false
+          mattermost:
+            enabled: false
+          teams:
+            enabled: false
+          team:
+            enabled: false
+          elasticsearch:
+            enabled: false
+          webhook:
+            enabled: false
+          discord:
+            enabled: true
+            channels:
+              default:
+                id: "1008788276011880578"
+                bindings:
+                  executors:
+                    - "kubectl-allow-all"
+            botID: "1008832691073974272"
+            notification:
+              type: short
+      executors:
+        "kubectl-allow-all":
+          kubectl:
+            enabled: true
+            namespaces:
+              include:
+                - ".*"
+            commands:
+              verbs: [ "api-resources", "api-versions", "cluster-info", "describe", "explain", "get", "logs", "top" ]
+              resources: [ "deployments", "pods", "namespaces", "daemonsets", "statefulsets", "storageclasses", "nodes", "configmaps", "services", "ingresses" ]
+      config:
+        resources:
           - events:
-            - error
+              - error
             name: v1/services
             namespaces:
               ignore:
-              - null
+                - null
               include:
-              - all
+                - all
           - events:
-            - error
+              - error
             name: apps/v1/deployments
             namespaces:
               ignore:
-              - null
+                - null
               include:
-              - all
+                - all
             updateSetting:
               fields:
-              - spec.template.spec.containers[*].image
-              - status.availableReplicas
+                - spec.template.spec.containers[*].image
+                - status.availableReplicas
               includeDiff: true
           - events:
-            - error
+              - error
             name: apps/v1/statefulsets
             namespaces:
               ignore:
-              - null
+                - null
               include:
-              - all
+                - all
             updateSetting:
               fields:
-              - spec.template.spec.containers[*].image
-              - status.readyReplicas
+                - spec.template.spec.containers[*].image
+                - status.readyReplicas
               includeDiff: true
           - events:
-            - error
+              - error
             name: networking.k8s.io/v1beta1/ingresses
             namespaces:
               ignore:
-              - null
+                - null
               include:
-              - all
+                - all
           - events:
-            - error
+              - error
             name: v1/nodes
             namespaces:
               ignore:
-              - null
+                - null
               include:
-              - all
+                - all
           - events:
-            - error
+              - error
             name: v1/namespaces
             namespaces:
               ignore:
-              - null
+                - null
               include:
-              - all
+                - all
           - events:
-            - create
-            - delete
-            - error
+              - create
+              - delete
+              - error
             name: v1/persistentvolumes
             namespaces:
               ignore:
-              - null
+                - null
               include:
-              - all
+                - all
           - events:
-            - create
-            - delete
-            - error
+              - create
+              - delete
+              - error
             name: v1/persistentvolumeclaims
             namespaces:
               ignore:
-              - null
+                - null
               include:
-              - all
+                - all
           - events:
-            - error
+              - error
             name: v1/configmaps
             namespaces:
               ignore:
-              - null
+                - null
               include:
-              - all
+                - all
           - events:
-            - error
+              - error
             name: apps/v1/daemonsets
             namespaces:
               ignore:
-              - null
+                - null
               include:
-              - all
+                - all
             updateSetting:
               fields:
-              - spec.template.spec.containers[*].image
-              - status.numberReady
+                - spec.template.spec.containers[*].image
+                - status.numberReady
               includeDiff: true
           - events:
-            - error
+              - error
             name: batch/v1/jobs
             namespaces:
               ignore:
-              - null
+                - null
               include:
-              - all
+                - all
             updateSetting:
               fields:
-              - spec.template.spec.containers[*].image
-              - status.conditions[*].type
+                - spec.template.spec.containers[*].image
+                - status.conditions[*].type
               includeDiff: true
           - events:
-            - all
+              - all
             name: batch/v1/jobs
             namespaces:
               include:
-              - system-upgrade
+                - system-upgrade
             updateSetting:
               fields:
-              - spec.template.spec.containers[*].image
-              - status.conditions[*].type
+                - spec.template.spec.containers[*].image
+                - status.conditions[*].type
               includeDiff: true
           - events:
-            - error
+              - error
             name: rbac.authorization.k8s.io/v1/roles
             namespaces:
               ignore:
-              - null
+                - null
               include:
-              - all
+                - all
           - events:
-            - error
+              - error
             name: rbac.authorization.k8s.io/v1/rolebindings
             namespaces:
               ignore:
-              - null
+                - null
               include:
-              - all
+                - all
           - events:
-            - error
+              - error
             name: rbac.authorization.k8s.io/v1/clusterrolebindings
             namespaces:
               ignore:
-              - null
+                - null
               include:
-              - all
+                - all
           - events:
-            - error
+              - error
             name: rbac.authorization.k8s.io/v1/clusterroles
             namespaces:
               ignore:
-              - null
+                - null
               include:
-              - all
+                - all
 
-           ## Custom resource example
+          ## Custom resource example
           - name: velero.io/v1/backups
             namespaces:
               include:
@@ -220,14 +258,14 @@ spec:
               includeDiff: true
               fields:
                 - status.latestVersiom
-          settings:
-            # -- Cluster name to differentiate incoming messages.
-            clustername: HomeLab
-            kubectl:
-                enabled: true
-            ## BotKube logging settings.
-            log:
-              # -- Sets one of the log levels. Allowed values: `info`, `warn`, `debug`, `error`, `fatal`, `panic`.
-              level: info
-              # -- If true, disable ANSI colors in logging.
-              disableColors: false
+        settings:
+          # -- Cluster name to differentiate incoming messages.
+          clusterName: HomeLab
+          kubectl:
+            enabled: true
+          ## BotKube logging settings.
+          log:
+            # -- Sets one of the log levels. Allowed values: `info`, `warn`, `debug`, `error`, `fatal`, `panic`.
+            level: info
+            # -- If true, disable ANSI colors in logging.
+            disableColors: false
