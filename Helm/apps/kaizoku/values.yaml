@@ -1,6 +1,6 @@
 ---
 kaizoku:
-    image: ghcr.io/oae/kaizoku:v1.6.0
+    image: ghcr.io/oae/kaizoku:v1.6.1
     replicas: 1
     port: 3000
     resources:
