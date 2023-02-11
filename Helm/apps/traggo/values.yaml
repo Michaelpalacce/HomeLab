@@ -1,6 +1,6 @@
 ---
 traggo:
-  image: traggo/server:0.2.3
+  image: traggo/server:0.3.0
   replicas: 1
   port: 3030
   resources:
