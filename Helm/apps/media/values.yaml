@@ -44,7 +44,7 @@ jackett:
             memory: 1Gi
 
 radarr:
-    image: lscr.io/linuxserver/radarr:4.4.1-develop
+    image: lscr.io/linuxserver/radarr:4.4.2-develop
     port: 7878
     resources:
         requests:
