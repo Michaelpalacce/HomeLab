@@ -11,10 +11,10 @@ resources:
   - external-ingress
   - firefly
   - freshrss
-#  - homebox
   - mealie
   - media
   - monitoring
+  - n8n
   - nodered
   - openbooks
   - postgresql
@@ -30,10 +30,10 @@ resources:
 #  - couchdb
 #  - droneci
 #  - emulatorjs
+#  - homebox
 #  - focalboard
 #  - grocy
 #  - jelu
-#  - n8n
 #  - kaizoku
 #  - koillection
 #  - homarr 

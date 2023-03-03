@@ -18,9 +18,7 @@ spec:
           - monitoring
           - mealie
           - media
-          - homebox
           - freshrss
-#          - couchdb
 #          - koillection
         snapshotVolumes: true
         ttl: 72h0m0s
