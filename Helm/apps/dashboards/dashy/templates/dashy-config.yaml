@@ -99,7 +99,7 @@ data:
               - title: N8N
                 description: Low-code automation
                 icon: hl-n8n
-                url: https://n8n.{{ .domainName }}
+                url: https://n8n.{{ .domainName }}/signin
               - title: Node-Red
                 description: Low-code automation
                 icon: hl-nodered
