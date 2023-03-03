@@ -96,6 +96,10 @@ data:
 
           - name: Automation
             items:
+              - title: N8N
+                description: Low-code automation
+                icon: hl-n8n
+                url: https://n8n.{{ .domainName }}
               - title: Node-Red
                 description: Low-code automation
                 icon: hl-nodered

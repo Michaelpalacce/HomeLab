@@ -42,7 +42,7 @@ If you are restoring pods from a deployment/statefulset/daemonsets/etc make sure
 
 #### Manual:
 1. Clear up namespace
-2. Run `velero restore create uptimekuma1 --from-backup uptimekuma --restore-volumes=true`
+2. Run `velero restore create uptimekuma1 --from-backup uptimekuma --restore-volumes=true`. Optionally add: `--include-namespaces postgresql`
 
 #### From Schedule:
 1. Clear up any resources you wish to restore
