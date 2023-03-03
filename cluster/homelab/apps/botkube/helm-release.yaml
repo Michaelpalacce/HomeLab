@@ -227,7 +227,7 @@ spec:
                 - all
 
           ## Custom resource example
-          - name: velero.io/v1/backups
+          - name: velero.io/v1/Backup
             namespaces:
               include:
                 - all
@@ -237,27 +237,7 @@ spec:
               includeDiff: true
               fields:
                 - status.phase
-          - name: velero.io/v1/restores
-            namespaces:
-              include:
-                - all
-            events:
-              - error
-              - create
-            updateSetting:
-              includeDiff: true
-              fields:
-                - status.phase
-          - name: upgrade.cattle.io/v1/plans
-            namespaces:
-              include:
-                - all
-            events:
-              - all
-            updateSetting:
-              includeDiff: true
-              fields:
-                - status.latestVersiom
+                - status.Errors
         settings:
           # -- Cluster name to differentiate incoming messages.
           clusterName: HomeLab
