@@ -42,13 +42,15 @@ spec:
             scrapeTimeout: 30s
         deployNodeAgent: true
         credentials:
-            existingSecret: cloud-credentials
+            existingSecret: cloud-credentials-backblaze
         configuration:
             provider: aws
             backupStorageLocation:
-                bucket: sgenov-velero-backup
+                bucket: sgenov
                 config:
-                    region: eu-west-1
+                    region: eu-central-003
+                    s3ForcePathStyle: true
+                    s3Url: s3.eu-central-003.backblazeb2.com
             volumeSnapshotLocation:
                 config:
-                    region: eu-west-1
+                    region: eu-central-003
