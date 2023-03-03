@@ -75,10 +75,6 @@ data:
                 description: Budget Buddy!
                 icon: hl-firefly
                 url: https://firefly.{{ .domainName }}/login
-              - title: HomeBox
-                description: Home Organizer
-                icon: https://raw.githubusercontent.com/hay-kot/homebox/main/docs/docs/assets/img/lilbox.svg
-                url: https://homebox.{{ .domainName }}
 
           - name: News
             items:
@@ -192,10 +188,6 @@ data:
                 description: Media Requests
                 icon: hl-overseerr
                 url: https://overseerr.{{ .domainName }}
-              - title: Kaizoku
-                description: Manga Downloader
-                icon: https://github.com/oae/kaizoku/raw/main/public/kaizoku.png
-                url: https://kaizoku.{{ .domainName }}
 
           - name: Monitoring
             items:
