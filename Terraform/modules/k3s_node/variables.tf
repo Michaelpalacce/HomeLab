@@ -5,15 +5,15 @@ variable "vmid" { type = number }
 
 # Resources
 variable "cores" {
-  type    = optional(number)
+  type    = number
   default = 2
 }
 variable "sockets" {
-  type    = optional(number)
+  type    = number
   default = 2
 }
 variable "memory" {
-  type    = optional(number)
+  type    = number
   default = 11500
 }
 
