@@ -5,32 +5,31 @@ variable "vmid" { type = number }
 
 # Resources
 variable "cores" {
-  type    = number
+  type    = optional(number)
   default = 2
 }
 variable "sockets" {
-  type    = number
+  type    = optional(number)
   default = 2
 }
 variable "memory" {
-  type    = number
+  type    = optional(number)
   default = 11500
 }
 
 # Disks
 variable "disks" {
   type = list(object({
-    type    = string
-    storage = string
-    size    = string
-    volume  = string
+    type    = optional(string)
+    storage = optional(string)
+    size    = optional(string)
+    volume  = optional(string)
   }))
   default = [
     {
       type    = "scsi"
       storage = "local-lvm"
       size    = "64G"
-      volume  = ""
     }
   ]
 }
@@ -38,17 +37,10 @@ variable "disks" {
 # Networks
 variable "networks" {
   type = list(object({
-    model    = string
-    bridge   = string
-    firewall = bool
-    macaddr  = string
+    model    = optional(string)
+    bridge   = optional(string)
+    firewall = optional(bool)
+    macaddr  = optional(string)
   }))
-  default = [
-    {
-      model    = "virtio"
-      bridge   = "vmbr0"
-      firewall = false
-      macaddr  = ""
-    }
-  ]
+  default = null
 }

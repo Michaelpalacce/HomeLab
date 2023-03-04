@@ -24,7 +24,6 @@ provider "proxmox" {
   pm_api_token_secret = var.pm_api_token_secret
 }
 
-# A lot of extra parameters passed, since we are configuring already existing vms :) If I ever redo my cluster, can be simplified!
 module "k3s-v1" {
   source      = "./modules/k3s_node"
   name        = "k3s-v1"
@@ -33,18 +32,12 @@ module "k3s-v1" {
 
   disks = [
     {
-      type    = "scsi"
-      storage = "local-lvm"
-      size    = "64G"
       volume  = "local-lvm:vm-100-disk-0"
     }
   ]
 
   networks = [
     {
-      model    = "virtio"
-      bridge   = "vmbr0"
-      firewall = true
       macaddr  = "22:F9:B7:37:2E:DE"
     }
   ]
@@ -58,18 +51,12 @@ module "k3s-v2" {
 
   disks = [
     {
-      type    = "scsi"
-      storage = "local-lvm"
-      size    = "64G"
       volume  = "local-lvm:vm-101-disk-0"
     }
   ]
 
   networks = [
     {
-      model    = "virtio"
-      bridge   = "vmbr0"
-      firewall = true
       macaddr  = "0E:D5:B3:62:30:01"
     }
   ]
@@ -83,13 +70,9 @@ module "k3s-v3" {
 
   disks = [
     {
-      type    = "scsi"
-      storage = "local-lvm"
-      size    = "64G"
       volume  = "local-lvm:vm-102-disk-0"
     },
     {
-      type    = "scsi"
       storage = "extra"
       size    = "220G"
       volume  = "extra:vm-102-disk-0"
@@ -98,9 +81,6 @@ module "k3s-v3" {
 
   networks = [
     {
-      model    = "virtio"
-      bridge   = "vmbr0"
-      firewall = true
       macaddr  = "FE:20:33:30:62:9D"
     }
   ]
@@ -114,13 +94,9 @@ module "k3s-v4" {
 
   disks = [
     {
-      type    = "scsi"
-      storage = "local-lvm"
-      size    = "64G"
       volume  = "local-lvm:vm-103-disk-0"
     },
     {
-      type    = "scsi"
       storage = "extra"
       size    = "220G"
       volume  = "extra:vm-103-disk-0"
@@ -129,9 +105,6 @@ module "k3s-v4" {
 
   networks = [
     {
-      model    = "virtio"
-      bridge   = "vmbr0"
-      firewall = true
       macaddr  = "92:CC:0F:7C:89:DA"
     }
   ]
