@@ -22,7 +22,6 @@ resources:
   - storage
   - uptimekuma
   - vaultwarden
-  - velero
   - vikunja
   - website
   - wallabag
