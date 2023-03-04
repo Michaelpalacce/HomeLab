@@ -214,6 +214,10 @@ data:
                 description: Block Storage for kubernetes
                 icon: hl-longhorn
                 url: https://longhorn.{{ .domainName }}
+              - title: Backblaze B2
+                description: Cheaper S3 ;)
+                icon: favicon
+                url: https://secure.backblaze.com/b2_buckets.htm
               - title: Proxmox Cluster
                 description: Virtual Machines go Brrrr
                 icon: hl-proxmox
