@@ -5,4 +5,13 @@
 
 ## Installed apps
 1. Pi.Hole
-2. Pi.Alert - `curl -sSL https://github.com/pucherot/Pi.Alert/raw/main/install/pialert_install.sh | bash`
+
+## Updating PiHole
+
+```bash
+pihole -up
+```
+
+## Updating Gravity Sync
+
+`gravity-sync update`
