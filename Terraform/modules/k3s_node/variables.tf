@@ -4,9 +4,18 @@ variable "target_node" { type = string }
 variable "vmid" { type = number }
 
 # Resources
-variable "cores" { type = number }
-variable "sockets" { type = number }
-variable "memory" { type = number }
+variable "cores" {
+  type    = number
+  default = 2
+}
+variable "sockets" {
+  type    = number
+  default = 2
+}
+variable "memory" {
+  type    = number
+  default = 11500
+}
 
 # Disks
 variable "disks" {
