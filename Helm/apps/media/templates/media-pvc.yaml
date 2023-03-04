@@ -203,18 +203,18 @@ spec:
         requests:
             storage: {{ .Values.storage.radarr.config }}
 
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-    name: readarr-config-pvc
-spec:
-    accessModes:
-        - ReadWriteMany
-    storageClassName: longhorn
-    resources:
-        requests:
-            storage: {{ .Values.storage.readarr.config }}
+{{/*---*/}}
+{{/*apiVersion: v1*/}}
+{{/*kind: PersistentVolumeClaim*/}}
+{{/*metadata:*/}}
+{{/*    name: readarr-config-pvc*/}}
+{{/*spec:*/}}
+{{/*    accessModes:*/}}
+{{/*        - ReadWriteMany*/}}
+{{/*    storageClassName: longhorn*/}}
+{{/*    resources:*/}}
+{{/*        requests:*/}}
+{{/*            storage: {{ .Values.storage.readarr.config }}*/}}
 
 ---
 apiVersion: v1
@@ -255,15 +255,15 @@ spec:
         requests:
             storage: {{ .Values.storage.doplarr.config }}
 
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-    name: tautulli-config-pvc
-spec:
-    accessModes:
-        - ReadWriteMany
-    storageClassName: longhorn
-    resources:
-        requests:
-            storage: {{ .Values.storage.tautulli.config }}
+{{/*---*/}}
+{{/*apiVersion: v1*/}}
+{{/*kind: PersistentVolumeClaim*/}}
+{{/*metadata:*/}}
+{{/*    name: tautulli-config-pvc*/}}
+{{/*spec:*/}}
+{{/*    accessModes:*/}}
+{{/*        - ReadWriteMany*/}}
+{{/*    storageClassName: longhorn*/}}
+{{/*    resources:*/}}
+{{/*        requests:*/}}
+{{/*            storage: {{ .Values.storage.tautulli.config }}*/}}
