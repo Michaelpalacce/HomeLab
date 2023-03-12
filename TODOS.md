@@ -6,9 +6,9 @@
 - [x] Better folder structure
 - [x] Better backup and restore 
 - [x] Enable certificate request with wildcard on the 20th March
-- [ ] `system-upgrades` core app for k3s upgrades
-- [ ] Move Playbooks in roles
-- [ ] Harden security
+- [x] `system-upgrades` core app for k3s upgrades
+- [x] Move Playbooks in roles
+- [x] Terraform
 - [ ] Migrate over to helm charts
 - [ ] Simple secrets better restore 
-- [ ] Terraform
+- [ ] Harden security

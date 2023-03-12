@@ -32,3 +32,13 @@ spec:
                             name: uptimekuma
                             port:
                                 number: {{ .Values.uptimekuma.port }}
+        - host: uptimekuma-public.stefangenov.site
+          http:
+              paths:
+                  - pathType: Prefix
+                    path: "/"
+                    backend:
+                        service:
+                            name: uptimekuma
+                            port:
+                                number: {{ .Values.uptimekuma.port }}
