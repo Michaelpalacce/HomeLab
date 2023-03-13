@@ -22,17 +22,6 @@ spec:
                                 name: grafana
                                 port:
                                     number: {{ .Values.grafana.port }}
-        -   host: grafana-public.stefangenov.site
-            http:
-                paths:
-                    -   pathType: Prefix
-                        path: "/"
-                        backend:
-                            service:
-                                name: grafana
-                                port:
-                                    number: {{ .Values.grafana.port }}
----
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
