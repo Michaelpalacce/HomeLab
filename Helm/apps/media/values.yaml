@@ -52,7 +52,7 @@ radarr:
             memory: 50Mi
 
 tautulli:
-    image: lscr.io/linuxserver/tautulli:2.12.0
+    image: lscr.io/linuxserver/tautulli:2.12.1
     port: 8181
     replicas: 1
     resources:
