@@ -61,6 +61,10 @@ data:
                 description: Beautiful Code Images
                 icon: favicon
                 url: https://chalk.ist/
+              - title: Chat GPT
+                description: AI Chat
+                icon: favicon
+                url: https://chat.openai.com/chat
 
           - name: Work
             items:
