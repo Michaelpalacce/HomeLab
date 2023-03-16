@@ -62,7 +62,9 @@ spec:
 
         persistence:
           logs:
-            enabled: false
+            enabled: true
+            type: emptyDir
+            mountPath: /app/config/logs
 
         # resources:
         #   requests:
