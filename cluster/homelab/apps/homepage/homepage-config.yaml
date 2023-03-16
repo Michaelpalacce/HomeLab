@@ -3,6 +3,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
     name: homepage-config
+    namespace: homepage
 data:
     conf.yml: |
         ---
