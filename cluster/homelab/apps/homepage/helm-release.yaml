@@ -17,7 +17,7 @@ spec:
             retries: 3
     chart:
         spec:
-            chart: homepage
+            chart: jameswynn/homepage
             version: 1.1.0
             interval: 5m
             sourceRef:
