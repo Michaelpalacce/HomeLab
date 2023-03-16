@@ -13,6 +13,7 @@ spec:
     name: flux-system
   url: ssh://git@github.com/Michaelpalacce/HomeLab
 ---
+
 # sops-age must be created in flux-system namespace before starting FLUXCD!!
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
