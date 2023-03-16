@@ -10,5 +10,5 @@
 - [x] Move Playbooks in roles
 - [x] Terraform
 - [ ] Migrate over to helm charts
-- [ ] Simple secrets better restore 
 - [ ] Harden security
+- [ ] Migrate to SOPS, it's easy to use
