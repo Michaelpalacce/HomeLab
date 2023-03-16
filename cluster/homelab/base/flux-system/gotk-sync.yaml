@@ -22,8 +22,10 @@ spec:
   interval: 10m0s
   path: ./cluster/homelab/base
   prune: true
-  decryption-provider: sops
-  decryption-secret: sops-gpg
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-gpg
   sourceRef:
     kind: GitRepository
     name: flux-system
