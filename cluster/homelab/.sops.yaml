@@ -1,8 +1,8 @@
 creation_rules:
   - path_regex: cluster/homelab/*.ya?ml
     encrypted_regex: ^(data|stringData)$
-    pgp:age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
+    pgp: age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
 
   - path_regex: Helm/apps/*.ya?ml
     encrypted_regex: ^(data|stringData)$
-    pgp:age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
+    pgp: age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
