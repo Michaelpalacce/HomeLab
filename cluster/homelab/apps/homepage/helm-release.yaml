@@ -1,0 +1,73 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+    name: homepage
+    namespace: homepage
+spec:
+    interval: 5m
+    install:
+        createNamespace: true
+        crds: CreateReplace
+        remediation:
+            retries: 3
+    upgrade:
+        crds: CreateReplace
+        remediation:
+            retries: 3
+    chart:
+        spec:
+            chart: homepage
+            version: 1.1.0
+            interval: 5m
+            sourceRef:
+                kind: HelmRepository
+                name: jameswynn
+                namespace: flux-system
+    values:
+        image:
+          repository: ghcr.io/benphelps/homepage
+          tag: v0.6.10
+
+        # Enable RBAC. RBAC is necessary to use Kubernetes integration
+        enableRbac: true
+
+        serviceAccount:
+          # Specify a different service account name
+          name: homepage
+          # Create service account. Needed when RBAC is enabled.
+          create: true
+
+        service:
+          main:
+            ports:
+              http:
+                port: 3000
+
+        controller:
+          strategy: RollingUpdate
+          rollingUpdate:
+            maxSurge: 25%
+            maxUnavailable: 25%
+
+        # Enable the ingress to expose Homepage to the network.
+        ingress:
+          main:
+            enabled: false
+
+        # All the config files for Homepage can be specified under their relevant config block.
+        config:
+          # To use an existing ConfigMap uncomment this line and specify the name
+          useExistingConfigMap: homepage-config
+
+        persistence:
+          logs:
+            enabled: false
+
+        # resources:
+        #   requests:
+        #     memory: 10Mi
+        #     cpu: 10m
+        #   limits:
+        #     memory: 200Mi
+        #     cpu: 500m

@@ -1,0 +1,25 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: homepage
+    namespace: homepage
+    annotations:
+        kubernetes.io/ingress.class: "nginx"
+spec:
+    tls:
+        - hosts:
+              - "*.stefangenov.site"
+          secretName: ingress
+    rules:
+        - host: homepage.stefangenov.site
+          http:
+              paths:
+                  - pathType: Prefix
+                    path: "/"
+                    backend:
+                        service:
+                            name: homepage
+                            port:
+                                number: 3000
+---

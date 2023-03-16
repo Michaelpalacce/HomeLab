@@ -1,0 +1,56 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: homepage-config
+data:
+    conf.yml: |
+        ---
+        bookmarks:
+          - Developer:
+              - Github:
+                  - abbr: GH
+                    href: https://github.com/
+        services:
+          - My First Group:
+              - My First Service:
+                  href: http://localhost/
+                  description: Homepage is awesome
+
+          - My Second Group:
+              - My Second Service:
+                  href: http://localhost/
+                  description: Homepage is the best
+
+          - My Third Group:
+              - My Third Service:
+                  href: http://localhost/
+                  description: Homepage is 😎
+        widgets:
+          - resources:
+              # change backend to 'kubernetes' to use Kubernetes integration. Requires RBAC.
+              backend: resources
+              expanded: true
+              cpu: true
+              memory: true
+          - search:
+              provider: duckduckgo
+              target: _blank
+          ## Uncomment to enable Kubernetes integration
+          # - kubernetes:
+          #     cluster:
+          #       show: true
+          #       cpu: true
+          #       memory: true
+          #       showLabel: true
+          #       label: "cluster"
+          #     nodes:
+          #       show: true
+          #       cpu: true
+          #       memory: true
+          #       showLabel: true
+        kubernetes:
+          # change mode to 'cluster' to use RBAC service account
+          mode: disable
+        docker:
+        settings:

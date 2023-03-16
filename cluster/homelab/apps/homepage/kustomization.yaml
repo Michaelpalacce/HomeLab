@@ -1,0 +1,8 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+    - namespace.yaml
+    - homepage-config.yaml
+    - helm-release.yaml
+    - ingress.yaml
