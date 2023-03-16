@@ -11,7 +11,7 @@ resources:
   - external-ingress
   - firefly
   - freshrss
-  - homepage
+#   - homepage
   - mealie
   - media
   - monitoring

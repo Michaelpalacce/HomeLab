@@ -22,7 +22,7 @@ spec:
             interval: 5m
             sourceRef:
                 kind: HelmRepository
-                name: jameswynn
+                name: homepage
                 namespace: flux-system
     values:
         image:
