@@ -8,6 +8,10 @@ spec:
     interval: 5m0s
     path: ./cluster/homelab/helm
     prune: true
+    decryption:
+        provider: sops
+        secretRef:
+            name: sops-age
     sourceRef:
         kind: GitRepository
         name: flux-system

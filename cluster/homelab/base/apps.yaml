@@ -11,6 +11,10 @@ spec:
         - name: helm
     path: ./cluster/homelab/apps
     prune: true
+    decryption:
+        provider: sops
+        secretRef:
+            name: sops-age
     sourceRef:
         kind: GitRepository
         name: flux-system
