@@ -9,6 +9,6 @@ metadata:
         gethomepage.dev/enabled: "true"
         gethomepage.dev/description: IRC Book Downloader
         gethomepage.dev/group: Downloaders
-        gethomepage.dev/icon: openbooks
+        gethomepage.dev/icon: https://raw.githubusercontent.com/evan-buss/openbooks/master/server/app/public/favicon-32x32.png
         gethomepage.dev/name: OpenBooks
 
