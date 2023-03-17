@@ -1,0 +1,140 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: homepage-config
+    namespace: homepage
+data:
+    kubernetes.yaml: |
+        mode: cluster
+    settings.yaml: |
+        title: Home
+        layout:
+          Media:
+            style: row
+            columns: 2
+          Downloaders:
+            style: row
+            columns: 3
+          Knowledge Base And Tasks:
+            style: row
+            columns: 3
+          Virtualization:
+          Proxy:
+          DNS:
+          NAS:
+          Monitoring:
+            style: row
+            columns: 3
+        hideVersion: true
+        quicklaunch:
+          searchDescriptions: true
+        providers:
+          longhorn:
+            url: https://longhorn.stefangenov.site
+    bookmarks.yaml: |
+        - Developer:
+            - Github:
+                - abbr: GH
+                  href: https://github.com/
+    services.yaml: |
+        - NAS:
+          - Synolgy:
+              icon: synology
+              href: https://192.168.1.20:5001/
+              name: Synology NAS
+              description: NAS for my Home
+              widget:
+                type: diskstation
+                url: https://192.168.1.20:5001
+                username: stefan
+                password: Sg$$2211
+        - Virtualization:
+          - Prox-1:
+              icon: proxmox
+              href: https://prox-1.stefangenov.site:8006
+              name: Proxmox 1
+              description: VM Hypervisor
+              widget:
+                type: proxmox
+                url: https://prox-1.stefangenov.site:8006
+                username: root@pam!proxmox
+                password: 96269d38-010f-41eb-9b27-ad6921639dba
+        - Proxy:
+          - NGINX Proxy Manager:
+              icon: nginxproxymanager
+              href: http://192.168.1.133:81/login
+              name: Public Nginx Proxy Manager
+              description: Public reverse proxy
+              widget:
+                type: npm
+                url: http://192.168.1.133:81
+                username: sgenov94@gmail.com
+                password: sg$$2211
+        - DNS:
+          - PiHole:
+              icon: pihole
+              href: http://192.168.1.63/admin/login.php
+              name: PI Hole (Main)
+              description: DNS Sinkhole
+              widget:
+                type: pihole
+                url: http://192.168.1.63
+                key: e99304aeb7e2244164a7d3a6d2f8658e57f2924bacfd53b9712326dd24cd3b64
+          - PiHoleBackup:
+              icon: pihole
+              href: http://192.168.1.120/admin/login.php
+              name: PI Hole (Backup)
+              description: DNS Sinkhole
+              widget:
+                type: pihole
+                url: http://192.168.1.120
+                key: e99304aeb7e2244164a7d3a6d2f8658e57f2924bacfd53b9712326dd24cd3b64
+    widgets.yaml: |
+        - greeting:
+            text_size: xl
+            text: Welcome To Your HomeLab
+        - search:
+            provider: custom
+            url: https://whoogle.stefangenov.site/search?q=
+            target: _blank
+        - weatherapi:
+            label: Plovdiv
+            latitude: 42.136097
+            longitude: 24.742168
+            units: metric
+            apiKey: 111046bbae6f4231a91185350231703
+            cache: 10 # Time in minutes to cache API responses, to stay within limits
+        - datetime:
+            text_size: xl
+            format:
+              timeStyle: long
+        - kubernetes:
+            cluster:
+              # Shows cluster-wide statistics
+              show: true
+              # Shows the aggregate CPU stats
+              cpu: true
+              # Shows the aggregate memory stats
+              memory: true
+              # Shows a custom label
+              showLabel: true
+              label: "cluster"
+            nodes:
+              # Shows node-specific statistics
+              show: true
+              # Shows the CPU for each node
+              cpu: true
+              # Shows the memory for each node
+              memory: true
+              # Shows the label, which is always the node name
+              showLabel: true
+        #- longhorn:
+        #    # Show the expanded view
+        #    expanded: true
+        #    # Shows a node representing the aggregate values
+        #    total: true
+        #    # Shows the node names as labels
+        #    labels: true
+        #    # Show the nodes
+        #    nodes: true
+    docker.yaml: ""
