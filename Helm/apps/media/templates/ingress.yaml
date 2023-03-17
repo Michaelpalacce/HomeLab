@@ -2,7 +2,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-    name: media
+    name: sonarr
     namespace: {{ $.Release.Namespace }}
     annotations:
         kubernetes.io/ingress.class: "nginx"
@@ -22,6 +22,21 @@ spec:
                                 name: sonarr
                                 port:
                                     number: {{ .Values.sonarr.port }}
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: media
+    namespace: {{ $.Release.Namespace }}
+    annotations:
+        kubernetes.io/ingress.class: "nginx"
+spec:
+    tls:
+        -   hosts:
+                - "*.stefangenov.site"
+            secretName: ingress
+    rules:
         -   host: exportarr.stefangenov.site
             http:
                 paths:
