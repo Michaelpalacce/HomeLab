@@ -6,7 +6,7 @@ metadata:
     namespace: homepage
 data:
     kubernetes.yaml: |
-      mode: default
+      mode: cluster
     settings.yaml: |
       hideVersion: true
       quicklaunch:
