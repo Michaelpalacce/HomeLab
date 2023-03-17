@@ -1,0 +1,58 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: reactiveresume
+    namespace: reactiveresume
+    annotations:
+        kubernetes.io/ingress.class: ENC[AES256_GCM,data:QyokIQE=,iv:09lYVgDu9r6MUuCDvl04fz8dis4O4DHBjponUy4WtGY=,tag:A1r5yZc/4c7dxwmtWjXpAA==,type:str]
+        gethomepage.dev/enabled: ENC[AES256_GCM,data:r0IX7A==,iv:9NXZPRxgbD7z3nOHrlKxywE0KOU9frw/Dclh2hAsSHI=,tag:Jv7lhhZy8uqNhnbDpsbSZA==,type:str]
+        gethomepage.dev/description: ENC[AES256_GCM,data:TmmQUXngKAgDmVoxEt+gSzM=,iv:/j54GsYzU2cgbm/2fG5yULGS/44WwO61iIvU3a3O6bM=,tag:6QK58Vgds7bIQs26DDm+9g==,type:str]
+        gethomepage.dev/group: ENC[AES256_GCM,data:LeJS0g==,iv:jdwpnb6UAJ34vgqs5p5RODoINZ9q3zC49haQYguk2yw=,tag:yi8azhOq/yaNbqjeTXV9Cg==,type:str]
+        gethomepage.dev/icon: ENC[AES256_GCM,data:V+8MrK0Zxw==,iv:AScAQhsy/7mPVH0mPZIXHnjGIEfSnfhtfPezkXkD/0E=,tag:m3fvknbzzCOwJPZgOjhriQ==,type:str]
+        gethomepage.dev/name: ENC[AES256_GCM,data:XQ2vJwGOOh/wI6/ibIMM,iv:oTbur/GhHwNRZh/9FLjOkG0tN/6KQyQJaob4XFhESfw=,tag:vy3hcA2UeSFdhe6roapgGA==,type:str]
+spec:
+    tls:
+        - hosts:
+            - '*.stefangenov.site'
+          secretName: ingress
+    rules:
+        - host: resume.stefangenov.site
+          http:
+            paths:
+                - pathType: Prefix
+                  path: /
+                  backend:
+                    service:
+                        name: reactiveresume
+                        port:
+                            number: 3000
+        - host: resume-api.stefangenov.site
+          http:
+            paths:
+                - pathType: Prefix
+                  path: /
+                  backend:
+                    service:
+                        name: reactiveresume
+                        port:
+                            number: 3100
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBwbEY0OFcvSVpTVmdnL3Rv
+            ZzF6Sk5Xbld6MmgxVlZGK2xEZ1Fvd3lYWEJFCjFCNGJtbTZEbDBZSmdndERVZGxK
+            d1pUbU5ZT25FWkJidlBsdHpBaFprYlkKLS0tIFdEeldzU3FWeU1UOU5BNkRGaHFk
+            Y2xhNUhCaXpNWjlCVEZLei9LQ204QVkK1gWtnAN66un1tRKv3ttTpCBLHrPBG53r
+            KhXjBEWOxNpuwz/4ttdteaaR6sF6+1zEvBRlierGyKauy9SkDVcvfA==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2023-03-17T06:41:05Z"
+    mac: ENC[AES256_GCM,data:3L3YjdDTQ7Kp3mdzAKTXAHjDqm5EpQq7xLRPzEH6WhbsTTrPgDJQDsEiKZOesLIBk9TN3oF4XuQ/e281r1zfbTVOfVVZ+pyyfjt9M3p0vhRMmHAWyEv0gBC00HkMt8LQ/eycTzbYeikvkBeHNrt7V7z3yeyBZ5oCJEjVylBJAJ4=,iv:HREu/cpixjrkugx6D1hjbCoZsFbO9Fxg/z8mCHYQfFY=,tag:j14v8hV9PgeGL/kv7b3E/Q==,type:str]
+    pgp: []
+    encrypted_regex: ^(annotations)$
+    version: 3.7.3
