@@ -6,11 +6,14 @@ metadata:
     namespace: homepage
 data:
     kubernetes.yaml: |
-      mode: cluster
+      mode: default
     settings.yaml: |
-     providers:
-       longhorn:
-         url: https://longhorn.stefangenov.site
+      hideVersion: true
+      quicklaunch:
+        searchDescriptions: true
+      providers:
+        longhorn:
+          url: https://longhorn.stefangenov.site
     bookmarks.yaml: |
       - Developer:
           - Github:
@@ -19,37 +22,37 @@ data:
     services.yaml: |
       - My First Group:
           - My First Service:
-              href: http://localhost/
+              href: https://github.com/
               description: Homepage is awesome
 
-      - My Second Group:
-          - My Second Service:
-              href: http://localhost/
-              description: Homepage is the best
-
-      - My Third Group:
-          - My Third Service:
-              href: http://localhost/
-              description: Homepage is 😎
     widgets.yaml: |
       - kubernetes:
           cluster:
+            # Shows cluster-wide statistics
             show: true
+            # Shows the aggregate CPU stats
             cpu: true
+            # Shows the aggregate memory stats
             memory: true
+            # Shows a custom label
             showLabel: true
             label: "cluster"
           nodes:
+            # Shows node-specific statistics
             show: true
+            # Shows the CPU for each node
             cpu: true
+            # Shows the memory for each node
             memory: true
+            # Shows the label, which is always the node name
             showLabel: true
-      - resources:
-          backend: resources
+      - longhorn:
+          # Show the expanded view
           expanded: true
-          cpu: true
-          memory: true
-      - search:
-          provider: duckduckgo
-          target: _blank
+          # Shows a node representing the aggregate values
+          total: true
+          # Shows the node names as labels
+          labels: true
+          # Show the nodes
+          nodes: true
     docker.yaml: ""
