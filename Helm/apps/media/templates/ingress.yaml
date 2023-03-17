@@ -46,7 +46,7 @@ spec:
                             service:
                                 name: sonarr
                                 port:
-                                    number: {{ .Values.exportarr.port }}
+                                    number: {{ .Values.sonarr.exportarr.port }}
 
 ---
 apiVersion: networking.k8s.io/v1
