@@ -37,7 +37,6 @@ spec:
           name: homepage
           # Create service account. Needed when RBAC is enabled.
           create: true
-
         service:
           main:
             ports:
