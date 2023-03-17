@@ -1,0 +1,14 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: nodered
+    namespace: nodered
+    annotations:
+        kubernetes.io/ingress.class: "nginx"
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: Low-code automation
+        gethomepage.dev/group: Automation
+        gethomepage.dev/icon: nodered
+        gethomepage.dev/name: NodeRed
+

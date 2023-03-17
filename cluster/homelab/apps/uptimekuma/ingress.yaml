@@ -1,0 +1,15 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: uptimekuma
+    namespace: uptimekuma
+    annotations:
+        kubernetes.io/ingress.class: "nginx"
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: Uptime Monitor
+        gethomepage.dev/group: Monitoring
+        gethomepage.dev/icon: uptimekuma
+        gethomepage.dev/name: Uptime Kuma
+
+

@@ -1,0 +1,14 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: pgadmin
+    namespace: postgresql
+    annotations:
+        kubernetes.io/ingress.class: "nginx"
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: PostgreSQL admin pannel
+        gethomepage.dev/group: Databases
+        gethomepage.dev/icon: pgadmin
+        gethomepage.dev/name: pgAdmin
+

@@ -1,0 +1,28 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: serveremulator
+    namespace: storage
+    annotations:
+        kubernetes.io/ingress.class: "nginx"
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: Backup
+        gethomepage.dev/group: Storage
+        gethomepage.dev/icon: mdi-server
+        gethomepage.dev/name: ServerEmulator
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: syncthing
+    namespace: storage
+    annotations:
+        kubernetes.io/ingress.class: "nginx"
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: Multi device sync
+        gethomepage.dev/group: Storage
+        gethomepage.dev/icon: syncthing
+        gethomepage.dev/name: Syncthing
+

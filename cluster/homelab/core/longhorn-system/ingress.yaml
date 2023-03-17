@@ -1,0 +1,15 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: longhorn-frontend
+    namespace: longhorn-system
+    annotations:
+        kubernetes.io/ingress.class: "nginx"
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: Block Storage for kubernetes
+        gethomepage.dev/group: Infrastructure
+        gethomepage.dev/icon: longhorn
+        gethomepage.dev/name: Longhorn Storage
+
+
