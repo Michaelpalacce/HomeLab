@@ -9,6 +9,7 @@ metadata:
         gethomepage.dev/enabled: "true"
         gethomepage.dev/description: My Website
         gethomepage.dev/group: Personal
+        gethomepage.dev/icon: https://stefangenov.site/favicon.ico
         gethomepage.dev/name: Website
 
 
