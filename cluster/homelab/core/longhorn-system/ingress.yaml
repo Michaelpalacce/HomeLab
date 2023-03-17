@@ -2,7 +2,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-    name: longhorn-frontend
+    name: longhorn-ingress
     namespace: longhorn-system
     annotations:
         kubernetes.io/ingress.class: "nginx"
