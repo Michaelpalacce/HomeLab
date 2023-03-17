@@ -27,7 +27,7 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-    name: media
+    name: exportarr
     namespace: {{ $.Release.Namespace }}
     annotations:
         kubernetes.io/ingress.class: "nginx"
@@ -46,7 +46,22 @@ spec:
                             service:
                                 name: sonarr
                                 port:
-                                    number: {{ .Values.sonarr.exportarr.port }}
+                                    number: {{ .Values.exportarr.port }}
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: bazarr
+    namespace: {{ $.Release.Namespace }}
+    annotations:
+        kubernetes.io/ingress.class: "nginx"
+spec:
+    tls:
+        -   hosts:
+                - "*.stefangenov.site"
+            secretName: ingress
+    rules:
         -   host: bazarr.stefangenov.site
             http:
                 paths:
@@ -57,6 +72,21 @@ spec:
                                 name: bazarr
                                 port:
                                     number: {{ .Values.bazarr.port }}
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: kavita
+    namespace: {{ $.Release.Namespace }}
+    annotations:
+        kubernetes.io/ingress.class: "nginx"
+spec:
+    tls:
+        -   hosts:
+                - "*.stefangenov.site"
+            secretName: ingress
+    rules:
         -   host: kavita.stefangenov.site
             http:
                 paths:
@@ -67,6 +97,21 @@ spec:
                                 name: kavita
                                 port:
                                     number: {{ .Values.kavita.port }}
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: jackett
+    namespace: {{ $.Release.Namespace }}
+    annotations:
+        kubernetes.io/ingress.class: "nginx"
+spec:
+    tls:
+        -   hosts:
+                - "*.stefangenov.site"
+            secretName: ingress
+    rules:
         -   host: jackett.stefangenov.site
             http:
                 paths:
@@ -77,16 +122,21 @@ spec:
                                 name: jackett
                                 port:
                                     number: {{ .Values.jackett.port }}
-        -   host: readarr.stefangenov.site
-            http:
-                paths:
-                    -   pathType: Prefix
-                        path: "/"
-                        backend:
-                            service:
-                                name: readarr
-                                port:
-                                    number: {{ .Values.readarr.port }}
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: radarr
+    namespace: {{ $.Release.Namespace }}
+    annotations:
+        kubernetes.io/ingress.class: "nginx"
+spec:
+    tls:
+        -   hosts:
+                - "*.stefangenov.site"
+            secretName: ingress
+    rules:
         -   host: radarr.stefangenov.site
             http:
                 paths:
@@ -97,6 +147,21 @@ spec:
                                 name: radarr
                                 port:
                                     number: {{ .Values.radarr.port }}
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: overseerr
+    namespace: {{ $.Release.Namespace }}
+    annotations:
+        kubernetes.io/ingress.class: "nginx"
+spec:
+    tls:
+        -   hosts:
+                - "*.stefangenov.site"
+            secretName: ingress
+    rules:
         -   host: overseerr.stefangenov.site
             http:
                 paths:
@@ -107,6 +172,21 @@ spec:
                                 name: overseerr
                                 port:
                                     number: {{ .Values.overseerr.port }}
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: transmission
+    namespace: {{ $.Release.Namespace }}
+    annotations:
+        kubernetes.io/ingress.class: "nginx"
+spec:
+    tls:
+        -   hosts:
+                - "*.stefangenov.site"
+            secretName: ingress
+    rules:
         -   host: transmission.stefangenov.site
             http:
                 paths:
@@ -117,13 +197,4 @@ spec:
                                 name: transmission
                                 port:
                                     number: {{ .Values.transmission.port }}
-        -   host: tautulli.stefangenov.site
-            http:
-                paths:
-                    -   pathType: Prefix
-                        path: "/"
-                        backend:
-                            service:
-                                name: tautulli
-                                port:
-                                    number: {{ .Values.tautulli.port }}
+
