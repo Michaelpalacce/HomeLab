@@ -5,6 +5,11 @@ metadata:
     namespace: {{ $.Release.Namespace }}
     annotations:
         kubernetes.io/ingress.class: nginx
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: Build your own CV
+        gethomepage.dev/group: Work
+        gethomepage.dev/icon: https://rxresu.me/images/logos/logo.svg
+        gethomepage.dev/name: Reactive Resume
 spec:
     tls:
         - hosts:
