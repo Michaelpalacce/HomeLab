@@ -1,58 +1,32 @@
----
 apiVersion: v1
 kind: ConfigMap
 metadata:
     name: homepage-config
     namespace: homepage
 data:
-    kubernetes.yaml: |
-      mode: cluster
-    settings.yaml: |
-      hideVersion: true
-      quicklaunch:
-        searchDescriptions: true
-      providers:
-        longhorn:
-          url: https://longhorn.stefangenov.site
-    bookmarks.yaml: |
-      - Developer:
-          - Github:
-              - abbr: GH
-                href: https://github.com/
-    services.yaml: |
-      - My First Group:
-          - My First Service:
-              href: https://github.com/
-              description: Homepage is awesome
-
-    widgets.yaml: |
-      - kubernetes:
-          cluster:
-            # Shows cluster-wide statistics
-            show: true
-            # Shows the aggregate CPU stats
-            cpu: true
-            # Shows the aggregate memory stats
-            memory: true
-            # Shows a custom label
-            showLabel: true
-            label: "cluster"
-          nodes:
-            # Shows node-specific statistics
-            show: true
-            # Shows the CPU for each node
-            cpu: true
-            # Shows the memory for each node
-            memory: true
-            # Shows the label, which is always the node name
-            showLabel: true
-      - longhorn:
-          # Show the expanded view
-          expanded: true
-          # Shows a node representing the aggregate values
-          total: true
-          # Shows the node names as labels
-          labels: true
-          # Show the nodes
-          nodes: true
+    kubernetes.yaml: ENC[AES256_GCM,data:eH9sgu6QZvT3ekkdkEI=,iv:pQmlcsUEZiXNYxrKabAplE2mR/n9lKgVUoGKKkkZ9Lg=,tag:Xosg2S8hU54qlwGrd1WUAQ==,type:str]
+    settings.yaml: ENC[AES256_GCM,data:Yc/6AbkTLk1lCJ7Q0OSWgMyAZgpmNzaD720EJ8paMavDkEo9Pi4oDQPWwgc5j/pD8ETj5/I2KuNr3WBBXKq+AoHLIlSBxqGZZSrOr45ldXHlFhop1kplYfwtKp9izld9rTv2x3qGiL4I4nTJsesOsUVv/OsqP711/QZG+w==,iv:dfjoMw9BcaY+toy2l5leZnuBKUAJ/RAloPKjXDwEJTA=,tag:p23YG9em5rEges9B8JEWhg==,type:str]
+    bookmarks.yaml: ENC[AES256_GCM,data:agNsdhK/w0gopcSTKs/NmxheCRUIrCZx7pdjiRUBBbfxaTylMEUquG6gnZyGsUCX9zMAiokRctfoJy+YDqkUBBmFtrDhNNJUNfAxAxpaLOO6Qw==,iv:wDuAVoJ/2eZCDQtkl1AFCCdHrDDewoVGlMXS1gGBEkE=,tag:bjOhD1sVMseIJe4BP4F3qw==,type:str]
+    services.yaml: ENC[AES256_GCM,data:G9sQW3TsxJMsTbOw1qwmvY7MjG+Y3KUIyggwR8mu4Qk3bkp4SZ/Bul4lAz+1cl/x+JBapreqY7Gh7gYkCgeU9dAbyxFGRCySwdgph7o+Zrhh9Yn+MjoSh83BoybbegaSWcnZoyCrZFWQgEjluudh8CC320Zv/e5/CA4m+RMGWxwSyQv6AGLRaHBqI9a4zhCgxhjxZtcEhCKG10gosrsTql0twNpqB4HxXJH49SKAvTM2P1AxbDM9f3CM8+mLt+0KHggjjY9Ze53Vv/SNEf1NyfKEHjkjUJbD7MnrPfc96frIGnMFZqMs2obcAmkqwa0g6ArxjZTsn1srlfi9S1OQDoHvBVl9tpX3zzV/rMWT75RkEaN7J7ZQa8eXAlm7MrEEtnRBWUG6XMUtDPyJfG7cysdeHbjKZEKNRXTtFoN7mxFXjb3jynf8Ll/E4niNL48RlImXxqdXE0+01fUy6lKrOALkMphaXDXQrjRSnRNBrWAtcq2ua2i77izShSpnAKss/TUVEeRS1hCAK5w6+WCqVK1SJ6kD3taxAovjontf17+7C9LJIIkRuaaxpadZ7wK1vAT3HAliPsVfM+2W6f/uN7i68gxuWCof9xgBSGQWc01OTvwAewGMY1OxOWf1jD2mnllOQ8XgoHFQT5ttV/LngedUXFz/Kof63+DXYbDodRkXM6XrqpnnvwECCbTVr5nnDtglOAReRSnbJEMUza1cHt/OMpoY6Td/VZMxv+JFpoTKs1dPEgFCVtjFNKKUNvg=,iv:nZX/aH0ZXX4oLDIEzddX7obTOHT0JxwN3lHFIB1dJvs=,tag:gLsBqDLf7XMUEMOioyCavA==,type:str]
+    widgets.yaml: ENC[AES256_GCM,data:O63XM11zDZ2cbt2k5hLyUSOQNrsNy5lu9wIexGMk0h6i+zIG/z7Mu54hTlUfD3HfkqAU4fe8p6cyZzkWH2zLqHkbDeo/Wk3yODciW9N9obcTVSE3Zp8wdtNq74ryHjfnrLno6EP/NtEYDHtpX3sjg/KQ8k5xIvPQYdIPthdpqXQVFcHB7j31QtQIf3+gN8cVx1O8++3sAH4YJ+czddRc3TSGsF+d47geJVSIaNqj/c5coOoAJDOvnqtW3i4nSv0C2gJNKSXSCv9I9GtXyDLekmJNcn0T0kon5PYTScGj/YEpSxTVEfRkBy6E2IiUaGO1YRATJ5eAjoRotRzwJlaIZpV0L/JzEW2vk0miss+6k9zz8CSGeG2pXGrjNMrJEfuuqai/r6L3/qWaOysqJZc3ZQqEu1N55UbMiXAx6lv7kpIwbAkwG2bIm79BilR9a2PL7rccfPnWvXbNK9Iz2pATZS0mu5j56KdVyw88xDWuUPNYxsvmz1Pb/UfSX8koUr7FghGE26zFm/wHnYSvvLWNXeJEtZPgbE5uOinEp393AohvaLIFtAetlCDec48KpLwrcv7GmD8qtVCzhix9Bt+yehjC3xTv2Rl0lD66sodGbOI3sIosfP9zm/EYDpo/duRPgZ4NQW+B1ac7Z8pu4GmcxtzcEorbqoa4jnto990Lfp3njL0zahrMEDbdwuUUNrj8/cqg+u1uItPRcRJXPsp67EssR6RQymrQz/yvMjdbG2oMi0PMlb2ZdLLEo9FBD0A+KQz/NpfZr1sUFkkT915LNIwTRGpcQDiJHB58TV+qOTDJTIITYKMQ4gxK+TOABuXB5cRQi9UsdFrK++1dE3rCwVLIMvazuMXAP6ByJvEXskr7SbpSglnqOHenyxRlZQBoZhjChow2DLIb38fOgvhUU+CkUiS7TCXZ0F11Momkq2TTMibq6MBcFbudOPODQy3JLgygHauRSBxwWmPUV3ZugAvPse+TD8i6,iv:pZyJU6vhKd7r4VVdP04Hbu9X9DPK0fgJWoDiZZp1OWE=,tag:y/OJbw8tE9M6GMWvlDAFCg==,type:str]
     docker.yaml: ""
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBKQ2g0Z3IyOXpKWmN4NVRi
+            VGxZR1lsK283NUF6UXdwVEpJWURadlk4VEVnCmxKWW1JMXRVbkJILzRYUEZCc2tP
+            UXQ1VEtDM0xYRHQzbnpNdVNhcGh1YlUKLS0tIFdnMjZBWlJqTm9tL3Y5cWYzTmc1
+            ZWtQRktmV2UzdDhHWjg1MEU4Wm91S1kKnObIL+XSIr5HjRR8DUmWLbg4m+AEIIVb
+            Y3dG+h3r9oTKeyM4i9zkfakycTJWjQR2XGgMLA0GQAbo2LeSiP8vkw==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2023-03-17T12:21:40Z"
+    mac: ENC[AES256_GCM,data:sWJ85a+6+2+n/VsZUQqxAmZbAWe2LwJ9LQlvAJuukMc08a5fVN0wh7bskIop9yXyjvDYcwi7NfjwShE+vWN2986ymHdgylg6+xfGPUXudDCn+7RDDjJOynghKwIdalmqQCj0mW9vfKkjaMrExGLHOExsX0NGf9+Fvd3+M//ung8=,iv:6QueZUDowvG3icEa6m1AB+7rgNyU4VSjl8mh7qp8CfQ=,tag:NO/NEPqOExNZBkwghisO+w==,type:str]
+    pgp: []
+    encrypted_regex: ^(data)$
+    version: 3.7.3
