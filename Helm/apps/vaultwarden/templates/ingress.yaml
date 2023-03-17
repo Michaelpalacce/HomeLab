@@ -42,3 +42,47 @@ spec:
                                 name: vaultwarden
                                 port:
                                     number: {{ .Values.vaultwarden.port }}
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: vaultwarden
+    namespace: {{ $.Release.Namespace }}
+    annotations:
+        kubernetes.io/ingress.class: "nginx"
+spec:
+    tls:
+        -   hosts:
+                - "*.stefangenov.site"
+            secretName: ingress
+    rules:
+        -   host: vaultwarden.stefangenov.site
+            http:
+                paths:
+                    -   pathType: Prefix
+                        path: "/"
+                        backend:
+                            service:
+                                name: vaultwarden
+                                port:
+                                    number: {{ .Values.vaultwarden.port }}
+        -   host: vault.stefangenov.site
+            http:
+                paths:
+                    -   pathType: Prefix
+                        path: "/"
+                        backend:
+                            service:
+                                name: vaultwarden
+                                port:
+                                    number: {{ .Values.vaultwarden.port }}
+        -   host: passwords.stefangenov.site
+            http:
+                paths:
+                    -   pathType: Prefix
+                        path: "/"
+                        backend:
+                            service:
+                                name: vaultwarden
+                                port:
+                                    number: {{ .Values.vaultwarden.port }}
