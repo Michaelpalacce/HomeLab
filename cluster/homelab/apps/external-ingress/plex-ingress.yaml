@@ -1,29 +1,55 @@
----
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
     name: plex-ingress
     namespace: ingress-nginx
     annotations:
-        kubernetes.io/ingress.class: nginx
+        kubernetes.io/ingress.class: ENC[AES256_GCM,data:s9gkwhs=,iv:t5/hmEJfsnEBRj0yoZk1pUXAjBcziLMEX94F62ZioPg=,tag:gWkbSS1F9K0VKqvEYOsn1w==,type:str]
+        gethomepage.dev/enabled: ENC[AES256_GCM,data:FKYkqg==,iv:kVgouNQEjFQvOvAEHJ9J8KPxT3tKfVs9zE2jeYE1jR0=,tag:3Sy67JnjQZ0d/MsscqcZrw==,type:str]
+        gethomepage.dev/description: ENC[AES256_GCM,data:sqTA3XrNGsJXkfT1IEZWyAKjwdHp0VSY3IY=,iv:058t7YUtyjhCjzYTkLKECerDdnxOVb2l3+KkOV4+Ae0=,tag:L7VgEFcxk0vkiCGTrRZaNA==,type:str]
+        gethomepage.dev/group: ENC[AES256_GCM,data:7pFJzGE=,iv:yzSqhtYlYCK3ioYJp3mi1Sz6n8HMo/pep8cupLi3sIw=,tag:6b//g4ZDR+I1851+Y/RKlA==,type:str]
+        gethomepage.dev/icon: ENC[AES256_GCM,data:vizjnw==,iv:/2upzNJTnPJgsE9nYjsh4oWnR8qo5Yz3prx8U8awbPA=,tag:LSDA0c7gDM2teYR1iK7TLg==,type:str]
+        gethomepage.dev/name: ENC[AES256_GCM,data:OA+m0g==,iv:Y1ZuCysi/fwHdm89vE1vlPoa2i6FmR80BqTuxNKhTuE=,tag:M+Gj4iGZe/sLW9ioOiS78A==,type:str]
+        gethomepage.dev/widget.type: ENC[AES256_GCM,data:rSo+eA==,iv:fMNi16aoiH2ljsPpYUEfzGrUY3N5eoQYHdpwXpVc3U8=,tag:8YkvI9vJzm0KImDxg5GSiw==,type:str]
+        gethomepage.dev/widget.url: ENC[AES256_GCM,data:b2QHmfNbScknft3vdp9K9TDxiul2ZRwjDgWynX0=,iv:4qvY06Wsxb3idS/q3mYERAZ8DzCl3LVOX2m5JiqOJNw=,tag:3uY3qhF8/jmb2S4o1gZGQg==,type:str]
+        gethomepage.dev/widget.key: ENC[AES256_GCM,data:EfutLgbsGNQ8Ko5z825PFIwDKLA=,iv:kX3RYsGA0JL6UZY31DkfNDucJyzqTEndwyUKv/20e9k=,tag:/EpL6S5bbgyUOh4skqAEcg==,type:str]
 spec:
     tls:
         - hosts:
-              - '*.stefangenov.site'
+            - '*.stefangenov.site'
           secretName: ingress
     rules:
         - host: plex.stefangenov.site
           http:
-              paths:
-                  - pathType: Prefix
-                    path: /
-                    backend:
-                        service:
-                            name: plex
-                            port:
-                                number: 32400
+            paths:
+                - pathType: Prefix
+                  path: /
+                  backend:
+                    service:
+                        name: plex
+                        port:
+                            number: 32400
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSByVDExY1pqNFJvZHdtTmNV
+            UTJaZUs5UGlNUUFVaGxvMEZUdjFtaXBVN1hFClRJbHFVUUxmS293eTdBRGsyYklH
+            M0YxV04wWUhFdTZsRGRlRStHZW9jTDgKLS0tIENjL3hhTmdvRkFuWVBMS1doeURF
+            ZEMvc0t5THhUTGlXWUZuSlpCVTRHU00KdaGZkqChwYG15DN9uNIiRVUZt2Q6waCe
+            Pvoi5ZQmAuaDTrk7LI8VvQMidUJ6saQtw1hqQ+xAOMPac2hdrneCaw==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2023-03-17T07:03:16Z"
+    mac: ENC[AES256_GCM,data:J/E0g9HjTca2Ye8J7GhCjWPiRPFug4sniD9pLGuZrLoM93yVpzs5N18oK5B/OdMX9g8Sl4wtJhc10yZJFHyP/SNBNLgcYMFMefwV8wo1z4QoUUTrc/0TpOJWZ4HAlWuoilg20gWv+9tBA0t/hzqNKzveRPrLoZyeVwFuVl0HBCo=,iv:3qBJdZkIdIdsvUz7tObG3W40OiIN4WgZMoNc/PJuoNs=,tag:uS11hcoY3e/HoddFBckOkA==,type:str]
+    pgp: []
+    encrypted_regex: ^(annotations)$
+    version: 3.7.3
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
@@ -37,8 +63,27 @@ spec:
           targetPort: 32400
     clusterIP: None
     type: ClusterIP
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSByVDExY1pqNFJvZHdtTmNV
+            UTJaZUs5UGlNUUFVaGxvMEZUdjFtaXBVN1hFClRJbHFVUUxmS293eTdBRGsyYklH
+            M0YxV04wWUhFdTZsRGRlRStHZW9jTDgKLS0tIENjL3hhTmdvRkFuWVBMS1doeURF
+            ZEMvc0t5THhUTGlXWUZuSlpCVTRHU00KdaGZkqChwYG15DN9uNIiRVUZt2Q6waCe
+            Pvoi5ZQmAuaDTrk7LI8VvQMidUJ6saQtw1hqQ+xAOMPac2hdrneCaw==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2023-03-17T07:03:16Z"
+    mac: ENC[AES256_GCM,data:J/E0g9HjTca2Ye8J7GhCjWPiRPFug4sniD9pLGuZrLoM93yVpzs5N18oK5B/OdMX9g8Sl4wtJhc10yZJFHyP/SNBNLgcYMFMefwV8wo1z4QoUUTrc/0TpOJWZ4HAlWuoilg20gWv+9tBA0t/hzqNKzveRPrLoZyeVwFuVl0HBCo=,iv:3qBJdZkIdIdsvUz7tObG3W40OiIN4WgZMoNc/PJuoNs=,tag:uS11hcoY3e/HoddFBckOkA==,type:str]
+    pgp: []
+    encrypted_regex: ^(annotations)$
+    version: 3.7.3
 ---
-
 apiVersion: v1
 kind: Endpoints
 metadata:
@@ -46,8 +91,28 @@ metadata:
     namespace: ingress-nginx
 subsets:
     - addresses:
-          - ip: 192.168.1.151
+        - ip: 192.168.1.151
       ports:
-          - name: app
-            port: 32400
-            protocol: TCP
+        - name: app
+          port: 32400
+          protocol: TCP
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSByVDExY1pqNFJvZHdtTmNV
+            UTJaZUs5UGlNUUFVaGxvMEZUdjFtaXBVN1hFClRJbHFVUUxmS293eTdBRGsyYklH
+            M0YxV04wWUhFdTZsRGRlRStHZW9jTDgKLS0tIENjL3hhTmdvRkFuWVBMS1doeURF
+            ZEMvc0t5THhUTGlXWUZuSlpCVTRHU00KdaGZkqChwYG15DN9uNIiRVUZt2Q6waCe
+            Pvoi5ZQmAuaDTrk7LI8VvQMidUJ6saQtw1hqQ+xAOMPac2hdrneCaw==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2023-03-17T07:03:16Z"
+    mac: ENC[AES256_GCM,data:J/E0g9HjTca2Ye8J7GhCjWPiRPFug4sniD9pLGuZrLoM93yVpzs5N18oK5B/OdMX9g8Sl4wtJhc10yZJFHyP/SNBNLgcYMFMefwV8wo1z4QoUUTrc/0TpOJWZ4HAlWuoilg20gWv+9tBA0t/hzqNKzveRPrLoZyeVwFuVl0HBCo=,iv:3qBJdZkIdIdsvUz7tObG3W40OiIN4WgZMoNc/PJuoNs=,tag:uS11hcoY3e/HoddFBckOkA==,type:str]
+    pgp: []
+    encrypted_regex: ^(annotations)$
+    version: 3.7.3

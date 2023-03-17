@@ -1,0 +1,33 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: reactiveresume
+    namespace: {{ $.Release.Namespace }}
+    annotations:
+        kubernetes.io/ingress.class: nginx
+spec:
+    tls:
+        - hosts:
+            - '*.stefangenov.site'
+          secretName: ingress
+    rules:
+        - host: resume.stefangenov.site
+          http:
+            paths:
+                - pathType: Prefix
+                  path: /
+                  backend:
+                    service:
+                        name: reactiveresume
+                        port:
+                            number: 3000
+        - host: resume-api.stefangenov.site
+          http:
+            paths:
+                - pathType: Prefix
+                  path: /
+                  backend:
+                    service:
+                        name: reactiveresume
+                        port:
+                            number: 3100

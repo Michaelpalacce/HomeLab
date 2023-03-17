@@ -10,29 +10,3 @@ metadata:
         gethomepage.dev/group: Work
         gethomepage.dev/icon: https://rxresu.me/images/logos/logo.svg
         gethomepage.dev/name: Reactive Resume
-spec:
-    tls:
-        - hosts:
-            - '*.stefangenov.site'
-          secretName: ingress
-    rules:
-        - host: resume.stefangenov.site
-          http:
-            paths:
-                - pathType: Prefix
-                  path: /
-                  backend:
-                    service:
-                        name: reactiveresume
-                        port:
-                            number: 3000
-        - host: resume-api.stefangenov.site
-          http:
-            paths:
-                - pathType: Prefix
-                  path: /
-                  backend:
-                    service:
-                        name: reactiveresume
-                        port:
-                            number: 3100
