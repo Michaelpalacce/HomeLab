@@ -90,7 +90,7 @@ sonarr:
     metrics:
         enabled: false
     exportarr:
-        image: ghcr.io/onedr0p/exportarr:v1.2.1
+        image: ghcr.io/onedr0p/exportarr:v1.2.2
         port: 9707
         resources:
             requests:
