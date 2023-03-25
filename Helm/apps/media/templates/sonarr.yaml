@@ -17,48 +17,10 @@ spec:
         metadata:
             annotations:
                 backup.velero.io/backup-volumes: config-data
-{{- if .metrics.enabled }}
-                prometheus.io/scrape: "true"
-                prometheus.io/port: "{{ .exportarr.port }}"
-{{- end }}
             labels:
                 app: sonarr
         spec:
             containers:
-{{- if .metrics.enabled }}
-                -   name: exportarr
-                    image: {{ .exportarr.image }}
-                    args:
-                        - sonarr
-{{- if .exportarr.resources }}
-                    resources:
-{{ toYaml .exportarr.resources | indent 22 }}
-{{- end }}
-                    env:
-                        -   name: URL
-                            value: "http://sonarr:{{ .port }}"
-                        -   name: PORT
-                            value: "{{ .exportarr.port }}"
-                    envFrom:
-                        -   secretRef:
-                                name: sonarr-exportarr
-                    ports:
-                        -   name: monitoring
-                            containerPort: {{ .exportarr.port }}
-                    livenessProbe:
-                        httpGet:
-                            path: /healthz
-                            port: monitoring
-                        failureThreshold: 5
-                        periodSeconds: 10
-                    readinessProbe:
-                        httpGet:
-                            path: /healthz
-                            port: monitoring
-                        failureThreshold: 5
-                        periodSeconds: 10
-{{- end }}
-
                 -   name: sonarr
                     image: {{ .image }}
                     imagePullPolicy: IfNotPresent
@@ -101,20 +63,11 @@ metadata:
     name: sonarr
     namespace: {{ $.Release.Namespace }}
 spec:
-    {{- with .nodePort }}
-    type: NodePort
-    {{- end }}
     selector:
         app: sonarr
     ports:
         -   name: sonarr
             protocol: TCP
             port: {{ .port }}
-          {{- with .nodePort }}
-            nodePort: {{ . }}
-          {{- end }}
-        -   name: monitoring
-            protocol: TCP
-            port: {{ .exportarr.port }}
 
 {{- end }}

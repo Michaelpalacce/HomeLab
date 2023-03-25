@@ -1,0 +1,47 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: autobrr-config-pvc
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: longhorn
+    resources:
+        requests:
+            storage: 5Gi
+
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: media-volume-pv
+    labels:
+        type: nfs
+        app: media
+spec:
+    storageClassName: nfs-direct
+    capacity:
+        storage: 2Ti
+    accessModes:
+        - ReadWriteMany
+    nfs:
+        path: "/volume1/k3s/media/"
+        server: 192.168.1.20
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: media-volume-nfs
+spec:
+    selector:
+        matchLabels:
+            type: nfs
+            app: media
+    storageClassName: nfs-direct
+    accessModes:
+        - ReadWriteMany
+    resources:
+        requests:
+            storage: 2Ti

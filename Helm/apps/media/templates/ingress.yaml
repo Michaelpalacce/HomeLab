@@ -27,31 +27,6 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-    name: exportarr
-    namespace: {{ $.Release.Namespace }}
-    annotations:
-        kubernetes.io/ingress.class: "nginx"
-spec:
-    tls:
-        -   hosts:
-                - "*.stefangenov.site"
-            secretName: ingress
-    rules:
-        -   host: exportarr.stefangenov.site
-            http:
-                paths:
-                    -   pathType: Prefix
-                        path: "/"
-                        backend:
-                            service:
-                                name: sonarr
-                                port:
-                                    number: {{ .Values.sonarr.exportarr.port }}
-
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
     name: bazarr
     namespace: {{ $.Release.Namespace }}
     annotations:
@@ -197,4 +172,3 @@ spec:
                                 name: transmission
                                 port:
                                     number: {{ .Values.transmission.port }}
-

@@ -87,15 +87,6 @@ sonarr:
             memory: 1Gi
         limits:
             cpu: 2
-    metrics:
-        enabled: false
-    exportarr:
-        image: ghcr.io/onedr0p/exportarr:v1.2.4
-        port: 9707
-        resources:
-            requests:
-                cpu: 25m
-                memory: 64Mi
 
 doplarr:
     image: lscr.io/linuxserver/doplarr:3.6.2

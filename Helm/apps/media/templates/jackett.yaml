@@ -60,13 +60,11 @@ metadata:
     name: jackett
     namespace: {{ $.Release.Namespace }}
 spec:
-    type: NodePort
     selector:
         app: jackett
     ports:
         -   name: jackett
             protocol: TCP
             port: {{ .port }}
-            nodePort: {{ .nodePort }}
 
 {{- end }}

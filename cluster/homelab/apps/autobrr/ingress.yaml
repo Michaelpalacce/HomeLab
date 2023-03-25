@@ -1,0 +1,30 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: autobrr
+    namespace: autobrr
+    annotations:
+        kubernetes.io/ingress.class: "nginx"
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: Media Manager
+        gethomepage.dev/group: Automation
+        gethomepage.dev/icon: autobrr
+        gethomepage.dev/name: Autobrr
+
+spec:
+    tls:
+        -   hosts:
+                - "*.stefangenov.site"
+            secretName: ingress
+    rules:
+        -   host: autobrr.stefangenov.site
+            http:
+                paths:
+                    -   pathType: Prefix
+                        path: "/"
+                        backend:
+                            service:
+                                name: autobrr
+                                port:
+                                    number: 7474
