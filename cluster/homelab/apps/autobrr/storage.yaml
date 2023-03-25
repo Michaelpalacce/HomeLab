@@ -3,6 +3,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
     name: autobrr-config-pvc
+    namespace: autobrr
 spec:
     accessModes:
         - ReadWriteMany
@@ -17,6 +18,7 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
     name: media-volume-pv
+    namespace: autobrr
     labels:
         type: nfs
         app: media
@@ -34,6 +36,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
     name: media-volume-nfs
+    namespace: autobrr
 spec:
     selector:
         matchLabels:
