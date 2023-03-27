@@ -1,6 +1,6 @@
 ---
 vaultwarden:
-    image: vaultwarden/server:1.27.0
+    image: ghcr.io/dani-garcia/vaultwarden:1.28.0
     port: 80
     resources:
         requests:
