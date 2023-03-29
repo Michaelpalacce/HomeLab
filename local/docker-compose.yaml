@@ -1,0 +1,39 @@
+version: "3.4"
+services:
+  tdarr:
+    container_name: tdarr
+    image: ghcr.io/haveagitgat/tdarr:latest
+    restart: unless-stopped
+    privileged: true
+    network_mode: bridge
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    ports:
+      - 8265:8265 # webUI port
+      - 8266:8266 # server port
+      - 8267:8267 # Internal node port
+    environment:
+      - TZ=Europe/London
+      - UMASK_SET=002
+      - serverIP=0.0.0.0
+      - serverPort=8266
+      - webUIPort=8265
+      - internalNode=true
+      - nodeName=MyInternalNode
+    volumes:
+      - ./docker-data/tdarr/server:/app/server
+      - ./docker-data/tdarr/configs:/app/configs
+      - ./docker-data/tdarr/logs:/app/logs
+      - media:/media
+      - ./docker-data/tdarr/transcode_cache:/temp
+volumes:
+  media:
+    driver_opts:
+      type: "nfs"
+      o: "addr=192.168.1.20,nolock,rw,soft,nfsvers=4"
+      device: ":/volume1/k3s/media"

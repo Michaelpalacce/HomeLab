@@ -9,3 +9,4 @@ temp
 *.tfvars
 *.tfstate.backup
 .terraform
+docker-data
