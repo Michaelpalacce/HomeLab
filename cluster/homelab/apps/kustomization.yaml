@@ -7,7 +7,6 @@ resources:
   - couchdb
   - changedetection
   - cyberchef
-  - dashy
   - diagrams
   - external-ingress
   - firefly
@@ -28,6 +27,7 @@ resources:
   - website
   - wallabag
   - whoogle
+#  - dashy
 #  - droneci
 #  - emulatorjs
 #  - homebox
