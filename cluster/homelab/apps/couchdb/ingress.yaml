@@ -1,0 +1,14 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: couchdb
+    namespace: couchdb
+    annotations:
+        kubernetes.io/ingress.class: "nginx"
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: CouchDB
+        gethomepage.dev/group: Databases
+        gethomepage.dev/icon: couchdb
+        gethomepage.dev/name: CouchDB
+
