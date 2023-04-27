@@ -1,14 +1,44 @@
----
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
     name: couchdb
     namespace: couchdb
     annotations:
-        kubernetes.io/ingress.class: "nginx"
-        gethomepage.dev/enabled: "true"
-        gethomepage.dev/description: CouchDB
-        gethomepage.dev/group: Databases
-        gethomepage.dev/icon: couchdb
-        gethomepage.dev/name: CouchDB
-
+        kubernetes.io/ingress.class: ENC[AES256_GCM,data:DWUVPQ8=,iv:+1jdF/O3vLaaEAxhnuyuHBILxdfiAo4HoSuYlQgqzrY=,tag:ebc2rv8hOHRfEt02qIgkIw==,type:str]
+        gethomepage.dev/enabled: ENC[AES256_GCM,data:+fhCqg==,iv:D6rTF/BnCf+XSs+db7CS04iFo1uZK2dzqkPzBf67kFY=,tag:43g1mX6ax0QizlPWrLUSOg==,type:str]
+        gethomepage.dev/description: ENC[AES256_GCM,data:OjIpb7GSmA==,iv:8vTsAAQxPumzuBeSXOFpdVAIeruzpddAJze3nEZEOaY=,tag:E5lFHPCp59bsG4yDAaASpA==,type:str]
+        gethomepage.dev/group: ENC[AES256_GCM,data:CmVqoam68JXY,iv:8yiyxPICn/G+bwSm1b4TwlXx39GJHXvDTkGS10LDRrE=,tag:OfHsIlLCuyeqk6Wlic8kCQ==,type:str]
+        gethomepage.dev/icon: ENC[AES256_GCM,data:4uwy7Qz78A==,iv:dz+2YiFTuamubV9UVw1EIwHJ0tuhjCmPaFhGE2x6A4I=,tag:L4rIX6VbHF/o7zXh4v6uVA==,type:str]
+        gethomepage.dev/name: ENC[AES256_GCM,data:uthOGjyMrQ==,iv:+v1vFwnwQbNWCSdQuFRGGzLCLbQ9NQUdsbiwibdyoJ8=,tag:6ranM4m4Tusgcyinshl8ZA==,type:str]
+spec:
+    rules:
+        - host: ENC[AES256_GCM,data:Kz7ziuzkE7iqJva+SbRJmXABW7YzxqyFlahTMgzTO74MBA==,iv:IiV43ATCKGg0bMgJpfx8fo2TGDdtWDIod3UvXhbBiXs=,tag:SrrtoK4gFOBo37OgWlnR9g==,type:str]
+          http:
+            paths:
+                - pathType: Prefix
+                  path: /
+                  backend:
+                    service:
+                        name: couchdb
+                        port:
+                            number: 5984
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB6bC9yYmxXT3VLSDI3TFdk
+            MXgrTUpheUU3YzdHMGo5NXQ4eVBNcEdUMVdnClhnVE1maVp4c2ZqYy9IYUJKQUlM
+            cWV0SDJiNjRPTDBKa2ZrSXZNTE5RN28KLS0tIDI3Y3dKbGxpbkxOd0Y2amdOcVJz
+            eGcydEhybTV4bU1uZ2cxQ3NPYXpkVTAKAm0HevZe2G7BPTETd54uzn3GrhJP0taT
+            ZQAq1jMqsDnC+X9t+zsMwXxS/ups1UOjNKWx5B2AFvcJ+fHpXD9teQ==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2023-04-27T17:45:25Z"
+    mac: ENC[AES256_GCM,data:9ZsHhaZcfveHhXJJ3c1pJTIqaeLGFtuxK4qBSklk8YOXA9V2wHWgDTF5JFDzt08nSDmUlSdG1aw4OjqZ0t7d1hzfLkWmYu/7PbBQun18Tf0xgNw6QZ1Y9U5hoIY5JyB3pod/NmzOOxcH47CBbigKQZNGhq7QGia8/EHFmBolwmo=,iv:ZUgngcWDCkA1N+LGJpk5XYLneZtae4jBTuwh6m7u614=,tag:AihqYRYEn9xJ6xRmW4p1wQ==,type:str]
+    pgp: []
+    encrypted_regex: ^(data|stringData|annotations|host)$
+    version: 3.7.3
