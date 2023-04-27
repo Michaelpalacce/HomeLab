@@ -1,59 +1,40 @@
+---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
     name: couchdb
     namespace: couchdb
     annotations:
-        kubernetes.io/ingress.class: ENC[AES256_GCM,data:oOtuV+0=,iv:KB4uXNJoug0w+PmOJx3ZIuHR9TgV2lLjV7NuhmYaNqE=,tag:UddYGgmYsl3SsGvAylEUSw==,type:str]
-        nginx.ingress.kubernetes.io/proxy-body-size: ENC[AES256_GCM,data:tWuQ+A==,iv:oXRWWOKyePfV192j7sg59wFmITjn4anXgsRVukfvev8=,tag:IgUqeHiXCFTAPUWuOfLZHQ==,type:str]
-        gethomepage.dev/enabled: ENC[AES256_GCM,data:ggMMfg==,iv:VB204hu2VJ7rdkBTtyYm/NYkZ2VramtMzolZcnBcswE=,tag:Z2J6bTkR14cd9AIY3io6mw==,type:str]
-        gethomepage.dev/description: ENC[AES256_GCM,data:1YjqH4J8tw==,iv:oCE1pjtu/zq0N11LQyTsro+p6j4k+p78gDrqGbGEu10=,tag:tdBw0cBJENbBN8a66FLJcg==,type:str]
-        gethomepage.dev/group: ENC[AES256_GCM,data:2RvMDMOBGoVZ,iv:xUnvBjR7vZE7PmH4knXQHWoMqdeMZAfj37J8OZDnMmg=,tag:V1Xh3t3Z23OIwayePYpULQ==,type:str]
-        gethomepage.dev/icon: ENC[AES256_GCM,data:NEcnyyUBIw==,iv:Yqjy5ZqkAPPE9rZpkknmfdFe7h+/qzmrSgKB/Jf0ENQ=,tag:2CDZkg+4RW1yOnKJDggM+Q==,type:str]
-        gethomepage.dev/name: ENC[AES256_GCM,data:Im0FhAQovA==,iv:xmnR8Ryfmhy607csGUa5JmoX9/EDFL3wFjdwqHu0LRw=,tag:2IICFJ3kfn/bxFsWtYJmjg==,type:str]
+        kubernetes.io/ingress.class: "nginx"
+        nginx.ingress.kubernetes.io/proxy-body-size: "500m"
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: CouchDB
+        gethomepage.dev/group: Databases
+        gethomepage.dev/icon: couchdb
+        gethomepage.dev/name: CouchDB
 spec:
     tls:
-        - hosts:
-            - '*.stefangenov.site'
-          secretName: ingress
+        -   hosts:
+                - "*.stefangenov.site"
+            secretName: ingress
     rules:
-        - host: ENC[AES256_GCM,data:gEByfiWUQMs5J5j/xW4RC227kr6oJsIM,iv:KqeJ+WJ0hODqQ4VUbNGziRr7oS0MWdN5rFBMRQtkT8w=,tag:414RRjs7rDrOfBpUlN5rRg==,type:str]
-          http:
-            paths:
-                - pathType: Prefix
-                  path: /
-                  backend:
-                    service:
-                        name: couchdb
-                        port:
-                            number: 5984
-        - host: ENC[AES256_GCM,data:TP7YK4NPQCaEIulfzmJuav4abn2tzXBTW4ej6glAbq+tZA==,iv:EbaAA5eRAcY3eEhb1kXD9IyXb0ILMRMUU0LXNP9EhSg=,tag:gvRry+4GFNZdufEsplGN0Q==,type:str]
-          http:
-            paths:
-                - pathType: Prefix
-                  path: /
-                  backend:
-                    service:
-                        name: couchdb
-                        port:
-                            number: 5984
-sops:
-    kms: []
-    gcp_kms: []
-    azure_kv: []
-    hc_vault: []
-    age:
-        - recipient: age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
-          enc: |
-            -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSAyZW96V3puNld6YzFoNU5p
-            aHhoSkhLcG1zRUdJTW05RkZHSzAxaDVCQjBFCi8rVTFBUDAxQmswb1VTWk9FVGJz
-            dXMyQlcwMjI0ME9RelVHcHIzMktNT2sKLS0tIFB0cUtYYXJyeEd0NWV6MURSdzZa
-            M0JieHlnbkJROXhNS0pIRVhHa1V5bEUKz2bgSS5ikBxCjTw6zIiU1YISElVZIVRc
-            lSr3WyGH2uzPhyDyaoCJq6Q0ez5ejfWNAFnT1L5R5EAYRWI1B6sk2w==
-            -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-04-27T17:52:52Z"
-    mac: ENC[AES256_GCM,data:D6zbvn5hnaT21ufc4n1FUOdKDiG56e0HXNlyTNUjlUR22khIG8h0opg/0AakY7khtcqmQJ3GVOLmaoEkOG0O+NRFC8k8kE60Df19lS5WigXtKkhi1O6YxhSYXCn8ECV78CVqwomNVSlyA1twdmdEMZ3hnmituzbRTKIxFb2ktY8=,iv:RHmf8VZcUKWtInLzFPM1pkctDX3oE8LSFIGASCrA3OM=,tag:5D9UtzRnJW4B5hDiOM7GcA==,type:str]
-    pgp: []
-    encrypted_regex: ^(data|stringData|annotations|host)$
-    version: 3.7.3
+        -   host: couchdb.stefangenov.site
+            http:
+                paths:
+                    -   pathType: Prefix
+                        path: "/"
+                        backend:
+                            service:
+                                name: couchdb
+                                port:
+                                    number: 5984
+        -   host: obsidian-livesync.stefangenov.site
+            http:
+                paths:
+                    -   pathType: Prefix
+                        path: "/"
+                        backend:
+                            service:
+                                name: couchdb
+                                port:
+                                    number: 5984
