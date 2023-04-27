@@ -8,4 +8,4 @@ couchdb:
             cpu: 500m
             memory: 1Gi
 storage:
-    dataSize: 2Gi
+    dataSize: 10Gi

@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - botkube
   - cert-manager
+  - couchdb
   - changedetection
   - cyberchef
   - dashy
@@ -27,7 +28,6 @@ resources:
   - website
   - wallabag
   - whoogle
-#  - couchdb
 #  - droneci
 #  - emulatorjs
 #  - homebox
