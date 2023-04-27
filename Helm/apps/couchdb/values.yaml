@@ -5,7 +5,7 @@ couchdb:
     replicas: 1
     resources:
         requests:
-            cpu: 500m
+            cpu: 1
             memory: 1Gi
 storage:
     dataSize: 10Gi
