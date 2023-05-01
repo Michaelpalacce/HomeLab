@@ -15,10 +15,11 @@ spec:
           - nodered
           - changedetection
           - storage
-          - monitoring
+          # - monitoring
           - mealie
           - media
           - freshrss
+          - couchdb
         snapshotVolumes: true
         ttl: 72h0m0s
     useOwnerReferencesInBackup: false
