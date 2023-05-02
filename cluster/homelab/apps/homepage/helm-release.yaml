@@ -27,7 +27,7 @@ spec:
     values:
         image:
           repository: ghcr.io/benphelps/homepage
-          tag: v0.6.16
+          tag: v0.6.17
 
         # Enable RBAC. RBAC is necessary to use Kubernetes integration
         enableRbac: true
