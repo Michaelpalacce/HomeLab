@@ -8,14 +8,12 @@ spec:
     template:
         hooks: {}
         includedNamespaces:
-          - uptimekuma
           - simplesecrets
           - vaultwarden
           - postgresql
           - nodered
           - changedetection
           - storage
-          # - monitoring
           - mealie
           - media
           - freshrss
