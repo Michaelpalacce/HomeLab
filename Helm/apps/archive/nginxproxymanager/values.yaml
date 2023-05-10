@@ -1,6 +1,6 @@
 ---
 nginxporxymanager:
-    image: jc21/nginx-proxy-manager:2.10.2
+    image: jc21/nginx-proxy-manager:2.10.3
 
 storage:
     numberOfReplicas: 1
