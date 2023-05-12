@@ -19,12 +19,12 @@ nodeExporter:
         - key: node-role.kubernetes.io/master
           effect: NoSchedule
 
-promtail:
-    image: grafana/promtail:2.8.2
-    resources:
-        requests:
-            cpu: 50m
-            memory: 250Mi
+# promtail:
+#     image: grafana/promtail:2.8.2
+#     resources:
+#         requests:
+#             cpu: 50m
+#             memory: 250Mi
 
 grafana:
     image: grafana/grafana:9.5.2
@@ -44,15 +44,15 @@ cadvisor:
             memory: 1000Mi
             cpu: 400m
 
-loki:
-    image: grafana/loki:2.8.2
-    port: 3100
-    resources:
-        requests:
-            cpu: 125m
-            memory: 50Mi
-        limits:
-            memory: 2Gi
+# loki:
+#     image: grafana/loki:2.8.2
+#     port: 3100
+#     resources:
+#         requests:
+#             cpu: 125m
+#             memory: 50Mi
+#         limits:
+#             memory: 2Gi
 
 kubestatemetrics:
     image: registry.k8s.io/kube-state-metrics/kube-state-metrics:v2.8.2
