@@ -41,8 +41,8 @@ cadvisor:
             memory: 50Mi
             cpu: 10m
         limits:
-            memory: 1000Mi
-            cpu: 400m
+            memory: 500Mi
+            cpu: 100m
 
 # loki:
 #     image: grafana/loki:2.8.2
