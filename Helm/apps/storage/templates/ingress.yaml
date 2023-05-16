@@ -1,4 +1,5 @@
 ---
+{{- with .Values.serveremulator }}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -22,6 +23,11 @@ spec:
                                 name: serveremulator
                                 port:
                                     number: {{ .Values.serveremulator.port }}
+{{- end }}
+
+
+{{- with .Values.syncthing }}
+
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -46,3 +52,4 @@ spec:
                                 name: syncthing
                                 port:
                                     number: {{ .Values.syncthing.port }}
+{{- end }}

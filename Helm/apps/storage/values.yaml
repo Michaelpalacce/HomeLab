@@ -1,11 +1,12 @@
 ---
 syncthing:
     image: lscr.io/linuxserver/syncthing:1.23.4
+    replicas: 1
     port: 8384
     resources:
         requests:
             cpu: 10m
-            memory: 250Mi
+            memory: 50Mi
 
 serveremulator:
     image: stefangenov/server:v23.1.2
