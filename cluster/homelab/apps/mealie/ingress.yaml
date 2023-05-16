@@ -8,7 +8,7 @@ metadata:
         kubernetes.io/ingress.class: "nginx"
         gethomepage.dev/enabled: "true"
         gethomepage.dev/description: Self-hosted Recipes!
-        gethomepage.dev/group: Knowledge Base And Tasks
+        gethomepage.dev/group: Knowledge
         gethomepage.dev/icon: mealie
         gethomepage.dev/name: Mealie
 

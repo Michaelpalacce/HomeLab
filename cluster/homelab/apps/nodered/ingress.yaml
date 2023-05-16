@@ -9,6 +9,6 @@ metadata:
         gethomepage.dev/enabled: "true"
         gethomepage.dev/description: Low-code automation
         gethomepage.dev/group: Automation
-        gethomepage.dev/icon: nodered
+        gethomepage.dev/icon: node-red
         gethomepage.dev/name: NodeRed
 

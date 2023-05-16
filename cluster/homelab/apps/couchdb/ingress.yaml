@@ -9,7 +9,7 @@ metadata:
         gethomepage.dev/enabled: ENC[AES256_GCM,data:ggMMfg==,iv:VB204hu2VJ7rdkBTtyYm/NYkZ2VramtMzolZcnBcswE=,tag:Z2J6bTkR14cd9AIY3io6mw==,type:str]
         gethomepage.dev/description: ENC[AES256_GCM,data:1YjqH4J8tw==,iv:oCE1pjtu/zq0N11LQyTsro+p6j4k+p78gDrqGbGEu10=,tag:tdBw0cBJENbBN8a66FLJcg==,type:str]
         gethomepage.dev/group: ENC[AES256_GCM,data:2RvMDMOBGoVZ,iv:xUnvBjR7vZE7PmH4knXQHWoMqdeMZAfj37J8OZDnMmg=,tag:V1Xh3t3Z23OIwayePYpULQ==,type:str]
-        gethomepage.dev/icon: ENC[AES256_GCM,data:NEcnyyUBIw==,iv:Yqjy5ZqkAPPE9rZpkknmfdFe7h+/qzmrSgKB/Jf0ENQ=,tag:2CDZkg+4RW1yOnKJDggM+Q==,type:str]
+        gethomepage.dev/icon: ENC[AES256_GCM,data:D9uQvAAEg7LjYDo=,iv:Ac2JnYoGHTsPbPYoArOh8tu55C+fYgdIGvVnBFSwzeQ=,tag:nAZXlhWOpISKVKVjycXKnQ==,type:str]
         gethomepage.dev/name: ENC[AES256_GCM,data:Im0FhAQovA==,iv:xmnR8Ryfmhy607csGUa5JmoX9/EDFL3wFjdwqHu0LRw=,tag:2IICFJ3kfn/bxFsWtYJmjg==,type:str]
 spec:
     tls:
@@ -52,8 +52,8 @@ sops:
             M0JieHlnbkJROXhNS0pIRVhHa1V5bEUKz2bgSS5ikBxCjTw6zIiU1YISElVZIVRc
             lSr3WyGH2uzPhyDyaoCJq6Q0ez5ejfWNAFnT1L5R5EAYRWI1B6sk2w==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-04-27T17:52:52Z"
-    mac: ENC[AES256_GCM,data:D6zbvn5hnaT21ufc4n1FUOdKDiG56e0HXNlyTNUjlUR22khIG8h0opg/0AakY7khtcqmQJ3GVOLmaoEkOG0O+NRFC8k8kE60Df19lS5WigXtKkhi1O6YxhSYXCn8ECV78CVqwomNVSlyA1twdmdEMZ3hnmituzbRTKIxFb2ktY8=,iv:RHmf8VZcUKWtInLzFPM1pkctDX3oE8LSFIGASCrA3OM=,tag:5D9UtzRnJW4B5hDiOM7GcA==,type:str]
+    lastmodified: "2023-05-16T22:14:49Z"
+    mac: ENC[AES256_GCM,data:M7/88nxVL4v1moMiEO2fgVEyAT/A4DvQS0S51d9HSIkG5o6zGQr9pIPpb5qkQUo+WTYPZHZNA17bYJ5W6xyzCTmlvjr0VAhQvGEHwOuMluWgI1AeySW9jGlofN8ZfATdmnHA0lkT4ak1ORMtLhODUOb5N888WrWMLuL3ZlWkXyM=,iv:OlzqILYlj91K0og9sHxe0lBYZTXmb+TEbr+5fVeZKzM=,tag:DmLEFm6Lks06Y+MR8yLloA==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData|annotations|host)$
     version: 3.7.3

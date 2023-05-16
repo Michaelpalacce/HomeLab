@@ -8,7 +8,7 @@ metadata:
         kubernetes.io/ingress.class: "nginx"
         gethomepage.dev/enabled: "true"
         gethomepage.dev/description: Self-Hosted Google
-        gethomepage.dev/group: Tools
+        gethomepage.dev/group: Security
         gethomepage.dev/icon: whooglesearch
         gethomepage.dev/name: Whoogle
 

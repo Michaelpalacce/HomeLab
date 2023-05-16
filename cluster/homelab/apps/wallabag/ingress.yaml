@@ -8,7 +8,7 @@ metadata:
         kubernetes.io/ingress.class: "nginx"
         gethomepage.dev/enabled: "true"
         gethomepage.dev/description: Self-Hosted Pocket
-        gethomepage.dev/group: Tools
+        gethomepage.dev/group: Knowledge
         gethomepage.dev/icon: wallabag
         gethomepage.dev/name: Wallabag
 
