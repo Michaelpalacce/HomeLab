@@ -144,7 +144,7 @@ data:
                 icon: hl-kavita
                 url: https://kavita.{{ .domainName }}
 
-          - name: Knowledge Base And Tasks
+          - name: Knowledge
             items:
               - title: Vikunja
                 description: Tasks
