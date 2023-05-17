@@ -24,7 +24,7 @@ spec:
     storageClassName: storage-sc
     resources:
         requests:
-            storage: {{ .Values.storage.syncthingConfigSize }}
+            storage: {{ $.Values.storage.syncthingConfigSize }}
 
 ---
 
@@ -43,7 +43,7 @@ spec:
         - ReadWriteMany
     nfs:
         path: "/volume1/k3s/storage/syncthing"
-        server: {{ .Values.storage.nasIp }}
+        server: {{ $.Values.storage.nasIp }}
 
 ---
 
@@ -77,7 +77,7 @@ spec:
     storageClassName: storage-sc
     resources:
         requests:
-            storage: {{ .Values.storage.serverEmulatorConfigSize }}
+            storage: {{ $.Values.storage.serverEmulatorConfigSize }}
 
 ---
 
@@ -96,7 +96,7 @@ spec:
         - ReadWriteMany
     nfs:
         path: "/volume1"
-        server: {{ .Values.storage.nasIp }}
+        server: {{ $.Values.storage.nasIp }}
 
 ---
 
