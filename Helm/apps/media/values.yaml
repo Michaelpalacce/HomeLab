@@ -18,8 +18,7 @@ storage:
 #     Increased due to a bug... for some reason after an upgrade longhorn detected wrong sizes and had to manually increase
         config: 10Gi
     jackett:
-#     Increased due to a bug... for some reason after an upgrade longhorn detected wrong sizes and had to manually increase
-        config: 30Gi
+        config: 10Gi
     doplarr:
         config: 5Gi
     tautulli:
