@@ -1,7 +1,7 @@
 ---
 storage:
     dshmSize: 1Gi
-    pgAdmin: 1Gi
+    pgAdmin: 2Gi
     dataSize: 25Gi
 
 postgresql:
