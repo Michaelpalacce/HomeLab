@@ -26,23 +26,16 @@ spec:
 {{ toYaml .resources | indent 22 }}
 {{- end }}
                     volumeMounts:
-                        -   name: sessions-storage
-                            mountPath: /home/node/app/sessions
+                        - name: sessions
+                          mountPath: /home/node/app/sessions
                     envFrom:
                         - secretRef:
                               name: bot-env
-                    livenessProbe:
-                        failureThreshold: 2
-                        initialDelaySeconds: 120
-                        periodSeconds: 120
-                        timeoutSeconds: 5
-                        tcpSocket:
-                            port: {{ .port }}
 
             restartPolicy: Always
             volumes:
-                -   name: firefly-bot-pvc
+                -   name: sessions
                     persistentVolumeClaim:
-                        claimName: sessions-storage
+                        claimName: firefly-bot-pvc
 
 {{- end }}
