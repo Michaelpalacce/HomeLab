@@ -5,3 +5,4 @@ resources:
     - helm-release.yaml
     - ingress.yaml
     - namespace.yaml
+    - secret.sops.yaml

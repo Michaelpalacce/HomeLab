@@ -10,3 +10,16 @@ spec:
     resources:
         requests:
             storage: {{ .Values.storage.configSize }}
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: firefly-bot-pvc
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: longhorn
+    resources:
+        requests:
+            storage: {{ .Values.storage.botSessionSize }}

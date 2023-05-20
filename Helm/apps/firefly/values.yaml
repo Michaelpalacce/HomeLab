@@ -8,7 +8,13 @@ firefly:
             cpu: 10m
             memory: 250Mi
 
+fireflybot:
+    image: cyxou/firefly-iii-telegram-bot:1.1.1
+    resources:
+        requests:
+            cpu: 200m
+            memory: 500Mi
+
 storage:
-    dataLocality: disabled
-    numberOfReplicas: 1
     configSize: 5Gi
+    botSessionSize: 2Gi

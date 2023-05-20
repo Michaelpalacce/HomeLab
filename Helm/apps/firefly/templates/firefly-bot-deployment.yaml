@@ -1,0 +1,48 @@
+---
+{{- with .Values.fireflybot }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: fireflybot
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app: firefly
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: fireflybot
+    template:
+        metadata:
+            labels:
+                app: fireflybot
+        spec:
+            containers:
+                -   name: fireflybot
+                    image: {{ .image }}
+                    imagePullPolicy: IfNotPresent
+{{- if .resources }}
+                    resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+                    volumeMounts:
+                        -   name: sessions-storage
+                            mountPath: /home/node/app/sessions
+                    envFrom:
+                        - secretRef:
+                              name: bot-env
+                    livenessProbe:
+                        failureThreshold: 2
+                        initialDelaySeconds: 120
+                        periodSeconds: 120
+                        timeoutSeconds: 5
+                        tcpSocket:
+                            port: {{ .port }}
+
+            restartPolicy: Always
+            volumes:
+                -   name: firefly-bot-pvc
+                    persistentVolumeClaim:
+                        claimName: sessions-storage
+
+{{- end }}
