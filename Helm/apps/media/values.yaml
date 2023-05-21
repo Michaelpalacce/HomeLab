@@ -27,7 +27,7 @@ storage:
         config: 5Gi
 
 transmission:
-    image: lscr.io/linuxserver/transmission:version-3.00-r2
+    image: lscr.io/linuxserver/transmission:4.0.3
     port: 9091
     username: username
     password: password
@@ -92,7 +92,7 @@ readarr:
             memory: 500Mi
 
 sonarr:
-    image: lscr.io/linuxserver/sonarr:3.0.9.1549-ls154
+    image: lscr.io/linuxserver/sonarr:3.0.10
     port: 8989
     resources:
         requests:
