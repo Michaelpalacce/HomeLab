@@ -13,11 +13,10 @@ spec:
           - postgresql
           - nodered
           - changedetection
-          - storage
           - mealie
           - media
           - freshrss
           - couchdb
         snapshotVolumes: true
-        ttl: 72h0m0s
+        ttl: 168h0m0s
     useOwnerReferencesInBackup: false
