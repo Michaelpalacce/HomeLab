@@ -20,7 +20,6 @@ resources:
   - openbooks
   - postgresql
   - reactiveresume
-  - storage
   - uptimekuma
   - vaultwarden
   - vikunja
@@ -41,6 +40,7 @@ resources:
 #  - redis
 #  - rss
 #  - shiori
+#  - storage
 #  - trilium
 #  - dailynotes
 #  - babybuddy
