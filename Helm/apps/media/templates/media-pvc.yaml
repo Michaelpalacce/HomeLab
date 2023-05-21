@@ -253,6 +253,18 @@ spec:
     resources:
         requests:
             storage: {{ .Values.storage.doplarr.config }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: prowlarr-config-pvc
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: longhorn
+    resources:
+        requests:
+            storage: {{ .Values.storage.prowlarr.config }}
 
 {{/*---*/}}
 {{/*apiVersion: v1*/}}

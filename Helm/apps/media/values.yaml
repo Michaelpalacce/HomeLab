@@ -19,6 +19,8 @@ storage:
         config: 10Gi
     jackett:
         config: 10Gi
+    prowlarr:
+        config: 10Gi
     doplarr:
         config: 5Gi
     tautulli:
@@ -39,6 +41,16 @@ jackett:
     replicas: 1
     image: lscr.io/linuxserver/jackett:0.20.4199
     port: 9117
+    resources:
+        requests:
+            cpu: 500m
+            memory: 1Gi
+
+prowlarr:
+    nodePort: 30034
+    replicas: 1
+    image: lscr.io/linuxserver/prowlarr:nightly-version-1.5.1.3393
+    port: 9696
     resources:
         requests:
             cpu: 500m
