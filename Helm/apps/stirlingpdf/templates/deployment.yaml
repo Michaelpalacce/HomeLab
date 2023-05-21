@@ -1,0 +1,68 @@
+---
+{{- with .Values.stirlingpdf }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: stirlingpdf
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app: stirlingpdf
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: stirlingpdf
+    template:
+        metadata:
+            labels:
+                app: stirlingpdf
+        spec:
+            containers:
+                - name: stirlingpdf
+                  image: {{ .image }}
+                  imagePullPolicy: IfNotPresent
+{{- if .resources }}
+                  resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+                  ports:
+                      - name: web
+                        containerPort: {{ .port }}
+                  env:
+                      - name: PUID
+                        value: "1000"
+                      - name: PGID
+                        value: "1000"
+                  livenessProbe:
+                      failureThreshold: 2
+                      initialDelaySeconds: 120
+                      periodSeconds: 120
+                      timeoutSeconds: 2
+                      tcpSocket:
+                          port: {{ .port }}
+
+            restartPolicy: Always
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: stirlingpdf
+    namespace: {{ $.Release.Namespace }}
+spec:
+    {{- with .nodePort }}
+    type: NodePort
+    {{- end }}
+    selector:
+        app: stirlingpdf
+    ports:
+        - name: stirlingpdf
+          protocol: TCP
+          port: {{ .port }}
+          {{- with .nodePort }}
+          nodePort: {{ . }}
+          {{- end }}
+
+{{- end }}

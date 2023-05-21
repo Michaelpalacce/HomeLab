@@ -1,0 +1,14 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: stirlingpdf
+    namespace: stirlingpdf
+    annotations:
+        kubernetes.io/ingress.class: "nginx"
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: Swiss Army Knife For PDFs
+        gethomepage.dev/group: Tools
+        gethomepage.dev/icon: stirling-pdf
+        gethomepage.dev/name: Stirling-PDF
+

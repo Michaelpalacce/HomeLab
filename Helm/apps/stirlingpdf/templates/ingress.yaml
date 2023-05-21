@@ -1,0 +1,24 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: stirlingpdf
+    namespace: {{ $.Release.Namespace }}
+    annotations:
+        kubernetes.io/ingress.class: "nginx"
+spec:
+    tls:
+        - hosts:
+              - "*.stefangenov.site"
+          secretName: ingress
+    rules:
+        - host: pdf.stefangenov.site
+          http:
+              paths:
+                  - pathType: Prefix
+                    path: "/"
+                    backend:
+                        service:
+                            name: stirlingpdf
+                            port:
+                                number: {{ .Values.stirlingpdf.port }}

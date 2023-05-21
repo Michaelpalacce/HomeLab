@@ -1,0 +1,8 @@
+---
+stirlingpdf:
+    image: frooodle/s-pdf:0.8.3
+    port: 8080
+    resources:
+        requests:
+            cpu: 10m
+            memory: 50Mi
