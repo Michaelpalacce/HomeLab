@@ -15,8 +15,7 @@ storage:
     readarr:
         config: 5Gi
     sonarr:
-#     Increased due to a bug... for some reason after an upgrade longhorn detected wrong sizes and had to manually increase
-        config: 10Gi
+        config: 5Gi
     jackett:
         config: 10Gi
     prowlarr:
