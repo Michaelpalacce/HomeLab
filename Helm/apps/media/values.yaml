@@ -82,7 +82,7 @@ overseerr:
             memory: 50Mi
 
 readarr:
-    image: lscr.io/linuxserver/readarr:0.1.5-nightly
+    image: lscr.io/linuxserver/readarr:0.1.6-nightly
     replicas: 1
     port: 8787
     resources:
