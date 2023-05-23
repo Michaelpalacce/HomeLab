@@ -17,10 +17,6 @@ spec:
                 name: flux-system
                 namespace: flux-system
     values:
-        jackett:
-            replicas: 1
-        jellyfin:
-            replicas: 0
         tautulli:
             replicas: 0
         readarr:

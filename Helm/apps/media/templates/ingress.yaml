@@ -73,30 +73,6 @@ spec:
                                 port:
                                     number: {{ .Values.kavita.port }}
 
-{{/*---*/}}
-{{/*apiVersion: networking.k8s.io/v1*/}}
-{{/*kind: Ingress*/}}
-{{/*metadata:*/}}
-{{/*    name: jackett*/}}
-{{/*    namespace: {{ $.Release.Namespace }}*/}}
-{{/*    annotations:*/}}
-{{/*        kubernetes.io/ingress.class: "nginx"*/}}
-{{/*spec:*/}}
-{{/*    tls:*/}}
-{{/*        -   hosts:*/}}
-{{/*                - "*.stefangenov.site"*/}}
-{{/*            secretName: ingress*/}}
-{{/*    rules:*/}}
-{{/*        -   host: jackett.stefangenov.site*/}}
-{{/*            http:*/}}
-{{/*                paths:*/}}
-{{/*                    -   pathType: Prefix*/}}
-{{/*                        path: "/"*/}}
-{{/*                        backend:*/}}
-{{/*                            service:*/}}
-{{/*                                name: jackett*/}}
-{{/*                                port:*/}}
-{{/*                                    number: {{ .Values.jackett.port }}*/}}
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress

@@ -10,16 +10,32 @@ metadata:
         app: sonarr
 spec:
     replicas: 1
+    strategy:
+        type: Recreate
     selector:
         matchLabels:
             app: sonarr
     template:
         metadata:
             annotations:
-                backup.velero.io/backup-volumes: config-data
+                backup.velero.io/backup-volumes: sonarr-config-data
             labels:
                 app: sonarr
         spec:
+            terminationGracePeriodSeconds: 60
+            initContainers:
+                - name: init-sync
+                  image: busybox
+                  volumeMounts:
+                      -   name: config-data
+                          mountPath: /config
+                      -   name: sonarr-config-data
+                          mountPath: /sonarr-config
+                  command:
+                      - sh
+                      - -c
+                      - |-
+                          cp -fvpr /sonarr-config/* /config/
             containers:
                 -   name: sonarr
                     image: {{ .image }}
@@ -39,22 +55,32 @@ spec:
                     volumeMounts:
                         -   name: config-data
                             mountPath: /config
+                        -   name: sonarr-config-data
+                            mountPath: /sonarr-config
                         -   name: downloads-data
                             mountPath: /downloads
                         -   name: shows-data-nfs
                             mountPath: /shows
-
+                    lifecycle:
+                        preStop:
+                            exec:
+                                command:
+                                    - sh
+                                    - -c
+                                    - cp -fvpr /config/* /sonarr-config > /sonarr-config/copy.log
             restartPolicy: Always
             volumes:
-                -   name: config-data
-                    persistentVolumeClaim:
-                        claimName: sonarr-config-pvc
-                -   name: shows-data-nfs
-                    persistentVolumeClaim:
-                        claimName: shows-volume-nfs
-                -   name: downloads-data
-                    persistentVolumeClaim:
-                        claimName: downloads-volume
+                - name: sonarr-config-data
+                  persistentVolumeClaim:
+                      claimName: sonarr-config-pvc
+                - name: shows-data-nfs
+                  persistentVolumeClaim:
+                      claimName: shows-volume-nfs
+                - name: downloads-data
+                  persistentVolumeClaim:
+                      claimName: downloads-volume
+                - name: config-data
+                  emptyDir: {}
 ---
 
 apiVersion: v1
