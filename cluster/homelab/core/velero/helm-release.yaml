@@ -43,6 +43,7 @@ spec:
             backupStorageLocation:
                 - name: backblaze
                   provider: aws
+                  default: true
                   bucket: sgenov
                   config:
                       region: eu-central-003
