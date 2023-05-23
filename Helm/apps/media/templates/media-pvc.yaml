@@ -228,18 +228,18 @@ spec:
         requests:
             storage: {{ .Values.storage.sonarr.config }}
 
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-    name: jackett-config-pvc
-spec:
-    accessModes:
-        - ReadWriteMany
-    storageClassName: longhorn
-    resources:
-        requests:
-            storage: {{ .Values.storage.jackett.config }}
+{{/*---*/}}
+{{/*apiVersion: v1*/}}
+{{/*kind: PersistentVolumeClaim*/}}
+{{/*metadata:*/}}
+{{/*    name: jackett-config-pvc*/}}
+{{/*spec:*/}}
+{{/*    accessModes:*/}}
+{{/*        - ReadWriteMany*/}}
+{{/*    storageClassName: longhorn*/}}
+{{/*    resources:*/}}
+{{/*        requests:*/}}
+{{/*            storage: {{ .Values.storage.jackett.config }}*/}}
 
 ---
 apiVersion: v1
