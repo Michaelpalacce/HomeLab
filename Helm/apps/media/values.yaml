@@ -38,7 +38,7 @@ transmission:
 jackett:
     nodePort: 30034
     replicas: 1
-    image: lscr.io/linuxserver/jackett:0.21.14
+    image: lscr.io/linuxserver/jackett:0.21.17
     port: 9117
     resources:
         requests:
