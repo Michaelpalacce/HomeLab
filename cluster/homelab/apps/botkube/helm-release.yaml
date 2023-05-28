@@ -56,8 +56,6 @@ spec:
                   executors:
                     - "kubectl-allow-all"
             botID: "1008832691073974272"
-            notification:
-              type: short
       executors:
         "kubectl-allow-all":
           kubectl:
