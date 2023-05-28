@@ -15,10 +15,24 @@ spec:
     template:
         metadata:
             annotations:
-                backup.velero.io/backup-volumes: config-data
+                backup.velero.io/backup-volumes: prowlarr-config-data
             labels:
                 app: prowlarr
         spec:
+            initContainers:
+                - name: init-sync
+                  image: busybox
+                  volumeMounts:
+                      -   name: config-data
+                          mountPath: /config
+                      -   name: prowlarr-config-data
+                          mountPath: /prowlarr-config
+                  command:
+                      - sh
+                      - -c
+                      - |-
+                          cp -fvpr /prowlarr-config/* /config/
+
             containers:
                 -   name: prowlarr
                     image: {{ .image }}
@@ -38,6 +52,15 @@ spec:
                     volumeMounts:
                         -   name: config-data
                             mountPath: /config
+                        -   name: prowlarr-config-data
+                            mountPath: /prowlarr-config
+                    lifecycle:
+                        preStop:
+                            exec:
+                                command:
+                                    - sh
+                                    - -c
+                                    - cp -fvpr /config/* /sonarr-config > /sonarr-config/copy.log
                     livenessProbe:
                         failureThreshold: 2
                         initialDelaySeconds: 120
@@ -48,9 +71,11 @@ spec:
 
             restartPolicy: Always
             volumes:
-                -   name: config-data
-                    persistentVolumeClaim:
-                        claimName: prowlarr-config-pvc
+                - name: prowlarr-config-data
+                  persistentVolumeClaim:
+                      claimName: prowlarr-config-pvc
+                - name: config-data
+                  emptyDir: {}
 
 ---
 
