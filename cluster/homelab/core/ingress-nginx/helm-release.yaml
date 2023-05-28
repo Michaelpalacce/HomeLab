@@ -8,6 +8,10 @@ spec:
     interval: 5m
     install:
         createNamespace: true
+    upgrade:
+        crds: CreateReplace
+        remediation:
+            retries: 3
     chart:
         spec:
             chart: ingress-nginx
