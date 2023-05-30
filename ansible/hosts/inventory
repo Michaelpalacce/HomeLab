@@ -16,5 +16,5 @@ workers
 #Variables for all the servers
 [all:vars]
 ansible_connection=ssh
-ansible_user=ansible
+ansible_user=stefan
 ansible_ssh_common_args='-o StrictHostKeyChecking=no'
