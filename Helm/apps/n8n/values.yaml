@@ -1,6 +1,6 @@
 ---
 n8n:
-    image: n8nio/n8n:0.231.0
+    image: n8nio/n8n:0.231.1
     port: 5678
     replicas: 1
     resources:
