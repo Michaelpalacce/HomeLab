@@ -1,6 +1,6 @@
 ---
 jelu:
-    image: wabayang/jelu:0.38.1
+    image: wabayang/jelu:0.39.0
     replicas: 1
     port: 11111
     resources:
