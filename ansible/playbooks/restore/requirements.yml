@@ -1,4 +1,0 @@
----
-collections:
-    - name: kubernetes.base
-      version: 2.2.3
