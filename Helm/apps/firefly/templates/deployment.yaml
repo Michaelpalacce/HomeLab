@@ -31,7 +31,7 @@ spec:
                             containerPort: {{ .port }}
                     volumeMounts:
                         -   name: data
-                            mountPath: /var/www/html/storage/upload
+                            mountPath: /var/www/html/storage
                     env:
                         -   name: PUID
                             value: "1000"
