@@ -9,7 +9,7 @@ firefly:
             memory: 250Mi
 
 fireflybot:
-    image: cyxou/firefly-iii-telegram-bot:1.1.1
+    image: cyxou/firefly-iii-telegram-bot:v1.2.0
     resources:
         requests:
             cpu: 200m
