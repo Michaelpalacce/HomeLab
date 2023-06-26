@@ -18,7 +18,7 @@ spec:
     chart:
         spec:
             chart: velero
-            version: 4.0.3
+            version: 4.1.0
             interval: 5m
             sourceRef:
                 kind: HelmRepository
