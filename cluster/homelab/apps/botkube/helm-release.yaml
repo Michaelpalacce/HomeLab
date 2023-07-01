@@ -54,20 +54,10 @@ spec:
             channels:
               default:
                 id: "1008788276011880578"
-                bindings:
-                  executors:
-                    - "kubectl-allow-all"
             botID: "1008832691073974272"
       executors:
-        "kubectl-allow-all":
-          kubectl:
-            enabled: true
-            namespaces:
-              include:
-                - ".*"
-            commands:
-              verbs: [ "api-resources", "api-versions", "cluster-info", "describe", "explain", "get", "logs", "top" ]
-              resources: [ "deployments", "pods", "namespaces", "daemonsets", "statefulsets", "storageclasses", "nodes", "configmaps", "services", "ingresses" ]
+        botkube/kubectl:
+          enabled: true
       rbac:
         create: true
       config:
