@@ -18,7 +18,7 @@ spec:
     chart:
         spec:
             chart: botkube
-            version: v1.1.1
+            version: v1.0.1
             interval: 5m
             sourceRef:
                 kind: HelmRepository
@@ -58,16 +58,16 @@ spec:
                   executors:
                     - "kubectl-allow-all"
             botID: "1008832691073974272"
-#      executors:
-#        "kubectl-allow-all":
-#          kubectl:
-#            enabled: true
-#            namespaces:
-#              include:
-#                - ".*"
-#            commands:
-#              verbs: [ "api-resources", "api-versions", "cluster-info", "describe", "explain", "get", "logs", "top" ]
-#              resources: [ "deployments", "pods", "namespaces", "daemonsets", "statefulsets", "storageclasses", "nodes", "configmaps", "services", "ingresses" ]
+      executors:
+        "kubectl-allow-all":
+          kubectl:
+            enabled: true
+            namespaces:
+              include:
+                - ".*"
+            commands:
+              verbs: [ "api-resources", "api-versions", "cluster-info", "describe", "explain", "get", "logs", "top" ]
+              resources: [ "deployments", "pods", "namespaces", "daemonsets", "statefulsets", "storageclasses", "nodes", "configmaps", "services", "ingresses" ]
       rbac:
         create: true
       config:
@@ -243,8 +243,8 @@ spec:
         settings:
           # -- Cluster name to differentiate incoming messages.
           clusterName: HomeLab
-#          kubectl:
-#            enabled: true
+          kubectl:
+            enabled: true
           ## BotKube logging settings.
           log:
             # -- Sets one of the log levels. Allowed values: `info`, `warn`, `debug`, `error`, `fatal`, `panic`.
