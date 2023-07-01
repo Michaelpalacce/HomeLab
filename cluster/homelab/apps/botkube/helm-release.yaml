@@ -18,7 +18,7 @@ spec:
     chart:
         spec:
             chart: botkube
-            version: v1.0.1
+            version: v1.1.1
             interval: 5m
             sourceRef:
                 kind: HelmRepository
@@ -55,13 +55,7 @@ spec:
               default:
                 id: "1008788276011880578"
             botID: "1008832691073974272"
-      executors:
-        botkube/kubectl:
-          enabled: true
-      rbac:
-        create: true
-      config:
-        resources:
+      resources:
           - events:
               - error
             name: v1/services
@@ -230,14 +224,7 @@ spec:
               fields:
                 - status.phase
                 - status.Errors
-        settings:
-          # -- Cluster name to differentiate incoming messages.
-          clusterName: HomeLab
-          kubectl:
-            enabled: true
-          ## BotKube logging settings.
-          log:
-            # -- Sets one of the log levels. Allowed values: `info`, `warn`, `debug`, `error`, `fatal`, `panic`.
-            level: debug
-            # -- If true, disable ANSI colors in logging.
-            disableColors: false
+      settings:
+        # -- Cluster name to differentiate incoming messages.
+        clusterName: HomeLab
+
