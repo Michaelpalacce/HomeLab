@@ -57,7 +57,7 @@ spec:
             botID: "1008832691073974272"
       executors:
         "k8s-default-tools":
-          botkube/kubect:
+          botkube/kubectl:
             enabled: true
           botkube/helm:
             enabled: true
