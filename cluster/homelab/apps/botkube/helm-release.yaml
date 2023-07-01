@@ -66,6 +66,8 @@ spec:
             commands:
               verbs: [ "api-resources", "api-versions", "cluster-info", "describe", "explain", "get", "logs", "top" ]
               resources: [ "deployments", "pods", "namespaces", "daemonsets", "statefulsets", "storageclasses", "nodes", "configmaps", "services", "ingresses" ]
+      rbac:
+        create: true
       config:
         resources:
           - events:
@@ -225,7 +227,7 @@ spec:
                 - all
 
           ## Custom resource example
-          - name: velero.io/v1/Backup
+          - name: velero.io/v1/backups
             namespaces:
               include:
                 - all
@@ -244,6 +246,6 @@ spec:
           ## BotKube logging settings.
           log:
             # -- Sets one of the log levels. Allowed values: `info`, `warn`, `debug`, `error`, `fatal`, `panic`.
-            level: info
+            level: debug
             # -- If true, disable ANSI colors in logging.
             disableColors: false
