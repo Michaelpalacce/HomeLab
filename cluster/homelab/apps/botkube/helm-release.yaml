@@ -27,6 +27,8 @@ spec:
     values:
       image:
         tag: v0.17.0
+      analytics:
+        disable: true
       extraEnv:
         - name: BOTKUBE_COMMUNICATIONS_DEFAULT-GROUP_DISCORD_TOKEN
           valueFrom:
