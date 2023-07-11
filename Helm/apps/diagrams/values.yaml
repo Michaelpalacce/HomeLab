@@ -1,6 +1,6 @@
 ---
 diagrams:
-    image: jgraph/drawio:21.6.1
+    image: jgraph/drawio:21.6.2
     port: 8080
     resources:
         requests:
