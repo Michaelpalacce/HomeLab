@@ -10,13 +10,15 @@ metadata:
         app: readarr
 spec:
     replicas: {{ .replicas }}
+    strategy:
+        type: Recreate
     selector:
         matchLabels:
             app: readarr
     template:
         metadata:
             annotations:
-                backup.velero.io/backup-volumes: config-data
+                backup.velero.io/backup-volumes: readarr-config-data
             labels:
                 app: readarr
         spec:
