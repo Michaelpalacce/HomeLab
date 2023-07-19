@@ -19,6 +19,7 @@ spec:
             labels:
                 app: prowlarr
         spec:
+            terminationGracePeriodSeconds: 600
             initContainers:
                 - name: init-sync
                   image: busybox

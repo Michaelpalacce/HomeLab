@@ -22,7 +22,7 @@ spec:
             labels:
                 app: sonarr
         spec:
-            terminationGracePeriodSeconds: 60
+            terminationGracePeriodSeconds: 600
             initContainers:
                 - name: init-sync
                   image: busybox
