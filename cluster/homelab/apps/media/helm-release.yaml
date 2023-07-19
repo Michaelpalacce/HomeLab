@@ -20,4 +20,4 @@ spec:
         tautulli:
             replicas: 0
         readarr:
-            replicas: 0
+            replicas: 1
