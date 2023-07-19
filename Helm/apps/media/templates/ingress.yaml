@@ -127,6 +127,31 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
+    name: readarr
+    namespace: {{ $.Release.Namespace }}
+    annotations:
+        kubernetes.io/ingress.class: "nginx"
+spec:
+    tls:
+        -   hosts:
+                - "*.stefangenov.site"
+            secretName: ingress
+    rules:
+        -   host: readarr.stefangenov.site
+            http:
+                paths:
+                    -   pathType: Prefix
+                        path: "/"
+                        backend:
+                            service:
+                                name: readarr
+                                port:
+                                    number: {{ .Values.readarr.port }}
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
     name: overseerr
     namespace: {{ $.Release.Namespace }}
     annotations:

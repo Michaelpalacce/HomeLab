@@ -20,6 +20,20 @@ spec:
             labels:
                 app: readarr
         spec:
+            terminationGracePeriodSeconds: 60
+            initContainers:
+                - name: init-sync
+                  image: busybox
+                  volumeMounts:
+                      -   name: config-data
+                          mountPath: /config
+                      -   name: readarr-config-data
+                          mountPath: /readarr-config
+                  command:
+                      - sh
+                      - -c
+                      - |-
+                          cp -fvpr /readarr-config/* /config/
             containers:
                 -   name: readarr
                     image: {{ .image }}
@@ -39,21 +53,32 @@ spec:
                     volumeMounts:
                         -   name: config-data
                             mountPath: /config
+                        -   name: readarr-config-data
+                            mountPath: /readarr-config
                         -   name: downloads-data
                             mountPath: /downloads
                         -   name: books-data-nfs
                             mountPath: /books
+                    lifecycle:
+                        preStop:
+                            exec:
+                                command:
+                                    - sh
+                                    - -c
+                                    - cp -fvpr /config/* /readarr-config > /readarr-config/copy.log
             restartPolicy: Always
             volumes:
-                -   name: config-data
+                -   name: readarr-config-data
                     persistentVolumeClaim:
-                        claimName: readarr-config-pvc
+                      claimName: readarr-config-pvc
                 -   name: books-data-nfs
                     persistentVolumeClaim:
                         claimName: books-volume-nfs
                 -   name: downloads-data
                     persistentVolumeClaim:
                         claimName: downloads-volume
+                -   name: config-data
+                    emptyDir: {}
 ---
 
 apiVersion: v1
