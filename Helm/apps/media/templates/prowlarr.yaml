@@ -9,6 +9,8 @@ metadata:
         app: prowlarr
 spec:
     replicas: {{ .replicas }}
+    strategy:
+        type: Recreate
     selector:
         matchLabels:
             app: prowlarr
