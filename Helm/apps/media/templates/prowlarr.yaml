@@ -63,7 +63,7 @@ spec:
                                 command:
                                     - sh
                                     - -c
-                                    - cp -fvpr /config/* /sonarr-config > /sonarr-config/copy.log
+                                    - cp -fvpr /config/* /prowlarr-config > /prowlarr-config/copy.log
                     livenessProbe:
                         failureThreshold: 2
                         initialDelaySeconds: 120
