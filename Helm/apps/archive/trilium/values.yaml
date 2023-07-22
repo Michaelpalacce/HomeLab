@@ -1,6 +1,6 @@
 ---
 trilium:
-    image: zadam/trilium:0.60-latest
+    image: zadam/trilium:0.61-latest
     replicas: 1
     port: 8080
     resources:
