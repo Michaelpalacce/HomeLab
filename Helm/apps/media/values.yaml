@@ -35,7 +35,7 @@ transmission:
 prowlarr:
     nodePort: 30034
     replicas: 1
-    image: lscr.io/linuxserver/prowlarr:1.7.3-nightly
+    image: lscr.io/linuxserver/prowlarr:1.7.4-nightly
     port: 9696
     resources:
         requests:
