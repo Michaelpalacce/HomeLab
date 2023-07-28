@@ -60,7 +60,7 @@ tautulli:
             memory: 500Mi
 
 overseerr:
-    image: lscr.io/linuxserver/overseerr:1.33.1
+    image: lscr.io/linuxserver/overseerr:1.33.2
     port: 5055
     replicas: 1
     resources:
