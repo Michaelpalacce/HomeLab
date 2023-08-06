@@ -1,6 +1,6 @@
 ---
 grocy:
-    image: lscr.io/linuxserver/grocy:4.0.0
+    image: lscr.io/linuxserver/grocy:4.0.1
     port: 80
     replicas: 1
     resources:
