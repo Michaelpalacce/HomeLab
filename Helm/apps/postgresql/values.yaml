@@ -15,7 +15,7 @@ postgresql:
             memory: 2Gi
 
 postgresql14:
-    image: postgres:14.8
+    image: postgres:14.9
     port: 5432
     resources:
         requests:
