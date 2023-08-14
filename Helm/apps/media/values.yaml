@@ -43,7 +43,7 @@ prowlarr:
             memory: 1Gi
 
 radarr:
-    image: lscr.io/linuxserver/radarr:4.7.4-develop
+    image: lscr.io/linuxserver/radarr:4.7.5-develop
     port: 7878
     resources:
         requests:
