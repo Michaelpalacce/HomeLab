@@ -8,10 +8,14 @@
 192.168.1.46
 192.168.1.134
 
+[extra]
+192.168.1.133
+
 # This group has all the servers
 [all:children]
 master
 workers
+# extra
 
 #Variables for all the servers
 [all:vars]

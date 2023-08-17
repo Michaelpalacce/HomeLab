@@ -9,6 +9,8 @@ metadata:
     labels:
         app: kavita
 spec:
+    strategy:
+        type: Recreate
     replicas: {{ .replicas }}
     selector:
         matchLabels:
