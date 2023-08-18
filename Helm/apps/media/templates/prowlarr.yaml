@@ -17,25 +17,11 @@ spec:
     template:
         metadata:
             annotations:
-                backup.velero.io/backup-volumes: prowlarr-config-data
+                backup.velero.io/backup-volumes: config-data
             labels:
                 app: prowlarr
         spec:
-            terminationGracePeriodSeconds: 600
             initContainers:
-                - name: init-sync
-                  image: busybox
-                  volumeMounts:
-                      -   name: config-data
-                          mountPath: /config
-                      -   name: prowlarr-config-data
-                          mountPath: /prowlarr-config
-                  command:
-                      - sh
-                      - -c
-                      - |-
-                          cp -fvpr /prowlarr-config/* /config/
-
             containers:
                 -   name: prowlarr
                     image: {{ .image }}
@@ -55,15 +41,6 @@ spec:
                     volumeMounts:
                         -   name: config-data
                             mountPath: /config
-                        -   name: prowlarr-config-data
-                            mountPath: /prowlarr-config
-                    lifecycle:
-                        preStop:
-                            exec:
-                                command:
-                                    - sh
-                                    - -c
-                                    - cp -fvpr /config/* /prowlarr-config > /prowlarr-config/copy.log
                     livenessProbe:
                         failureThreshold: 2
                         initialDelaySeconds: 120
@@ -74,11 +51,9 @@ spec:
 
             restartPolicy: Always
             volumes:
-                - name: prowlarr-config-data
+                - name: config-data
                   persistentVolumeClaim:
                       claimName: prowlarr-config-pvc
-                - name: config-data
-                  emptyDir: {}
 
 ---
 
