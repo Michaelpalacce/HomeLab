@@ -21,7 +21,6 @@ spec:
             labels:
                 app: prowlarr
         spec:
-            initContainers:
             containers:
                 -   name: prowlarr
                     image: {{ .image }}
