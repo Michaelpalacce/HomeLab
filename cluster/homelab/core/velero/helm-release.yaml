@@ -41,7 +41,7 @@ spec:
             existingSecret: cloud-credentials-backblaze
         configuration:
             backupStorageLocation:
-                - name: backblaze
+                - name: backblaze-b2
                   provider: aws
                   default: true
                   bucket: sgenov
@@ -50,7 +50,7 @@ spec:
                       s3ForcePathStyle: true
                       s3Url: https://s3.eu-central-003.backblazeb2.com
             volumeSnapshotLocation:
-                - name: backblaze
+                - name: backblaze-b2
                   provider: aws
                   config:
                       region: eu-central-003
