@@ -1,6 +1,6 @@
 ---
 wallabag:
-    image: wallabag/wallabag:2.6.5
+    image: wallabag/wallabag:2.6.6
     replicas: 1
     port: 80
     domainName: https://wallabag.stefangenov.site
