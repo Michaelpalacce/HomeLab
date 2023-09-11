@@ -18,7 +18,7 @@ spec:
     chart:
         spec:
             chart: authentik
-            version: 2023.8.2
+            version: 2023.8.3
             interval: 5m
             sourceRef:
                 kind: HelmRepository
