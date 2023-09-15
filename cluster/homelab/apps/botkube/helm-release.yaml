@@ -18,7 +18,7 @@ spec:
     chart:
         spec:
             chart: botkube
-            version: v1.4.0
+            version: v1.4.1
             interval: 5m
             sourceRef:
                 kind: HelmRepository
