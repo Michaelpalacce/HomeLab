@@ -1,6 +1,6 @@
 ---
 babybuddy:
-    image: lscr.io/linuxserver/babybuddy:2.1.1
+    image: lscr.io/linuxserver/babybuddy:2.1.2
     port: 8000
     replicas: 1
 
