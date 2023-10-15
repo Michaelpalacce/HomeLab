@@ -95,7 +95,7 @@ doplarr:
             memory: 100Mi
 
 bazarr:
-    image: lscr.io/linuxserver/bazarr:1.3.1-development
+    image: lscr.io/linuxserver/bazarr:1.3.2-development
     port: 6767
     resources:
         requests:
