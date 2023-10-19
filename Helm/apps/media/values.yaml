@@ -20,8 +20,6 @@ storage:
         config: 10Gi
     doplarr:
         config: 5Gi
-    tautulli:
-        config: 5Gi
 
 transmission:
     image: lscr.io/linuxserver/transmission:4.0.4
@@ -33,7 +31,6 @@ transmission:
             cpu: 250m
             memory: 1Gi
 prowlarr:
-    nodePort: 30034
     replicas: 1
     image: lscr.io/linuxserver/prowlarr:1.8.5-nightly
     port: 9696
@@ -49,15 +46,6 @@ radarr:
         requests:
             cpu: 10m
             memory: 50Mi
-
-tautulli:
-    image: lscr.io/linuxserver/tautulli:2.13.1
-    port: 8181
-    replicas: 1
-    resources:
-        requests:
-            cpu: 250m
-            memory: 500Mi
 
 overseerr:
     image: lscr.io/linuxserver/overseerr:1.33.2
@@ -88,6 +76,7 @@ sonarr:
             cpu: 2
 
 doplarr:
+    replicas: 1
     image: lscr.io/linuxserver/doplarr:3.6.2
     resources:
         requests:

@@ -253,15 +253,3 @@ spec:
         requests:
             storage: {{ .Values.storage.prowlarr.config }}
 
-{{/*---*/}}
-{{/*apiVersion: v1*/}}
-{{/*kind: PersistentVolumeClaim*/}}
-{{/*metadata:*/}}
-{{/*    name: tautulli-config-pvc*/}}
-{{/*spec:*/}}
-{{/*    accessModes:*/}}
-{{/*        - ReadWriteMany*/}}
-{{/*    storageClassName: longhorn*/}}
-{{/*    resources:*/}}
-{{/*        requests:*/}}
-{{/*            storage: {{ .Values.storage.tautulli.config }}*/}}

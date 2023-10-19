@@ -17,7 +17,6 @@ spec:
                 name: flux-system
                 namespace: flux-system
     values:
-        tautulli:
+        doplarr:
             replicas: 0
-        readarr:
-            replicas: 1
+

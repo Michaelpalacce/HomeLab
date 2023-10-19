@@ -9,7 +9,7 @@ metadata:
     labels:
         app: doplarr
 spec:
-    replicas: 1
+    replicas: {{ .replicas }}
     selector:
         matchLabels:
             app: doplarr
