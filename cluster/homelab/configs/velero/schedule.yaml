@@ -17,5 +17,5 @@ spec:
           - media
           - freshrss
         snapshotVolumes: true
-        ttl: 168h0m0s
+        ttl: 96h0m0s
     useOwnerReferencesInBackup: false
