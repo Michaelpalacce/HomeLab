@@ -26,8 +26,8 @@ spec:
                 namespace: flux-system
     values:
         image:
-          repository: ghcr.io/benphelps/homepage
-          tag: v0.7.1
+          repository: ghcr.io/gethomepage/homepage
+          tag: v0.7.4
 
         # Enable RBAC. RBAC is necessary to use Kubernetes integration
         enableRbac: true
