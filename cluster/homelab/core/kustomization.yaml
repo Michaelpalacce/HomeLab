@@ -9,5 +9,5 @@ resources:
     - system-upgrade
     - longhorn-system
     - simplesecrets
-    # - velero
+    - velero
     - cert-manager
