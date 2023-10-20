@@ -11,8 +11,4 @@ metadata:
         gethomepage.dev/group: Monitoring
         gethomepage.dev/icon: uptime-kuma
         gethomepage.dev/name: Uptime Kuma
-        gethomepage.dev/widget.type: uptimekuma
-        gethomepage.dev/widget.url: https://uptimekuma.stefangenov.site
-        gethomepage.dev/widget.slug: default
-
 
