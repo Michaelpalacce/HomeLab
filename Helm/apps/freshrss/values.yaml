@@ -1,6 +1,6 @@
 ---
 freshrss:
-    image: lscr.io/linuxserver/freshrss:1.22.0
+    image: lscr.io/linuxserver/freshrss:1.22.1
     port: 80
     resources:
         requests:
