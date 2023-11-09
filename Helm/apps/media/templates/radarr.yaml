@@ -20,6 +20,15 @@ spec:
             labels:
                 app: radarr
         spec:
+            affinity:
+                nodeAffinity:
+                  requiredDuringSchedulingIgnoredDuringExecution:
+                    nodeSelectorTerms:
+                    - matchExpressions:
+                      - key: kubernetes.io/hostname
+                        operator: In
+                        values:
+                        - i3-v1
             containers:
                 -   name: radarr
                     image: {{ .image }}
@@ -39,6 +48,8 @@ spec:
                     volumeMounts:
                         -   name: config-data
                             mountPath: /config
+                        -   name: data
+                            mountPath: /backup-config
                         -   name: downloads-data
                             mountPath: /downloads
                         -   name: movies-data-nfs
@@ -48,6 +59,10 @@ spec:
                 -   name: config-data
                     persistentVolumeClaim:
                         claimName: radarr-config-pvc
+                -   name: data
+                    hostPath:
+                          # directory location on host
+                          path: /mnt/media/radarr
                 -   name: movies-data-nfs
                     persistentVolumeClaim:
                         claimName: movies-volume-nfs
