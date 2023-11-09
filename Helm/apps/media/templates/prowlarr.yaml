@@ -47,10 +47,10 @@ spec:
                         -   name: web
                             containerPort: {{ .port }}
                     volumeMounts:
+#                         -   name: config-data
+#                             mountPath: /config
                         -   name: config-data
                             mountPath: /config
-                        -   name: data
-                            mountPath: /backup-config
                     livenessProbe:
                         failureThreshold: 2
                         initialDelaySeconds: 120
@@ -61,10 +61,10 @@ spec:
 
             restartPolicy: Always
             volumes:
+#                 - name: config-data
+#                   persistentVolumeClaim:
+#                       claimName: prowlarr-config-pvc
                 - name: config-data
-                  persistentVolumeClaim:
-                      claimName: prowlarr-config-pvc
-                - name: data
                   hostPath:
                         # directory location on host
                         path: /mnt/media/prowlarr
