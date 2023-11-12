@@ -37,3 +37,6 @@ spec:
                 operator: "Equal"
                 effect: "NoSchedule"
                 value:
+
+        defaultSettings:
+            taintToleration: CriticalAddonsOnly:NoSchedule
