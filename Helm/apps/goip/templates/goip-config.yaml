@@ -1,0 +1,33 @@
+---
+{{- with .Values.goip }}
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: goip-config
+    namespace: {{ $.Release.Namespace }}
+data:
+    config.json: |
+        {
+            "cloudflare": {
+                "zones": [
+                    {
+                        "name": "stefangenov.site",
+                        "records": [
+                            {
+                                "name": "stefangenov.site",
+                                "proxied": true
+                            },
+                            {
+                                "name": "*-public.stefangenov.site",
+                                "proxied": true
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+
+
+
+{{- end }}

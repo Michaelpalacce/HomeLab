@@ -1,0 +1,49 @@
+---
+{{- with .Values.goip }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: goip
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app: goip
+spec:
+    replicas: {{ .replicas }}
+    selector:
+        matchLabels:
+            app: goip
+    template:
+        metadata:
+            labels:
+                app: goip
+            annotations:
+                {{- with $ }}
+                checksum/config: {{ include (print $.Template.BasePath "/goip-config.yaml") . | sha256sum }}
+                {{- end }}
+        spec:
+            restartPolicy: Always
+            volumes:
+                -   name: config-volume
+                    configMap:
+                        name: goip-config
+            containers:
+                -   name: goip
+                    image: {{ .image }}
+                    imagePullPolicy: IfNotPresent
+                    volumeMounts:
+                        -   name: config-volume
+                            mountPath: /app/config.json
+                            subPath: config.json
+                    envFrom:
+                        - secretRef:
+                              name: goip-env
+                              optional: false
+                    securityContext:
+                        privileged: false
+                        allowPrivilegeEscalation: false
+{{- if .resources }}
+                    resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+{{- end }}

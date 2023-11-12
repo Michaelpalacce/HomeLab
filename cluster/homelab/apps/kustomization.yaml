@@ -10,6 +10,7 @@ resources:
   - external-ingress
   - firefly
   - freshrss
+  - goip
   - homepage
   - mealie
   - media
