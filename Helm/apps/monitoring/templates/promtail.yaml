@@ -32,6 +32,11 @@ spec:
                 -   name: promtail-position
                     persistentVolumeClaim:
                         claimName: promtail-position-pvc
+            tolerations: 
+              - key: "CriticalAddonsOnly"
+                operator: "Equal"
+                effect: "NoSchedule"
+                value:
             containers:
                 -   name: promtail-container
                     image: {{ .image }}

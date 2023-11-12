@@ -35,6 +35,11 @@ spec:
             hostPID: true
             hostIPC: true
             hostNetwork: true
+            tolerations: 
+              - key: "CriticalAddonsOnly"
+                operator: "Equal"
+                effect: "NoSchedule"
+                value:
             containers:
                 -   ports:
                         -   containerPort: {{ .port }}

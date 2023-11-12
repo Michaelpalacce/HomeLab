@@ -25,3 +25,15 @@ spec:
             ingressClassName: nginx
             tls: true
             tlsSecret: ingress
+        longhornManager:
+            tolerations: 
+              - key: "CriticalAddonsOnly"
+                operator: "Equal"
+                effect: "NoSchedule"
+                value:
+        longhornDriver:
+            tolerations: 
+              - key: "CriticalAddonsOnly"
+                operator: "Equal"
+                effect: "NoSchedule"
+                value:

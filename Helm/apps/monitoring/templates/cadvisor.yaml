@@ -53,6 +53,11 @@ spec:
                 name: cadvisor
         spec:
             serviceAccountName: cadvisor
+            tolerations: 
+              - key: "CriticalAddonsOnly"
+                operator: "Equal"
+                effect: "NoSchedule"
+                value:
             containers:
                 -   name: cadvisor
                     securityContext:
