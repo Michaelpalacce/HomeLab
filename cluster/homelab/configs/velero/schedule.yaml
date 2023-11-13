@@ -8,9 +8,6 @@ spec:
     template:
         hooks: {}
         includedNamespaces:
-          - simplesecrets
-          - vaultwarden
-          - postgresql
           - nodered
           - changedetection
           - mealie
@@ -19,3 +16,34 @@ spec:
         snapshotVolumes: true
         ttl: 96h0m0s
     useOwnerReferencesInBackup: false
+---
+apiVersion: velero.io/v1
+kind: Schedule
+metadata:
+    name: sensitive
+    namespace: velero
+spec:
+    schedule: '00 04 * * *'
+    template:
+        hooks: {}
+        includedNamespaces:
+          - simplesecrets
+          - postgresql
+        snapshotVolumes: true
+        ttl: 168h0m0s
+    useOwnerReferencesInBackup: false
+---
+apiVersion: velero.io/v1
+kind: Schedule
+metadata:
+    name: critical
+    namespace: velero
+spec:
+    schedule: '00 05 * * *'
+    template:
+        hooks: {}
+        includedNamespaces:
+          - vaultwarden
+        snapshotVolumes: true
+        ttl: 720h0m0s
+    useOwnerReferencesInBackup: false 
