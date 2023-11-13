@@ -13,7 +13,7 @@ prometheus:
     retentionTime: 3d
 
 nodeExporter:
-    image: prom/node-exporter:v1.6.1
+    image: prom/node-exporter:v1.7.0
     port: 9100
     tolerations:
         - key: CriticalAddonsOnly
