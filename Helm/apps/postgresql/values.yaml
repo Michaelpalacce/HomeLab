@@ -5,7 +5,7 @@ storage:
     dataSize: 25Gi
 
 postgresql:
-    image: postgres:9.6
+    image: postgres:16.1
     port: 5432
     resources:
         requests:
@@ -15,7 +15,7 @@ postgresql:
             memory: 2Gi
 
 postgresql14:
-    image: postgres:14.9
+    image: postgres:16.1
     port: 5432
     resources:
         requests:
