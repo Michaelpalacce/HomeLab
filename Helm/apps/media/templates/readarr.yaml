@@ -62,10 +62,8 @@ spec:
                         -   name: web
                             containerPort: {{ .port }}
                     volumeMounts:
-                        # -   name: config-data
-                        #     mountPath: /config
-                        # -   name: readarr-config-data
-                        #     mountPath: /readarr-config
+                        -   name: config-data
+                            mountPath: /config-local
                         -   name: readarr-config-data
                             mountPath: /config
                         -   name: downloads-data
@@ -90,8 +88,10 @@ spec:
                 -   name: downloads-data
                     persistentVolumeClaim:
                         claimName: downloads-volume
-                # -   name: config-data
-                #     emptyDir: {}
+                -   name: config-data
+                    hostPath:
+                          # directory location on host
+                          path: /mnt/media/readarr
 ---
 
 apiVersion: v1
