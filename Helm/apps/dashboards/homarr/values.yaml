@@ -1,6 +1,6 @@
 ---
 homarr:
-    image: ghcr.io/ajnart/homarr:0.14.0
+    image: ghcr.io/ajnart/homarr:0.14.1
     port: 7575
     replicas: 1
     nodePort: 30500
