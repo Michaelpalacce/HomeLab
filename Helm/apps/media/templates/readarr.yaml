@@ -18,7 +18,7 @@ spec:
     template:
         metadata:
             annotations:
-                backup.velero.io/backup-volumes: readarr-config-data
+                backup.velero.io/backup-volumes: config-data
             labels:
                 app: readarr
         spec:
@@ -31,20 +31,6 @@ spec:
                         operator: In
                         values:
                         - i3-v1
-            # terminationGracePeriodSeconds: 600
-            # initContainers:
-            #     - name: init-sync
-            #       image: busybox
-            #       volumeMounts:
-            #           -   name: config-data
-            #               mountPath: /config
-            #           -   name: readarr-config-data
-            #               mountPath: /readarr-config
-            #       command:
-            #           - sh
-            #           - -c
-            #           - |-
-            #               cp -fvpr /readarr-config/* /config/
             containers:
                 -   name: readarr
                     image: {{ .image }}
@@ -63,25 +49,13 @@ spec:
                             containerPort: {{ .port }}
                     volumeMounts:
                         -   name: config-data
-                            mountPath: /config-local
-                        -   name: readarr-config-data
                             mountPath: /config
                         -   name: downloads-data
                             mountPath: /downloads
                         -   name: books-data-nfs
                             mountPath: /books
-                    # lifecycle:
-                    #     preStop:
-                    #         exec:
-                    #             command:
-                    #                 - sh
-                    #                 - -c
-                    #                 - cp -fvpr /config/* /readarr-config > /readarr-config/copy.log
             restartPolicy: Always
             volumes:
-                -   name: readarr-config-data
-                    persistentVolumeClaim:
-                      claimName: readarr-config-pvc
                 -   name: books-data-nfs
                     persistentVolumeClaim:
                         claimName: books-volume-nfs
