@@ -22,6 +22,15 @@ spec:
             labels:
                 app: readarr
         spec:
+            affinity:
+                nodeAffinity:
+                  requiredDuringSchedulingIgnoredDuringExecution:
+                    nodeSelectorTerms:
+                    - matchExpressions:
+                      - key: kubernetes.io/hostname
+                        operator: In
+                        values:
+                        - i3-v1
             # terminationGracePeriodSeconds: 600
             # initContainers:
             #     - name: init-sync
