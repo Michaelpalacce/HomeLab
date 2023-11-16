@@ -1,6 +1,6 @@
 ---
 homebox:
-    image: ghcr.io/hay-kot/homebox:v0.10.1
+    image: ghcr.io/hay-kot/homebox:v0.10.2
     port: 7745
     replicas: 1
     resources:
