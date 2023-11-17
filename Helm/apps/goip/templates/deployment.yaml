@@ -31,7 +31,7 @@ spec:
                 -   name: goip
                     image: {{ .image }}
                     imagePullPolicy: IfNotPresent
-                    args: ["--notifier" "webhook"]
+                    args: ["--notifier", "webhook"]
                     volumeMounts:
                         -   name: config-volume
                             mountPath: /app/config.json
