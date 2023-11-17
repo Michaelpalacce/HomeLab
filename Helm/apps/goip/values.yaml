@@ -1,6 +1,6 @@
 ---
 goip:
-    image: ghcr.io/michaelpalacce/goip:1.0.0
+    image: ghcr.io/michaelpalacce/goip:1.1.0
     replicas: 1
     resources:
         requests:
