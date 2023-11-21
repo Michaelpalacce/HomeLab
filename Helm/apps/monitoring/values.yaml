@@ -20,7 +20,7 @@ nodeExporter:
           effect: NoSchedule
 
 grafana:
-    image: grafana/grafana:10.2.1
+    image: grafana/grafana:10.2.2
     port: 3000
     limits:
         cpu: 250m
