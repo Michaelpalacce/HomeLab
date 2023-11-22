@@ -30,7 +30,7 @@ spec:
                       - key: kubernetes.io/hostname
                         operator: In
                         values:
-                        - i3-n1
+                        - k3s-n1
             containers:
                 -   name: sonarr
                     image: {{ .image }}

@@ -28,7 +28,7 @@ spec:
                       - key: kubernetes.io/hostname
                         operator: In
                         values:
-                        - i3-n4
+                        - k3s-n4
             containers:
                 -   name: radarr
                     image: {{ .image }}
