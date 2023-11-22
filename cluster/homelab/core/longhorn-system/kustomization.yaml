@@ -5,4 +5,4 @@ resources:
     - helm-release.yaml
     - namespace.yaml
     - storage-classes.yaml
-    - ingress.yaml
+#    - ingress.yaml
