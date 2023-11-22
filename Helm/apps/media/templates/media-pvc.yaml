@@ -189,15 +189,3 @@ spec:
         requests:
             storage: {{ .Values.storage.overseer.config }}
 
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-    name: doplarr-config-pvc
-spec:
-    accessModes:
-        - ReadWriteMany
-    storageClassName: longhorn
-    resources:
-        requests:
-            storage: {{ .Values.storage.doplarr.config }}
