@@ -8,6 +8,5 @@ resources:
     - kube-vip
     - system-upgrade
     - longhorn-system
-    - simplesecrets
     - velero
     - cert-manager
