@@ -6,6 +6,11 @@ metadata:
     namespace: {{ $.Release.Namespace }}
     annotations:
         kubernetes.io/ingress.class: "nginx"
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: Budget buddy!
+        gethomepage.dev/group: Tools
+        gethomepage.dev/icon: firefly
+        gethomepage.dev/name: Firefly III
 spec:
     tls:
         -   hosts:

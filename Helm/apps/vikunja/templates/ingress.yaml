@@ -6,6 +6,11 @@ metadata:
     namespace: {{ $.Release.Namespace }}
     annotations:
         kubernetes.io/ingress.class: "nginx"
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: Tasks
+        gethomepage.dev/group: Knowledge
+        gethomepage.dev/icon: vikunja
+        gethomepage.dev/name: Vikunja
 spec:
     tls:
         -   hosts:

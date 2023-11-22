@@ -6,6 +6,11 @@ metadata:
     namespace: {{ $.Release.Namespace }}
     annotations:
         kubernetes.io/ingress.class: "nginx"
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: Swiss Army Knife of the internet
+        gethomepage.dev/group: Tools
+        gethomepage.dev/icon: cyberchef
+        gethomepage.dev/name: CyberChef
 spec:
     tls:
         - hosts:

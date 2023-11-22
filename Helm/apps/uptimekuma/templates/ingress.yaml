@@ -6,6 +6,11 @@ metadata:
     namespace: {{ $.Release.Namespace }}
     annotations:
         kubernetes.io/ingress.class: "nginx"
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: Uptime Monitor
+        gethomepage.dev/group: Monitoring
+        gethomepage.dev/icon: uptime-kuma
+        gethomepage.dev/name: Uptime Kuma
 spec:
     tls:
         - hosts:

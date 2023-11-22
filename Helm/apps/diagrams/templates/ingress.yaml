@@ -6,6 +6,11 @@ metadata:
     namespace: {{ $.Release.Namespace }}
     annotations:
         kubernetes.io/ingress.class: "nginx"
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: Make diagrams in your browser
+        gethomepage.dev/group: Knowledge
+        gethomepage.dev/icon: draw
+        gethomepage.dev/name: Diagrams
 spec:
     tls:
         -   hosts:

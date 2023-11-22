@@ -6,6 +6,11 @@ metadata:
     namespace: {{ $.Release.Namespace }}
     annotations:
         kubernetes.io/ingress.class: "nginx"
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: Self-Hosted Google
+        gethomepage.dev/group: Security
+        gethomepage.dev/icon: whooglesearch
+        gethomepage.dev/name: Whoogle
 spec:
     tls:
         -   hosts:

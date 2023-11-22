@@ -53,27 +53,8 @@ spec:
                                     name: db
                                     key: name
                         -   name: VIKUNJA_MAILER_ENABLED
-                            value: "true"
-                        -   name: VIKUNJA_MAILER_HOST
-                            valueFrom:
-                                secretKeyRef:
-                                    name: smtp
-                                    key: host
-                        -   name: VIKUNJA_MAILER_PORT
-                            valueFrom:
-                                secretKeyRef:
-                                    name: smtp
-                                    key: port
-                        -   name: VIKUNJA_MAILER_USERNAME
-                            valueFrom:
-                                secretKeyRef:
-                                    name: smtp
-                                    key: username
-                        -   name: VIKUNJA_MAILER_PASSWORD
-                            valueFrom:
-                                secretKeyRef:
-                                    name: smtp
-                                    key: password
+                            value: "false"
+
 
                     imagePullPolicy: IfNotPresent
                     livenessProbe:

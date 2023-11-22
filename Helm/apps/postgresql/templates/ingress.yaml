@@ -6,6 +6,11 @@ metadata:
     namespace: {{ $.Release.Namespace }}
     annotations:
         kubernetes.io/ingress.class: "nginx"
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: PostgreSQL admin pannel
+        gethomepage.dev/group: Databases
+        gethomepage.dev/icon: pgadmin
+        gethomepage.dev/name: pgAdmin
 spec:
     tls:
         -   hosts:

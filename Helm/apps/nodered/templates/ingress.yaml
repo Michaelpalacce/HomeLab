@@ -6,6 +6,11 @@ metadata:
     namespace: {{ $.Release.Namespace }}
     annotations:
         kubernetes.io/ingress.class: "nginx"
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: Low-code automation
+        gethomepage.dev/group: Automation
+        gethomepage.dev/icon: node-red
+        gethomepage.dev/name: NodeRed
 spec:
     tls:
         - hosts:

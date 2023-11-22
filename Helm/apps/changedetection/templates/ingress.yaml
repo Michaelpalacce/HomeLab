@@ -6,6 +6,11 @@ metadata:
     namespace: {{ $.Release.Namespace }}
     annotations:
         kubernetes.io/ingress.class: "nginx"
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: Monitors changes to websites
+        gethomepage.dev/group: Automation
+        gethomepage.dev/icon: changedetection-io
+        gethomepage.dev/name: ChangeDetection.io
 spec:
     tls:
         - hosts:

@@ -6,6 +6,11 @@ metadata:
     namespace: {{ $.Release.Namespace }}
     annotations:
         kubernetes.io/ingress.class: "nginx"
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: RSS Reader
+        gethomepage.dev/group: Knowledge
+        gethomepage.dev/icon: freshrss
+        gethomepage.dev/name: Fresh RSS
 spec:
     tls:
         - hosts:

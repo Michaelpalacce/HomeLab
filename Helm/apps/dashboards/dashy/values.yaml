@@ -1,9 +1,0 @@
----
-dashy:
-    image: lissy93/dashy:2.1.1
-    port: 80
-    resources:
-        requests:
-            cpu: 10m
-            memory: 512Mi
-    domainName: stefangenov.site
