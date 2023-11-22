@@ -1,1 +1,179 @@
-----   hosts: all    name: Setup prereqs    become: true    any_errors_fatal: true    tags:        - preflight    vars_files:        - "./vars/main.yml"    roles:        - michaelpalacce.helm        - michaelpalacce.kubernetes_preflight-   hosts: all    name: Setup Logs and log sizes    become: true    gather_facts: false    tags:        - preflight        - preflight-kubelet    vars_files:        - "./vars/main.yml"    tasks:        -   name: Stop kubelet            systemd:                state: stopped                name: kubelet        -   name: Disable kubelet            shell: systemctl disable kubelet-   hosts: all    name: Setup Logs and log sizes    gather_facts: false    become: true    tags:        - preflight        - preflight-logs    vars_files:        - "./vars/main.yml"    tasks:        -   name: Logrotate            copy:                dest: "{{ item.dest }}"                src: "{{ item.src }}"            with_items:                -   dest: /etc/logrotate.d/allContainerLogs                    src: allContainerLogs                -   dest: /etc/logrotate.d/cniLogs                    src: cniLogs                -   dest: /etc/logrotate.d/podLogs                    src: podLogs        -   name: Limit Journalctl max size            command: "journalctl --vacuum-size={{ journalctl_vaccum_size }}"            register: logrotate_stat        -   name: Check if logrotate is daily            stat: path=/etc/cron.daily/logrotate            register: logrotate_stat        -   name: Move logrotate to hourly if daily            command: mv /etc/cron.daily/logrotate /etc/cron.hourly/logrotate            when: logrotate_stat.stat.exists-   hosts: all    name: Setup Storage dependencies    become: true    gather_facts: false    tags:        - preflight        - preflight-storage-dependencies    vars_files:        - "./vars/main.yml"    tasks:        -   name: Ensure dependencies are installed            apt:                name: "{{ packages }}"                state: present            vars:                packages:                    - open-iscsi                    - nfs-common                    - jq-   hosts:        - master        - workers    become: true    any_errors_fatal: true    tags:        - setup        - setup-k3s    vars_files:        - "./vars/main.yml"    roles:        - xanmanning.k3s-   hosts: master    name: Setup master k3s and fetch config    become: true    tags:        - setup        - setup-init-master    vars_files:        - "./vars/main.yml"    tasks:        -   name: Setup k3s            shell: "{{ item }}"            with_items:                - mkdir -p ~/.kube                - cp /etc/rancher/k3s/k3s.yaml ~/.kube/config        -   name: Copy output to local files            fetch:                src: "{{ item.src }}"                dest: "{{ item.dest }}"                flat: true            with_items:                -   src: /etc/rancher/k3s/k3s.yaml                    dest: "{{ output_dir }}/config"-   name: Fix Config URL    hosts: localhost    connection: local    gather_facts: false    become: true    tags:        - setup        - setup-fix-kubeconfig    vars_files:        - "./vars/main.yml"    tasks:        -   replace:                path: ./output/config                regexp: '127.0.0.1'                replace: '{{ k3s_registration_address }}'                backup: true-   hosts: all    name: Fix Multipath    become: true    tags:        - setup        - setup-multipath    tasks:        -   name: Make sure multipath conf file is missing            file:                path: /etc/multipath.conf                state: absent        -   name: Copy Multipath File            copy:                src: ./files/multipath.conf                dest: /etc/multipath.conf        -   name: Restart multipath service            systemd:                state: restarted                name: multipathd-   hosts: all    name: Load Kernel Modules    become: true    tags:        - setup        - setup-kernel    tasks:         - name: Enable kernel modules now           community.general.modprobe:             name: "{{ item }}"             state: present           loop: [br_netfilter, ip_vs, ip_vs_rr]         - name: Enable kernel modules on boot           ansible.builtin.copy:             mode: 0644             dest: "/etc/modules-load.d/{{ item }}.conf"             content: "{{ item }}"           loop: [br_netfilter, ip_vs, ip_vs_rr]
+---
+- hosts: all
+  name: Setup prereqs
+  become: true
+  any_errors_fatal: true
+  tags:
+      - preflight
+  vars_files:
+      - "./vars/main.yml"
+  roles:
+      - michaelpalacce.helm
+      - michaelpalacce.kubernetes_preflight
+
+- hosts: all
+  name: Setup Logs and log sizes
+  become: true
+  gather_facts: false
+  tags:
+      - preflight
+      - preflight-kubelet
+  vars_files:
+      - "./vars/main.yml"
+  tasks:
+      - name: Stop kubelet
+        systemd:
+            state: stopped
+            name: kubelet
+
+      - name: Disable kubelet
+        shell: systemctl disable kubelet
+
+- hosts: all
+  name: Setup Logs and log sizes
+  gather_facts: false
+  become: true
+  tags:
+      - preflight
+      - preflight-logs
+  vars_files:
+      - "./vars/main.yml"
+  tasks:
+      - name: Logrotate
+        copy:
+            dest: "{{ item.dest }}"
+            src: "{{ item.src }}"
+        with_items:
+            - dest: /etc/logrotate.d/allContainerLogs
+              src: allContainerLogs
+            - dest: /etc/logrotate.d/cniLogs
+              src: cniLogs
+            - dest: /etc/logrotate.d/podLogs
+              src: podLogs
+
+      - name: Limit Journalctl max size
+        command: "journalctl --vacuum-size={{ journalctl_vaccum_size }}"
+        register: logrotate_stat
+
+      - name: Check if logrotate is daily
+        stat: path=/etc/cron.daily/logrotate
+        register: logrotate_stat
+
+      - name: Move logrotate to hourly if daily
+        command: mv /etc/cron.daily/logrotate /etc/cron.hourly/logrotate
+        when: logrotate_stat.stat.exists
+
+- hosts: all
+  name: Setup Storage dependencies
+  become: true
+  gather_facts: false
+  tags:
+      - preflight
+      - preflight-storage-dependencies
+  vars_files:
+      - "./vars/main.yml"
+  tasks:
+      - name: Ensure dependencies are installed
+        apt:
+            name: "{{ packages }}"
+            state: present
+        vars:
+            packages:
+                - open-iscsi
+                - nfs-common
+                - jq
+
+- hosts:
+      - master
+      - workers
+  become: true
+  any_errors_fatal: true
+  tags:
+      - setup
+      - setup-k3s
+  vars_files:
+      - "./vars/main.yml"
+  roles:
+      - xanmanning.k3s
+
+- hosts: master
+  name: Setup master k3s and fetch config
+  become: true
+  tags:
+      - setup
+      - setup-init-master
+  vars_files:
+      - "./vars/main.yml"
+  tasks:
+
+      - name: Setup k3s
+        shell: "{{ item }}"
+        with_items:
+            - mkdir -p ~/.kube
+            - cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
+
+      - name: Copy output to local files
+        fetch:
+            src: "{{ item.src }}"
+            dest: "{{ item.dest }}"
+            flat: true
+        with_items:
+            - src: /etc/rancher/k3s/k3s.yaml
+              dest: "{{ output_dir }}/config"
+
+- name: Fix Config URL
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  become: true
+  tags:
+      - setup
+      - setup-fix-kubeconfig
+  vars_files:
+      - "./vars/main.yml"
+  tasks:
+      - replace:
+            path: ./output/config
+            regexp: '127.0.0.1'
+            replace: '{{ k3s_registration_address }}'
+            backup: true
+
+- hosts: all
+  name: Fix Multipath
+  become: true
+  tags:
+      - setup
+      - setup-multipath
+  tasks:
+      - name: Make sure multipath conf file is missing
+        file:
+            path: /etc/multipath.conf
+            state: absent
+
+      - name: Copy Multipath File
+        copy:
+            src: ./files/multipath.conf
+            dest: /etc/multipath.conf
+
+      - name: Restart multipath service
+        systemd:
+            state: restarted
+            name: multipathd
+- hosts: all 
+  name: Load Kernel Modules 
+  become: true 
+  tags: 
+  - setup 
+  - setup-kernel 
+  tasks: 
+    - name: Enable kernel modules now 
+      community.general.modprobe: 
+         name: "{{ item }}" 
+         state: present  
+      loop: [br_netfilter, ip_vs, ip_vs_rr] 
+    - name: Enable kernel modules on boot 
+      ansible.builtin.copy: 
+          mode: 0644 
+          dest: "/etc/modules-load.d/{{ item }}.conf" 
+          content: "{{ item }}" 
+      loop: [br_netfilter, ip_vs, ip_vs_rr]

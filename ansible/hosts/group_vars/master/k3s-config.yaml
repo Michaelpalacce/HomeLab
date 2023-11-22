@@ -8,7 +8,6 @@ k3s_server:
     docker: false
     disable:
         - traefik
-        - metrics-server
         - local-storage
     disable-network-policy: true
     disable-cloud-controller: true
