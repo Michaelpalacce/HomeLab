@@ -17,6 +17,8 @@ spec:
             app: sonarr
     template:
         metadata:
+            annotations:
+                backup.velero.io/backup-volumes: config-data
             labels:
                 app: sonarr
         spec:
