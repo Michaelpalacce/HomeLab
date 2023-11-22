@@ -12,6 +12,8 @@ spec:
           - changedetection
           - mealie
           - media
+          - monitoring
+          - uptimekuma
           - freshrss
         snapshotVolumes: true
         ttl: 96h0m0s
