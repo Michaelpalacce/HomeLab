@@ -27,7 +27,6 @@ spec:
     template:
         hooks: {}
         includedNamespaces:
-          - simplesecrets
           - postgresql
         snapshotVolumes: true
         ttl: 168h0m0s
