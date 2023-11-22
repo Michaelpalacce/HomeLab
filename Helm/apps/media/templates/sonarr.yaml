@@ -17,25 +17,18 @@ spec:
             app: sonarr
     template:
         metadata:
-            annotations:
-                backup.velero.io/backup-volumes: sonarr-config-data
             labels:
                 app: sonarr
         spec:
-            terminationGracePeriodSeconds: 600
-            initContainers:
-                - name: init-sync
-                  image: busybox
-                  volumeMounts:
-                      -   name: config-data
-                          mountPath: /config
-                      -   name: sonarr-config-data
-                          mountPath: /sonarr-config
-                  command:
-                      - sh
-                      - -c
-                      - |-
-                          cp -fvpr /sonarr-config/* /config/
+            affinity:
+                nodeAffinity:
+                  requiredDuringSchedulingIgnoredDuringExecution:
+                    nodeSelectorTerms:
+                    - matchExpressions:
+                      - key: kubernetes.io/hostname
+                        operator: In
+                        values:
+                        - i3-v3
             containers:
                 -   name: sonarr
                     image: {{ .image }}
@@ -55,32 +48,22 @@ spec:
                     volumeMounts:
                         -   name: config-data
                             mountPath: /config
-                        -   name: sonarr-config-data
-                            mountPath: /sonarr-config
                         -   name: downloads-data
                             mountPath: /downloads
                         -   name: shows-data-nfs
                             mountPath: /shows
-                    lifecycle:
-                        preStop:
-                            exec:
-                                command:
-                                    - sh
-                                    - -c
-                                    - cp -fvpr /config/* /sonarr-config > /sonarr-config/copy.log
             restartPolicy: Always
             volumes:
-                - name: sonarr-config-data
-                  persistentVolumeClaim:
-                      claimName: sonarr-config-pvc
+                - name: config-data
+                  hostPath:
+                      # directory location on host
+                      path: /mnt/media/sonarr
                 - name: shows-data-nfs
                   persistentVolumeClaim:
                       claimName: shows-volume-nfs
                 - name: downloads-data
                   persistentVolumeClaim:
                       claimName: downloads-volume
-                - name: config-data
-                  emptyDir: {}
 ---
 
 apiVersion: v1
