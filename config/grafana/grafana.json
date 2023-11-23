@@ -8,7 +8,7 @@
           "type": "prometheus",
           "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
         },
-        "enable": false,
+        "enable": true,
         "hide": false,
         "iconColor": "rgba(0, 211, 255, 1)",
         "limit": 100,
@@ -23,7 +23,7 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 1860,
   "graphTooltip": 1,
-  "id": 2,
+  "id": 4,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -40,10 +40,15 @@
       },
       "id": 381,
       "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
         "content": "<div class=\"text-center\">\n  <img style=\"height:80px\" src=\"https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Kubernetes_logo_without_workmark.svg/1200px-Kubernetes_logo_without_workmark.svg.png\">\n  <h2 style=\"padding-top:15px\">$k8s_version</h2>\n</div>",
         "mode": "html"
       },
-      "pluginVersion": "9.0.7",
+      "pluginVersion": "10.2.2",
       "targets": [
         {
           "datasource": {
@@ -115,9 +120,10 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.0.7",
+      "pluginVersion": "10.2.2",
       "targets": [
         {
           "datasource": {
@@ -196,9 +202,10 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.0.7",
+      "pluginVersion": "10.2.2",
       "targets": [
         {
           "datasource": {
@@ -277,9 +284,10 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.0.7",
+      "pluginVersion": "10.2.2",
       "targets": [
         {
           "datasource": {
@@ -358,9 +366,10 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.0.7",
+      "pluginVersion": "10.2.2",
       "targets": [
         {
           "datasource": {
@@ -414,6 +423,7 @@
         "displayMode": "lcd",
         "minVizHeight": 10,
         "minVizWidth": 0,
+        "namePlacement": "auto",
         "orientation": "horizontal",
         "reduceOptions": {
           "calcs": [
@@ -422,9 +432,10 @@
           "fields": "",
           "values": false
         },
-        "showUnfilled": true
+        "showUnfilled": true,
+        "valueMode": "color"
       },
-      "pluginVersion": "9.0.7",
+      "pluginVersion": "10.2.2",
       "targets": [
         {
           "datasource": {
@@ -516,9 +527,10 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.0.7",
+      "pluginVersion": "10.2.2",
       "targets": [
         {
           "datasource": {
@@ -597,9 +609,10 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.0.7",
+      "pluginVersion": "10.2.2",
       "targets": [
         {
           "datasource": {
@@ -674,9 +687,10 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.0.7",
+      "pluginVersion": "10.2.2",
       "targets": [
         {
           "datasource": {
@@ -730,6 +744,7 @@
         "displayMode": "lcd",
         "minVizHeight": 10,
         "minVizWidth": 0,
+        "namePlacement": "auto",
         "orientation": "horizontal",
         "reduceOptions": {
           "calcs": [
@@ -739,9 +754,10 @@
           "values": false
         },
         "showUnfilled": true,
-        "text": {}
+        "text": {},
+        "valueMode": "color"
       },
-      "pluginVersion": "9.0.7",
+      "pluginVersion": "10.2.2",
       "targets": [
         {
           "datasource": {
@@ -826,6 +842,8 @@
       "id": 423,
       "links": [],
       "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
@@ -838,7 +856,7 @@
         "showThresholdMarkers": true,
         "text": {}
       },
-      "pluginVersion": "9.0.7",
+      "pluginVersion": "10.2.2",
       "targets": [
         {
           "datasource": {
@@ -910,9 +928,10 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.0.7",
+      "pluginVersion": "10.2.2",
       "targets": [
         {
           "datasource": {
@@ -971,6 +990,8 @@
       "id": 425,
       "links": [],
       "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
@@ -982,7 +1003,7 @@
         "showThresholdLabels": true,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "9.0.7",
+      "pluginVersion": "10.2.2",
       "targets": [
         {
           "datasource": {
@@ -1057,9 +1078,10 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.0.7",
+      "pluginVersion": "10.2.2",
       "targets": [
         {
           "datasource": {
@@ -1131,6 +1153,8 @@
       "id": 427,
       "links": [],
       "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
@@ -1142,7 +1166,7 @@
         "showThresholdLabels": true,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "9.0.7",
+      "pluginVersion": "10.2.2",
       "targets": [
         {
           "datasource": {
@@ -1219,9 +1243,10 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.0.7",
+      "pluginVersion": "10.2.2",
       "targets": [
         {
           "datasource": {
@@ -1249,6 +1274,9 @@
             "mode": "thresholds"
           },
           "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -1260,6 +1288,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -1317,7 +1346,8 @@
             "lastNotNull"
           ],
           "displayMode": "table",
-          "placement": "right"
+          "placement": "right",
+          "showLegend": true
         },
         "tooltip": {
           "mode": "multi",
@@ -1348,6 +1378,9 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "Percentage",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -1359,6 +1392,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "smooth",
             "lineStyle": {
               "fill": "solid"
@@ -1416,7 +1450,8 @@
             "lastNotNull"
           ],
           "displayMode": "table",
-          "placement": "bottom"
+          "placement": "bottom",
+          "showLegend": true
         },
         "tooltip": {
           "mode": "multi",
@@ -1448,6 +1483,9 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "Percentage",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -1459,6 +1497,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "stepAfter",
             "lineWidth": 1,
             "pointSize": 6,
@@ -1513,7 +1552,8 @@
             "lastNotNull"
           ],
           "displayMode": "table",
-          "placement": "bottom"
+          "placement": "bottom",
+          "showLegend": true
         },
         "tooltip": {
           "mode": "multi",
@@ -1545,6 +1585,9 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "Download Speed",
             "axisPlacement": "auto",
             "axisSoftMax": 1000,
@@ -1558,6 +1601,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineStyle": {
               "fill": "solid"
@@ -1606,7 +1650,8 @@
             "min"
           ],
           "displayMode": "table",
-          "placement": "bottom"
+          "placement": "bottom",
+          "showLegend": true
         },
         "tooltip": {
           "mode": "multi",
@@ -1642,6 +1687,9 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "Download Speed",
             "axisPlacement": "auto",
             "axisSoftMax": 1000,
@@ -1655,6 +1703,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineStyle": {
               "fill": "solid"
@@ -1703,7 +1752,8 @@
             "min"
           ],
           "displayMode": "table",
-          "placement": "bottom"
+          "placement": "bottom",
+          "showLegend": true
         },
         "tooltip": {
           "mode": "multi",
@@ -1807,6 +1857,7 @@
               ],
               "displayMode": "table",
               "placement": "right",
+              "showLegend": true,
               "sortBy": "Mean",
               "sortDesc": true
             },
@@ -1905,8 +1956,9 @@
                 "mean",
                 "lastNotNull"
               ],
-              "displayMode": "hidden",
-              "placement": "bottom"
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": false
             },
             "tooltip": {
               "mode": "multi",
@@ -2017,6 +2069,7 @@
               ],
               "displayMode": "table",
               "placement": "right",
+              "showLegend": true,
               "sortBy": "Mean",
               "sortDesc": true
             },
@@ -2115,7 +2168,8 @@
                 "lastNotNull"
               ],
               "displayMode": "table",
-              "placement": "right"
+              "placement": "right",
+              "showLegend": true
             },
             "tooltip": {
               "mode": "multi",
@@ -2212,6 +2266,7 @@
               ],
               "displayMode": "table",
               "placement": "right",
+              "showLegend": true,
               "sortBy": "Mean",
               "sortDesc": true
             },
@@ -2312,6 +2367,7 @@
               ],
               "displayMode": "table",
               "placement": "right",
+              "showLegend": true,
               "sortBy": "Mean",
               "sortDesc": true
             },
@@ -3304,8 +3360,7 @@
     }
   ],
   "refresh": "30s",
-  "schemaVersion": 36,
-  "style": "dark",
+  "schemaVersion": 38,
   "tags": [
     "linux",
     "node-exporter"
@@ -3376,7 +3431,7 @@
       {
         "allValue": ".*",
         "current": {
-          "selected": false,
+          "selected": true,
           "text": [
             "All"
           ],
@@ -3409,8 +3464,8 @@
       {
         "current": {
           "selected": false,
-          "text": "v1.24.2+k3s2",
-          "value": "v1.24.2+k3s2"
+          "text": "v1.28.3+k3s2",
+          "value": "v1.28.3+k3s2"
         },
         "datasource": {
           "type": "prometheus",
@@ -3633,6 +3688,6 @@
   "timezone": "browser",
   "title": "Kubernetes Server Metrics",
   "uid": "35xtB4Anz",
-  "version": 39,
+  "version": 2,
   "weekStart": ""
 }
