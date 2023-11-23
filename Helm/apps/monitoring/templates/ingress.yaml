@@ -6,6 +6,11 @@ metadata:
     namespace: {{ $.Release.Namespace }}
     annotations:
         kubernetes.io/ingress.class: "nginx"
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: Monitoring
+        gethomepage.dev/group: Monitoring
+        gethomepage.dev/icon: grafana
+        gethomepage.dev/name: Grafana
 spec:
     tls:
         -   hosts:
@@ -40,6 +45,13 @@ metadata:
     namespace: {{ $.Release.Namespace }}
     annotations:
         kubernetes.io/ingress.class: "nginx"
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: Monitoring
+        gethomepage.dev/group: Monitoring
+        gethomepage.dev/icon: prometheus
+        gethomepage.dev/name: Prometheus
+        gethomepage.dev/widget.type: prometheus
+        gethomepage.dev/widget.url: https://prometheus.stefangenov.site
 spec:
     tls:
         -   hosts:
