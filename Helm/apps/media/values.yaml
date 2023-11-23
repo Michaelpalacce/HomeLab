@@ -78,6 +78,7 @@ sonarr:
 bazarr:
     image: lscr.io/linuxserver/bazarr:1.3.2-development
     port: 6767
+    replicas: 1
     resources:
         requests:
             cpu: 10m
