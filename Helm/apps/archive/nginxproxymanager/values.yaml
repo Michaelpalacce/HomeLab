@@ -1,9 +1,0 @@
----
-nginxporxymanager:
-    image: jc21/nginx-proxy-manager:2.10.4
-
-storage:
-    numberOfReplicas: 1
-    dataLocality: best-effort
-    dataSize: 5Gi
-    letsencryptSize: 5Gi
