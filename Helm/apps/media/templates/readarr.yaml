@@ -50,22 +50,27 @@ spec:
                     volumeMounts:
                         -   name: config-data
                             mountPath: /config
+                        -   name: config
+                            mountPath: /config-bak
                         -   name: downloads-data
                             mountPath: /downloads
                         -   name: books-data-nfs
                             mountPath: /books
             restartPolicy: Always
             volumes:
-                -   name: books-data-nfs
-                    persistentVolumeClaim:
-                        claimName: books-volume-nfs
-                -   name: downloads-data
-                    persistentVolumeClaim:
-                        claimName: downloads-volume
-                -   name: config-data
-                    hostPath:
-                          # directory location on host
-                          path: /mnt/media/readarr
+                - name: books-data-nfs
+                  persistentVolumeClaim:
+                      claimName: books-volume-nfs
+                - name: downloads-data
+                  persistentVolumeClaim:
+                      claimName: downloads-volume
+                - name: config
+                  persistentVolumeClaim:
+                      claimName: readarr-config-pvc
+                - name: config-data
+                  hostPath:
+                        # directory location on host
+                        path: /mnt/media/readarr
 ---
 
 apiVersion: v1

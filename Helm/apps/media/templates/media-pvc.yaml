@@ -126,8 +126,6 @@ spec:
     resources:
         requests:
             storage: {{ .Values.storage.bazarr.config }}
-
-
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -188,4 +186,15 @@ spec:
     resources:
         requests:
             storage: {{ .Values.storage.overseer.config }}
-
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: readarr-config-pvc
+spec:
+    accessModes:
+        - ReadWriteOnce
+    storageClassName: longhorn
+    resources:
+        requests:
+            storage: {{ .Values.storage.readarr.config }}
