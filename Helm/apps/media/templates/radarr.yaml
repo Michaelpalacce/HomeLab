@@ -46,8 +46,8 @@ spec:
                         -   name: web
                             containerPort: {{ .port }}
                     volumeMounts:
-#                         -   name: config-data
-#                             mountPath: /config
+                        -   name: config
+                            mountPath: /config-bak
                         -   name: config-data
                             mountPath: /config
                         -   name: downloads-data
@@ -56,9 +56,9 @@ spec:
                             mountPath: /tv
             restartPolicy: Always
             volumes:
-#                 -   name: config-data
-#                     persistentVolumeClaim:
-#                         claimName: radarr-config-pvc
+                -   name: config
+                    persistentVolumeClaim:
+                        claimName: radarr-config-pvc
                 -   name: config-data
                     hostPath:
                           # directory location on host

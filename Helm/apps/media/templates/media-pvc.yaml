@@ -198,3 +198,27 @@ spec:
     resources:
         requests:
             storage: {{ .Values.storage.readarr.config }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: sonarr-config-pvc
+spec:
+    accessModes:
+        - ReadWriteOnce
+    storageClassName: longhorn
+    resources:
+        requests:
+            storage: {{ .Values.storage.sonarr.config }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: radarr-config-pvc
+spec:
+    accessModes:
+        - ReadWriteOnce
+    storageClassName: longhorn
+    resources:
+        requests:
+            storage: {{ .Values.storage.radarr.config }}

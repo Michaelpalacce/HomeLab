@@ -50,6 +50,8 @@ spec:
                     volumeMounts:
                         -   name: config-data
                             mountPath: /config
+                        -   name: config
+                            mountPath: /config-bak
                         -   name: downloads-data
                             mountPath: /downloads
                         -   name: shows-data-nfs
@@ -66,6 +68,9 @@ spec:
                 - name: downloads-data
                   persistentVolumeClaim:
                       claimName: downloads-volume
+                - name: config
+                  persistentVolumeClaim:
+                      claimName: sonarr-config-pvc
 ---
 
 apiVersion: v1
