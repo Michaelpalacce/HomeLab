@@ -118,18 +118,6 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-    name: bazarr-config-pvc
-spec:
-    accessModes:
-        - ReadWriteMany
-    storageClassName: longhorn
-    resources:
-        requests:
-            storage: {{ .Values.storage.bazarr.config }}
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
     name: downloads-volume
 spec:
     selector:

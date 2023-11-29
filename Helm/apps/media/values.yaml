@@ -4,8 +4,6 @@ storage:
     transmission:
         config: 1Gi
         downloads: 200Gi
-    bazarr:
-        config: 5Gi
     kavita:
         config: 5Gi
     overseer:
@@ -74,15 +72,6 @@ sonarr:
             memory: 1Gi
         limits:
             cpu: 2
-
-bazarr:
-    image: lscr.io/linuxserver/bazarr:1.4.1-development
-    port: 6767
-    replicas: 1
-    resources:
-        requests:
-            cpu: 10m
-            memory: 50Mi
 
 kavita:
     image: kizaing/kavita:0.7.8@sha256:48b3c2c07f90feb4641ddb791f96a1bf6e70a2b27da8c8b2ca0cc2c627b91d72
