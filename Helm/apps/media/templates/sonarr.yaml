@@ -18,19 +18,10 @@ spec:
     template:
         metadata:
             annotations:
-                backup.velero.io/backup-volumes: config-data
+                backup.velero.io/backup-volumes: config
             labels:
                 app: sonarr
         spec:
-            affinity:
-                nodeAffinity:
-                  requiredDuringSchedulingIgnoredDuringExecution:
-                    nodeSelectorTerms:
-                    - matchExpressions:
-                      - key: kubernetes.io/hostname
-                        operator: In
-                        values:
-                        - k3s-n1
             containers:
                 -   name: sonarr
                     image: {{ .image }}
@@ -48,20 +39,14 @@ spec:
                         -   name: web
                             containerPort: {{ .port }}
                     volumeMounts:
-                        -   name: config-data
-                            mountPath: /config
                         -   name: config
-                            mountPath: /config-bak
+                            mountPath: /config
                         -   name: downloads-data
                             mountPath: /downloads
                         -   name: shows-data-nfs
                             mountPath: /shows
             restartPolicy: Always
             volumes:
-                - name: config-data
-                  hostPath:
-                      # directory location on host
-                      path: /mnt/media/sonarr
                 - name: shows-data-nfs
                   persistentVolumeClaim:
                       claimName: shows-volume-nfs

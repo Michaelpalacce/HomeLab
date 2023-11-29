@@ -16,19 +16,10 @@ spec:
     template:
         metadata:
             annotations:
-                backup.velero.io/backup-volumes: config-data
+                backup.velero.io/backup-volumes: config
             labels:
                 app: radarr
         spec:
-            affinity:
-                nodeAffinity:
-                  requiredDuringSchedulingIgnoredDuringExecution:
-                    nodeSelectorTerms:
-                    - matchExpressions:
-                      - key: kubernetes.io/hostname
-                        operator: In
-                        values:
-                        - k3s-n4
             containers:
                 -   name: radarr
                     image: {{ .image }}
@@ -47,8 +38,6 @@ spec:
                             containerPort: {{ .port }}
                     volumeMounts:
                         -   name: config
-                            mountPath: /config-bak
-                        -   name: config-data
                             mountPath: /config
                         -   name: downloads-data
                             mountPath: /downloads
@@ -59,10 +48,6 @@ spec:
                 -   name: config
                     persistentVolumeClaim:
                         claimName: radarr-config-pvc
-                -   name: config-data
-                    hostPath:
-                          # directory location on host
-                          path: /mnt/media/radarr
                 -   name: movies-data-nfs
                     persistentVolumeClaim:
                         claimName: movies-volume-nfs
