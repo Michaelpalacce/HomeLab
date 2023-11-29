@@ -210,3 +210,15 @@ spec:
     resources:
         requests:
             storage: {{ .Values.storage.radarr.config }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: prowlarr-config-pvc
+spec:
+    accessModes:
+        - ReadWriteOnce
+    storageClassName: longhorn
+    resources:
+        requests:
+            storage: {{ .Values.storage.prowlarr.config }}

@@ -47,8 +47,8 @@ spec:
                         -   name: web
                             containerPort: {{ .port }}
                     volumeMounts:
-#                         -   name: config-data
-#                             mountPath: /config
+                        -   name: config
+                            mountPath: /config-bak
                         -   name: config-data
                             mountPath: /config
                     livenessProbe:
@@ -61,9 +61,9 @@ spec:
 
             restartPolicy: Always
             volumes:
-#                 - name: config-data
-#                   persistentVolumeClaim:
-#                       claimName: prowlarr-config-pvc
+                - name: config
+                  persistentVolumeClaim:
+                      claimName: prowlarr-config-pvc
                 - name: config-data
                   hostPath:
                         # directory location on host
