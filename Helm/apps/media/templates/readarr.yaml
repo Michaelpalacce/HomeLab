@@ -17,20 +17,11 @@ spec:
             app: readarr
     template:
         metadata:
-            #annotations:
-            #    backup.velero.io/backup-volumes: config-data
+            annotations:
+               backup.velero.io/backup-volumes: config
             labels:
                 app: readarr
         spec:
-            affinity:
-                nodeAffinity:
-                  requiredDuringSchedulingIgnoredDuringExecution:
-                    nodeSelectorTerms:
-                    - matchExpressions:
-                      - key: kubernetes.io/hostname
-                        operator: In
-                        values:
-                        - k3s-n4
             containers:
                 -   name: readarr
                     image: {{ .image }}
@@ -48,10 +39,8 @@ spec:
                         -   name: web
                             containerPort: {{ .port }}
                     volumeMounts:
-                        -   name: config-data
-                            mountPath: /config
                         -   name: config
-                            mountPath: /config-bak
+                            mountPath: /config
                         -   name: downloads-data
                             mountPath: /downloads
                         -   name: books-data-nfs
@@ -67,10 +56,6 @@ spec:
                 - name: config
                   persistentVolumeClaim:
                       claimName: readarr-config-pvc
-                - name: config-data
-                  hostPath:
-                        # directory location on host
-                        path: /mnt/media/readarr
 ---
 
 apiVersion: v1
