@@ -16,7 +16,7 @@ spec:
     template:
         metadata:
             annotations:
-                backup.velero.io/backup-volumes: data
+                backup.velero.io/backup-volumes: config
             labels:
                 app: vaultwarden
         spec:
@@ -41,16 +41,11 @@ spec:
                         -   name: web
                             containerPort: {{ .port }}
                     volumeMounts:
-                        -   name: data
-                            mountPath: /data
                         -   name: config
-                            mountPath: /data-bak
+                            mountPath: /data
 
             restartPolicy: Always
             volumes:
-                -   name: data
-                    persistentVolumeClaim:
-                        claimName: vaultwarden-pvc
                 -   name: config
                     persistentVolumeClaim:
                         claimName: vaultwarden
