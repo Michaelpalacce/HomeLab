@@ -17,7 +17,7 @@ spec:
     template:
         metadata:
             annotations:
-                backup.velero.io/backup-volumes: config-data
+                backup.velero.io/backup-volumes: config
             labels:
                 app: prowlarr
         spec:
