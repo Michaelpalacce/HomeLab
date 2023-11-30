@@ -39,7 +39,7 @@ spec:
                             containerPort: {{ .port }}
                     volumeMounts:
                         -   name: config
-                            mountPath: /config-bak
+                            mountPath: /config
                     livenessProbe:
                         failureThreshold: 2
                         initialDelaySeconds: 120
