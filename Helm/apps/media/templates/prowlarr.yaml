@@ -21,15 +21,6 @@ spec:
             labels:
                 app: prowlarr
         spec:
-            affinity:
-                nodeAffinity:
-                  requiredDuringSchedulingIgnoredDuringExecution:
-                    nodeSelectorTerms:
-                    - matchExpressions:
-                      - key: kubernetes.io/hostname
-                        operator: In
-                        values:
-                        - k3s-n1
             containers:
                 -   name: prowlarr
                     image: {{ .image }}
@@ -49,8 +40,6 @@ spec:
                     volumeMounts:
                         -   name: config
                             mountPath: /config-bak
-                        -   name: config-data
-                            mountPath: /config
                     livenessProbe:
                         failureThreshold: 2
                         initialDelaySeconds: 120
@@ -64,10 +53,6 @@ spec:
                 - name: config
                   persistentVolumeClaim:
                       claimName: prowlarr-config-pvc
-                - name: config-data
-                  hostPath:
-                        # directory location on host
-                        path: /mnt/media/prowlarr
 
 ---
 
