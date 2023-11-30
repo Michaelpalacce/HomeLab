@@ -10,3 +10,15 @@ spec:
     resources:
         requests:
             storage: {{ .Values.storage.dataSize }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: vaultwarden
+spec:
+    accessModes:
+        - ReadWriteOnce
+    storageClassName: longhorn
+    resources:
+        requests:
+            storage: {{ .Values.storage.dataSize }}
