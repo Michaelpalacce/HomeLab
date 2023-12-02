@@ -11,8 +11,7 @@ metadata:
 spec:
     replicas: {{ .replicas }}
     strategy:
-        rollingUpdate:
-            maxUnavailable: 0
+      type: Recreate
     selector:
         matchLabels:
             app: uptimekuma
