@@ -65,6 +65,8 @@ spec:
                 prometheus.io/scrape: "true"
                 prometheus.io/port: "{{ .port }}"
         spec:
+            securityContext:
+              fsGroup: 65534
             containers:
                 -   name: prometheus
                     image: {{ .image }}

@@ -18,6 +18,8 @@ spec:
             labels:
                 app: loki
         spec:
+            securityContext:
+              fsGroup: 10001 
             containers:
                 -   name: loki
                     image: {{ .image }}
