@@ -27,7 +27,7 @@ spec:
     values:
         image:
             repository: ghcr.io/kube-vip/kube-vip
-            tag: "v0.6.3"
+            tag: "v0.6.4"
 
         config:
             address: "192.168.1.2"
