@@ -20,7 +20,7 @@ storage:
         config: 5Gi
 
 transmission:
-    image: lscr.io/linuxserver/transmission:4.0.4
+    image: lscr.io/linuxserver/transmission:4.0.5
     port: 9091
     username: username
     password: password
