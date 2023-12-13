@@ -11,6 +11,10 @@
 192.168.1.112
 
 [extra]
+192.168.1.213
+192.168.1.48
+# 192.168.1.113
+
 
 # This group has all the servers
 [all:children]
