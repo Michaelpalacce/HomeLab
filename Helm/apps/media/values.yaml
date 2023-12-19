@@ -10,8 +10,6 @@ storage:
         config: 5Gi
     radarr:
         config: 5Gi
-    readarr:
-        config: 5Gi
     sonarr:
         config: 5Gi
     prowlarr:
@@ -53,15 +51,6 @@ overseerr:
         requests:
             cpu: 10m
             memory: 50Mi
-
-readarr:
-    image: lscr.io/linuxserver/readarr:0.3.13-nightly
-    replicas: 1
-    port: 8787
-    resources:
-        requests:
-            cpu: 500m
-            memory: 500Mi
 
 sonarr:
     image: lscr.io/linuxserver/sonarr:4.0.0-develop

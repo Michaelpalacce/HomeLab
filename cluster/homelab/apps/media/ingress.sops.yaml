@@ -142,42 +142,6 @@ sops:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-    name: readarr
-    namespace: media
-    annotations:
-        kubernetes.io/ingress.class: ENC[AES256_GCM,data:MFIcWPY=,iv:fpLVjQ1gkCmfWXe1h0jZ2/OcIcNcdoldkJc/SI8KbfY=,tag:xOLxQcAvslb/HJgOe9xKTg==,type:str]
-        gethomepage.dev/enabled: ENC[AES256_GCM,data:ZKhImQ==,iv:R95yGYIFwAMX38N/rcss+ucBupgXQ7NI6eNcxUnZhYg=,tag:o8ulwYBETRrjbPqtgPTYwQ==,type:str]
-        gethomepage.dev/description: ENC[AES256_GCM,data:rb9gOvXV4/nngLmhw2gtxQ==,iv:c1pKDZO/xKPSqBuaRWymD83D+vuzjsZ1YNXxzlG/zkc=,tag:mgmdKJm8Z+MoZnna6Zv1Pw==,type:str]
-        gethomepage.dev/group: ENC[AES256_GCM,data:TLdSFIh1Tb0=,iv:em7O9Bg1toVyp0lCnY0uPwyc3Lep0AtXgnwA4mcrDsQ=,tag:IV4TBJCsCD47Gs+swWRbpA==,type:str]
-        gethomepage.dev/icon: ENC[AES256_GCM,data:1mcFXPCaYg==,iv:CrUpPPfGR3ptwjdO/h9hnuJ+4i/E7IICER9S9GXdwe4=,tag:3aK6PBR0c2eG3vODPmQ/1A==,type:str]
-        gethomepage.dev/name: ENC[AES256_GCM,data:iIbDFzjE9w==,iv:MjQ3j7xUMuYs1xnXgtMI57B9X3/Zti1QDQiYQt19Vtc=,tag:38YgzuVUeGO6ys+fNu+MvQ==,type:str]
-        gethomepage.dev/widget.type: ENC[AES256_GCM,data:SYkkK9OheQ==,iv:eL+cXbava9goOKUEmOB4DzBnczVHJJnRLJxbfO3meQs=,tag:M1Q8ZYs0gjTWaIHwDobOog==,type:str]
-        gethomepage.dev/widget.url: ENC[AES256_GCM,data:E9MRmtM296qyazu3Hrfzfv2MhoPMvK3gUYArQ3n0GlQ=,iv:KHwNYX1CBA/EoDfIzjX7CHMo35Y9mmHGyN95qdizAQg=,tag:gCOvoyLt7MknVa1VCfp/ug==,type:str]
-        gethomepage.dev/widget.key: ENC[AES256_GCM,data:iZkGByWWw0Fwu2WmCxIOF5l1+uGv8DZFugW+iEO4kGQ=,iv:57yfxVibZprz3Gq/WYXO8NyJKVY2SLtSgKMpcA5LbUk=,tag:u1uibeusGwkU48TVwBfxVQ==,type:str]
-sops:
-    kms: []
-    gcp_kms: []
-    azure_kv: []
-    hc_vault: []
-    age:
-        - recipient: age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
-          enc: |
-            -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBZQlJxQ1VnNDN2eS9HRlF2
-            YmNJcFh4a3M1MmJVd1JkUm9icEgxem5nZmxZCnN4ZmdQM0hsSDEwV0hrZnh2R3FD
-            K09pN3ZsN05QNFl3UHNsaDYyallJWHcKLS0tIE1GaENRcFBIbUNQbUxFYjZjbW1k
-            ejNxRnBEbHM2WEhEMWVhWU5VL2xkWFEKRfn21r0EqKS2/7+Feih0cFfSSBBvSiIy
-            w2UwmxCPK6lBhzhmtfzZdYJXOpz0IlpG+UTwi1kS0DwoS8YgV+4XjA==
-            -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-11-23T19:37:00Z"
-    mac: ENC[AES256_GCM,data:WUBeivnb9GZl8INDTJ7xRtyQvh46oQlzLnG1PSYc64VWa7LlV+3o6MPajrFZIpWClMVi5StNbiBZn/0M7DkwTm1fVSs9J9/IApmoZQ1YjJtAVL3+fr5euArbnKjlu+99Vw0nBJmCBbk+zEn/rBlwrczvEFmOIsaI3NS9ywQzPGQ=,iv:PiJUtmycTA3QGRl8LjgIWtSCQo909G9fa1i5CYn6AT0=,tag:yhmfrhaVY3bvFX8vE2+jIA==,type:str]
-    pgp: []
-    encrypted_regex: ^(data|stringData|annotations|host)$
-    version: 3.7.3
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
     name: overseerr
     namespace: media
     annotations:
