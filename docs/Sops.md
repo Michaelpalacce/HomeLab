@@ -26,3 +26,14 @@ sops --age age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn --encr
 sops --age age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn --decrypt --encrypted-regex '^(data|stringData|annotations|host)$' --in-place 
 ```
 
+
+## Troubleshooting
+
+### Mac mismatch
+
+You can ignore the MAC mismatch:
+
+https://github.com/getsops/sops/discussions/942
+```
+--ignore-mac
+```
