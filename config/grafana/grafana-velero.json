@@ -177,7 +177,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "fvdzrNEnk"
+            "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
           },
           "exemplar": true,
           "expr": "sum(velero_backup_success_total{schedule=~\"$schedule\"}) / sum(velero_backup_attempt_total{schedule=~\"$schedule\"})",
@@ -382,7 +382,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "fvdzrNEnk"
+            "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
           },
           "exemplar": true,
           "expr": "velero_backup_total",
@@ -393,7 +393,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "fvdzrNEnk"
+            "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
           },
           "expr": "velero_backup_active_total{schedule=~\"$schedule\"}",
           "legendFormat": "Backup {{schedule}}",
@@ -615,7 +615,7 @@
       ],
       "datasource": {
         "type": "prometheus",
-        "uid": "fvdzrNEnk"
+        "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
       },
       "fontSize": "100%",
       "gridPos": {
@@ -689,7 +689,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "fvdzrNEnk"
+        "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
       },
       "decimals": 0,
       "fieldConfig": {
@@ -884,7 +884,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "fvdzrNEnk"
+            "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
           },
           "expr": "avg_over_time(velero_restore_total[15m]) ",
           "legendFormat": "Restore Total",
@@ -893,7 +893,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "fvdzrNEnk"
+            "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
           },
           "expr": "avg_over_time(velero_restore_success_total{schedule=~\"$schedule\"}[15m])",
           "legendFormat": "Restore Success Total {{schedule}}",
@@ -902,7 +902,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "fvdzrNEnk"
+            "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
           },
           "expr": "avg_over_time(velero_restore_success_total{schedule!~\".*\"}[15m])",
           "legendFormat": "Restore Success Total",
@@ -911,7 +911,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "fvdzrNEnk"
+            "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
           },
           "expr": "avg_over_time(velero_restore_partial_failure_total{schedule=~\"$schedule\"}[15m])",
           "legendFormat": " Restore Partial Failure Total {{schedule}}",
@@ -920,7 +920,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "fvdzrNEnk"
+            "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
           },
           "expr": "avg_over_time(velero_restore_partial_failure_total{schedule!~\".*\"}[15m])",
           "legendFormat": "Restore Partial Failure Total",
@@ -929,7 +929,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "fvdzrNEnk"
+            "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
           },
           "exemplar": true,
           "expr": "avg_over_time(velero_restore_failed_total{schedule=~\"$schedule\"}[15m])",
@@ -940,7 +940,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "fvdzrNEnk"
+            "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
           },
           "expr": "avg_over_time(velero_restore_failed_total{schedule!~\".*\"}[15m])",
           "legendFormat": "Restore Failure Total",
@@ -949,7 +949,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "fvdzrNEnk"
+            "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
           },
           "expr": "avg_over_time(velero_restore_validation_failed_total{schedule=~\"$schedule\"}[15m])",
           "legendFormat": "Restore Validation Failed {{schedule}}",
@@ -958,7 +958,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "fvdzrNEnk"
+            "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
           },
           "expr": "avg_over_time(velero_restore_validation_failed_total{schedule!~\".*\"}[15m])",
           "legendFormat": "Restore Validation Failed",
@@ -1007,7 +1007,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "fvdzrNEnk"
+          "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
         },
         "definition": "label_values(velero_backup_attempt_total, schedule)",
         "hide": 0,

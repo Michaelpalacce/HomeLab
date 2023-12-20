@@ -6,7 +6,7 @@
         "builtIn": 1,
         "datasource": {
           "type": "prometheus",
-          "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+          "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
         },
         "enable": true,
         "hide": false,
@@ -30,7 +30,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+        "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
       },
       "gridPos": {
         "h": 6,
@@ -53,7 +53,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+            "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
           },
           "refId": "A"
         }
@@ -63,7 +63,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+        "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
       },
       "description": "",
       "fieldConfig": {
@@ -128,7 +128,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+            "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
           },
           "expr": "sum(kube_node_info)",
           "format": "time_series",
@@ -142,7 +142,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+        "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
       },
       "fieldConfig": {
         "defaults": {
@@ -210,7 +210,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+            "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
           },
           "expr": "sum(kube_node_status_condition{condition=\"DiskPressure\", node=~\"$Node\", status!=\"false\"})",
           "format": "time_series",
@@ -224,7 +224,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+        "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
       },
       "fieldConfig": {
         "defaults": {
@@ -292,7 +292,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+            "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
           },
           "expr": "sum(kube_node_status_condition{condition=\"PIDPressure\", node=~\"$Node\", status!=\"false\"})",
           "format": "time_series",
@@ -306,7 +306,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+        "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
       },
       "fieldConfig": {
         "defaults": {
@@ -374,7 +374,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+            "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
           },
           "expr": "sum(kube_node_status_condition{condition=\"MemoryPressure\", node=~\"$Node\", status!=\"false\"})",
           "format": "time_series",
@@ -442,7 +442,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+            "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -455,7 +455,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+            "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
           },
           "editorMode": "code",
           "expr": "sum(kube_pod_container_resource_requests{unit=\"core\"}) / sum(machine_cpu_cores)",
@@ -467,7 +467,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+            "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
           },
           "editorMode": "code",
           "expr": "sum(kube_pod_container_resource_limits{unit=\"core\"}) / sum(machine_cpu_cores)",
@@ -483,7 +483,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+        "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
       },
       "fieldConfig": {
         "defaults": {
@@ -537,7 +537,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+            "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
           },
           "expr": "sum(kube_node_status_condition{condition=\"OutOfDisk\", node=~\"$Node\", status=\"true\"})",
           "format": "time_series",
@@ -551,7 +551,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+        "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
       },
       "fieldConfig": {
         "defaults": {
@@ -619,7 +619,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+            "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
           },
           "expr": "sum(kube_node_status_condition{condition=\"NetworkUnavailable\", node=~\"$Node\", status!=\"false\"})",
           "format": "time_series",
@@ -633,7 +633,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+        "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
       },
       "fieldConfig": {
         "defaults": {
@@ -697,7 +697,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+            "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
           },
           "expr": "sum(kube_node_spec_unschedulable)",
           "format": "time_series",
@@ -766,7 +766,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+            "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -779,7 +779,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+            "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
           },
           "editorMode": "code",
           "expr": "sum(kube_pod_container_resource_requests{unit=\"byte\"}) / sum(machine_memory_bytes)",
@@ -791,7 +791,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+            "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
           },
           "editorMode": "code",
           "expr": "sum(kube_pod_container_resource_limits{unit=\"byte\"}) / sum(machine_memory_bytes)",
@@ -807,7 +807,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+        "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
       },
       "fieldConfig": {
         "defaults": {
@@ -866,7 +866,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+            "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
           },
           "expr": "sum(kube_node_status_allocatable{resource=\"pods\"})",
           "format": "time_series",
@@ -877,7 +877,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+            "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
           },
           "expr": "sum(kube_pod_info)",
           "format": "time_series",
@@ -892,7 +892,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+        "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
       },
       "fieldConfig": {
         "defaults": {
@@ -941,7 +941,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+            "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
           },
           "editorMode": "code",
           "expr": "sum(kube_node_status_allocatable{resource=\"pods\"})",
@@ -956,7 +956,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+        "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
       },
       "fieldConfig": {
         "defaults": {
@@ -1014,7 +1014,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+            "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
           },
           "editorMode": "code",
           "expr": "sum(kube_node_status_capacity{resource=\"cpu\",unit=\"core\"})",
@@ -1028,7 +1028,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+            "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
           },
           "expr": "sum(kube_pod_container_resource_requests{resource=\"cpu\",unit=\"core\"})",
           "format": "time_series",
@@ -1043,7 +1043,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+        "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
       },
       "fieldConfig": {
         "defaults": {
@@ -1092,7 +1092,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+            "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
           },
           "editorMode": "code",
           "expr": "sum(kube_node_status_capacity{resource=\"cpu\",unit=\"core\"})",
@@ -1107,7 +1107,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+        "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
       },
       "fieldConfig": {
         "defaults": {
@@ -1178,7 +1178,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+            "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -1194,7 +1194,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+            "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
           },
           "expr": "sum(kube_pod_container_resource_requests{unit=\"byte\",resource=\"memory\"})",
           "format": "time_series",
@@ -1209,7 +1209,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+        "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
       },
       "fieldConfig": {
         "defaults": {
@@ -1258,7 +1258,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+            "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
           },
           "editorMode": "code",
           "expr": "sum(kube_node_status_allocatable{unit=\"byte\",resource=\"memory\"})",
@@ -1273,7 +1273,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+        "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
       },
       "fieldConfig": {
         "defaults": {
@@ -1377,7 +1377,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+        "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
       },
       "fieldConfig": {
         "defaults": {
@@ -1482,7 +1482,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+        "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
       },
       "fieldConfig": {
         "defaults": {
@@ -1583,7 +1583,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+        "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
       },
       "description": "",
       "fieldConfig": {
@@ -1670,7 +1670,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+            "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
           },
           "exemplar": true,
           "expr": "speedtest_download_bits_per_second{instance=\"$speedtestinstance\", job=\"$speedtestjob\"}*10^-6",
@@ -1685,7 +1685,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+        "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
       },
       "description": "",
       "fieldConfig": {
@@ -1772,7 +1772,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+            "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
           },
           "exemplar": true,
           "expr": "speedtest_upload_bits_per_second{instance=\"$speedtestinstance\", job=\"$speedtestjob\"}*10^-6",
@@ -1797,7 +1797,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+            "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
           },
           "fieldConfig": {
             "defaults": {
@@ -1878,7 +1878,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+                "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
               },
               "exemplar": true,
               "expr": "sum (rate (container_cpu_usage_seconds_total{namespace!=\"\",node=~\"^$Node$\",namespace=~\"$Namespace\"}[5m])) by (namespace)",
@@ -1897,7 +1897,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+            "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
           },
           "fieldConfig": {
             "defaults": {
@@ -1977,7 +1977,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+                "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
               },
               "expr": "sum (rate (container_network_receive_bytes_total{node=~\"^$Node$\"}[5m]))",
               "format": "time_series",
@@ -1991,7 +1991,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+                "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
               },
               "expr": "- sum (rate (container_network_transmit_bytes_total{node=~\"^$Node$\"}[5m]))",
               "format": "time_series",
@@ -2009,7 +2009,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+            "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
           },
           "fieldConfig": {
             "defaults": {
@@ -2090,7 +2090,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+                "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
               },
               "exemplar": true,
               "expr": "sum (container_memory_working_set_bytes{namespace!=\"\",node=~\"^$Node$\",namespace=~\"$Namespace\"}) by (namespace)",
@@ -2109,7 +2109,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+            "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
           },
           "fieldConfig": {
             "defaults": {
@@ -2188,7 +2188,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+                "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
               },
               "expr": "100 * (kubelet_volume_stats_used_bytes{kubernetes_io_hostname=~\"^$Node$\"} / kubelet_volume_stats_capacity_bytes{kubernetes_io_hostname=~\"^$Node$\"})",
               "format": "time_series",
@@ -2204,7 +2204,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+            "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
           },
           "fieldConfig": {
             "defaults": {
@@ -2287,7 +2287,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+                "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
               },
               "exemplar": true,
               "expr": "sum (rate (container_cpu_usage_seconds_total{pod!=\"\",node=~\"^$Node$\",namespace=~\"$Namespace\"}[5m])) by (pod)",
@@ -2306,7 +2306,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+            "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
           },
           "fieldConfig": {
             "defaults": {
@@ -2388,7 +2388,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+                "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
               },
               "exemplar": true,
               "expr": "sum (container_memory_working_set_bytes{pod!=\"\",node=~\"^$Node$\",namespace=~\"$Namespace\"}) by (pod)",
@@ -2421,7 +2421,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+            "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
           },
           "fieldConfig": {
             "defaults": {
@@ -2484,7 +2484,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+                "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
               },
               "expr": "round(sum(irate(nginx_ingress_controller_requests{controller_pod=~\"$controller\",controller_class=~\"$controller_class\",namespace=~\"$namespace\"}[2m])), 0.001)",
               "format": "time_series",
@@ -2499,7 +2499,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+            "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
           },
           "fieldConfig": {
             "defaults": {
@@ -2562,7 +2562,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+                "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
               },
               "expr": "sum(avg_over_time(nginx_ingress_controller_nginx_process_connections{controller_pod=~\"$controller\",controller_class=~\"$controller_class\",controller_namespace=~\"$namespace\"}[2m]))",
               "format": "time_series",
@@ -2578,7 +2578,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+            "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
           },
           "fieldConfig": {
             "defaults": {
@@ -2645,7 +2645,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+                "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
               },
               "expr": "sum(rate(nginx_ingress_controller_requests{controller_pod=~\"$controller\",controller_class=~\"$controller_class\",namespace=~\"$namespace\",status!~\"[4-5].*\"}[2m])) / sum(rate(nginx_ingress_controller_requests{controller_pod=~\"$controller\",controller_class=~\"$controller_class\",namespace=~\"$namespace\"}[2m]))",
               "format": "time_series",
@@ -2660,7 +2660,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+            "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
           },
           "fieldConfig": {
             "defaults": {
@@ -2724,7 +2724,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+                "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
               },
               "expr": "avg(nginx_ingress_controller_success{controller_pod=~\"$controller\",controller_class=~\"$controller_class\",controller_namespace=~\"$namespace\"})",
               "format": "time_series",
@@ -2740,7 +2740,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+            "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
           },
           "fieldConfig": {
             "defaults": {
@@ -2804,7 +2804,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+                "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
               },
               "expr": "count(nginx_ingress_controller_config_last_reload_successful{controller_pod=~\"$controller\",controller_namespace=~\"$namespace\"} == 0)",
               "format": "time_series",
@@ -2824,7 +2824,7 @@
           "dashes": false,
           "datasource": {
             "type": "prometheus",
-            "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+            "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
           },
           "decimals": 2,
           "editable": true,
@@ -2879,7 +2879,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+                "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
               },
               "expr": "round(sum(irate(nginx_ingress_controller_requests{controller_pod=~\"$controller\",controller_class=~\"$controller_class\",controller_namespace=~\"$namespace\",ingress=~\"$ingress\"}[2m])) by (ingress), 0.001)",
               "format": "time_series",
@@ -2935,7 +2935,7 @@
           "dashes": false,
           "datasource": {
             "type": "prometheus",
-            "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+            "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
           },
           "decimals": 2,
           "editable": false,
@@ -2988,7 +2988,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+                "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
               },
               "expr": "sum(rate(nginx_ingress_controller_requests{controller_pod=~\"$controller\",controller_class=~\"$controller_class\",namespace=~\"$namespace\",ingress=~\"$ingress\",status!~\"[4-5].*\"}[2m])) by (ingress) / sum(rate(nginx_ingress_controller_requests{controller_pod=~\"$controller\",controller_class=~\"$controller_class\",namespace=~\"$namespace\",ingress=~\"$ingress\"}[2m])) by (ingress)",
               "format": "time_series",
@@ -3036,7 +3036,7 @@
           "columns": [],
           "datasource": {
             "type": "prometheus",
-            "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+            "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
           },
           "fontSize": "100%",
           "gridPos": {
@@ -3205,7 +3205,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+                "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
               },
               "expr": "histogram_quantile(0.50, sum(rate(nginx_ingress_controller_request_duration_seconds_bucket{ingress!=\"\",controller_pod=~\"$controller\",controller_class=~\"$controller_class\",controller_namespace=~\"$namespace\",ingress=~\"$ingress\"}[2m])) by (le, ingress))",
               "format": "table",
@@ -3218,7 +3218,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+                "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
               },
               "expr": "histogram_quantile(0.90, sum(rate(nginx_ingress_controller_request_duration_seconds_bucket{ingress!=\"\",controller_pod=~\"$controller\",controller_class=~\"$controller_class\",controller_namespace=~\"$namespace\",ingress=~\"$ingress\"}[2m])) by (le, ingress))",
               "format": "table",
@@ -3231,7 +3231,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+                "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
               },
               "expr": "histogram_quantile(0.99, sum(rate(nginx_ingress_controller_request_duration_seconds_bucket{ingress!=\"\",controller_pod=~\"$controller\",controller_class=~\"$controller_class\",controller_namespace=~\"$namespace\",ingress=~\"$ingress\"}[2m])) by (le, ingress))",
               "format": "table",
@@ -3244,7 +3244,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+                "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
               },
               "expr": "sum(irate(nginx_ingress_controller_request_size_sum{ingress!=\"\",controller_pod=~\"$controller\",controller_class=~\"$controller_class\",controller_namespace=~\"$namespace\",ingress=~\"$ingress\"}[2m])) by (ingress)",
               "format": "table",
@@ -3258,7 +3258,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+                "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
               },
               "expr": "sum(irate(nginx_ingress_controller_response_size_sum{ingress!=\"\",controller_pod=~\"$controller\",controller_class=~\"$controller_class\",controller_namespace=~\"$namespace\",ingress=~\"$ingress\"}[2m])) by (ingress)",
               "format": "table",
@@ -3281,7 +3281,7 @@
           ],
           "datasource": {
             "type": "prometheus",
-            "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+            "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
           },
           "fontSize": "100%",
           "gridPos": {
@@ -3346,7 +3346,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+                "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
               },
               "expr": "avg(nginx_ingress_controller_ssl_expire_time_seconds{kubernetes_pod_name=~\"$controller\",namespace=~\"$namespace\",ingress=~\"$ingress\"}) by (host) - time()",
               "format": "time_series",
@@ -3382,7 +3382,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+          "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
         },
         "definition": "label_values(node_uname_info, job)",
         "hide": 0,
@@ -3413,7 +3413,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+          "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
         },
         "definition": "label_values(kubernetes_io_hostname)",
         "hide": 0,
@@ -3448,7 +3448,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+          "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
         },
         "definition": "label_values(namespace)",
         "description": "",
@@ -3476,7 +3476,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+          "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
         },
         "definition": "label_values(kubernetes_build_info, git_version)",
         "hide": 2,
@@ -3503,7 +3503,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+          "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
         },
         "definition": "label_values(nginx_ingress_controller_config_hash{namespace=~\"$namespace\"}, controller_class)",
         "hide": 2,
@@ -3531,7 +3531,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+          "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
         },
         "definition": "label_values(nginx_ingress_controller_config_hash{namespace=~\"$namespace\",controller_class=~\"$controller_class\"}, controller_pod) ",
         "hide": 2,
@@ -3559,7 +3559,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+          "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
         },
         "definition": "label_values(nginx_ingress_controller_requests{namespace=~\"$namespace\",controller_class=~\"$controller_class\",controller=~\"$controller\"}, ingress) ",
         "hide": 0,
@@ -3587,7 +3587,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+          "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
         },
         "definition": "label_values(nginx_ingress_controller_config_hash, controller_namespace)",
         "hide": 0,
@@ -3614,7 +3614,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+          "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
         },
         "definition": "label_values(speedtest_up, instance)",
         "hide": 2,
@@ -3641,7 +3641,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "dc0311f4-1469-4e88-a620-dbb5d3047453"
+          "uid": "d81d7e67-2243-4bcb-a3bd-6f592ebb2770"
         },
         "definition": "label_values(speedtest_up, job)",
         "hide": 2,
