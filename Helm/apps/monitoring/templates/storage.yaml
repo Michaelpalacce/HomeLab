@@ -7,8 +7,8 @@ metadata:
     name: grafana-pvc
 spec:
     accessModes:
-        - ReadWriteMany
-    storageClassName: longhorn-single
+        - ReadWriteOnce
+    storageClassName: longhorn
     resources:
         requests:
             storage: 1Gi
@@ -23,12 +23,12 @@ kind: PersistentVolumeClaim
 metadata:
     name: prometheus
 spec:
-    storageClassName: longhorn-single
+    storageClassName: longhorn
     accessModes:
         - ReadWriteOnce
     resources:
         requests:
-            storage: 50Gi
+            storage: 40Gi
 
 {{- end }}
 
@@ -42,7 +42,7 @@ metadata:
 spec:
     accessModes:
         - ReadWriteOnce
-    storageClassName: longhorn-single
+    storageClassName: longhorn
     resources:
         requests:
             storage: 10Gi
@@ -53,7 +53,7 @@ kind: PersistentVolumeClaim
 metadata:
     name: loki-logs
 spec:
-    storageClassName: longhorn-single
+    storageClassName: longhorn
     accessModes:
         - ReadWriteOnce
     resources:
@@ -72,7 +72,7 @@ metadata:
 spec:
     accessModes:
         - ReadWriteMany
-    storageClassName: longhorn-single
+    storageClassName: longhorn
     resources:
         requests:
             storage: 2Gi

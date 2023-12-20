@@ -11,8 +11,7 @@ metadata:
 spec:
     replicas: 1
     strategy:
-        rollingUpdate:
-            maxUnavailable: 0
+        type: Recreate
     selector:
         matchLabels:
             app: grafana
