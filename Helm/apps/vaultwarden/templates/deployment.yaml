@@ -41,7 +41,7 @@ spec:
 {{ toYaml .backup.resources | indent 22 }}
 {{- end }}
                     volumeMounts:
-                        -   name: data
+                        -   name: config
                             mountPath: /data
                         -   name: backup
                             mountPath: /backups
