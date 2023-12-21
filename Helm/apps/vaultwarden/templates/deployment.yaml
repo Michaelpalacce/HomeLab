@@ -75,7 +75,7 @@ spec:
                         claimName: vaultwarden
                 -   name: backup
                     persistentVolumeClaim:
-                        claimName: backup
+                        claimName: vaultwarden-backup-nfs
 
 ---
 
