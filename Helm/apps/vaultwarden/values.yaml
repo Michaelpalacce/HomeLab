@@ -6,6 +6,13 @@ vaultwarden:
         requests:
             cpu: 500m
             memory: 512Mi
+    backup:
+        image: stefangenov/vaultwarden-backup:1.0.0
+        resources:
+            requests:
+                cpu: 10m
+                memory: 50Mi
 
 storage:
     dataSize: 5Gi
+    backupSize: 10Gi

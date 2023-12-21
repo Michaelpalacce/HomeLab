@@ -10,3 +10,38 @@ spec:
     resources:
         requests:
             storage: {{ .Values.storage.dataSize }}
+---
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: vaultwarden-backup-nfs-pv
+    labels:
+        type: nfs
+        app: backup
+spec:
+    storageClassName: nfs-direct
+    capacity:
+        storage: 10Gi
+    accessModes:
+        - ReadWriteOnce
+    nfs:
+        path: "/volume1/k3s/backup/vaultwarden/"
+        server: 192.168.1.20
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: vaultwarden-backup-nfs
+spec:
+    selector:
+        matchLabels:
+            type: nfs
+            app: backup
+    storageClassName: nfs-direct
+    accessModes:
+        - ReadWriteOnce
+    resources:
+        requests:
+            storage: 10Gi

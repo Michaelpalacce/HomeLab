@@ -23,6 +23,28 @@ spec:
                 app: vaultwarden
         spec:
             containers:
+                -   name: backup
+                    image: {{ .backup.image }}
+                    imagePullPolicy: IfNotPresent
+                    env:
+                        -   name: BACKUP_ENCRYPTION_KEY
+                            valueFrom:
+                                secretKeyRef:
+                                    name: backup
+                                    key: encryptionKey
+                        -   name: RETENTION_TIME_DAYS
+                            value: "7"
+                        -   name: CRON_SCHEDULE
+                            value: "0 * */1 * *"
+{{- if .backup.resources }}
+                    resources:
+{{ toYaml .backup.resources | indent 22 }}
+{{- end }}
+                    volumeMounts:
+                        -   name: data
+                            mountPath: /data
+                        -   name: backup
+                            mountPath: /backups
                 -   name: vaultwarden
                     image: {{ .image }}
                     imagePullPolicy: IfNotPresent
@@ -51,6 +73,9 @@ spec:
                 -   name: config
                     persistentVolumeClaim:
                         claimName: vaultwarden
+                -   name: backup
+                    persistentVolumeClaim:
+                        claimName: vaultwarden-backup-nfs
 
 ---
 
