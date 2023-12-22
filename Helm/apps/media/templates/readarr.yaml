@@ -1,80 +1,67 @@
 ---
-{{- with .Values.radarr }}
+{{- with .Values.readarr }}
 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: radarr
+    name: readarr
     namespace: {{ $.Release.Namespace }}
     labels:
-        app: radarr
+        app: readarr
 spec:
-    replicas: 1
+    replicas: {{ .replicas }}
     strategy:
         type: Recreate
     selector:
         matchLabels:
-            app: radarr
+            app: readarr
     template:
         metadata:
             annotations:
-                backup.velero.io/backup-volumes: config
+               backup.velero.io/backup-volumes: config
             labels:
-                app: radarr
+                app: readarr
         spec:
             containers:
-                -   name: radarr
+                -   name: readarr
                     image: {{ .image }}
                     imagePullPolicy: IfNotPresent
                     env:
-                        -   name: PUID
-                            value: "0"
-                        -   name: GUID
-                            value: "0"
-{{- if .resources }}
-                    resources:
-{{ toYaml .resources | indent 22 }}
-{{- end }}
-                    ports:
-                        -   name: web
-                            containerPort: {{ .port }}
-                    volumeMounts:
-                        -   name: config
+	@@ -43,34 +43,34 @@ spec:
                             mountPath: /config
                         -   name: downloads-data
                             mountPath: /downloads
-                        -   name: movies-data-nfs
-                            mountPath: /tv
+                        -   name: books-data-nfs
+                            mountPath: /books
             restartPolicy: Always
             volumes:
-                -   name: config
-                    persistentVolumeClaim:
-                        claimName: radarr-config-pvc
-                -   name: movies-data-nfs
-                    persistentVolumeClaim:
-                        claimName: movies-volume-nfs
-                -   name: downloads-data
-                    persistentVolumeClaim:
-                        claimName: downloads-volume
+                - name: books-data-nfs
+                  persistentVolumeClaim:
+                      claimName: books-volume-nfs
+                - name: downloads-data
+                  persistentVolumeClaim:
+                      claimName: downloads-volume
+                - name: config
+                  persistentVolumeClaim:
+                      claimName: readarr-config-pvc
 ---
 
 apiVersion: v1
 kind: Service
 metadata:
-    name: radarr
+    name: readarr
     namespace: {{ $.Release.Namespace }}
 spec:
-    {{- with .nodePort }}
+{{- with .nodePort }}
     type: NodePort
-    {{- end }}
+{{- end }}
     selector:
-        app: radarr
+        app: readarr
     ports:
-        -   name: radarr
+        -   name: readarr
             protocol: TCP
             port: {{ .port }}
           {{- with .nodePort }}
             nodePort: {{ . }}
           {{- end }}
-
 {{- end }}
