@@ -27,7 +27,19 @@ spec:
                     image: {{ .image }}
                     imagePullPolicy: IfNotPresent
                     env:
-	@@ -43,34 +43,34 @@ spec:
+                        -   name: PUID
+                            value: "0"
+                        -   name: GUID
+                            value: "0"
+{{- if .resources }}
+                    resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+                    ports:
+                        -   name: web
+                            containerPort: {{ .port }}
+                    volumeMounts:
+                        -   name: config
                             mountPath: /config
                         -   name: downloads-data
                             mountPath: /downloads
