@@ -1,0 +1,80 @@
+---
+{{- with .Values.radarr }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: radarr
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app: radarr
+spec:
+    replicas: 1
+    strategy:
+        type: Recreate
+    selector:
+        matchLabels:
+            app: radarr
+    template:
+        metadata:
+            annotations:
+                backup.velero.io/backup-volumes: config
+            labels:
+                app: radarr
+        spec:
+            containers:
+                -   name: radarr
+                    image: {{ .image }}
+                    imagePullPolicy: IfNotPresent
+                    env:
+                        -   name: PUID
+                            value: "0"
+                        -   name: GUID
+                            value: "0"
+{{- if .resources }}
+                    resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+                    ports:
+                        -   name: web
+                            containerPort: {{ .port }}
+                    volumeMounts:
+                        -   name: config
+                            mountPath: /config
+                        -   name: downloads-data
+                            mountPath: /downloads
+                        -   name: movies-data-nfs
+                            mountPath: /tv
+            restartPolicy: Always
+            volumes:
+                -   name: config
+                    persistentVolumeClaim:
+                        claimName: radarr-config-pvc
+                -   name: movies-data-nfs
+                    persistentVolumeClaim:
+                        claimName: movies-volume-nfs
+                -   name: downloads-data
+                    persistentVolumeClaim:
+                        claimName: downloads-volume
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: radarr
+    namespace: {{ $.Release.Namespace }}
+spec:
+    {{- with .nodePort }}
+    type: NodePort
+    {{- end }}
+    selector:
+        app: radarr
+    ports:
+        -   name: radarr
+            protocol: TCP
+            port: {{ .port }}
+          {{- with .nodePort }}
+            nodePort: {{ . }}
+          {{- end }}
+
+{{- end }}
