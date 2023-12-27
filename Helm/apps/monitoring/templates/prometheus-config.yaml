@@ -57,7 +57,7 @@ data:
                   target_label: systemd_service_name
                   replacement: '${1}'
           - job_name: 'speedtest-exporter'
-            scrape_interval: 30m
+            scrape_interval: 120m
             scrape_timeout: 2m
             static_configs:
                 - targets: ['speedtest.monitoring:{{ $.Values.speedtest.port }}']
