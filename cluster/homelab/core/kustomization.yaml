@@ -9,3 +9,4 @@ resources:
     - longhorn-system
     - velero
     - cert-manager
+    - kured
