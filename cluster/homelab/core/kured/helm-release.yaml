@@ -1,0 +1,26 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+    name: kured
+    namespace: kured
+spec:
+    interval: 5m
+    install:
+        createNamespace: true
+        crds: CreateReplace
+        remediation:
+            retries: 3
+    upgrade:
+        crds: CreateReplace
+        remediation:
+            retries: 3
+    chart:
+        spec:
+            chart: velero
+            version: 5.3.2
+            interval: 5m
+            sourceRef:
+                kind: HelmRepository
+                name: kured
+                namespace: flux-system

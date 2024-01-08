@@ -12,3 +12,4 @@ resources:
     - velero
     - botkube
     - kube-vip
+    - kured
