@@ -22,5 +22,5 @@ spec:
             interval: 5m
             sourceRef:
                 kind: HelmRepository
-                name: kured
+                name: kubereboot
                 namespace: flux-system
