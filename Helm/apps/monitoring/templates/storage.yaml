@@ -41,7 +41,7 @@ metadata:
     name: loki-pvc
 spec:
     accessModes:
-        - ReadWriteOnce
+        - ReadWriteMany
     storageClassName: longhorn
     resources:
         requests:
@@ -55,7 +55,7 @@ metadata:
 spec:
     storageClassName: longhorn
     accessModes:
-        - ReadWriteOnce
+        - ReadWriteMany
     resources:
         requests:
             storage: 25Gi
