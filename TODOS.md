@@ -9,6 +9,6 @@
 - [x] `system-upgrades` core app for k3s upgrades
 - [x] Move Playbooks in roles
 - [x] Terraform
+- [x] Migrate to SOPS, it's easy to use
 - [ ] Migrate over to helm charts
 - [ ] Harden security
-- [ ] Migrate to SOPS, it's easy to use
