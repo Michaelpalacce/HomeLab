@@ -24,3 +24,6 @@ spec:
                 kind: HelmRepository
                 name: kubereboot
                 namespace: flux-system
+    values:
+      configuration: 
+        drainGracePeriod: 300
