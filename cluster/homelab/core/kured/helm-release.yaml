@@ -25,5 +25,6 @@ spec:
                 name: kubereboot
                 namespace: flux-system
     values:
-      configuration: 
-        drainGracePeriod: 300
+        configuration: 
+            drainGracePeriod: 300
+            forceReboot: true
