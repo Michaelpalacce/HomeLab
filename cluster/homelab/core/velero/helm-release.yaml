@@ -25,32 +25,41 @@ spec:
                 name: velero
                 namespace: flux-system
     values:
-        upgradeCRDs: true
-        initContainers:
-            - name: velero-plugin-for-aws
-              image: velero/velero-plugin-for-aws:v1.9.0
-              volumeMounts:
-                  - mountPath: /target
-                    name: plugins
-        metrics:
-            enabled: true
-            scrapeInterval: 120s
-            scrapeTimeout: 30s
-        deployNodeAgent: true
-        credentials:
-            existingSecret: cloud-credentials-backblaze
-        configuration:
-            backupStorageLocation:
-                - name: backblaze
-                  provider: aws
-                  default: true
-                  bucket: sgenov
-                  config:
-                      region: eu-central-003
-                      s3ForcePathStyle: true
-                      s3Url: https://s3.eu-central-003.backblazeb2.com
-            volumeSnapshotLocation:
-                - name: backblaze
-                  provider: aws
-                  config:
-                      region: eu-central-003
+      upgradeCRDs: true
+      initContainers:
+          - name: velero-plugin-for-aws
+            image: velero/velero-plugin-for-aws:v1.9.0
+            volumeMounts:
+                - mountPath: /target
+                  name: plugins
+      metrics:
+          enabled: true
+          scrapeInterval: 120s
+          scrapeTimeout: 30s
+      deployNodeAgent: true
+      credentials:
+          existingSecret: cloud-credentials-backblaze
+      configuration:
+          backupStorageLocation:
+              - name: default
+                provider: aws
+                default: true
+                bucket: sgenov
+                config:
+                    region: eu-central-003
+                    s3ForcePathStyle: true
+                    s3Url: https://s3.eu-central-003.backblazeb2.com
+
+              - name: backblaze
+                provider: aws
+                default: false
+                bucket: sgenov
+                config:
+                    region: eu-central-003
+                    s3ForcePathStyle: true
+                    s3Url: https://s3.eu-central-003.backblazeb2.com
+          volumeSnapshotLocation:
+              - name: backblaze
+                provider: aws
+                config:
+                    region: eu-central-003
