@@ -1,7 +1,6 @@
 ---
 storage:
     dshmSize: 1Gi
-    pgAdmin: 2Gi
     dataSize: 25Gi
 
 postgresql:
@@ -24,11 +23,3 @@ postgresql14:
         limits:
             memory: 2Gi
 
-pgadmin:
-    image: dpage/pgadmin4:8.2
-    port: 80
-    replicas: 0
-    resources:
-        requests:
-            cpu: 10m
-            memory: 250Mi

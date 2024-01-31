@@ -1,3 +1,6 @@
+#### [V3.0.0]
+- Removed pgadmin
+
 #### [V2.0.0]
 * Removed NodePort
 
