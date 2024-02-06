@@ -17,12 +17,12 @@ spec:
             retries: 3
     chart:
         spec:
-            chart: kubereboot
+            chart: kured
             version: 5.4.2
             interval: 5m
             sourceRef:
                 kind: HelmRepository
-                name: kured
+                name: kubereboot
                 namespace: flux-system
     values:
         configuration: 
