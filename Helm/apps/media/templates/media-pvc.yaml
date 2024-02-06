@@ -26,41 +26,6 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-    name: downloads-volume
-spec:
-    selector:
-        matchLabels:
-            app: downloads
-            type: nfs
-    storageClassName: nfs-direct
-    accessModes:
-        - ReadWriteMany
-    resources:
-        requests:
-            storage: 500Gi
-
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-    name: downloads-volume-pv
-    labels:
-        type: nfs
-        app: downloads
-spec:
-    storageClassName: nfs-direct
-    capacity:
-        storage: 500Gi
-    accessModes:
-        - ReadWriteMany
-    nfs:
-        path: "/volume1/k3s/media/downloads"
-        server: {{ .Values.storage.nasIp }}
-
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
     name: kavita-config-pvc
 spec:
     accessModes:
