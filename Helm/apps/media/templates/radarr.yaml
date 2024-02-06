@@ -51,11 +51,13 @@ spec:
                     persistentVolumeClaim:
                         claimName: radarr-config-pvc
                 -   name: movies-data-nfs
-                    persistentVolumeClaim:
-                        claimName: movies-volume-nfs
+                    nfs:
+                        path: "/volume1/k3s/media/movies"
+                        server: "192.168.1.20"
                 -   name: downloads-data
-                    persistentVolumeClaim:
-                        claimName: downloads-volume
+                    nfs:
+                        path: "/volume1/k3s/media/downloads"
+                        server: "192.168.1.20"
 ---
 
 apiVersion: v1

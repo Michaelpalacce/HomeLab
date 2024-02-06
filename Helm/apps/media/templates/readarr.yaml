@@ -48,11 +48,13 @@ spec:
             restartPolicy: Always
             volumes:
                 - name: books-data-nfs
-                  persistentVolumeClaim:
-                      claimName: books-volume-nfs
+                  nfs:
+                      path: "/volume1/k3s/media/books"
+                      server: "192.168.1.20"
                 - name: downloads-data
-                  persistentVolumeClaim:
-                      claimName: downloads-volume
+                  nfs:
+                      path: "/volume1/k3s/media/downloads"
+                      server: "192.168.1.20"
                 - name: config
                   persistentVolumeClaim:
                       claimName: readarr-config-pvc

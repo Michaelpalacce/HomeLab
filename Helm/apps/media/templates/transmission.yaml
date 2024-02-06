@@ -58,8 +58,9 @@ spec:
                     persistentVolumeClaim:
                         claimName: transmission-config-pvc
                 -   name: downloads-data
-                    persistentVolumeClaim:
-                        claimName: downloads-volume
+                    nfs:
+                        path: "/volume1/k3s/media/downloads"
+                        server: "192.168.1.20"
 
 ---
 
