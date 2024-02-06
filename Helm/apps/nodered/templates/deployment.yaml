@@ -51,8 +51,9 @@ spec:
                   persistentVolumeClaim:
                       claimName: nodered-pvc
                 - name: nas
-                  persistentVolumeClaim:
-                      claimName: nas
+                  nfs:
+                    path: "/volume1/k3s"
+                    server: "192.168.1.20"
 
 ---
 

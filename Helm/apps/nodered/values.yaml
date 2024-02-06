@@ -9,7 +9,4 @@ nodered:
         limits:
             memory: 2Gi
 storage:
-    dataLocality: best-effort
-    numberOfReplicas: 1
     configSize: 5Gi
-    nasIp: 192.168.1.20
