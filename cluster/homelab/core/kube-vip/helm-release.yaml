@@ -31,7 +31,6 @@ spec:
 
         config:
             address: "192.168.1.2"
-
         env:
             vip_interface: ""
             vip_arp: "true"
