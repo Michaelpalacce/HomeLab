@@ -33,7 +33,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-    name: vaultwarden-backup-nfs
+    name: vaultwarden-backup
 spec:
     selector:
         matchLabels:
