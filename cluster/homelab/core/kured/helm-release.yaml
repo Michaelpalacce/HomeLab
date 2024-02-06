@@ -17,7 +17,7 @@ spec:
             retries: 3
     chart:
         spec:
-            chart: kubereboot/kured
+            chart: kubereboot
             version: 5.4.2
             interval: 5m
             sourceRef:
