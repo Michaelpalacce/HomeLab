@@ -27,5 +27,5 @@ spec:
     values:
         configuration: 
             drainGracePeriod: 300
-            drainTimeout: 600
+            drainTimeout: 600s
             forceReboot: true
