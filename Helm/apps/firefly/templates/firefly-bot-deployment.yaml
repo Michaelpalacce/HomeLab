@@ -16,6 +16,8 @@ spec:
             app: fireflybot
     template:
         metadata:
+            annotations:
+                backup.velero.io/backup-volumes: sessions
             labels:
                 app: fireflybot
         spec:

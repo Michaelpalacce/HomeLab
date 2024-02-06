@@ -15,6 +15,7 @@ spec:
           - monitoring
           - uptimekuma
           - freshrss
+          - firefly
         snapshotVolumes: true
         ttl: 96h0m0s
     useOwnerReferencesInBackup: false
