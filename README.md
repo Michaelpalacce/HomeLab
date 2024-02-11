@@ -17,10 +17,9 @@ I'm not going to move away from the local helm charts where possible as they mak
 4. **cert-manager + reflector** - cert-manager generates certificates for my services and reflector duplicates the generated ssl
 certificate secret to all the namespaces. The secret is called `ingress`.
 5. **Longhorn** - K8S native storage.
-6. **Calico** - Provides Networking for my HomeLab
-7. **Ansible** - Used to provision the architecture
-8. **Velero** - K8S and PVC backup. Free and open source by VMware 
-9. **Kube-vip** - For a Virtual IP that I can use to access all my servers
+6. **Ansible** - Used to provision the architecture
+7. **Velero** - K8S and PVC backup. Free and open source by VMware 
+8. **Kube-vip** - For a Virtual IP that I can use to access all my servers
 
 # GitOps :construction:
 GitOps is applied wherever possible using Flux2.
@@ -44,9 +43,6 @@ and services I install.
 # Storage ( Longhorn )
 Longhorn is a great replicated storage option with a great UI for better visualisation. It's fast and tailor made for 
 k8s. Developed by the same people responsible for k3s/rancher and other great tools. [Official site](https://longhorn.io/)
-
-# Networking ( Calico CNI )
-Calico is a great and mature CNI/IPAM software that is fast, scalable and feature rich. [Source code](https://github.com/projectcalico/calico)
 
 # Backup ( Velero ) 
 Velero allows me to back up selected namespaces and ( with the help of restic ) ship the data to different sources.
