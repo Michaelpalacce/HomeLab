@@ -10,13 +10,6 @@ I'm not going to move away from the local helm charts where possible as they mak
 # :open_book: Check out the Documentation
 * [Documentation](./docs)
 
-# :checkered_flag: Getting Started
-1. [Prerequisites](./docs/Prerequisites.md)
-2. [Cluster Setup](./docs/ClusterSetup.md)
-3. [Cert Manager](./docs/SettingUpCertManager.md)
-4. [Setting Up Renovate](./docs/SettingUpRenovate.md)
-5[Backups](./docs/Backups.md)
-
 # Main tools used
 1. **FluxCD 2** - GitOps for my HomeLab.
 2. **Renovate** - Checks for updates to actions, helm charts, helm releases, docker containers.
