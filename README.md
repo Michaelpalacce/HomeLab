@@ -24,11 +24,10 @@ I'm not going to move away from the local helm charts where possible as they mak
 4. **cert-manager + reflector** - cert-manager generates certificates for my services and reflector duplicates the generated ssl
 certificate secret to all the namespaces. The secret is called `ingress`.
 5. **Longhorn** - K8S native storage.
-6. **SimpleSecrets** - Kubernetes secret manager.
-7. **Calico** - Provides Networking for my HomeLab
-8. **Ansible** - Used to provision the architecture
-9. **Velero** - K8S and PVC backup. Free and open source by VMware 
-10. **Kube-vip** - For a Virtual IP that I can use to access all my servers
+6. **Calico** - Provides Networking for my HomeLab
+7. **Ansible** - Used to provision the architecture
+8. **Velero** - K8S and PVC backup. Free and open source by VMware 
+9. **Kube-vip** - For a Virtual IP that I can use to access all my servers
 
 # GitOps :construction:
 GitOps is applied wherever possible using Flux2.
@@ -55,11 +54,6 @@ k8s. Developed by the same people responsible for k3s/rancher and other great to
 
 # Networking ( Calico CNI )
 Calico is a great and mature CNI/IPAM software that is fast, scalable and feature rich. [Source code](https://github.com/projectcalico/calico)
-
-# SimpleSecrets ( Secrets Management )
-This is a tool that I've been developing in my spare time. **It is not audited or tested by security professionals !**
-It allows for you to store secrets via the UI/API and create K8S Secrets by creating a SimpleSecrets object instead, allowing
-me to commit `SimpleSecrets` to git, while not exposing anything to the internet.
 
 # Backup ( Velero ) 
 Velero allows me to back up selected namespaces and ( with the help of restic ) ship the data to different sources.

@@ -1,7 +1,7 @@
 # Increasing PVC/volume Size
 Longhorn requires a few manual steps to achieve this.
 
-### Steps:
+## Steps:
 1. Stop all pods the volume is attached to
 2. Increase size of volume
 3. Go to Longhorn UI
