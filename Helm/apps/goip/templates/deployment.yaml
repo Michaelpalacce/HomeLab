@@ -10,6 +10,9 @@ metadata:
         app: goip
 spec:
     replicas: {{ .replicas }}
+    updateStrategy:
+        rollingUpdate:
+            maxUnavailable: 0
     selector:
         matchLabels:
             app: goip
