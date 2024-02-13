@@ -27,6 +27,30 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
+    name: flaresolverr
+    namespace: {{ $.Release.Namespace }}
+    annotations:
+        kubernetes.io/ingress.class: "nginx"
+spec:
+    tls:
+        -   hosts:
+                - "*.stefangenov.site"
+            secretName: ingress
+    rules:
+        -   host: flaresolverr.stefangenov.site
+            http:
+                paths:
+                    -   pathType: Prefix
+                        path: "/"
+                        backend:
+                            service:
+                                name: flaresolverr
+                                port:
+                                    number: {{ .Values.flaresolverr.port }}
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
     name: sonarr
     namespace: {{ $.Release.Namespace }}
     annotations:

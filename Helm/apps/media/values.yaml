@@ -18,6 +18,13 @@ storage:
     doplarr:
         config: 5Gi
 
+flaresolverr:
+    image: ghcr.io/flaresolverr/flaresolverr:v3.3.13
+    port: 8191
+    resources:
+        requests:
+            cpu: 512m
+            memory: 1Gi
 transmission:
     image: lscr.io/linuxserver/transmission:4.0.5
     port: 9091
