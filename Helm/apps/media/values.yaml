@@ -36,7 +36,7 @@ transmission:
             memory: 1Gi
 prowlarr:
     replicas: 1
-    image: lscr.io/linuxserver/prowlarr:1.10.3-nightly
+    image: lscr.io/linuxserver/prowlarr:1.13.3
     port: 9696
     resources:
         requests:
@@ -44,7 +44,7 @@ prowlarr:
             memory: 1Gi
 
 radarr:
-    image: lscr.io/linuxserver/radarr:5.2.3-nightly
+    image: lscr.io/linuxserver/radarr:5.3.5
     port: 7878
     resources:
         requests:
@@ -80,7 +80,7 @@ sonarr:
             cpu: 2
 
 kavita:
-    image: kizaing/kavita:0.7.8@sha256:48b3c2c07f90feb4641ddb791f96a1bf6e70a2b27da8c8b2ca0cc2c627b91d72
+    image: ghcr.io/linuxserver/kavita:0.7.14
     port: 5000
     replicas: 1
     resources:
