@@ -36,7 +36,7 @@ transmission:
             memory: 1Gi
 prowlarr:
     replicas: 1
-    image: lscr.io/linuxserver/prowlarr:1.13.3
+    image: ghcr.io/linuxserver/prowlarr:1.13.3
     port: 9696
     resources:
         requests:
@@ -44,7 +44,7 @@ prowlarr:
             memory: 1Gi
 
 radarr:
-    image: lscr.io/linuxserver/radarr:5.3.5
+    image: ghcr.io/linuxserver/radarr:5.3.5
     port: 7878
     resources:
         requests:
