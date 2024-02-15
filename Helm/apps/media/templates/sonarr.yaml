@@ -50,11 +50,11 @@ spec:
                 - name: shows-data-nfs
                   nfs:
                       path: "/volume1/k3s/media/shows"
-                      server: "192.168.1.20"
+                      server: "192.168.1.39"
                 - name: downloads-data
                   nfs:
                       path: "/volume1/k3s/media/downloads"
-                      server: "192.168.1.20"
+                      server: "192.168.1.39"
                 - name: config
                   persistentVolumeClaim:
                       claimName: sonarr-config-pvc
