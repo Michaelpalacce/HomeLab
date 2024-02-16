@@ -41,7 +41,17 @@ spec:
                         value: "1000"
                       - name: TZ
                         value: "Europe/Sofia"
-
+                  livenessProbe:
+                      initialDelaySeconds: 60
+                      periodSeconds: 30
+                      timeoutSeconds: 5
+                      tcpSocket:
+                          port: {{ .port }}
+                  startupProbe:
+                      failureThreshold: 5
+                      initialDelaySeconds: 10
+                      tcpSocket:
+                          port: {{ .port }}
             restartPolicy: Always
             volumes:
                 - name: app-config
