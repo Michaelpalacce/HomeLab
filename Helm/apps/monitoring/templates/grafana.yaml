@@ -24,6 +24,8 @@ spec:
         spec:
             terminationGracePeriodSeconds: 0
             securityContext:
+                privileged: false
+                allowPrivilegeEscalation: false
                 runAsUser: 472
                 runAsGroup: 472
                 fsGroup: 472
