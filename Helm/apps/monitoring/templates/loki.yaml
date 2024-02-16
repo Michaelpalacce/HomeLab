@@ -21,6 +21,8 @@ spec:
                 app: loki
         spec:
             securityContext:
+              privileged: false
+              allowPrivilegeEscalation: false
               fsGroup: 10001 
             containers:
                 -   name: loki

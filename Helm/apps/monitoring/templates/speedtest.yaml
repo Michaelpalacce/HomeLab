@@ -18,6 +18,9 @@ spec:
             labels:
                 app: speedtest
         spec:
+            securityContext:
+              privileged: false
+              allowPrivilegeEscalation: false
             containers:
                 -   name: speedtest
                     image: {{ .image }}

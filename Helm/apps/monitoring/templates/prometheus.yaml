@@ -65,6 +65,8 @@ spec:
                 prometheus.io/port: "{{ .port }}"
         spec:
             securityContext:
+              privileged: false
+              allowPrivilegeEscalation: false
               fsGroup: 65534
             containers:
                 -   name: prometheus
