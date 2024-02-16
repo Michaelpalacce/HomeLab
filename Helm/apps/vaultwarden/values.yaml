@@ -2,6 +2,7 @@
 vaultwarden:
     image: ghcr.io/dani-garcia/vaultwarden:1.30.3
     port: 80
+    replicas: 1
     resources:
         requests:
             cpu: 500m
