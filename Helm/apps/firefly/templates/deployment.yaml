@@ -10,7 +10,7 @@ metadata:
 spec:
     replicas: 1
     strategy:
-        type: RollingUpdate
+        type: Recreate
     selector:
         matchLabels:
             app: firefly
@@ -81,9 +81,9 @@ spec:
                         -   name: TRUSTED_PROXIES
                             value: "**"
                     livenessProbe:
-                        failureThreshold: 1
-                        initialDelaySeconds: 60
-                        periodSeconds: 30
+                        failureThreshold: 2
+                        initialDelaySeconds: 120
+                        periodSeconds: 120
                         timeoutSeconds: 5
                         tcpSocket:
                             port: {{ .port }}
