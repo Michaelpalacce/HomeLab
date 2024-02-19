@@ -17,4 +17,4 @@ spec:
                 name: flux-system
                 namespace: flux-system
     values:
-      replicas: 0
+      replicas: 1

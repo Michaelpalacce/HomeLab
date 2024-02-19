@@ -21,8 +21,8 @@ resources:
   - reactiveresume
   - stirlingpdf
   - uptimekuma
-  - vaultwarden
   - vikunja
   - website
   - wallabag
   - whoogle
+# - vaultwarden
