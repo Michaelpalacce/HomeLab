@@ -29,3 +29,5 @@ spec:
             drainGracePeriod: 300
             drainTimeout: 600s
             forceReboot: true
+            endTime: "07:00"
+            startTime: "02:00"
