@@ -1,6 +1,6 @@
 ---
 vaultwarden:
-    image: ghcr.io/dani-garcia/vaultwarden:1.30.3
+    image: ghcr.io/dani-garcia/vaultwarden:1.30.4
     port: 80
     replicas: 1
     resources:
