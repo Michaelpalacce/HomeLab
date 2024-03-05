@@ -17,10 +17,6 @@ data:
                             {
                                 "name": "stefangenov.site",
                                 "proxied": true
-                            },
-                            {
-                                "name": "*.public.stefangenov.site",
-                                "proxied": true
                             }
                         ]
                     }
