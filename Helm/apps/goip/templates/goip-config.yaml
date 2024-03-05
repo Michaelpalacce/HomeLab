@@ -19,7 +19,7 @@ data:
                                 "proxied": true
                             },
                             {
-                                "name": "*-public.stefangenov.site",
+                                "name": "*.public.stefangenov.site",
                                 "proxied": true
                             }
                         ]

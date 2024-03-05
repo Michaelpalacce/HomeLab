@@ -27,7 +27,7 @@ spec:
                                 name: grafana
                                 port:
                                     number: {{ .Values.grafana.port }}
-        -   host: grafana-public.stefangenov.site
+        -   host: grafana.public.stefangenov.site
             http:
                 paths:
                     -   pathType: Prefix
