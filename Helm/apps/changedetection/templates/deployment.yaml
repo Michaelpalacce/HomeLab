@@ -21,6 +21,33 @@ spec:
                 app: changedetection
         spec:
             containers:
+                - name: browserless
+                  image: {{ .playwright.image }}
+                  imagePullPolicy: IfNotPresent
+                  ports:
+                      - name: browserless
+                        containerPort: {{ .playwright.port }}
+                  env:
+                      - name: DEFAULT_LAUNCH_ARGS
+                        value: "--window-size=1920.1080"
+                  resources: 
+                      limits:
+                          memory: 2Gi
+                  volumeMounts:
+                      - name: shm-empty-playwright
+                        mountPath: /dev/shm
+                - name: selenium
+                  image: {{ .selenium.image }}
+                  imagePullPolicy: IfNotPresent
+                  ports:
+                      - name: selenium
+                        containerPort: {{ .selenium.port }}
+                  resources: 
+                      limits:
+                          memory: 2Gi
+                  volumeMounts:
+                      - name: shm-empty
+                        mountPath: /dev/shm
                 - name: changedetection
                   image: {{ .image }}
                   imagePullPolicy: IfNotPresent
@@ -43,12 +70,22 @@ spec:
                         value: "Europe/Sofia"
                       - name: BASE_URL
                         value: "{{ .baseUrl }}"
+                      - name: WEBDRIVER_URL
+                        value: "http://localhost:{{ .selenium.port }}/wd/hub"
+                      - name: PLAYWRIGHT_DRIVER_URL
+                        value: "ws://localhost:{{ .playwright.port }}/?stealth=1&--disable-web-security=true"
 
             restartPolicy: Always
             volumes:
                 - name: data-config
                   persistentVolumeClaim:
                       claimName: changedetection-pvc
+                - name: shm-empty
+                  emptyDir:
+                      medium: Memory
+                - name: shm-empty-playwright
+                  emptyDir:
+                      medium: Memory
 
 ---
 

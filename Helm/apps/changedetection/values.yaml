@@ -7,6 +7,12 @@ changedetection:
         requests:
             cpu: 10m
             memory: 125Mi
+    selenium:
+        image: selenium/standalone-chrome-debug:3.141.59
+        port: 4444
+    playwright:
+        image: browserless/chrome:1.53-chrome-stable
+        port: 3000
 
 storage:
     configSize: 1Gi
