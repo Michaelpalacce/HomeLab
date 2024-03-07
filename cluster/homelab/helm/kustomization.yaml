@@ -13,3 +13,4 @@ resources:
     - botkube
     - kube-vip
     - kubereboot
+    - lwolf-charts
