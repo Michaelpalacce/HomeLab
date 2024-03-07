@@ -11,7 +11,7 @@ changedetection:
         image: selenium/standalone-chrome-debug:3.141.59
         port: 4444
     playwright:
-        image: browserless/chrome:1.53-chrome-stable
+        image: browserless/chrome:1.61-chrome-stable
         port: 3000
 
 storage:
