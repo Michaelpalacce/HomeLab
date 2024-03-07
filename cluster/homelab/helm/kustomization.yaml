@@ -15,3 +15,4 @@ resources:
     - kubereboot
     - lwolf-charts
     - descheduler
+    - falco
