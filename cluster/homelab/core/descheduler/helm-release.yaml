@@ -1,0 +1,26 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+    name: descheduler
+    namespace: kube-system
+spec:
+    interval: 5m
+    install:
+        createNamespace: true
+        crds: CreateReplace
+        remediation:
+            retries: 3
+    upgrade:
+        crds: CreateReplace
+        remediation:
+            retries: 3
+    chart:
+        spec:
+            chart: descheduler
+            version: 0.29.0
+            interval: 5m
+            sourceRef:
+                kind: HelmRepository
+                name: descheduler
+                namespace: flux-system

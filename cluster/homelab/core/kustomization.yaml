@@ -11,3 +11,4 @@ resources:
     - cert-manager
     - kured
     - kube-cleanup-operator
+    - descheduler

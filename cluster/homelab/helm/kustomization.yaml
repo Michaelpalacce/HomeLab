@@ -14,3 +14,4 @@ resources:
     - kube-vip
     - kubereboot
     - lwolf-charts
+    - descheduler
