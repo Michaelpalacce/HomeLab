@@ -18,7 +18,7 @@ spec:
     chart:
         spec:
             chart: falco
-            version: 2.0.10
+            version: 2.5.5
             interval: 5m
             sourceRef:
                 kind: HelmRepository
