@@ -7,7 +7,6 @@ resources:
   - cyberchef
   - diagrams
   - external-ingress
-  - falco
   - firefly
   - freshrss
   - goip
