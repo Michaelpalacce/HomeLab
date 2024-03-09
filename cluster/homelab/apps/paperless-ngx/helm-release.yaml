@@ -1,0 +1,80 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+    name: paperless-ngx
+    namespace: paperless-ngx
+spec:
+    interval: 5m
+    install:
+        createNamespace: true
+        crds: CreateReplace
+        remediation:
+            retries: 3
+    upgrade:
+        crds: CreateReplace
+        remediation:
+            retries: 3
+    chart:
+        spec:
+            chart: paperless-ngx
+            version: 0.16.0
+            interval: 5m
+            sourceRef:
+                kind: HelmRepository
+                name: gabe565
+                namespace: flux-system
+    values:
+      image:
+        # -- Image repository
+        repository: ghcr.io/paperless-ngx/paperless-ngx
+        # -- Image pull policy
+        pullPolicy: IfNotPresent
+        # -- Image tag
+        tag: 2.6.1
+      persistence:
+        data: 
+          enabled: true
+          storageClass: longhorn
+          accessMode: ReadWriteMany
+          size: 10Gi
+        media:
+          enabled: true
+          storageClass: longhorn
+          accessMode: ReadWriteMany
+          size: 100Gi
+        export:
+          enabled: true
+          storageClass: longhorn
+          accessMode: ReadWriteMany
+          size: 1Gi
+        consume:
+          enabled: true
+          storageClass: longhorn
+          accessMode: ReadWriteMany
+          size: 4Gi
+      postgresql:
+        enabled: true
+        primary:
+          persistence:
+            enabled: true
+            storageClass: longhorn
+            size: 8Gi
+      ingress:
+        main:
+          enabled: true
+          annotations:
+              kubernetes.io/ingress.class: "nginx"
+              gethomepage.dev/enabled: "true"
+              gethomepage.dev/description: Document Management System
+              gethomepage.dev/group: Knowledge
+              gethomepage.dev/icon: paperless-ngx
+              gethomepage.dev/name: Paperless-NGX
+          hosts:
+            - host: paperless.stefangenov.site
+              paths:
+                - path: /
+          tls:
+            - secretName: ingress
+              hosts:
+                - "*.stefangenov.site"
