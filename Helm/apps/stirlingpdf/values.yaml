@@ -1,6 +1,6 @@
 ---
 stirlingpdf:
-    image: frooodle/s-pdf:0.21.0
+    image: frooodle/s-pdf:0.22.0
     port: 8080
     resources:
         requests:
