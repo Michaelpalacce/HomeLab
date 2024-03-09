@@ -25,6 +25,8 @@ spec:
                 name: gabe565
                 namespace: flux-system
     values:
+      env:
+        PAPERLESS_OCR_LANGUAGES: "eng bul"
       image:
         # -- Image repository
         repository: ghcr.io/paperless-ngx/paperless-ngx
