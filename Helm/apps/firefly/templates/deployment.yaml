@@ -6,22 +6,19 @@ metadata:
     name: firefly
     namespace: {{ $.Release.Namespace }}
     labels:
-        app.kubernetes.io/name: firefly
-        app.kubernetes.io/instance: firefly
+        app: firefly
 spec:
     replicas: 1
     strategy:
         type: Recreate
     selector:
         matchLabels:
-            app.kubernetes.io/name: firefly
-            app.kubernetes.io/instance: firefly
+            app: firefly
     template:
         metadata:
             annotations:
             labels:
-                app.kubernetes.io/name: firefly
-                app.kubernetes.io/instance: firefly
+                app: firefly
         spec:
             containers:
                 -   name: firefly
