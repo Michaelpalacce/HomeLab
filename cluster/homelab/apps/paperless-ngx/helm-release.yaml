@@ -52,11 +52,11 @@ spec:
           storageClass: longhorn
           accessMode: ReadWriteOnce
           size: 1Gi
-        # consume:
-        #   enabled: true
-        #   storageClass: longhorn
-        #   accessMode: ReadWriteOnce
-        #   size: 4Gi
+        consume:
+          enabled: true
+          storageClass: longhorn
+          accessMode: ReadWriteOnce
+          size: 4Gi
       ingress:
         main:
           enabled: true
