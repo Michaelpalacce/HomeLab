@@ -27,6 +27,8 @@ spec:
     values:
       env:
         PAPERLESS_OCR_LANGUAGES: "eng bul"
+      podAnnotations:
+        backup.velero.io/backup-volumes: data,media,export,consume
       image:
         # -- Image repository
         repository: ghcr.io/paperless-ngx/paperless-ngx
@@ -38,30 +40,23 @@ spec:
         data: 
           enabled: true
           storageClass: longhorn
-          accessMode: ReadWriteMany
+          accessMode: ReadWriteOnce
           size: 10Gi
         media:
           enabled: true
           storageClass: longhorn
-          accessMode: ReadWriteMany
+          accessMode: ReadWriteOnce
           size: 100Gi
         export:
           enabled: true
           storageClass: longhorn
-          accessMode: ReadWriteMany
+          accessMode: ReadWriteOnce
           size: 1Gi
-        consume:
-          enabled: true
-          storageClass: longhorn
-          accessMode: ReadWriteMany
-          size: 4Gi
-      postgresql:
-        enabled: true
-        primary:
-          persistence:
-            enabled: true
-            storageClass: longhorn
-            size: 8Gi
+        # consume:
+        #   enabled: true
+        #   storageClass: longhorn
+        #   accessMode: ReadWriteOnce
+        #   size: 4Gi
       ingress:
         main:
           enabled: true
