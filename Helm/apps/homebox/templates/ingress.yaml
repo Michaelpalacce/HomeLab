@@ -9,7 +9,7 @@ metadata:
         nginx.ingress.kubernetes.io/proxy-body-size: "100m"
         gethomepage.dev/enabled: "true"
         gethomepage.dev/description: Home Inventory
-        gethomepage.dev/group: Personal
+        gethomepage.dev/group: Storage
         gethomepage.dev/icon: homebox
         gethomepage.dev/name: Homebox
 spec:
