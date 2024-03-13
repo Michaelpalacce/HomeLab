@@ -27,3 +27,4 @@ resources:
   - whoogle
 # - vaultwarden
   - paperless-ngx
+  - homebox
