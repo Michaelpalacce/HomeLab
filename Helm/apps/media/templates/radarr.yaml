@@ -17,8 +17,6 @@ spec:
             app: radarr
     template:
         metadata:
-            annotations:
-                backup.velero.io/backup-volumes: config
             labels:
                 app: radarr
         spec:
