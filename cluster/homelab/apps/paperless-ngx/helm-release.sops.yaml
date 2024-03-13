@@ -1,0 +1,99 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+    name: paperless-ngx
+    namespace: paperless-ngx
+spec:
+    interval: 5m
+    install:
+        createNamespace: true
+        crds: CreateReplace
+        remediation:
+            retries: 3
+    upgrade:
+        crds: CreateReplace
+        remediation:
+            retries: 3
+    chart:
+        spec:
+            chart: paperless-ngx
+            version: 0.16.1
+            interval: 5m
+            sourceRef:
+                kind: HelmRepository
+                name: gabe565
+                namespace: flux-system
+    values:
+        env:
+            PAPERLESS_OCR_LANGUAGES: eng bul
+        podAnnotations:
+            backup.velero.io/backup-volumes: data,media,export,consume
+        image:
+            # -- Image repository
+            repository: ghcr.io/paperless-ngx/paperless-ngx
+            # -- Image pull policy
+            pullPolicy: IfNotPresent
+            # -- Image tag
+            tag: 2.6.2
+        persistence:
+            data:
+                enabled: ENC[AES256_GCM,data:BeSFOg==,iv:CN43mrU6WOSS7erwKi5RPAW3yYy9/9EEl3Gag60sSaA=,tag:5q4zY2HE2bJnZbcbgmlnWg==,type:bool]
+                storageClass: ENC[AES256_GCM,data:PaB5rAwuGM8=,iv:2XPTlyG5zzF1iIwae3tisBgC8DX4RDZNyezK8LV6Avs=,tag:SX6uUbnEycHeBAn8wp0keQ==,type:str]
+                accessMode: ENC[AES256_GCM,data:BiJKssrhE0+4PxEixA==,iv:TYijmT5SWNgT7MEkPqoKDrV29T/lv/18h7NDEXwi4qw=,tag:l0WPe8LTfGBiQjEpb99S6w==,type:str]
+                size: ENC[AES256_GCM,data:4P92sw==,iv:fwP33NZyufX+1qohV29k51tlJIE1jgJL/NR2ykuntPA=,tag:Xhp99D3KPgbSir6NWsypPg==,type:str]
+            media:
+                enabled: true
+                storageClass: longhorn
+                accessMode: ReadWriteOnce
+                size: 100Gi
+            export:
+                enabled: true
+                storageClass: longhorn
+                accessMode: ReadWriteOnce
+                size: 1Gi
+            consume:
+                enabled: true
+                storageClass: longhorn
+                accessMode: ReadWriteOnce
+                size: 4Gi
+        ingress:
+            main:
+                enabled: true
+                annotations:
+                    kubernetes.io/ingress.class: ENC[AES256_GCM,data:RdBs6iQ=,iv:XDH8kWoGNJgjwr9hTCdqjHzVHsil0xmH6DvowCBeNMI=,tag:1a4xH22joDeIRzlr2wOKhg==,type:str]
+                    gethomepage.dev/enabled: ENC[AES256_GCM,data:8MAkLA==,iv:XgBYmcT7Rqrkv995VUIc+wf5lsOAgCkOHTsDd0XKaOc=,tag:6L1ypvEM4kAjwwUrTZ1jpw==,type:str]
+                    gethomepage.dev/description: ENC[AES256_GCM,data:yY+TMKs+jVUe3uGK+KmaB7quRqu+6vJfhc0=,iv:NvaoN2jXfgCADaPozuW+/vRbWAUhpVcLjUnVwaQKYFU=,tag:t09E8FRuj3fFUMybD9T95w==,type:str]
+                    gethomepage.dev/group: ENC[AES256_GCM,data:2WwolsrW/Kv4,iv:tdMm9aAb6eP2h+7xRYUOHNREB9ZKFs02SfGExzprV6I=,tag:ncPZs+G+IpnxM1l0d+ZrXg==,type:str]
+                    gethomepage.dev/icon: ENC[AES256_GCM,data:3u8LiUzkl1bTs0k92Q==,iv:g06pOK8lKVBCiXECUo18PKdgL0EIjx79/GQCMySsfwQ=,tag:NkPoUlRmJ6rKAELEXdVbnA==,type:str]
+                    gethomepage.dev/name: ENC[AES256_GCM,data:IEMVIevharlhNdBY/g==,iv:oFf2lmZUrxKLFpLfRJbRYgjIWXjp/2XcMOid7uNjbQ8=,tag:zHgRj1TWnlN/QjgHmV9tPA==,type:str]
+                    gethomepage.dev/widget.type: ENC[AES256_GCM,data:2MMasVTclQMC86ms,iv:Z01atKGCoKsNyItNc5ZzwxyILRGBTmKKA03FjKRHwBk=,tag:SfkiWb7RVReJV4wkMzazow==,type:str]
+                    gethomepage.dev/widget.url: ENC[AES256_GCM,data:Z9YrioejCzKAFC9BngbVdBg79+r2pvFtXR8pVymg7YM/3pu8GvA=,iv:5rcmqJn/qpfz5GLExeM30lkNn1Su8LhA1tpFaYk1/KI=,tag:djps+VDpKAJM1PW5KRtgIA==,type:str]
+                    gethomepage.dev/widget.key: ENC[AES256_GCM,data:9u5cdieQtjHmaXjfHOHdIkwzj5XHQ6rBFCmrBJBvZSgBYskgt652dA==,iv:SJIOKoAIZe4kmk2GNJ//Rpu50m2Bax8Dp+xRxEi9/dw=,tag:a0XoZdFRqt/m2BUhTHjb2w==,type:str]
+                hosts:
+                    - host: ENC[AES256_GCM,data:xm4NivDMA6zxuWXJw3GoD4eqFdwHMoIYVP4=,iv:plxylpin50RegXk3aklH8ntSZ2naakBpBg5a7D52xSs=,tag:alWUYxck5f3PLEt/SQDHUg==,type:str]
+                      paths:
+                        - path: /
+                tls:
+                    - secretName: ingress
+                      hosts:
+                        - '*.stefangenov.site'
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBHSzRjMENkTTJNblh2WDgz
+            OXVmM3FRRDFZT1pSSy9Nc1dxM3JIdHVQeFRVCnJna25aZDNoRWN5bXhMZEw4MXl1
+            VllOVjhMWFMzOWc1REEyUVB4T1dLWG8KLS0tIFlTc25MZmZPQkFzQmI2T2NBbmlo
+            NDl0SkJrREFWTVd6aUhNb3VKd1kvWTQKupyVdIgtqPNmHSZcJnbRT0aze4df683M
+            MJYAyztgyiwvTFrGMAJfdNNxKm0EabNzStOuhf8ahA7Bu/DwFFOgQg==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2024-03-13T23:46:04Z"
+    mac: ENC[AES256_GCM,data:YW4q7fyKFhCZu39wzDGsuEUFnCejS3lagrdRb6gqzetb53XxaH3skqWTpGLRh8j+8Awbbo3OBxHPmRZ7jHQfrl4iP9a1bKka28/Xys2UJTJGxNUcweVlYwO1aK7PMOikg7DBa1vTYhsi2GWS1GRxLeEfk9tehw0a6H83uy/5+go=,iv:53SQV1j2555oIae93G/YpFSO5ffDnRrNKZcy2yTZ5Jw=,tag:s/QQ83mn9vFHkeuoQEuqzA==,type:str]
+    pgp: []
+    encrypted_regex: ^(data|stringData|annotations|host)$
+    version: 3.8.1
