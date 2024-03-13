@@ -16,6 +16,7 @@ spec:
           - uptimekuma
           - freshrss
           - firefly
+          - homebox
         snapshotVolumes: true
         ttl: 96h0m0s
     useOwnerReferencesInBackup: false
