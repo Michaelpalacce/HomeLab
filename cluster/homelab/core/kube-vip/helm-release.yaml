@@ -27,7 +27,7 @@ spec:
     values:
         image:
             repository: ghcr.io/kube-vip/kube-vip
-            tag: "v0.7.2"
+            tag: "v0.6.4"
 
         config:
             address: "192.168.1.2"
@@ -38,5 +38,5 @@ spec:
             lb_port: "6443"
             vip_cidr: "32"
             cp_enable: "true"
-            svc_enable: "false"
-            vip_leaderelection: "true"
+            svc_enable: "true"
+            vip_leaderelection: "false"
