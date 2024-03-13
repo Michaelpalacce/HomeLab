@@ -79,7 +79,8 @@ spec:
     type: NodePort
     {{- end }}
     selector:
-        app: homebox
+        app.kubernetes.io/instance: homebox
+        app.kubernetes.io/name: homebox
     ports:
         -   name: homebox
             protocol: TCP
