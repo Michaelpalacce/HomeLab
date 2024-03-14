@@ -8,7 +8,7 @@ metadata:
         gethomepage.dev/enabled: "true"
         gethomepage.dev/description: Build your own CV
         gethomepage.dev/group: Personal
-        gethomepage.dev/icon: https://rxresu.me/images/logos/logo.svg
+        gethomepage.dev/icon: https://raw.githubusercontent.com/AmruthPillai/Reactive-Resume/5513b909e79d2560b3ba313facb984d2457ef602/apps/artboard/public/favicon.svg
         gethomepage.dev/name: Reactive Resume
 spec:
     tls:
