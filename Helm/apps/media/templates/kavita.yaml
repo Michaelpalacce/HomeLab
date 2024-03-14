@@ -26,6 +26,11 @@ spec:
                 -   name: kavita
                     image: {{ .image }}
                     imagePullPolicy: IfNotPresent
+                    env:
+                        -   name: PUID
+                            value: "0"
+                        -   name: GUID
+                            value: "0"
 {{- if .resources }}
                     resources:
 {{ toYaml .resources | indent 22 }}
@@ -35,10 +40,9 @@ spec:
                             containerPort: {{ .port }}
                     volumeMounts:
                         -   name: config-data
-                            mountPath: /kavita/config
+                            mountPath: /config
                         -   name: books-data-nfs
                             mountPath: /books
-
             restartPolicy: Always
             volumes:
                 -   name: config-data
