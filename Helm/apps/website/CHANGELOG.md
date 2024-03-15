@@ -1,3 +1,7 @@
+#### [v3.0.0]
+- Better selectors
+- Better probes
+
 #### [V2.0.0]
 * Migrated to ghcr.io
 

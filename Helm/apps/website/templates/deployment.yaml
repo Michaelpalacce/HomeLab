@@ -6,16 +6,19 @@ metadata:
     name: website
     namespace: {{ $.Release.Namespace }}
     labels:
-        app: website
+        app.kubernetes.io/instance: website
+        app.kubernetes.io/name: website
 spec:
     replicas: {{ .replicas }}
     selector:
         matchLabels:
-            app: website
+            app.kubernetes.io/instance: website
+            app.kubernetes.io/name: website
     template:
         metadata:
             labels:
-                app: website
+                app.kubernetes.io/instance: website
+                app.kubernetes.io/name: website
         spec:
             restartPolicy: Always
             securityContext:

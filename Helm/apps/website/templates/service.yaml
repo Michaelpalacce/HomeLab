@@ -6,16 +6,11 @@ metadata:
     name: website
     namespace: {{ $.Release.Namespace }}
 spec:
-    {{- with .nodePort }}
-    type: NodePort
-    {{- end }}
     selector:
-        app: website
+        app.kubernetes.io/instance: website
+        app.kubernetes.io/name: website
     ports:
         -   name: website
             protocol: TCP
             port: {{ .port }}
-          {{- with .nodePort }}
-            nodePort: {{ . }}
-          {{- end }}
 {{- end }}
