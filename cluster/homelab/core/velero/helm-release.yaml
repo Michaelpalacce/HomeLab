@@ -38,28 +38,28 @@ spec:
           scrapeTimeout: 30s
       deployNodeAgent: true
       credentials:
-          existingSecret: cloud-credentials-backblaze
+          existingSecret: cloud-credentials-wasabi
       configuration:
           backupStorageLocation:
               - name: default
                 provider: aws
                 default: true
-                bucket: sgenov
+                bucket: sgenov-velero
                 config:
-                    region: eu-central-003
+                    region: eu-central-2
                     s3ForcePathStyle: true
-                    s3Url: https://s3.eu-central-003.backblazeb2.com
+                    s3Url: s3.eu-central-2.wasabisys.com
 
-              - name: backblaze
+              - name: wasabi
                 provider: aws
                 default: false
-                bucket: sgenov
+                bucket: sgenov-velero
                 config:
-                    region: eu-central-003
+                    region: eu-central-2
                     s3ForcePathStyle: true
-                    s3Url: https://s3.eu-central-003.backblazeb2.com
+                    s3Url: s3.eu-central-2.wasabisys.com
           volumeSnapshotLocation:
-              - name: backblaze
+              - name: wasabi
                 provider: aws
                 config:
-                    region: eu-central-003
+                    region: eu-central-2
