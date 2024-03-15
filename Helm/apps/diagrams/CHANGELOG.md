@@ -1,3 +1,7 @@
+#### [V3.0.0]
+- Better Selector
+- 
+
 #### [V2.0.0]
 * Removed NodePort
 * Moved to official image as they now have an arm build

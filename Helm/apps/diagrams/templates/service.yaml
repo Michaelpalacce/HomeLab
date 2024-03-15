@@ -1,0 +1,16 @@
+---
+{{- with .Values.diagrams }}
+apiVersion: v1
+kind: Service
+metadata:
+    name: diagrams
+    namespace: {{ $.Release.Namespace }}
+spec:
+    selector:
+        app.kubernetes.io/instance: diagrams
+        app.kubernetes.io/name: diagrams
+    ports:
+        -   name: diagrams
+            protocol: TCP
+            port: {{ .port }}
+{{- end }}

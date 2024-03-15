@@ -7,7 +7,8 @@ metadata:
     name: diagrams
     namespace: {{ $.Release.Namespace }}
     labels:
-        app: diagrams
+        app.kubernetes.io/instance: diagrams
+        app.kubernetes.io/name: diagrams
 spec:
     replicas: 1
     strategy:
@@ -15,11 +16,13 @@ spec:
             maxUnavailable: 0
     selector:
         matchLabels:
-            app: diagrams
+            app.kubernetes.io/instance: diagrams
+            app.kubernetes.io/name: diagrams
     template:
         metadata:
             labels:
-                app: diagrams
+                app.kubernetes.io/instance: diagrams
+                app.kubernetes.io/name: diagrams
         spec:
             containers:
                 -   name: diagrams
@@ -33,26 +36,4 @@ spec:
                         -   name: web
                             containerPort: {{ .port }}
             restartPolicy: Always
-
----
-
-apiVersion: v1
-kind: Service
-metadata:
-    name: diagrams
-    namespace: {{ $.Release.Namespace }}
-spec:
-    {{- with .nodePort }}
-    type: NodePort
-    {{- end }}
-    selector:
-        app: diagrams
-    ports:
-        -   name: diagrams
-            protocol: TCP
-            port: {{ .port }}
-          {{- with .nodePort }}
-            nodePort: {{ . }}
-          {{- end }}
-
 {{- end }}
