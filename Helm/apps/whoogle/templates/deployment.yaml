@@ -7,16 +7,19 @@ metadata:
     name: whoogle
     namespace: {{ $.Release.Namespace }}
     labels:
-        app: whoogle
+        app.kubernetes.io/instance: whoogle
+        app.kubernetes.io/name: whoogle
 spec:
     replicas: {{ .replicas }}
     selector:
         matchLabels:
-            app: whoogle
+            app.kubernetes.io/instance: whoogle
+            app.kubernetes.io/name: whoogle
     template:
         metadata:
             labels:
-                app: whoogle
+                app.kubernetes.io/instance: whoogle
+                app.kubernetes.io/name: whoogle
         spec:
             restartPolicy: Always
             containers:

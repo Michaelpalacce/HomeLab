@@ -1,3 +1,7 @@
+#### [V4.0.0]
+- Better selectors
+- Lowered requests
+
 #### [V3.0.0]
 * Improved security of the deployment
 * Updated UpdateStrategy
