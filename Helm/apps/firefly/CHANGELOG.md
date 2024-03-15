@@ -1,3 +1,6 @@
+#### [v4.0.0]
+- Better Selector
+
 #### [v3.0.0]
 * Added firefly-iii-bot
 

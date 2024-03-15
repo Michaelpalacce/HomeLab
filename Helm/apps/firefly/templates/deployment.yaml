@@ -6,20 +6,21 @@ metadata:
     name: firefly
     namespace: {{ $.Release.Namespace }}
     labels:
-        app: firefly
+        app.kubernetes.io/instance: firefly
+        app.kubernetes.io/name: firefly
 spec:
     replicas: 1
-    strategy:
-        type: Recreate
     selector:
         matchLabels:
-            app: firefly
+            app.kubernetes.io/instance: firefly
+            app.kubernetes.io/name: firefly
     template:
         metadata:
             annotations:
                 backup.velero.io/backup-volumes: data
             labels:
-                app: firefly
+                app.kubernetes.io/instance: firefly
+                app.kubernetes.io/name: firefly
         spec:
             containers:
                 -   name: firefly
@@ -103,17 +104,12 @@ metadata:
     name: firefly
     namespace: {{ $.Release.Namespace }}
 spec:
-    {{- with .nodePort }}
-    type: NodePort
-    {{- end }}
     selector:
-        app: firefly
+        app.kubernetes.io/instance: firefly
+        app.kubernetes.io/name: firefly
     ports:
         -   name: firefly
             protocol: TCP
             port: {{ .port }}
-          {{- with .nodePort }}
-            nodePort: {{ .nodePort }}
-          {{- end }}
 
 {{- end }}
