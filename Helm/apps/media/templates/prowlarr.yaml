@@ -50,21 +50,18 @@ spec:
                         failureThreshold: 10
                         initialDelaySeconds: 30
                         timeoutSeconds: 2
-                        httpGet:
-                            path: /
+                        tcpSocket:
                             port: {{ .port }}
                     readinessProbe:
                         failureThreshold: 10
                         initialDelaySeconds: 30
                         timeoutSeconds: 2
-                        httpGet:
-                            path: /
+                        tcpSocket:
                             port: {{ .port }}
                     startupProbe:
                         failureThreshold: 10
                         timeoutSeconds: 2
-                        httpGet:
-                            path: /
+                        tcpSocket:
                             port: {{ .port }}
             restartPolicy: Always
             volumes:
