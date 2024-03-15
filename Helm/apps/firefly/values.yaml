@@ -1,6 +1,6 @@
 ---
 firefly:
-    image: fireflyiii/core:version-5.7.5
+    image: fireflyiii/core:version-6.1.10
     port: 8080
     appUrl: https://firefly.stefangenov.site
     resources:
