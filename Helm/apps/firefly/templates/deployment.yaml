@@ -83,11 +83,18 @@ spec:
                         -   name: TRUSTED_PROXIES
                             value: "**"
                     livenessProbe:
-                        failureThreshold: 2
-                        initialDelaySeconds: 120
-                        periodSeconds: 120
+                        failureThreshold: 5
+                        initialDelaySeconds: 60
                         timeoutSeconds: 5
-                        tcpSocket:
+                        httpGet:
+                            path: /login
+                            port: {{ .port }}
+                    startupProbe:
+                        failureThreshold: 10
+                        initialDelaySeconds: 30
+                        timeoutSeconds: 5
+                        httpGet:
+                            path: /login
                             port: {{ .port }}
 
             restartPolicy: Always
