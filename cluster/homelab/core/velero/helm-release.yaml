@@ -25,6 +25,9 @@ spec:
                 name: velero
                 namespace: flux-system
     values:
+      image:
+        repository: velero/velero
+        tag: v1.13.1
       upgradeCRDs: true
       initContainers:
           - name: velero-plugin-for-aws
