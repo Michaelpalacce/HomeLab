@@ -29,7 +29,6 @@ spec:
                     imagePullPolicy: IfNotPresent
                     securityContext:
                         privileged: false
-                        runAsNonRoot: true
                         allowPrivilegeEscalation: false
 {{- if .resources }}
                     resources:

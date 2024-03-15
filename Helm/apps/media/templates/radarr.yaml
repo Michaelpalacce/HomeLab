@@ -31,7 +31,6 @@ spec:
                     imagePullPolicy: IfNotPresent
                     securityContext:
                         privileged: false
-                        runAsNonRoot: true
                         allowPrivilegeEscalation: false
                     env:
                         -   name: PUID
