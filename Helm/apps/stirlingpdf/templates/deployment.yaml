@@ -7,16 +7,19 @@ metadata:
     name: stirlingpdf
     namespace: {{ $.Release.Namespace }}
     labels:
-        app: stirlingpdf
+        app.kubernetes.io/instance: stirlingpdf
+        app.kubernetes.io/name: stirlingpdf
 spec:
     replicas: 1
     selector:
         matchLabels:
-            app: stirlingpdf
+            app.kubernetes.io/instance: stirlingpdf
+            app.kubernetes.io/name: stirlingpdf
     template:
         metadata:
             labels:
-                app: stirlingpdf
+                app.kubernetes.io/instance: stirlingpdf
+                app.kubernetes.io/name: stirlingpdf
         spec:
             containers:
                 - name: stirlingpdf
@@ -35,13 +38,16 @@ spec:
                       - name: PGID
                         value: "1000"
                   livenessProbe:
-                      failureThreshold: 2
-                      initialDelaySeconds: 120
-                      periodSeconds: 120
+                      failureThreshold: 5
+                      initialDelaySeconds: 30
                       timeoutSeconds: 2
                       tcpSocket:
                           port: {{ .port }}
-
+                  startupProbe:
+                      failureThreshold: 10
+                      timeoutSeconds: 2
+                      tcpSocket:
+                          port: {{ .port }}
             restartPolicy: Always
 
 ---
@@ -52,17 +58,11 @@ metadata:
     name: stirlingpdf
     namespace: {{ $.Release.Namespace }}
 spec:
-    {{- with .nodePort }}
-    type: NodePort
-    {{- end }}
     selector:
-        app: stirlingpdf
+        app.kubernetes.io/instance: stirlingpdf
+        app.kubernetes.io/name: stirlingpdf
     ports:
         - name: stirlingpdf
           protocol: TCP
           port: {{ .port }}
-          {{- with .nodePort }}
-          nodePort: {{ . }}
-          {{- end }}
-
 {{- end }}
