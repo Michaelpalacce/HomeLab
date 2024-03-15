@@ -7,16 +7,19 @@ metadata:
     name: cyberchef
     namespace: {{ $.Release.Namespace }}
     labels:
-        app: cyberchef
+        app.kubernetes.io/instance: cyberchef
+        app.kubernetes.io/name: cyberchef
 spec:
     replicas: 1
     selector:
         matchLabels:
-            app: cyberchef
+            app.kubernetes.io/instance: cyberchef
+            app.kubernetes.io/name: cyberchef
     template:
         metadata:
             labels:
-                app: cyberchef
+                app.kubernetes.io/instance: cyberchef
+                app.kubernetes.io/name: cyberchef
         spec:
             containers:
                 - name: cyberchef
@@ -29,40 +32,16 @@ spec:
                   ports:
                       - name: web
                         containerPort: {{ .port }}
-                  env:
-                      - name: PUID
-                        value: "1000"
-                      - name: PGID
-                        value: "1000"
                   livenessProbe:
-                      failureThreshold: 2
-                      initialDelaySeconds: 120
-                      periodSeconds: 120
+                      failureThreshold: 5
+                      initialDelaySeconds: 30
                       timeoutSeconds: 2
                       tcpSocket:
                           port: {{ .port }}
-
+                  startupProbe:
+                      failureThreshold: 5
+                      timeoutSeconds: 2
+                      tcpSocket:
+                          port: {{ .port }}
             restartPolicy: Always
-
----
-
-apiVersion: v1
-kind: Service
-metadata:
-    name: cyberchef
-    namespace: {{ $.Release.Namespace }}
-spec:
-    {{- with .nodePort }}
-    type: NodePort
-    {{- end }}
-    selector:
-        app: cyberchef
-    ports:
-        - name: cyberchef
-          protocol: TCP
-          port: {{ .port }}
-          {{- with .nodePort }}
-          nodePort: {{ . }}
-          {{- end }}
-
 {{- end }}

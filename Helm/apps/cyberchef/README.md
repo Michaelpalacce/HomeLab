@@ -1,1 +1,1 @@
-This chart is used to install cyberchef
+This chart is used to install cyberchef. 
