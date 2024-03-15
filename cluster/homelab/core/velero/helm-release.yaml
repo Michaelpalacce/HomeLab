@@ -48,7 +48,7 @@ spec:
                 config:
                     region: eu-central-2
                     s3ForcePathStyle: true
-                    s3Url: s3.eu-central-2.wasabisys.com
+                    s3Url: https://s3.eu-central-2.wasabisys.com
 
               - name: wasabi
                 provider: aws
@@ -57,7 +57,7 @@ spec:
                 config:
                     region: eu-central-2
                     s3ForcePathStyle: true
-                    s3Url: s3.eu-central-2.wasabisys.com
+                    s3Url: https://s3.eu-central-2.wasabisys.com
           volumeSnapshotLocation:
               - name: wasabi
                 provider: aws
