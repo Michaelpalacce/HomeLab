@@ -5,7 +5,7 @@ resources:
     - reflector
     - ingress-nginx
     - kube-vip
-    # - system-upgrade
+    - system-upgrade
     - longhorn-system
     - velero
     - cert-manager
