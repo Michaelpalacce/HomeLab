@@ -6,18 +6,21 @@ metadata:
     name: fireflybot
     namespace: {{ $.Release.Namespace }}
     labels:
-        app: firefly
+        app.kubernetes.io/instance: fireflybot
+        app.kubernetes.io/name: fireflybot
 spec:
     replicas: 1
     selector:
         matchLabels:
-            app: fireflybot
+            app.kubernetes.io/instance: fireflybot
+            app.kubernetes.io/name: fireflybot
     template:
         metadata:
             annotations:
                 backup.velero.io/backup-volumes: sessions
             labels:
-                app: fireflybot
+                app.kubernetes.io/instance: fireflybot
+                app.kubernetes.io/name: fireflybot
         spec:
             containers:
                 -   name: fireflybot
