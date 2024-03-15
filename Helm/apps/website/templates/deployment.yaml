@@ -41,16 +41,16 @@ spec:
                                 optional: false
                     livenessProbe:
                         failureThreshold: 2
-                        initialDelaySeconds: 120
-                        periodSeconds: 120
+                        initialDelaySeconds: 10
                         timeoutSeconds: 2
-                        tcpSocket:
+                        httpGet:
+                            path: /
                             port: {{ .port }}
                     startupProbe:
-                        failureThreshold: 10
-                        periodSeconds: 2
+                        failureThreshold: 5
                         timeoutSeconds: 2
-                        tcpSocket:
+                        httpGet:
+                            path: /
                             port: {{ .port }}
 
 {{- end }}
