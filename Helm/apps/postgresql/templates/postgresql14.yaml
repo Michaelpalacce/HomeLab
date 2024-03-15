@@ -16,7 +16,7 @@ spec:
     template:
         metadata:
             annotations:
-                backup.velero.io/backup-volumes: data,dshm
+                backup.velero.io/backup-volumes: data
             labels:
                 app: postgresql14
             name: postgresql14
