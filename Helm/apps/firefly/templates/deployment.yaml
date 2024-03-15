@@ -87,14 +87,20 @@ spec:
                             value: "**"
                     livenessProbe:
                         failureThreshold: 5
-                        initialDelaySeconds: 60
+                        initialDelaySeconds: 30
+                        timeoutSeconds: 5
+                        httpGet:
+                            path: /login
+                            port: {{ .port }}
+                    readinessProbe:
+                        failureThreshold: 5
+                        initialDelaySeconds: 30
                         timeoutSeconds: 5
                         httpGet:
                             path: /login
                             port: {{ .port }}
                     startupProbe:
                         failureThreshold: 10
-                        initialDelaySeconds: 30
                         timeoutSeconds: 5
                         httpGet:
                             path: /login
