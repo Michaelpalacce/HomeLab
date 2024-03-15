@@ -7,25 +7,32 @@ metadata:
     name: sonarr
     namespace: {{ $.Release.Namespace }}
     labels:
-        app: sonarr
+        app.kubernetes.io/instance: sonarr
+        app.kubernetes.io/name: sonarr
 spec:
     replicas: 1
     strategy:
         type: Recreate
     selector:
         matchLabels:
-            app: sonarr
+            app.kubernetes.io/instance: sonarr
+            app.kubernetes.io/name: sonarr
     template:
         metadata:
             annotations:
                 backup.velero.io/backup-volumes: config
             labels:
-                app: sonarr
+                app.kubernetes.io/instance: sonarr
+                app.kubernetes.io/name: sonarr
         spec:
             containers:
                 -   name: sonarr
                     image: {{ .image }}
                     imagePullPolicy: IfNotPresent
+                    securityContext:
+                        privileged: false
+                        runAsNonRoot: true
+                        allowPrivilegeEscalation: false
                     env:
                         -   name: PUID
                             value: "1000"
@@ -45,6 +52,26 @@ spec:
                             mountPath: /downloads
                         -   name: shows-data-nfs
                             mountPath: /shows
+                    livenessProbe:
+                        failureThreshold: 5
+                        initialDelaySeconds: 30
+                        timeoutSeconds: 2
+                        httpGet:
+                            path: /
+                            port: {{ .port }}
+                    readinessProbe:
+                        failureThreshold: 5
+                        initialDelaySeconds: 30
+                        timeoutSeconds: 2
+                        httpGet:
+                            path: /
+                            port: {{ .port }}
+                    startupProbe:
+                        failureThreshold: 10
+                        timeoutSeconds: 2
+                        httpGet:
+                            path: /
+                            port: {{ .port }}
             restartPolicy: Always
             volumes:
                 - name: shows-data-nfs
@@ -67,7 +94,8 @@ metadata:
     namespace: {{ $.Release.Namespace }}
 spec:
     selector:
-        app: sonarr
+        app.kubernetes.io/instance: sonarr
+        app.kubernetes.io/name: sonarr
     ports:
         -   name: sonarr
             protocol: TCP

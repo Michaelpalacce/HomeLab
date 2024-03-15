@@ -7,23 +7,30 @@ metadata:
     name: overseerr
     namespace: {{ $.Release.Namespace }}
     labels:
-        app: overseerr
+        app.kubernetes.io/instance: overseerr
+        app.kubernetes.io/name: overseerr
 spec:
     replicas: {{ .replicas }}
     selector:
         matchLabels:
-            app: overseerr
+            app.kubernetes.io/instance: overseerr
+            app.kubernetes.io/name: overseerr
     template:
         metadata:
             annotations:
                 backup.velero.io/backup-volumes: config-data
             labels:
-                app: overseerr
+                app.kubernetes.io/instance: overseerr
+                app.kubernetes.io/name: overseerr
         spec:
             containers:
                 -   name: overseerr
                     image: {{ .image }}
                     imagePullPolicy: IfNotPresent
+                    securityContext:
+                        privileged: false
+                        runAsNonRoot: true
+                        allowPrivilegeEscalation: false
                     env:
                         -   name: PUID
                             value: "1000"
@@ -39,6 +46,26 @@ spec:
                     volumeMounts:
                         -   name: config-data
                             mountPath: /config
+                    livenessProbe:
+                        failureThreshold: 5
+                        initialDelaySeconds: 30
+                        timeoutSeconds: 2
+                        httpGet:
+                            path: /login
+                            port: {{ .port }}
+                    readinessProbe:
+                        failureThreshold: 5
+                        initialDelaySeconds: 30
+                        timeoutSeconds: 2
+                        httpGet:
+                            path: /login
+                            port: {{ .port }}
+                    startupProbe:
+                        failureThreshold: 10
+                        timeoutSeconds: 2
+                        httpGet:
+                            path: /login
+                            port: {{ .port }}
 
             restartPolicy: Always
             volumes:
@@ -53,17 +80,12 @@ metadata:
     name: overseerr
     namespace: {{ $.Release.Namespace }}
 spec:
-    {{- with .nodePort }}
-    type: NodePort
-    {{- end }}
     selector:
-        app: overseerr
+        app.kubernetes.io/instance: overseerr
+        app.kubernetes.io/name: overseerr
     ports:
         -   name: overseerr
             protocol: TCP
             port: {{ .port }}
-          {{- with .nodePort }}
-            nodePort: {{ . }}
-          {{- end }}
 
 {{- end }}

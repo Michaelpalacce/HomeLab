@@ -6,25 +6,32 @@ metadata:
     name: prowlarr
     namespace: {{ $.Release.Namespace }}
     labels:
-        app: prowlarr
+        app.kubernetes.io/instance: prowlarr
+        app.kubernetes.io/name: prowlarr
 spec:
     replicas: {{ .replicas }}
     strategy:
         type: Recreate
     selector:
         matchLabels:
-            app: prowlarr
+            app.kubernetes.io/instance: prowlarr
+            app.kubernetes.io/name: prowlarr
     template:
         metadata:
             annotations:
                 backup.velero.io/backup-volumes: config
             labels:
-                app: prowlarr
+                app.kubernetes.io/instance: prowlarr
+                app.kubernetes.io/name: prowlarr
         spec:
             containers:
                 -   name: prowlarr
                     image: {{ .image }}
                     imagePullPolicy: IfNotPresent
+                    securityContext:
+                        privileged: false
+                        runAsNonRoot: true
+                        allowPrivilegeEscalation: false
                     env:
                         -   name: PUID
                             value: "1000"
@@ -41,13 +48,25 @@ spec:
                         -   name: config
                             mountPath: /config
                     livenessProbe:
-                        failureThreshold: 2
-                        initialDelaySeconds: 120
-                        timeoutSeconds: 5
-                        periodSeconds: 120
-                        tcpSocket:
+                        failureThreshold: 10
+                        initialDelaySeconds: 30
+                        timeoutSeconds: 2
+                        httpGet:
+                            path: /
                             port: {{ .port }}
-
+                    readinessProbe:
+                        failureThreshold: 10
+                        initialDelaySeconds: 30
+                        timeoutSeconds: 2
+                        httpGet:
+                            path: /
+                            port: {{ .port }}
+                    startupProbe:
+                        failureThreshold: 10
+                        timeoutSeconds: 2
+                        httpGet:
+                            path: /
+                            port: {{ .port }}
             restartPolicy: Always
             volumes:
                 - name: config
@@ -63,7 +82,8 @@ metadata:
     namespace: {{ $.Release.Namespace }}
 spec:
     selector:
-        app: prowlarr
+        app.kubernetes.io/instance: prowlarr
+        app.kubernetes.io/name: prowlarr
     ports:
         -   name: prowlarr
             protocol: TCP

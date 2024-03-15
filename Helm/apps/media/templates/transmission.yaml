@@ -7,23 +7,30 @@ metadata:
     name: transmission
     namespace: {{ $.Release.Namespace }}
     labels:
-        app: transmission
+        app.kubernetes.io/instance: transmission
+        app.kubernetes.io/name: transmission
 spec:
     replicas: 1
     selector:
         matchLabels:
-            app: transmission
+            app.kubernetes.io/instance: transmission
+            app.kubernetes.io/name: transmission
     template:
         metadata:
             annotations:
                 backup.velero.io/backup-volumes: transmission-data
             labels:
-                app: transmission
+                app.kubernetes.io/instance: transmission
+                app.kubernetes.io/name: transmission
         spec:
             containers:
                 -   name: transmission
                     image: {{ .image }}
                     imagePullPolicy: IfNotPresent
+                    securityContext:
+                        privileged: false
+                        runAsNonRoot: true
+                        allowPrivilegeEscalation: false
 {{- if .resources }}
                     resources:
 {{ toYaml .resources | indent 22 }}
@@ -51,6 +58,23 @@ spec:
                             mountPath: /config
                         -   name: downloads-data
                             mountPath: /downloads
+                    livenessProbe:
+                        failureThreshold: 5
+                        initialDelaySeconds: 30
+                        timeoutSeconds: 2
+                        tcpSocket:
+                            port: {{ .port }}
+                    readinessProbe:
+                        failureThreshold: 5
+                        initialDelaySeconds: 30
+                        timeoutSeconds: 2
+                        tcpSocket:
+                            port: {{ .port }}
+                    startupProbe:
+                        failureThreshold: 10
+                        timeoutSeconds: 2
+                        tcpSocket:
+                            port: {{ .port }}
 
             restartPolicy: Always
             volumes:
@@ -70,18 +94,13 @@ metadata:
     name: transmission
     namespace: {{ $.Release.Namespace }}
 spec:
-    {{- with .nodePort }}
-    type: NodePort
-    {{- end }}
     selector:
-        app: transmission
+        app.kubernetes.io/instance: transmission
+        app.kubernetes.io/name: transmission
     ports:
         -   name: transmission
             protocol: TCP
             port: {{ .port }}
-          {{- with .nodePort }}
-            nodePort: {{ . }}
-          {{- end }}
 
 
 {{- end }}

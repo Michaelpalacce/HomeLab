@@ -7,25 +7,32 @@ metadata:
     name: kavita
     namespace: {{ $.Release.Namespace }}
     labels:
-        app: kavita
+        app.kubernetes.io/instance: kavita
+        app.kubernetes.io/name: kavita
 spec:
     strategy:
         type: Recreate
     replicas: {{ .replicas }}
     selector:
         matchLabels:
-            app: kavita
+            app.kubernetes.io/instance: kavita
+            app.kubernetes.io/name: kavita
     template:
         metadata:
             annotations:
                 backup.velero.io/backup-volumes: config-data
             labels:
-                app: kavita
+                app.kubernetes.io/instance: kavita
+                app.kubernetes.io/name: kavita
         spec:
             containers:
                 -   name: kavita
                     image: {{ .image }}
                     imagePullPolicy: IfNotPresent
+                    securityContext:
+                        privileged: false
+                        runAsNonRoot: true
+                        allowPrivilegeEscalation: false
                     env:
                         -   name: PUID
                             value: "1000"
@@ -43,6 +50,26 @@ spec:
                             mountPath: /config
                         -   name: books-data-nfs
                             mountPath: /books
+                    livenessProbe:
+                        failureThreshold: 5
+                        initialDelaySeconds: 30
+                        timeoutSeconds: 2
+                        httpGet:
+                            path: /login
+                            port: {{ .port }}
+                    readinessProbe:
+                        failureThreshold: 5
+                        initialDelaySeconds: 30
+                        timeoutSeconds: 2
+                        httpGet:
+                            path: /login
+                            port: {{ .port }}
+                    startupProbe:
+                        failureThreshold: 10
+                        timeoutSeconds: 2
+                        httpGet:
+                            path: /login
+                            port: {{ .port }}
             restartPolicy: Always
             volumes:
                 -   name: config-data
@@ -60,17 +87,12 @@ metadata:
     name: kavita
     namespace: {{ $.Release.Namespace }}
 spec:
-    {{- with .nodePort }}
-    type: NodePort
-    {{- end }}
     selector:
-        app: kavita
+        app.kubernetes.io/instance: kavita
+        app.kubernetes.io/name: kavita
     ports:
         -   name: kavita
             protocol: TCP
             port: {{ .port }}
-          {{- with .nodePort }}
-            nodePort: {{ . }}
-          {{- end }}
 
 {{- end }}

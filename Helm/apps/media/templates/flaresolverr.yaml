@@ -7,21 +7,28 @@ metadata:
     name: flaresolverr
     namespace: {{ $.Release.Namespace }}
     labels:
-        app: flaresolverr
+        app.kubernetes.io/instance: flaresolverr
+        app.kubernetes.io/name: flaresolverr
 spec:
     replicas: 1
     selector:
         matchLabels:
-            app: flaresolverr
+            app.kubernetes.io/instance: flaresolverr
+            app.kubernetes.io/name: flaresolverr
     template:
         metadata:
             labels:
-                app: flaresolverr
+                app.kubernetes.io/instance: flaresolverr
+                app.kubernetes.io/name: flaresolverr
         spec:
             containers:
                 -   name: flaresolverr
                     image: {{ .image }}
                     imagePullPolicy: IfNotPresent
+                    securityContext:
+                        privileged: false
+                        runAsNonRoot: true
+                        allowPrivilegeEscalation: false
 {{- if .resources }}
                     resources:
 {{ toYaml .resources | indent 22 }}
@@ -32,6 +39,26 @@ spec:
                     ports:
                         -   name: web
                             containerPort: {{ .port }}
+                    livenessProbe:
+                        failureThreshold: 2
+                        initialDelaySeconds: 30
+                        timeoutSeconds: 2
+                        httpGet:
+                            path: /
+                            port: {{ .port }}
+                    readinessProbe:
+                        failureThreshold: 2
+                        initialDelaySeconds: 30
+                        timeoutSeconds: 2
+                        httpGet:
+                            path: /
+                            port: {{ .port }}
+                    startupProbe:
+                        failureThreshold: 5
+                        timeoutSeconds: 2
+                        httpGet:
+                            path: /
+                            port: {{ .port }}
 
             restartPolicy: Always
 
@@ -43,7 +70,8 @@ metadata:
     namespace: {{ $.Release.Namespace }}
 spec:
     selector:
-        app: flaresolverr
+        app.kubernetes.io/instance: flaresolverr
+        app.kubernetes.io/name: flaresolverr
     ports:
         -   name: flaresolverr
             protocol: TCP

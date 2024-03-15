@@ -1,3 +1,8 @@
+#### [v6.0.0]
+- Better selectors
+- Better probes
+
+
 #### [V5.0.0]
 * Moved services to pvcs
 
