@@ -6,16 +6,11 @@ metadata:
     name: whoogle
     namespace: {{ $.Release.Namespace }}
 spec:
-    {{- with .nodePort }}
-    type: NodePort
-    {{- end }}
     selector:
-        app: whoogle
+        app.kubernetes.io/instance: whoogle
+        app.kubernetes.io/name: whoogle
     ports:
         -   name: whoogle
             protocol: TCP
             port: {{ .port }}
-          {{- with .nodePort }}
-            nodePort: {{ . }}
-          {{- end }}
 {{- end }}
