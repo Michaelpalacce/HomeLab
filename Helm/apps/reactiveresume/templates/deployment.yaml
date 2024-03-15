@@ -6,19 +6,20 @@ kind: Deployment
 metadata:
     name: reactiveresume
     namespace: {{ $.Release.Namespace }}
+    labels:
+        app.kubernetes.io/instance: reactiveresume
+        app.kubernetes.io/name: reactiveresume
 spec:
     replicas: 1
-    revisionHistoryLimit: 3
     selector:
         matchLabels:
-            app: reactiveresume
-    strategy:
-        rollingUpdate:
-            maxUnavailable: 0
+            app.kubernetes.io/instance: reactiveresume
+            app.kubernetes.io/name: reactiveresume
     template:
         metadata:
             labels:
-                app: reactiveresume
+                app.kubernetes.io/instance: reactiveresume
+                app.kubernetes.io/name: reactiveresume
         spec:
             containers:
                 {{- with .api }}
@@ -29,20 +30,23 @@ spec:
                           name: app
                     imagePullPolicy: IfNotPresent
                     livenessProbe:
-                        failureThreshold: 2
-                        periodSeconds: 120
-                        initialDelaySeconds: 120
-                        successThreshold: 1
-                        tcpSocket:
-                            port: {{ .port }}
-                        timeoutSeconds: 2
-                    readinessProbe:
-                        failureThreshold: 10
                         initialDelaySeconds: 30
-                        periodSeconds: 10
+                        failureThreshold: 5
                         timeoutSeconds: 2
                         tcpSocket:
                             port: {{ .port }}
+                    readinessProbe:
+                        initialDelaySeconds: 30
+                        failureThreshold: 5
+                        timeoutSeconds: 2
+                        tcpSocket:
+                            port: {{ .port }}
+                    startupProbe:
+                        failureThreshold: 10
+                        timeoutSeconds: 2
+                        tcpSocket:
+                            port: {{ .port }}
+
                     ports:
                         -   containerPort: {{ .port }}
                             name: api
@@ -65,19 +69,24 @@ spec:
                             name: app
                             key: PUBLIC_SERVER_URL
                     livenessProbe:
-                        failureThreshold: 2
-                        periodSeconds: 120
-                        initialDelaySeconds: 120
-                        successThreshold: 1
-                        tcpSocket:
-                            port: {{ .port }}
-                        timeoutSeconds: 2
-                    readinessProbe:
-                        failureThreshold: 10
                         initialDelaySeconds: 30
-                        periodSeconds: 10
+                        failureThreshold: 5
                         timeoutSeconds: 2
-                        tcpSocket:
+                        httpGet:
+                            path: /
+                            port: {{ .port }}
+                    readinessProbe:
+                        initialDelaySeconds: 30
+                        failureThreshold: 5
+                        timeoutSeconds: 2
+                        httpGet:
+                            path: /
+                            port: {{ .port }}
+                    startupProbe:
+                        failureThreshold: 10
+                        timeoutSeconds: 2
+                        httpGet:
+                            path: /
                             port: {{ .port }}
                     ports:
                         -   containerPort: {{ .port }}
@@ -94,7 +103,8 @@ metadata:
     namespace: {{ $.Release.Namespace }}
 spec:
     selector:
-        app: reactiveresume
+        app.kubernetes.io/instance: reactiveresume
+        app.kubernetes.io/name: reactiveresume
     ports:
         -   name: frontend
             protocol: TCP
