@@ -6,19 +6,24 @@ kind: Deployment
 metadata:
     name: vikunja
     namespace: {{ $.Release.Namespace }}
+    labels:
+        app.kubernetes.io/instance: vikunja
+        app.kubernetes.io/name: vikunja
 spec:
     replicas: 1
     revisionHistoryLimit: 3
     selector:
         matchLabels:
-            app: vikunja
+            app.kubernetes.io/instance: vikunja
+            app.kubernetes.io/name: vikunja
     strategy:
         rollingUpdate:
             maxUnavailable: 0
     template:
         metadata:
             labels:
-                app: vikunja
+                app.kubernetes.io/instance: vikunja
+                app.kubernetes.io/name: vikunja
         spec:
             containers:
                 {{- with .api }}
@@ -54,21 +59,22 @@ spec:
                                     key: name
                         -   name: VIKUNJA_MAILER_ENABLED
                             value: "false"
-
-
                     imagePullPolicy: IfNotPresent
                     livenessProbe:
-                        failureThreshold: 2
-                        periodSeconds: 120
-                        initialDelaySeconds: 120
+                        failureThreshold: 5
+                        initialDelaySeconds: 60
                         successThreshold: 1
                         tcpSocket:
                             port: {{ .port }}
                         timeoutSeconds: 2
                     readinessProbe:
+                        failureThreshold: 5
+                        initialDelaySeconds: 60
+                        timeoutSeconds: 1
+                        tcpSocket:
+                            port: {{ .port }}
+                    startupProbe:
                         failureThreshold: 10
-                        initialDelaySeconds: 30
-                        periodSeconds: 10
                         timeoutSeconds: 2
                         tcpSocket:
                             port: {{ .port }}
@@ -83,17 +89,20 @@ spec:
                     image: {{ .image }}
                     imagePullPolicy: IfNotPresent
                     livenessProbe:
-                        failureThreshold: 2
-                        periodSeconds: 120
-                        initialDelaySeconds: 120
+                        failureThreshold: 5
+                        initialDelaySeconds: 60
                         successThreshold: 1
                         tcpSocket:
                             port: {{ .port }}
                         timeoutSeconds: 2
                     readinessProbe:
+                        failureThreshold: 5
+                        initialDelaySeconds: 60
+                        timeoutSeconds: 1
+                        tcpSocket:
+                            port: {{ .port }}
+                    startupProbe:
                         failureThreshold: 10
-                        initialDelaySeconds: 30
-                        periodSeconds: 10
                         timeoutSeconds: 2
                         tcpSocket:
                             port: {{ .port }}
@@ -112,7 +121,8 @@ metadata:
     namespace: {{ $.Release.Namespace }}
 spec:
     selector:
-        app: vikunja
+        app.kubernetes.io/instance: vikunja
+        app.kubernetes.io/name: vikunja
     ports:
         -   name: frontend
             protocol: TCP

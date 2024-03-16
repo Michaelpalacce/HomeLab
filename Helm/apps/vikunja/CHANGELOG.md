@@ -1,3 +1,6 @@
+#### [v3.0.0]
+- Better Selectors
+
 #### [V2.0.0]
 * Fully removed nginx 
 * Probes added
