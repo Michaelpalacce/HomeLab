@@ -26,91 +26,134 @@ spec:
                 app.kubernetes.io/name: vikunja
         spec:
             containers:
-                {{- with .api }}
-                -   name: api
-                    image: {{ .image }}
-                    env:
-                        -   name: VIKUNJA_SERVICE_FRONTENDURL
-                            value: "{{ .frontendUrl }}"
-                        -   name: VIKUNJA_DATABASE_HOST
-                            valueFrom:
-                                secretKeyRef:
-                                    name: db
-                                    key: host
-                        -   name: VIKUNJA_DATABASE_USER
-                            valueFrom:
-                                secretKeyRef:
-                                    name: db
-                                    key: username
-                        -   name: VIKUNJA_DATABASE_PASSWORD
-                            valueFrom:
-                                secretKeyRef:
-                                    name: db
-                                    key: password
-                        -   name: VIKUNJA_DATABASE_TYPE
-                            valueFrom:
-                                secretKeyRef:
-                                    name: db
-                                    key: type
-                        -   name: VIKUNJA_DATABASE_DATABASE
-                            valueFrom:
-                                secretKeyRef:
-                                    name: db
-                                    key: name
-                        -   name: VIKUNJA_MAILER_ENABLED
-                            value: "false"
-                    imagePullPolicy: IfNotPresent
-                    livenessProbe:
-                        failureThreshold: 5
-                        initialDelaySeconds: 30
-                        successThreshold: 1
-                        tcpSocket:
-                            port: {{ .port }}
-                        timeoutSeconds: 2
-                    readinessProbe:
-                        failureThreshold: 5
-                        initialDelaySeconds: 30
-                        timeoutSeconds: 1
-                        tcpSocket:
-                            port: {{ .port }}
-                    startupProbe:
-                        failureThreshold: 10
-                        timeoutSeconds: 2
-                        tcpSocket:
-                            port: {{ .port }}
-                    ports:
-                        -   containerPort: {{ .port }}
-                            name: api
-                            protocol: TCP
-                {{- end }}
-
-                {{- with .frontend }}
-                -   name: frontend
-                    image: {{ .image }}
-                    imagePullPolicy: IfNotPresent
-                    livenessProbe:
-                        failureThreshold: 5
-                        initialDelaySeconds: 30
-                        successThreshold: 1
-                        tcpSocket:
-                            port: {{ .port }}
-                        timeoutSeconds: 2
-                    readinessProbe:
-                        failureThreshold: 5
-                        initialDelaySeconds: 30
-                        timeoutSeconds: 1
-                        tcpSocket:
-                            port: {{ .port }}
-                    startupProbe:
-                        failureThreshold: 10
-                        timeoutSeconds: 2
-                        tcpSocket:
-                            port: {{ .port }}
-                    ports:
-                        -   containerPort: {{ .port }}
-                            name: frontend
-                            protocol: TCP
-                {{- end }}
+{{- with .postgresql }}
+                - name: postgresql
+                  image: {{ .image }}
+                  imagePullPolicy: IfNotPresent
+                  env:
+                      - name: POSTGRES_USER
+                        valueFrom:
+                            secretKeyRef:
+                                name: db
+                                key: username
+                      - name: POSTGRES_PASSWORD
+                        valueFrom:
+                            secretKeyRef:
+                                name: db
+                                key: password
+                      - name: POSTGRES_DB
+                        valueFrom:
+                            secretKeyRef:
+                                name: db
+                                key: name
+                  securityContext:
+                      privileged: false
+                      allowPrivilegeEscalation: false
+{{- if .resources }}
+                  resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+                  ports:
+                      - name: db
+                        containerPort: {{ .port }}
+                  volumeMounts:
+                      - mountPath: /var/lib/postgresql/data
+                        subPath: data
+                        name: postgresql-data
+                      - name: shm-empty
+                        mountPath: /dev/shm
+                  livenessProbe:
+                      failureThreshold: 5
+                      initialDelaySeconds: 60
+                      timeoutSeconds: 2
+                      tcpSocket:
+                          port: {{ .port }}
+                  readinessProbe:
+                      failureThreshold: 5
+                      initialDelaySeconds: 60
+                      timeoutSeconds: 2
+                      tcpSocket:
+                          port: {{ .port }}
+                  startupProbe:
+                      failureThreshold: 10
+                      initialDelaySeconds: 10
+                      timeoutSeconds: 2
+                      tcpSocket:
+                          port: {{ .port }}
+{{- end }}
+                - name: vikunja
+                  image: {{ .image }}
+                  env:
+                      - name: VIKUNJA_SERVICE_FRONTENDURL
+                        value: "{{ .frontendUrl }}"
+                      - name: VIKUNJA_DATABASE_HOST
+                        valueFrom:
+                            secretKeyRef:
+                                name: app
+                                key: host
+                      - name: VIKUNJA_DATABASE_USER
+                        valueFrom:
+                            secretKeyRef:
+                                name: db
+                                key: username
+                      - name: VIKUNJA_DATABASE_PASSWORD
+                        valueFrom:
+                            secretKeyRef:
+                                name: db
+                                key: password
+                      - name: VIKUNJA_DATABASE_TYPE
+                        valueFrom:
+                            secretKeyRef:
+                                name: app
+                                key: type
+                      - name: VIKUNJA_DATABASE_DATABASE
+                        valueFrom:
+                            secretKeyRef:
+                                name: db
+                                key: name
+                      - name: VIKUNJA_SERVICE_JWTSECRET
+                        valueFrom:
+                            secretKeyRef:
+                                name: app
+                                key: JWT_SECRET
+                      - name: VIKUNJA_MAILER_ENABLED
+                        value: "false"
+                  imagePullPolicy: IfNotPresent
+                  volumeMounts:
+                      - name: data
+                        mountPath: /app/vikunja/files
+                  livenessProbe:
+                      failureThreshold: 5
+                      initialDelaySeconds: 30
+                      successThreshold: 1
+                      tcpSocket:
+                          port: {{ .port }}
+                      timeoutSeconds: 2
+                  readinessProbe:
+                      failureThreshold: 5
+                      initialDelaySeconds: 30
+                      timeoutSeconds: 1
+                      tcpSocket:
+                          port: {{ .port }}
+                  startupProbe:
+                      failureThreshold: 10
+                      timeoutSeconds: 2
+                      tcpSocket:
+                          port: {{ .port }}
+                  ports:
+                      - containerPort: {{ .port }}
+                        name: api
+                        protocol: TCP
+            volumes:
+                - name: data
+                  persistentVolumeClaim:
+                      claimName: vikunja-pvc
+                - name: postgresql-data
+                  persistentVolumeClaim:
+                      claimName: postgresql-pvc
+                - name: shm-empty
+                  emptyDir:
+                      medium: Memory
 
 ---
 
@@ -124,10 +167,7 @@ spec:
         app.kubernetes.io/instance: vikunja
         app.kubernetes.io/name: vikunja
     ports:
-        -   name: frontend
-            protocol: TCP
-            port: {{ .frontend.port }}
         -   name: api
             protocol: TCP
-            port: 3456
+            port: {{ .port }}
 {{- end }}

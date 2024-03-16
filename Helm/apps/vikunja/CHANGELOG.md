@@ -1,5 +1,6 @@
 #### [v3.0.0]
 - Better Selectors
+- Migrated to internal postgresql
 
 #### [V2.0.0]
 * Fully removed nginx 

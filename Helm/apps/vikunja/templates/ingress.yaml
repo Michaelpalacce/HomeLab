@@ -26,11 +26,4 @@ spec:
                             service:
                                 name: vikunja
                                 port:
-                                    number: {{ .Values.vikunja.frontend.port }}
-                    -   pathType: Prefix
-                        path: "/api"
-                        backend:
-                            service:
-                                name: vikunja
-                                port:
-                                    number: {{ .Values.vikunja.api.port }}
+                                    number: {{ .Values.vikunja.port }}
