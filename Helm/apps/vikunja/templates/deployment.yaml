@@ -21,6 +21,8 @@ spec:
             maxUnavailable: 0
     template:
         metadata:
+            annotations:
+                backup.velero.io/backup-volumes: data, postgresql-data
             labels:
                 app.kubernetes.io/instance: vikunja
                 app.kubernetes.io/name: vikunja

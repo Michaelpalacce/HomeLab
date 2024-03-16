@@ -32,6 +32,7 @@ spec:
         hooks: {}
         includedNamespaces:
           - paperless-ngx
+          - vikunja
           - linkwarden # I like my bookmarks
         snapshotVolumes: true
         ttl: 168h0m0s
