@@ -30,7 +30,7 @@ spec:
                       allowPrivilegeEscalation: false
                   args:
                       - --persist
-                      - --name stefan-g-home
+                      - -n stefan-g-home
                       - --dir /config
 {{- if .resources }}
                   resources:
