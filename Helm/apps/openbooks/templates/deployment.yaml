@@ -30,8 +30,8 @@ spec:
                       allowPrivilegeEscalation: false
                   args:
                       - --persist
-                      - --name "stefan-g-home"
-                      - --dir "/config"
+                      - --name stefan-g-home
+                      - --dir /config
 {{- if .resources }}
                   resources:
 {{ toYaml .resources | indent 22 }}
