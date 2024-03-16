@@ -47,23 +47,24 @@ spec:
                         name: postgresql-data
                       - name: shm-empty
                         mountPath: /dev/shm
-                  # livenessProbe:
-                  #     failureThreshold: 5
-                  #     initialDelaySeconds: 45
-                  #     timeoutSeconds: 2
-                  #     tcpSocket:
-                  #         port: {{ .port }}
-                  # readinessProbe:
-                  #     failureThreshold: 5
-                  #     initialDelaySeconds: 45
-                  #     timeoutSeconds: 2
-                  #     tcpSocket:
-                  #         port: {{ .port }}
-                  # startupProbe:
-                  #     failureThreshold: 10
-                  #     timeoutSeconds: 2
-                  #     tcpSocket:
-                  #         port: {{ .port }}
+                  livenessProbe:
+                      failureThreshold: 5
+                      initialDelaySeconds: 60
+                      timeoutSeconds: 2
+                      tcpSocket:
+                          port: {{ .port }}
+                  readinessProbe:
+                      failureThreshold: 5
+                      initialDelaySeconds: 60
+                      timeoutSeconds: 2
+                      tcpSocket:
+                          port: {{ .port }}
+                  startupProbe:
+                      failureThreshold: 10
+                      initialDelaySeconds: 10
+                      timeoutSeconds: 2
+                      tcpSocket:
+                          port: {{ .port }}
 {{- end }}
                 - name: linkwarden
                   image: {{ .image }}
@@ -84,23 +85,24 @@ spec:
                   volumeMounts:
                       - name: data-config
                         mountPath: /data/data
-                  # livenessProbe:
-                  #     failureThreshold: 5
-                  #     initialDelaySeconds: 45
-                  #     timeoutSeconds: 2
-                  #     tcpSocket:
-                  #         port: {{ .port }}
-                  # readinessProbe:
-                  #     failureThreshold: 5
-                  #     initialDelaySeconds: 45
-                  #     timeoutSeconds: 2
-                  #     tcpSocket:
-                  #         port: {{ .port }}
-                  # startupProbe:
-                  #     failureThreshold: 10
-                  #     timeoutSeconds: 2
-                  #     tcpSocket:
-                  #         port: {{ .port }}
+                  livenessProbe:
+                      failureThreshold: 5
+                      initialDelaySeconds: 60
+                      timeoutSeconds: 2
+                      tcpSocket:
+                          port: {{ .port }}
+                  readinessProbe:
+                      failureThreshold: 5
+                      initialDelaySeconds: 60
+                      timeoutSeconds: 2
+                      tcpSocket:
+                          port: {{ .port }}
+                  startupProbe:
+                      failureThreshold: 10
+                      initialDelaySeconds: 10
+                      timeoutSeconds: 2
+                      tcpSocket:
+                          port: {{ .port }}
 
             restartPolicy: Always
             volumes:
