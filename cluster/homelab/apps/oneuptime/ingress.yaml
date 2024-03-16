@@ -1,0 +1,30 @@
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: oneuptime
+    namespace: oneuptime
+    annotations:
+        kubernetes.io/ingress.class: "nginx"
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: Uptime Monitor
+        gethomepage.dev/group: Monitoring
+        gethomepage.dev/icon: oneuptime
+        gethomepage.dev/name: Oneuptime
+spec:
+    tls:
+        -   hosts:
+                - "*.stefangenov.site"
+            secretName: ingress
+    rules:
+        -   host: oneuptime.stefangenov.site
+            http:
+                paths:
+                    -   pathType: Prefix
+                        path: "/"
+                        backend:
+                            service:
+                                name: oneuptime-nginx
+                                port:
+                                    number: 80

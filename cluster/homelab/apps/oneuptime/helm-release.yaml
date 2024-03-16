@@ -1,0 +1,38 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+    name: oneuptime
+    namespace: oneuptime
+spec:
+    interval: 5m
+    install:
+        createNamespace: true
+        crds: CreateReplace
+        remediation:
+            retries: 3
+    upgrade:
+        crds: CreateReplace
+        remediation:
+            retries: 3
+    chart:
+        spec:
+            chart: oneuptime
+            version: 7.0.1769
+            interval: 5m
+            sourceRef:
+                kind: HelmRepository
+                name: oneuptime
+                namespace: flux-system
+    values:
+        host: oneuptime.stefangenov.site
+        httpProtocol: https 
+        image:
+            registry: ghcr.io
+            repository: oneuptime
+            tag: 7.0.1769
+        global:
+            storageclass: longhorn
+        ingress:
+            service:
+                type: ClusterIP
+
