@@ -1,0 +1,132 @@
+---
+{{- with .Values.linkwarden }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: linkwarden
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app.kubernetes.io/instance: linkwarden
+        app.kubernetes.io/name: linkwarden
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app.kubernetes.io/instance: linkwarden
+            app.kubernetes.io/name: linkwarden
+    template:
+        metadata:
+            annotations:
+                backup.velero.io/backup-volumes: data-config, postgresql-data
+            labels:
+                app.kubernetes.io/instance: linkwarden
+                app.kubernetes.io/name: linkwarden
+        spec:
+            containers:
+{{- with .postgresql }}
+                - name: postgresql
+                  image: {{ .image }}
+                  imagePullPolicy: IfNotPresent
+                  envFrom:
+                      -   secretRef:
+                              name: db
+                  securityContext:
+                      privileged: false
+                      allowPrivilegeEscalation: false
+{{- if .resources }}
+                  resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+                  ports:
+                      - name: db
+                        containerPort: {{ .port }}
+                  volumeMounts:
+                      - mountPath: /var/lib/postgresql/data
+                        subPath: data
+                        name: postgresql-data
+                      - name: shm-empty
+                        mountPath: /dev/shm
+                  # livenessProbe:
+                  #     failureThreshold: 5
+                  #     initialDelaySeconds: 45
+                  #     timeoutSeconds: 2
+                  #     tcpSocket:
+                  #         port: {{ .port }}
+                  # readinessProbe:
+                  #     failureThreshold: 5
+                  #     initialDelaySeconds: 45
+                  #     timeoutSeconds: 2
+                  #     tcpSocket:
+                  #         port: {{ .port }}
+                  # startupProbe:
+                  #     failureThreshold: 10
+                  #     timeoutSeconds: 2
+                  #     tcpSocket:
+                  #         port: {{ .port }}
+{{- end }}
+                - name: linkwarden
+                  image: {{ .image }}
+                  imagePullPolicy: IfNotPresent
+                  envFrom:
+                      -   secretRef:
+                              name: app
+                  securityContext:
+                      privileged: false
+                      allowPrivilegeEscalation: false
+{{- if .resources }}
+                  resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+                  ports:
+                      - name: web
+                        containerPort: {{ .port }}
+                  volumeMounts:
+                      - name: data-config
+                        mountPath: /data/data
+                  # livenessProbe:
+                  #     failureThreshold: 5
+                  #     initialDelaySeconds: 45
+                  #     timeoutSeconds: 2
+                  #     tcpSocket:
+                  #         port: {{ .port }}
+                  # readinessProbe:
+                  #     failureThreshold: 5
+                  #     initialDelaySeconds: 45
+                  #     timeoutSeconds: 2
+                  #     tcpSocket:
+                  #         port: {{ .port }}
+                  # startupProbe:
+                  #     failureThreshold: 10
+                  #     timeoutSeconds: 2
+                  #     tcpSocket:
+                  #         port: {{ .port }}
+
+            restartPolicy: Always
+            volumes:
+                - name: data-config
+                  persistentVolumeClaim:
+                      claimName: linkwarden-pvc
+                - name: postgresql-data
+                  persistentVolumeClaim:
+                      claimName: postgresql-pvc
+                - name: shm-empty
+                  emptyDir:
+                      medium: Memory
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: linkwarden
+    namespace: {{ $.Release.Namespace }}
+spec:
+    selector:
+        app.kubernetes.io/instance: linkwarden
+        app.kubernetes.io/name: linkwarden
+    ports:
+        - name: linkwarden
+          protocol: TCP
+          port: {{ .port }}
+{{- end }}

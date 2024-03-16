@@ -14,8 +14,8 @@ spec:
           - media
           - monitoring
           - uptimekuma
-          - freshrss
-          - firefly
+          - freshrss # RSS are not fatal
+          - firefly # not that sensitive, since these are auths and sessions and such, nothing major
           - homebox
         snapshotVolumes: true
         ttl: 96h0m0s
@@ -31,23 +31,24 @@ spec:
     template:
         hooks: {}
         includedNamespaces:
-          - postgresql
           - paperless-ngx
+          - linkwarden # I like my bookmarks
         snapshotVolumes: true
         ttl: 168h0m0s
     useOwnerReferencesInBackup: false
-# ---
-# apiVersion: velero.io/v1
-# kind: Schedule
-# metadata:
-#     name: critical
-#     namespace: velero
-# spec:
-#     schedule: '00 05 * * *'
-#     template:
-#         hooks: {}
-#         includedNamespaces:
-#           - vaultwarden
-#         snapshotVolumes: true
-#         ttl: 720h0m0s
-#     useOwnerReferencesInBackup: false 
+---
+apiVersion: velero.io/v1
+kind: Schedule
+metadata:
+    name: critical
+    namespace: velero
+spec:
+    schedule: '00 05 * * *'
+    template:
+        hooks: {}
+        includedNamespaces:
+          # @TODO: Move containers to have own postgres instead of this one
+          - postgresql # A lot of services use the default one here, instead of their own
+        snapshotVolumes: true
+        ttl: 720h0m0s
+    useOwnerReferencesInBackup: false 

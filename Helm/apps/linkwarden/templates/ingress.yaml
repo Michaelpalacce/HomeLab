@@ -1,0 +1,29 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: linkwarden
+    namespace: {{ $.Release.Namespace }}
+    annotations:
+        kubernetes.io/ingress.class: "nginx"
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: Bookmarks
+        gethomepage.dev/group: Knowledge
+        gethomepage.dev/icon: linkwarden
+        gethomepage.dev/name: Linkwarden
+spec:
+    tls:
+        - hosts:
+              - "*.stefangenov.site"
+          secretName: ingress
+    rules:
+        - host: linkwarden.stefangenov.site
+          http:
+              paths:
+                  - pathType: Prefix
+                    path: "/"
+                    backend:
+                        service:
+                            name: linkwarden
+                            port:
+                                number: {{ .Values.linkwarden.port }}
