@@ -65,20 +65,29 @@ spec:
                       failureThreshold: 5
                       initialDelaySeconds: 60
                       timeoutSeconds: 2
-                      tcpSocket:
-                          port: {{ .port }}
+                      exec:
+                          command:
+                              - /bin/sh
+                              - -c
+                              - exec pg_isready -U "vikunja" -h 127.0.0.1 -p {{ .port }}
                   readinessProbe:
                       failureThreshold: 5
                       initialDelaySeconds: 60
                       timeoutSeconds: 2
-                      tcpSocket:
-                          port: {{ .port }}
+                      exec:
+                          command:
+                              - /bin/sh
+                              - -c
+                              - exec pg_isready -U "vikunja" -h 127.0.0.1 -p {{ .port }}
                   startupProbe:
                       failureThreshold: 10
                       initialDelaySeconds: 10
                       timeoutSeconds: 2
-                      tcpSocket:
-                          port: {{ .port }}
+                      exec:
+                          command:
+                              - /bin/sh
+                              - -c
+                              - exec pg_isready -U "vikunja" -h 127.0.0.1 -p {{ .port }}
 {{- end }}
                 - name: vikunja
                   image: {{ .image }}
