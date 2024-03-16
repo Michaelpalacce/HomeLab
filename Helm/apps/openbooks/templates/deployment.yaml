@@ -31,7 +31,7 @@ spec:
                   args:
                       - --persist
                       - -n stefan-g-home
-                      - --dir /config
+                      - -d /config
 {{- if .resources }}
                   resources:
 {{ toYaml .resources | indent 22 }}
