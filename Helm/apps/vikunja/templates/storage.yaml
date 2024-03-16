@@ -6,7 +6,7 @@ metadata:
     namespace: {{ $.Release.Namespace }}
 spec:
     accessModes:
-        - ReadWriteOnce
+        - ReadWriteMany
     storageClassName: longhorn
     resources:
         requests:

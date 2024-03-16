@@ -16,9 +16,6 @@ spec:
         matchLabels:
             app.kubernetes.io/instance: vikunja
             app.kubernetes.io/name: vikunja
-    strategy:
-        rollingUpdate:
-            maxUnavailable: 0
     template:
         metadata:
             annotations:

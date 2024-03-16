@@ -13,4 +13,4 @@ vikunja:
 
 storage:
     postgresqlSize: 5Gi
-    dataSize: 10Gi
+    dataSize: 5Gi
