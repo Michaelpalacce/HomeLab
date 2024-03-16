@@ -31,6 +31,7 @@ spec:
                   args:
                       - --persist
                       - --name "stefan-g-home"
+                      - --dir "/config"
 {{- if .resources }}
                   resources:
 {{ toYaml .resources | indent 22 }}
@@ -40,7 +41,7 @@ spec:
                         containerPort: {{ .port }}
                   volumeMounts:
                       - name: data-config
-                        mountPath: /openbooks-stacks
+                        mountPath: /config
                   livenessProbe:
                       failureThreshold: 2
                       initialDelaySeconds: 30
