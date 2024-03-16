@@ -1,6 +1,6 @@
 ---
 openbooks:
-    image: ghcr.io/evan-buss/openbooks:edge
+    image: ghcr.io/evan-buss/openbooks:4.5.0
     port: 80
     resources:
         requests:
