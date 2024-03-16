@@ -7,21 +7,27 @@ metadata:
     name: openbooks
     namespace: {{ $.Release.Namespace }}
     labels:
-        app: openbooks
+        app.kubernetes.io/instance: openbooks
+        app.kubernetes.io/name: openbooks
 spec:
     replicas: 1
     selector:
         matchLabels:
-            app: openbooks
+            app.kubernetes.io/instance: openbooks
+            app.kubernetes.io/name: openbooks
     template:
         metadata:
             labels:
-                app: openbooks
+                app.kubernetes.io/instance: openbooks
+                app.kubernetes.io/name: openbooks
         spec:
             containers:
                 - name: openbooks
                   image: {{ .image }}
                   imagePullPolicy: IfNotPresent
+                  securityContext:
+                      privileged: false
+                      allowPrivilegeEscalation: false
                   args:
                       - --persist
 {{- if .resources }}
@@ -34,6 +40,26 @@ spec:
                   volumeMounts:
                       - name: data-config
                         mountPath: /openbooks-stacks
+                  livenessProbe:
+                      failureThreshold: 2
+                      initialDelaySeconds: 30
+                      timeoutSeconds: 2
+                      httpGet:
+                          path: /
+                          port: {{ .port }}
+                  readinessProbe:
+                      failureThreshold: 2
+                      initialDelaySeconds: 30
+                      timeoutSeconds: 2
+                      httpGet:
+                          path: /
+                          port: {{ .port }}
+                  startupProbe:
+                      failureThreshold: 5
+                      timeoutSeconds: 2
+                      httpGet:
+                          path: /
+                          port: {{ .port }}
 
             restartPolicy: Always
             volumes:
@@ -49,17 +75,11 @@ metadata:
     name: openbooks
     namespace: {{ $.Release.Namespace }}
 spec:
-    {{- with .nodePort }}
-    type: NodePort
-    {{- end }}
     selector:
-        app: openbooks
+        app.kubernetes.io/instance: openbooks
+        app.kubernetes.io/name: openbooks
     ports:
         - name: openbooks
           protocol: TCP
           port: {{ .port }}
-          {{- with .nodePort }}
-          nodePort: {{ . }}
-          {{- end }}
-
 {{- end }}

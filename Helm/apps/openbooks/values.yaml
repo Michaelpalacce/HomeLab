@@ -1,6 +1,6 @@
 ---
 openbooks:
-    image: evanbuss/openbooks:sha-8639492
+    image: ghcr.io/evanbuss/openbooks:edge
     port: 80
     resources:
         requests:
@@ -8,6 +8,4 @@ openbooks:
             memory: 256Mi
 
 storage:
-    dataLocality: best-effort
-    numberOfReplicas: 1
-    configSize: 10Gi
+    configSize: 1Gi
