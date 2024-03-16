@@ -4,9 +4,8 @@ kind: Ingress
 metadata:
     name: readarr
     namespace: {{ $.Release.Namespace }}
-    annotations:
-        kubernetes.io/ingress.class: "nginx"
 spec:
+    ingressClassName: nginx
     tls:
         -   hosts:
                 - "*.stefangenov.site"
@@ -29,9 +28,8 @@ kind: Ingress
 metadata:
     name: flaresolverr
     namespace: {{ $.Release.Namespace }}
-    annotations:
-        kubernetes.io/ingress.class: "nginx"
 spec:
+    ingressClassName: nginx
     tls:
         -   hosts:
                 - "*.stefangenov.site"
@@ -53,9 +51,8 @@ kind: Ingress
 metadata:
     name: sonarr
     namespace: {{ $.Release.Namespace }}
-    annotations:
-        kubernetes.io/ingress.class: "nginx"
 spec:
+    ingressClassName: nginx
     tls:
         -   hosts:
                 - "*.stefangenov.site"
@@ -78,9 +75,8 @@ kind: Ingress
 metadata:
     name: kavita
     namespace: {{ $.Release.Namespace }}
-    annotations:
-        kubernetes.io/ingress.class: "nginx"
 spec:
+    ingressClassName: nginx
     tls:
         -   hosts:
                 - "*.stefangenov.site"
@@ -103,9 +99,8 @@ kind: Ingress
 metadata:
     name: prowlarr
     namespace: {{ $.Release.Namespace }}
-    annotations:
-        kubernetes.io/ingress.class: "nginx"
 spec:
+    ingressClassName: nginx
     tls:
         -   hosts:
                 - "*.stefangenov.site"
@@ -128,9 +123,8 @@ kind: Ingress
 metadata:
     name: radarr
     namespace: {{ $.Release.Namespace }}
-    annotations:
-        kubernetes.io/ingress.class: "nginx"
 spec:
+    ingressClassName: nginx
     tls:
         -   hosts:
                 - "*.stefangenov.site"
@@ -153,9 +147,8 @@ kind: Ingress
 metadata:
     name: overseerr
     namespace: {{ $.Release.Namespace }}
-    annotations:
-        kubernetes.io/ingress.class: "nginx"
 spec:
+    ingressClassName: nginx
     tls:
         -   hosts:
                 - "*.stefangenov.site"
@@ -178,9 +171,8 @@ kind: Ingress
 metadata:
     name: transmission
     namespace: {{ $.Release.Namespace }}
-    annotations:
-        kubernetes.io/ingress.class: "nginx"
 spec:
+    ingressClassName: nginx
     tls:
         -   hosts:
                 - "*.stefangenov.site"

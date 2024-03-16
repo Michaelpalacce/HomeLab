@@ -4,9 +4,8 @@ kind: Ingress
 metadata:
     name: mealie
     namespace: {{ $.Release.Namespace }}
-    annotations:
-        kubernetes.io/ingress.class: "nginx"
 spec:
+    ingressClassName: nginx
     tls:
         -   hosts:
                 - "*.stefangenov.site"

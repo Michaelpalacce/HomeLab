@@ -5,7 +5,6 @@ metadata:
     name: changedetection
     namespace: {{ $.Release.Namespace }}
     annotations:
-        kubernetes.io/ingress.class: "nginx"
         gethomepage.dev/enabled: "true"
         gethomepage.dev/description: Monitors changes to websites
         gethomepage.dev/group: Automation
@@ -15,6 +14,7 @@ metadata:
         gethomepage.dev/widget.url: https://changedetection.stefangenov.site
         gethomepage.dev/widget.key: 24f82bd47ffef64b0b533239ad38d945 # yeah, it's public, but it's not so secret
 spec:
+    ingressClassName: nginx
     tls:
         - hosts:
               - "*.stefangenov.site"

@@ -5,7 +5,6 @@ metadata:
     name: homebox
     namespace: {{ $.Release.Namespace }}
     annotations:
-        kubernetes.io/ingress.class: "nginx"
         nginx.ingress.kubernetes.io/proxy-body-size: "100m"
         gethomepage.dev/enabled: "true"
         gethomepage.dev/description: Home Inventory
@@ -13,6 +12,7 @@ metadata:
         gethomepage.dev/icon: homebox
         gethomepage.dev/name: Homebox
 spec:
+    ingressClassName: nginx
     tls:
         -   hosts:
                 - "*.stefangenov.site"

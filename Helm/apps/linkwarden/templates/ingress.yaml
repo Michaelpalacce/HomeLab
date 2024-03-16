@@ -5,13 +5,13 @@ metadata:
     name: linkwarden
     namespace: {{ $.Release.Namespace }}
     annotations:
-        kubernetes.io/ingress.class: "nginx"
         gethomepage.dev/enabled: "true"
         gethomepage.dev/description: Bookmarks
         gethomepage.dev/group: Knowledge
         gethomepage.dev/icon: linkwarden
         gethomepage.dev/name: Linkwarden
 spec:
+    ingressClassName: nginx
     tls:
         - hosts:
               - "*.stefangenov.site"

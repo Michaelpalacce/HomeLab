@@ -6,13 +6,13 @@ metadata:
     namespace: {{ $.Release.Namespace }}
     annotations:
         nginx.ingress.kubernetes.io/proxy-body-size: "100m"
-        kubernetes.io/ingress.class: "nginx"
         gethomepage.dev/enabled: "true"
         gethomepage.dev/description: Swiss Army Knife For PDFs
         gethomepage.dev/group: Tools
         gethomepage.dev/icon: stirling-pdf
         gethomepage.dev/name: Stirling-PDF
 spec:
+    ingressClassName: nginx
     tls:
         - hosts:
               - "*.stefangenov.site"

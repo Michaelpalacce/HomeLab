@@ -6,13 +6,13 @@ metadata:
     name: oneuptime
     namespace: oneuptime
     annotations:
-        kubernetes.io/ingress.class: "nginx"
         gethomepage.dev/enabled: "true"
         gethomepage.dev/description: Uptime Monitor
         gethomepage.dev/group: Monitoring
         gethomepage.dev/icon: oneuptime
         gethomepage.dev/name: Oneuptime
 spec:
+    ingressClassName: nginx
     tls:
         -   hosts:
                 - "*.stefangenov.site"
