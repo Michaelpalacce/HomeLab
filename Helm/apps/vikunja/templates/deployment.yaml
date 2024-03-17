@@ -131,20 +131,20 @@ spec:
                       - name: data
                         mountPath: /app/vikunja/files
                   livenessProbe:
-                      failureThreshold: 5
+                      failureThreshold: 10
                       initialDelaySeconds: 30
-                      successThreshold: 1
+                      successThreshold: 2
                       tcpSocket:
                           port: {{ .port }}
                       timeoutSeconds: 2
                   readinessProbe:
-                      failureThreshold: 5
+                      failureThreshold: 10
                       initialDelaySeconds: 30
-                      timeoutSeconds: 1
+                      successThreshold: 2
                       tcpSocket:
                           port: {{ .port }}
                   startupProbe:
-                      failureThreshold: 10
+                      failureThreshold: 20
                       timeoutSeconds: 2
                       tcpSocket:
                           port: {{ .port }}
