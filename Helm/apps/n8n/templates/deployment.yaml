@@ -7,7 +7,8 @@ metadata:
     name: n8n
     namespace: {{ $.Release.Namespace }}
     labels:
-        app: n8n
+        app.kubernetes.io/instance: n8n
+        app.kubernetes.io/name: n8n
 spec:
     replicas: {{ .replicas }}
     strategy:
@@ -15,11 +16,13 @@ spec:
             maxUnavailable: 0
     selector:
         matchLabels:
-            app: n8n
+            app.kubernetes.io/instance: n8n
+            app.kubernetes.io/name: n8n
     template:
         metadata:
             labels:
-                app: n8n
+                app.kubernetes.io/instance: n8n
+                app.kubernetes.io/name: n8n
         spec:
             containers:
                 -   name: n8n
@@ -100,7 +103,8 @@ metadata:
     namespace: {{ $.Release.Namespace }}
 spec:
     selector:
-        app: n8n
+        app.kubernetes.io/instance: n8n
+        app.kubernetes.io/name: n8n
     ports:
         -   name: n8n
             protocol: TCP
