@@ -133,7 +133,6 @@ spec:
                   livenessProbe:
                       failureThreshold: 10
                       initialDelaySeconds: 30
-                      successThreshold: 2
                       tcpSocket:
                           port: {{ .port }}
                       timeoutSeconds: 2
