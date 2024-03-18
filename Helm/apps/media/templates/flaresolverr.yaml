@@ -45,13 +45,6 @@ spec:
                         httpGet:
                             path: /
                             port: {{ .port }}
-                    readinessProbe:
-                        failureThreshold: 2
-                        initialDelaySeconds: 30
-                        timeoutSeconds: 2
-                        httpGet:
-                            path: /
-                            port: {{ .port }}
                     startupProbe:
                         failureThreshold: 5
                         timeoutSeconds: 2

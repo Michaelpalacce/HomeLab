@@ -53,12 +53,6 @@ spec:
                       timeoutSeconds: 2
                       tcpSocket:
                           port: {{ .port }}
-                  readinessProbe:
-                      failureThreshold: 5
-                      initialDelaySeconds: 60
-                      timeoutSeconds: 2
-                      tcpSocket:
-                          port: {{ .port }}
                   startupProbe:
                       failureThreshold: 10
                       initialDelaySeconds: 10
@@ -86,12 +80,6 @@ spec:
                       - name: data-config
                         mountPath: /data/data
                   livenessProbe:
-                      failureThreshold: 5
-                      initialDelaySeconds: 60
-                      timeoutSeconds: 2
-                      tcpSocket:
-                          port: {{ .port }}
-                  readinessProbe:
                       failureThreshold: 5
                       initialDelaySeconds: 60
                       timeoutSeconds: 2

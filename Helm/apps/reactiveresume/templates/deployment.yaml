@@ -35,12 +35,6 @@ spec:
                         timeoutSeconds: 2
                         tcpSocket:
                             port: {{ .port }}
-                    readinessProbe:
-                        initialDelaySeconds: 30
-                        failureThreshold: 5
-                        timeoutSeconds: 2
-                        tcpSocket:
-                            port: {{ .port }}
                     startupProbe:
                         failureThreshold: 10
                         timeoutSeconds: 2
@@ -69,13 +63,6 @@ spec:
                             name: app
                             key: PUBLIC_SERVER_URL
                     livenessProbe:
-                        initialDelaySeconds: 30
-                        failureThreshold: 5
-                        timeoutSeconds: 2
-                        httpGet:
-                            path: /
-                            port: {{ .port }}
-                    readinessProbe:
                         initialDelaySeconds: 30
                         failureThreshold: 5
                         timeoutSeconds: 2

@@ -19,6 +19,6 @@ spec:
                 namespace: flux-system
     values:
         livenessProbe:
-            periodSeconds: 120
+            periodSeconds: 30
         readinessProbe:
-            periodSeconds: 60
+            periodSeconds: 10

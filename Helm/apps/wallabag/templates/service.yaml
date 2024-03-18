@@ -8,7 +8,8 @@ metadata:
     namespace: {{ $.Release.Namespace }}
 spec:
     selector:
-        app: wallabag
+        app.kubernetes.io/instance: wallabag
+        app.kubernetes.io/name: wallabag
     ports:
         -   name: wallabag
             protocol: TCP

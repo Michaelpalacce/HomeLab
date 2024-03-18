@@ -137,12 +137,6 @@ spec:
                       tcpSocket:
                           port: {{ .port }}
                       timeoutSeconds: 2
-                  readinessProbe:
-                      failureThreshold: 10
-                      initialDelaySeconds: 30
-                      successThreshold: 2
-                      tcpSocket:
-                          port: {{ .port }}
                   startupProbe:
                       failureThreshold: 20
                       timeoutSeconds: 2

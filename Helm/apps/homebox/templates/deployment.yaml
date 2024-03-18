@@ -48,15 +48,14 @@ spec:
                             name: data
                     livenessProbe:
                         failureThreshold: 2
-                        initialDelaySeconds: 120
-                        periodSeconds: 120
+                        initialDelaySeconds: 60
+                        periodSeconds: 10
                         timeoutSeconds: 2
                         tcpSocket:
                             port: {{ .port }}
-                    readinessProbe:
+                    startupProbe:
                         failureThreshold: 10
-                        initialDelaySeconds: 15
-                        periodSeconds: 10
+                        periodSeconds: 5
                         timeoutSeconds: 2
                         tcpSocket:
                             port: {{ .port }}

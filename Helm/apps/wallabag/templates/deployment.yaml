@@ -7,7 +7,8 @@ metadata:
     name: wallabag
     namespace: {{ $.Release.Namespace }}
     labels:
-        app: wallabag
+        app.kubernetes.io/instance: wallabag
+        app.kubernetes.io/name: wallabag
 spec:
     replicas: {{ .replicas }}
     strategy:
@@ -15,11 +16,13 @@ spec:
             maxUnavailable: 0
     selector:
         matchLabels:
-            app: wallabag
+            app.kubernetes.io/instance: wallabag
+            app.kubernetes.io/name: wallabag
     template:
         metadata:
             labels:
-                app: wallabag
+                app.kubernetes.io/instance: wallabag
+                app.kubernetes.io/name: wallabag
         spec:
             restartPolicy: Always
             containers:
@@ -52,9 +55,8 @@ spec:
                         -   name: web
                             containerPort: {{ .port }}
                     livenessProbe:
-                        failureThreshold: 2
-                        initialDelaySeconds: 120
-                        periodSeconds: 120
+                        failureThreshold: 10
+                        initialDelaySeconds: 60
                         timeoutSeconds: 5
                         httpGet:
                             port: {{ .port }}
