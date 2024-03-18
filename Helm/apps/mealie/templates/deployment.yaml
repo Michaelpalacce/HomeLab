@@ -6,61 +6,30 @@ metadata:
     name: mealie
     namespace: {{ $.Release.Namespace }}
     labels:
-        app: mealie
+        app.kubernetes.io/instance: mealie
+        app.kubernetes.io/name: mealie
 spec:
     replicas: {{ .replicas }}
     selector:
         matchLabels:
-            app: mealie
+            app.kubernetes.io/instance: mealie
+            app.kubernetes.io/name: mealie
     template:
         metadata:
             annotations:
                 backup.velero.io/backup-volumes: data
             labels:
-                app: mealie
+                app.kubernetes.io/instance: mealie
+                app.kubernetes.io/name: mealie
         spec:
             containers:
-                -   name: frontend
-                    image: {{ .frontend.image }}
+                -   name: mealie
+                    image: {{ .image }}
                     imagePullPolicy: IfNotPresent
-{{- if .frontend.resources }}
+{{- if .resources }}
                     resources:
-{{ toYaml .frontend.resources | indent 22 }}
+{{ toYaml .resources | indent 22 }}
 {{- end }}
-                    env:
-                        -   name: PUID
-                            value: "1000"
-                        -   name: GUID
-                            value: "1000"
-                        -   name: TZ
-                            value: "Europe/Sofia"
-                        -   name: API_URL
-                            value: "http://backend:{{ .api.port }}"
-
-                    ports:
-                        -   name: web
-                            containerPort: {{ .frontend.port }}
-                    volumeMounts:
-                        -   name: data
-                            mountPath: /app/data
-                    livenessProbe:
-                        failureThreshold: 2
-                        periodSeconds: 120
-                        initialDelaySeconds: 120
-                        successThreshold: 1
-                        tcpSocket:
-                            port: {{ .frontend.port }}
-                        timeoutSeconds: 2
-                -   name: backend
-                    image: {{ .api.image }}
-                    imagePullPolicy: IfNotPresent
-{{- if .api.resources }}
-                    resources:
-{{ toYaml .api.resources | indent 22 }}
-{{- end }}
-                    envFrom:
-                        -   secretRef:
-                                name: db
                     env:
                         -   name: PUID
                             value: "1000"
@@ -75,24 +44,27 @@ spec:
                         -   name: WEB_CONCURRENCY
                             value: "1"
                         -   name: BASE_URL
-                            value: "{{ .api.baseUrl }}"
+                            value: "{{ .baseUrl }}"
 
                     ports:
-                        -   name: backend
-                            containerPort: {{ .api.port }}
-                    livenessProbe:
-                        failureThreshold: 3
-                        successThreshold: 1
-                        tcpSocket:
-                            port: {{ .api.port }}
-                    startupProbe:
-                        failureThreshold: 5
-                        successThreshold: 1
-                        tcpSocket:
-                            port: {{ .api.port }}
+                        -   name: web
+                            containerPort: {{ .port }}
                     volumeMounts:
                         -   name: data
                             mountPath: /app/data
+                    livenessProbe:
+                        failureThreshold: 5
+                        initialDelaySeconds: 60
+                        successThreshold: 1
+                        tcpSocket:
+                            port: {{ .port }}
+                        timeoutSeconds: 2
+                    startupProbe:
+                        failureThreshold: 10
+                        successThreshold: 1
+                        tcpSocket:
+                            port: {{ .port }}
+                        timeoutSeconds: 2
 
             restartPolicy: Always
             volumes:
@@ -108,37 +80,12 @@ metadata:
     name: mealie
     namespace: {{ $.Release.Namespace }}
 spec:
-    {{- with .frontend.nodePort }}
-    type: NodePort
-    {{- end }}
     selector:
-        app: mealie
+        app.kubernetes.io/instance: mealie
+        app.kubernetes.io/name: mealie
     ports:
         -   name: web
             protocol: TCP
-            port: {{ .frontend.port }}
-          {{- with .frontend.nodePort }}
-            nodePort: {{ . }}
-          {{- end }}
----
-
-apiVersion: v1
-kind: Service
-metadata:
-    name: backend
-    namespace: {{ $.Release.Namespace }}
-spec:
-    {{- with .api.nodePort }}
-    type: NodePort
-    {{- end }}
-    selector:
-        app: mealie
-    ports:
-        -   name: backend
-            protocol: TCP
-            port: {{ .api.port }}
-          {{- with .api.nodePort }}
-            nodePort: {{ . }}
-          {{- end }}
+            port: {{ .port }}
 
 {{- end }}

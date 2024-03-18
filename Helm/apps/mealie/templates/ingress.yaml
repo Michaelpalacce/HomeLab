@@ -20,4 +20,4 @@ spec:
                             service:
                                 name: mealie
                                 port:
-                                    number: {{ .Values.mealie.frontend.port }}
+                                    number: {{ .Values.mealie.port }}
