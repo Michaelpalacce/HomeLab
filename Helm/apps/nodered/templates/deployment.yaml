@@ -7,18 +7,21 @@ metadata:
     name: nodered
     namespace: {{ $.Release.Namespace }}
     labels:
-        app: nodered
+        app.kubernetes.io/instance: nodered
+        app.kubernetes.io/name: nodered
 spec:
     replicas: 1
     selector:
         matchLabels:
-            app: nodered
+            app.kubernetes.io/instance: nodered
+            app.kubernetes.io/name: nodered
     template:
         metadata:
             annotations:
                 backup.velero.io/backup-volumes: data-config
             labels:
-                app: nodered
+                app.kubernetes.io/instance: nodered
+                app.kubernetes.io/name: nodered
         spec:
             containers:
                 - name: nodered
@@ -63,17 +66,12 @@ metadata:
     name: nodered
     namespace: {{ $.Release.Namespace }}
 spec:
-    {{- with .nodePort }}
-    type: NodePort
-    {{- end }}
     selector:
-        app: nodered
+        app.kubernetes.io/instance: nodered
+        app.kubernetes.io/name: nodered
     ports:
         - name: nodered
           protocol: TCP
           port: {{ .port }}
-          {{- with .nodePort }}
-          nodePort: {{ . }}
-          {{- end }}
 
 {{- end }}
