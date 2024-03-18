@@ -34,7 +34,7 @@ spec:
             # -- Image pull policy
             pullPolicy: IfNotPresent
             # -- Image tag
-            tag: 2.6.2
+            tag: 2.6.3
         persistence:
             data:
                 enabled: ENC[AES256_GCM,data:Nas9kg==,iv:2ZH1WdLpd5yHHceBje/dntcGeZ624q/jAzefikM7GFg=,tag:sD9616b/LYZKj/iqmzTutg==,type:bool]
