@@ -7,18 +7,21 @@ metadata:
     name: changedetection
     namespace: {{ $.Release.Namespace }}
     labels:
-        app: changedetection
+        app.kubernetes.io/instance: changedetection
+        app.kubernetes.io/name: changedetection
 spec:
     replicas: 1
     selector:
         matchLabels:
-            app: changedetection
+            app.kubernetes.io/instance: changedetection
+            app.kubernetes.io/name: changedetection
     template:
         metadata:
             annotations:
               backup.velero.io/backup-volumes: data-config
             labels:
-                app: changedetection
+                app.kubernetes.io/instance: changedetection
+                app.kubernetes.io/name: changedetection
         spec:
             containers:
                 - name: browserless
@@ -36,6 +39,17 @@ spec:
                   volumeMounts:
                       - name: shm-empty-playwright
                         mountPath: /dev/shm
+                  livenessProbe:
+                      failureThreshold: 10
+                      initialDelaySeconds: 30
+                      tcpSocket:
+                          port: {{ .playwright.port }}
+                      timeoutSeconds: 2
+                  startupProbe:
+                      failureThreshold: 20
+                      timeoutSeconds: 2
+                      tcpSocket:
+                          port: {{ .playwright.port }}
                 - name: selenium
                   image: {{ .selenium.image }}
                   imagePullPolicy: IfNotPresent
@@ -48,6 +62,17 @@ spec:
                   volumeMounts:
                       - name: shm-empty
                         mountPath: /dev/shm
+                  livenessProbe:
+                      failureThreshold: 10
+                      initialDelaySeconds: 30
+                      tcpSocket:
+                          port: {{ .selenium.port }}
+                      timeoutSeconds: 2
+                  startupProbe:
+                      failureThreshold: 20
+                      timeoutSeconds: 2
+                      tcpSocket:
+                          port: {{ .selenium.port }}
                 - name: changedetection
                   image: {{ .image }}
                   imagePullPolicy: IfNotPresent
@@ -74,6 +99,17 @@ spec:
                         value: "http://localhost:{{ .selenium.port }}/wd/hub"
                       - name: PLAYWRIGHT_DRIVER_URL
                         value: "ws://localhost:{{ .playwright.port }}/?stealth=1&--disable-web-security=true"
+                  livenessProbe:
+                      failureThreshold: 10
+                      initialDelaySeconds: 30
+                      tcpSocket:
+                          port: {{ .port }}
+                      timeoutSeconds: 2
+                  startupProbe:
+                      failureThreshold: 20
+                      timeoutSeconds: 2
+                      tcpSocket:
+                          port: {{ .port }}
 
             restartPolicy: Always
             volumes:
@@ -95,17 +131,12 @@ metadata:
     name: changedetection
     namespace: {{ $.Release.Namespace }}
 spec:
-    {{- with .nodePort }}
-    type: NodePort
-    {{- end }}
     selector:
-        app: changedetection
+        app.kubernetes.io/instance: changedetection
+        app.kubernetes.io/name: changedetection
     ports:
         - name: changedetection
           protocol: TCP
           port: {{ .port }}
-          {{- with .nodePort }}
-          nodePort: {{ . }}
-          {{- end }}
 
 {{- end }}
