@@ -1,3 +1,7 @@
+#### [v3.0.0]
+- Better Selectors
+- Improved probes
+
 #### [V2.1.0]
 * New Version
 

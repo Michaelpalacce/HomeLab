@@ -8,6 +8,4 @@ freshrss:
             memory: 200Mi
 
 storage:
-    dataLocality: disabled
-    numberOfReplicas: 1
     configSize: 1Gi

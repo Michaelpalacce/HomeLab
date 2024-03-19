@@ -7,18 +7,21 @@ metadata:
     name: freshrss
     namespace: {{ $.Release.Namespace }}
     labels:
-        app: freshrss
+        app.kubernetes.io/instance: freshrss
+        app.kubernetes.io/name: freshrss
 spec:
     replicas: 1
     selector:
         matchLabels:
-            app: freshrss
+            app.kubernetes.io/instance: freshrss
+            app.kubernetes.io/name: freshrss
     template:
         metadata:
             annotations:
                 backup.velero.io/backup-volumes: app-config
             labels:
-                app: freshrss
+                app.kubernetes.io/instance: freshrss
+                app.kubernetes.io/name: freshrss
         spec:
             containers:
                 - name: freshrss
@@ -42,8 +45,8 @@ spec:
                       - name: TZ
                         value: "Europe/Sofia"
                   livenessProbe:
+                      failureThreshold: 5
                       initialDelaySeconds: 60
-                      periodSeconds: 30
                       timeoutSeconds: 5
                       tcpSocket:
                           port: {{ .port }}
@@ -66,17 +69,12 @@ metadata:
     name: freshrss
     namespace: {{ $.Release.Namespace }}
 spec:
-    {{- with .nodePort }}
-    type: NodePort
-    {{- end }}
     selector:
-        app: freshrss
+        app.kubernetes.io/instance: freshrss
+        app.kubernetes.io/name: freshrss
     ports:
         - name: freshrss
           protocol: TCP
           port: {{ .port }}
-          {{- with .nodePort }}
-          nodePort: {{ . }}
-          {{- end }}
 
 {{- end }}
