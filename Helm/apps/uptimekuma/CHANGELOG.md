@@ -1,3 +1,7 @@
+#### [v3.0.0]
+- Better Selectors
+- Better pods
+
 #### [V2.0.0]
 * New version
 * Removed NodePort

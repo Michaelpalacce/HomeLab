@@ -7,20 +7,23 @@ metadata:
     name: uptimekuma
     namespace: {{ $.Release.Namespace }}
     labels:
-        app: uptimekuma
+        app.kubernetes.io/instance: uptimekuma
+        app.kubernetes.io/name: uptimekuma
 spec:
     replicas: {{ .replicas }}
     strategy:
       type: Recreate
     selector:
         matchLabels:
-            app: uptimekuma
+            app.kubernetes.io/instance: uptimekuma
+            app.kubernetes.io/name: uptimekuma
     template:
         metadata:
             annotations:
                 backup.velero.io/backup-volumes: app-data
             labels:
-                app: uptimekuma
+                app.kubernetes.io/instance: uptimekuma
+                app.kubernetes.io/name: uptimekuma
         spec:
             containers:
                 - name: uptimekuma
@@ -37,7 +40,7 @@ spec:
                       - name: app-data
                         mountPath: /app/data
                   livenessProbe:
-                      periodSeconds: 60
+                      failureThreshold: 5
                       tcpSocket:
                           port: {{ .port }}
                   startupProbe:
@@ -60,17 +63,12 @@ metadata:
     name: uptimekuma
     namespace: {{ $.Release.Namespace }}
 spec:
-    {{- with .nodePort }}
-    type: NodePort
-    {{- end }}
     selector:
-        app: uptimekuma
+        app.kubernetes.io/instance: uptimekuma
+        app.kubernetes.io/name: uptimekuma
     ports:
         - name: uptimekuma
           protocol: TCP
           port: {{ .port }}
-          {{- with .nodePort }}
-          nodePort: {{ . }}
-          {{- end }}
 
 {{- end }}
