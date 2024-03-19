@@ -17,8 +17,17 @@ spec:
           - freshrss # RSS are not fatal
           - firefly # not that sensitive, since these are auths and sessions and such, nothing major
           - homebox
+          - n8n
+          - openbooks
+          - wallabag
+          - cyberchef
+          - diagrams
+          - stirlingpdf
+          - whoogle
+          - reactiveresume
+          - website
         snapshotVolumes: true
-        ttl: 96h0m0s
+        ttl: 168h0m0s
     useOwnerReferencesInBackup: false
 ---
 apiVersion: velero.io/v1
@@ -35,7 +44,7 @@ spec:
           - vikunja
           - linkwarden # I like my bookmarks
         snapshotVolumes: true
-        ttl: 168h0m0s
+        ttl: 360h0m0s
     useOwnerReferencesInBackup: false
 ---
 apiVersion: velero.io/v1
