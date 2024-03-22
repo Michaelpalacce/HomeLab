@@ -47,7 +47,7 @@ loki:
             memory: 2Gi
 
 promtail:
-    image: grafana/promtail:2.9.5
+    image: grafana/promtail:2.9.6
     resources:
         requests:
             cpu: 50m
