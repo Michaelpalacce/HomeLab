@@ -21,6 +21,7 @@ resources:
 # - oneuptime
   - postgresql
   - reactiveresume
+  - searxng
   - stirlingpdf
   - uptimekuma
   - vikunja
