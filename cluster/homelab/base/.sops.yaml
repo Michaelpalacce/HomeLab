@@ -1,10 +1,21 @@
 creation_rules:
-    # Secrets / ConfigMaps
-  - path_regex: .*.yaml
+    # Secrets
+  - path_regex: .*/*secret.sops.yaml
+    encrypted_regex: ^(data|stringData|annotations|)$
+    pgp: age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
+
+    # Config Maps
+  - path_regex: .*/*config.sops.yaml
     encrypted_regex: ^(data|stringData|annotations|)$
     pgp: age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
 
     # Ingress Hosts
-  - path_regex: .*.yaml
-    encrypted_regex: ^(host)$
+  - path_regex: .*/*ingress.sops.yaml
+    encrypted_regex: ^(rules|annotations|)$
     pgp: age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
+
+    # helm-release
+  - path_regex: .*/*helm-release.sops.yaml
+    encrypted_regex: ^(values)$
+    pgp: age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
+
