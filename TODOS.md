@@ -1,14 +1,1 @@
-- [x] Use k3s ansible role
-- [x] Migrate NginxProxyManager to cert-manager and ingress
-- [x] Try Flux
-- [x] Calico Cni enable ip forwarding - edit this the gitops way
-- [x] Dependencies between Kustomizations
-- [x] Better folder structure
-- [x] Better backup and restore 
-- [x] Enable certificate request with wildcard on the 20th March
-- [x] `system-upgrades` core app for k3s upgrades
-- [x] Move Playbooks in roles
-- [x] Terraform
-- [x] Migrate to SOPS, it's easy to use
-- [ ] Migrate over to helm charts
-- [ ] Harden security
+- [ ] Terraform
