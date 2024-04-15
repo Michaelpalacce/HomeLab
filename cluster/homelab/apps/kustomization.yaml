@@ -12,6 +12,7 @@ resources:
   - goip
   - homepage
   - linkwarden
+  - lubelogger
   - mealie
   - media
   - monitoring

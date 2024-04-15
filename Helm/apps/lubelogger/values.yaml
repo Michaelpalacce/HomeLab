@@ -1,0 +1,14 @@
+---
+lubelogger:
+    image: ghcr.io/hargata/lubelogger:v1.3.0
+    port: 8080
+
+storage:
+    configSize: 1Gi
+    dataSize: 2Gi
+    translationsSize: 1Gi
+    documentsSize: 1Gi
+    imagesSize: 2Gi
+    tempSize: 1Gi
+    logSize: 2Gi
+    keysSize: 1Gi

@@ -1,0 +1,119 @@
+---
+{{- with .Values.lubelogger }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: lubelogger
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app.kubernetes.io/instance: lubelogger
+        app.kubernetes.io/name: lubelogger
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app.kubernetes.io/instance: lubelogger
+            app.kubernetes.io/name: lubelogger
+    template:
+        metadata:
+            annotations:
+                backup.velero.io/backup-volumes: config
+            labels:
+                app.kubernetes.io/instance: lubelogger
+                app.kubernetes.io/name: lubelogger
+        spec:
+            containers:
+{{- with .postgresql }}
+{{- end }}
+                - name: lubelogger
+                  image: {{ .image }}
+                  imagePullPolicy: IfNotPresent
+                  env:
+                      - name: LC_ALL
+                        value: "en_US.UTF-8"
+                      - name: LANG
+                        value: "en_US.UTF-8"
+                  securityContext:
+                      privileged: false
+                      allowPrivilegeEscalation: false
+{{- if .resources }}
+                  resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+                  ports:
+                      - name: web
+                        containerPort: {{ .port }}
+                  volumeMounts:
+                      - name: config
+                        mountPath: /App/config
+                      - name: data
+                        mountPath: /App/data
+                      - name: translations
+                        mountPath: /App/wwwroot/translations
+                      - name: documents
+                        mountPath: /App/wwwroot/documents
+                      - name: images
+                        mountPath: /App/wwwroot/images
+                      - name: temp
+                        mountPath: /App/wwwroot/temp
+                      - name: log
+                        mountPath: /App/log
+                      - name: keys
+                        mountPath: /root/.aspnet/DataProtection-Keys
+                  livenessProbe:
+                      failureThreshold: 5
+                      initialDelaySeconds: 60
+                      timeoutSeconds: 2
+                      tcpSocket:
+                          port: {{ .port }}
+                  startupProbe:
+                      failureThreshold: 10
+                      initialDelaySeconds: 10
+                      timeoutSeconds: 2
+                      tcpSocket:
+                          port: {{ .port }}
+
+            restartPolicy: Always
+            volumes:
+                - name: config
+                  persistentVolumeClaim:
+                      claimName: lubelogger-config
+                - name: data
+                  persistentVolumeClaim:
+                      claimName: lubelogger-data
+                - name: translations
+                  persistentVolumeClaim:
+                      claimName: lubelogger-translations
+                - name: documents
+                  persistentVolumeClaim:
+                      claimName: lubelogger-documents
+                - name: images
+                  persistentVolumeClaim:
+                      claimName: lubelogger-images
+                - name: temp
+                  persistentVolumeClaim:
+                      claimName: lubelogger-temp
+                - name: log
+                  persistentVolumeClaim:
+                      claimName: lubelogger-log
+                - name: keys
+                  persistentVolumeClaim:
+                      claimName: lubelogger-keys
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: lubelogger
+    namespace: {{ $.Release.Namespace }}
+spec:
+    selector:
+        app.kubernetes.io/instance: lubelogger
+        app.kubernetes.io/name: lubelogger
+    ports:
+        - name: lubelogger
+          protocol: TCP
+          port: {{ .port }}
+{{- end }}

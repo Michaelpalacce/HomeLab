@@ -1,0 +1,29 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: lubelogger
+    namespace: {{ $.Release.Namespace }}
+    annotations:
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: Car Logger
+        gethomepage.dev/group: Personal
+        gethomepage.dev/icon: lubelogger
+        gethomepage.dev/name: LubeLogger
+spec:
+    ingressClassName: nginx
+    tls:
+        - hosts:
+              - "*.stefangenov.site"
+          secretName: ingress
+    rules:
+        - host: lubelogger.stefangenov.site
+          http:
+              paths:
+                  - pathType: Prefix
+                    path: "/"
+                    backend:
+                        service:
+                            name: lubelogger
+                            port:
+                                number: {{ .Values.lubelogger.port }}

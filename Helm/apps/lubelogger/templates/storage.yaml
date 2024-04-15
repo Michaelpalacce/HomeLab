@@ -1,0 +1,96 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: lubelogger-config
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: longhorn
+    resources:
+        requests:
+            storage: {{ .Values.storage.configSize }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: lubelogger-data
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: longhorn
+    resources:
+        requests:
+            storage: {{ .Values.storage.dataSize }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: lubelogger-translations
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: longhorn
+    resources:
+        requests:
+            storage: {{ .Values.storage.translationsSize }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: lubelogger-documents
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: longhorn
+    resources:
+        requests:
+            storage: {{ .Values.storage.documentsSize }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: lubelogger-images
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: longhorn
+    resources:
+        requests:
+            storage: {{ .Values.storage.imagesSize }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: lubelogger-temp
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: longhorn
+    resources:
+        requests:
+            storage: {{ .Values.storage.tempSize }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: lubelogger-log
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: longhorn
+    resources:
+        requests:
+            storage: {{ .Values.storage.logSize }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: lubelogger-keys
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: longhorn
+    resources:
+        requests:
+            storage: {{ .Values.storage.keysSize }}
