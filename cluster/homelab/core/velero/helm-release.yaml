@@ -52,6 +52,7 @@ spec:
                     region: eu-central-2
                     s3ForcePathStyle: true
                     s3Url: https://s3.eu-central-2.wasabisys.com
+                    checksumAlgorithm: ""
 
               - name: wasabi
                 provider: aws
@@ -61,6 +62,7 @@ spec:
                     region: eu-central-2
                     s3ForcePathStyle: true
                     s3Url: https://s3.eu-central-2.wasabisys.com
+                    checksumAlgorithm: ""
           volumeSnapshotLocation:
               - name: wasabi
                 provider: aws
