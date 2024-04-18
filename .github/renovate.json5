@@ -125,9 +125,9 @@
     },
     {
       "matchDatasources": ["helm"],
-      "matchUpdateTypes": ["minor"],
+      "matchUpdateTypes": ["patch"],
       "labels": ["renovate/helm", "dep/patch"],
-      "automerge": false
+      "automerge": true
     },
   ]
 }
