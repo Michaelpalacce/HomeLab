@@ -52,7 +52,7 @@ radarr:
             memory: 50Mi
 
 readarr:
-    image: lscr.io/linuxserver/readarr:0.3.25-nightly
+    image: lscr.io/linuxserver/readarr:0.3.26-nightly
     replicas: 1
     port: 8787
     resources:
