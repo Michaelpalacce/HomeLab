@@ -7,7 +7,7 @@ linkwarden:
             cpu: 10m
             memory: 256Mi
     postgresql:
-        image: postgres:16.2
+        image: postgres:16.3
         port: 5432
         resources:
             requests:
