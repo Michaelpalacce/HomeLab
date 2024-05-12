@@ -24,6 +24,17 @@ spec:
             securityContext:
                 fsGroup: 1000
                 fsGroupChangePolicy: OnRootMismatch
+            affinity:
+                podAntiAffinity:
+                    preferredDuringSchedulingIgnoredDuringExecution:
+                        - podAffinityTerm:
+                              labelSelector:
+                                  matchLabels:
+                                      app.kubernetes.io/name: website
+                              namespaces:
+                                  - {{ $.Release.Namespace }}
+                              topologyKey: kubernetes.io/hostname
+                          weight: 1
             containers:
                 -   name: website
                     image: {{ .image }}
