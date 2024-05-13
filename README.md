@@ -53,7 +53,7 @@ However things like ingress, cert-management, longhorn are handled only via Flux
 used can be found in the `helm-release.yaml` for the specific service. Let's look at an example:
 ~~~yaml
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
     name: longhorn-system # What to call the deployment 
