@@ -45,7 +45,10 @@ k8s. Developed by the same people responsible for k3s/rancher and other great to
 Velero allows me to back up selected namespaces and ( with the help of restic ) ship the data to different sources.
 In my case I'm using the velero AWS plugin.
 
-The velero backup runs on a schedule every day during the evening hours and I pay around ~ $4 each month
+The velero backup runs on a schedule every day during the evening hours and I pay around ~ $7 each month, mainly due to Wasabi pricing for
+1TB as a minimum. 
+
+Check the docs for more information about velero, but overall I try to backup everything
 
 # What if I don't want to use Flux
 Well it's absolutely fine. You can go to `Helm/apps` and install any app you want ( e.g. `helm install media media -n media --create-namespace` ).
