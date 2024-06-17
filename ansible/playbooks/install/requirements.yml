@@ -3,6 +3,6 @@ collections:
     - name: kubernetes.core
       version: 5.0.0
     - name: community.general
-      version: 9.0.1
+      version: 9.1.0
 roles:
     - src: xanmanning.k3s
