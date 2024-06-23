@@ -37,7 +37,7 @@ spec:
             lb_enable: "true"
             lb_port: "6443"
             vip_cidr: "32"
-            cp_enable: "false"
+            cp_enable: "true"
             svc_enable: "false"
             svc_election: "false"
             vip_leaderelection: "false"
