@@ -17,7 +17,7 @@ spec:
     chart:
         spec:
             chart: oneuptime
-            version: 7.0.2666
+            version: 7.0.2712
             interval: 5m
             sourceRef:
                 kind: HelmRepository
