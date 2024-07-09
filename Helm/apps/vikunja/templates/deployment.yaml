@@ -19,10 +19,11 @@ spec:
     template:
         metadata:
             annotations:
-                backup.velero.io/backup-volumes-excludes: shm-empty
+                backup.velero.io/backup-volumes: postgresql, data
             labels:
                 app.kubernetes.io/instance: vikunja
                 app.kubernetes.io/name: vikunja
+            name: vikunja
         spec:
             containers:
 {{- with .postgresql }}
@@ -45,9 +46,9 @@ spec:
                             secretKeyRef:
                                 name: db
                                 key: name
-                  securityContext:
-                      privileged: false
-                      allowPrivilegeEscalation: false
+                  # securityContext:
+                  #     privileged: false
+                  #     allowPrivilegeEscalation: false
 {{- if .resources }}
                   resources:
 {{ toYaml .resources | indent 22 }}
@@ -128,9 +129,6 @@ spec:
                         value: "false"
                   imagePullPolicy: IfNotPresent
                   volumeMounts:
-                      - mountPath: /var/lib/postgresql/data
-                        subPath: data
-                        name: postgresql
                       - name: data
                         mountPath: /app/vikunja/files
                   livenessProbe:
