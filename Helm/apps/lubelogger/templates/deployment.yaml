@@ -18,7 +18,7 @@ spec:
     template:
         metadata:
             annotations:
-                backup.velero.io/backup-volumes: config, data, translations, documents, images, keys
+                backup.velero.io/backup-volumes: config,data,translations,documents,images,keys
             labels:
                 app.kubernetes.io/instance: lubelogger
                 app.kubernetes.io/name: lubelogger

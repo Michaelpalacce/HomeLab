@@ -19,7 +19,7 @@ spec:
     template:
         metadata:
             annotations:
-                backup.velero.io/backup-volumes: postgresql, data
+                backup.velero.io/backup-volumes: postgresql,data
             labels:
                 app.kubernetes.io/instance: vikunja
                 app.kubernetes.io/name: vikunja
