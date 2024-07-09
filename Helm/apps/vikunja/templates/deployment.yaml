@@ -19,7 +19,7 @@ spec:
     template:
         metadata:
             annotations:
-                backup.velero.io/backup-volumes: data, postgresql
+                backup.velero.io/backup-volumes-excludes: shm-empty
             labels:
                 app.kubernetes.io/instance: vikunja
                 app.kubernetes.io/name: vikunja
