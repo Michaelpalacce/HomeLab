@@ -19,7 +19,7 @@ spec:
     template:
         metadata:
             annotations:
-                backup.velero.io/backup-volumes: data, postgresql-data
+                backup.velero.io/backup-volumes: data, postgresql
             labels:
                 app.kubernetes.io/instance: vikunja
                 app.kubernetes.io/name: vikunja
@@ -58,7 +58,7 @@ spec:
                   volumeMounts:
                       - mountPath: /var/lib/postgresql/data
                         subPath: data
-                        name: postgresql-data
+                        name: postgresql
                       - name: shm-empty
                         mountPath: /dev/shm
                   livenessProbe:
@@ -130,7 +130,7 @@ spec:
                   volumeMounts:
                       - mountPath: /var/lib/postgresql/data
                         subPath: data
-                        name: postgresql-data
+                        name: postgresql
                       - name: data
                         mountPath: /app/vikunja/files
                   livenessProbe:
@@ -152,7 +152,7 @@ spec:
                 - name: data
                   persistentVolumeClaim:
                       claimName: vikunja-pvc
-                - name: postgresql-data
+                - name: postgresql
                   persistentVolumeClaim:
                       claimName: postgresql-pvc
                 - name: shm-empty
