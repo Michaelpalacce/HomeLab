@@ -128,6 +128,9 @@ spec:
                         value: "false"
                   imagePullPolicy: IfNotPresent
                   volumeMounts:
+                      - mountPath: /var/lib/postgresql/data
+                        subPath: data
+                        name: postgresql-data
                       - name: data
                         mountPath: /app/vikunja/files
                   livenessProbe:
