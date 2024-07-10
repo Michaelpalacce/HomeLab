@@ -27,4 +27,6 @@ spec:
         prometheus.io/scrape: "true"
       trivy:
         ignoreUnfixed: true
-      targetWorkloads: "pod,statefulset,daemonset,replicaset,cronjob"
+      # targetWorkloads: "pod,statefulset,daemonset,replicaset,cronjob"
+      # Targeting only my specific apps
+      targetNamespaces: "website,goip"
