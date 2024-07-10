@@ -32,3 +32,4 @@ spec:
           prometheus.io/scrape: "true"
       trivy:
         ignoreUnfixed: true
+      targetWorkloads: "pod,statefulset,daemonset"
