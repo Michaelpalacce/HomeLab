@@ -1,0 +1,34 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+    name: trivy-operator
+    namespace: trivy-system
+spec:
+    interval: 5m
+    install:
+        createNamespace: true
+    upgrade:
+        crds: CreateReplace
+        remediation:
+            retries: 3
+    chart:
+        spec:
+            chart: trivy-operator
+            version: 0.24.0
+            interval: 5m
+            sourceRef:
+                kind: HelmRepository
+                name: aqua
+                namespace: flux-system
+    values:
+      operator:
+        annotations:
+          prometheus.io/port: "80"
+          prometheus.io/scrape: "true"
+      service:
+        annotations:
+          prometheus.io/port: "80"
+          prometheus.io/scrape: "true"
+      trivy:
+        ignoreUnfixed: true
