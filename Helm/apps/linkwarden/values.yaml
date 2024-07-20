@@ -1,6 +1,6 @@
 ---
 linkwarden:
-    image: ghcr.io/linkwarden/linkwarden:v2.5.3
+    image: ghcr.io/linkwarden/linkwarden:v2.6.0
     port: 3000
     resources:
         requests:
