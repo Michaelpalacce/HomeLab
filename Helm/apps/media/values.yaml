@@ -44,7 +44,7 @@ prowlarr:
             memory: 1Gi
 
 radarr:
-    image: ghcr.io/linuxserver/radarr:5.7.0
+    image: ghcr.io/linuxserver/radarr:5.8.3
     port: 7878
     resources:
         requests:
