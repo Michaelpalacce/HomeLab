@@ -17,4 +17,4 @@ spec:
                 name: flux-system
                 namespace: flux-system
     values:
-        image: dgtlmoon/changedetection.io:0.46.01
+        image: dgtlmoon/changedetection.io:0.46.02
