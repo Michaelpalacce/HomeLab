@@ -17,7 +17,7 @@ postgresql:
 pgadmin:
     image: dpage/pgadmin4:8.2
     port: 80
-    replicas: 0
+    replicas: 1
     resources:
         requests:
             cpu: 10m
