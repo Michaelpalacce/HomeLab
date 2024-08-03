@@ -14,16 +14,6 @@ postgresql:
         limits:
             memory: 2Gi
 
-postgresql14:
-    image: postgres:14.12
-    port: 5432
-    resources:
-        requests:
-            cpu: 250m
-            memory: 256Mi
-        limits:
-            memory: 2Gi
-
 pgadmin:
     image: dpage/pgadmin4:8.2
     port: 80
