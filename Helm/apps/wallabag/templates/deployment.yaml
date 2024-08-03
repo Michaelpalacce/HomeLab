@@ -34,7 +34,7 @@ spec:
                         allowPrivilegeEscalation: false
                     envFrom:
                         -   secretRef:
-                                name: db
+                                name: app
                                 optional: false
                     env:
                         -   name: PUID
@@ -43,10 +43,6 @@ spec:
                             value: "1000"
                         -   name: SYMFONY__ENV__DOMAIN_NAME
                             value: {{ .domainName }}
-                        -   name: POSTGRES_USER
-                            value: postgres
-                        -   name: POSTGRES_PASSWORD
-                            value: postgres
 {{- if .resources }}
                     resources:
 {{ toYaml .resources | indent 22 }}
