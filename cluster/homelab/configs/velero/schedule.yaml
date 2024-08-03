@@ -16,7 +16,6 @@ spec:
           - monitoring
           - uptimekuma
           - freshrss # RSS are not fatal
-          - firefly # not that sensitive, since these are auths and sessions and such, nothing major
           - homebox
           - n8n
           - openbooks
@@ -61,6 +60,7 @@ spec:
         includedNamespaces:
           # @TODO: Move containers to have own postgres instead of this one
           - postgresql # A lot of services use the default one here, instead of their own
+          - firefly
         snapshotVolumes: true
         # Paying for wasabi, all files are charged a minimum of 90 days, so we can keep this for a while
         ttl: 2190h0m0s

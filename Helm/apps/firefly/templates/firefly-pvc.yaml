@@ -23,3 +23,16 @@ spec:
     resources:
         requests:
             storage: {{ .Values.storage.botSessionSize }}
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: postgresql-pvc
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: longhorn
+    resources:
+        requests:
+            storage: {{ .Values.storage.postgresSize }}

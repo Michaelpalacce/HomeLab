@@ -15,6 +15,15 @@ fireflybot:
             cpu: 200m
             memory: 500Mi
 
+postgres:
+    image: postgres:16.3
+    port: 5432
+    resources:
+        requests:
+            cpu: 10m
+            memory: 256Mi
+
 storage:
     configSize: 5Gi
     botSessionSize: 2Gi
+    postgresSize: 10Gi

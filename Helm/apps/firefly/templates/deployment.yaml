@@ -46,35 +46,37 @@ spec:
                             value: "1000"
                         -   name: TZ
                             value: "Europe/Sofia"
+
                         -   name: DB_USERNAME
                             valueFrom:
                                 secretKeyRef:
                                     name: db
-                                    key: username
+                                    key: POSTGRES_USER
                         -   name: DB_PASSWORD
                             valueFrom:
                                 secretKeyRef:
                                     name: db
-                                    key: password
+                                    key: POSTGRES_PASSWORD
                         -   name: DB_DATABASE
                             valueFrom:
                                 secretKeyRef:
                                     name: db
-                                    key: database
+                                    key: POSTGRES_DB
+
                         -   name: DB_HOST
                             valueFrom:
                                 secretKeyRef:
-                                    name: db
+                                    name: app
                                     key: host
                         -   name: DB_PORT
                             valueFrom:
                                 secretKeyRef:
-                                    name: db
+                                    name: app
                                     key: port
                         -   name: DB_CONNECTION
                             valueFrom:
                                 secretKeyRef:
-                                    name: db
+                                    name: app
                                     key: type
                         -   name: APP_KEY
                             valueFrom:
