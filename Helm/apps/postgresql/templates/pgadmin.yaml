@@ -1,0 +1,82 @@
+---
+{{- with .Values.pgadmin }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: pgadmin
+    namespace: {{ $.Release.Namespace }}
+spec:
+    replicas: {{ .replicas }}
+    strategy:
+        rollingUpdate:
+            maxUnavailable: 0
+    selector:
+        matchLabels:
+            app: pgadmin
+    template:
+        metadata:
+            annotations:
+                backup.velero.io/backup-volumes: pgadminstorage
+            labels:
+                app: pgadmin
+            name: pgadmin
+        spec:
+            volumes:
+                -   name: pgadminstorage
+                    persistentVolumeClaim:
+                        claimName: pgadmin-data-pvc
+            containers:
+                -   name: pgadmin
+                    image: {{ .image }}
+                    imagePullPolicy: IfNotPresent
+                    startupProbe:
+                        tcpSocket:
+                            port: {{ .port }}
+                    livenessProbe:
+                        tcpSocket:
+                            port: {{ .port }}
+                        periodSeconds: 10
+{{- if .resources }}
+                    resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+                    volumeMounts:
+                        -   mountPath: /var/lib/pgadmin
+                            name: pgadminstorage
+                    ports:
+                        -   containerPort: {{ .port }}
+                            name: tcp-pgadmin
+                            protocol: TCP
+                    env:
+                        -   name: PGADMIN_DEFAULT_EMAIL
+                            valueFrom:
+                                secretKeyRef:
+                                    name: pgadmin
+                                    key: username
+                        -   name: PGADMIN_DEFAULT_PASSWORD
+                            valueFrom:
+                                secretKeyRef:
+                                    name: pgadmin
+                                    key: password
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: pgadmin
+    namespace: {{ $.Release.Namespace }}
+spec:
+    {{- with .nodePort }}
+    type: NodePort
+    {{- end }}
+    selector:
+        app: pgadmin
+    ports:
+        -   name: pgadmin
+            protocol: TCP
+            port: {{ .port }}
+          {{- with .nodePort }}
+            nodePort: {{ . }}
+          {{- end }}
+
+{{- end }}

@@ -54,4 +54,19 @@ spec:
         requests:
             storage: {{ .dataSize }}
 
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: pgadmin-data-pvc
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: longhorn
+    resources:
+        requests:
+            storage: {{ .pgAdmin }}
+
+---
 {{- end }}
