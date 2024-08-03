@@ -40,12 +40,12 @@ spec:
                         valueFrom:
                             secretKeyRef:
                                 name: db
-                                key: username
+                                key: POSTGRES_USER
                       - name: VIKUNJA_DATABASE_PASSWORD
                         valueFrom:
                             secretKeyRef:
                                 name: db
-                                key: password
+                                key: POSTGRES_PASSWORD
                       - name: VIKUNJA_DATABASE_TYPE
                         valueFrom:
                             secretKeyRef:
@@ -55,7 +55,7 @@ spec:
                         valueFrom:
                             secretKeyRef:
                                 name: db
-                                key: name
+                                key: POSTGRES_DB
                       - name: VIKUNJA_SERVICE_JWTSECRET
                         valueFrom:
                             secretKeyRef:
