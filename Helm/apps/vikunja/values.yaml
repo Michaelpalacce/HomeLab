@@ -3,13 +3,14 @@ vikunja:
     image: vikunja/vikunja:0.24.1
     port: 3456
     frontendUrl: https://vikunja.stefangenov.site
-    postgresql:
-        image: postgres:16.2
-        port: 5432
-        resources:
-            requests:
-                cpu: 10m
-                memory: 256Mi
+
+postgres:
+    image: postgres:16.3
+    port: 5432
+    resources:
+        requests:
+            cpu: 10m
+            memory: 256Mi
 
 storage:
     postgresqlSize: 5Gi

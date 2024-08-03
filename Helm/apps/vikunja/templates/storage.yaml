@@ -11,6 +11,7 @@ spec:
     resources:
         requests:
             storage: {{ .Values.storage.dataSize }}
+
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim

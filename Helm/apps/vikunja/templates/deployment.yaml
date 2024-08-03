@@ -19,77 +19,13 @@ spec:
     template:
         metadata:
             annotations:
-                backup.velero.io/backup-volumes: postgresql,data
+                backup.velero.io/backup-volumes: data
             labels:
                 app.kubernetes.io/instance: vikunja
                 app.kubernetes.io/name: vikunja
             name: vikunja
         spec:
             containers:
-{{- with .postgresql }}
-                - name: postgresql
-                  image: {{ .image }}
-                  imagePullPolicy: IfNotPresent
-                  env:
-                      - name: POSTGRES_USER
-                        valueFrom:
-                            secretKeyRef:
-                                name: db
-                                key: username
-                      - name: POSTGRES_PASSWORD
-                        valueFrom:
-                            secretKeyRef:
-                                name: db
-                                key: password
-                      - name: POSTGRES_DB
-                        valueFrom:
-                            secretKeyRef:
-                                name: db
-                                key: name
-                  # securityContext:
-                  #     privileged: false
-                  #     allowPrivilegeEscalation: false
-{{- if .resources }}
-                  resources:
-{{ toYaml .resources | indent 22 }}
-{{- end }}
-                  ports:
-                      - name: db
-                        containerPort: {{ .port }}
-                  volumeMounts:
-                      - mountPath: /var/lib/postgresql/data
-                        subPath: data
-                        name: postgresql
-                      - name: shm-empty
-                        mountPath: /dev/shm
-                  livenessProbe:
-                      failureThreshold: 5
-                      initialDelaySeconds: 60
-                      timeoutSeconds: 2
-                      exec:
-                          command:
-                              - /bin/sh
-                              - -c
-                              - exec pg_isready -U "vikunja" -h 127.0.0.1 -p {{ .port }}
-                  readinessProbe:
-                      failureThreshold: 5
-                      initialDelaySeconds: 60
-                      timeoutSeconds: 2
-                      exec:
-                          command:
-                              - /bin/sh
-                              - -c
-                              - exec pg_isready -U "vikunja" -h 127.0.0.1 -p {{ .port }}
-                  startupProbe:
-                      failureThreshold: 10
-                      initialDelaySeconds: 10
-                      timeoutSeconds: 2
-                      exec:
-                          command:
-                              - /bin/sh
-                              - -c
-                              - exec pg_isready -U "vikunja" -h 127.0.0.1 -p {{ .port }}
-{{- end }}
                 - name: vikunja
                   image: {{ .image }}
                   env:
@@ -150,12 +86,6 @@ spec:
                 - name: data
                   persistentVolumeClaim:
                       claimName: vikunja-pvc
-                - name: postgresql
-                  persistentVolumeClaim:
-                      claimName: postgresql-pvc
-                - name: shm-empty
-                  emptyDir:
-                      medium: Memory
 
 ---
 
