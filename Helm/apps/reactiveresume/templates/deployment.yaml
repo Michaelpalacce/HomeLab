@@ -28,6 +28,8 @@ spec:
                     envFrom:
                       - secretRef:
                           name: app
+                      - secretRef:
+                          name: db
                     imagePullPolicy: IfNotPresent
                     livenessProbe:
                         initialDelaySeconds: 30

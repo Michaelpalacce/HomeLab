@@ -7,3 +7,14 @@ reactiveresume:
     frontend:
         image: amruthpillai/reactive-resume:client-3.6.18
         port: 3000
+
+postgres:
+    image: postgres:16.3
+    port: 5432
+    resources:
+        requests:
+            cpu: 10m
+            memory: 256Mi
+
+storage:
+  postgresSize: 5Gi
