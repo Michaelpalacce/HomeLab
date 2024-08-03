@@ -1,18 +1,6 @@
 ---
 storage:
-    dshmSize: 1Gi
     pgAdmin: 2Gi
-    dataSize: 25Gi
-
-postgresql:
-    image: postgres:9.6
-    port: 5432
-    resources:
-        requests:
-            cpu: 250m
-            memory: 256Mi
-        limits:
-            memory: 2Gi
 
 pgadmin:
     image: dpage/pgadmin4:8.2

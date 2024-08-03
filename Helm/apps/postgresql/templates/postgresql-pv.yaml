@@ -1,32 +1,6 @@
 ---
 {{- with .Values.storage }}
 
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-    name: postgresql-dshm-pvc
-spec:
-    accessModes:
-        - ReadWriteMany
-    storageClassName: longhorn
-    resources:
-        requests:
-            storage: {{ .dshmSize }}
-
----
-
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-    name: postgresql-data-pvc
-spec:
-    accessModes:
-        - ReadWriteMany
-    storageClassName: longhorn
-    resources:
-        requests:
-            storage: {{ .dataSize }}
-
 ---
 
 apiVersion: v1
