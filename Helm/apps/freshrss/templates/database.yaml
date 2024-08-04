@@ -1,0 +1,86 @@
+---
+{{- with .Values.postgres }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: postgres
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app.kubernetes.io/instance: postgres
+        app.kubernetes.io/name: postgres
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app.kubernetes.io/instance: postgres
+            app.kubernetes.io/name: postgres
+    template:
+        metadata:
+            annotations:
+                backup.velero.io/backup-volumes: postgresql-data
+            labels:
+                app.kubernetes.io/instance: postgres
+                app.kubernetes.io/name: postgres
+        spec:
+            containers:
+                - name: postgresql
+                  image: {{ .image }}
+                  imagePullPolicy: IfNotPresent
+                  envFrom:
+                      - secretRef:
+                            name: db
+                  securityContext:
+                      privileged: false
+                      allowPrivilegeEscalation: false
+{{- if .resources }}
+                  resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+                  ports:
+                      - name: db
+                        containerPort: {{ .port }}
+                  volumeMounts:
+                      - mountPath: /var/lib/postgresql/data
+                        subPath: data
+                        name: postgresql-data
+                      - name: shm-empty
+                        mountPath: /dev/shm
+                  livenessProbe:
+                      failureThreshold: 5
+                      initialDelaySeconds: 60
+                      timeoutSeconds: 2
+                      tcpSocket:
+                          port: {{ .port }}
+                  startupProbe:
+                      failureThreshold: 10
+                      initialDelaySeconds: 10
+                      timeoutSeconds: 2
+                      tcpSocket:
+                          port: {{ .port }}
+
+            restartPolicy: Always
+            volumes:
+                - name: postgresql-data
+                  persistentVolumeClaim:
+                      claimName: postgresql-pvc
+                - name: shm-empty
+                  emptyDir:
+                      medium: Memory
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: postgres
+    namespace: {{ $.Release.Namespace }}
+spec:
+    selector:
+        app.kubernetes.io/instance: postgres
+        app.kubernetes.io/name: postgres
+    ports:
+        - name: postgres
+          protocol: TCP
+          port: {{ .port }}
+{{- end }}

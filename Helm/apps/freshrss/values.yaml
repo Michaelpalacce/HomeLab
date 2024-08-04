@@ -7,5 +7,14 @@ freshrss:
             cpu: 200m
             memory: 200Mi
 
+postgres:
+    image: postgres:16.3
+    port: 5432
+    resources:
+        requests:
+            cpu: 10m
+            memory: 256Mi
+
 storage:
     configSize: 1Gi
+    postgresSize: 10Gi
