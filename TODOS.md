@@ -1,2 +1,3 @@
 - [ ] Terraform
 - [ ] Better postgres probes
+- [ ] Migrate prometheus to using official operator
