@@ -10,6 +10,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: go-ddns-controller
+    namespace: flux-system
   path: "./config/default"
   prune: true
   timeout: 1m
