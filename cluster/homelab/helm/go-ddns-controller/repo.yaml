@@ -1,0 +1,10 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: go-ddns-controller
+  namespace: flux-system
+spec:
+  interval: 5m
+  url: https://github.com/Michaelpalacce/go-ddns-controller
+  ref:
+    branch: master

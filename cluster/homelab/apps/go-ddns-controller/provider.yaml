@@ -1,0 +1,13 @@
+apiVersion: ddns.stefangenov.site/v1alpha1
+kind: Provider
+metadata:
+  labels:
+    app.kubernetes.io/name: go-ddns-controller
+    app.kubernetes.io/managed-by: kustomize
+  name: cloudflare-provider
+spec:
+  name: Cloudflare
+  secretName: cloudflare
+  configMap: cloudflare-config
+  notifierRefs:
+    - name: webhook-notifier
