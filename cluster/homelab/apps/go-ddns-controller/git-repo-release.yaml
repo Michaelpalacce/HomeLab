@@ -1,6 +1,6 @@
 ---
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
 metadata:
   name: go-ddns-controller
   namespace: go-ddns-controller-system
