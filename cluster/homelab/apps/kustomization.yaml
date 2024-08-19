@@ -9,7 +9,6 @@ resources:
   - external-ingress
   - firefly
   - freshrss
-  - goip
   - go-ddns-controller
   - homepage
   - lubelogger
