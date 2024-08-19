@@ -3,6 +3,7 @@ kind: ConfigMap
 apiVersion: v1
 metadata:
   name: cloudflare-config
+  namespace: go-ddns-controller-system
 data:
   config: |
       {
@@ -25,5 +26,6 @@ kind: ConfigMap
 apiVersion: v1
 metadata:
   name: webhook-config
+  namespace: go-ddns-controller-system
 data:
   config: ""

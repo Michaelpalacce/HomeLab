@@ -5,6 +5,7 @@ metadata:
     app.kubernetes.io/name: go-ddns-controller
     app.kubernetes.io/managed-by: kustomize
   name: cloudflare-provider
+  namespace: go-ddns-controller-system
 spec:
   name: Cloudflare
   secretName: cloudflare
