@@ -31,6 +31,9 @@ spec:
                       - secretRef:
                           name: db
                     imagePullPolicy: IfNotPresent
+                    volumeMounts:
+                      - name: uploads
+                        mountPath: /app/server/dist/assets/uploads
                     livenessProbe:
                         initialDelaySeconds: 30
                         failureThreshold: 5
@@ -42,7 +45,6 @@ spec:
                         timeoutSeconds: 2
                         tcpSocket:
                             port: {{ .port }}
-
                     ports:
                         -   containerPort: {{ .port }}
                             name: api
@@ -82,6 +84,10 @@ spec:
                             name: frontend
                             protocol: TCP
                 {{- end }}
+            volumes:
+                -   name: uploads
+                    persistentVolumeClaim:
+                        claimName: reactiveresume-uploads-pvc
 
 ---
 
