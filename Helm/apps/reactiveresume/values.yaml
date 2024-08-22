@@ -18,3 +18,4 @@ postgres:
 
 storage:
   postgresSize: 5Gi
+  uploadSize: 5Gi

@@ -10,3 +10,16 @@ spec:
     resources:
         requests:
             storage: {{ .Values.storage.postgresSize }}
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: reactiveresume-uploads-pvc
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: longhorn
+    resources:
+        requests:
+            storage: {{ .Values.storage.uploadSize }}
