@@ -30,6 +30,9 @@ spec:
                           name: app
                       - secretRef:
                           name: db
+                    env:
+                      - name: PUBLIC_FLAG_DISABLE_SIGNUPS
+                        value: "true"
                     imagePullPolicy: IfNotPresent
                     volumeMounts:
                       - name: uploads
