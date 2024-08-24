@@ -59,6 +59,8 @@ spec:
                     image: {{ .image }}
                     imagePullPolicy: IfNotPresent
                     env:
+                      - name: PUBLIC_FLAG_DISABLE_SIGNUPS
+                        value: "true"
                       - name: PUBLIC_URL
                         valueFrom:
                           secretKeyRef:
