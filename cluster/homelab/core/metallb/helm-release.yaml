@@ -1,0 +1,28 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+    name: metallb
+    namespace: metallb-system
+spec:
+    interval: 5m
+    install:
+        createNamespace: true
+    upgrade:
+        crds: CreateReplace
+        remediation:
+            retries: 3
+    chart:
+        spec:
+            chart: metallb
+            version: 0.14.8
+            interval: 5m
+            sourceRef:
+                kind: HelmRepository
+                name: metallb
+                namespace: flux-system
+    values:
+      controller:
+        image:
+          repository: quay.io/metallb/controller
+          tag: v0.14.8

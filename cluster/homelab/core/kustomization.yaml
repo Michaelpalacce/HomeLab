@@ -13,3 +13,4 @@ resources:
     - kube-cleanup-operator
     - descheduler
     - trivy
+    - metallb
