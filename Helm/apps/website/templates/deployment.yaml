@@ -50,9 +50,15 @@ spec:
                         -   name: web
                             containerPort: {{ .port }}
                     envFrom:
-                        -   secretRef:
-                                name: website
-                                optional: false
+                        - secretRef:
+                              name: website
+                              optional: false
+                    env:
+                        - name: CV_PATH
+                          value: "/cv/CV.pdf"
+                    volumeMounts:
+                        - name: cv
+                          mountPath: /cv
                     livenessProbe:
                         failureThreshold: 2
                         initialDelaySeconds: 10
@@ -66,5 +72,10 @@ spec:
                         httpGet:
                             path: /
                             port: {{ .port }}
+            volumes:
+                - name: cv
+                  nfs:
+                      path: "/volume1/k3s/CV"
+                      server: "192.168.1.39"
 
 {{- end }}
