@@ -20,3 +20,4 @@ resources:
     - gabe565
     - searxng
     - go-ddns-controller
+    - metallb
