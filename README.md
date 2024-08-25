@@ -16,7 +16,7 @@ certificate secret to all the namespaces. The secret is called `ingress`.
 5. **Longhorn** - K8S native storage.
 6. **Ansible** - Used to provision the architecture
 7. **Velero** - K8S and PVC backup. Free and open source by VMware 
-8. **Kube-vip** - For a Virtual IP that I can use to access all my servers
+8. **MetalLB** - LoadBalancer for bare-metal k8s clusters
 
 # GitOps :construction:
 GitOps is applied wherever possible using Flux2.
