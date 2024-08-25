@@ -28,16 +28,6 @@ spec:
         image:
             repository: ghcr.io/kube-vip/kube-vip
             tag: "v0.8.2"
-
-        config:
-            address: "192.168.1.2"
         env:
-            vip_interface: ""
-            vip_arp: "true"
             lb_enable: "true"
             lb_port: "6443"
-            vip_cidr: "32"
-            cp_enable: "true"
-            svc_enable: "false"
-            svc_election: "false"
-            vip_leaderelection: "false"
