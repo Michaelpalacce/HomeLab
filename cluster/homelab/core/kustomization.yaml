@@ -4,7 +4,6 @@ kind: Kustomization
 resources:
     - reflector
     - ingress-nginx
-    - kube-vip
     - system-upgrade
     - longhorn-system
     - velero
