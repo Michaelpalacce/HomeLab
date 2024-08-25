@@ -9,6 +9,7 @@ k3s_server:
     disable:
         - traefik
         - local-storage
+        - servicelb
     disable-network-policy: true
     disable-cloud-controller: true
     write-kubeconfig-mode: "644"
