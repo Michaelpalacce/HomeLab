@@ -1,0 +1,16 @@
+
+{{- with .Values.syncthing }}
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: syncthing-config-pvc
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: longhorn
+    resources:
+        requests:
+            storage: {{ $.Values.storage.syncthingConfigSize }}
+{{- end }}

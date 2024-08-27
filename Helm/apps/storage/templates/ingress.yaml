@@ -1,0 +1,31 @@
+---
+{{- with .Values.syncthing }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: syncthing
+    namespace: {{ $.Release.Namespace }}
+    annotations:
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: File synchronization
+        gethomepage.dev/group: Storage
+        gethomepage.dev/icon: syncthing
+        gethomepage.dev/name: Syncthing
+spec:
+    ingressClassName: nginx
+    tls:
+        -   hosts:
+                - "*.stefangenov.site"
+            secretName: ingress
+    rules:
+        -   host: syncthing.stefangenov.site
+            http:
+                paths:
+                    -   pathType: Prefix
+                        path: "/"
+                        backend:
+                            service:
+                                name: syncthing
+                                port:
+                                    number: {{ .port }}
+{{- end }}

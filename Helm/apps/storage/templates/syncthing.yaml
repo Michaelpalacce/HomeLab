@@ -7,7 +7,8 @@ metadata:
     name: syncthing
     namespace: {{ $.Release.Namespace }}
     labels:
-        app: syncthing
+        app.kubernetes.io/instance: syncthing
+        app.kubernetes.io/name: syncthing
 spec:
     replicas: {{ .replicas }}
     strategy:
@@ -15,13 +16,15 @@ spec:
             maxUnavailable: 0
     selector:
         matchLabels:
-            app: syncthing
+            app.kubernetes.io/instance: syncthing
+            app.kubernetes.io/name: syncthing
     template:
         metadata:
             annotations:
                 backup.velero.io/backup-volumes: app-config
             labels:
-                app: syncthing
+                app.kubernetes.io/instance: syncthing
+                app.kubernetes.io/name: syncthing
         spec:
             containers:
                 -   name: syncthing
@@ -48,8 +51,6 @@ spec:
                             mountPath: /config
                         -   name: data-volume
                             mountPath: /data
-                        -   name: nfs-volume
-                            mountPath: /volume1
 
             restartPolicy: Always
             volumes:
@@ -57,12 +58,9 @@ spec:
                     persistentVolumeClaim:
                         claimName: syncthing-config-pvc
                 -   name: data-volume
-                    persistentVolumeClaim:
-                        claimName: syncthing-data-nfs
-                -   name: nfs-volume
-                    persistentVolumeClaim:
-                        claimName: serveremulator-data-nfs
-
+                    nfs:
+                        path: "/volume1/k3s/syncthing"
+                        server: {{ $.Values.storage.nasIp }}
 ---
 
 apiVersion: v1
@@ -71,17 +69,11 @@ metadata:
     name: syncthing
     namespace: {{ $.Release.Namespace }}
 spec:
-    {{- with .nodePort }}
-    type: NodePort
-    {{- end }}
     selector:
-        app: syncthing
+        app.kubernetes.io/instance: syncthing
+        app.kubernetes.io/name: syncthing
     ports:
         -   name: syncthing
             protocol: TCP
             port: {{ .port }}
-          {{- with .nodePort }}
-            nodePort: {{ . }}
-          {{- end }}
-
 {{- end }}

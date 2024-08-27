@@ -1,0 +1,13 @@
+---
+syncthing:
+    image: lscr.io/linuxserver/syncthing:1.26.1
+    replicas: 1
+    port: 8384
+    resources:
+        requests:
+            cpu: 10m
+            memory: 50Mi
+
+storage:
+    syncthingConfigSize: 1Gi
+    nasIp: 192.168.1.39

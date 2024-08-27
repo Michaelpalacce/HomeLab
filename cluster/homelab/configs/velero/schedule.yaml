@@ -26,6 +26,7 @@ spec:
           - whoogle
           - reactiveresume
           - website
+          - storage
         snapshotVolumes: true
         # Paying for wasabi, all files are charged a minimum of 90 days, so we can keep this for a while
         ttl: 2190h0m0s
