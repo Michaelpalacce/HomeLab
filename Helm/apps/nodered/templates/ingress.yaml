@@ -10,6 +10,9 @@ metadata:
         gethomepage.dev/group: Automation
         gethomepage.dev/icon: node-red
         gethomepage.dev/name: NodeRed
+        nginx.ingress.kubernetes.io/auth-type: basic
+        nginx.ingress.kubernetes.io/auth-secret: basic-auth
+        nginx.ingress.kubernetes.io/auth-realm: 'Authentication Required - sgenov'
 spec:
     ingressClassName: nginx
     tls:
