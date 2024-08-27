@@ -165,3 +165,12 @@
           dest: "/etc/modules-load.d/{{ item }}.conf" 
           content: "{{ item }}" 
       loop: [br_netfilter, ip_vs, ip_vs_rr]
+
+- hosts: all
+  become: true
+  tags:
+    - unattended_upgrades
+  roles:
+  - role: hifis.toolkit.unattended_upgrades
+    unattended_automatic_reboot: true
+
