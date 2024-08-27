@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Secret
+metadata:
+    name: basic-auth
+    namespace: ingress-nginx
+type: Opaque
+data:
+    auth: ENC[AES256_GCM,data:noxxs3Jad1N9VdIchyYC5svPmctOVCGgyVn9e0z//jX+fCVbmPVFPBorcT+qPJsci9SKqMt/NA3gLyzj,iv:Nd2/KcJNqf3Vk8f4VWFajzVA6HPsT0EmJoSzrZaVYB8=,tag:WRWvLLF420D6YvwnT68Cvw==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBiZm1iSW9hUzZSRGhRZUxH
+            UGJ1MmE5bzJ2MnhuOEdqOG5na1FoUlRmT0dVCnJzeFZuQjJSTFJKd0pvU3gwSmIv
+            TzRuNHBKci9GTFViRXVmdlBSQjdnS2cKLS0tIEtiTU1QejJIQVZUbzRJZFgxanVS
+            YmhXVldkbnY5UkhmVGs2NjNnVy9naXMKueLSQh5wNOcMSl5bvUl5l7Oy8skUx2IZ
+            0vKR6hv4Y+53sRUd70A7cHl0hff8+PQj1fKIGRDoRE5eyvh6DS6i0A==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2024-08-27T23:39:14Z"
+    mac: ENC[AES256_GCM,data:DJJ6xquEVkaw+sqJNkxeXttEtDBKdb9JhuLWgGJCHQwNmJlscm75p/VJj9oVu2q7XPfeCN3qPzVPVAPFq3sOY94IIA5ekLEbo4sQGtdbLTSwI5OOTZLdPZ5p7fjov5NWboRWs0VrPIgyrYseYB+VGHfUvNDSFJhxHamofSVYH7Q=,iv:VMNv8r/ZVxXtpD6ykGLLn6VS8L52gZrNqz6li2JEXRU=,tag:pB4LAzW+hdx9oRvifUMnvQ==,type:str]
+    pgp: []
+    encrypted_regex: ^(data|stringData|annotations|)$
+    version: 3.8.1
