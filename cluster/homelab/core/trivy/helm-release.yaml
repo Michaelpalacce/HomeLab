@@ -29,4 +29,4 @@ spec:
         ignoreUnfixed: true
       # targetWorkloads: "pod,statefulset,daemonset,replicaset,cronjob"
       # Targeting only my specific apps
-      targetNamespaces: "website,goip"
+      targetNamespaces: "website,go-ddns-controller"
