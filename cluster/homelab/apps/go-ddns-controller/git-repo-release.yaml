@@ -29,3 +29,10 @@ spec:
       tag: v1.0.1
     controller:
       replicas: 3
+    resources:
+      limits:
+        cpu: 100m
+        memory: 128Mi
+      requests:
+        cpu: 10m
+        memory: 64Mi
