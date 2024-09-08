@@ -27,3 +27,5 @@ spec:
     image:
       repository: ghcr.io/michaelpalacce/go-ddns-controller
       tag: v1.0.0
+    controller:
+      replicas: 3
