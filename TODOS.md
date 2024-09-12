@@ -1,3 +1,11 @@
+# TODOs
+
+## Infrastructure
+
 - [ ] Terraform
-- [ ] Migrate prometheus to using official operator
-- [ ] Loadbalancer for k3s control plane?
+- [ ] Talos Linux
+- [ ] Strip down the K3S Nodes of unused services and packages
+
+## Service Specifics
+
+- [ ] HomeBox entries for all of the hardware I have

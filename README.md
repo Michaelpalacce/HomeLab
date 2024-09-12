@@ -21,7 +21,7 @@ certificate secret to all the namespaces. The secret is called `ingress`.
 # GitOps :construction:
 GitOps is applied wherever possible using Flux2.
 CI/CD is done by bootstrapping flux into my cluster. Flux polls GitHub for changes and applies them automatically on my server.
-It is currently pretty stable and works fine
+It is currently pretty stable.
 
 # Image updates
 Image updates are done via Renovate Bot :robot:. Renovate bot does periodic scans for new image versions and submits pull request for each change.
@@ -32,10 +32,15 @@ A wildcard certificate is issued for my domain `*.stefangenov.site` and when the
 it is replicated in all namespace as `ingress` to be consumed by the ingress resources. This replication is
 needed because `Let's encrypt` rate limits certificate requests. 
 
-#### :desktop_computer: Exposing Apps
+## :desktop_computer: Exposing Apps
 As a legacy approach I used to expose my apps via NodePort. This ability is removed but can be easily enabled by
 removing the commented out nodePort values in the Helm Charts, and I also try to add this functionality to future apps
 and services I install.
+
+# Control Plane Load Balancing
+
+I used DNS load balancing for the control plane. This is done by creating an A record for the control plane and pointing it to the IPs of the control plane nodes.
+This is done because I don't have a load balancer in my homelab and I don't want to expose the control plane on a single node.
 
 # Storage ( Longhorn )
 Longhorn is a great replicated storage option with a great UI for better visualisation. It's fast and tailor made for 
