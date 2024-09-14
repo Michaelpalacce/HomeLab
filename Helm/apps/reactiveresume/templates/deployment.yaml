@@ -102,7 +102,6 @@ metadata:
     name: reactiveresume
     namespace: {{ $.Release.Namespace }}
 spec:
-    type: LoadBalancer
     selector:
         app.kubernetes.io/instance: reactiveresume
         app.kubernetes.io/name: reactiveresume
