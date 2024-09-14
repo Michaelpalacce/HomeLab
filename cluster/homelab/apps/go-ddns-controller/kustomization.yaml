@@ -6,6 +6,6 @@ resources:
     - namespace.yaml
     - git-repo-release.yaml
     - secret.sops.yaml
-    - configMaps.yaml
+    - configMaps.sops.yaml
     - notifier.yaml
     - provider.yaml
