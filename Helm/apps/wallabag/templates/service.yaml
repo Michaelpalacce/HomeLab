@@ -7,6 +7,7 @@ metadata:
     name: wallabag
     namespace: {{ $.Release.Namespace }}
 spec:
+    type: LoadBalancer
     selector:
         app.kubernetes.io/instance: wallabag
         app.kubernetes.io/name: wallabag
