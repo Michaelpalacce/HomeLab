@@ -28,12 +28,12 @@ spec:
         global:
           annotations: 
             backup.velero.io/backup-volumes: data #TODO: Update
-          persistence:
-            enable: true
-            storageClass: longhorn
-          image:
-            repository: wger/server
-            tag: 2.3-dev
-          celery:
-            enabled: true
+        persistence:
+          enable: true
+          storageClass: longhorn
+        image:
+          repository: wger/server
+          tag: 2.3-dev
+      celery:
+        enabled: true
 

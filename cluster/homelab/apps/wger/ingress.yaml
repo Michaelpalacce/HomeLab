@@ -24,6 +24,6 @@ spec:
                         path: "/"
                         backend:
                             service:
-                                name: wger
+                                name: wger-http
                                 port:
                                     number: 8000
