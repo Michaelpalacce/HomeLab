@@ -3,6 +3,8 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
+  name: wger-postgres
+  namespace: wger
   annotations:
     meta.helm.sh/release-name: wger
     meta.helm.sh/release-namespace: wger
