@@ -5,4 +5,3 @@ resources:
     - helm-release.yaml
     - ingress.yaml
     - namespace.yaml
-    - statefulset.yaml
