@@ -1,0 +1,29 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: wger
+    namespace: wger
+    annotations:
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: Excercise tracker
+        gethomepage.dev/group: Personal
+        gethomepage.dev/icon: wger
+        gethomepage.dev/name: Wger
+spec:
+    ingressClassName: nginx
+    tls:
+        -   hosts:
+                - "*.stefangenov.site"
+            secretName: ingress
+    rules:
+        -   host: wger.stefangenov.site
+            http:
+                paths:
+                    -   pathType: Prefix
+                        path: "/"
+                        backend:
+                            service:
+                                name: wger
+                                port:
+                                    number: 8000
