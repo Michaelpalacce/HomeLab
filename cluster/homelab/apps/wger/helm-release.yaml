@@ -25,9 +25,6 @@ spec:
                 namespace: flux-system
     values:
       app:
-        global:
-          annotations: 
-            backup.velero.io/backup-volumes: data #TODO: Update
         persistence:
           enable: true
           storageClass: longhorn

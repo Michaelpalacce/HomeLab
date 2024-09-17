@@ -1,0 +1,13 @@
+---
+# Patch to add annotations to the StatefulSet
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  annotations:
+    meta.helm.sh/release-name: wger
+    meta.helm.sh/release-namespace: wger
+spec:
+  template:
+    metadata:
+      annotations:
+        backup.velero.io/backup-volumes: postgres-data
