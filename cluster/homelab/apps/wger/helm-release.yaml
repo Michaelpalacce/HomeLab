@@ -24,8 +24,9 @@ spec:
                 name: wger
                 namespace: flux-system
     values:
-      commonAnnotations:
-        backup.velero.io/backup-volumes: postgres-data
+      primary:
+        annotations:
+          backup.velero.io/backup-volumes: postgres-data
       app:
         persistence:
           enable: true
