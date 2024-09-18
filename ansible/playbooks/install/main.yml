@@ -73,11 +73,18 @@
   vars_files:
       - "./vars/main.yml"
   tasks:
-    - name: Set nofile limit for all users
+    - name: Set soft nofile limit for all users
       lineinfile:
         path: /etc/security/limits.conf
         insertafter: EOF
-        line: '* soft nofile 65535\n* hard nofile 65535'
+        line: '* soft nofile 65535'
+        state: present
+
+    - name: Set hard nofile limit for all users
+      lineinfile:
+        path: /etc/security/limits.conf
+        insertafter: EOF
+        line: '* hard nofile 65535'
         state: present
 
     - name: Ensure pam_limits is enabled
