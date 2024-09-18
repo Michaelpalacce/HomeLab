@@ -39,10 +39,6 @@
             - dest: /etc/logrotate.d/podLogs
               src: podLogs
 
-      - name: Limit Journalctl max size
-        command: "journalctl --vacuum-size={{ journalctl_vaccum_size }}"
-        register: logrotate_stat
-
       - name: Check if logrotate is daily
         stat: path=/etc/cron.daily/logrotate
         register: logrotate_stat
@@ -50,6 +46,49 @@
       - name: Move logrotate to hourly if daily
         command: mv /etc/cron.daily/logrotate /etc/cron.hourly/logrotate
         when: logrotate_stat.stat.exists
+
+      - name: Ensure persistent journal is enabled
+        lineinfile:
+          path: /etc/systemd/journald.conf
+          regexp: '^#?SystemMaxUse='
+          line: 'SystemMaxUse={{ journalctl_vaccum_size }}'
+          state: present
+        notify: restart systemd-journald
+
+      - name: Reload systemd-journald configuration
+        command: systemctl daemon-reload
+  handlers:
+    - name: restart systemd-journald
+      service:
+        name: systemd-journald
+        state: restarted
+
+- hosts: all
+  name: Setup limits
+  gather_facts: false
+  become: true
+  tags:
+      - preflight
+      - preflight-limits
+  vars_files:
+      - "./vars/main.yml"
+  tasks:
+    - name: Set nofile limit for all users
+      lineinfile:
+        path: /etc/security/limits.conf
+        insertafter: EOF
+        line: '* soft nofile 65535\n* hard nofile 65535'
+        state: present
+
+    - name: Ensure pam_limits is enabled
+      lineinfile:
+        path: /etc/pam.d/common-session
+        regexp: '^#?session required pam_limits.so'
+        line: 'session required pam_limits.so'
+        state: present
+
+    - name: Reload the limits configuration
+      shell: ulimit -n 65535
 
 - hosts: all
   name: Setup Storage dependencies
