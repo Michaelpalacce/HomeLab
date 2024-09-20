@@ -10,6 +10,7 @@ resources:
   - firefly
   - freshrss
   - go-ddns-controller
+  - gotenberg
   - homepage
   - lubelogger
   - mealie
