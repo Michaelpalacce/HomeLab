@@ -113,7 +113,7 @@ data:
                       period: 24h
         compactor:
             working_directory: /tmp/loki/compactor
-            shared_store: filesystem
+            delete_request_store: gcs
             retention_enabled: true
             compactor_ring:
                 kvstore:
