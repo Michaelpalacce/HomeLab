@@ -1,6 +1,6 @@
 ---
 vikunja:
-    image: vikunja/vikunja:0.24.2
+    image: vikunja/vikunja:0.24.3
     port: 3456
     frontendUrl: https://vikunja.stefangenov.site
 
