@@ -91,7 +91,6 @@ data:
         server:
             http_listen_port: 3100
             grpc_listen_port: 9096
-
         common:
             path_prefix: /tmp/loki
             storage:
@@ -103,7 +102,6 @@ data:
                 instance_addr: 127.0.0.1
                 kvstore:
                     store: inmemory
-
         schema_config:
             configs:
                 - from: 2024-04-01
@@ -113,10 +111,15 @@ data:
                   index:
                       prefix: index_
                       period: 24h
-
+        compactor:
+            working_directory: /tmp/loki/compactor
+            shared_store: filesystem
+            retention_enabled: true
+            compactor_ring:
+                kvstore:
+                    store: inmemory
         ruler:
             alertmanager_url: http://localhost:9093
-
         limits_config:
             retention_period: 72h
             retention_stream:
