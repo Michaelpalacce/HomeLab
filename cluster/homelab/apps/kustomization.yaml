@@ -22,6 +22,7 @@ resources:
   - reactiveresume
   - searxng
   - stirlingpdf
+  - tika
   - uptimekuma
   - vikunja
   - website
