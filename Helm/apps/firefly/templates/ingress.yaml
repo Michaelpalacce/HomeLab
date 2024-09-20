@@ -26,4 +26,4 @@ spec:
                             service:
                                 name: firefly
                                 port:
-                                    number: {{ .Values.firefly.port }}
+                                    number: 80
