@@ -4,7 +4,7 @@ metadata:
     name: general
     namespace: velero
 spec:
-    schedule: '00 07 * * *'
+    schedule: '00 01 * * *'
     template:
         hooks: {}
         includedNamespaces:
@@ -38,7 +38,7 @@ metadata:
     name: sensitive
     namespace: velero
 spec:
-    schedule: '00 07 * * *'
+    schedule: '00 01 * * *'
     template:
         hooks: {}
         includedNamespaces:
@@ -56,7 +56,7 @@ metadata:
     name: critical
     namespace: velero
 spec:
-    schedule: '00 07 * * *'
+    schedule: '00 01 * * *'
     template:
         hooks: {}
         includedNamespaces:

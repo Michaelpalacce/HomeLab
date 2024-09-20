@@ -29,5 +29,5 @@ spec:
             drainGracePeriod: 300
             drainTimeout: 600s
             forceReboot: true
-            endTime: "05:00"
-            startTime: "00:00"
+            startTime: "01:00" # This is UTC time
+            endTime: "03:00" # This is UTC time
