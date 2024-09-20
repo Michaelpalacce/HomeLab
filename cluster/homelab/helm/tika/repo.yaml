@@ -1,0 +1,9 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+    name: tika
+    namespace: flux-system
+spec:
+    url: https://apache.jfrog.io/artifactory/tika
+    interval: 10m

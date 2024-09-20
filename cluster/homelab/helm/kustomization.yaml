@@ -21,3 +21,4 @@ resources:
     - searxng
     - go-ddns-controller
     - metallb
+    - tika
