@@ -26,6 +26,9 @@ spec:
     values:
         env:
             PAPERLESS_OCR_LANGUAGES: eng bul
+            PAPERLESS_TIKA_ENABLED: "true"
+            PAPERLESS_TIKA_ENDPOINT: http://tika.tika:9998
+            PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://gotenberg.gotenberg:80
         podAnnotations:
             backup.velero.io/backup-volumes: data,media,export,consume
         image:
@@ -61,14 +64,14 @@ spec:
                 ingressClassName: nginx
                 enabled: true
                 annotations:
-                    gethomepage.dev/enabled: ENC[AES256_GCM,data:GzsQAQ==,iv:HXC/ccigSHq3QtyRtO2vAqaBRn62oz91fxuP3KzMaIk=,tag:CzSlIuqrlAtjMRH/P6E2mA==,type:str]
-                    gethomepage.dev/description: ENC[AES256_GCM,data:Oi43tzpLTPtr1wcvXmjs0nLoWr4QuGmHD88=,iv:+QpCFpZa3Mmrn3GjiXZnKKZrjwvss60D38qxDNBnnmY=,tag:3WRtypoaw8BsNLSwwq8EyQ==,type:str]
-                    gethomepage.dev/group: ENC[AES256_GCM,data:/byUP9n6kw+q,iv:YPF7VlEgmVTZkxLJU52PL4yrHUme4RHYjCaQ7/SAv6c=,tag:PSyj9DbeOHkSLksaZwK51g==,type:str]
-                    gethomepage.dev/icon: ENC[AES256_GCM,data:0Cm2wYUCCbjw3XRhow==,iv:pofIt+DgAw5J9id/5syeWO6VQc3iDJhOHkDeZgKoac0=,tag:PGQLbn70rggoCXup418gxQ==,type:str]
-                    gethomepage.dev/name: ENC[AES256_GCM,data:vN+SpeWXvs6e1o15Pw==,iv:OAeBGnjGd8go7xr8sKN84P8zdE2yi1qmfPuJnJxdu3U=,tag:qYUpG8hq7CrB7CTUjgMaJA==,type:str]
-                    gethomepage.dev/widget.type: ENC[AES256_GCM,data:YxceMIDUOYD9Dw7E,iv:bnuf6nFR082ypGziwv1wp+7IKTy8KJJ64a4OetGxfq0=,tag:PvWW3dwBGduaO8+Zpb5Dqw==,type:str]
-                    gethomepage.dev/widget.url: ENC[AES256_GCM,data:LeP0pAbtUvsmbROvpeqcK4D/BW7i2BTN54TYY8oIngDqJg==,iv:XZIl0GPQJH4v/n31PmM2VFbW/gnM8OTGG+03nxS+t6o=,tag:jXTivUXudzc1jq0TJapP7Q==,type:str]
-                    gethomepage.dev/widget.key: ENC[AES256_GCM,data:bejriF4a3R5l680QIpz8rJH2Xbb8mii15FSSVoGtzLiXRkZjkmDAyw==,iv:5VREtAncldfb7HxVCJjVxiEELu9kcXd5DMdNv81ClFU=,tag:xWSDBbRSRo3zeD4mPlpFFQ==,type:str]
+                    gethomepage.dev/enabled: ENC[AES256_GCM,data:JxMs6Q==,iv:sYUi4doE9KmAWSxFBLRR36jCtt3Z/CwJsGNNbAkoeKU=,tag:VRPfTA80g4cr+99sI1buFA==,type:str]
+                    gethomepage.dev/description: ENC[AES256_GCM,data:JxqBF+hA6a1CXenWpaVliWaWo5vk6b4LX4k=,iv:55KhxexrKunESC4eXRXVamoE6QU+b8reWNelaF56yyo=,tag:vptg0i73smqel9laixHm/w==,type:str]
+                    gethomepage.dev/group: ENC[AES256_GCM,data:DZo628fcWdhF,iv:0Mb+Us9V7lfG4y456UwFz/7W27QSQDy8PFmhWTBs3Ig=,tag:NZ2SJr1mv+6bwg/3fJRlOw==,type:str]
+                    gethomepage.dev/icon: ENC[AES256_GCM,data:lQXA7fMWs0tU2BVL7Q==,iv:mPIVGZ+I6EfNy/XlzNjeak1/nD9OvTexF4TWZpQVZFg=,tag:mXxp3d5De6cmXYNJRsp31w==,type:str]
+                    gethomepage.dev/name: ENC[AES256_GCM,data:1nbYw9+m7Tb5U3peWg==,iv:1jPI9S1rVyRcOs4ahmFEXvqfe5dkvQmf2zijwofyZpo=,tag:HGrQ9qZNSiuPO/1V0BIYyA==,type:str]
+                    gethomepage.dev/widget.type: ENC[AES256_GCM,data:YSTGNp6jcBiRailZ,iv:NDMAVdTLO9+0fx9I9waQeO2YP3irSIou/dsYbCJAal8=,tag:DC7G0hsKn6EJnwNObsfPXg==,type:str]
+                    gethomepage.dev/widget.url: ENC[AES256_GCM,data:XVwR9ckCxRhXgn99PHgzWToZBcBOKc4JB94WXK07Yfk7wQ==,iv:kWJVO1vlcP7DH1bV+7jhXj7Sj1dajSV1rkmW+8pQkY4=,tag:NS5dcxgkXpBEYWMzawKCGw==,type:str]
+                    gethomepage.dev/widget.key: ENC[AES256_GCM,data:gUdpOOuK2Hk8EpwHnivC+vzsrDHaLGnuHD5sY8o2EkU7Djdo+H3fOg==,iv:Z8dfoKw0msqvnwWWVdBWfGavBiMtXIS5x3KIS1RYg+A=,tag:GJbbtI0uIa+zvA9xAqokvg==,type:str]
                 hosts:
                     - host: paperless.stefangenov.site
                       paths:
@@ -86,14 +89,14 @@ sops:
         - recipient: age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
           enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBUQW5kSkJZMzBxUGVBRVJk
-            dFZBZTdUM291czJ5ditVRmFrcktYeDRzUmo0CkwxRkhteWRFVGJCOEVTUmp2blRI
-            OGxSeElsdzlTZ1lwOFNVQ1J0WkpkbkUKLS0tIHF0SkllV1hrN3hiNHU1bjcyRkE5
-            NVI0SktxV09NNlVjZ0tRQlVJWjNFNXcKYWXxm0Y39svf+6A4tXXR4rxluSH5SV+x
-            fdhECNPUC8BDRAqOak97/gEMzm0SouoNx6kAqnGqPT4DlUxrtozqqw==
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBNdXR5aEM2dW5yVE42ci85
+            WDg4Mkc1T2VWSXVVV1VucGVZNmZTQ004aXcwCklucVc0QU9aMGZBQ0ZNUmsxU3Bu
+            WVF2VFFmVEpFMkM5THZGVkd6d204dk0KLS0tIDhkaDQycm9rQmI4N0FvL2ZtZjZa
+            T1dOOHU5S0p0dHUyQ3Zsbmx6RmF0MlkKTrTTDkKHiCU/r50BW+FLSFNgn+M0qHlB
+            HtnCDFgUdnij/1cDkNT9wAYgtbeV1P6hYUGjgPVUjmiFaiCHBZdG/w==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-07-09T15:39:49Z"
-    mac: ENC[AES256_GCM,data:qaPW8zBxYw7n6wVhuRp0VSNJ/TdQ3lqtAWcY8DM8WKKvUz2GuOgIa8yikKYttuPbrfN8PRGDdycqCJFab7qB4YPIDYnuYFUH7ZvjtziMitB/gGz9bKjLabGPuPZXAbdh7HKo7VY3CLAOPl9mvB0IsCxFgjrK9omjx5resaWzV7Q=,iv:A2Fc74ONjk4ctkRzpAezJbE4gRvuYPdIB6T+co3rfJU=,tag:N2mM86BCtrSsoxKy6Dc+oQ==,type:str]
+    lastmodified: "2024-09-20T03:40:55Z"
+    mac: ENC[AES256_GCM,data:B9/nyYXd2dH98ZVIuvUQ6XrINZy1UUlZJb4G7V3F+0b/EhFGJnuYrAWf7hGNmc9+bWh9NJkSv18aSfcmjfGvmsUHr5lGxW6dZQF7iKJRA3FGWHpUwQCldQVyqu232wFsGxFMcXek3/tpzQPHHI4o99+nfsOpVRKdLFPN1+8Q62A=,iv:oNDa5BLGa1auQnWiOR8CmqQk3NJOBaZ93HeyQe5tL/Y=,tag:r9AN3bD5nq/FuvqE/7+pHQ==,type:str]
     pgp: []
     encrypted_regex: ^(rules|annotations|)$
     version: 3.8.1
