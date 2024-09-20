@@ -22,3 +22,4 @@ resources:
     - go-ddns-controller
     - metallb
     - tika
+    - maikumori
