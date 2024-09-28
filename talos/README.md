@@ -39,6 +39,14 @@ Cilium also offers a Gateway API implementation.
 
 Longhorn will be used for the CSI.
 
+- May not be the best choice, as it writes in the ephemeral storage of the nodes and I have to pass `--preserve` when upgrading the nodes,
+  which is not ideal.
+- Pod security policies need to be applied per namespace.
+
+## Links
+
+- https://longhorn.io/docs/1.7.1/advanced-resources/os-distro-specific/talos-linux-support/
+
 # Shared IP for the Control Plane
 
 ## Links
