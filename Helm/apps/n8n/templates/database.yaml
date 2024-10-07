@@ -10,6 +10,8 @@ metadata:
         app.kubernetes.io/instance: postgres
         app.kubernetes.io/name: postgres
 spec:
+    strategy:
+        type: Recreate
     replicas: 1
     selector:
         matchLabels:
