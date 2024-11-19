@@ -37,7 +37,7 @@ cadvisor:
             cpu: 100m
 
 loki:
-    image: grafana/loki:3.2.1
+    image: grafana/loki:3.3.0
     port: 3100
     resources:
         requests:
