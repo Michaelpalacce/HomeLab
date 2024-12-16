@@ -15,8 +15,6 @@ storage:
         config: 10Gi
     readarr:
         config: 5Gi
-    doplarr:
-        config: 5Gi
 
 flaresolverr:
     image: ghcr.io/flaresolverr/flaresolverr:v3.3.21

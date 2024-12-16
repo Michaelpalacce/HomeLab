@@ -17,8 +17,6 @@ spec:
                 name: flux-system
                 namespace: flux-system
     values:
-        doplarr:
-            replicas: 0
-        bazarr:
+        readarr:
             replicas: 0
 
