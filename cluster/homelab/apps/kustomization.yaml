@@ -12,7 +12,6 @@ resources:
   - go-ddns-controller
   - gotenberg
   - homepage
-  - lubelogger
   - mealie
   - media
   - monitoring
