@@ -10,7 +10,6 @@ spec:
         includedNamespaces:
           - nodered
           - changedetection
-          - lubelogger
           - mealie
           - media
           - monitoring
