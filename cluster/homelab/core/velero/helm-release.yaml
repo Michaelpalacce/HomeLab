@@ -27,7 +27,7 @@ spec:
     values:
       image:
         repository: velero/velero
-        tag: v1.15.1
+        tag: v1.15.2
       upgradeCRDs: true
       initContainers:
           - name: velero-plugin-for-aws
