@@ -17,7 +17,7 @@ spec:
     chart:
         spec:
             chart: gotenberg
-            version: 1.9.1
+            version: 1.10.0
             interval: 5m
             sourceRef:
                 kind: HelmRepository
