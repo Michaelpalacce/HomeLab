@@ -1,24 +1,6 @@
 ---
 - hosts: all
   name: Setup Logs and log sizes
-  become: true
-  gather_facts: false
-  tags:
-      - preflight
-      - preflight-kubelet
-  vars_files:
-      - "./vars/main.yml"
-  tasks:
-      - name: Stop kubelet
-        systemd:
-            state: stopped
-            name: kubelet
-
-      - name: Disable kubelet
-        shell: systemctl disable kubelet
-
-- hosts: all
-  name: Setup Logs and log sizes
   gather_facts: false
   become: true
   tags:
