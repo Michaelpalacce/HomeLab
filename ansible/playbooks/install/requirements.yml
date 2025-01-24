@@ -5,6 +5,6 @@ collections:
     - name: community.general
       version: 10.2.0
     - name: hifis.toolkit
-      version: 5.2.0
+      version: 5.2.1
 roles:
     - src: xanmanning.k3s
