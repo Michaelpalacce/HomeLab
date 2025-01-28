@@ -18,7 +18,7 @@ spec:
     chart:
         spec:
             chart: kube-vip
-            version: 0.6.5
+            version: 0.6.6
             interval: 5m
             sourceRef:
                 kind: HelmRepository
