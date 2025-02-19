@@ -85,3 +85,13 @@ kavita:
         requests:
             cpu: 10m
             memory: 50Mi
+
+cleanuperr:
+    image: ghcr.io/flmorg/cleanuperr:1.5.3
+    resources:
+        requests:
+            cpu: 50m
+            memory: 512Mi
+        limits:
+            cpu: 500m
+            memory: 1Gi
