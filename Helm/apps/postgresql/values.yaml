@@ -3,7 +3,7 @@ storage:
     pgAdmin: 2Gi
 
 pgadmin:
-    image: dpage/pgadmin4:8.14
+    image: dpage/pgadmin4:9.0
     port: 80
     replicas: 1
     resources:
