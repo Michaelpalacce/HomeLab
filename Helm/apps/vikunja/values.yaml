@@ -5,7 +5,7 @@ vikunja:
     frontendUrl: https://vikunja.stefangenov.site
 
 postgres:
-    image: postgres:16.7
+    image: postgres:16.8
     port: 5432
     resources:
         requests:
