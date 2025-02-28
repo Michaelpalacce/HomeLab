@@ -1,7 +1,7 @@
 ---
 mealie:
     replicas: 1
-    image: ghcr.io/mealie-recipes/mealie:v2.6.0
+    image: ghcr.io/mealie-recipes/mealie:v2.7.1
     port: 9000
     baseUrl: https://mealie.stefangenov.site
     resources:
