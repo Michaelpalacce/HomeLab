@@ -1,6 +1,6 @@
 ---
 lubelogger:
-    image: ghcr.io/hargata/lubelogger:v1.4.4
+    image: ghcr.io/hargata/lubelogger:v1.4.5
     port: 8080
 
 storage:
