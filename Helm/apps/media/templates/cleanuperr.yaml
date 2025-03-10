@@ -32,6 +32,10 @@ spec:
                         privileged: false
                         allowPrivilegeEscalation: false
                     env:
+                        # General
+                        -   name: LOGGING__LOGLEVEL
+                            value: Debug
+                        # Client
                         -   name: DOWNLOAD_CLIENT
                             value: "transmission"
                         -   name: TRANSMISSION__URL
@@ -40,18 +44,19 @@ spec:
                             value: {{ $.Values.transmission.username }}
                         -   name: TRANSMISSION__PASSWORD
                             value: {{ $.Values.transmission.password }}
+                        # QUEUE Cleaner
                         -   name: QUEUECLEANER__ENABLED
                             value: "true"
-                        -   name: QUEUECLEANER__RUNSEQUENTIALLY
-                            value: "true"
+                        -   name: TRIGGERS__QUEUECLEANER
+                            value: "0 0/5 * * * ?"
                         -   name: QUEUECLEANER__IMPORT_FAILED_MAX_STRIKES
-                            value: "5"
+                            value: "2"
                         -   name: QUEUECLEANER__IMPORT_FAILED_IGNORE_PRIVATE
                             value: "false"
                         -   name: QUEUECLEANER__IMPORT_FAILED_DELETE_PRIVATE
                             value: "false"
                         -   name: QUEUECLEANER__STALLED_MAX_STRIKES
-                            value: "5"
+                            value: "2"
                         -   name: QUEUECLEANER__STALLED_RESET_STRIKES_ON_PROGRESS
                             value: "false"
                         -   name: QUEUECLEANER__STALLED_IGNORE_PRIVATE
