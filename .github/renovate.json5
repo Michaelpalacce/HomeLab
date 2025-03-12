@@ -124,7 +124,7 @@
         'renovate/image',
         'dep/minor',
       ],
-      automerge: false,
+      automerge: true,
     },
     {
       matchDatasources: [
@@ -139,6 +139,7 @@
       ],
       automerge: true,
     },
+
     {
       matchDatasources: [
         'helm',
@@ -163,7 +164,7 @@
         'renovate/helm',
         'dep/minor',
       ],
-      automerge: false,
+      automerge: true,
     },
     {
       matchDatasources: [
