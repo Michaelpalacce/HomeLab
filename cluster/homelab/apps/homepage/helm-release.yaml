@@ -65,6 +65,11 @@ spec:
             type: emptyDir
             mountPath: /app/config/logs
 
+        env:
+          - name: HOMEPAGE_ALLOWED_HOSTS
+            # This value must be set
+            # ref: https://gethomepage.dev/installation/#homepage_allowed_hosts
+            value: homepage.stefangenov.site
         # resources:
         #   requests:
         #     memory: 10Mi
