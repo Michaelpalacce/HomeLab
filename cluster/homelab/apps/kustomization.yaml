@@ -18,7 +18,6 @@ resources:
   - n8n
   - nodered
   - openbooks
-  - postgresql
   - reactiveresume
   - searxng
   - stirlingpdf
