@@ -59,8 +59,6 @@ spec:
     template:
         hooks: {}
         includedNamespaces:
-          # @TODO: Move containers to have own postgres instead of this one
-          - postgresql # A lot of services use the default one here, instead of their own
           - firefly
         snapshotVolumes: true
         # Paying for wasabi, all files are charged a minimum of 90 days, so we can keep this for a while
