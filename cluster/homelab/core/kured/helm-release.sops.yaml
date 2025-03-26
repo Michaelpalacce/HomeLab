@@ -1,0 +1,59 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+    name: kured
+    namespace: kured
+spec:
+    interval: 5m
+    install:
+        createNamespace: true
+        crds: CreateReplace
+        remediation:
+            retries: 3
+    upgrade:
+        crds: CreateReplace
+        remediation:
+            retries: 3
+    chart:
+        spec:
+            chart: kured
+            version: 5.6.1
+            interval: 5m
+            sourceRef:
+                kind: HelmRepository
+                name: kubereboot
+                namespace: flux-system
+    values:
+        configuration:
+            drainGracePeriod: ENC[AES256_GCM,data:szel,iv:CbLhgr5w+0V4fvEn3Qs0GQHLStM4dvzSw2gvhk+1Wqw=,tag:0BHSJgSCji79b5M/DBmmVg==,type:int]
+            drainTimeout: ENC[AES256_GCM,data:Lx8YMQ==,iv:oJwEqOpcnkwHKrBkgCxWJYXdakcmwfzKlclbqRs/btk=,tag:cjz3OFjLOJUhKA/1fWnbmg==,type:str]
+            forceReboot: ENC[AES256_GCM,data:jh9uoA==,iv:kveNxyPRNgltkCC+DUHjWpZCVViUVfTVyFAh0/2eT5k=,tag:N5rbprJw5tZdt/n6Xv8wNA==,type:bool]
+            #ENC[AES256_GCM,data:i05A8OYl7PYqyYmeeVMnhA8=,iv:9dB7KP/OPhG89PLOM+38XFTZDe6MGtSSCBEX5expYgk=,tag:zrwVs1+Dcoah3ZN8EkMMXw==,type:comment]
+            startTime: ENC[AES256_GCM,data:ejeZ6VE=,iv:FRrm/kpghHEtvrC/29U/GeSD+KZN6+rAMf1vluv+kwQ=,tag:uwGmoyhCAKo5pA3y0cv2/w==,type:str]
+            #ENC[AES256_GCM,data:xcCvuG0oz8bE3YGl0tXHe/w=,iv:KYoJLutf8V3gFBmAoLPRKtrgACCBlBH4jGMu+p2ZvJc=,tag:d4wVhHQTKe89hH81hfiGww==,type:comment]
+            endTime: ENC[AES256_GCM,data:0MKqg84=,iv:DJcu2gDKOUyJN52BzWCX3/MXTSScC4XSLBngmZo8NXU=,tag:PpTYDMZSAHX0aZLPy4jKgg==,type:str]
+            #ENC[AES256_GCM,data:RPz7nWgdVPWgoZHb6rfv987fLe+xkFsBvChOnwU5Zd9potnnl4ui4PfjZbmfuGiyxpoPRaylKFJtQrVrIvPCZGXoMZTqQARK83uatlf+jshg2Irrh7exXQaSLCPROtqE,iv:8Dfj0UEw5rDVqKIlPP3afIvjQXS4iglTsla4JgsxD+Y=,tag:uYBB1vkOVyOraPqCnJ7CFA==,type:comment]
+            notifyUrl: ENC[AES256_GCM,data:pQqyMkFWt1qsI6sTxWAmxR9e3QeL0EmUZ58fnFQv2KB4G9iJV5QsFkZWHpa0yPr7xD+p77S71xUilTRLlZqsJPULdWDBPMnEYVbd2WyybHxYP5TrlItRhfSlQXHZ60f4UWMt2oryGVWYVZzqWnFLaqF0MA6xMXlFBumD,iv:/j1nzH6f9tgd0Y4BK/P1uwinXrlXf9IC2bPkqPVI4Mc=,tag:2yq6mcV079VWJPrjyCoDOA==,type:str]
+            messageTemplateDrain: ENC[AES256_GCM,data:LHIA/3kN+2IMAt9bapS/YQ==,iv:YzX3L6jj2XFFciD526Hpr7xowdP2PudkwXyPRIQg1r4=,tag:iVpX8QJJixJPcZnW3J+QvA==,type:str]
+            messageTemplateReboot: ENC[AES256_GCM,data:VvjwbNpftc0b5JFOJfPDtg==,iv:3cDeL9QkCwV/kbOQ++9V8L/EJqMZrKJeeS8f9uPdV74=,tag:Qh3MqheB9RdiBI5R8ssaXw==,type:str]
+            messageTemplateUncordon: ENC[AES256_GCM,data:nkHKvmHbaLlHDQ4HdEab6xMc0LGbccZLMoXIF+42GjKFsR0PSBcL5+EYQw==,iv:OfLMJVoVQ6uvecgdoc5UJW1SbRHDfaCUCPJi9OvZx6M=,tag:TOVdjcpGzLTVZQf/hs5hOQ==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSA1UTRqVU91SURUNThEaWZz
+            L2hJRTdqd3ZlbGt0QzNRcjZ2dkhiN2hsN0hnClo0ZVV6aTFXT1o3RXVkbTNpRDRs
+            aXhXb2hOVUFIbHd5R3VpbTU1Q0sxOFUKLS0tIGtOb1NzdzFjV2hPSDRDOXE4YnBl
+            RCtTOWlyWll5TENUNDJ3bGJPYmJnc28KDcy3ZCKLtUuyNDttJXxmGwdiZeDppB0A
+            lrhvYlOscSNJhKzSrj7y9BfDrH6Gs4u2jo7vAL/DpzlZAlQm1zTyqA==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-03-26T20:59:06Z"
+    mac: ENC[AES256_GCM,data:iZbgfDxCjAT1PopV2uJuaeDfBkLMCQ8W8dpMC5ptPELDI2w6Ca4MWn9vwwed4Nl76RUAqzlp0QK5P0tgV/kVJWwh8T3vnXPxtbKtiQOLnsmkamhvcXVr2KD+qnTyPH1aR25YovrgLkW01Dds3Pttbt1XOjAk/s2+BGXDkGNdUjk=,iv:7ZeWk8moK/1e4sBoSsTNvDWvMahVikK0z7rEvwUjQVk=,tag:tftbskEvAIkZ/sSAKdMbsg==,type:str]
+    pgp: []
+    encrypted_regex: ^(values)$
+    version: 3.8.1
