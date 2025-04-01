@@ -20,8 +20,8 @@ postgres:
     port: 5432
     resources:
         requests:
-            cpu: 10m
-            memory: 256Mi
+            cpu: 500m
+            memory: 1Gi
 
 storage:
     configSize: 5Gi
