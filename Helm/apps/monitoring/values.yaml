@@ -12,7 +12,7 @@ prometheus:
     port: 9090
 
 nodeExporter:
-    image: prom/node-exporter:v1.9.0
+    image: prom/node-exporter:v1.9.1
     port: 9100
     tolerations:
         - key: CriticalAddonsOnly
