@@ -115,15 +115,12 @@ metadata:
     name: firefly
     namespace: {{ $.Release.Namespace }}
 spec:
-    type: LoadBalancer
-    loadBalancerIP: 192.168.1.9
     selector:
         app.kubernetes.io/instance: firefly
         app.kubernetes.io/name: firefly
     ports:
-        -   name: web
+        -   name: firefly
             protocol: TCP
-            port: 80
-            targetPort: 8080
+            port: {{ .port }}
 
 {{- end }}
