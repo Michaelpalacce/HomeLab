@@ -23,6 +23,7 @@ resources:
   - stirlingpdf
   - tika
   - uptimekuma
+  - vikunja
   - website
   - wallabag
   - whoogle
