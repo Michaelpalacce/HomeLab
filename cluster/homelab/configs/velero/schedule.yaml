@@ -42,7 +42,6 @@ spec:
         hooks: {}
         includedNamespaces:
           - paperless-ngx
-          - vikunja
           - go-ddns-controller-system
         snapshotVolumes: true
         # Paying for wasabi, all files are charged a minimum of 90 days, so we can keep this for a while
