@@ -4,12 +4,6 @@ kind: Ingress
 metadata:
     name: firefly
     namespace: {{ $.Release.Namespace }}
-    annotations:
-        gethomepage.dev/enabled: "true"
-        gethomepage.dev/description: Budget buddy!
-        gethomepage.dev/group: Personal
-        gethomepage.dev/icon: firefly
-        gethomepage.dev/name: Firefly III
 spec:
     ingressClassName: nginx
     tls:
