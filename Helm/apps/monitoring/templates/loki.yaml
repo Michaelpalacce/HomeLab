@@ -21,7 +21,7 @@ spec:
                 app: loki
         spec:
             securityContext:
-              privileged: false
+              # privileged: false # Solves this issue: https://github.com/grafana/loki/issues/13923
               allowPrivilegeEscalation: false
               fsGroup: 10001 
             containers:
