@@ -1,0 +1,11 @@
+---
+beaverhabits:
+    image: daya0576/beaverhabits:0.4.6
+    port: 8080
+    resources:
+        requests:
+            cpu: 10m
+            memory: 10Mi
+
+storage:
+    dataSize: 5Gi
