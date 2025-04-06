@@ -1,0 +1,21 @@
+---
+apiVersion: notification.toolkit.fluxcd.io/v1beta3
+kind: Alert
+metadata:
+  name: discord-alert
+  namespace: flux-system
+spec:
+  providerRef:
+    name: discord
+  eventMetadata:
+    summary: Cluster impacted
+    env: homelab
+    cluster: homelab
+  eventSeverity: error
+  eventSources:
+    - kind: GitRepository
+      name: '*'
+    - kind: Kustomization
+      name: '*'
+    - kind: HelmRelease
+      name: '*'
