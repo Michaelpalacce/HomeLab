@@ -23,6 +23,8 @@ spec:
                 app.kubernetes.io/instance: beaverhabits
                 app.kubernetes.io/name: beaverhabits
         spec:
+            securityContext:
+              fsGroup: 1000
             containers:
                 - name: beaverhabits
                   image: {{ .image }}
@@ -38,12 +40,6 @@ spec:
                       - name: data-config
                         mountPath: /app/.user/
                   env:
-                      - name: PUID
-                        value: "1000"
-                      - name: PGID
-                        value: "1000"
-                      - name: TZ
-                        value: "Europe/Sofia"
                       - name: INDEX_HABIT_DATE_COLUMNS
                         value: "5"
                       - name: TRUSTED_LOCAL_EMAIL
