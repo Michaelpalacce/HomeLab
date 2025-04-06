@@ -1,0 +1,39 @@
+---
+{{- with .Values.mazanoke }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: mazanoke
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app.kubernetes.io/instance: mazanoke
+        app.kubernetes.io/name: mazanoke
+spec:
+    replicas: 1
+    strategy:
+        rollingUpdate:
+            maxUnavailable: 0
+    selector:
+        matchLabels:
+            app.kubernetes.io/instance: mazanoke
+            app.kubernetes.io/name: mazanoke
+    template:
+        metadata:
+            labels:
+                app.kubernetes.io/instance: mazanoke
+                app.kubernetes.io/name: mazanoke
+        spec:
+            containers:
+                -   name: mazanoke
+                    image: {{ .image }}
+                    imagePullPolicy: IfNotPresent
+{{- if .resources }}
+                    resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+                    ports:
+                        -   name: web
+                            containerPort: {{ .port }}
+            restartPolicy: Always
+{{- end }}

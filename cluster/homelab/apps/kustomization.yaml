@@ -12,6 +12,7 @@ resources:
   - go-ddns-controller
   - gotenberg
   - homepage
+  - mazanoke
   - mealie
   - media
   - monitoring

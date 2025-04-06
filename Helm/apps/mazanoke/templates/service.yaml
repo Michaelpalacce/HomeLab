@@ -1,0 +1,16 @@
+---
+{{- with .Values.mazanoke }}
+apiVersion: v1
+kind: Service
+metadata:
+    name: mazanoke
+    namespace: {{ $.Release.Namespace }}
+spec:
+    selector:
+        app.kubernetes.io/instance: mazanoke
+        app.kubernetes.io/name: mazanoke
+    ports:
+        -   name: mazanoke
+            protocol: TCP
+            port: {{ .port }}
+{{- end }}

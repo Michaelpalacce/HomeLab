@@ -1,0 +1,8 @@
+---
+mazanoke:
+    image: ghcr.io/civilblur/mazanoke:v1.0.1
+    port: 80
+    resources:
+        requests:
+            cpu: 10m
+            memory: 10Mi
