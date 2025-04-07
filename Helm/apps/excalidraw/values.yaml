@@ -1,0 +1,8 @@
+---
+excalidraw:
+    image: excalidraw/excalidraw:latest # Doesn't provide tags....
+    port: 80
+    resources:
+        requests:
+            cpu: 10m
+            memory: 10Mi

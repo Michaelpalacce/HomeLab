@@ -1,0 +1,29 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: excalidraw
+    namespace: {{ $.Release.Namespace }}
+    annotations:
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: Draw and make diagarms
+        gethomepage.dev/group: Tools
+        gethomepage.dev/icon: excalidraw
+        gethomepage.dev/name: Excalidraw
+spec:
+    ingressClassName: nginx
+    tls:
+        - hosts:
+              - "*.stefangenov.site"
+          secretName: ingress
+    rules:
+        - host: excalidraw.stefangenov.site
+          http:
+              paths:
+                  - pathType: Prefix
+                    path: "/"
+                    backend:
+                        service:
+                            name: excalidraw
+                            port:
+                                number: {{ .Values.excalidraw.port }}

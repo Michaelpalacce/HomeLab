@@ -1,0 +1,18 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+    name: excalidraw
+    namespace: excalidraw
+spec:
+    interval: 5m
+    install:
+        createNamespace: true
+    chart:
+        spec:
+            chart: ./Helm/apps/excalidraw
+            reconcileStrategy: Revision
+            sourceRef:
+                kind: GitRepository
+                name: flux-system
+                namespace: flux-system
