@@ -45,21 +45,4 @@ spec:
                           port: {{ .port }}
 
             restartPolicy: Always
-
----
-
-apiVersion: v1
-kind: Service
-metadata:
-    name: excalidraw
-    namespace: {{ $.Release.Namespace }}
-spec:
-    selector:
-        app.kubernetes.io/instance: excalidraw
-        app.kubernetes.io/name: excalidraw
-    ports:
-        - name: excalidraw
-          protocol: TCP
-          port: {{ .port }}
-
 {{- end }}
