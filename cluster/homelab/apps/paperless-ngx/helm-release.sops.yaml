@@ -44,7 +44,7 @@ spec:
             # -- Image pull policy
             pullPolicy: IfNotPresent
             # -- Image tag
-            tag: 2.14.7
+            tag: 2.15.0
         persistence:
             data:
                 enabled: true
