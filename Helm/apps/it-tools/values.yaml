@@ -1,0 +1,8 @@
+---
+it-tools:
+    image: ghcr.io/corentinth/it-tools:2024.10.22-7ca5933
+    port: 80
+    resources:
+        requests:
+            cpu: 10m
+            memory: 10Mi

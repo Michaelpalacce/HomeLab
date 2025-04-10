@@ -1,0 +1,39 @@
+---
+{{- with .Values.it-tools }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: it-tools
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app.kubernetes.io/instance: it-tools
+        app.kubernetes.io/name: it-tools
+spec:
+    replicas: 1
+    strategy:
+        rollingUpdate:
+            maxUnavailable: 0
+    selector:
+        matchLabels:
+            app.kubernetes.io/instance: it-tools
+            app.kubernetes.io/name: it-tools
+    template:
+        metadata:
+            labels:
+                app.kubernetes.io/instance: it-tools
+                app.kubernetes.io/name: it-tools
+        spec:
+            containers:
+                -   name: it-tools
+                    image: {{ .image }}
+                    imagePullPolicy: IfNotPresent
+{{- if .resources }}
+                    resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+                    ports:
+                        -   name: web
+                            containerPort: {{ .port }}
+            restartPolicy: Always
+{{- end }}

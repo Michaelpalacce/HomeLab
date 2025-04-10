@@ -13,6 +13,7 @@ resources:
   - go-ddns-controller
   - gotenberg
   - homepage
+  - it-tools
   - mazanoke
   - mealie
   - media

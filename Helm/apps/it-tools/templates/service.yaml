@@ -1,0 +1,16 @@
+---
+{{- with .Values.it-tools }}
+apiVersion: v1
+kind: Service
+metadata:
+    name: it-tools
+    namespace: {{ $.Release.Namespace }}
+spec:
+    selector:
+        app.kubernetes.io/instance: it-tools
+        app.kubernetes.io/name: it-tools
+    ports:
+        -   name: it-tools
+            protocol: TCP
+            port: {{ .port }}
+{{- end }}
