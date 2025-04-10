@@ -121,13 +121,13 @@ data:
         ruler:
             alertmanager_url: http://localhost:9093
         limits_config:
-            retention_period: 72h
+            retention_period: 128h
             retention_stream:
                 - selector: '{job="containerlogs"}'
                   priority: 1
-                  period: 48h
+                  period: 128h
                 - selector: '{job="varlogs"}'
                   priority: 1
-                  period: 48h
+                  period: 128h
 
 {{- end }}
