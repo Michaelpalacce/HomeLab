@@ -73,7 +73,7 @@ spec:
                     image: {{ .image }}
                     imagePullPolicy: IfNotPresent
                     args:
-                        - '--storage.tsdb.retention.time=3d'
+                        - '--storage.tsdb.retention.time=7d'
                         - '--storage.tsdb.path=/prometheus'
                         - '--config.file=/etc/prometheus/prometheus.yml'
                     command:
