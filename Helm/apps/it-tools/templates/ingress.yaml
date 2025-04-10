@@ -26,4 +26,4 @@ spec:
                             service:
                                 name: it-tools
                                 port:
-                                    number: {{ .Values.it-tools.port }}
+                                    number: {{ .Values.ittools.port }}
