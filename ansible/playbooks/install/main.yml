@@ -1,5 +1,25 @@
 ---
 - hosts: all
+  name: Setup sudoers
+  gather_facts: false
+  become: true
+  tags:
+      - preflight
+      - preflight-sudoers
+  vars_files:
+      - "./vars/main.yml"
+  tasks:
+      - name: Show current Ansible user
+        debug:
+          var: ansible_user
+      - name: Enable passwordless sudo for user
+        copy:
+          dest: "/etc/sudoers.d/10-{{ ansible_user }}"
+          content: "{{ ansible_user }} ALL=(ALL) NOPASSWD:ALL"
+          owner: root
+          group: root
+          mode: '0440'
+- hosts: all
   name: Setup Logs and log sizes
   gather_facts: false
   become: true
