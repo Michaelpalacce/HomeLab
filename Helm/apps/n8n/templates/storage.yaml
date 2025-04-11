@@ -11,3 +11,16 @@ spec:
     resources:
         requests:
             storage: {{ .Values.postgres.dataSize }}
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: n8n-pvc
+spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: longhorn
+    resources:
+        requests:
+            storage: {{ .Values.n8n.dataSize }}
