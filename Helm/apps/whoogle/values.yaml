@@ -2,6 +2,7 @@
 whoogle:
     image: ghcr.io/benbusby/whoogle-search:0.9.3
     replicas: 1
+    lbIp: 192.168.1.11
     port: 5000
     resources:
         requests:
