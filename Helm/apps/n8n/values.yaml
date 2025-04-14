@@ -1,6 +1,6 @@
 ---
 n8n:
-    image: n8nio/n8n:1.88.0
+    image: n8nio/n8n:1.89.0
     dataSize: 10Gi
     port: 5678
     replicas: 1
