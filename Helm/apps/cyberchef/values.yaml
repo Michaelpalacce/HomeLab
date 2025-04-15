@@ -2,6 +2,7 @@
 cyberchef:
     image: mpepping/cyberchef:v10.19.4
     port: 8000
+    lbIp: 192.168.1.12
     resources:
         requests:
             cpu: 10m
