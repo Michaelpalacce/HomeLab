@@ -8,7 +8,6 @@ spec:
     template:
         hooks: {}
         includedNamespaces:
-          - beaverhabits
           - nodered
           - changedetection
           - mealie
