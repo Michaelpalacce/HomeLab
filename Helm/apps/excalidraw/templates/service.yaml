@@ -7,8 +7,10 @@ metadata:
     name: excalidraw
     namespace: {{ $.Release.Namespace }}
 spec:
+    {{- with .lbIp }}
     type: LoadBalancer
     loadBalancerIP: {{ .lbIp }}
+    {{- end }}
     selector:
         app.kubernetes.io/instance: excalidraw
         app.kubernetes.io/name: excalidraw

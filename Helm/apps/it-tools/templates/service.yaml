@@ -6,6 +6,10 @@ metadata:
     name: it-tools
     namespace: {{ $.Release.Namespace }}
 spec:
+    {{- with .lbIp }}
+    type: LoadBalancer
+    loadBalancerIP: {{ .lbIp }}
+    {{- end }}
     selector:
         app.kubernetes.io/instance: it-tools
         app.kubernetes.io/name: it-tools
