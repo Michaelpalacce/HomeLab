@@ -8,7 +8,7 @@ metadata:
 spec:
     {{- with .lbIp }}
     type: LoadBalancer
-    loadBalancerIP: {{ .lbIp }}
+    loadBalancerIP: {{ . }}
     {{- end }}
     selector:
         app.kubernetes.io/instance: it-tools

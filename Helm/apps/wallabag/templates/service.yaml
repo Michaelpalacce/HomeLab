@@ -7,8 +7,10 @@ metadata:
     name: wallabag
     namespace: {{ $.Release.Namespace }}
 spec:
+    {{- with .lbIp }}
     type: LoadBalancer
-    loadBalancerIP: {{ .lbIp }}
+    loadBalancerIP: {{ . }}
+    {{- end }}
     selector:
         app.kubernetes.io/instance: wallabag
         app.kubernetes.io/name: wallabag
