@@ -48,6 +48,7 @@ spec:
             useAllNodes: true
             useAllDevices: true
             # Only create OSDs on devices that match the regular expression filter, "sdb" in this example
+            # @WARN: THIS WILL TAKE OVER `sdb` ENTIRELY, MAKE SURE IT'S RESERVED ONLY FOR CEPH
             deviceFilter: sdb
           # To control where various services will be scheduled by kubernetes, use the placement configuration sections below.
           # The example under 'all' would have all services scheduled on kubernetes nodes labeled with 'role=rook-node' and
