@@ -13,8 +13,6 @@ metadata:
         nginx.ingress.kubernetes.io/rewrite-target: /$1
         nginx.ingress.kubernetes.io/use-regex: "true"
         nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-        nginx.ingress.kubernetes.io/server-snippet: |
-          proxy_ssl_verify off;
 spec:
     ingressClassName: nginx
     tls:
