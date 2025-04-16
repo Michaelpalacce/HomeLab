@@ -1,9 +1,0 @@
----
-apiVersion: source.toolkit.fluxcd.io/v1
-kind: HelmRepository
-metadata:
-    name: lwolf-charts
-    namespace: flux-system
-spec:
-    url: http://charts.lwolf.org
-    interval: 10m

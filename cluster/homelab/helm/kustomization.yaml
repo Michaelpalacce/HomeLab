@@ -15,7 +15,6 @@ resources:
     - kube-vip
     - kubereboot
     - oneuptime
-    - lwolf-charts
     - descheduler
     - gabe565
     - searxng

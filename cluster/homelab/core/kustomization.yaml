@@ -9,6 +9,5 @@ resources:
     - velero
     - cert-manager
     - kured
-    - kube-cleanup-operator
     - descheduler
     - metallb
