@@ -42,7 +42,7 @@ spec:
       deployNodeAgent: true
       nodeAgent:
         podLabels:
-          role: node-agent
+          role: node-agent # Fixes https://github.com/vmware-tanzu/helm-charts/issues/659
       credentials:
           existingSecret: cloud-credentials-wasabi
       configuration:
