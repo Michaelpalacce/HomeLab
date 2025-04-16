@@ -40,6 +40,9 @@ spec:
           scrapeInterval: 120s
           scrapeTimeout: 30s
       deployNodeAgent: true
+      nodeAgent:
+        podLabels:
+          role: node-agent
       credentials:
           existingSecret: cloud-credentials-wasabi
       configuration:
