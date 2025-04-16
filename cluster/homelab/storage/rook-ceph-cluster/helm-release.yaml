@@ -197,26 +197,3 @@ spec:
           disruptionManagement:
             managePodBudgets: true
             osdMaintenanceTimeout: 30
-        cephBlockPools:
-          - name: ceph-blockpool
-            spec:
-              failureDomain: host
-              replicated:
-                size: 3
-            storageClass:
-              enabled: true
-              name: ceph-block
-              isDefault: true
-              reclaimPolicy: Delete
-              allowVolumeExpansion: true
-              volumeBindingMode: Immediate
-              mountOptions: ["discard"]
-        cephBlockPoolsVolumeSnapshotClass:
-          enabled: true
-          name: csi-ceph-blockpool
-          isDefault: false
-          deletionPolicy: Delete
-        # NOTE: After disabling the filesystem, the filesystem can be removed with the following commands:
-        # ceph fs fail ceph-filesystem && ceph fs rm ceph-filesystem --yes-i-really-mean-it
-        cephFileSystems: []
-        cephObjectStores: []
