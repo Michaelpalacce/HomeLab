@@ -37,8 +37,6 @@ spec:
                             value: "1000"
                         -   name: TZ
                             value: "Europe/Sofia"
-                        -   name: ALLOW_SIGNUP
-                            value: "true"
                         -   name: MAX_WORKERS
                             value: "1"
                         -   name: WEB_CONCURRENCY
