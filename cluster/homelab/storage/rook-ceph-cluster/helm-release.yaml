@@ -64,10 +64,10 @@ spec:
                       values:
                       - rook-osd-node
         resources:
-            prepareosd:
-              requests:
-                cpu: "200m"
-                memory: "200Mi"
+        #  prepareosd:
+        #    requests:
+        #      cpu: "200m"
+        #      memory: "200Mi"
         priorityClassNames:
           # If there are multiple nodes available in a failure domain (e.g. zones), the
           # mons and osds can be portable and set the system-cluster-critical priority class.
