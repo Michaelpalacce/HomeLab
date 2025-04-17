@@ -10,6 +10,9 @@ metadata:
         app.kubernetes.io/instance: changedetection
         app.kubernetes.io/name: changedetection
 spec:
+    strategy:
+        rollingUpdate:
+            maxUnavailable: 0
     replicas: 1
     selector:
         matchLabels:

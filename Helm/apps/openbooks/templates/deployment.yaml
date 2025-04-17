@@ -10,6 +10,9 @@ metadata:
         app.kubernetes.io/instance: openbooks
         app.kubernetes.io/name: openbooks
 spec:
+    strategy:
+        rollingUpdate:
+            maxUnavailable: 0
     replicas: 1
     selector:
         matchLabels:

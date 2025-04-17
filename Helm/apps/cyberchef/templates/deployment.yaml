@@ -10,6 +10,9 @@ metadata:
         app.kubernetes.io/instance: cyberchef
         app.kubernetes.io/name: cyberchef
 spec:
+    strategy:
+        rollingUpdate:
+            maxUnavailable: 0
     replicas: 1
     selector:
         matchLabels:

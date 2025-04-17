@@ -9,6 +9,9 @@ metadata:
         app.kubernetes.io/instance: mealie
         app.kubernetes.io/name: mealie
 spec:
+    strategy:
+        rollingUpdate:
+            maxUnavailable: 0
     replicas: {{ .replicas }}
     selector:
         matchLabels:

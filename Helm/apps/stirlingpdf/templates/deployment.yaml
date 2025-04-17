@@ -10,6 +10,9 @@ metadata:
         app.kubernetes.io/instance: stirlingpdf
         app.kubernetes.io/name: stirlingpdf
 spec:
+    strategy:
+        rollingUpdate:
+            maxUnavailable: 0
     replicas: 1
     selector:
         matchLabels:
