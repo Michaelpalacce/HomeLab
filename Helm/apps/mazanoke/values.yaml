@@ -1,6 +1,6 @@
 ---
 mazanoke:
-    image: ghcr.io/civilblur/mazanoke:v1.0.1
+    image: ghcr.io/civilblur/mazanoke:v1.1.3
     port: 80
     resources:
         requests:
