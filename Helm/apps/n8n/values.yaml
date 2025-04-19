@@ -4,6 +4,8 @@ n8n:
     dataSize: 10Gi
     port: 5678
     replicas: 1
+    nasIp: 192.168.1.39
+    nasPath: /volume1/k3s
     resources:
         requests:
             cpu: 10m

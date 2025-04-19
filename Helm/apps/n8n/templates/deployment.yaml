@@ -92,14 +92,20 @@ spec:
                         -   name: web
                             containerPort: {{ .port }}
                     volumeMounts:
-                        -   name: data
-                            mountPath: /home/node
+                        - name: data
+                          mountPath: /home/node
+                        - name: nas
+                          mountPath: /nas
 
             restartPolicy: Always
             volumes:
-                -   name: data
-                    persistentVolumeClaim:
-                        claimName: n8n-pvc
+                - name: data
+                  persistentVolumeClaim:
+                      claimName: n8n-pvc
+                - name: nas
+                  nfs:
+                    path: "{{ .nasPath }}"
+                    server: "{{ .nasIp }}"
 
 ---
 
