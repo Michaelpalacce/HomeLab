@@ -1,4 +1,4 @@
-apiVersion: ddns.sgenov.dev/v1alpha1
+apiVersion: ddns.stefangenov.site/v1alpha1
 kind: Notifier
 metadata:
   labels:
