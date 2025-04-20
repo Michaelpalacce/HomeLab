@@ -14,10 +14,10 @@ spec:
     ingressClassName: nginx
     tls:
         - hosts:
-              - "*.stefangenov.site"
+              - "*.sgenov.dev"
           secretName: ingress
     rules:
-        - host: openbooks.stefangenov.site
+        - host: openbooks.sgenov.dev
           http:
               paths:
                   - pathType: Prefix

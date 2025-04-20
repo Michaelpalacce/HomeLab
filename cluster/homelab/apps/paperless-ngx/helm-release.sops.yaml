@@ -32,12 +32,12 @@ spec:
         podAnnotations:
             backup.velero.io/backup-volumes: data,media,export,consume
         service:
-          main:
-            type: LoadBalancer
-            loadBalancerIP: 192.168.1.8
-            ports:
-              http:
-                port: 80
+            main:
+                type: LoadBalancer
+                loadBalancerIP: 192.168.1.8
+                ports:
+                    http:
+                        port: 80
         image:
             # -- Image repository
             repository: ghcr.io/paperless-ngx/paperless-ngx
@@ -71,22 +71,22 @@ spec:
                 ingressClassName: nginx
                 enabled: true
                 annotations:
-                    gethomepage.dev/enabled: ENC[AES256_GCM,data:JxMs6Q==,iv:sYUi4doE9KmAWSxFBLRR36jCtt3Z/CwJsGNNbAkoeKU=,tag:VRPfTA80g4cr+99sI1buFA==,type:str]
-                    gethomepage.dev/description: ENC[AES256_GCM,data:JxqBF+hA6a1CXenWpaVliWaWo5vk6b4LX4k=,iv:55KhxexrKunESC4eXRXVamoE6QU+b8reWNelaF56yyo=,tag:vptg0i73smqel9laixHm/w==,type:str]
-                    gethomepage.dev/group: ENC[AES256_GCM,data:DZo628fcWdhF,iv:0Mb+Us9V7lfG4y456UwFz/7W27QSQDy8PFmhWTBs3Ig=,tag:NZ2SJr1mv+6bwg/3fJRlOw==,type:str]
-                    gethomepage.dev/icon: ENC[AES256_GCM,data:lQXA7fMWs0tU2BVL7Q==,iv:mPIVGZ+I6EfNy/XlzNjeak1/nD9OvTexF4TWZpQVZFg=,tag:mXxp3d5De6cmXYNJRsp31w==,type:str]
-                    gethomepage.dev/name: ENC[AES256_GCM,data:1nbYw9+m7Tb5U3peWg==,iv:1jPI9S1rVyRcOs4ahmFEXvqfe5dkvQmf2zijwofyZpo=,tag:HGrQ9qZNSiuPO/1V0BIYyA==,type:str]
-                    gethomepage.dev/widget.type: ENC[AES256_GCM,data:YSTGNp6jcBiRailZ,iv:NDMAVdTLO9+0fx9I9waQeO2YP3irSIou/dsYbCJAal8=,tag:DC7G0hsKn6EJnwNObsfPXg==,type:str]
-                    gethomepage.dev/widget.url: ENC[AES256_GCM,data:XVwR9ckCxRhXgn99PHgzWToZBcBOKc4JB94WXK07Yfk7wQ==,iv:kWJVO1vlcP7DH1bV+7jhXj7Sj1dajSV1rkmW+8pQkY4=,tag:NS5dcxgkXpBEYWMzawKCGw==,type:str]
-                    gethomepage.dev/widget.key: ENC[AES256_GCM,data:gUdpOOuK2Hk8EpwHnivC+vzsrDHaLGnuHD5sY8o2EkU7Djdo+H3fOg==,iv:Z8dfoKw0msqvnwWWVdBWfGavBiMtXIS5x3KIS1RYg+A=,tag:GJbbtI0uIa+zvA9xAqokvg==,type:str]
+                    gethomepage.dev/enabled: ENC[AES256_GCM,data:dOuvOw==,iv:5QRtfluMrRvYN2blykDil98TYfTmVRodZG1EolC+yTI=,tag:LNHHJSAWf9fJqE38bEEhWg==,type:str]
+                    gethomepage.dev/description: ENC[AES256_GCM,data:KnKuDlBDGEzHHiI3Tee1Z5DiPNBd3AQTnGc=,iv:pRebquAEuAfFdxwDOoPNKsMGLn94pbsq+T49OGBht8A=,tag:KTLr/6QbdIwddZWq3mF0fw==,type:str]
+                    gethomepage.dev/group: ENC[AES256_GCM,data:1oztcAHxFRu4,iv:0BDXZYlOzPa2DiH13iLq/TRMnDDaDYPWVt2GcLVRsiM=,tag:zEC+mFefaJ8jYm5mNum28A==,type:str]
+                    gethomepage.dev/icon: ENC[AES256_GCM,data:NLp/L/YujszUd/Gncw==,iv:yHRnXbvzknkRtcoF+wrr/FTQmjj2MseEUutgUwF3pU0=,tag:b4J8pd1b6GbjHUOxG9Nx/Q==,type:str]
+                    gethomepage.dev/name: ENC[AES256_GCM,data:6GXXQhko+RQQkGQbug==,iv:94+FheBFv1DN619OhmBiWbUHGZWTB/K2+HhQeM0TKSk=,tag:9SkJOP0qG3rK5srD1CeTbQ==,type:str]
+                    gethomepage.dev/widget.type: ENC[AES256_GCM,data:UNe57TLinIF/LjyU,iv:93ejxeljHg42ksU6gles47svyvIdOOds8/9jTBJC9to=,tag:2Yu5JHiiM4CyX3EfT/HQHw==,type:str]
+                    gethomepage.dev/widget.url: ENC[AES256_GCM,data:2+DJ0euJmmn48lzxI7xK2sJHz8auBNXXgkjU9Q==,iv:Jdv6XPv8whfQMTFzMeYCHnD4owD3OjDYY2l+KNG2vgo=,tag:Eng7Aqp00HimpbzVmTGQqA==,type:str]
+                    gethomepage.dev/widget.key: ENC[AES256_GCM,data:NfTSgmyuP0/sHdUDhT1WL1eTzzeHu+7WHdmqYdv3/elJrVb7v/Cf4A==,iv:EnTFVdvq9LbqvAh2RmeIWZjPYvoJyoHfX58EpnU5/DA=,tag:qf0ClkErUI8QGbfFgYQ+kA==,type:str]
                 hosts:
-                    - host: paperless.stefangenov.site
+                    - host: paperless.sgenov.dev
                       paths:
                         - path: /
                 tls:
                     - secretName: ingress
                       hosts:
-                        - '*.stefangenov.site'
+                        - '*.sgenov.dev'
 sops:
     kms: []
     gcp_kms: []
@@ -96,14 +96,14 @@ sops:
         - recipient: age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
           enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBNdXR5aEM2dW5yVE42ci85
-            WDg4Mkc1T2VWSXVVV1VucGVZNmZTQ004aXcwCklucVc0QU9aMGZBQ0ZNUmsxU3Bu
-            WVF2VFFmVEpFMkM5THZGVkd6d204dk0KLS0tIDhkaDQycm9rQmI4N0FvL2ZtZjZa
-            T1dOOHU5S0p0dHUyQ3Zsbmx6RmF0MlkKTrTTDkKHiCU/r50BW+FLSFNgn+M0qHlB
-            HtnCDFgUdnij/1cDkNT9wAYgtbeV1P6hYUGjgPVUjmiFaiCHBZdG/w==
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSA5WGI5bEpKNkNaeUFtWHFC
+            dWFRRnRabjVXTExYcmRQWVp2SWU4dXNzb3ljCkdUR3lkNzNFT2d4TjhIakNjT01U
+            Q25tMVZ6bURFV0JVOTZRa2xWUDlrV3MKLS0tIE1wQmNsMG4vVFhaT1NGUUlYWGZx
+            djVLdGFPTUpOV2tESmdSL1VzVDAzY2MK7Gwu9CL9ldfj3c77khfk6ZL0eJJvIgjY
+            HkrJtG780NcVjGgDSjciJZ8WdkO3epsZbw9SrQGlMdmBFq1zYLHv4g==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-09-20T03:40:55Z"
-    mac: ENC[AES256_GCM,data:B9/nyYXd2dH98ZVIuvUQ6XrINZy1UUlZJb4G7V3F+0b/EhFGJnuYrAWf7hGNmc9+bWh9NJkSv18aSfcmjfGvmsUHr5lGxW6dZQF7iKJRA3FGWHpUwQCldQVyqu232wFsGxFMcXek3/tpzQPHHI4o99+nfsOpVRKdLFPN1+8Q62A=,iv:oNDa5BLGa1auQnWiOR8CmqQk3NJOBaZ93HeyQe5tL/Y=,tag:r9AN3bD5nq/FuvqE/7+pHQ==,type:str]
+    lastmodified: "2025-04-20T20:13:08Z"
+    mac: ENC[AES256_GCM,data:9EKKAh2VgftiOKOlPTvakHGgpiblxCiA6wlc4/EuVRY9aKUNos7FBD4SLJXRqtr1bKFSFc/YDV8wPdElT8Hj+gWit9jEf0zh5zvXn9Cw1pV1m3kZFxRDdeiB0hwq/+xMC3lj6vm/aCX2kEwC05UH4C63uEa9rVAsvZJ9ijvypFs=,iv:TcGExx2Ghzamx+TQ4CeQ+px1d1P4WYYP+ULWaDz42xQ=,tag:i59xyCisNq4M5N37hGZPbA==,type:str]
     pgp: []
     encrypted_regex: ^(rules|annotations|)$
     version: 3.8.1

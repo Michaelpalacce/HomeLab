@@ -14,10 +14,10 @@ spec:
     ingressClassName: nginx
     tls:
         - hosts:
-              - "*.stefangenov.site"
+              - "*.sgenov.dev"
           secretName: ingress
     rules:
-        - host: lubelogger.stefangenov.site
+        - host: lubelogger.sgenov.dev
           http:
               paths:
                   - pathType: Prefix

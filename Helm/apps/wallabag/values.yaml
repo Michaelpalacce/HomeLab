@@ -4,7 +4,7 @@ wallabag:
     replicas: 1
     port: 80
     lbIp: 192.168.1.7
-    domainName: https://wallabag.stefangenov.site
+    domainName: https://wallabag.sgenov.dev
     resources:
         requests:
             cpu: 100m

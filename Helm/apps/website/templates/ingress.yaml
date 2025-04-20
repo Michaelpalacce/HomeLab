@@ -9,16 +9,16 @@ metadata:
         gethomepage.dev/enabled: "true"
         gethomepage.dev/description: My Website
         gethomepage.dev/group: Personal
-        gethomepage.dev/icon: https://stefangenov.site/favicon.ico
+        gethomepage.dev/icon: https://sgenov.dev/favicon.ico
         gethomepage.dev/name: Website
 spec:
     ingressClassName: nginx
     tls:
         -   hosts:
-                - "*.stefangenov.site"
+                - "*.sgenov.dev"
             secretName: ingress
     rules:
-        -   host: stefangenov.site
+        -   host: sgenov.dev
             http:
                 paths:
                     -   pathType: Prefix
@@ -28,7 +28,7 @@ spec:
                                 name: website
                                 port:
                                     number: {{ .Values.website.port }}
-        -   host: website.stefangenov.site
+        -   host: website.sgenov.dev
             http:
                 paths:
                     -   pathType: Prefix

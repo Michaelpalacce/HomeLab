@@ -14,10 +14,10 @@ spec:
     ingressClassName: nginx
     tls:
         -   hosts:
-                - "*.stefangenov.site"
+                - "*.sgenov.dev"
             secretName: ingress
     rules:
-        -   host: grafana.stefangenov.site
+        -   host: grafana.sgenov.dev
             http:
                 paths:
                     -   pathType: Prefix
@@ -40,15 +40,15 @@ metadata:
         gethomepage.dev/icon: prometheus
         gethomepage.dev/name: Prometheus
         gethomepage.dev/widget.type: prometheus
-        gethomepage.dev/widget.url: https://prometheus.stefangenov.site
+        gethomepage.dev/widget.url: https://prometheus.sgenov.dev
 spec:
     ingressClassName: nginx
     tls:
         -   hosts:
-                - "*.stefangenov.site"
+                - "*.sgenov.dev"
             secretName: ingress
     rules:
-        -   host: prometheus.stefangenov.site
+        -   host: prometheus.sgenov.dev
             http:
                 paths:
                     -   pathType: Prefix
@@ -68,10 +68,10 @@ spec:
     ingressClassName: nginx
     tls:
         -   hosts:
-                - "*.stefangenov.site"
+                - "*.sgenov.dev"
             secretName: ingress
     rules:
-        -   host: loki.stefangenov.site
+        -   host: loki.sgenov.dev
             http:
                 paths:
                     -   pathType: Prefix

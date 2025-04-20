@@ -14,10 +14,10 @@ spec:
     ingressClassName: nginx
     tls:
         -   hosts:
-                - "*.stefangenov.site"
+                - "*.sgenov.dev"
             secretName: ingress
     rules:
-        -   host: vaultwarden.stefangenov.site
+        -   host: vaultwarden.sgenov.dev
             http:
                 paths:
                     -   pathType: Prefix
@@ -27,7 +27,7 @@ spec:
                                 name: vaultwarden
                                 port:
                                     number: {{ .Values.vaultwarden.port }}
-        -   host: vault.stefangenov.site
+        -   host: vault.sgenov.dev
             http:
                 paths:
                     -   pathType: Prefix
@@ -37,7 +37,7 @@ spec:
                                 name: vaultwarden
                                 port:
                                     number: {{ .Values.vaultwarden.port }}
-        -   host: passwords.stefangenov.site
+        -   host: passwords.sgenov.dev
             http:
                 paths:
                     -   pathType: Prefix

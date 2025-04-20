@@ -21,7 +21,7 @@ spec:
         enablePSP: false
         ingress:
             enabled: true
-            host: longhorn.stefangenov.site
+            host: longhorn.sgenov.dev
             ingressClassName: nginx
             tls: true
             tlsSecret: ingress

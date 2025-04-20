@@ -4,15 +4,15 @@ metadata:
     name: grafana
     namespace: monitoring
     annotations:
-        gethomepage.dev/enabled: ENC[AES256_GCM,data:Og/gAA==,iv:HhUv3qCUAl0IoA1yKXaO82Pf6R6zdT2I4+5bONGAiM8=,tag:ExsNoJ5E+F0B3IPd5kLO2w==,type:str]
-        gethomepage.dev/description: ENC[AES256_GCM,data:cRo60q8/wo4meg==,iv:fFLg6mWOoFdlc8GmaMWKg0hfEUjY88gC6niOR6m6+cU=,tag:pWRxsifGOZm5xckstI9crg==,type:str]
-        gethomepage.dev/group: ENC[AES256_GCM,data:/m0T9SIDZxUmFQ==,iv:jivMERCuG995wAb0K6AEEdWSXKuPfmpsIiEtQNgP/Bw=,tag:seOoPU2pZJmacNmb1q6iqg==,type:str]
-        gethomepage.dev/icon: ENC[AES256_GCM,data:shcSCA/lig==,iv:om8j10ERXfUBnupzC7rAh3aevtRSu2LoySQ9lRr9y6w=,tag:9wWh81zmA58GMDw5tZu9Pg==,type:str]
-        gethomepage.dev/name: ENC[AES256_GCM,data:uIQEOj3mVA==,iv:xDj0zcJks5wRJXxVolfJf8JVGOsTOYUEgQnICZ69BTg=,tag:EH6NrDiPw8lqNHKX4cC05Q==,type:str]
-        gethomepage.dev/widget.type: ENC[AES256_GCM,data:tFtaAO2aYw==,iv:eycXjgEgEBstgEZHxGoKUIydTx4KSwyTldraaIc7V68=,tag:a/ToGdC7WFsBl+/0Fjn6YQ==,type:str]
-        gethomepage.dev/widget.url: ENC[AES256_GCM,data:UnnyC6cou4JeTBrIKYMEyH7yxACh6C4hJK7lksuScGc=,iv:+qoyHCjtLgDzrdMaFXkzsfYaSr6b8z19cyebM/lnzDQ=,tag:A4sJNBqa3ipL56XVbRteow==,type:str]
-        gethomepage.dev/widget.username: ENC[AES256_GCM,data:kPoluVA=,iv:+8UR0juylDD34UClHu412UW3ZrX8oW5de1VDUrZv5XQ=,tag:nKt+kaO4Ur2BeWXIOjGxQg==,type:str]
-        gethomepage.dev/widget.password: ENC[AES256_GCM,data:btsxAQTlORs=,iv:GQs00I00lGXkdTAzBBYsSCXk4pSRkRLLyf04D+wzI+Y=,tag:AynZH1J6tomU1z4KMfb86g==,type:str]
+        gethomepage.dev/enabled: ENC[AES256_GCM,data:ZMeENA==,iv:/V/ffHaUWHgT11nrKYX9k7ogN4Qot2FQpvoMGZUaGJo=,tag:8lx7+7cMcSM58o6QpKRBCQ==,type:str]
+        gethomepage.dev/description: ENC[AES256_GCM,data:JeCTvpCbK4YTUQ==,iv:+ayXBbcRlYtoUlpalZPainXv1n9xwBRI9uq5pTtdv1Q=,tag:8DfA2TFsdlt4/PHJV+aZ4Q==,type:str]
+        gethomepage.dev/group: ENC[AES256_GCM,data:eZb6doiqw7eKEw==,iv:4XPrle4WzyoyP7g6y9TEQOyWM0f5S5RpGU9JVciaq+M=,tag:98DLRttfdV/HVDLlS0W0fQ==,type:str]
+        gethomepage.dev/icon: ENC[AES256_GCM,data:ffQu7xHBcQ==,iv:BHVAvERU8VEIgJEC5N6WN1Yc9F33rVRNRJLm4NZFf1s=,tag:UjdcjrpHaJA1iEBvQ59u1A==,type:str]
+        gethomepage.dev/name: ENC[AES256_GCM,data:mSqwd7UZJA==,iv:hD78gFteVs+Ah5EvlbbzJudoVTk7zSR+HsG2mHGNQR4=,tag:cVWAzwDtLfA5WFJVnAdQBA==,type:str]
+        gethomepage.dev/widget.type: ENC[AES256_GCM,data:KdcepOZ4wQ==,iv:CeWBsidKHpt1sJoauZrJlOGmzwL6IIO9jwZOuhbu3bk=,tag:yQTuoUhuxkPU5lsH7r1dqg==,type:str]
+        gethomepage.dev/widget.url: ENC[AES256_GCM,data:b4otjN56moe6ntlIZ6dx3o/qY/wCEf27RI8=,iv:iVDMjSDbU+tCedb/Cd75Yy280hhMjn2uTNXIWB8S3/s=,tag:85OMQfLQW2SVRUwypKdQzg==,type:str]
+        gethomepage.dev/widget.username: ENC[AES256_GCM,data:BJoLFfc=,iv:0vmiI6lYukTJ8LKRp+b7/6R1b6RlZNb4Lsuk9pr3UEc=,tag:d34KfCFfUR2O+L8uH7Ve/Q==,type:str]
+        gethomepage.dev/widget.password: ENC[AES256_GCM,data:O1YFg5f012g=,iv:Uqz4Mw9uboDjBAMSUicfO6EDEWFr4dyrkeHAD34HSOs=,tag:DiI7A07+BUIYl2rM+/SjJQ==,type:str]
 sops:
     kms: []
     gcp_kms: []
@@ -22,14 +22,14 @@ sops:
         - recipient: age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
           enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSA3Z1VaZmdQU0RDc1drY0tW
-            YmhQeGdGaW9vTEhjU2R3ODhuS3l2dGk4eVRNCjhiMHBzalRTOEp5KyswN0M0Szln
-            ZmQyeFNqc0dDOWV2R3AyT0lFNnd4OFEKLS0tIHJtM2Q1VXFmaVJkNGdHZW13SHVw
-            SVc0VFNuenJRNEIvSFVFVDV1YU5NMlkK3SzrfTEpwWtPDGwc0cVUMtP4Qc5r+3d9
-            iDBH76CCCt8fJ7L/xglB0MweS4pziiQ6cDN1XeiE/voEAwBsy5sweA==
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBTZHV3b21IVW1RY1JuM1py
+            b0ZjUlQrSTczbEF3SGFXOTdpSk1HaVMxWG5vCkszWmRJcDkxdXBhRGFSbmJ6ZXRZ
+            VzlGd3BualVvRThZRWFHcy9zd2NkRlUKLS0tIExyMHZzWHUrNzdxdnY5dFVhZ1lN
+            SWdQOXp0Qmc0VTFlM0h0Y09vS1p5Z2cKilRNl8vRyOuV6faaatWmDuO4E54zub0y
+            F5EyggL8ER8GVmM1sqgJV8jEQWFb143kulVULyVpkKflgFX1dDJC4w==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-03-26T13:57:10Z"
-    mac: ENC[AES256_GCM,data:UDi31mylIR6oMd7ioNX8TFSWHK8Qqh1ysw+k5fPJWfb1DcmQXmKkoRDqg8XvBaAZGwOx8haMw10mWIMSz/QL2ZKttwZ9KiFsFzIZEwT/Jn65cYaovPdSxG/pH6azkmAdtmoNW4KsNq36Hn0wgfxmV6ZPb6HspM0avPmMSQ9trNw=,iv:ph9OSbVvrw1NM+PQ5junhdVTGh+qNLgNtMbCzAq6Zro=,tag:+k1mVWfp8Nax0gbIAzADhA==,type:str]
+    lastmodified: "2025-04-20T20:11:07Z"
+    mac: ENC[AES256_GCM,data:hSv79J5FxEhGgQfQlQgO7Ah2fwsEkw1ESjfJ75o3WhDcYxdgEthB3ROUnbK7jZjrJBi+J5c061QZ3ItFWxqG/H3sn16y2nYd0kl1ephTM/APmvg5b6NtYjWDD2YaiOIm/55rS07t07dIuPfhOR6cP0x5+icBT4bLLgFqKHlgTF0=,iv:rhJ9yaH00tEacRbX3fCBtUgWVWJp88DwVOn6mQK39EU=,tag:lEnpNjMtlzy8ZL64tIurPw==,type:str]
     pgp: []
     encrypted_regex: ^(rules|annotations|)$
     version: 3.8.1

@@ -2,7 +2,7 @@
 changedetection:
     image: dgtlmoon/changedetection.io:0.49.15
     port: 5000
-    baseUrl: changedetection.stefangenov.site
+    baseUrl: changedetection.sgenov.dev
     resources:
         requests:
             cpu: 10m

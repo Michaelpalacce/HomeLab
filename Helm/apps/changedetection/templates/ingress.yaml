@@ -11,16 +11,16 @@ metadata:
         gethomepage.dev/icon: changedetection-io
         gethomepage.dev/name: ChangeDetection.io
         gethomepage.dev/widget.type: changedetectionio
-        gethomepage.dev/widget.url: https://changedetection.stefangenov.site
+        gethomepage.dev/widget.url: https://changedetection.sgenov.dev
         gethomepage.dev/widget.key: 24f82bd47ffef64b0b533239ad38d945 # yeah, it's public, but it's not so secret
 spec:
     ingressClassName: nginx
     tls:
         - hosts:
-              - "*.stefangenov.site"
+              - "*.sgenov.dev"
           secretName: ingress
     rules:
-        - host: changedetection.stefangenov.site
+        - host: changedetection.sgenov.dev
           http:
               paths:
                   - pathType: Prefix

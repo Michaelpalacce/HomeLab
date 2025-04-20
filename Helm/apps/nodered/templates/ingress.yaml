@@ -17,10 +17,10 @@ spec:
     ingressClassName: nginx
     tls:
         - hosts:
-              - "*.stefangenov.site"
+              - "*.sgenov.dev"
           secretName: ingress
     rules:
-        - host: nodered.stefangenov.site
+        - host: nodered.sgenov.dev
           http:
               paths:
                   - pathType: Prefix

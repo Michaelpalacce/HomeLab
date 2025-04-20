@@ -151,7 +151,7 @@ sops:
 #         gethomepage.dev/icon: readarr
 #         gethomepage.dev/name: Readarr
 #         gethomepage.dev/widget.type: readarr
-#         gethomepage.dev/widget.url: https://readarr.stefangenov.site
+#         gethomepage.dev/widget.url: https://readarr.sgenov.dev
 #         gethomepage.dev/widget.key: nope
 # ---
 apiVersion: networking.k8s.io/v1

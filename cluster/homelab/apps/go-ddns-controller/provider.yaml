@@ -1,4 +1,4 @@
-apiVersion: ddns.stefangenov.site/v1alpha1
+apiVersion: ddns.sgenov.dev/v1alpha1
 kind: Provider
 metadata:
   labels:

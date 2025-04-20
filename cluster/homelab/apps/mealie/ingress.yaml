@@ -1,0 +1,12 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: mealie
+    namespace: mealie
+    annotations:
+        nginx.ingress.kubernetes.io/proxy-body-size: "0"
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: Self-hosted Recipes!
+        gethomepage.dev/group: Knowledge
+        gethomepage.dev/icon: mealie
+        gethomepage.dev/name: Mealie

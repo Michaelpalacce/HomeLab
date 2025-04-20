@@ -8,10 +8,10 @@ spec:
     ingressClassName: nginx
     tls:
         -   hosts:
-                - "*.stefangenov.site"
+                - "*.sgenov.dev"
             secretName: ingress
     rules:
-        -   host: firefly.stefangenov.site
+        -   host: firefly.sgenov.dev
             http:
                 paths:
                     -   pathType: Prefix

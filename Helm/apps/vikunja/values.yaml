@@ -2,7 +2,7 @@
 vikunja:
     image: vikunja/vikunja:0.24.6
     port: 3456
-    frontendUrl: https://vikunja.stefangenov.site
+    frontendUrl: https://vikunja.sgenov.dev
 
 postgres:
     image: postgres:16.8

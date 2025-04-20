@@ -13,6 +13,6 @@ spec:
     issuerRef:
         name: letsencrypt
         kind: ClusterIssuer
-    commonName: "*.stefangenov.site"
+    commonName: "*.sgenov.dev"
     dnsNames:
-        - '*.stefangenov.site'
+        - '*.sgenov.dev'

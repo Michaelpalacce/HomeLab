@@ -14,10 +14,10 @@ metadata:
 spec:
     tls:
         -   hosts:
-                - "*.stefangenov.site"
+                - "*.sgenov.dev"
             secretName: ingress
     rules:
-        -   host: pgadmin.stefangenov.site
+        -   host: pgadmin.sgenov.dev
             http:
                 paths:
                     -   pathType: Prefix

@@ -12,10 +12,10 @@ data:
             "cloudflare": {
                 "zones": [
                     {
-                        "name": "stefangenov.site",
+                        "name": "sgenov.dev",
                         "records": [
                             {
-                                "name": "stefangenov.site",
+                                "name": "sgenov.dev",
                                 "proxied": true
                             }
                         ]

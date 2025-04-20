@@ -2,7 +2,7 @@
 firefly:
     image: fireflyiii/core:version-6.2.10
     port: 8080
-    appUrl: https://firefly.stefangenov.site
+    appUrl: https://firefly.sgenov.dev
     resources:
         requests:
             cpu: 500m

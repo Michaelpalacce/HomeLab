@@ -14,10 +14,10 @@ spec:
     ingressClassName: nginx
     tls:
         - hosts:
-              - "*.stefangenov.site"
+              - "*.sgenov.dev"
           secretName: ingress
     rules:
-        - host: uptimekuma.stefangenov.site
+        - host: uptimekuma.sgenov.dev
           http:
               paths:
                   - pathType: Prefix
@@ -27,7 +27,7 @@ spec:
                             name: uptimekuma
                             port:
                                 number: {{ .Values.uptimekuma.port }}
-        - host: uptime.stefangenov.site
+        - host: uptime.sgenov.dev
           http:
               paths:
                   - pathType: Prefix
@@ -37,7 +37,7 @@ spec:
                             name: uptimekuma
                             port:
                                 number: {{ .Values.uptimekuma.port }}
-        - host: uptimekuma.stefangenov.site
+        - host: uptimekuma.sgenov.dev
           http:
               paths:
                   - pathType: Prefix

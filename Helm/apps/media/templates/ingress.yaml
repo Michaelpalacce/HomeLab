@@ -8,10 +8,10 @@ spec:
     ingressClassName: nginx
     tls:
         -   hosts:
-                - "*.stefangenov.site"
+                - "*.sgenov.dev"
             secretName: ingress
     rules:
-        -   host: readarr.stefangenov.site
+        -   host: readarr.sgenov.dev
             http:
                 paths:
                     -   pathType: Prefix
@@ -32,10 +32,10 @@ spec:
     ingressClassName: nginx
     tls:
         -   hosts:
-                - "*.stefangenov.site"
+                - "*.sgenov.dev"
             secretName: ingress
     rules:
-        -   host: flaresolverr.stefangenov.site
+        -   host: flaresolverr.sgenov.dev
             http:
                 paths:
                     -   pathType: Prefix
@@ -55,10 +55,10 @@ spec:
     ingressClassName: nginx
     tls:
         -   hosts:
-                - "*.stefangenov.site"
+                - "*.sgenov.dev"
             secretName: ingress
     rules:
-        -   host: sonarr.stefangenov.site
+        -   host: sonarr.sgenov.dev
             http:
                 paths:
                     -   pathType: Prefix
@@ -79,10 +79,10 @@ spec:
     ingressClassName: nginx
     tls:
         -   hosts:
-                - "*.stefangenov.site"
+                - "*.sgenov.dev"
             secretName: ingress
     rules:
-        -   host: kavita.stefangenov.site
+        -   host: kavita.sgenov.dev
             http:
                 paths:
                     -   pathType: Prefix
@@ -103,10 +103,10 @@ spec:
     ingressClassName: nginx
     tls:
         -   hosts:
-                - "*.stefangenov.site"
+                - "*.sgenov.dev"
             secretName: ingress
     rules:
-        -   host: prowlarr.stefangenov.site
+        -   host: prowlarr.sgenov.dev
             http:
                 paths:
                     -   pathType: Prefix
@@ -127,10 +127,10 @@ spec:
     ingressClassName: nginx
     tls:
         -   hosts:
-                - "*.stefangenov.site"
+                - "*.sgenov.dev"
             secretName: ingress
     rules:
-        -   host: radarr.stefangenov.site
+        -   host: radarr.sgenov.dev
             http:
                 paths:
                     -   pathType: Prefix
@@ -151,10 +151,10 @@ spec:
     ingressClassName: nginx
     tls:
         -   hosts:
-                - "*.stefangenov.site"
+                - "*.sgenov.dev"
             secretName: ingress
     rules:
-        -   host: overseerr.stefangenov.site
+        -   host: overseerr.sgenov.dev
             http:
                 paths:
                     -   pathType: Prefix
@@ -175,10 +175,10 @@ spec:
     ingressClassName: nginx
     tls:
         -   hosts:
-                - "*.stefangenov.site"
+                - "*.sgenov.dev"
             secretName: ingress
     rules:
-        -   host: transmission.stefangenov.site
+        -   host: transmission.sgenov.dev
             http:
                 paths:
                     -   pathType: Prefix

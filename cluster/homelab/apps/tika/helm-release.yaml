@@ -44,16 +44,16 @@ spec:
             cpu: 500m
             memory: 500Mi
         config:
-          base_url: 'https://tika.stefangenov.site'
+          base_url: 'https://tika.sgenov.dev'
         # ingress:
         #     ingressClassName: nginx
         #     enabled: true
         #     annotations:
         #     hosts:
-        #         - host: tika.stefangenov.site
+        #         - host: tika.sgenov.dev
         #           paths:
         #             - path: /
         #     tls:
         #         - secretName: ingress
         #           hosts:
-        #             - '*.stefangenov.site'
+        #             - '*.sgenov.dev'
