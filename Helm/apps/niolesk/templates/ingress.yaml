@@ -1,0 +1,29 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: niolesk
+    namespace: {{ $.Release.Namespace }}
+    annotations:
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: UML Diagrams and More
+        gethomepage.dev/group: Tools
+        gethomepage.dev/icon: https://niolesk.sgenov.dev/favicon.ico
+        gethomepage.dev/name: Niolesk Kroki
+spec:
+    ingressClassName: nginx
+    tls:
+        -   hosts:
+                - "*.sgenov.dev"
+            secretName: ingress
+    rules:
+        -   host: niolesk.sgenov.dev
+            http:
+                paths:
+                    -   pathType: Prefix
+                        path: "/"
+                        backend:
+                            service:
+                                name: niolesk
+                                port:
+                                    number: {{ .Values.niolesk.port }}

@@ -13,6 +13,7 @@ spec:
           - monitoring
           - freshrss # RSS are not fatal
           - n8n
+          - niolesk
           - openbooks
           - cyberchef
           - diagrams

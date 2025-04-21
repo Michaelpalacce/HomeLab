@@ -1,0 +1,9 @@
+---
+niolesk:
+    image: ghcr.io/webgiss/niolesk:v1.7.6
+    lbIp: 192.168.1.14
+    port: 80
+    resources:
+        requests:
+            cpu: 10m
+            memory: 10Mi

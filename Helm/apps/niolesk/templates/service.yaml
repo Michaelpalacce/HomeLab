@@ -1,0 +1,20 @@
+---
+{{- with .Values.niolesk }}
+apiVersion: v1
+kind: Service
+metadata:
+    name: niolesk
+    namespace: {{ $.Release.Namespace }}
+spec:
+    {{- with .lbIp }}
+    type: LoadBalancer
+    loadBalancerIP: {{ . }}
+    {{- end }}
+    selector:
+        app.kubernetes.io/instance: niolesk
+        app.kubernetes.io/name: niolesk
+    ports:
+        -   name: niolesk
+            protocol: TCP
+            port: {{ .port }}
+{{- end }}

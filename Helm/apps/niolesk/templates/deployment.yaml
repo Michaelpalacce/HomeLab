@@ -1,0 +1,39 @@
+---
+{{- with .Values.niolesk }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: niolesk
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app.kubernetes.io/instance: niolesk
+        app.kubernetes.io/name: niolesk
+spec:
+    replicas: 1
+    strategy:
+        rollingUpdate:
+            maxUnavailable: 0
+    selector:
+        matchLabels:
+            app.kubernetes.io/instance: niolesk
+            app.kubernetes.io/name: niolesk
+    template:
+        metadata:
+            labels:
+                app.kubernetes.io/instance: niolesk
+                app.kubernetes.io/name: niolesk
+        spec:
+            containers:
+                -   name: niolesk
+                    image: {{ .image }}
+                    imagePullPolicy: IfNotPresent
+{{- if .resources }}
+                    resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+                    ports:
+                        -   name: web
+                            containerPort: {{ .port }}
+            restartPolicy: Always
+{{- end }}
