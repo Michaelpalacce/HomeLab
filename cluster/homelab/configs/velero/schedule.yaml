@@ -8,22 +8,15 @@ spec:
     template:
         hooks: {}
         includedNamespaces:
-          - nodered
           - changedetection
-          - mealie
           - media
           - monitoring
-          - uptimekuma
           - freshrss # RSS are not fatal
-          - homebox
           - n8n
           - openbooks
-          - wallabag
           - cyberchef
           - diagrams
           - stirlingpdf
-          - reactiveresume
-          - website
           - storage
         snapshotVolumes: true
         # Paying for wasabi, all files are charged a minimum of 90 days, so we can keep this for a while
@@ -40,9 +33,14 @@ spec:
     template:
         hooks: {}
         includedNamespaces:
+          - homebox
+          - uptimekuma
           - paperless-ngx
           - vikunja
           - go-ddns-controller-system
+          - nodered
+          - website
+          - reactiveresume
         snapshotVolumes: true
         # Paying for wasabi, all files are charged a minimum of 90 days, so we can keep this for a while
         ttl: 2190h0m0s
@@ -59,6 +57,8 @@ spec:
         hooks: {}
         includedNamespaces:
           - firefly
+          - wallabag
+          - mealie
         snapshotVolumes: true
         # Paying for wasabi, all files are charged a minimum of 90 days, so we can keep this for a while
         ttl: 2190h0m0s
