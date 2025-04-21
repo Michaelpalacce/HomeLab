@@ -6,6 +6,7 @@ resources:
   - changedetection
   - cyberchef
   - diagrams
+  - excalidraw
   - external-ingress
   - firefly
   - freshrss
