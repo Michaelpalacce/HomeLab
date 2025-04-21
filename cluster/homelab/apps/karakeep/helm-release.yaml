@@ -1,106 +1,128 @@
----
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: karakeep
-  namespace: karakeep
+    name: karakeep
+    namespace: karakeep
 spec:
-  interval: 5m
-  chart:
-    spec:
-      chart: app-template
-      version: 3.7.3
-      sourceRef:
-        kind: HelmRepository
-        name: bjw-s
-        namespace: flux-system
-      interval: 5m
-  values:
-    controllers:
-      web:
-        containers:
-          web:
-            image:
-              repository: ghcr.io/karakeep-app/karakeep
-              tag: 0.23.2
-            env:
-              MEILI_ADDR: http://karakeep-meilisearch:7700
-              BROWSER_WEB_URL: http://karakeep-chrome:9222
-              DATA_DIR: /data
-              DISABLE_SIGNUPS: false
-      chrome:
-        containers:
-          chrome:
-            image:
-              repository: gcr.io/zenika-hub/alpine-chrome
-              tag: 124
-            command:
-              - chromium-browser
-              - --headless
-              - --no-sandbox
-              - --disable-gpu
-              - --disable-dev-shm-usage
-              - --remote-debugging-address=0.0.0.0
-              - --remote-debugging-port=9222
-              - --hide-scrollbars
-      meilisearch:
-        containers:
-          meilisearch:
-            image:
-              repository: getmeili/meilisearch
-              tag: v1.14
-            env:
-              MEILI_NO_ANALYTICS: true
-    service:
-      web:
-        controller: web
-        ports:
-          http:
-            port: 3000
-      chrome:
-        controller: chrome
-        ports:
-          http:
-            port: 9222
-      meilisearch:
-        controller: meilisearch
-        ports:
-          http:
-            port: 7700
-    ingress:
-      main:
-        className: nginx
-        enabled: true
-        annotations:
-            gethomepage.dev/enabled: "true"
-            gethomepage.dev/description: Read-It-Later
-            gethomepage.dev/group: Knowledge
-            gethomepage.dev/icon: karakeep
-            gethomepage.dev/name: Karakeep
-            gethomepage.dev/widget.type: hoarder
-            gethomepage.dev/widget.url: https://karakeep.sgenov.dev
-            gethomepage.dev/widget.key: TODO-
-        hosts:
-            - host: karakeep.sgenov.dev
-              paths:
-                - path: /
-                  service:
-                    identifier: web
-                    port: http
-        tls:
-            - secretName: ingress
-              hosts:
-                - '*.sgenov.dev'
-    persistence:
-      web:
-        existingClaim: karakeep-storage
-        advancedMounts:
-          web:
+    interval: 5m
+    chart:
+        spec:
+            chart: app-template
+            version: 3.7.3
+            sourceRef:
+                kind: HelmRepository
+                name: bjw-s
+                namespace: flux-system
+            interval: 5m
+    values:
+        controllers:
             web:
-              - path: /data
-      meilisearch:
-        existingClaim: meili-storage
-        advancedMounts:
-          meilisearch:
+                containers:
+                    web:
+                        image:
+                            repository: ENC[AES256_GCM,data:HnKVKup8o0Z/SyWY4ppiQ9slR/k4YWlfSQJeTz0=,iv:SOo+UBbQLpuwit3CttQyOPh7Y3w6O42iIBHI5JUwxEs=,tag:WbObp6gf0eYCnWJYw8w/fQ==,type:str]
+                            tag: ENC[AES256_GCM,data:I8zOkPet,iv:soT33QRciMpOoazitS2BgcKNDrQ51USn7g6UdUwjdmM=,tag:6l5aYybVMEBIcCtWCeBhZA==,type:str]
+                        env:
+                            MEILI_ADDR: ENC[AES256_GCM,data:h9oXxDW2dul88XMJZg+znraMm2cXwIkVf7eqkg9wa5E=,iv:BPnohNecpH+BtGxk4CU3fwaViJ0CMyTYgMYVvLXz8Us=,tag:6RZPO7kQCQJPvDQyVKr4QQ==,type:str]
+                            BROWSER_WEB_URL: ENC[AES256_GCM,data:iorNSUAvDkqrfgM1IX+QfpMr3yjzxmNuwA4z,iv:ESymzPKKzqK65srNI5+nXzwFbTeyt/pDqcCTlx4i/Hk=,tag:NFgICPjjm2acuGllLGp9IA==,type:str]
+                            DATA_DIR: ENC[AES256_GCM,data:PU1TysI=,iv:PnkBvVi5Zu69eaa+DoXBFjQaI+1EN+tPyU3pegog5Fw=,tag:9Lstl9BME81izXGdAjagnw==,type:str]
+                            DISABLE_SIGNUPS: ENC[AES256_GCM,data:F1mID1k=,iv:P7T2tyMqy1VPedNUsPe5cb99nZml9n/xQcneRmEpOoo=,tag:55FxN1MtLEtUtaEm1acnew==,type:bool]
+                            NEXTAUTH_URL: ENC[AES256_GCM,data:9GaXmDyyCeA7e8kL6X9dD3pcFS4xAoBdbs+6,iv:ijrv40GgST3i9JOGWaryEu/m8jAOWy9+C4DQ1YI1jmI=,tag:V47I4WujTcFWfgxOfUex2A==,type:str]
+                            NEXTAUTH_SECRET: ENC[AES256_GCM,data:QR+WnlJ9VLlOm2UahmkBDGX2mGcIWTR9UjMEq8mETOk5d0v3pzN972xY6fHrNB3X,iv:jN6TZTL3NZ8rq6A5TYAbXbe5oE+eKWqfG2sfsSeT+aw=,tag:1DbbkqYcikrkMs9Ei+2pzw==,type:str]
+            chrome:
+                containers:
+                    chrome:
+                        image:
+                            repository: ENC[AES256_GCM,data:Cv41TWAyRgjmmKjHXBLAitxNHbwJbv9STjlV4qnDxA==,iv:8Q4hTbohBfzV84qKJUTQtHsH7s4rFRP5+Oe7kGZW66M=,tag:Jwy9eK3hVix6XMpdT51t6A==,type:str]
+                            tag: ENC[AES256_GCM,data:vl0v,iv:SOa7cy8VNgo6LR7pHLRjNJfKGGg2pgCyVDtAD8kKe8A=,tag:0zR0NXoiajhRs//VczQHXw==,type:int]
+                        command:
+                            - ENC[AES256_GCM,data:sZ2BtOXxiaS7vCnxRJctRQ==,iv:pVfXIDjq3hwZhbio03C/Rq/KU4gzDri6m7VwqAsQZt0=,tag:9dKj4f12CYv3Gu+ZQ6EAng==,type:str]
+                            - ENC[AES256_GCM,data:mdT093sVqCmTMA==,iv:a3j53ku0qZJ8p/LJSjlTUCqB54RYpUumhDUGeF/Q3Q0=,tag:VfTllXTbC76XaZnpHKkZ6w==,type:str]
+                            - ENC[AES256_GCM,data:C0Er/hH6BC4W21RY,iv:xhwrwyIAcY/ZhLAhlwGulSlBB94+DBcnqcdk+dGmR3A=,tag:81gZ3NIPwAzw8XsJ79QHUQ==,type:str]
+                            - ENC[AES256_GCM,data:y7dtylOxB82NUrMUGQ==,iv:1Sd8eGV9yDaZavGADJ9hcHRxy5RvFek/ZzR163Dr0Ic=,tag:IGbs8UotFsFKg1u+yfunKg==,type:str]
+                            - ENC[AES256_GCM,data:dA5N6ohoEPKiis27K7xUZC7b8gZFG1g=,iv:hOHvvEtm2yGRMlksk99p7TZWtO5XAujoQ5G9lEyj648=,tag:feLK48Ikj/M/5DG76bxksg==,type:str]
+                            - ENC[AES256_GCM,data:P282n3vDTvY3suR+U/GnXuZUzKkWgQSjp3uul0ZKE8XlPg==,iv:YJr7QNvwGtlxYYxWwGz4zzFvjRiFBmxFLTM+QtKylTk=,tag:5/1EwF6D7yusCMEbKwu1JA==,type:str]
+                            - ENC[AES256_GCM,data:FAbO504Dyt2V5WRNHIBIg1k++h7fHV6o4j8EgQ==,iv:ktzXHjP2ae6heqJlM/SOISxcTOQWmaSLRO3+mRUTcGM=,tag:D2fieTkwUpCufutRWp67pg==,type:str]
+                            - ENC[AES256_GCM,data:9E0KnNT2g4L967WqT2KhTn4=,iv:nIMLcfHr8OyhNcbokHWY3IkCPR06yED3i7E/sHmcfwI=,tag:vCR8XojrAQv6J1QtjjHSCw==,type:str]
             meilisearch:
-              - path: /meili_data
+                containers:
+                    meilisearch:
+                        image:
+                            repository: ENC[AES256_GCM,data:423qdXGZ9anKSGf9iaiPsoE8rwQ=,iv:sioisIV1a3WqngmPbS0ERdVdIJzVd9+IH45APQ96eEg=,tag:6upgec0PkP2Tqe69/HlcLA==,type:str]
+                            tag: ENC[AES256_GCM,data:XOFa8kM=,iv:J2VTg/CaKfQmvD7FFlC2L9xsUUdKcplztGZGqakaksc=,tag:mJVciCfMIAp1Y19DqDtg1g==,type:str]
+                        env:
+                            MEILI_NO_ANALYTICS: ENC[AES256_GCM,data:YOp4QQ==,iv:Aca6Z4evl8DwiVnTww10Ts0s5bNZDu2SniUC6yEgJd0=,tag:hEfVdkQkSUS3QP7USKXB+A==,type:bool]
+                            MEILI_MASTER_KEY: ENC[AES256_GCM,data:EteDRoKTrFZIx87qx3hAH8DjKsE4u4DEW7i02mJRAHjjoa+yvIsjvTrmkXD1vH9i,iv:0tRxbNQ/i6GFPEe5+UWnk46jHD5w3JBmUa9y0a/YhNc=,tag:bDApSJIvg2P9+rCRw2BYcQ==,type:str]
+        service:
+            web:
+                controller: ENC[AES256_GCM,data:mD9g,iv:vtIW0pqrPBzn7uZdV1pyeXP3CT99bqw7HCjn5Amut7g=,tag:tpDdeVZb77uaAm7qQi7pPQ==,type:str]
+                ports:
+                    http:
+                        port: ENC[AES256_GCM,data:8TZXUg==,iv:k3ThaFHr5YVQcXcGz7Fmwovv7NApvsFIY3J8ZQ0/f98=,tag:wlm/9vUGpOWIchmx+NAj1w==,type:int]
+            chrome:
+                controller: ENC[AES256_GCM,data:tBPArG2k,iv:IWem++4/CSIjNKhJ5wt88NXca8JSGe/3KMe/MAjSbec=,tag:KYCIGsGKvYo/AZWdKsQcaw==,type:str]
+                ports:
+                    http:
+                        port: ENC[AES256_GCM,data:S+zWbg==,iv:bmpgIHx2sJh1Frn0d5yd+yJN9sdetW3juiSctsud2iI=,tag:U2OEZkRslBOdj7H57Idt5w==,type:int]
+            meilisearch:
+                controller: ENC[AES256_GCM,data:VsHcRaVKHzhdTGY=,iv:8nlDxP8m8Ny+r9HWnoEX3/VhUNXcRysUo73C3lPQ45M=,tag:+zcRYCMsFMkYOh3mHiUNSA==,type:str]
+                ports:
+                    http:
+                        port: ENC[AES256_GCM,data:Tc75KQ==,iv:Rk3goJ6ZJrWKZVrZhy7N6qEqXQEjZWglarejyUhWu4w=,tag:Le/7OQq1FwCtKPxoYT7ccQ==,type:int]
+        ingress:
+            main:
+                className: ENC[AES256_GCM,data:mJDrxUY=,iv:2ztD8fH1OCwFU8SAvJWHsAkVlOZ6MDRp96zVAEZDL8I=,tag:PYheaACtxa/PzXAvO2impg==,type:str]
+                enabled: ENC[AES256_GCM,data:lfxdTQ==,iv:j3DhE0D8yC0OTp9CuZFQKhLC08YfTcZ6LODlH0b4wH8=,tag:Kkbbm40l8JOOaKDSzHTGPQ==,type:bool]
+                annotations:
+                    gethomepage.dev/enabled: ENC[AES256_GCM,data:8JOAqQ==,iv:Xo3dXa0WdSbZnTqTmYz7u0fFyLGzBPfD3w6kKxJptrc=,tag:BT4RdvI9sSo6lNfykQOiVQ==,type:str]
+                    gethomepage.dev/description: ENC[AES256_GCM,data:ZxyeBmwDcqOZkgl4TA==,iv:MXx0FCl+ZDRGivW6AaZPtypG3hKnCZXr6L7UYcIgqsk=,tag:DQpdy+zZmJ7vBrlOpBQ8lg==,type:str]
+                    gethomepage.dev/group: ENC[AES256_GCM,data:nvyhrw7T00hL,iv:zHgzqGye8eSYh9x5Wcm9CKhrPI8yKt9eewhQ+cr1NRc=,tag:Lc8w7kN0K1GiJNo3+//gUQ==,type:str]
+                    gethomepage.dev/icon: ENC[AES256_GCM,data:N7Wzjt1O3Gg=,iv:n1v6k8PiyAnof+4TzoXaeRlIlLlnYVbqW0qEQHV7dKU=,tag:fK/xsMaM0RGx+QzT6iBITA==,type:str]
+                    gethomepage.dev/name: ENC[AES256_GCM,data:5dtllNpYSaA=,iv:Q9YxEjP64aZJdk4f+RvDUGWvAOJRPWZv3lykjxf/Iak=,tag:lfHCvOaPhtUtncWXEvaB5w==,type:str]
+                    gethomepage.dev/widget.type: ENC[AES256_GCM,data:FcX7gUZ4IA==,iv:1FI5YHASuSty3iApMOizcxUdUnmo9wNGANjV+pQMxhE=,tag:nTbYynohCkAXE5tDvOo+/Q==,type:str]
+                    gethomepage.dev/widget.url: ENC[AES256_GCM,data:kj0vVLszYw6/KQngWeGrwHM36rDv0d/wDLAQ,iv:ndDHSHaNRPfcdq8L56C5X36lNqTjlsuKxGMxYF5tkqA=,tag:VsFq7KGTaPaWveGmB/0RyQ==,type:str]
+                    gethomepage.dev/widget.key: ENC[AES256_GCM,data:tnRs3Rs=,iv:RFLdL90SYpLJWsYDZsX9NiIgc4ZAM3ZCi6vflh+5DMU=,tag:hkMyu8OdgDj8V4YuqLcSow==,type:str]
+                hosts:
+                    - host: ENC[AES256_GCM,data:Cdh4PSUBk4L228CQsHCCeAqRJg==,iv:Voi25N68Q/gf8vrxKpp4TXzw5LuRpNHiMlBesznvz2Q=,tag:CwFuqFWQB4rEcaBYOFuhVA==,type:str]
+                      paths:
+                        - path: ENC[AES256_GCM,data:rw==,iv:k4sGy5sLr0i4qVpRVZVTSwPN0LULfKMAYUriqh1uoe0=,tag:RYg6lJbU4Pbffr3E3+onrw==,type:str]
+                          service:
+                            identifier: ENC[AES256_GCM,data:eDBj,iv:P8IuttiPStj4kQWbDkdJirD6RYIh4E+lRyq3X/DWtvo=,tag:KlBt98A5Al0xdqO9Uf0XMQ==,type:str]
+                            port: ENC[AES256_GCM,data:cluD4w==,iv:9fA8jYxCWmMIpDe5tULgeYNIKtNxfbNT+PjpXk6Prtg=,tag:Sk2V/uRbUgfupRio8/Inlg==,type:str]
+                tls:
+                    - secretName: ENC[AES256_GCM,data:vTYBdtT72Q==,iv:D1MTo+MMtcVzqVZpj9ZtEjUzP0NPfg5QZHMbVJZrnXA=,tag:iRjfbZlA0H6HZq/RZOFMVQ==,type:str]
+                      hosts:
+                        - ENC[AES256_GCM,data:1PONtuSopRPpA46S,iv:k819XyT/a501HkzUi7CQhdipv8R1UclbVQNf0IUQguc=,tag:lbQ5ZSydGepTLi3l66iC4A==,type:str]
+        persistence:
+            web:
+                existingClaim: ENC[AES256_GCM,data:dDn4jHCdMeXxleZ+F8XA/w==,iv:s79ItJacEHmMi6AZqxqo46xZUdqEjugIVSL5ZKGfzlI=,tag:ovdyZ+y5CqGRGjS8jA6o0g==,type:str]
+                advancedMounts:
+                    web:
+                        web:
+                            - path: ENC[AES256_GCM,data:ccjDrOs=,iv:pAzWhu/YF5OcBg9PlbxlIpO4m0gj/jWBWe7tUz66qO0=,tag:oRqX+qrw6aSR62O1R99/9A==,type:str]
+            meilisearch:
+                existingClaim: ENC[AES256_GCM,data:CMzNlGSumqPC9AE60A==,iv:pBrCrqI/+Bd+uU0DJH+Gl0R3I/F2Jm1mH8RR2mznkqE=,tag:z6XC0hf3ncQ8FFTP1ToQqQ==,type:str]
+                advancedMounts:
+                    meilisearch:
+                        meilisearch:
+                            - path: ENC[AES256_GCM,data:V84QXNDuNj0RO7U=,iv:+fC6cGuqZJkglYN7fFhUvSmgbELAkkU3IAaUvdJPVp8=,tag:+lx/pWz2GnNb9PHnytpHOQ==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBMeG56b0JvUlgvTVNSSWVz
+            LzhPaDJEZXZCTnRxeXB3OHdOWGtGMGhwMzIwCjRnL0o3S1g1aEhyVzJrZlFqQnRD
+            N0UrdkIvQTVxUDBUTkZjQmNqYUV5UmcKLS0tIC9KYnRtSkNYTHZrOHVzSEdXNHlH
+            R1dPVnBOdzZLcjVOZzgvR3hVaEllM1EKh1+MaX7TO07bnM18QK/kw1nrEYSFNW9y
+            8Lxcf4wpkvkxFpZLrys1o9vTXtCFOpww+0B73ehnGzs4mK8EbRhOXg==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-04-21T17:32:19Z"
+    mac: ENC[AES256_GCM,data:L/btMiaIlLUTxMt2QYaIq0lQBrQ4qxIxc2Q+TpuyzkxruMEICMZd+mPxOAf8bRrt7HCTZSNjpbiJ1yD2X/bPfX76LWSv9VAJ9X7aFy3ujCJHTApIpgUznvcp3QHdtVHDdfo9s1fTyOxt49kvoVBp+X2Ss9gc2PLMeXtlk3Q4NNg=,iv:8Dff03IW9ZZXJ6uLm/zrWaJZB1FOnx12mYpXqZU27HY=,tag:W3vR/lfainRx5ULK3DfEIA==,type:str]
+    pgp: []
+    encrypted_regex: ^(values)$
+    version: 3.8.1
