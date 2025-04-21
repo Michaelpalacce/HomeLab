@@ -4,5 +4,6 @@ resources:
     - gotk-components.yaml
     - gotk-sync.yaml
     - allow-all.yaml # Don't know why I need this but its the only thing that worked :/
+    - capacitor.yaml
 patchesStrategicMerge:
     - gotk-patch.yaml
