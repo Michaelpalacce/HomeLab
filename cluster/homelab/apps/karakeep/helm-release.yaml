@@ -1,0 +1,107 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: karakeep
+  namespace: karakeep
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: app-template
+      version: 3.7.3
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+      interval: 5m
+  values:
+    controllers:
+      web:
+        containers:
+          web:
+            image:
+              repository: ghcr.io/karakeep-app/karakeep
+              tag: 0.23.2
+            env:
+              MEILI_ADDR: http://karakeep-meilisearch:7700
+              BROWSER_WEB_URL: http://karakeep-chrome:9222
+              DATA_DIR: /data
+              DISABLE_SIGNUPS: false
+      chrome:
+        containers:
+          chrome:
+            image:
+              repository: gcr.io/zenika-hub/alpine-chrome
+              tag: 124
+            command:
+              - chromium-browser
+              - --headless
+              - --no-sandbox
+              - --disable-gpu
+              - --disable-dev-shm-usage
+              - --remote-debugging-address=0.0.0.0
+              - --remote-debugging-port=9222
+              - --hide-scrollbars
+      meilisearch:
+        containers:
+          meilisearch:
+            image:
+              repository: getmeili/meilisearch
+              tag: v1.6
+            env:
+              MEILI_NO_ANALYTICS: true
+    service:
+      web:
+        controller: web
+        ports:
+          http:
+            port: 3000
+      chrome:
+        controller: chrome
+        ports:
+          http:
+            port: 9222
+      meilisearch:
+        controller: meilisearch
+        ports:
+          http:
+            port: 7700
+    ingress:
+      main:
+
+        ingressClassName: nginx
+        enabled: true
+        annotations:
+            gethomepage.dev/enabled: "true"
+            gethomepage.dev/description: Read-It-Later
+            gethomepage.dev/group: Knowledge
+            gethomepage.dev/icon: karakeep
+            gethomepage.dev/name: Karakeep
+            gethomepage.dev/widget.type: hoarder
+            gethomepage.dev/widget.url: https://karakeep.sgenov.dev
+            gethomepage.dev/widget.key: TODO-
+        hosts:
+            - host: karakeep.sgenov.dev
+              paths:
+                - path: /
+                  service:
+                    identifier: web
+                    port: http
+        tls:
+            - secretName: ingress
+              hosts:
+                - '*.sgenov.dev'
+    persistence:
+      web:
+        existingClaim: karakeep-storage
+        advancedMounts:
+          web:
+            web:
+              - path: /data
+      meilisearch:
+        existingClaim: meili-storage
+        advancedMounts:
+          meilisearch:
+            meilisearch:
+              - path: /meili_data
