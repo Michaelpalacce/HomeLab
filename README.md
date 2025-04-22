@@ -67,14 +67,14 @@ metadata:
     name: longhorn-system # What to call the deployment 
     namespace: longhorn-system # Where to install the helm chart 
 spec:
-    interval: 5m # How often do we poll for changes
+    interval: 1h # How often do we poll for changes
     install:
         createNamespace: true # Same as --create-namespace
     chart:
         spec:
             chart: longhorn # Which chart to use
             version: 1.2.4 # Which version of the chart
-            interval: 5m
+            interval: 1h
 #           Where to find information for this chart ( in my case I have a HelmRepository defined in cluster/homelab/helm/longhorn-system
             sourceRef: 
                 kind: HelmRepository 

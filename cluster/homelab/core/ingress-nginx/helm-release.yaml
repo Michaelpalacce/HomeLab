@@ -5,7 +5,7 @@ metadata:
     name: ingress-nginx
     namespace: ingress-nginx
 spec:
-    interval: 5m
+    interval: 1h
     install:
         createNamespace: true
     upgrade:
@@ -16,7 +16,7 @@ spec:
         spec:
             chart: ingress-nginx
             version: 4.12.1
-            interval: 5m
+            interval: 1h
             sourceRef:
                 kind: HelmRepository
                 name: ingress-nginx

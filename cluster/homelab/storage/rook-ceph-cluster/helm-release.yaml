@@ -5,7 +5,7 @@ metadata:
     name: rook-ceph-cluster
     namespace: rook-ceph
 spec:
-    interval: 5m
+    interval: 1h
     timeout: 15m
     install:
         createNamespace: true
@@ -20,7 +20,7 @@ spec:
         spec:
             chart: rook-ceph-cluster
             version: v1.17.0
-            interval: 5m
+            interval: 1h
             sourceRef:
                 kind: HelmRepository
                 name: rook-release

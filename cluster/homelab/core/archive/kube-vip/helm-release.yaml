@@ -5,7 +5,7 @@ metadata:
     name: kube-vip
     namespace: kube-vip
 spec:
-    interval: 5m
+    interval: 1h
     install:
         createNamespace: true
         crds: CreateReplace
@@ -19,7 +19,7 @@ spec:
         spec:
             chart: kube-vip
             version: 0.6.6
-            interval: 5m
+            interval: 1h
             sourceRef:
                 kind: HelmRepository
                 name: kube-vip

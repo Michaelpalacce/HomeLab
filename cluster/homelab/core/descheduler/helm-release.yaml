@@ -5,7 +5,7 @@ metadata:
     name: descheduler
     namespace: kube-system
 spec:
-    interval: 5m
+    interval: 1h
     install:
         createNamespace: true
         crds: CreateReplace
@@ -19,7 +19,7 @@ spec:
         spec:
             chart: descheduler
             version: 0.32.2
-            interval: 5m
+            interval: 1h
             sourceRef:
                 kind: HelmRepository
                 name: descheduler

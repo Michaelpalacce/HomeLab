@@ -5,7 +5,7 @@ metadata:
     name: cyberchef
     namespace: cyberchef
 spec:
-    interval: 5m
+    interval: 1h
     install:
         createNamespace: true
     chart:

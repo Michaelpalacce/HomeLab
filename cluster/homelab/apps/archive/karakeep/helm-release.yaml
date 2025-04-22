@@ -4,7 +4,7 @@ metadata:
     name: karakeep
     namespace: karakeep
 spec:
-    interval: 5m
+    interval: 1h
     chart:
         spec:
             chart: app-template
@@ -13,7 +13,7 @@ spec:
                 kind: HelmRepository
                 name: bjw-s
                 namespace: flux-system
-            interval: 5m
+            interval: 1h
     values:
         controllers:
             web:

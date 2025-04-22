@@ -4,7 +4,7 @@ metadata:
     name: kured
     namespace: kured
 spec:
-    interval: 5m
+    interval: 1h
     install:
         createNamespace: true
         crds: CreateReplace
@@ -18,7 +18,7 @@ spec:
         spec:
             chart: kured
             version: 5.6.1
-            interval: 5m
+            interval: 1h
             sourceRef:
                 kind: HelmRepository
                 name: kubereboot

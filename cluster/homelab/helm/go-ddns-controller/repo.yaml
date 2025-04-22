@@ -4,7 +4,7 @@ metadata:
   name: go-ddns-controller
   namespace: flux-system
 spec:
-  interval: 5m
+  interval: 1h
   url: https://github.com/Michaelpalacce/go-ddns-controller
   ref:
     branch: master

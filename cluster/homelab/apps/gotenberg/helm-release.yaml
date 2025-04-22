@@ -4,7 +4,7 @@ metadata:
     name: gotenberg
     namespace: gotenberg
 spec:
-    interval: 5m
+    interval: 1h
     install:
         createNamespace: true
         crds: CreateReplace
@@ -18,7 +18,7 @@ spec:
         spec:
             chart: gotenberg
             version: 1.12.0
-            interval: 5m
+            interval: 1h
             sourceRef:
                 kind: HelmRepository
                 name: maikumori

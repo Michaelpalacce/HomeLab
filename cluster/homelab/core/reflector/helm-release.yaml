@@ -5,14 +5,14 @@ metadata:
     name: reflector
     namespace: reflector
 spec:
-    interval: 5m
+    interval: 1h
     install:
         createNamespace: true
     chart:
         spec:
             chart: reflector
             version: 9.0.342
-            interval: 5m
+            interval: 1h
             sourceRef:
                 kind: HelmRepository
                 name: reflector
