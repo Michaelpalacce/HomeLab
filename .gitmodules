@@ -1,0 +1,3 @@
+[submodule "HomeLab-IaC"]
+	path = HomeLab-IaC
+	url = https://github.com/Michaelpalacce/HomeLab-IaC.git
