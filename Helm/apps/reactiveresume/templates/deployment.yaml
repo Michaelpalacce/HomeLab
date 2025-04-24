@@ -11,6 +11,9 @@ metadata:
         app.kubernetes.io/name: reactiveresume
 spec:
     replicas: 1
+    strategy:
+        rollingUpdate:
+            maxUnavailable: 0
     selector:
         matchLabels:
             app.kubernetes.io/instance: reactiveresume
