@@ -89,6 +89,7 @@ spec:
     ports:
         -   name: kavita
             protocol: TCP
-            port: {{ .port }}
+            port: 80
+            targetPort: {{ .port }}
 
 {{- end }}
