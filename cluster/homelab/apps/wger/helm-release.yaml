@@ -1,0 +1,46 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+    name: wger
+    namespace: wger
+spec:
+    interval: 1h
+    install:
+        createNamespace: true
+        crds: CreateReplace
+        remediation:
+            retries: 3
+    upgrade:
+        crds: CreateReplace
+        remediation:
+            retries: 3
+    chart:
+        spec:
+            chart: wger
+            version: 0.2.4
+            interval: 1h
+            sourceRef:
+                kind: HelmRepository
+                name: wger
+                namespace: flux-system
+    values:
+      # App settings
+      app:
+        timezone: "UTC"
+        global:
+          image:
+            registry: docker.io
+            repository: wger/server
+            tag: 2.4-dev
+            PullPolicy: Always
+      ingress:
+        enabled: true
+        ingressClassName: nginx
+        url: wger.sgenov.dev
+        tls: true
+        annotations: 
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/description: Workour manager
+          gethomepage.dev/group: Personal
+          gethomepage.dev/icon: wger
+          gethomepage.dev/name: Wger

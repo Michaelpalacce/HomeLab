@@ -30,6 +30,7 @@ resources:
   - vikunja
   - website
   - wallabag
+  - wger
   - paperless-ngx
   - homebox
   - storage
