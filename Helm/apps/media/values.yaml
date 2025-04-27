@@ -81,10 +81,11 @@ kavita:
     image: ghcr.io/linuxserver/kavita:0.8.6
     port: 5000
     replicas: 1
+    lbIp: 192.168.1.15
     resources:
         requests:
-            cpu: 10m
-            memory: 50Mi
+            cpu: 100m
+            memory: 500Mi
 
 cleanuperr:
     image: ghcr.io/flmorg/cleanuperr:1.5.18
