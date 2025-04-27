@@ -18,5 +18,5 @@ spec:
                 namespace: flux-system
     values:
         readarr:
-            replicas: 0
+            replicas: 1
 
