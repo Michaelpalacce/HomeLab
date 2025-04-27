@@ -40,9 +40,6 @@ spec:
           scrapeInterval: 120s
           scrapeTimeout: 30s
       deployNodeAgent: true
-      nodeAgent:
-        podLabels:
-          role: node-agent # Fixes https://github.com/vmware-tanzu/helm-charts/issues/659
       credentials:
           existingSecret: cloud-credentials-wasabi
       configuration:
