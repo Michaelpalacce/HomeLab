@@ -91,7 +91,7 @@ spec:
                             service:
                                 name: kavita
                                 port:
-                                    number: 80
+                                    number: {{ .Values.kavita.port }}
 
 ---
 apiVersion: networking.k8s.io/v1
