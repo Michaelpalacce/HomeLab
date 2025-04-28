@@ -88,7 +88,7 @@ kavita:
             memory: 500Mi
 
 cleanuperr:
-    image: ghcr.io/flmorg/cleanuperr:1.5.18
+    image: ghcr.io/flmorg/cleanuperr:1.5.19
     resources:
         requests:
             cpu: 50m
