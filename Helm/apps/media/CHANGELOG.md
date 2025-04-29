@@ -1,3 +1,7 @@
+### [v6.1.0]
+- Added huntarr
+- Modified requests
+
 #### [v6.0.0]
 - Better selectors
 - Better probes

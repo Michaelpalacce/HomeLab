@@ -1,0 +1,82 @@
+---
+{{- with .Values.huntarr }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: huntarr
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app.kubernetes.io/instance: huntarr
+        app.kubernetes.io/name: huntarr
+spec:
+    replicas: 1
+    strategy:
+        type: Recreate
+    selector:
+        matchLabels:
+            app.kubernetes.io/instance: huntarr
+            app.kubernetes.io/name: huntarr
+    template:
+        metadata:
+            annotations:
+                backup.velero.io/backup-volumes: config
+            labels:
+                app.kubernetes.io/instance: huntarr
+                app.kubernetes.io/name: huntarr
+        spec:
+            containers:
+                -   name: huntarr
+                    image: {{ .image }}
+                    imagePullPolicy: IfNotPresent
+                    securityContext:
+                        privileged: false
+                        allowPrivilegeEscalation: false
+                    env:
+                        -   name: PUID
+                            value: "1000"
+                        -   name: GUID
+                            value: "1000"
+{{- if .resources }}
+                    resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+                    ports:
+                        -   name: web
+                            containerPort: {{ .port }}
+                    volumeMounts:
+                        -   name: config
+                            mountPath: /config
+                    livenessProbe:
+                        failureThreshold: 5
+                        initialDelaySeconds: 30
+                        timeoutSeconds: 2
+                        tcpSocket:
+                            port: {{ .port }}
+                    startupProbe:
+                        failureThreshold: 10
+                        timeoutSeconds: 2
+                        tcpSocket:
+                            port: {{ .port }}
+            restartPolicy: Always
+            volumes:
+                - name: config
+                  persistentVolumeClaim:
+                      claimName: huntarr-config-pvc
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: huntarr
+    namespace: {{ $.Release.Namespace }}
+spec:
+    selector:
+        app.kubernetes.io/instance: huntarr
+        app.kubernetes.io/name: huntarr
+    ports:
+        -   name: huntarr
+            protocol: TCP
+            port: {{ .port }}
+
+{{- end }}
