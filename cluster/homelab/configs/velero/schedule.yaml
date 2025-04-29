@@ -7,12 +7,9 @@ spec:
     schedule: '00 01 * * *'
     template:
         hooks: {}
-        includedNamespaces:
-          - changedetection
-          - media
+        includedNamespaces: # Either not important, not containing any information or they are easily recoverable
           - monitoring
           - freshrss # RSS are not fatal
-          - n8n
           - niolesk
           - openbooks
           - cyberchef
@@ -20,8 +17,7 @@ spec:
           - stirlingpdf
           - storage
         snapshotVolumes: true
-        # Paying for wasabi, all files are charged a minimum of 90 days, so we can keep this for a while
-        ttl: 2190h0m0s
+        ttl: 730h0m0s # 1 Month
     useOwnerReferencesInBackup: false
 ---
 apiVersion: velero.io/v1
@@ -33,18 +29,15 @@ spec:
     schedule: '00 01 * * *'
     template:
         hooks: {}
-        includedNamespaces:
-          - homebox
+        includedNamespaces: # Related to my homelab or automation
+          - media
+          - n8n
           - uptimekuma
-          - paperless-ngx
-          - vikunja
           - go-ddns-controller-system
           - nodered
-          - website
-          - reactiveresume
+          - changedetection
         snapshotVolumes: true
-        # Paying for wasabi, all files are charged a minimum of 90 days, so we can keep this for a while
-        ttl: 2190h0m0s
+        ttl: 1460h0m0s # 2 Month
     useOwnerReferencesInBackup: false
 ---
 apiVersion: velero.io/v1
@@ -56,11 +49,15 @@ spec:
     schedule: '00 01 * * *'
     template:
         hooks: {}
-        includedNamespaces:
+        includedNamespaces: # Data I don't want to lose
+          - vikunja
+          - website
+          - reactiveresume
+          - homebox
+          - paperless-ngx
           - firefly
           - wallabag
           - mealie
         snapshotVolumes: true
-        # Paying for wasabi, all files are charged a minimum of 90 days, so we can keep this for a while
-        ttl: 2190h0m0s
+        ttl: 2190h0m0s 
     useOwnerReferencesInBackup: false 
