@@ -50,13 +50,13 @@ spec:
                         -   name: TRIGGERS__QUEUECLEANER
                             value: "0 0/5 * * * ?"
                         -   name: QUEUECLEANER__IMPORT_FAILED_MAX_STRIKES
-                            value: "2"
+                            value: "3"
                         -   name: QUEUECLEANER__IMPORT_FAILED_IGNORE_PRIVATE
                             value: "false"
                         -   name: QUEUECLEANER__IMPORT_FAILED_DELETE_PRIVATE
                             value: "false"
                         -   name: QUEUECLEANER__STALLED_MAX_STRIKES
-                            value: "2"
+                            value: "3"
                         -   name: QUEUECLEANER__STALLED_RESET_STRIKES_ON_PROGRESS
                             value: "false"
                         -   name: QUEUECLEANER__STALLED_IGNORE_PRIVATE
