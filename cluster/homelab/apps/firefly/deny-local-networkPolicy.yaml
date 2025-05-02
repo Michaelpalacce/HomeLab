@@ -1,21 +1,6 @@
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: allow-labeled-fireflybot-egress
-  namespace: firefly
-spec:
-  podSelector:
-    matchLabels:
-      app.kubernetes.io/instance: fireflybot
-      app.kubernetes.io/name: fireflybot
-  egress:
-  - to:
-    - ipBlock:
-        cidr: 192.168.1.5/32 # allow as it needs to access https://firefly.sgenov.dev
----
-apiVersion: networking.k8s.io/v1
-kind: NetworkPolicy
-metadata:
   name: firefly-allow-dns-egress
   namespace: firefly
 spec:
@@ -23,9 +8,10 @@ spec:
   policyTypes:
   - Egress
   egress:
-  # - to:
-  #   - ipBlock:
-  #       cidr: 192.168.1.5/32 # Allow specifically for the fireflybot
+  - to:
+    - namespaceSelector:
+        matchLabels:
+          kubernetes.io/metadata.name: firefly
   - to:
     - ipBlock:
         cidr: 0.0.0.0/0
@@ -42,8 +28,3 @@ spec:
       port: 53
     - protocol: TCP
       port: 53
-  - to:
-      - podSelector: {}
-    namespaceSelector:
-      matchLabels:
-        kubernetes.io/metadata.name: firefly
