@@ -6,3 +6,4 @@ resources:
     - namespace.yaml
     - secret.sops.yaml
     - ingress.sops.yaml
+    - deny-local-networkPolicy.yaml
