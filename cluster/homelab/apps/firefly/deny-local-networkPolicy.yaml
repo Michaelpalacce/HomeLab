@@ -24,3 +24,8 @@ spec:
       port: 53
     - protocol: TCP
       port: 53
+  - to:
+      - podSelector: {}
+    namespaceSelector:
+      matchLabels:
+        kubernetes.io/metadata.name: firefly
