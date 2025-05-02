@@ -10,7 +10,7 @@ k3s_server:
         - traefik
         - local-storage
         - servicelb
-    disable-network-policy: true
+    disable-network-policy: false
     disable-cloud-controller: true
     write-kubeconfig-mode: "644"
     cluster-cidr: "10.40.0.0/16"
