@@ -9,6 +9,10 @@ spec:
   - Egress
   egress:
   - to:
+    - namespaceSelector:
+        matchLabels:
+          kubernetes.io/metadata.name: wallabag
+  - to:
     - ipBlock:
         cidr: 0.0.0.0/0
         except:
