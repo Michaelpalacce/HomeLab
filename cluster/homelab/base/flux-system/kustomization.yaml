@@ -4,6 +4,6 @@ resources:
     - gotk-components.yaml
     - gotk-sync.yaml
     - capacitor.yaml
-    - kube-system-networkPolicy.yaml
+    # - kube-system-networkPolicy.yaml
 patchesStrategicMerge:
     - gotk-patch.yaml
