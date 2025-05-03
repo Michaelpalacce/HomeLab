@@ -5,6 +5,6 @@ resources:
     - gotk-sync.yaml
     - capacitor.yaml
     # - kube-system-networkPolicy.yaml
-    - allow-all.yaml
+    # - allow-all.yaml
 patchesStrategicMerge:
     - gotk-patch.yaml
