@@ -19,6 +19,9 @@ spec:
                 namespace: flux-system
     values:
         enablePSP: false
+        networkPolicies:
+          enabled: true
+          type: "k3s"
         ingress:
             enabled: true
             host: longhorn.sgenov.dev
