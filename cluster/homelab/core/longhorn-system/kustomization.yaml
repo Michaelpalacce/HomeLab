@@ -4,5 +4,4 @@ kind: Kustomization
 resources:
     - helm-release.yaml
     - namespace.yaml
-patchesStrategicMerge:
     - np-patch.yaml
