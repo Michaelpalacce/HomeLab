@@ -8,6 +8,6 @@ resources:
     - longhorn-system
     - velero
     - cert-manager
-    - kured
+    # - kured # Temporarily stopping this
     - descheduler
     - metallb
