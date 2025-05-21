@@ -1,0 +1,35 @@
+---
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: default-priority
+value: 0
+globalDefault: true
+description: "Default priority of pods. Generally 0 is used without specifying it, but adding it for explicitness."
+
+---
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: general-priority
+value: 1000
+globalDefault: false
+description: "For general workload of apps that are not important."
+
+---
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: sensitive-priority
+value: 2000
+globalDefault: false
+description: "Related to my homelab or automation."
+
+---
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: critical-priority
+value: 3000
+globalDefault: false
+description: "Apps I don't want to go down."
