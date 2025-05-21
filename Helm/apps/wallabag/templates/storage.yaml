@@ -3,6 +3,12 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
     name: postgresql-pvc
+    labels:
+        app.kubernetes.io/instance: postgres
+        app.kubernetes.io/name: postgres
+        app.kubernetes.io/component: database
+        app.kubernetes.io/part-of: wallabag
+        app.kubernetes.io/managed-by: helm
 spec:
     accessModes:
         - ReadWriteMany
