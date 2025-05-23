@@ -11,9 +11,6 @@ metadata:
         app.kubernetes.io/name: wallabag
 spec:
     replicas: {{ .replicas }}
-    strategy:
-        rollingUpdate:
-            maxUnavailable: 0
     selector:
         matchLabels:
             app.kubernetes.io/instance: wallabag
