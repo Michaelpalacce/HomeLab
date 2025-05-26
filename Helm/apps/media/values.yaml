@@ -109,7 +109,7 @@ cleanuperr:
             memory: 1Gi
 
 huntarr:
-    image: ghcr.io/plexguide/huntarr:7.3.14
+    image: ghcr.io/plexguide/huntarr:7.4.0
     port: 9705
     resources:
         requests:
