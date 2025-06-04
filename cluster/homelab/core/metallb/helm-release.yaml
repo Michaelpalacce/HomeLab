@@ -15,7 +15,7 @@ spec:
     chart:
         spec:
             chart: metallb
-            version: 0.15.0
+            version: 0.15.2
             interval: 1h
             sourceRef:
                 kind: HelmRepository
