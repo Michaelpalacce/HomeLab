@@ -1,6 +1,6 @@
 ---
 wallabag:
-    image: wallabag/wallabag:2.6.12
+    image: wallabag/wallabag:2.6.13
     replicas: 1
     port: 80
     lbIp: 192.168.1.7
