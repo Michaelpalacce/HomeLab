@@ -11,7 +11,7 @@ spec:
     chart:
         spec:
             chart: cert-manager
-            version: v1.18.0
+            version: v1.18.1
             interval: 1h
             sourceRef:
                 kind: HelmRepository
