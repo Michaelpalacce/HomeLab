@@ -1,5 +1,9 @@
 # TODOs
 
+## Security
+
+- [ ] Network policies 
+
 ## Infrastructure
 
 - [ ] Terraform
