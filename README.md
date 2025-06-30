@@ -4,6 +4,8 @@
 This repository contains basic HELM local charts for application installation as well as FluxCD2 HelmReleases for GitOps.
 I'm not going to move away from the local helm charts where possible as they make this repository pretty beginner-friendly.
 
+Also, big warning, this repo is things I've done on the side with time taken away from my family.
+
 # :open_book: Check out the Documentation
 * [Documentation](./docs)
 
