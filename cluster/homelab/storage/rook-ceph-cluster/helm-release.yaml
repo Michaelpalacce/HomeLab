@@ -19,7 +19,7 @@ spec:
     chart:
         spec:
             chart: rook-ceph-cluster
-            version: v1.17.5
+            version: v1.17.6
             interval: 1h
             sourceRef:
                 kind: HelmRepository
