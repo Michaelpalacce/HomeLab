@@ -44,7 +44,7 @@ spec:
                       tcpSocket:
                           port: {{ .port }}
                   startupProbe:
-                      initialDelaySeconds: 10
+                      initialDelaySeconds: 60
                       tcpSocket:
                           port: {{ .port }}
 
