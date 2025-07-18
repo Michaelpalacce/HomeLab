@@ -6,11 +6,6 @@ k3s_server:
     kubelet-arg:
       - "image-gc-high-threshold=75"
       - "image-gc-low-threshold=60"
-    kube-controller-manager-arg:
-      - 'pod-eviction-timeout=60s'
-    kube-apiserver-arg:
-      - 'default-not-ready-toleration-seconds=60'
-      - 'default-unreachable-toleration-seconds=60'
     tls-san:
         - "{{ k3s_registration_address }}"
     docker: false
