@@ -2,7 +2,7 @@
 website:
     image: ghcr.io/michaelpalacce/website:v2.14.0
     port: 80
-    replicas: 6
+    replicas: 3
     resources:
         requests:
             cpu: 500m
