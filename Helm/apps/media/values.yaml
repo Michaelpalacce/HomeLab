@@ -98,16 +98,6 @@ kavita:
             cpu: 100m
             memory: 500Mi
 
-cleanuperr:
-    image: ghcr.io/cleanuparr/cleanuparr:2.0.14
-    resources:
-        requests:
-            cpu: 50m
-            memory: 512Mi
-        limits:
-            cpu: 500m
-            memory: 1Gi
-
 huntarr:
     image: ghcr.io/plexguide/huntarr:7.8.2
     port: 9705
