@@ -9,14 +9,3 @@ spec:
     matchLabels:
       app.kubernetes.io/instance: wallabag
       app.kubernetes.io/name: wallabag
----
-apiVersion: policy/v1
-kind: PodDisruptionBudget
-metadata:
-  name: wallabag-db
-spec:
-  minAvailable: 1
-  selector:
-    matchLabels:
-      app.kubernetes.io/instance: postgres
-      app.kubernetes.io/name: postgres
