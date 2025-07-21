@@ -218,7 +218,25 @@
   become: true
   tags:
     - unattended_upgrades
+      systemctl
   roles:
   - role: hifis.toolkit.unattended_upgrades
     unattended_automatic_reboot: true
 
+- hosts: all
+  become: true
+  tags:
+    - qemu
+  tasks: 
+      - name: Install qemu-guest-agent
+        apt:
+            name: "{{ packages }}"
+            state: present
+        vars:
+            packages:
+                - qemu-guest-agent
+      - name: Start and enable qemu-guest-agent
+        systemd_service:
+            name: qemu-guest-agent
+            enabled: true
+            state: started
