@@ -99,7 +99,7 @@ kavita:
             memory: 500Mi
 
 huntarr:
-    image: ghcr.io/plexguide/huntarr:7.8.2
+    image: ghcr.io/plexguide/huntarr:8.1.15
     port: 9705
     resources:
         requests:
