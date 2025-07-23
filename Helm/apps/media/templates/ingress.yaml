@@ -188,26 +188,26 @@ spec:
                                 name: transmission
                                 port:
                                     number: {{ .Values.transmission.port }}
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-    name: huntarr
-    namespace: {{ $.Release.Namespace }}
-spec:
-    ingressClassName: nginx
-    tls:
-        -   hosts:
-                - "*.sgenov.dev"
-            secretName: ingress
-    rules:
-        -   host: huntarr.sgenov.dev
-            http:
-                paths:
-                    -   pathType: Prefix
-                        path: "/"
-                        backend:
-                            service:
-                                name: huntarr
-                                port:
-                                    number: {{ .Values.huntarr.port }}
+# ---
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#     name: huntarr
+#     namespace: {{ $.Release.Namespace }}
+# spec:
+#     ingressClassName: nginx
+#     tls:
+#         -   hosts:
+#                 - "*.sgenov.dev"
+#             secretName: ingress
+#     rules:
+#         -   host: huntarr.sgenov.dev
+#             http:
+#                 paths:
+#                     -   pathType: Prefix
+#                         path: "/"
+#                         backend:
+#                             service:
+#                                 name: huntarr
+#                                 port:
+#                                     number: {{ .Values.huntarr.port }}
