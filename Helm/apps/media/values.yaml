@@ -98,13 +98,13 @@ kavita:
             cpu: 100m
             memory: 500Mi
 
-huntarr:
-    image: ghcr.io/plexguide/huntarr:8.1.15
-    port: 9705
-    resources:
-        requests:
-            cpu: 500m
-            memory: 512Mi
-        limits:
-            cpu: 500m
-            memory: 1Gi
+# huntarr:
+#     image: ghcr.io/plexguide/huntarr:8.1.15
+#     port: 9705
+#     resources:
+#         requests:
+#             cpu: 500m
+#             memory: 512Mi
+#         limits:
+#             cpu: 500m
+#             memory: 1Gi
