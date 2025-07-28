@@ -212,7 +212,7 @@
           mode: 0644 
           dest: "/etc/modules-load.d/{{ item }}.conf" 
           content: "{{ item }}" 
-      loop: [br_netfilter, ip_vs, ip_vs_rr]
+      loop: [br_netfilter, ip_vs, ip_vs_rr, dm_crypt]
 
 - hosts: all
   become: true
