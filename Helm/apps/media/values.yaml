@@ -15,8 +15,6 @@ storage:
         config: 10Gi
     readarr:
         config: 5Gi
-    huntarr:
-        config: 5Gi
 
 flaresolverr:
     image: ghcr.io/flaresolverr/flaresolverr:v3.3.25
@@ -98,13 +96,3 @@ kavita:
             cpu: 100m
             memory: 500Mi
 
-# huntarr:
-#     image: ghcr.io/plexguide/huntarr:8.1.15
-#     port: 9705
-#     resources:
-#         requests:
-#             cpu: 500m
-#             memory: 512Mi
-#         limits:
-#             cpu: 500m
-#             memory: 1Gi

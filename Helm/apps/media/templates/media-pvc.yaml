@@ -83,15 +83,3 @@ spec:
     resources:
         requests:
             storage: {{ .Values.storage.prowlarr.config }}
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-    name: huntarr-config-pvc
-spec:
-    accessModes:
-        - ReadWriteMany
-    storageClassName: longhorn
-    resources:
-        requests:
-            storage: {{ .Values.storage.huntarr.config }}

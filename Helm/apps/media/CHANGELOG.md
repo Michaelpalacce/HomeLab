@@ -1,3 +1,6 @@
+### [v7.0.0]
+- Removed huntarr
+
 ### [v6.1.0]
 - Added huntarr
 - Modified requests
