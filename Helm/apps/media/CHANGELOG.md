@@ -1,3 +1,6 @@
+### [v8.0.0]
+- Removed readarr
+
 ### [v7.0.0]
 - Removed huntarr
 
