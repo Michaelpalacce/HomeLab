@@ -26,7 +26,7 @@ spec:
     values:
         image:
             repository: apache/tika
-            tag: 3.2.1.0-full
+            tag: 3.2.2.0-full
         securityContext:
           allowPrivilegeEscalation: false
           capabilities:
