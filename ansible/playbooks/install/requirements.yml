@@ -3,7 +3,7 @@ collections:
     - name: kubernetes.core
       version: 6.0.0
     - name: community.general
-      version: 11.1.2
+      version: 11.2.0
     - name: hifis.toolkit
       version: 6.0.1
 roles:
