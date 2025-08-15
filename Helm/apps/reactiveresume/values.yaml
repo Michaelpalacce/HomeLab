@@ -9,7 +9,7 @@ reactiveresume:
         port: 3000
 
 postgres:
-    image: postgres:16.9
+    image: postgres:16.10
     port: 5432
     resources:
         requests:
