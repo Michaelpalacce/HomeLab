@@ -36,7 +36,7 @@ transmission:
             memory: 2Gi
 prowlarr:
     replicas: 1
-    image: ghcr.io/linuxserver/prowlarr:1.37.0
+    image: ghcr.io/linuxserver/prowlarr:2.0.5
     port: 9696
     resources:
         requests:
