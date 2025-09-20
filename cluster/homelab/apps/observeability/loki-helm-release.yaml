@@ -1,0 +1,28 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+    name: observeability-loki
+    namespace: observeability
+spec:
+    interval: 1h
+    install:
+        createNamespace: true
+    chart:
+        spec:
+            chart: loki-stack
+            version: 2.10.2
+            interval: 1h
+            sourceRef:
+                kind: HelmRepository
+                name: grafana
+                namespace: flux-system
+    values:
+      test_pod:
+        enabled: false
+
+      loki:
+        enabled: true
+        isDefault: true
+
+      promtail:
+        enabled: true
