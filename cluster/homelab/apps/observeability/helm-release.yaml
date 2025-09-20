@@ -31,15 +31,15 @@ spec:
           retention: 10d
           retentionSize: 50GiB
 
-          storageSpec: {}
-          volumeClaimTemplate:
-            spec:
-              storageClassName: longhorn
-              accessModes: ["ReadWriteOnce"]
-              resources:
-                requests:
-                  storage: 55Gi
-              selector: {}
+          storageSpec:
+            volumeClaimTemplate:
+              spec:
+                storageClassName: longhorn
+                accessModes: ["ReadWriteOnce"]
+                resources:
+                  requests:
+                    storage: 55Gi
+                selector: {}
         ingress:
           enabled: true
           ingressClassName: nginx
@@ -53,7 +53,6 @@ spec:
             hosts:
               - "*.sgenov.dev"
       grafana:
-
         persistence:
           enabled: true
           type: sts
