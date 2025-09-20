@@ -18,6 +18,26 @@ spec:
                 name: kube-prometheus-stack
                 namespace: flux-system
     values:
+      grafana:
+        ingress:
+          ## If true, Grafana Ingress will be created
+          ##
+          enabled: true
+          ingressClassName: nginx
+
+          annotations: {}
+            # kubernetes.io/ingress.class: nginx
+            # kubernetes.io/tls-acme: "true"
+
+          hosts: 
+            - grafana.sgenov.dev
+
+          path: /
+
+          tls:
+          - secretName: ingress
+            hosts:
+              - "*.sgenov.dev"
       crds:
         enabled: true
         ## The CRD upgrade job mitigates the limitation of helm not being able to upgrade CRDs.
