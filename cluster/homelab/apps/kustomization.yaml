@@ -22,7 +22,6 @@ resources:
   - nodered
   - openbooks
   - reactiveresume
-  - searxng
   - stirlingpdf
   - tika
   - uptimekuma

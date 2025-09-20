@@ -17,7 +17,6 @@ resources:
     - oneuptime
     - descheduler
     - gabe565
-    - searxng
     - go-ddns-controller
     - metallb
     - tika
