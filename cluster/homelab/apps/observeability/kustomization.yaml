@@ -5,3 +5,4 @@ resources:
     - helm-release.sops.yaml
     - kubernetes-server-metrics.yaml
     - namespace.yaml
+    - discord-webhook-secret.sops.yaml
