@@ -23,6 +23,9 @@ spec:
       loki:
         enabled: true
         isDefault: true
+        image:
+          repository: grafana/loki
+          tag: 3.5.5
 
       promtail:
         enabled: true
