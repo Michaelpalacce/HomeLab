@@ -15,7 +15,7 @@ spec:
             interval: 1h
             sourceRef:
                 kind: HelmRepository
-                name: observeability
+                name: kube-prometheus-stack
                 namespace: flux-system
     values:
       crds:
