@@ -39,7 +39,6 @@ spec:
                 resources:
                   requests:
                     storage: 55Gi
-                selector: {}
         ingress:
           enabled: true
           ingressClassName: nginx
