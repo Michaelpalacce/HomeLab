@@ -51,6 +51,43 @@ spec:
           - secretName: ingress
             hosts:
               - "*.sgenov.dev"
+
+      alertmanager:
+        alertmanagerSpec:
+          image:
+            registry: quay.io
+            repository: prometheus/alertmanager
+            tag: v0.28.1
+            sha: ""
+            pullPolicy: IfNotPresent
+            ## Storage is the definition of how storage will be used by the Alertmanager instances.
+            ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/platform/storage.md
+            ##
+          storage: 
+            volumeClaimTemplate:
+              spec:
+                storageClassName: longhorn
+                accessModes: ["ReadWriteOnce"]
+                resources:
+                  requests:
+                    storage: 10Gi
+        ingress:
+          enabled: true
+          ingressClassName: nginx
+
+          annotations: {}
+            # kubernetes.io/ingress.class: nginx
+            # kubernetes.io/tls-acme: "true"
+
+          hosts: 
+            - alertmanager.sgenov.dev
+
+          path: /
+
+          tls:
+          - secretName: ingress
+            hosts:
+              - "*.sgenov.dev"
       grafana:
         persistence:
           enabled: true
