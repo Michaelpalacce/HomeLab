@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
     name: KubernetesServerMetrics
-    namespace: observerability
+    namespace: observeability
     labels:
       grafana_dashboard: "1"
 data:
