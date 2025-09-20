@@ -26,3 +26,9 @@ spec:
         image:
           repository: quay.io/metallb/controller
           tag: v0.15.2
+      speaker:
+          tolerations: 
+            - key: "CriticalAddonsOnly"
+              operator: "Equal"
+              effect: "NoSchedule"
+              value:
