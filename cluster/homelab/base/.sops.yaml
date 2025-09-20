@@ -19,3 +19,7 @@ creation_rules:
     encrypted_regex: ^(values)$
     pgp: age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
 
+    # alertmanager alert
+  - path_regex: .*/*alert.sops.yaml
+    encrypted_regex: ^(receivers)$
+    pgp: age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
