@@ -19,6 +19,27 @@ spec:
                 namespace: flux-system
     values:
       prometheus:
+        prometheusSpec:
+          scrapeInterval: 60s
+          scrapeTimeout: 30s
+          image:
+            registry: quay.io
+            repository: prometheus/prometheus
+            tag: v3.5.0
+            sha: ""
+            pullPolicy: IfNotPresent
+          retention: 10d
+          retentionSize: 50GiB
+
+          storageSpec: {}
+          volumeClaimTemplate:
+            spec:
+              storageClassName: longhorn
+              accessModes: ["ReadWriteOnce"]
+              resources:
+                requests:
+                  storage: 55Gi
+              selector: {}
         ingress:
           enabled: true
           ingressClassName: nginx
@@ -32,6 +53,16 @@ spec:
             hosts:
               - "*.sgenov.dev"
       grafana:
+
+        persistence:
+          enabled: true
+          type: sts
+          storageClassName: "longhorn"
+          accessModes:
+            - ReadWriteOnce
+          size: 20Gi
+          finalizers:
+            - kubernetes.io/pvc-protection
         ingress:
           ## If true, Grafana Ingress will be created
           ##
