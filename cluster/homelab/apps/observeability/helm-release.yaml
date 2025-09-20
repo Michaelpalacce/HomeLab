@@ -18,6 +18,19 @@ spec:
                 name: kube-prometheus-stack
                 namespace: flux-system
     values:
+      prometheus:
+        ingress:
+          enabled: true
+          ingressClassName: nginx
+          hosts: 
+            - prometheus.sgenov.dev
+
+          paths: []
+
+          tls:
+          - secretName: ingress
+            hosts:
+              - "*.sgenov.dev"
       grafana:
         ingress:
           ## If true, Grafana Ingress will be created
