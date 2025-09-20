@@ -95,6 +95,9 @@ spec:
 
       alertmanager:
         alertmanagerSpec:
+          alertmanagerConfigSelector:
+            matchLabels:
+              alertmanagerConfig: default
           image:
             registry: quay.io
             repository: prometheus/alertmanager
