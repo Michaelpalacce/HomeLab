@@ -1,9 +1,0 @@
----
-apiVersion: source.toolkit.fluxcd.io/v1
-kind: HelmRepository
-metadata:
-    name: oneuptime
-    namespace: flux-system
-spec:
-    url: https://helm-chart.oneuptime.com/
-    interval: 10m

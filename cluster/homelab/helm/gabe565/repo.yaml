@@ -6,4 +6,4 @@ metadata:
     namespace: flux-system
 spec:
     url: https://charts.gabe565.com
-    interval: 10m
+    interval: 60m
