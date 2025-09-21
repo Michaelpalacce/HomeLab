@@ -27,9 +27,6 @@ spec:
                     image: {{ .image }}
                     imagePullPolicy: IfNotPresent
                     securityContext:
-                      capabilities:
-                        drop:
-                        - ALL
                       privileged: false
                       allowPrivilegeEscalation: false
                     envFrom:
