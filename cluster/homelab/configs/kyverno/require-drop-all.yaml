@@ -24,7 +24,8 @@ spec:
             namespaces:
               - longhorn-system
               - kube-system
-              - metallb
+              - metallb-system
+              - kured
       match:
         any:
         - resources:
