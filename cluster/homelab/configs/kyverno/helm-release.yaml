@@ -1,0 +1,19 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+    name: kyverno-policies
+    namespace: kyverno
+spec:
+    interval: 1h
+    install:
+        createNamespace: true
+    chart:
+        spec:
+            chart: kyverno-policies
+            version: 3.5.2
+            interval: 1h
+            sourceRef:
+                kind: HelmRepository
+                name: kyverno
+                namespace: flux-system
