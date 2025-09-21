@@ -25,6 +25,11 @@ spec:
         isDefault: true
         image:
           tag: '2.9.3'
+        containerSecurityContext:
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop:
+              - ALL
 
       promtail:
         enabled: true

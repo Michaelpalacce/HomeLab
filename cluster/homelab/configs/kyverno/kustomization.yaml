@@ -8,4 +8,4 @@ resources:
     - disallow-default.yaml
     - disallow-empty-ingress-host.yaml
     - disallow-helm-tiller.yaml
-    
+    - require-drop-all.yaml

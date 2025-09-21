@@ -17,11 +17,6 @@ spec:
   background: true
   rules:
   - name: require-image-tag
-    exclude:
-      any:
-      - resources:
-          namespaces:
-            - excalidraw
     match:
       any:
       - resources:
@@ -41,11 +36,6 @@ spec:
           pattern:
             image: "*:*"
   - name: validate-image-tag
-    exclude:
-      any:
-      - resources:
-          namespaces:
-            - excalidraw
     match:
       any:
       - resources:
