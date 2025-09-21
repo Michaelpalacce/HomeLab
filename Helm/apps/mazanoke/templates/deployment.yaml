@@ -30,6 +30,11 @@ spec:
                     imagePullPolicy: IfNotPresent
                     securityContext:
                       capabilities:
+                        add:
+                        - CHOWN
+                        - NET_BIND_SERVICE
+                        - SETGID
+                        - SETUID
                         drop:
                         - ALL
 {{- if .resources }}
