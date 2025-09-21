@@ -30,6 +30,10 @@ spec:
                     imagePullPolicy: IfNotPresent
                     securityContext:
                       capabilities:
+                        add:
+                        - CHOWN
+                        - SETGID
+                        - SETUID
                         drop:
                         - ALL
                       privileged: false
