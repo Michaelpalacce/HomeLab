@@ -30,7 +30,4 @@ spec:
     - key: "{{ target.spec.replicas }}"
       operator: Equals
       value: 0
-    - key: "{{ time_diff('{{target.metadata.creationTimestamp}}','{{ time_now_utc() }}') }}"
-      operator: GreaterThan
-      value: "0h0m30s"
   schedule: "*/1 * * * *"
