@@ -28,6 +28,13 @@ spec:
       image:
         repository: velero/velero
         tag: v1.17.0
+      nodeAgent:
+        containerSecurityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop: ["ALL"]
+            add: []
+          readOnlyRootFilesystem: true
       containerSecurityContext:
         allowPrivilegeEscalation: false
         capabilities:
