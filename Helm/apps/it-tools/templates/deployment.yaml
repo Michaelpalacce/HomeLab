@@ -32,6 +32,8 @@ spec:
                       capabilities:
                         add:
                         - CHOWN
+                        - SETGID
+                        - SETUID
                         drop:
                         - ALL
 {{- if .resources }}
