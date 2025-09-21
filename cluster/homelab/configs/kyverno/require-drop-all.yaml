@@ -24,7 +24,7 @@ spec:
             namespaces:
               - longhorn-system
               - kube-system
-              - metallb-system
+              - metallb-system # @TODO: This may be fixable...
               - kured
       match:
         any:
