@@ -5,3 +5,4 @@ resources:
     # - helm-release.yaml
     - no-privileged.policy.yaml
     - cleanup-empty-replicasets.policy.yaml
+    - disallow-default.policy.yaml
