@@ -19,12 +19,36 @@ spec:
                 namespace: flux-system
     values:
       admissionController:
+        rbac:
+          clusterRole:
+            extraResources:
+              - apiGroups:
+                  - apps
+                resources:
+                  - replicasets
+                verbs:
+                  - delete
+                  - get 
+                  - list
+                  - watch
         serviceMonitor:
           additionalLabels:
             release: observeability
           enabled: true
 
       backgroundController:
+        rbac:
+          clusterRole:
+            extraResources:
+              - apiGroups:
+                  - apps
+                resources:
+                  - replicasets
+                verbs:
+                  - delete
+                  - get 
+                  - list
+                  - watch
         serviceMonitor:
           additionalLabels:
             release: observeability
