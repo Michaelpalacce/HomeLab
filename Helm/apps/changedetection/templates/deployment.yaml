@@ -30,6 +30,10 @@ spec:
                 - name: browserless
                   image: {{ .playwright.image }}
                   imagePullPolicy: IfNotPresent
+                  securityContext:
+                    capabilities:
+                      drop:
+                      - ALL
                   ports:
                       - name: browserless
                         containerPort: {{ .playwright.port }}
@@ -56,6 +60,10 @@ spec:
                 - name: selenium
                   image: {{ .selenium.image }}
                   imagePullPolicy: IfNotPresent
+                  securityContext:
+                    capabilities:
+                      drop:
+                      - ALL
                   ports:
                       - name: selenium
                         containerPort: {{ .selenium.port }}
@@ -79,6 +87,10 @@ spec:
                 - name: changedetection
                   image: {{ .image }}
                   imagePullPolicy: IfNotPresent
+                  securityContext:
+                    capabilities:
+                      drop:
+                      - ALL
 {{- if .resources }}
                   resources:
 {{ toYaml .resources | indent 22 }}

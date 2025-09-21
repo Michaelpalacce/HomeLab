@@ -29,8 +29,11 @@ spec:
                   image: {{ .image }}
                   imagePullPolicy: IfNotPresent
                   securityContext:
-                      privileged: false
-                      allowPrivilegeEscalation: false
+                    capabilities:
+                      drop:
+                      - ALL
+                    privileged: false
+                    allowPrivilegeEscalation: false
                   args:
                       - --persist
                       - -n stefan-g-home

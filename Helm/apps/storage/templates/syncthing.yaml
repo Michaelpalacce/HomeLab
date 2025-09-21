@@ -30,6 +30,10 @@ spec:
                 -   name: syncthing
                     image: {{ .image }}
                     imagePullPolicy: IfNotPresent
+                    securityContext:
+                      capabilities:
+                        drop:
+                        - ALL
 {{- if .resources }}
                     resources:
 {{ toYaml .resources | indent 22 }}

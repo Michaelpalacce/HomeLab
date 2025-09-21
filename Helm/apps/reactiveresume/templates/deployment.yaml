@@ -28,6 +28,10 @@ spec:
                 {{- with .api }}
                 -   name: api
                     image: {{ .image }}
+                    securityContext:
+                      capabilities:
+                        drop:
+                        - ALL
                     envFrom:
                       - secretRef:
                           name: app
@@ -61,6 +65,10 @@ spec:
                 -   name: frontend
                     image: {{ .image }}
                     imagePullPolicy: IfNotPresent
+                    securityContext:
+                      capabilities:
+                        drop:
+                        - ALL
                     env:
                       - name: PUBLIC_FLAG_DISABLE_SIGNUPS
                         value: "true"

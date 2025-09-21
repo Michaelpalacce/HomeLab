@@ -28,6 +28,10 @@ spec:
             containers:
                 - name: vikunja
                   image: {{ .image }}
+                  securityContext:
+                    capabilities:
+                      drop:
+                      - ALL
                   env:
                       - name: VIKUNJA_SERVICE_FRONTENDURL
                         value: "{{ .frontendUrl }}"

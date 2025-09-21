@@ -28,6 +28,10 @@ spec:
                 -   name: n8n
                     image: {{ .image }}
                     imagePullPolicy: IfNotPresent
+                    securityContext:
+                      capabilities:
+                        drop:
+                        - ALL
                     env:
                         -   name: N8N_BASIC_AUTH_ACTIVE
                             value: "true"

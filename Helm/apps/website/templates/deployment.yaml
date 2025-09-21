@@ -41,8 +41,11 @@ spec:
                     image: {{ .image }}
                     imagePullPolicy: IfNotPresent
                     securityContext:
-                        privileged: false
-                        allowPrivilegeEscalation: false
+                      capabilities:
+                        drop:
+                        - ALL
+                      privileged: false
+                      allowPrivilegeEscalation: false
 {{- if .resources }}
                     resources:
 {{ toYaml .resources | indent 22 }}
