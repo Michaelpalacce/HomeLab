@@ -1,0 +1,24 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+    name: kyverno
+    namespace: kyverno
+spec:
+    interval: 1h
+    install:
+        createNamespace: true
+    chart:
+        spec:
+            chart: kyverno
+            version: 3.5.2
+            interval: 1h
+            sourceRef:
+                kind: HelmRepository
+                name: kyverno
+                namespace: flux-system
+    values:
+      grafana:
+        enabled: true
+        labels:
+          grafana_dashboard: "1"
