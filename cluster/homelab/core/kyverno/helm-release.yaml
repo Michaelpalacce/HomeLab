@@ -35,6 +35,15 @@ spec:
           clusterRole:
             extraResources:
               - apiGroups:
+                  - ""
+                resources:
+                  - namespaces
+                verbs:
+                  - delete
+                  - get 
+                  - list
+                  - watch
+              - apiGroups:
                   - apps
                 resources:
                   - replicasets
