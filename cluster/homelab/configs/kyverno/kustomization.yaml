@@ -10,3 +10,4 @@ resources:
     - disallow-helm-tiller.yaml
     - require-drop-all.yaml
     - restrict-service-external-ips.yaml
+    - restrict-node-port.yaml
