@@ -18,10 +18,6 @@ spec:
                 name: kyverno
                 namespace: flux-system
     values:
-      container:
-        extraArgs:
-          - --enablePolicyException
-
       admissionController:
         serviceMonitor:
           additionalLabels:
