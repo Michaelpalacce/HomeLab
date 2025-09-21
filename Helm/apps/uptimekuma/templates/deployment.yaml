@@ -33,6 +33,9 @@ spec:
                     capabilities:
                       drop:
                       - ALL
+                      add:
+                      - SETUID
+                      - SETGID
 {{- if .resources }}
                   resources:
 {{ toYaml .resources | indent 22 }}
