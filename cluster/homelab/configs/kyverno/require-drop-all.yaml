@@ -26,6 +26,7 @@ spec:
               - kube-system
               - metallb-system # @TODO: This may be fixable...
               - kured
+              - velero
       match:
         any:
         - resources:
