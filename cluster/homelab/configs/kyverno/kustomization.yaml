@@ -9,3 +9,4 @@ resources:
     - disallow-empty-ingress-host.yaml
     - disallow-helm-tiller.yaml
     - require-drop-all.yaml
+    - restrict-service-external-ips.yaml
