@@ -6,7 +6,6 @@
 
 ## Infrastructure
 
-- [ ] Terraform
 - [ ] Strip down the K3S Nodes of unused services and packages
 
 ## Service Specifics
