@@ -1,6 +1,6 @@
 ---
 ittools:
-    replicas: 2
+    replicas: 1
     image: ghcr.io/corentinth/it-tools:2024.10.22-7ca5933
     lbIp: 192.168.1.11
     port: 80

@@ -30,6 +30,8 @@ spec:
                     imagePullPolicy: IfNotPresent
                     securityContext:
                       capabilities:
+                        add:
+                        - CHOWN
                         drop:
                         - ALL
 {{- if .resources }}
