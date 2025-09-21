@@ -18,6 +18,23 @@ spec:
                 name: kyverno
                 namespace: flux-system
     values:
+
+      admissionController:
+        serviceMonitor:
+          enabled: true
+
+      backgroundController:
+        serviceMonitor:
+          enabled: true
+
+      cleanupController:
+        serviceMonitor:
+          enabled: true
+
+      reportsController:
+        serviceMonitor:
+          enabled: true
+
       grafana:
         enabled: true
         labels:
