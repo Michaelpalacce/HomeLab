@@ -25,6 +25,8 @@ spec:
                 app.kubernetes.io/instance: postgres
                 app.kubernetes.io/name: postgres
         spec:
+            securityContext:
+              fsGroup: 999
             containers:
                 - name: postgresql
                   image: {{ .image }}
@@ -33,8 +35,12 @@ spec:
                       - secretRef:
                             name: db
                   securityContext:
-                    privileged: false
+                    runAsUser: 999  # postgres UID in the image
+                    runAsGroup: 999
                     allowPrivilegeEscalation: false
+                    privileged: false
+                    capabilities:
+                      drop: ["ALL"]
 {{- if .resources }}
                   resources:
 {{ toYaml .resources | indent 22 }}
