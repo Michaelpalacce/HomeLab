@@ -28,6 +28,12 @@ spec:
       image:
         repository: velero/velero
         tag: v1.17.0
+      containerSecurityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop: ["ALL"]
+          add: []
+        readOnlyRootFilesystem: true
       upgradeCRDs: true
       initContainers:
           - name: velero-plugin-for-aws
