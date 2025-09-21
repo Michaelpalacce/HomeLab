@@ -2,6 +2,7 @@ apiVersion: policies.kyverno.io/v1alpha1
 kind: ValidatingPolicy
 metadata:
   name: disallow-privileged-containers
+  namespace: kyverno
   annotations:
     policies.kyverno.io/title: Disallow Privileged Containers in ValidatingPolicy
     policies.kyverno.io/category: Pod Security Standards (Baseline) in ValidatingPolicy
@@ -34,3 +35,18 @@ spec:
   validations:
     - expression: "variables.allContainers.all(container, container.?securityContext.?privileged.orValue(false) == false)"
       message: "Privileged mode is disallowed. All containers must set the securityContext.privileged field to `false` or unset the field."
+---
+apiVersion: policies.kyverno.io/v1alpha1
+kind: PolicyException
+metadata:
+  name: exclude-privileged-namespaces
+  namespace: kyverno
+spec:
+  policyRefs:
+    - name: disallow-privileged-containers
+      kind: ValidatingPolicy
+  matchConditions:
+    - name: "check-namespace-name"
+      expression: "object.metadata.name == 'kured'"
+    - name: "check-namespace-name"
+      expression: "object.metadata.name == 'longhorn-system'"
