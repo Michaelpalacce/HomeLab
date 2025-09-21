@@ -3,7 +3,6 @@ apiVersion: kyverno.io/v2
 kind: ClusterCleanupPolicy
 metadata:
   name: cleanup-empty-replicasets
-  namespace: kyverno
   annotations:
     policies.kyverno.io/title: Cleanup Empty ReplicaSets
     policies.kyverno.io/category: Other
