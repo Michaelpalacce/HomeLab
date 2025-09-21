@@ -8,7 +8,6 @@ spec:
     template:
         hooks: {}
         includedNamespaces: # Either not important, not containing any information or they are easily recoverable
-          - monitoring
           - freshrss # RSS are not fatal
           - niolesk
           - openbooks
