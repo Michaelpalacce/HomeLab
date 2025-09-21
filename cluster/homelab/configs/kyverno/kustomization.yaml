@@ -7,3 +7,5 @@ resources:
     - cleanup-empty-replicasets.yaml
     - disallow-default.yaml
     - disallow-empty-ingress-host.yaml
+    - disallow-helm-tiller.yaml
+    
