@@ -41,16 +41,8 @@ spec:
                 # message to display with an appropriate context why the authentication is required
                 nginx.ingress.kubernetes.io/auth-realm: 'Authentication Required - sgenov'
         longhornManager:
-            tolerations: 
-              - key: "CriticalAddonsOnly"
-                operator: "Equal"
-                effect: "NoSchedule"
-                value:
+            tolerations: {}
         longhornDriver:
-            tolerations: 
-              - key: "CriticalAddonsOnly"
-                operator: "Equal"
-                effect: "NoSchedule"
-                value:
+            tolerations: {}
         defaultSettings:
-            taintToleration: "CriticalAddonsOnly:NoSchedule"
+            taintToleration: ""
