@@ -31,6 +31,17 @@ spec:
           enabled: true
 
       cleanupController:
+        rbac:
+          clusterRole:
+            extraResources:
+              - apiGroups:
+                  - apps
+                resources:
+                  - replicasets
+                verbs:
+                  - delete
+                  - list
+                  - watch
         serviceMonitor:
           additionalLabels:
             release: observeability
