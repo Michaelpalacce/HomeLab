@@ -33,9 +33,6 @@ spec:
                       - secretRef:
                             name: db
                   securityContext:
-                    capabilities:
-                      drop:
-                      - ALL
                     privileged: false
                     allowPrivilegeEscalation: false
 {{- if .resources }}
