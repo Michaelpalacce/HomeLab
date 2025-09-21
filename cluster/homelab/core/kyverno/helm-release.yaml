@@ -21,18 +21,26 @@ spec:
 
       admissionController:
         serviceMonitor:
+          additionalLabels:
+            release: observeability
           enabled: true
 
       backgroundController:
         serviceMonitor:
+          additionalLabels:
+            release: observeability
           enabled: true
 
       cleanupController:
         serviceMonitor:
+          additionalLabels:
+            release: observeability
           enabled: true
 
       reportsController:
         serviceMonitor:
+          additionalLabels:
+            release: observeability
           enabled: true
 
       grafana:
