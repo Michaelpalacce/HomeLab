@@ -60,9 +60,9 @@ spec:
                 capabilities:
                     drop:
                         - ALL
-        prometheusOperator: null
-        # networkPolicy:
-        #     enabled: true
+        # prometheusOperator:
+        #   networkPolicy:
+        #       enabled: true
         prometheus:
             # networkPolicy:
             #     enabled: true
