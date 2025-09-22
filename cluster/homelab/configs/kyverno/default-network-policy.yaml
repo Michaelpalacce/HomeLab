@@ -24,7 +24,9 @@ spec:
     match:
       any:
       - resources:
-          namespaces:
+          kinds:
+          - Namespace
+          names:
             - tika
             - gotenberg
             - paperless-ngx
@@ -139,12 +141,13 @@ spec:
               port: 53
             - protocol: TCP
               port: 53
-              
   - name: generate-uptimekuma-networkpolicy
     match:
       any:
       - resources:
-          namespaces:
+          kinds:
+            - Namespace
+          names:
             - uptimekuma
     generate:
       kind: NetworkPolicy
@@ -165,18 +168,69 @@ spec:
           - to:
             - ipBlock:
                 cidr: 0.0.0.0/0
-                except:
-                - 10.0.0.0/8
-                - 172.16.0.0/12
-          # Allow 192.168.0.0/16 ONLY on 80/443
-          - to:
-            - ipBlock:
-                cidr: 192.168.0.0/16
             ports:
+            - protocol: TCP
+              port: 53
+            - protocol: UDP
+              port: 53
             - protocol: TCP
               port: 80
             - protocol: TCP
               port: 443
+          - to:
+            - ipBlock:
+                cidr: 192.168.1.22/32
+          # Some cases where we are doing internal TCP checks
+          - to:
+            - namespaceSelector:
+                matchLabels:
+                  kubernetes.io/metadata.name: "firefly"
+            ports:
+            - protocol: TCP
+              port: 5432 # postgres
+          - to:
+            - namespaceSelector:
+                matchLabels:
+                  kubernetes.io/metadata.name: "reactiveresume"
+            ports:
+            - protocol: TCP
+              port: 5432 # postgres
+          - to:
+            - namespaceSelector:
+                matchLabels:
+                  kubernetes.io/metadata.name: "wallabag"
+            ports:
+            - protocol: TCP
+              port: 5432 # postgres
+          - to:
+            - namespaceSelector:
+                matchLabels:
+                  kubernetes.io/metadata.name: "observeability"
+            ports:
+            - protocol: TCP
+              port: 3100 # Loki
+          - to:
+            - namespaceSelector:
+                matchLabels:
+                  kubernetes.io/metadata.name: "n8n"
+            ports:
+            - protocol: TCP
+              port: 5432 # postgres
+          - to:
+            - namespaceSelector:
+                matchLabels:
+                  kubernetes.io/metadata.name: "vikunja"
+            ports:
+            - protocol: TCP
+              port: 5432 # postgres
+
+          - to:
+            - namespaceSelector:
+                matchLabels:
+                  kubernetes.io/metadata.name: "velero"
+            ports:
+            - protocol: TCP
+              port: 8085 # velero port
           # It's ok internally to the namespace
           - to:
             - namespaceSelector:
