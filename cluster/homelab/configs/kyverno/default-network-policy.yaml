@@ -38,6 +38,7 @@ spec:
             - paperless-ngx
             - system-upgrade
             - homepage
+            - firefly
     match:
       any:
       - resources:
