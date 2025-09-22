@@ -61,27 +61,27 @@ spec:
           podSelector: {}
           policyTypes:
           - Egress
-        egress: 
-        # Allow everywhere but not internally, don't want it communicating to local network
-        - to:
-          - ipBlock:
-              cidr: 0.0.0.0/0
-              except:
-              - 10.0.0.0/8   # RFC 1918 - Class A private
-              - 172.16.0.0/12 # RFC 1918 - Class B private
-              - 192.168.0.0/16 # RFC 1918 - Class C private
-        # It's ok internally to the namespace
-        - to:
-          - namespaceSelector:
-              matchLabels:
-                kubernetes.io/metadata.name: "{{request.object.metadata.name}}"
-        # DNS is allowed (CoreDNS)
-        - to:
-          - namespaceSelector:
-              matchLabels:
-                kubernetes.io/metadata.name: kube-system
-          ports:
-          - protocol: UDP
-            port: 53
-          - protocol: TCP
-            port: 53
+          egress: 
+          # Allow everywhere but not internally, don't want it communicating to local network
+          - to:
+            - ipBlock:
+                cidr: 0.0.0.0/0
+                except:
+                - 10.0.0.0/8   # RFC 1918 - Class A private
+                - 172.16.0.0/12 # RFC 1918 - Class B private
+                - 192.168.0.0/16 # RFC 1918 - Class C private
+          # It's ok internally to the namespace
+          - to:
+            - namespaceSelector:
+                matchLabels:
+                  kubernetes.io/metadata.name: "{{request.object.metadata.name}}"
+          # DNS is allowed (CoreDNS)
+          - to:
+            - namespaceSelector:
+                matchLabels:
+                  kubernetes.io/metadata.name: kube-system
+            ports:
+            - protocol: UDP
+              port: 53
+            - protocol: TCP
+              port: 53
