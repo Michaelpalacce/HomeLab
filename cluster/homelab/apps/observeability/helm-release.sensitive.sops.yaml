@@ -1,0 +1,241 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+    name: observeability
+    namespace: observeability
+spec:
+    interval: 1h
+    install:
+        createNamespace: true
+    chart:
+        spec:
+            chart: kube-prometheus-stack
+            version: 77.10.0
+            interval: 1h
+            sourceRef:
+                kind: HelmRepository
+                name: kube-prometheus-stack
+                namespace: flux-system
+    values:
+        defaultRules:
+            create: true
+            rules:
+                alertmanager: true
+                etcd: true
+                configReloaders: true
+                general: true
+                k8sContainerCpuUsageSecondsTotal: true
+                k8sContainerMemoryCache: true
+                k8sContainerMemoryRss: true
+                k8sContainerMemorySwap: true
+                k8sContainerResource: true
+                k8sContainerMemoryWorkingSetBytes: true
+                k8sPodOwner: true
+                kubeApiserverAvailability: true
+                kubeApiserverBurnrate: true
+                kubeApiserverHistogram: true
+                kubeApiserverSlos: true
+                kubeControllerManager: false
+                kubelet: true
+                kubeProxy: false
+                kubePrometheusGeneral: true
+                kubePrometheusNodeRecording: true
+                kubernetesApps: true
+                kubernetesResources: true
+                kubernetesStorage: true
+                kubernetesSystem: true
+                kubeSchedulerAlerting: false
+                kubeSchedulerRecording: false
+                kubeStateMetrics: true
+                network: true
+                node: true
+                nodeExporterAlerting: true
+                nodeExporterRecording: true
+                prometheus: true
+                prometheusOperator: true
+                windows: false
+        prometheus-node-exporter:
+            containerSecurityContext:
+                readOnlyRootFilesystem: true
+                capabilities:
+                    drop:
+                        - ALL
+        prometheusOperator: null
+        # networkPolicy:
+        #     enabled: true
+        prometheus:
+            # networkPolicy:
+            #     enabled: true
+            prometheusSpec:
+                scrapeInterval: 60s
+                scrapeTimeout: 30s
+                retention: 10d
+                retentionSize: 10GiB
+                storageSpec:
+                    volumeClaimTemplate:
+                        spec:
+                            storageClassName: longhorn
+                            accessModes:
+                                - ReadWriteOnce
+                            resources:
+                                requests:
+                                    storage: 15Gi
+                serviceMonitorNamespaceSelector:
+                    matchLabels:
+                        monitoring.coreos.com/serviceMonitor: "true"
+            ingress:
+                enabled: true
+                ingressClassName: nginx
+                hosts:
+                    - prometheus.sgenov.dev
+                paths: []
+                tls:
+                    - secretName: ingress
+                      hosts:
+                        - '*.sgenov.dev'
+        alertmanager:
+            # networkPolicy:
+            #     enabled: true
+            config:
+                global:
+                    resolve_timeout: 5m
+                inhibit_rules:
+                    - source_matchers:
+                        - severity = critical
+                      target_matchers:
+                        - severity =~ warning|info
+                      equal:
+                        - namespace
+                        - alertname
+                    - source_matchers:
+                        - severity = warning
+                      target_matchers:
+                        - severity = info
+                      equal:
+                        - namespace
+                        - alertname
+                    - source_matchers:
+                        - alertname = InfoInhibitor
+                      target_matchers:
+                        - severity = info
+                      equal:
+                        - namespace
+                    - target_matchers:
+                        - alertname = InfoInhibitor
+                route:
+                    group_by:
+                        - alertname
+                        - namespace
+                    group_wait: 30s
+                    group_interval: 5m
+                    repeat_interval: 12h
+                    receiver: discord
+                    routes:
+                        - receiver: "null"
+                          matchers:
+                            - alertname="PrometheusDuplicateTimestamps"
+                          continue: false
+                        - receiver: "null"
+                          matchers:
+                            - alertname="Watchdog"
+                          continue: false
+                        # Match everything else
+                        - receiver: discord
+                receivers:
+                    - name: "null"
+                    - name: discord
+                      discord_configs:
+                        - webhook_url: ENC[AES256_GCM,data:w+p3v5nvFgXsu1XjQ+g3sUR8zp+v2onsBd8D6WvT3sgR3fN1cRwxOuRex8znHIEc7uSc/HZry0XwQ5LxJu+Ho84Hx7iqadQTEG0ugq8vgqMBs6BKQAYj6oDSYHC+x47Zia/bSvUkk51WixCpIlGcOG9oHDwhajdU6Q==,iv:IzKAHbJGwxPJ83GpZxTbOAOPweN9l3poJA7el2yPxjw=,tag:Q6ja4XKHQp8y1EfwYY6Omw==,type:str]
+                          send_resolved: true
+                templates:
+                    - /etc/alertmanager/config/*.tmpl
+            alertmanagerSpec:
+                alertmanagerConfigSelector:
+                    matchLabels:
+                        # This is so we can create AlertManager configs targeting `default`
+                        alertmanagerConfig: default
+                storage:
+                    volumeClaimTemplate:
+                        spec:
+                            storageClassName: longhorn
+                            accessModes:
+                                - ReadWriteOnce
+                            resources:
+                                requests:
+                                    storage: 5Gi
+            ingress:
+                enabled: true
+                ingressClassName: nginx
+                annotations:
+                    gethomepage.dev/enabled: "true"
+                    gethomepage.dev/description: Handles Prometheus Alerts
+                    gethomepage.dev/group: Monitoring
+                    gethomepage.dev/icon: alertmanager
+                    gethomepage.dev/name: Alertmanager
+                hosts:
+                    - alertmanager.sgenov.dev
+                path: /
+                tls:
+                    - secretName: ingress
+                      hosts:
+                        - '*.sgenov.dev'
+        grafana:
+            adminUser: admin
+            adminPassword: ENC[AES256_GCM,data:zBmqJYk/JBY5cpFyjtuExotJ2NLqVB8xVQ/uygxcxIsGuLyXe4vdXQsNfaqXoFZd3aWqTg==,iv:vAzlpB/LJAXHyCK2vdOsepKxEHtTA1r2a6InUQ0yLFE=,tag:72HWy4n6XTOi5+qiKZAT9A==,type:str]
+            persistence:
+                enabled: true
+                type: sts
+                storageClassName: longhorn
+                accessModes:
+                    - ReadWriteOnce
+                size: 2Gi
+                finalizers:
+                    - kubernetes.io/pvc-protection
+            ingress:
+                ## If true, Grafana Ingress will be created
+                ##
+                enabled: true
+                ingressClassName: nginx
+                annotations:
+                    gethomepage.dev/enabled: "true"
+                    gethomepage.dev/description: Nice observeability graphs.
+                    gethomepage.dev/group: Monitoring
+                    gethomepage.dev/icon: grafana
+                    gethomepage.dev/name: Grafana
+                    gethomepage.dev/widget.type: grafana
+                    gethomepage.dev/widget.url: https://grafana.sgenov.dev
+                    gethomepage.dev/widget.version: "2"
+                    gethomepage.dev/widget.alerts: alertmanager
+                    gethomepage.dev/widget.username: admin
+                    gethomepage.dev/widget.password: ENC[AES256_GCM,data:wmGeAre66QntwZT36vNvrseWTnW2ypGOlmoW3Eu2ZsxEqyJh8MDNig36FtbiRXOqqKVuFg==,iv:FBcMTsWxPrtcpa2Usv5p7n+5ReXtfXQmYguWpKry2m0=,tag:wiufrsVBFLiUS53XgyuCrg==,type:str]
+                hosts:
+                    - grafana.sgenov.dev
+                path: /
+                tls:
+                    - secretName: ingress
+                      hosts:
+                        - '*.sgenov.dev'
+        crds:
+            enabled: true
+            ## The CRD upgrade job mitigates the limitation of helm not being able to upgrade CRDs.
+            ## The job will apply the CRDs to the cluster before the operator is deployed, using helm hooks.
+            ## It deploy a corresponding clusterrole, clusterrolebinding and serviceaccount to apply the CRDs.
+            ## This feature is in preview, off by default and may change in the future.
+            upgradeJob:
+                enabled: true
+                forceConflicts: false
+sops:
+    age:
+        - recipient: age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSA2ZCtBNWpJUXludXAwN29y
+            Zm1SU2FubCtleEFCMjE0SVJycUpOaDVsVmtvCmduRFVlZFoxcVNkbms5N28rV1Bh
+            QVlYUTQ1RkdHRFhyVjVaV0VsdWExUTgKLS0tIDl1bWpWVE9CMUZDTlp1YXcremNi
+            NDUrbXVPVWNFRzhGNXAzMUxDY1dMRmcK4qbKgaojQCa1oxqxZgQBOCwCsucbNuBd
+            T0OEzTL5lEHmWOma/x4JJECOQFhXfO0d9UWJyZBUVfX2OTWUGHJLng==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-09-22T17:01:24Z"
+    mac: ENC[AES256_GCM,data:PWwk6Rz2T+NmsPOGsJyoyn5roNUyDdg2ILFCxpk0iccuVO8a0rzCV+TZogEExHCeYBsj3IhKUdHmYrqp5HpMV7VkaX29OZO+LDk4rJjewjY47UGFXrQMYIIyUdWgpSIJUCoBsqsdWekJLSkox1DZ6rnD74M8BVVyehygCv5S7aw=,iv:FdoKKRZ5fOcXRRNdv4GuAuymtZlRLozcqP9TJ/u6zlQ=,tag:tALhHLGrEuQDzN93E5aGjg==,type:str]
+    encrypted_regex: (?i)password|webhook_url
+    version: 3.10.2

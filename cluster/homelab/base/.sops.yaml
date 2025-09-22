@@ -23,3 +23,8 @@ creation_rules:
   - path_regex: .*/*alert.sops.yaml
     encrypted_regex: ^(receivers)$
     pgp: age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
+
+    # sensitive... just general stuff I don't want to be sene
+  - path_regex: .*/*sensitive.sops.yaml
+    encrypted_regex: (?i)password|webhook_url
+    pgp: age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
