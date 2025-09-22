@@ -5,4 +5,3 @@ resources:
     - helm-release.yaml
     - namespace.yaml
     - ingress.sops.yaml
-    - deny-local-networkPolicy.yaml
