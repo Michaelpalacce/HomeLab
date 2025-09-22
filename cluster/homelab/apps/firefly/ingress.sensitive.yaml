@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: firefly
+    namespace: firefly
+    annotations:
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: Budget buddy!
+        gethomepage.dev/group: Personal
+        gethomepage.dev/icon: firefly
+        gethomepage.dev/name: Firefly III
+        gethomepage.dev/widget.type: firefly
+        gethomepage.dev/widget.url: https://firefly.sgenov.dev
+        gethomepage.dev/widget.key: ENC[AES256_GCM,data:Pd74NEGelENCcGqjJLtZ7bwA/qOdDLg7mc3xzHP3GU2fnb8xy12aGi9zFtyEGuLfH748ZFHl0tqInjpwdy8+5LRYABP7d2Md5oLwwHDOC7Pbqw8STXxdgyl8D1yAhDOGzbEZKd+8wDpHXorugbt6x3Eo+2/4G55ndVtRUlJWNa6Ey+iPgkpxtdb9h2s2gCv5BhEM0nkuEjgxPRr4NH6TxRi4fnmLNWzh1V+uSRWYwWM02B0hsNa+y6ZdEZzAvUZYpLJlJgqptkU5Ry6mQ5eo2ekpvxLhHHXZDSFtDFgiFZRPsffSRt8e/HTIoVKTvG2c/+rQKkFqccJEyBrJLgE4F43qM5yqafJ3rN6akdcqpU5iSs2OJ0USzWGq8rBsr13qvrnju2OozZbyXArQFVyxOU/Ye4QcvraSsMXw5HjUmnILzuBGcDX9Z4zbwDjbzQaYWa3Ttw/lfnysUqcwHxj+qeD/AFOtZMM4SKxHhzXiZmmWoV4xzlUhWYbvq4RzGo+aOzgLbjTLw8MEBDHnhpbRrK1p5WzVcwfPLpzKkn/TLzmsjqop65mV5jFZP9fipWm+YDL6BXuPm+68AUIGToIdSuTzVA8P9DwPAbXl5Tf+4Fd9iOnTYawtG0/Fu+xotwlErDMWrwE3dOquXkJe6WbVXn4zkz14XR6SI1XdFfNO4w79EjiFOZteQfeU4R9+00cZvjIjq3BDOFdG+Q1FHUOAQ+fwLqZajihmQlRl6Ho/Jw4tZz4DkHXzVOK9wQH4K3gjvoWuLsbnncbxKFuNfKa/YSU8s8ql/8yhMUNwV06PGK/rduQAF2dpw1F2uj4R/WANO2tqNAS3ySiYbSNK1Gl31KP8JsEzjo4eTyjIUeiRnWySi0lUUpQ/PxjkkY6LTMaDVR8j7IxjEBQexGzLl4fzCo4mU0VfmWjwXdP3uyIRyB+ITKtwUlNNF+KtJhi+LLpaHhtnnCHsIsIG7voTGRGq5HkIodNFPccG+BUxwJeYfDc24b/D+bn3X1cBNcOzzwz4lCTndUNbN+p1SuZlz7pFnXLo1emHA5hCxHJbaR8LWX7HAleF5rsIqobh1yYUbLuxdej4h9kkKMFjPMxLKZXIbfVskXW5MjRsbrgOL4GJE/wV8pwo/eoSG93PmdNxC+UD8TanE/DLxM/6Jsv+ryrRVfyYrAAgMvEGAFffwYgO+usyeb7OHtTi/nJg7BaFfSTJDQlmuXQ5jdAPVe2qbDuuXwygiLCo7RaNSsv6VLHCgj5fzR2uWDOjxjPDEwn3f5FM2ebPuMRW7bjemefyEgagolIKtJyhuacH,iv:J0zACM7QvnrTy0viyUOvZ8lOqr4YASoyVXizXyyCkDo=,tag:9RmYFMgHeeMkpXgtU3tvMg==,type:str]
+sops:
+    age:
+        - recipient: age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBtM2F3VDFiVk4xTklpeUMz
+            SjdzREFGUXNvOVM2TWJUdFA0R3gxcEF1VncwClBGelNzTGpyck9tOE9QRGFqZzRG
+            WEhYZm9QMjMreVkzYVRLWGdIOU14d0EKLS0tIGVNQTlQRWdXZU1rVFJpRFAvZUJ4
+            cm1ZYlV0WEV4SFRueUFmVUh0SEdYaGsKpBKNAGZmJXGNhxtDbbqiqqi5P5pyH7b2
+            GNyH14ZlX7/ANkaNodpzbOpv4fRDoGCx3oJg4V0dkbEqYmAAhXUKdw==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-09-22T19:09:20Z"
+    mac: ENC[AES256_GCM,data:JY4G9gXiALRRNpslvJxglrT7UoIMfTPsmVN9XUvjf5YrcG3AQ6ONGWnReFAKuhGiIgV/Z0T2c12dLn6i2/cS5IL1PKVqKwxG4kRDncI0jFwsBCqCeVHDowf2Gg7uf/QyUAG7dzH6drZQGf0C+IJ8GKQIHQef8R9SdoPAtnAAejQ=,iv:fpfuaZvJsxtuJNNjfh069RLI6ySsAAuFsh+hQOU76fM=,tag:nmcDElxhddMT9B/oTbkjgg==,type:str]
+    encrypted_regex: (?i)password|webhook_url|token|key
+    version: 3.10.2
