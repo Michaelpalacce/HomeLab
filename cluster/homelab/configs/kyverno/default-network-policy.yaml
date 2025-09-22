@@ -29,13 +29,16 @@ spec:
             - kube-system
             - flux-system
             - velero # We want to communicate to all namespaces for backup reasons
-            # WILL HAVE TO FIX THIS LATER
-            - observeability
-            - uptimekuma
-            - ingress-nginx
+            - observeability # Has it's own
+
+            # These work together, have to create a special policy just for them
             - tika
             - gotenberg
             - paperless-ngx
+
+            # WILL HAVE TO FIX THIS LATER
+            - uptimekuma
+            - ingress-nginx
             - system-upgrade
             - homepage
             - firefly
