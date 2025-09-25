@@ -28,19 +28,6 @@ spec:
       image:
         repository: velero/velero
         tag: v1.17.0
-      # @TODO: FIX ME... 
-      # nodeAgent:
-      #   containerSecurityContext:
-      #     allowPrivilegeEscalation: false
-      #     capabilities:
-      #       drop: ["ALL"]
-      #       add: []
-      # containerSecurityContext:
-      #   allowPrivilegeEscalation: false
-      #   capabilities:
-      #     drop: ["ALL"]
-      #     add: []
-      #   readOnlyRootFilesystem: true
       upgradeCRDs: true
       initContainers:
           - name: velero-plugin-for-aws
@@ -56,8 +43,6 @@ spec:
       credentials:
           existingSecret: cloud-credentials-wasabi
       configuration:
-          repositoryMaintenanceJob:
-            latestJobsCount: null # This is a bug in the latest velero
           backupStorageLocation:
               - name: default
                 provider: aws
