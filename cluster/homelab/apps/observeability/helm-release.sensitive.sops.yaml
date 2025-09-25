@@ -145,7 +145,7 @@ spec:
                     - name: "null"
                     - name: discord
                       discord_configs:
-                        - webhook_url: ENC[AES256_GCM,data:fxtoqmBVmWzh2XZ0jSoezROngAcmTiiwmt/8y2FSt//0edIB7El6eUnKCWEay+icrR3GutuDu9YRwGtxgN7Y3/pHKpQK6unISGMbAqnv8RwSRn54S0dEQoFnsSvV0g0bTvgW/CuKYCokdODzsOzmG7oURlqnhsOR0A==,iv:JUjNfu8Xb2Pn8+1foAmi3hoI8kl+KVosolnVvgY3inc=,tag:QLTjGY6PBah+Ya503ywSbg==,type:str]
+                        - webhook_url: ENC[AES256_GCM,data:Noi0PNRn5G/gdZhCzQILfCtYhJqwjbCciBHaZo8QbMnSpWmz8+xIcERMqPAjeikZFvjcIJSr+drhIa9Mpc+v9sUEnU3Y+lYT2uT/Nt7KRvLiZZBkeeXB6LnjIXEjde48SoGjSTs3i5QoS4NqIfcGMfZKIcq7ENrW6A==,iv:XmYF+Pd4+fqMt9UUKg8E4xuASi5DmSPAAWstbEp9GV8=,tag:/APnyPsWIY9PmHpj/+YqEw==,type:str]
                           send_resolved: true
                 templates:
                     - /etc/alertmanager/config/*.tmpl
@@ -181,12 +181,7 @@ spec:
                         - '*.sgenov.dev'
         grafana:
             adminUser: admin
-            adminPassword: ENC[AES256_GCM,data:fXN7TR9A+ipD+W/tvd/YGDVvHacB/jmzrJfUXVJLQA1qtfllnPX4NRT6OfOXBcVAoL4smg==,iv:+DCuBe4GHjO1cG/F94HDdgffEwg9dl86DMyGQqw6VZs=,tag:t4uSff63l7nCmERCUjw5sg==,type:str]
-            dashboards:
-                default:
-                    Trivy:
-                        gnetId: 17813
-                        revision: 2
+            adminPassword: ENC[AES256_GCM,data:kNvmoAYyXRRibvlwSsG9rUZ+WXrYQzfGEu7sy7iw2nZMWyJIXR2M1dC50B2MIE8iNz55hg==,iv:zEiqGiwKuFJDAO9hahH8EipTzpEbRSkVqd/pJKa0wX0=,tag:a/lUXXEjEZ1aItb1imtriw==,type:str]
             persistence:
                 enabled: true
                 type: sts
@@ -212,7 +207,7 @@ spec:
                     gethomepage.dev/widget.version: "2"
                     gethomepage.dev/widget.alerts: alertmanager
                     gethomepage.dev/widget.username: admin
-                    gethomepage.dev/widget.password: ENC[AES256_GCM,data:pKF6RPh8scqzLxEFN8iupflXj4ACMdQ9cU/fMroDgc3K82h2xhG9gqggDhgJGospiuTFbw==,iv:B/0fyYfyFPXDkp+LAjiQ7RBnWzBVtrfYVPYAOw3Ml4I=,tag:1Eg6gcANurD0ft5XxFexBw==,type:str]
+                    gethomepage.dev/widget.password: ENC[AES256_GCM,data:cC+9O7GPpESlnag+Z2+Sn5OisWLfUNo6yNQUOn4Cba3VD1cyC9ycFvLofr+h3fMygVMO9g==,iv:iR2DMbGcbfG+wCC1PZ96HqbXWcArCz19F2IG3pTXlbg=,tag:4zch6U6sHp2D486QmzAFoA==,type:str]
                 hosts:
                     - grafana.sgenov.dev
                 path: /
@@ -234,13 +229,13 @@ sops:
         - recipient: age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
           enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBOYkI1SVVoS3JvSFcvMFY3
-            L1hLMGRQY0w0UEVHZ1B0TkFCQzZaZ2xVTEhzCjNKazJUTGE1UERpakVudy9LWXNi
-            NFVyRUNiNDRZSDdJaUhuZkRHZkNDUkEKLS0tIHhmdUxQeExWU3cweGQvNFRBcGlu
-            N1V3RW9WQzZDVjgxcm1uczRCSXJMYjQKnSqDkkqP3W5HPdeYWFUzZRxSqoxizQpK
-            h7jUHjbiPVv32yO8fabTY/Yx1oehS+4jnGiaUJnPmncXHze2BwgCVw==
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBVR1pqSjhzNmpuNS8ybi9L
+            Uk9ZejdzMWorT3pENVVPSUJTU0UyeERoWFY4CkIzT0c0N2lCOFdMa3ZUcVQrK3ov
+            L3lKT2hGZDM5Z3dPdmY3ZjFrNlZrN2sKLS0tIFBNd1JXZVJwYUJYdUM0N2RtVDZl
+            RWJHTk9CQkxuYm1qZmtRTGo3YWxXNk0Kw/0WFpDD2DlDrttlbG3tChrpVSCqsdcy
+            xTthG+pdLC8HIzZ3onZC/L6/OXachWFe2R2ImwDVleR8q1CtdUddbg==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-09-25T16:42:25Z"
-    mac: ENC[AES256_GCM,data:HFUzoRP4ATfBx3Wfhc9FdK+x6E2p41zmE5v28Wk4EM6co/+RzlwYHBOnmn+M+dcMFSokfYUwIiMEcorObJ1szZL9lOtdmUWkMlYzhQYApy+/kdJV5uizg3RXU2TXJZcGurhXNYInRpofK7ka+wvLHDKktOVPM0EIc0GUDTAhLy0=,iv:PJJHsJdnrm9u3Rnn4WapIP80UXlFCpL5u9weTZJmusA=,tag:lqRBociZSzNl2oSIGvor4A==,type:str]
+    lastmodified: "2025-09-25T16:48:34Z"
+    mac: ENC[AES256_GCM,data:e9WYdIQgDncaAJe5qqhjRWeVNkYZYsyDRodnsOX2X/QtEjMkH68cpe+qfPZQj255kBkC3v28vtyYkvdhXnNRP/Ju4AsILvqZIyM6wGrE7k33td52yBT2vYQs9OEwihxufOlqjyeik7CPmHA1feT+6PRGXIl6JCy3VOnKWffCRqA=,iv:znnjuHOWmXwhwLvM8AA7hVck2v6Xeb0RywLw0eYOklY=,tag:AkcutpW8f02I1JT+0TQ3EQ==,type:str]
     encrypted_regex: (?i)password|webhook_url|token|key
     version: 3.10.2

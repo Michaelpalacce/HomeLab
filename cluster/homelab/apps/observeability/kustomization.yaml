@@ -4,5 +4,7 @@ kind: Kustomization
 resources:
     - helm-release.sensitive.sops.yaml
     - loki-helm-release.yaml
-    - kubernetes-server-metrics.yaml
     - namespace.yaml
+    # Dashboards
+    - kubernetes-server-metrics.yaml
+    - trivy.yaml
