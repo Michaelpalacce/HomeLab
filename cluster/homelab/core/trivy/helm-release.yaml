@@ -22,9 +22,8 @@ spec:
                 name: aqua
                 namespace: flux-system
     values:
-      podAnnotations:
-        prometheus.io/port: "8080"
-        prometheus.io/scrape: "true"
+      serviceMonitor:
+        enabled: true
       trivy:
         ignoreUnfixed: true
       # targetWorkloads: "pod,statefulset,daemonset,replicaset,cronjob"
