@@ -27,7 +27,7 @@ spec:
         headless: true
         metricsPort: 80
       serviceMonitor:
-        additionalLabels:
+        labels:
           release: trivy-operator
         enabled: true
       trivy:
