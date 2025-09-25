@@ -22,6 +22,10 @@ spec:
                 name: aqua
                 namespace: flux-system
     values:
+
+      service:
+        headless: true
+        metricsPort: 80
       serviceMonitor:
         enabled: true
       trivy:
