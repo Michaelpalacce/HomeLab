@@ -11,5 +11,6 @@ resources:
     - cert-manager
     - kyverno
     - kured # Temporarily stopping this
+    - trivy
     - descheduler
     - metallb
