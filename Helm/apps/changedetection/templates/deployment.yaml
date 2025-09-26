@@ -27,63 +27,63 @@ spec:
                 app.kubernetes.io/name: changedetection
         spec:
             containers:
-                - name: browserless
-                  image: {{ .playwright.image }}
-                  imagePullPolicy: IfNotPresent
-                  securityContext:
-                    capabilities:
-                      drop:
-                      - ALL
-                  ports:
-                      - name: browserless
-                        containerPort: {{ .playwright.port }}
-                  env:
-                      - name: DEFAULT_LAUNCH_ARGS
-                        value: "--window-size=1920.1080"
-                  resources: 
-                      limits:
-                          memory: 2Gi
-                  volumeMounts:
-                      - name: shm-empty-playwright
-                        mountPath: /dev/shm
-                  livenessProbe:
-                      failureThreshold: 10
-                      initialDelaySeconds: 30
-                      tcpSocket:
-                          port: {{ .playwright.port }}
-                      timeoutSeconds: 2
-                  startupProbe:
-                      failureThreshold: 20
-                      timeoutSeconds: 2
-                      tcpSocket:
-                          port: {{ .playwright.port }}
-                - name: selenium
-                  image: {{ .selenium.image }}
-                  imagePullPolicy: IfNotPresent
-                  securityContext:
-                    capabilities:
-                      drop:
-                      - ALL
-                  ports:
-                      - name: selenium
-                        containerPort: {{ .selenium.port }}
-                  resources: 
-                      limits:
-                          memory: 2Gi
-                  volumeMounts:
-                      - name: shm-empty
-                        mountPath: /dev/shm
-                  livenessProbe:
-                      failureThreshold: 10
-                      initialDelaySeconds: 30
-                      tcpSocket:
-                          port: {{ .selenium.port }}
-                      timeoutSeconds: 2
-                  startupProbe:
-                      failureThreshold: 20
-                      timeoutSeconds: 2
-                      tcpSocket:
-                          port: {{ .selenium.port }}
+                # - name: browserless
+                #   image: {{ .playwright.image }}
+                #   imagePullPolicy: IfNotPresent
+                #   securityContext:
+                #     capabilities:
+                #       drop:
+                #       - ALL
+                #   ports:
+                #       - name: browserless
+                #         containerPort: {{ .playwright.port }}
+                #   env:
+                #       - name: DEFAULT_LAUNCH_ARGS
+                #         value: "--window-size=1920.1080"
+                #   resources: 
+                #       limits:
+                #           memory: 2Gi
+                #   volumeMounts:
+                #       - name: shm-empty-playwright
+                #         mountPath: /dev/shm
+                #   livenessProbe:
+                #       failureThreshold: 10
+                #       initialDelaySeconds: 30
+                #       tcpSocket:
+                #           port: {{ .playwright.port }}
+                #       timeoutSeconds: 2
+                #   startupProbe:
+                #       failureThreshold: 20
+                #       timeoutSeconds: 2
+                #       tcpSocket:
+                #           port: {{ .playwright.port }}
+                # - name: selenium
+                #   image: {{ .selenium.image }}
+                #   imagePullPolicy: IfNotPresent
+                #   securityContext:
+                #     capabilities:
+                #       drop:
+                #       - ALL
+                #   ports:
+                #       - name: selenium
+                #         containerPort: {{ .selenium.port }}
+                #   resources: 
+                #       limits:
+                #           memory: 2Gi
+                #   volumeMounts:
+                #       - name: shm-empty
+                #         mountPath: /dev/shm
+                #   livenessProbe:
+                #       failureThreshold: 10
+                #       initialDelaySeconds: 30
+                #       tcpSocket:
+                #           port: {{ .selenium.port }}
+                #       timeoutSeconds: 2
+                #   startupProbe:
+                #       failureThreshold: 20
+                #       timeoutSeconds: 2
+                #       tcpSocket:
+                #           port: {{ .selenium.port }}
                 - name: changedetection
                   image: {{ .image }}
                   imagePullPolicy: IfNotPresent
@@ -110,10 +110,10 @@ spec:
                         value: "Europe/Sofia"
                       - name: BASE_URL
                         value: "{{ .baseUrl }}"
-                      - name: WEBDRIVER_URL
-                        value: "http://localhost:{{ .selenium.port }}/wd/hub"
-                      - name: PLAYWRIGHT_DRIVER_URL
-                        value: "ws://localhost:{{ .playwright.port }}/?stealth=1&--disable-web-security=true"
+                      # - name: WEBDRIVER_URL
+                      #   value: "http://localhost:{{ .selenium.port }}/wd/hub"
+                      # - name: PLAYWRIGHT_DRIVER_URL
+                      #   value: "ws://localhost:{{ .playwright.port }}/?stealth=1&--disable-web-security=true"
                   livenessProbe:
                       failureThreshold: 10
                       initialDelaySeconds: 30
