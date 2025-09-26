@@ -34,7 +34,7 @@ spec:
         ignoreUnfixed: true
       # targetWorkloads: "pod,statefulset,daemonset,replicaset,cronjob"
       # Targeting only my specific apps
-      targetNamespaces: "website,go-ddns-controller"
+      targetNamespaces: ""
       trivyOperator:
         reportResourceLabels: "owner,app"
       operator:
