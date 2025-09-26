@@ -28,7 +28,7 @@ spec:
         metricsPort: 80
       serviceMonitor:
         labels:
-          release: trivy-operator
+          release: observeability
         enabled: true
       trivy:
         ignoreUnfixed: true
