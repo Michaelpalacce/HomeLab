@@ -6,10 +6,6 @@ metadata:
     name: cyberchef
     namespace: {{ $.Release.Namespace }}
 spec:
-    {{- with .lbIp }}
-    type: LoadBalancer
-    loadBalancerIP: {{ . }}
-    {{- end }}
     selector:
         app.kubernetes.io/instance: cyberchef
         app.kubernetes.io/name: cyberchef
