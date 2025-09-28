@@ -40,7 +40,12 @@ spec:
                     allowPrivilegeEscalation: false
                     privileged: false
                     capabilities:
-                      drop: ["ALL"]
+                      drop: 
+                      - "ALL"
+                      add:
+                      - CHOWN
+                      - SETUID
+                      - SETGID
 {{- if .resources }}
                   resources:
 {{ toYaml .resources | indent 22 }}
