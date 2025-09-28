@@ -43,6 +43,7 @@ spec:
       credentials:
           existingSecret: cloud-credentials-wasabi
       configuration:
+          features: EnableCSI
           backupStorageLocation:
               - name: default
                 provider: aws
