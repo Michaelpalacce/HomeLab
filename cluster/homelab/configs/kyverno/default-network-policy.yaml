@@ -96,6 +96,9 @@ spec:
             - tika
             - gotenberg
             - paperless-ngx
+
+            # For later
+            - cnpg-system
     match:
       any:
       - resources:
