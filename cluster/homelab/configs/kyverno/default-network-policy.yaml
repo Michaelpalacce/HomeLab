@@ -96,6 +96,9 @@ spec:
             - tika
             - gotenberg
             - paperless-ngx
+
+            # Fix this later
+            - reflector
     match:
       any:
       - resources:
