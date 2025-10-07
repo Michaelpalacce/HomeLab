@@ -28,7 +28,7 @@ spec:
     values:
         cephClusterSpec:
           cephVersion:
-            image: quay.io/ceph/ceph:v20.1.0
+            image: quay.io/ceph/ceph:v20.1.1
           dataDirHostPath: /var/lib/rook
           mon:
             count: 3
