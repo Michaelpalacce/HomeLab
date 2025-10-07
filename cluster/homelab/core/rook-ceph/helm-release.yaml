@@ -28,7 +28,7 @@ spec:
     values:
         image:
             repository: ghcr.io/rook/ceph
-            tag: v1.18.3
+            tag: v1.18.4
             pullPolicy: IfNotPresent
         crds:
             # -- Whether the helm chart should create and update the CRDs. If false, the CRDs must be
