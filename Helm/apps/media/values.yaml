@@ -15,7 +15,7 @@ storage:
         config: 10Gi
 
 flaresolverr:
-    image: ghcr.io/flaresolverr/flaresolverr:v3.4.1
+    image: ghcr.io/flaresolverr/flaresolverr:v3.4.2
     port: 8191
     resources:
         requests:
