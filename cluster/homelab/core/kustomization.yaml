@@ -10,7 +10,7 @@ resources:
     - velero
     - cert-manager
     - kyverno
-    - kured # Temporarily stopping this
+    # - kured # Temporarily stopping this
     - trivy
     - descheduler
     - metallb
