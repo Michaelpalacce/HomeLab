@@ -86,6 +86,7 @@ spec:
             - kube-system
             - flux-system
             - system-upgrade
+            - metallb
             - velero # We want to communicate to all namespaces for backup reasons
             - observeability # Has it's own
             - uptimekuma # A little bit down :)
