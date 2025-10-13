@@ -20,62 +20,62 @@ metadata:
 spec:
   generateExisting: true
   rules:
-  # - name: generate-paperless-networkpolicy
-  #   match:
-  #     any:
-  #     - resources:
-  #         kinds:
-  #         - Namespace
-  #         names:
-  #           - tika
-  #           - gotenberg
-  #           - paperless-ngx
-  #   generate:
-  #     kind: NetworkPolicy
-  #     apiVersion: networking.k8s.io/v1
-  #     name: "{{request.object.metadata.name}}-default-deny"
-  #     namespace: "{{request.object.metadata.name}}"
-  #     synchronize: true
-  #     data:
-  #       metadata:
-  #         labels:
-  #           created-by: kyverno
-  #       spec:
-  #         podSelector: {}
-  #         policyTypes:
-  #         - Egress
-  #         egress: 
-  #         # It's ok internally to these namespaces
-  #         - to:
-  #           - namespaceSelector:
-  #               matchLabels:
-  #                 kubernetes.io/metadata.name: "tika"
-  #         - to:
-  #           - namespaceSelector:
-  #               matchLabels:
-  #                 kubernetes.io/metadata.name: "gotenberg"
-  #         - to:
-  #           - namespaceSelector:
-  #               matchLabels:
-  #                 kubernetes.io/metadata.name: "paperless-ngx"
-  #         # DNS is allowed (CoreDNS)
-  #         - to:
-  #           - namespaceSelector:
-  #               matchLabels:
-  #                 kubernetes.io/metadata.name: kube-system
-  #           ports:
-  #           - protocol: UDP
-  #             port: 53
-  #           - protocol: TCP
-  #             port: 53
-  #         # Allow everywhere but not internally, don't want it communicating to local network
-  #         - to:
-  #           - ipBlock:
-  #               cidr: 0.0.0.0/0
-  #               except:
-  #               - 10.0.0.0/8   # RFC 1918 - Class A private
-  #               - 172.16.0.0/12 # RFC 1918 - Class B private
-  #               - 192.168.0.0/16 # RFC 1918 - Class C private
+  - name: generate-paperless-networkpolicy
+    match:
+      any:
+      - resources:
+          kinds:
+          - Namespace
+          names:
+            - tika
+            - gotenberg
+            - paperless-ngx
+    generate:
+      kind: NetworkPolicy
+      apiVersion: networking.k8s.io/v1
+      name: "{{request.object.metadata.name}}-default-deny"
+      namespace: "{{request.object.metadata.name}}"
+      synchronize: true
+      data:
+        metadata:
+          labels:
+            created-by: kyverno
+        spec:
+          podSelector: {}
+          policyTypes:
+          - Egress
+          egress: 
+          # It's ok internally to these namespaces
+          - to:
+            - namespaceSelector:
+                matchLabels:
+                  kubernetes.io/metadata.name: "tika"
+          - to:
+            - namespaceSelector:
+                matchLabels:
+                  kubernetes.io/metadata.name: "gotenberg"
+          - to:
+            - namespaceSelector:
+                matchLabels:
+                  kubernetes.io/metadata.name: "paperless-ngx"
+          # DNS is allowed (CoreDNS)
+          - to:
+            - namespaceSelector:
+                matchLabels:
+                  kubernetes.io/metadata.name: kube-system
+            ports:
+            - protocol: UDP
+              port: 53
+            - protocol: TCP
+              port: 53
+          # Allow everywhere but not internally, don't want it communicating to local network
+          - to:
+            - ipBlock:
+                cidr: 0.0.0.0/0
+                except:
+                - 10.0.0.0/8   # RFC 1918 - Class A private
+                - 172.16.0.0/12 # RFC 1918 - Class B private
+                - 192.168.0.0/16 # RFC 1918 - Class C private
   - name: generate-existing-networkpolicy
     exclude:
       any:
@@ -85,8 +85,6 @@ spec:
             - kyverno
             - kube-system
             - flux-system
-            - system-upgrade
-            - metallb
             - velero # We want to communicate to all namespaces for backup reasons
             - observeability # Has it's own
             - uptimekuma # A little bit down :)
@@ -100,6 +98,8 @@ spec:
 
             # Fix this later
             - reflector
+            - system-upgrade
+            - metallb
     match:
       any:
       - resources:
