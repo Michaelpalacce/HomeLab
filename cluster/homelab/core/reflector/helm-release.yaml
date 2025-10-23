@@ -11,7 +11,7 @@ spec:
     chart:
         spec:
             chart: reflector
-            version: 9.1.36
+            version: 9.1.37
             interval: 1h
             sourceRef:
                 kind: HelmRepository
