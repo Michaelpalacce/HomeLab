@@ -60,18 +60,33 @@ spec:
                       - name: shm-empty
                         mountPath: /dev/shm
                   livenessProbe:
-                      failureThreshold: 5
-                      initialDelaySeconds: 60
-                      timeoutSeconds: 2
-                      tcpSocket:
-                          port: {{ .port }}
+                    exec:
+                      command:
+                      - /bin/bash
+                      - -c
+                      - pg_isready
+                      - -U
+                      - $POSTGRES_USER
+                      - -d
+                      - $POSTGRES_DB
+                    failureThreshold: 2
+                    periodSeconds: 10
+                    successThreshold: 1
+                    timeoutSeconds: 2
                   startupProbe:
-                      failureThreshold: 10
-                      initialDelaySeconds: 10
-                      timeoutSeconds: 2
-                      tcpSocket:
-                          port: {{ .port }}
-
+                    exec:
+                      command:
+                      - /bin/bash
+                      - -c
+                      - pg_isready
+                      - -U
+                      - $POSTGRES_USER
+                      - -d
+                      - $POSTGRES_DB
+                    failureThreshold: 10
+                    periodSeconds: 10
+                    successThreshold: 1
+                    timeoutSeconds: 2
             restartPolicy: Always
             volumes:
                 - name: postgresql-data
