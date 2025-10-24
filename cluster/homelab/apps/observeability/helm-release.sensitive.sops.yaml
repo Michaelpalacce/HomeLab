@@ -145,7 +145,7 @@ spec:
                     - name: "null"
                     - name: discord
                       discord_configs:
-                        - webhook_url: ENC[AES256_GCM,data:Noi0PNRn5G/gdZhCzQILfCtYhJqwjbCciBHaZo8QbMnSpWmz8+xIcERMqPAjeikZFvjcIJSr+drhIa9Mpc+v9sUEnU3Y+lYT2uT/Nt7KRvLiZZBkeeXB6LnjIXEjde48SoGjSTs3i5QoS4NqIfcGMfZKIcq7ENrW6A==,iv:XmYF+Pd4+fqMt9UUKg8E4xuASi5DmSPAAWstbEp9GV8=,tag:/APnyPsWIY9PmHpj/+YqEw==,type:str]
+                        - webhook_url: ENC[AES256_GCM,data:a4rBBVcMCC7JATZEBUlwEqO+I3r8oxPlThw8GcWFwwW+GzWE8FC3i898qI+SxJKrRbi/149G4NM25oiqt7suHrhytdgHJP+4Hp3YOsrDPeKA9XROhOVtIiqcXyXnr5Luvlknif+7s5vqfSOniDqt8Kkipje0DTGCpg==,iv:Z5jNIMuiPMieMl80ReD/NCIc9ZYIaEvues76wHdUsKU=,tag:8XouyQRIxVNKIoUHNK244Q==,type:str]
                           send_resolved: true
                 templates:
                     - /etc/alertmanager/config/*.tmpl
@@ -181,7 +181,7 @@ spec:
                         - '*.sgenov.dev'
         grafana:
             adminUser: admin
-            adminPassword: ENC[AES256_GCM,data:kNvmoAYyXRRibvlwSsG9rUZ+WXrYQzfGEu7sy7iw2nZMWyJIXR2M1dC50B2MIE8iNz55hg==,iv:zEiqGiwKuFJDAO9hahH8EipTzpEbRSkVqd/pJKa0wX0=,tag:a/lUXXEjEZ1aItb1imtriw==,type:str]
+            adminPassword: ENC[AES256_GCM,data:MUll4rYAbO+eg7XaxvLh4uA9xF1cUEoreDUDLqmvawQAQ1tAPeV4DgMm4Qc65aZTDm2vOw==,iv:3lPtIC17fJFYEcKwPfUtxbMzKJAoBYnQr7M9P73WU+Q=,tag:PvoMziKEK4n93DnUiN9Usg==,type:str]
             persistence:
                 enabled: true
                 type: sts
@@ -207,7 +207,7 @@ spec:
                     gethomepage.dev/widget.version: "2"
                     gethomepage.dev/widget.alerts: alertmanager
                     gethomepage.dev/widget.username: admin
-                    gethomepage.dev/widget.password: ENC[AES256_GCM,data:cC+9O7GPpESlnag+Z2+Sn5OisWLfUNo6yNQUOn4Cba3VD1cyC9ycFvLofr+h3fMygVMO9g==,iv:iR2DMbGcbfG+wCC1PZ96HqbXWcArCz19F2IG3pTXlbg=,tag:4zch6U6sHp2D486QmzAFoA==,type:str]
+                    gethomepage.dev/widget.password: ENC[AES256_GCM,data:P4/RzmiJKOq6d2fPwDXMWbVZ8o4ttcw3r5MNF/P9Qjs3EK3+oXskU/I0pfn/OOkcRCRkkA==,iv:lvc4Fc1Y7NT/UShyZbQ7V6rdE8Cdt2fg4m8zO9pqtKY=,tag:wF++3KVayPHB2NCvwcm+1A==,type:str]
                 hosts:
                     - grafana.sgenov.dev
                 path: /
@@ -224,18 +224,32 @@ spec:
             upgradeJob:
                 enabled: true
                 forceConflicts: false
+            image:
+                busybox:
+                    registry: docker.io
+                    repository: busybox
+                    tag: "1.37"
+                    sha: ""
+                    pullPolicy: IfNotPresent
+                kubectl:
+                    registry: registry.k8s.io
+                    repository: kubectl
+                    # defaults to the Kubernetes version
+                    tag: ""
+                    sha: ""
+                    pullPolicy: IfNotPresent
 sops:
     age:
         - recipient: age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
           enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBVR1pqSjhzNmpuNS8ybi9L
-            Uk9ZejdzMWorT3pENVVPSUJTU0UyeERoWFY4CkIzT0c0N2lCOFdMa3ZUcVQrK3ov
-            L3lKT2hGZDM5Z3dPdmY3ZjFrNlZrN2sKLS0tIFBNd1JXZVJwYUJYdUM0N2RtVDZl
-            RWJHTk9CQkxuYm1qZmtRTGo3YWxXNk0Kw/0WFpDD2DlDrttlbG3tChrpVSCqsdcy
-            xTthG+pdLC8HIzZ3onZC/L6/OXachWFe2R2ImwDVleR8q1CtdUddbg==
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBqQVJuVkl3Q3ByVExGelo3
+            VDg3S0JOZjFLeVh3RXhZVkZXVTNxekZYQms0CmZScWdwV2JVRkt3RnB0TkR4aGxI
+            dUJhc2dkR2YzOU1GWGVvbmtzTFg0Y2sKLS0tIGZYdFJONU9URVRDUjZaa1Vibm9v
+            RE5CdjRadDdBUUFzUTEzbGw0RlFWVmsK9R8Ir+yjzzdmG2+YKE0/w1iZtvUO2UVO
+            rEpqPU9hTWXrCZv4jveIzUvp8vHxvD2zQUDp4Jkzon4IDdVGk8V4qA==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-09-25T16:48:34Z"
-    mac: ENC[AES256_GCM,data:e9WYdIQgDncaAJe5qqhjRWeVNkYZYsyDRodnsOX2X/QtEjMkH68cpe+qfPZQj255kBkC3v28vtyYkvdhXnNRP/Ju4AsILvqZIyM6wGrE7k33td52yBT2vYQs9OEwihxufOlqjyeik7CPmHA1feT+6PRGXIl6JCy3VOnKWffCRqA=,iv:znnjuHOWmXwhwLvM8AA7hVck2v6Xeb0RywLw0eYOklY=,tag:AkcutpW8f02I1JT+0TQ3EQ==,type:str]
+    lastmodified: "2025-10-24T17:30:24Z"
+    mac: ENC[AES256_GCM,data:ot6nexffZZH+CZQy9zTaHegT6hrDIsshzFHCPAElfnluOoaSzI1V7SMO3Hb7vpRKXkChiY9zKRKr6q0/hr9d+GKhNZLMIMIwuBPLyT3KQkQKNEgfDojiWD/0RIhrG0Mk47HeKiWYbhgNLhtP0CREvhfrVWZGIheZqJTfVOpj6mQ=,iv:EUa2uxFzJz9iosJxOc+tzrK0Nx03knsDqPXRhcKXfqg=,tag:FwC49qSv9+ES2Ho2XI2fMQ==,type:str]
     encrypted_regex: (?i)password|webhook_url|token|key
-    version: 3.10.2
+    version: 3.11.0
