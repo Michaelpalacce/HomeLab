@@ -1,6 +1,7 @@
 ---
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+namespace: website
 resources:
   - helm-release.yaml
   - namespace.yaml
