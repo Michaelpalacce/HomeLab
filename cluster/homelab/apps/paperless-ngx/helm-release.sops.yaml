@@ -33,9 +33,7 @@ spec:
             backup.velero.io/backup-volumes: data,media,export,consume
         redis:
             image:
-                registry: docker.io
-                repository: redis
-                tag: "8.2"
+                tag: latest
         service:
             main:
                 type: LoadBalancer
@@ -83,7 +81,7 @@ spec:
                     gethomepage.dev/name: Paperless-NGX
                     gethomepage.dev/widget.type: paperlessngx
                     gethomepage.dev/widget.url: https://paperless.sgenov.dev
-                    gethomepage.dev/widget.key: ENC[AES256_GCM,data:LtQtmIEBozsG41Om9DE9CPTmwRhNtbLvhuZwQVye5MCHBrfpGXArHg==,iv:tXF0fecbkrn8SNvnmvP3TD6NJpEfJthR8yhgO5sYGwU=,tag:5n2btOZ2z9sdCwcXZNOizA==,type:str]
+                    gethomepage.dev/widget.key: ENC[AES256_GCM,data:x6wVx9Tzi5/AdxoNCEXOoSXuDD8oQrEB5MboblNRE0bhlqWkwdRHXQ==,iv:CCJFWDF2rqd5dgBHt/GKQkgFFpcVgOfHNyNtUBPA+IU=,tag:Tq2ECdLn7d7Ohg9eYybzFw==,type:str]
                 hosts:
                     - host: paperless.sgenov.dev
                       paths:
@@ -97,13 +95,13 @@ sops:
         - recipient: age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
           enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBiL2thdW5obGlaTUIzM2pG
-            dzRtYkUzZ0w5OGU4M1hEOGJzSHB0QmUyMnlJCk5RbHRFRkIxbkxJaytmYlhydGxh
-            dUwxMEw5N3oxWVlTTUUxVG9yd040U0UKLS0tIG9VcnFiVHlXVVBlK25iSUk5WnBE
-            cGNlQVQxTGJJNitzemdmUEk1bG40N28KyKf2AOWCo7Mi8V873OdTSWX3vqpRFS6Q
-            N9fOSfQGg28dxXkTp6GN9JCsetLVXorvOAXb1n/EZB1Gc61lI4LDmQ==
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBaZmNBZHliWW16UDlVTHJL
+            OFZPWGplVVRINDZrK25NL2tMRzdJRjRHVFdzCm9kekFVeit5Tkl1TTNhNGVMMFcw
+            R2dKN2lPOWsyZ3ViR0lndlB1RFUwWlkKLS0tIDNhbkpNQjZjR2psZHhGSFUzRDEw
+            V0xUTTJZQmYyeThCV1FRWEh1c0hLZzQKILA8218SsOPK0BG1RQNCJUpj6dMeBd9L
+            jStOOdwauwhDD+50hDgRR0O9AZiduPzwua8YgWA/vzjhQjH8XlhE2A==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-11-07T13:31:22Z"
-    mac: ENC[AES256_GCM,data:Au2MhpfpC9XDp3w3UQxM+O5ODSlO1QIy3IaKvRQsu1IfHpk6Do0Zbly94sEkA3wtrdLISBPN9a9Mp59/BQ2t8ff2Jk8qmVzelJEa73yG+JxpUYP1xbvCPm9GqfqZkMY78eTvf7Lec5VR9kbleQEmq0Q0U43yVqDPMot6TN9GS8M=,iv:Vdg/EeEc0JLWZsf4+UYOBBlZ1BntJnvrTrSLUoJVMw4=,tag:4NouvVTUqLw8aLu3wbI/RQ==,type:str]
+    lastmodified: "2025-11-07T13:41:42Z"
+    mac: ENC[AES256_GCM,data:Fyld3/9o2SPncqV86CS4JydLWsSGNPZzN1hgtLGsfR9rpGdUDfS2qreMPPgU0ex9j4EOIxTYGNWhH6IxIB4oVwfdCH33Amb0eoV2eqE6EGdWgTs0NVtBN2xUgPSrVr57i084QJEPEpTOL9G14GAtkR8C7gm7bUy4KxUOYETy2Ho=,iv:m0i/7zF2vRfdB4nlYKbwB9RQkNQQ2hRxBdXZn9LMses=,tag:SnqDgIYMk8zl/T6yvX/dwQ==,type:str]
     encrypted_regex: (?i)password|webhook_url|token|key
     version: 3.11.0
