@@ -1,5 +1,9 @@
 # TODOs
 
+## Fixes
+
+- [ ] Fix paperless-ngx redis:latest... broadcom...
+
 ## Security
 
 - [ ] Network policies 
@@ -10,7 +14,6 @@
 
 ## Service Specifics
 
-- [ ] HomeBox entries for all of the hardware I have
 
 ## Upgrades
 
