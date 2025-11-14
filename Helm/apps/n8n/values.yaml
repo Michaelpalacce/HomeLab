@@ -12,7 +12,7 @@ n8n:
             memory: 250Mi
 
 postgres:
-    image: postgres:16.11
+    image: postgres:18.1
     dataSize: 2Gi
     port: 5432
     resources:
