@@ -11,7 +11,7 @@ wallabag:
             memory: 500Mi
 
 postgres:
-    image: postgres:16.10
+    image: postgres:16.11
     port: 5432
     resources:
         requests:
