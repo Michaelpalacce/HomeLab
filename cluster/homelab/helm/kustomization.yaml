@@ -25,3 +25,4 @@ resources:
   - bjw-s
   - wger
   - istio
+  - gateway-api

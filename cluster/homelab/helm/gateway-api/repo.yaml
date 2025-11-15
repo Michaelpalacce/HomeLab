@@ -1,0 +1,9 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: gateway-api
+  namespace: flux-system
+spec:
+  type: "oci"
+  interval: 1h
+  url: ghcr.io/nicklasfrahm/charts
