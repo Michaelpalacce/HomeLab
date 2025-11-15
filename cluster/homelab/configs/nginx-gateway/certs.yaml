@@ -43,6 +43,6 @@ spec:
     - digital signature
     - key encipherment
   dnsNames:
-    - ngf-nginx-gateway-fabric.nginx-gateway.svc # this value may need to be updated
+    - ngf-nginx-gateway.nginx-gateway.svc # this value may need to be updated
   issuerRef:
     name: nginx-gateway-issuer
