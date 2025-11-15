@@ -2,22 +2,27 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-    name: cert-manager
-    namespace: cert-manager
+  name: cert-manager
+  namespace: cert-manager
 spec:
-    interval: 1h
-    install:
-        createNamespace: true
-    chart:
-        spec:
-            chart: cert-manager
-            version: v1.19.1
-            interval: 1h
-            sourceRef:
-                kind: HelmRepository
-                name: cert-manager
-                namespace: flux-system
-    values:
-        installCRDs: true
-        deploymentAnnotations:
-            certmanager.k8s.io/disable-validation: "true"
+  interval: 1h
+  install:
+    createNamespace: true
+  chart:
+    spec:
+      chart: cert-manager
+      version: v1.19.1
+      interval: 1h
+      sourceRef:
+        kind: HelmRepository
+        name: cert-manager
+        namespace: flux-system
+  values:
+    installCRDs: true
+    deploymentAnnotations:
+      certmanager.k8s.io/disable-validation: "true"
+    config:
+      enableGatewayAPI: true
+    crds:
+      enabled: true
+    enableCertificateOwnerRef: true # automatically remove secrets if cert is removed
