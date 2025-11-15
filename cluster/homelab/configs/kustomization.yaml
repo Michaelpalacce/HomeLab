@@ -8,4 +8,3 @@ resources:
   - kyverno
   # Commented out to prevent accidental upgrades... turns out automated upgrades are a bad idea due to incompatibilities.One issue I ran into was with longhorn, which was not compatible with the latest version of k3s and resulted in a broken cluster that I had to recreate.
   # - system-upgrade
-  - nginx-gateway
