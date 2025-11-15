@@ -20,8 +20,7 @@ Ideally you should either pass in your password every time or setup passwordless
 - Install Gateway API (make sure to use latest version.)
 
 ```sh
-kubectl get crd gateways.gateway.networking.k8s.io &> /dev/null || \
-  kubectl apply --server-side -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.4.0/experimental-install.yaml
+kubectl apply --server-side -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.4.0/standard-install.yaml
 ```
 
 Next Steps: - [Flux](./Flux.md)
