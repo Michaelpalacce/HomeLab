@@ -19,7 +19,3 @@ k3s_server:
   cluster-cidr: "10.40.0.0/16"
   service-cidr: "10.96.0.0/16"
   etcd-expose-metrics: true
-
-k3s_server_manifests_urls:
-  - url: https://docs.projectcalico.org/archive/v3.19/manifests/tigera-operator.yaml
-    filename: tigera-operator.yaml
