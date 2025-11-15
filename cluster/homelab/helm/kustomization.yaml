@@ -24,5 +24,3 @@ resources:
   - maikumori
   - bjw-s
   - wger
-  - istio
-  - gateway-api
