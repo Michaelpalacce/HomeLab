@@ -19,4 +19,4 @@ spec:
         mode: Terminate
         certificateRefs:
           - kind: Secret
-            name: gateway-tls
+            name: ingress
