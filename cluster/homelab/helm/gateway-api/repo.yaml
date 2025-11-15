@@ -6,4 +6,4 @@ metadata:
 spec:
   type: "oci"
   interval: 1h
-  url: ghcr.io/nicklasfrahm/charts
+  url: oci://ghcr.io/nicklasfrahm/charts
