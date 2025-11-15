@@ -5,3 +5,4 @@ resources:
   - certs.yaml
   - helm-release.yaml
   - namespace.yaml
+  - gateway.yaml
