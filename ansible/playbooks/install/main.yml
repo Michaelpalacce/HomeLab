@@ -4,61 +4,61 @@
   gather_facts: false
   become: true
   tags:
-      - preflight
-      - preflight-sudoers
+    - preflight
+    - preflight-sudoers
   vars_files:
-      - "./vars/main.yml"
+    - "./vars/main.yml"
   tasks:
-      - name: Show current Ansible user
-        debug:
-          var: ansible_user
-      - name: Enable passwordless sudo for user
-        copy:
-          dest: "/etc/sudoers.d/10-{{ ansible_user }}"
-          content: "{{ ansible_user }} ALL=(ALL) NOPASSWD:ALL"
-          owner: root
-          group: root
-          mode: '0440'
+    - name: Show current Ansible user
+      debug:
+        var: ansible_user
+    - name: Enable passwordless sudo for user
+      copy:
+        dest: "/etc/sudoers.d/10-{{ ansible_user }}"
+        content: "{{ ansible_user }} ALL=(ALL) NOPASSWD:ALL"
+        owner: root
+        group: root
+        mode: "0440"
 - hosts: all
   name: Setup Logs and log sizes
   gather_facts: false
   become: true
   tags:
-      - preflight
-      - preflight-logs
+    - preflight
+    - preflight-logs
   vars_files:
-      - "./vars/main.yml"
+    - "./vars/main.yml"
   tasks:
-      - name: Logrotate
-        copy:
-            dest: "{{ item.dest }}"
-            src: "{{ item.src }}"
-        with_items:
-            - dest: /etc/logrotate.d/allContainerLogs
-              src: allContainerLogs
-            - dest: /etc/logrotate.d/cniLogs
-              src: cniLogs
-            - dest: /etc/logrotate.d/podLogs
-              src: podLogs
+    - name: Logrotate
+      copy:
+        dest: "{{ item.dest }}"
+        src: "{{ item.src }}"
+      with_items:
+        - dest: /etc/logrotate.d/allContainerLogs
+          src: allContainerLogs
+        - dest: /etc/logrotate.d/cniLogs
+          src: cniLogs
+        - dest: /etc/logrotate.d/podLogs
+          src: podLogs
 
-      - name: Check if logrotate is daily
-        stat: path=/etc/cron.daily/logrotate
-        register: logrotate_stat
+    - name: Check if logrotate is daily
+      stat: path=/etc/cron.daily/logrotate
+      register: logrotate_stat
 
-      - name: Move logrotate to hourly if daily
-        command: mv /etc/cron.daily/logrotate /etc/cron.hourly/logrotate
-        when: logrotate_stat.stat.exists
+    - name: Move logrotate to hourly if daily
+      command: mv /etc/cron.daily/logrotate /etc/cron.hourly/logrotate
+      when: logrotate_stat.stat.exists
 
-      - name: Ensure persistent journal is enabled
-        lineinfile:
-          path: /etc/systemd/journald.conf
-          regexp: '^#?SystemMaxUse='
-          line: 'SystemMaxUse={{ journalctl_vaccum_size }}'
-          state: present
-        notify: restart systemd-journald
+    - name: Ensure persistent journal is enabled
+      lineinfile:
+        path: /etc/systemd/journald.conf
+        regexp: "^#?SystemMaxUse="
+        line: "SystemMaxUse={{ journalctl_vaccum_size }}"
+        state: present
+      notify: restart systemd-journald
 
-      - name: Reload systemd-journald configuration
-        command: systemctl daemon-reload
+    - name: Reload systemd-journald configuration
+      command: systemctl daemon-reload
   handlers:
     - name: restart systemd-journald
       service:
@@ -70,30 +70,30 @@
   gather_facts: false
   become: true
   tags:
-      - preflight
-      - preflight-limits
+    - preflight
+    - preflight-limits
   vars_files:
-      - "./vars/main.yml"
+    - "./vars/main.yml"
   tasks:
     - name: Set soft nofile limit for all users
       lineinfile:
         path: /etc/security/limits.conf
         insertafter: EOF
-        line: '* soft nofile 65535'
+        line: "* soft nofile 65535"
         state: present
 
     - name: Set hard nofile limit for all users
       lineinfile:
         path: /etc/security/limits.conf
         insertafter: EOF
-        line: '* hard nofile 65535'
+        line: "* hard nofile 65535"
         state: present
 
     - name: Ensure pam_limits is enabled
       lineinfile:
         path: /etc/pam.d/common-session
-        regexp: '^#?session required pam_limits.so'
-        line: 'session required pam_limits.so'
+        regexp: "^#?session required pam_limits.so"
+        line: "session required pam_limits.so"
         state: present
 
     - name: Reload the limits configuration
@@ -104,58 +104,57 @@
   become: true
   gather_facts: false
   tags:
-      - preflight
-      - preflight-storage-dependencies
+    - preflight
+    - preflight-storage-dependencies
   vars_files:
-      - "./vars/main.yml"
+    - "./vars/main.yml"
   tasks:
-      - name: Ensure dependencies are installed
-        apt:
-            name: "{{ packages }}"
-            state: present
-        vars:
-            packages:
-                - open-iscsi
-                - nfs-common
-                - jq
+    - name: Ensure dependencies are installed
+      apt:
+        name: "{{ packages }}"
+        state: present
+      vars:
+        packages:
+          - open-iscsi
+          - nfs-common
+          - jq
 
 - hosts:
-      - master
-      - workers
+    - master
+    - workers
   become: true
   any_errors_fatal: true
   tags:
-      - setup
-      - setup-k3s
+    - setup
+    - setup-k3s
   vars_files:
-      - "./vars/main.yml"
+    - "./vars/main.yml"
   roles:
-      - xanmanning.k3s
+    - xanmanning.k3s
 
 - hosts: master
   name: Setup master k3s and fetch config
   become: true
   tags:
-      - setup
-      - setup-init-master
+    - setup
+    - setup-init-master
   vars_files:
-      - "./vars/main.yml"
+    - "./vars/main.yml"
   tasks:
+    - name: Setup k3s
+      shell: "{{ item }}"
+      with_items:
+        - mkdir -p ~/.kube
+        - cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
 
-      - name: Setup k3s
-        shell: "{{ item }}"
-        with_items:
-            - mkdir -p ~/.kube
-            - cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
-
-      - name: Copy output to local files
-        fetch:
-            src: "{{ item.src }}"
-            dest: "{{ item.dest }}"
-            flat: true
-        with_items:
-            - src: /etc/rancher/k3s/k3s.yaml
-              dest: "{{ output_dir }}/config"
+    - name: Copy output to local files
+      fetch:
+        src: "{{ item.src }}"
+        dest: "{{ item.dest }}"
+        flat: true
+      with_items:
+        - src: /etc/rancher/k3s/k3s.yaml
+          dest: "{{ output_dir }}/config"
 
 - name: Fix Config URL
   hosts: localhost
@@ -163,55 +162,55 @@
   gather_facts: false
   become: true
   tags:
-      - setup
-      - setup-fix-kubeconfig
+    - setup
+    - setup-fix-kubeconfig
   vars_files:
-      - "./vars/main.yml"
+    - "./vars/main.yml"
   tasks:
-      - replace:
-            path: ./output/config
-            regexp: '127.0.0.1'
-            replace: '{{ k3s_registration_address }}'
-            backup: true
+    - replace:
+        path: ./output/config
+        regexp: "127.0.0.1"
+        replace: "{{ k3s_registration_address }}"
+        backup: true
 
 - hosts: all
   name: Fix Multipath
   become: true
   tags:
-      - setup
-      - setup-multipath
+    - setup
+    - setup-multipath
   tasks:
-      - name: Make sure multipath conf file is missing
-        file:
-            path: /etc/multipath.conf
-            state: absent
+    - name: Make sure multipath conf file is missing
+      file:
+        path: /etc/multipath.conf
+        state: absent
 
-      - name: Copy Multipath File
-        copy:
-            src: ./files/multipath.conf
-            dest: /etc/multipath.conf
+    - name: Copy Multipath File
+      copy:
+        src: ./files/multipath.conf
+        dest: /etc/multipath.conf
 
-      - name: Restart multipath service
-        systemd:
-            state: restarted
-            name: multipathd
-- hosts: all 
-  name: Load Kernel Modules 
-  become: true 
-  tags: 
-  - setup 
-  - setup-kernel 
-  tasks: 
-    - name: Enable kernel modules now 
-      community.general.modprobe: 
-         name: "{{ item }}" 
-         state: present  
-      loop: [br_netfilter, ip_vs, ip_vs_rr] 
-    - name: Enable kernel modules on boot 
-      ansible.builtin.copy: 
-          mode: 0644 
-          dest: "/etc/modules-load.d/{{ item }}.conf" 
-          content: "{{ item }}" 
+    - name: Restart multipath service
+      systemd:
+        state: restarted
+        name: multipathd
+- hosts: all
+  name: Load Kernel Modules
+  become: true
+  tags:
+    - setup
+    - setup-kernel
+  tasks:
+    - name: Enable kernel modules now
+      community.general.modprobe:
+        name: "{{ item }}"
+        state: present
+      loop: [br_netfilter, ip_vs, ip_vs_rr]
+    - name: Enable kernel modules on boot
+      ansible.builtin.copy:
+        mode: 0644
+        dest: "/etc/modules-load.d/{{ item }}.conf"
+        content: "{{ item }}"
       loop: [br_netfilter, ip_vs, ip_vs_rr, dm_crypt]
 
 - hosts: all
@@ -220,23 +219,31 @@
     - unattended_upgrades
       systemctl
   roles:
-  - role: hifis.toolkit.unattended_upgrades
-    unattended_automatic_reboot: true
+    - role: hifis.toolkit.unattended_upgrades
+      unattended_automatic_reboot: true
 
 - hosts: all
   become: true
   tags:
     - qemu
-  tasks: 
-      - name: Install qemu-guest-agent
-        apt:
-            name: "{{ packages }}"
-            state: present
-        vars:
-            packages:
-                - qemu-guest-agent
-      - name: Start and enable qemu-guest-agent
-        systemd_service:
-            name: qemu-guest-agent
-            enabled: true
-            state: started
+  tasks:
+    - name: Install qemu-guest-agent
+      apt:
+        name: "{{ packages }}"
+        state: present
+      vars:
+        packages:
+          - qemu-guest-agent
+    - name: Start and enable qemu-guest-agent
+      systemd_service:
+        name: qemu-guest-agent
+        enabled: true
+        state: started
+
+- hosts: all
+  become: true
+  tags:
+    - additiona-manifests
+  tasks:
+    - name: Install gateway-api
+      command: kubectl apply --server-side -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.4.0/standard-install.yaml
