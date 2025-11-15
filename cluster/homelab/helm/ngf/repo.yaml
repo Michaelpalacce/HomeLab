@@ -1,0 +1,10 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: ngf
+  namespace: flux-system
+spec:
+  type: "oci"
+  url: oci://ghcr.io/nginx/charts
+  interval: 60m
