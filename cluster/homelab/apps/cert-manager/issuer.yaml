@@ -13,7 +13,7 @@ spec:
     solvers:
       - http01:
           gatewayHTTPRoute:
-            parentRefs: # This is the name of the Gateway that will be created in the next step
+            parentRefs:
               - name: default
                 namespace: nginx-gateway
                 kind: Gateway
@@ -38,7 +38,7 @@ spec:
     solvers:
       - http01:
           gatewayHTTPRoute:
-            parentRefs: # This is the name of the Gateway that will be created in the next step
+            parentRefs:
               - name: default
                 namespace: nginx-gateway
                 kind: Gateway
