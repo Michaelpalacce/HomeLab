@@ -77,7 +77,6 @@ kavita:
   image: ghcr.io/linuxserver/kavita:0.8.8
   port: 5000
   replicas: 1
-  lbIp: 192.168.1.10
   resources:
     requests:
       cpu: 100m
