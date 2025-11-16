@@ -1,0 +1,26 @@
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+    name: homebox-internal
+    namespace: {{ $.Release.Namespace }}
+    annotations:
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: Home Inventory
+        gethomepage.dev/group: Storage
+        gethomepage.dev/icon: homebox
+        gethomepage.dev/name: Homebox
+spec:
+  parentRefs:
+  - name: internal
+    namespace: istio-gateway
+  hostnames:
+    - "homebox.sgenov.dev"
+  rules:
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /
+    backendRefs:
+    - name: homebox
+      port: {{ .Values.homebox.port }}

@@ -78,9 +78,6 @@ metadata:
     name: homebox
     namespace: {{ $.Release.Namespace }}
 spec:
-    {{- with .nodePort }}
-    type: NodePort
-    {{- end }}
     selector:
         app.kubernetes.io/instance: homebox
         app.kubernetes.io/name: homebox
@@ -88,8 +85,5 @@ spec:
         -   name: homebox
             protocol: TCP
             port: {{ .port }}
-          {{- with .nodePort }}
-            nodePort: {{ . }}
-          {{- end }}
 
 {{- end }}
