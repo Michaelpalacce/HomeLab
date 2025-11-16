@@ -14,4 +14,3 @@ resources:
   - trivy
   - descheduler
   - metallb
-  - gateway-api

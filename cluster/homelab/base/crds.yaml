@@ -2,14 +2,11 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: core
+  name: crds
   namespace: flux-system
 spec:
   interval: 1h0s
-  dependsOn:
-    - name: helm
-    - name: crds
-  path: ./cluster/homelab/core
+  path: ./cluster/homelab/crds
   prune: true
   decryption:
     provider: sops
