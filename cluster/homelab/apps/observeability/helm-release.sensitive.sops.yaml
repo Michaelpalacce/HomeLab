@@ -1,255 +1,267 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-    name: observeability
-    namespace: observeability
+  name: observeability
+  namespace: observeability
 spec:
-    interval: 1h
-    install:
-        createNamespace: true
-    chart:
-        spec:
-            chart: kube-prometheus-stack
-            version: 79.5.0
-            interval: 1h
-            sourceRef:
-                kind: HelmRepository
-                name: kube-prometheus-stack
-                namespace: flux-system
-    values:
-        defaultRules:
-            create: true
-            rules:
-                alertmanager: true
-                etcd: true
-                configReloaders: true
-                general: true
-                k8sContainerCpuUsageSecondsTotal: true
-                k8sContainerMemoryCache: true
-                k8sContainerMemoryRss: true
-                k8sContainerMemorySwap: true
-                k8sContainerResource: true
-                k8sContainerMemoryWorkingSetBytes: true
-                k8sPodOwner: true
-                kubeApiserverAvailability: true
-                kubeApiserverBurnrate: true
-                kubeApiserverHistogram: true
-                kubeApiserverSlos: true
-                kubeControllerManager: false
-                kubelet: true
-                kubeProxy: false
-                kubePrometheusGeneral: true
-                kubePrometheusNodeRecording: true
-                kubernetesApps: true
-                kubernetesResources: true
-                kubernetesStorage: true
-                kubernetesSystem: true
-                kubeSchedulerAlerting: false
-                kubeSchedulerRecording: false
-                kubeStateMetrics: true
-                network: true
-                node: true
-                nodeExporterAlerting: true
-                nodeExporterRecording: true
-                prometheus: true
-                prometheusOperator: true
-                windows: false
-        prometheus-node-exporter:
-            containerSecurityContext:
-                readOnlyRootFilesystem: true
-                capabilities:
-                    drop:
-                        - ALL
-        # prometheusOperator:
-        #   networkPolicy:
-        #       enabled: true
-        prometheus:
-            # networkPolicy:
-            #     enabled: true
-            prometheusSpec:
-                scrapeInterval: 60s
-                scrapeTimeout: 30s
-                retention: 10d
-                retentionSize: 10GiB
-                storageSpec:
-                    volumeClaimTemplate:
-                        spec:
-                            storageClassName: longhorn
-                            accessModes:
-                                - ReadWriteOnce
-                            resources:
-                                requests:
-                                    storage: 15Gi
-                serviceMonitorNamespaceSelector:
-                    matchLabels:
-                        monitoring.coreos.com/serviceMonitor: "true"
-            ingress:
-                enabled: true
-                ingressClassName: nginx
-                hosts:
-                    - prometheus.sgenov.dev
-                paths: []
-                tls:
-                    - secretName: ingress
-                      hosts:
-                        - '*.sgenov.dev'
-        alertmanager:
-            # networkPolicy:
-            #     enabled: true
-            config:
-                global:
-                    resolve_timeout: 5m
-                inhibit_rules:
-                    - source_matchers:
-                        - severity = critical
-                      target_matchers:
-                        - severity =~ warning|info
-                      equal:
-                        - namespace
-                        - alertname
-                    - source_matchers:
-                        - severity = warning
-                      target_matchers:
-                        - severity = info
-                      equal:
-                        - namespace
-                        - alertname
-                    - source_matchers:
-                        - alertname = InfoInhibitor
-                      target_matchers:
-                        - severity = info
-                      equal:
-                        - namespace
-                    - target_matchers:
-                        - alertname = InfoInhibitor
-                route:
-                    group_by:
-                        - alertname
-                        - namespace
-                    group_wait: 30s
-                    group_interval: 5m
-                    repeat_interval: 12h
-                    receiver: discord
-                    routes:
-                        - receiver: "null"
-                          matchers:
-                            - alertname="PrometheusDuplicateTimestamps"
-                          continue: false
-                        - receiver: "null"
-                          matchers:
-                            - alertname="Watchdog"
-                          continue: false
-                        # Match everything else
-                        - receiver: discord
-                receivers:
-                    - name: "null"
-                    - name: discord
-                      discord_configs:
-                        - webhook_url: ENC[AES256_GCM,data:DRbkobTsF6iKkGIwaGx15SqzcWjZYVKmCd4sZF9D73h+5iqqzjhi6+W4Sdh3LUlqifWsmeKu+y4F2ZcKySolcjok5aOOQKkBOnVK5w4pyhkGMBNc0oIgINgY5CiAAFpmviV7NP81F6sb1Od12k6NIogtP1+HRZTNLw==,iv:6MtNIb78Cz6wv/CqonwLVwtQ8jeXMb+XF6D3Y53hKDo=,tag:lZy54ABmbHEfneTSIbsmpA==,type:str]
-                          send_resolved: true
-                templates:
-                    - /etc/alertmanager/config/*.tmpl
-            alertmanagerSpec:
-                alertmanagerConfigSelector:
-                    matchLabels:
-                        # This is so we can create AlertManager configs targeting `default`
-                        alertmanagerConfig: default
-                storage:
-                    volumeClaimTemplate:
-                        spec:
-                            storageClassName: longhorn
-                            accessModes:
-                                - ReadWriteOnce
-                            resources:
-                                requests:
-                                    storage: 5Gi
-            ingress:
-                enabled: true
-                ingressClassName: nginx
-                annotations:
-                    gethomepage.dev/enabled: "true"
-                    gethomepage.dev/description: Handles Prometheus Alerts
-                    gethomepage.dev/group: Monitoring
-                    gethomepage.dev/icon: alertmanager
-                    gethomepage.dev/name: Alertmanager
-                hosts:
-                    - alertmanager.sgenov.dev
-                path: /
-                tls:
-                    - secretName: ingress
-                      hosts:
-                        - '*.sgenov.dev'
-        grafana:
-            adminUser: admin
-            adminPassword: ENC[AES256_GCM,data:Gqobn+NhtSgW0Bdj+rBBcjXWSgvmoWV/bWnN5rAHxcv6l0oBoiBSCDcdzAToE/hLKAYRfw==,iv:O2rXiF6G2zOFfDpwDybHwYHL++giNVbYRAgXmeUutj4=,tag:6i6KVhp4wlPMrIP8IwSFMg==,type:str]
-            persistence:
-                enabled: true
-                type: sts
-                storageClassName: longhorn
-                accessModes:
-                    - ReadWriteOnce
-                size: 2Gi
-                finalizers:
-                    - kubernetes.io/pvc-protection
-            ingress:
-                ## If true, Grafana Ingress will be created
-                ##
-                enabled: true
-                ingressClassName: nginx
-                annotations:
-                    gethomepage.dev/enabled: "true"
-                    gethomepage.dev/description: Nice observeability graphs.
-                    gethomepage.dev/group: Monitoring
-                    gethomepage.dev/icon: grafana
-                    gethomepage.dev/name: Grafana
-                    gethomepage.dev/widget.type: grafana
-                    gethomepage.dev/widget.url: https://grafana.sgenov.dev
-                    gethomepage.dev/widget.version: "2"
-                    gethomepage.dev/widget.alerts: alertmanager
-                    gethomepage.dev/widget.username: admin
-                    gethomepage.dev/widget.password: ENC[AES256_GCM,data:XPRcl06+f8IJZDCmkclRVZkO4DKUC5EeR1FKZmRf40WRd3Jtbdx31WoCkQXysqULMQDSRw==,iv:CSfTY604Ou3UZEard1oODW5mNJQ504mXPBVdPEj0MlU=,tag:/vSfvEGFT8ZWbL4nPpZt8w==,type:str]
-                hosts:
-                    - grafana.sgenov.dev
-                path: /
-                tls:
-                    - secretName: ingress
-                      hosts:
-                        - '*.sgenov.dev'
-        crds:
-            enabled: true
-            ## The CRD upgrade job mitigates the limitation of helm not being able to upgrade CRDs.
-            ## The job will apply the CRDs to the cluster before the operator is deployed, using helm hooks.
-            ## It deploy a corresponding clusterrole, clusterrolebinding and serviceaccount to apply the CRDs.
-            ## This feature is in preview, off by default and may change in the future.
-            upgradeJob:
-                enabled: true
-                forceConflicts: true
-            image:
-                busybox:
-                    registry: docker.io
-                    repository: busybox
-                    tag: "1.37"
-                    sha: ""
-                    pullPolicy: IfNotPresent
-                kubectl:
-                    registry: registry.k8s.io
-                    repository: kubectl
-                    # defaults to the Kubernetes version
-                    tag: ""
-                    sha: ""
-                    pullPolicy: IfNotPresent
+  interval: 1h
+  install:
+    createNamespace: true
+  chart:
+    spec:
+      chart: kube-prometheus-stack
+      version: 79.5.0
+      interval: 1h
+      sourceRef:
+        kind: HelmRepository
+        name: kube-prometheus-stack
+        namespace: flux-system
+  values:
+    defaultRules:
+      create: true
+      rules:
+        alertmanager: true
+        etcd: true
+        configReloaders: true
+        general: true
+        k8sContainerCpuUsageSecondsTotal: true
+        k8sContainerMemoryCache: true
+        k8sContainerMemoryRss: true
+        k8sContainerMemorySwap: true
+        k8sContainerResource: true
+        k8sContainerMemoryWorkingSetBytes: true
+        k8sPodOwner: true
+        kubeApiserverAvailability: true
+        kubeApiserverBurnrate: true
+        kubeApiserverHistogram: true
+        kubeApiserverSlos: true
+        kubeControllerManager: false
+        kubelet: true
+        kubeProxy: false
+        kubePrometheusGeneral: true
+        kubePrometheusNodeRecording: true
+        kubernetesApps: true
+        kubernetesResources: true
+        kubernetesStorage: true
+        kubernetesSystem: true
+        kubeSchedulerAlerting: false
+        kubeSchedulerRecording: false
+        kubeStateMetrics: true
+        network: true
+        node: true
+        nodeExporterAlerting: true
+        nodeExporterRecording: true
+        prometheus: true
+        prometheusOperator: true
+        windows: false
+    prometheus-node-exporter:
+      containerSecurityContext:
+        readOnlyRootFilesystem: true
+        capabilities:
+          drop:
+            - ALL
+    prometheus:
+      prometheusSpec:
+        scrapeInterval: 60s
+        scrapeTimeout: 30s
+        retention: 10d
+        retentionSize: 10GiB
+        storageSpec:
+          volumeClaimTemplate:
+            spec:
+              storageClassName: longhorn
+              accessModes:
+                - ReadWriteOnce
+              resources:
+                requests:
+                  storage: 15Gi
+        serviceMonitorNamespaceSelector:
+          matchLabels:
+            monitoring.coreos.com/serviceMonitor: "true"
+      route:
+        main:
+          # -- Enables or disables the route
+          enabled: true
+          apiVersion: gateway.networking.k8s.io/v1
+          kind: HTTPRoute
+          annotations:
+            gethomepage.dev/enabled: "true"
+            gethomepage.dev/description: Metrics Aggregator.
+            gethomepage.dev/group: Monitoring
+            gethomepage.dev/icon: prometheus
+            gethomepage.dev/name: Prometheus
+          hostnames:
+            - prometheus.sgenov.dev
+          parentRefs:
+            - name: internal
+              namespace: istio-gateway
+          matches:
+            - path:
+                type: PathPrefix
+                value: /
+    alertmanager:
+      config:
+        global:
+          resolve_timeout: 5m
+        inhibit_rules:
+          - source_matchers:
+              - severity = critical
+            target_matchers:
+              - severity =~ warning|info
+            equal:
+              - namespace
+              - alertname
+          - source_matchers:
+              - severity = warning
+            target_matchers:
+              - severity = info
+            equal:
+              - namespace
+              - alertname
+          - source_matchers:
+              - alertname = InfoInhibitor
+            target_matchers:
+              - severity = info
+            equal:
+              - namespace
+          - target_matchers:
+              - alertname = InfoInhibitor
+        route:
+          group_by:
+            - alertname
+            - namespace
+          group_wait: 30s
+          group_interval: 5m
+          repeat_interval: 12h
+          receiver: discord
+          routes:
+            - receiver: "null"
+              matchers:
+                - alertname="PrometheusDuplicateTimestamps"
+              continue: false
+            - receiver: "null"
+              matchers:
+                - alertname="Watchdog"
+              continue: false
+            # Match everything else
+            - receiver: discord
+        receivers:
+          - name: "null"
+          - name: discord
+            discord_configs:
+              - webhook_url: ENC[AES256_GCM,data:liRJjK7W/00/htGokO8BdyyZKrRysZ+I3ZdZrcZyTc7a4zg3WfmhH3h3xR7MUsLpgoItgB5AljHGGvKS7wgSVOL8GJ/pVDEJGKABkG6m9/P/vzDHoWWyz8lMrmDuNaDWGOvCIxXfs3m/6GmV0cEpqczNg4HEmT+7OQ==,iv:spqTL5TAo7HiHY51lzQ190Tv78kWAkvqdFkBWNrMhDE=,tag:u0Fzm3dtmD0pPFCea+KKBw==,type:str]
+                send_resolved: true
+        templates:
+          - /etc/alertmanager/config/*.tmpl
+      alertmanagerSpec:
+        alertmanagerConfigSelector:
+          matchLabels:
+            # This is so we can create AlertManager configs targeting `default`
+            alertmanagerConfig: default
+        storage:
+          volumeClaimTemplate:
+            spec:
+              storageClassName: longhorn
+              accessModes:
+                - ReadWriteOnce
+              resources:
+                requests:
+                  storage: 5Gi
+      route:
+        main:
+          # -- Enables or disables the route
+          enabled: true
+          apiVersion: gateway.networking.k8s.io/v1
+          kind: HTTPRoute
+          annotations:
+            gethomepage.dev/enabled: "true"
+            gethomepage.dev/description: Handles Prometheus Alerts
+            gethomepage.dev/group: Monitoring
+            gethomepage.dev/icon: alertmanager
+            gethomepage.dev/name: Alertmanager
+          hostnames:
+            - alertmanager.sgenov.dev
+          parentRefs:
+            - name: internal
+              namespace: istio-gateway
+          matches:
+            - path:
+                type: PathPrefix
+                value: /
+    grafana:
+      adminUser: admin
+      adminPassword: ENC[AES256_GCM,data:eZi0D7n1/mqjy+9eB9fvgI8pWr2fEUpjhxGO6WtOw2IBpGV85l2VxhgmnJM2W7gmDdaJ+A==,iv:f8IVWAb9vCp9FUXcH4ZZVkgw8IS4UUrlpp0ClzvD5kg=,tag:kgPh11b9u/GqAbB/edsIVw==,type:str]
+      persistence:
+        enabled: true
+        type: sts
+        storageClassName: longhorn
+        accessModes:
+          - ReadWriteOnce
+        size: 2Gi
+        finalizers:
+          - kubernetes.io/pvc-protection
+      route:
+        main:
+          # -- Enables or disables the route
+          enabled: true
+          apiVersion: gateway.networking.k8s.io/v1
+          kind: HTTPRoute
+          annotations: null
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/description: Nice observeability graphs.
+          gethomepage.dev/group: Monitoring
+          gethomepage.dev/icon: grafana
+          gethomepage.dev/name: Grafana
+          gethomepage.dev/widget.type: grafana
+          gethomepage.dev/widget.url: https://grafana.sgenov.dev
+          gethomepage.dev/widget.version: "2"
+          gethomepage.dev/widget.alerts: alertmanager
+          gethomepage.dev/widget.username: admin
+          gethomepage.dev/widget.password: ENC[AES256_GCM,data:q6HzcBL2ysjgL1tltFnujyBxXK7stsnh5GxUymRRhQHcUvutMxSrq0ZeQU+H490emOsDKw==,iv:m8O9o5NsdEXIrxf4NaZ2SQxBbfIYf61FrudpAGXV+18=,tag:FDRcuZYtAki3G9lfOl7XBQ==,type:str]
+          hostnames:
+            - grafana.sgenov.dev
+          parentRefs:
+            - name: internal
+              namespace: istio-gateway
+          matches:
+            - path:
+                type: PathPrefix
+                value: /
+    crds:
+      enabled: true
+      ## The CRD upgrade job mitigates the limitation of helm not being able to upgrade CRDs.
+      ## The job will apply the CRDs to the cluster before the operator is deployed, using helm hooks.
+      ## It deploy a corresponding clusterrole, clusterrolebinding and serviceaccount to apply the CRDs.
+      ## This feature is in preview, off by default and may change in the future.
+      upgradeJob:
+        enabled: true
+        forceConflicts: true
+      image:
+        busybox:
+          registry: docker.io
+          repository: busybox
+          tag: "1.37"
+          sha: ""
+          pullPolicy: IfNotPresent
+        kubectl:
+          registry: registry.k8s.io
+          repository: kubectl
+          # defaults to the Kubernetes version
+          tag: ""
+          sha: ""
+          pullPolicy: IfNotPresent
 sops:
-    age:
-        - recipient: age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
-          enc: |
-            -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBHbWdVcHBQcGFlK0d2eVBK
-            cHhaM2NGNmlBTVpmU3cxQTduM2RXQlV1RkRrCjRVTVNlUHFGSlNMWDdEM0RYVlht
-            QkNwRno5eFBDeWU3TWkvTC96cytFZGcKLS0tIHMrblM5N1VvRDZEOG1aYU9McTBa
-            N2pScjFSUUtnOEpqd2Y0NGlPZVgybjgKB2sa/uVs1iG2k9V4zda+lhCOmAsachfD
-            TsTW85D/ATLuf4t/kUbP5yA2sLz7ZEA1L1LtTAz+HqaDeU+zMrt89w==
-            -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-10-24T17:55:49Z"
-    mac: ENC[AES256_GCM,data:SQ2N1Fw6pmpKKC6jUhdMFS2qb3UdLjnY9P5claBsDutiJzZDyi10h1TRbAbNN0D5Qxn2WAUPyPFUEBd7NfHpxkZKNjaSL2c+jZ2W2yZ9e8y/5dVOOffwzI1kwuw4twdxVPS24T1llFoC0f3iVtQ1lonYWkKuCmiXido/wzdqp+I=,iv:HSL+FVMyqcGp2zmu2ioqh8noy5s91SExd90kRuF4Oqs=,tag:sS8B7EOOR58BGv6KhjFf7A==,type:str]
-    encrypted_regex: (?i)password|webhook_url|token|key
-    version: 3.11.0
+  age:
+    - recipient: age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBNak5iT0tRbUxpcFNlUGZQ
+        WExrRHFCdk5iUm44Q0c2c1I4OUszTi9VR0M4CkkvNmE2S2xla0NQTVhZNlZSdUxS
+        RFlqVlRha0I5SnB0dGtoZlBOcTBYZjAKLS0tIEMxR0x6aEg3cmMzU1NiUHlBNU4z
+        R3FrZnJjRDFadkROdFlwYWxNNlVvRFkKln7KeMGZGvaUWBQ6DHIajuv3QKjG3h37
+        zDhuGV4uIXR2DA7aHpGc4yhcfe0jbyQyh0trZNUOwnMK/1tgTrvsQA==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2025-11-16T15:03:04Z"
+  mac: ENC[AES256_GCM,data:oX1sRj7JQn0askLy0kz8XX9ErrJx217qglCe3UsV4cujpAcuTdlE28iRIJj0X86s6BTO9wL23+p6doqlfC9kqe9Ll+OibDMNMjnJhJs5Fuda8v/21xNn0f7xECq4Yx0jEIE3bQoN6YSNzzkFsvq9026LGG8tLbgzrq6q84k3Dzk=,iv:vjNpz2SjnZXDfiFqLJeG+wf7cONdGq7EK6eHHCqwC70=,tag:jrkiA/HNFLmDZnpqZt/7Ag==,type:str]
+  encrypted_regex: (?i)password|webhook_url|token|key
+  version: 3.11.0
