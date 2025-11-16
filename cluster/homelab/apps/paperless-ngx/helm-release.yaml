@@ -1,0 +1,71 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: paperless-ngx
+  namespace: paperless-ngx
+spec:
+  interval: 1h
+  install:
+    createNamespace: true
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  upgrade:
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  chart:
+    spec:
+      chart: paperless-ngx
+      version: 0.24.1
+      interval: 1h
+      sourceRef:
+        kind: HelmRepository
+        name: gabe565
+        namespace: flux-system
+  values:
+    env:
+      PAPERLESS_OCR_LANGUAGES: eng bul
+      PAPERLESS_TIKA_ENABLED: "true"
+      PAPERLESS_TIKA_ENDPOINT: http://tika.tika:9998
+      PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://gotenberg.gotenberg:80
+    podAnnotations:
+      backup.velero.io/backup-volumes: data,media,export,consume
+    redis:
+      image:
+        tag: latest
+    service:
+      main:
+        type: LoadBalancer
+        loadBalancerIP: 192.168.1.8
+        ports:
+          http:
+            port: 80
+    image:
+      # -- Image repository
+      repository: ghcr.io/paperless-ngx/paperless-ngx
+      # -- Image pull policy
+      pullPolicy: IfNotPresent
+      # -- Image tag
+      tag: 2.19.6
+    persistence:
+      data:
+        enabled: true
+        storageClass: longhorn
+        accessMode: ReadWriteOnce
+        size: 10Gi
+      media:
+        enabled: true
+        storageClass: longhorn
+        accessMode: ReadWriteOnce
+        size: 100Gi
+      export:
+        enabled: true
+        storageClass: longhorn
+        accessMode: ReadWriteOnce
+        size: 1Gi
+      consume:
+        enabled: true
+        storageClass: longhorn
+        accessMode: ReadWriteOnce
+        size: 4Gi
