@@ -6,7 +6,6 @@ resources:
   - changedetection
   - cyberchef
   - diagrams
-  - external-ingress
   - firefly
   - freshrss
   - go-ddns-controller
