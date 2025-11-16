@@ -4,12 +4,6 @@ kind: HTTPRoute
 metadata:
     name: freshrss-internal
     namespace: {{ $.Release.Namespace }}
-    annotations:
-        gethomepage.dev/enabled: "true"
-        gethomepage.dev/description: RSS Reader
-        gethomepage.dev/group: Knowledge
-        gethomepage.dev/icon: freshrss
-        gethomepage.dev/name: Fresh RSS
 spec:
   parentRefs:
   - name: internal
