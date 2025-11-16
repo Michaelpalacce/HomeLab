@@ -41,13 +41,12 @@ spec:
       scrapeTimeout: 30s
     deployNodeAgent: true
 
+    # Override kubectl image - use Bitnami's AWS ECR repo.. still has versions.
+    # Probably will fail at some point
+    # Ref: https://github.com/vmware-tanzu/helm-charts/issues/698
     kubectl:
       image:
-        repository: alpine/kubectl
-        tag: 1.34.2
-    upgradeCRDsJob:
-      shellCmd: /bin/sh
-      updateCmd: /velero install --crds-only --dry-run -o yaml | /usr/local/bin/kubectl apply -f -
+        repository: public.ecr.aws/bitnami/kubectl
     credentials:
       existingSecret: cloud-credentials-wasabi
     configuration:
