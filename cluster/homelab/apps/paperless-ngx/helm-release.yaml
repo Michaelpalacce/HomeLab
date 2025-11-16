@@ -29,6 +29,7 @@ spec:
       PAPERLESS_TIKA_ENABLED: "true"
       PAPERLESS_TIKA_ENDPOINT: http://tika.tika:9998
       PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://gotenberg.gotenberg:80
+      PAPERLESS_URL: https://paperless.sgenov.dev
     podAnnotations:
       backup.velero.io/backup-volumes: data,media,export,consume
     redis:
