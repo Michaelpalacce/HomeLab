@@ -21,7 +21,7 @@ spec:
       interval: 1h
       sourceRef:
         kind: HelmRepository
-        name: kubereboot
+        name: istio
         namespace: flux-system
   values:
     profile: ambient
