@@ -1,7 +1,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: istiod
+  name: ztunnel
   namespace: istio-system
 spec:
   interval: 1h
@@ -16,12 +16,10 @@ spec:
       retries: 3
   chart:
     spec:
-      chart: istio/istiod
+      chart: istio/ztunnel
       version: 1.28.0
       interval: 1h
       sourceRef:
         kind: HelmRepository
         name: istio
         namespace: flux-system
-  values:
-    profile: ambient
