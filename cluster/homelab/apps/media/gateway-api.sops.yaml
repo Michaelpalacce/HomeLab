@@ -1,0 +1,181 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+    name: sonarr-internal
+    namespace: media
+    annotations:
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: Shows Downloader
+        gethomepage.dev/group: Torrents
+        gethomepage.dev/icon: sonarr
+        gethomepage.dev/name: Sonarr
+        gethomepage.dev/widget.type: sonarr
+        gethomepage.dev/widget.url: https://sonarr.sgenov.dev
+        gethomepage.dev/widget.key: ENC[AES256_GCM,data:bfeU3jlvlGBqdw1MLCMsZQJOjTxUumteaSRA5e8U9Y0=,iv:6ufc5sNocrleBXVzHWTtTkcf51pBZR5sDp1dUwXpMGw=,tag:JreJG5LgDQgpF25paa35yA==,type:str]
+sops:
+    age:
+        - recipient: age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSAxL1FSdG9yL2VFVFcwQURk
+            ZVJCV0JDQXlCSTQvdXFtOS9sWE9tM0JRTmlvCktKVHNBVnAvM1R0SXArRFVjOXM1
+            cFpOdytCZGI5akRRR2hPL2tnRUF5VUkKLS0tIDRSSFJxbFIyMGtDNjBPcnhHbzcz
+            UFFvWXhRZjQvdmlSZVNXWHBPQWlLTlEKqGbJ34MVRiQqJe9eAFdWki0fUd5TORNH
+            govtKf9SiYLuts+hoA2R9PkO83wUhPkBf09+6fJh9R/6xumAS1Rarw==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-11-16T15:25:41Z"
+    mac: ENC[AES256_GCM,data:0VSodsbV0RiQZa7xasf/OwywYDujDai0+/U4TfrG5BL1WxzvDDKkxt3BQ4T++Q0jTZKbFo1WTaZm3LYHLEEA6zEvU70FiMbiz6GL7DV/0LxK3tWjwADmDxsGQ/RDk89xIo7hWH7+4BT34px8gEXqc0fc0bU6yHhsIRtCJ4diJHs=,iv:ns+7lEJqUxICiLiXnXYBjeUqgK7DHbszeamivD7h/Tk=,tag:m1BatitxoO9LjjVvpWBWKg==,type:str]
+    encrypted_regex: (?i)password|webhook_url|token|key
+    version: 3.11.0
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+    name: kavita-internal
+    namespace: media
+    annotations:
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: Book Reader And Tracker
+        gethomepage.dev/group: Media
+        gethomepage.dev/icon: kavita
+        gethomepage.dev/name: Kavita
+        gethomepage.dev/widget.type: kavita
+        gethomepage.dev/widget.url: https://kavita.sgenov.dev
+        gethomepage.dev/widget.username: stefan
+        gethomepage.dev/widget.password: ENC[AES256_GCM,data:yFIFFGLiDf9+CUdPuYxbBCr1uVLmz0pdvLlaW5DarjPhc2WsNOl0IGsF,iv:dcIoXceoga3mDqZKjqGXDqL7Hwd9Ba+m2uHFKcI1m1s=,tag:HLRuyfEXHvW2xFoiFXzWPA==,type:str]
+sops:
+    age:
+        - recipient: age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSAxL1FSdG9yL2VFVFcwQURk
+            ZVJCV0JDQXlCSTQvdXFtOS9sWE9tM0JRTmlvCktKVHNBVnAvM1R0SXArRFVjOXM1
+            cFpOdytCZGI5akRRR2hPL2tnRUF5VUkKLS0tIDRSSFJxbFIyMGtDNjBPcnhHbzcz
+            UFFvWXhRZjQvdmlSZVNXWHBPQWlLTlEKqGbJ34MVRiQqJe9eAFdWki0fUd5TORNH
+            govtKf9SiYLuts+hoA2R9PkO83wUhPkBf09+6fJh9R/6xumAS1Rarw==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-11-16T15:25:41Z"
+    mac: ENC[AES256_GCM,data:0VSodsbV0RiQZa7xasf/OwywYDujDai0+/U4TfrG5BL1WxzvDDKkxt3BQ4T++Q0jTZKbFo1WTaZm3LYHLEEA6zEvU70FiMbiz6GL7DV/0LxK3tWjwADmDxsGQ/RDk89xIo7hWH7+4BT34px8gEXqc0fc0bU6yHhsIRtCJ4diJHs=,iv:ns+7lEJqUxICiLiXnXYBjeUqgK7DHbszeamivD7h/Tk=,tag:m1BatitxoO9LjjVvpWBWKg==,type:str]
+    encrypted_regex: (?i)password|webhook_url|token|key
+    version: 3.11.0
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+    name: prowlarr-internal
+    namespace: media
+    annotations:
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: Torrent indexer
+        gethomepage.dev/group: Torrents
+        gethomepage.dev/icon: prowlarr
+        gethomepage.dev/name: Prowlarr
+        gethomepage.dev/widget.type: prowlarr
+        gethomepage.dev/widget.url: https://prowlarr.sgenov.dev
+        gethomepage.dev/widget.key: ENC[AES256_GCM,data:kzoEUfFLJiGJDIfhK6PxzjsARStbmjYsM4/quTEnAN0=,iv:TzD2xe4/aHqYRIX6asXnFak9eiJ+pkw14VuCHx+1lX4=,tag:Sr/I7eJLVdYTKaSMlAzYQw==,type:str]
+sops:
+    age:
+        - recipient: age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSAxL1FSdG9yL2VFVFcwQURk
+            ZVJCV0JDQXlCSTQvdXFtOS9sWE9tM0JRTmlvCktKVHNBVnAvM1R0SXArRFVjOXM1
+            cFpOdytCZGI5akRRR2hPL2tnRUF5VUkKLS0tIDRSSFJxbFIyMGtDNjBPcnhHbzcz
+            UFFvWXhRZjQvdmlSZVNXWHBPQWlLTlEKqGbJ34MVRiQqJe9eAFdWki0fUd5TORNH
+            govtKf9SiYLuts+hoA2R9PkO83wUhPkBf09+6fJh9R/6xumAS1Rarw==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-11-16T15:25:41Z"
+    mac: ENC[AES256_GCM,data:0VSodsbV0RiQZa7xasf/OwywYDujDai0+/U4TfrG5BL1WxzvDDKkxt3BQ4T++Q0jTZKbFo1WTaZm3LYHLEEA6zEvU70FiMbiz6GL7DV/0LxK3tWjwADmDxsGQ/RDk89xIo7hWH7+4BT34px8gEXqc0fc0bU6yHhsIRtCJ4diJHs=,iv:ns+7lEJqUxICiLiXnXYBjeUqgK7DHbszeamivD7h/Tk=,tag:m1BatitxoO9LjjVvpWBWKg==,type:str]
+    encrypted_regex: (?i)password|webhook_url|token|key
+    version: 3.11.0
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+    name: radarr-internal
+    namespace: media
+    annotations:
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: Movies Downloader
+        gethomepage.dev/group: Torrents
+        gethomepage.dev/icon: radarr
+        gethomepage.dev/name: Radarr
+        gethomepage.dev/widget.type: radarr
+        gethomepage.dev/widget.url: https://radarr.sgenov.dev
+        gethomepage.dev/widget.key: ENC[AES256_GCM,data:3iEFMaCr8U1v4lBK96oTTcImID5PpHQ//2R2xcyYBgo=,iv:ruU1zFTrnaIKX4lFePwj8cOEjjDpK+cgsdG0R1BXGVY=,tag:9bywyp9yOU+gAIHwWBtMuQ==,type:str]
+sops:
+    age:
+        - recipient: age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSAxL1FSdG9yL2VFVFcwQURk
+            ZVJCV0JDQXlCSTQvdXFtOS9sWE9tM0JRTmlvCktKVHNBVnAvM1R0SXArRFVjOXM1
+            cFpOdytCZGI5akRRR2hPL2tnRUF5VUkKLS0tIDRSSFJxbFIyMGtDNjBPcnhHbzcz
+            UFFvWXhRZjQvdmlSZVNXWHBPQWlLTlEKqGbJ34MVRiQqJe9eAFdWki0fUd5TORNH
+            govtKf9SiYLuts+hoA2R9PkO83wUhPkBf09+6fJh9R/6xumAS1Rarw==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-11-16T15:25:41Z"
+    mac: ENC[AES256_GCM,data:0VSodsbV0RiQZa7xasf/OwywYDujDai0+/U4TfrG5BL1WxzvDDKkxt3BQ4T++Q0jTZKbFo1WTaZm3LYHLEEA6zEvU70FiMbiz6GL7DV/0LxK3tWjwADmDxsGQ/RDk89xIo7hWH7+4BT34px8gEXqc0fc0bU6yHhsIRtCJ4diJHs=,iv:ns+7lEJqUxICiLiXnXYBjeUqgK7DHbszeamivD7h/Tk=,tag:m1BatitxoO9LjjVvpWBWKg==,type:str]
+    encrypted_regex: (?i)password|webhook_url|token|key
+    version: 3.11.0
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+    name: overseerr-internal
+    namespace: media
+    annotations:
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: Media Requests
+        gethomepage.dev/group: Media
+        gethomepage.dev/icon: overseerr
+        gethomepage.dev/name: Overseerr
+        gethomepage.dev/widget.type: overseerr
+        gethomepage.dev/widget.url: https://overseerr.sgenov.dev
+        gethomepage.dev/widget.key: ENC[AES256_GCM,data:q1Mwyvee4pxLpc5QkIM/CuQN96X1FMxGQildNhMituLCSyuJYpnTZDE+mIPnIxK0SrujC0bwHdHtaqMU299q1lGIkyM=,iv:iKpFg5XZfTvL/n8ti7BgvbVSuDWbLvkWp3Ay85O2aoQ=,tag:cGLDf1NuOpdWAqnGcmGjZg==,type:str]
+sops:
+    age:
+        - recipient: age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSAxL1FSdG9yL2VFVFcwQURk
+            ZVJCV0JDQXlCSTQvdXFtOS9sWE9tM0JRTmlvCktKVHNBVnAvM1R0SXArRFVjOXM1
+            cFpOdytCZGI5akRRR2hPL2tnRUF5VUkKLS0tIDRSSFJxbFIyMGtDNjBPcnhHbzcz
+            UFFvWXhRZjQvdmlSZVNXWHBPQWlLTlEKqGbJ34MVRiQqJe9eAFdWki0fUd5TORNH
+            govtKf9SiYLuts+hoA2R9PkO83wUhPkBf09+6fJh9R/6xumAS1Rarw==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-11-16T15:25:41Z"
+    mac: ENC[AES256_GCM,data:0VSodsbV0RiQZa7xasf/OwywYDujDai0+/U4TfrG5BL1WxzvDDKkxt3BQ4T++Q0jTZKbFo1WTaZm3LYHLEEA6zEvU70FiMbiz6GL7DV/0LxK3tWjwADmDxsGQ/RDk89xIo7hWH7+4BT34px8gEXqc0fc0bU6yHhsIRtCJ4diJHs=,iv:ns+7lEJqUxICiLiXnXYBjeUqgK7DHbszeamivD7h/Tk=,tag:m1BatitxoO9LjjVvpWBWKg==,type:str]
+    encrypted_regex: (?i)password|webhook_url|token|key
+    version: 3.11.0
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+    name: transmission-internal
+    namespace: media
+    annotations:
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: Torrent Handler
+        gethomepage.dev/group: Torrents
+        gethomepage.dev/icon: transmission
+        gethomepage.dev/name: Transmission
+        gethomepage.dev/widget.type: transmission
+        gethomepage.dev/widget.url: https://transmission.sgenov.dev
+        gethomepage.dev/widget.username: username
+        gethomepage.dev/widget.password: ENC[AES256_GCM,data:GxMPFslgFxA=,iv:ZqAxDXcnkMo/EaCEL0DacDmGWXf+duVGJ4HcMTwsLeA=,tag:EeSOa86hS4qUlJofcBYC+g==,type:str]
+sops:
+    age:
+        - recipient: age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSAxL1FSdG9yL2VFVFcwQURk
+            ZVJCV0JDQXlCSTQvdXFtOS9sWE9tM0JRTmlvCktKVHNBVnAvM1R0SXArRFVjOXM1
+            cFpOdytCZGI5akRRR2hPL2tnRUF5VUkKLS0tIDRSSFJxbFIyMGtDNjBPcnhHbzcz
+            UFFvWXhRZjQvdmlSZVNXWHBPQWlLTlEKqGbJ34MVRiQqJe9eAFdWki0fUd5TORNH
+            govtKf9SiYLuts+hoA2R9PkO83wUhPkBf09+6fJh9R/6xumAS1Rarw==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-11-16T15:25:41Z"
+    mac: ENC[AES256_GCM,data:0VSodsbV0RiQZa7xasf/OwywYDujDai0+/U4TfrG5BL1WxzvDDKkxt3BQ4T++Q0jTZKbFo1WTaZm3LYHLEEA6zEvU70FiMbiz6GL7DV/0LxK3tWjwADmDxsGQ/RDk89xIo7hWH7+4BT34px8gEXqc0fc0bU6yHhsIRtCJ4diJHs=,iv:ns+7lEJqUxICiLiXnXYBjeUqgK7DHbszeamivD7h/Tk=,tag:m1BatitxoO9LjjVvpWBWKg==,type:str]
+    encrypted_regex: (?i)password|webhook_url|token|key
+    version: 3.11.0

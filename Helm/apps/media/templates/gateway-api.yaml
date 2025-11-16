@@ -1,0 +1,140 @@
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+    name: flaresolverr-internal
+    namespace: {{ $.Release.Namespace }}
+spec:
+  parentRefs:
+  - name: internal
+    namespace: istio-gateway
+  hostnames:
+    - "flaresolverr.sgenov.dev"
+  rules:
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /
+    backendRefs:
+    - name: flaresolverr
+      port: {{ .Values.flaresolverr.port }}
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+    name: sonarr-internal
+    namespace: {{ $.Release.Namespace }}
+spec:
+  parentRefs:
+  - name: internal
+    namespace: istio-gateway
+  hostnames:
+    - "sonarr.sgenov.dev"
+  rules:
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /
+    backendRefs:
+    - name: sonarr
+      port: {{ .Values.sonarr.port }}
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+    name: kavita-internal
+    namespace: {{ $.Release.Namespace }}
+spec:
+  parentRefs:
+  - name: internal
+    namespace: istio-gateway
+  hostnames:
+    - "kavita.sgenov.dev"
+  rules:
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /
+    backendRefs:
+    - name: kavita
+      port: {{ .Values.kavita.port }}
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+    name: prowlarr-internal
+    namespace: {{ $.Release.Namespace }}
+spec:
+  parentRefs:
+  - name: internal
+    namespace: istio-gateway
+  hostnames:
+    - "prowlarr.sgenov.dev"
+  rules:
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /
+    backendRefs:
+    - name: prowlarr
+      port: {{ .Values.prowlarr.port }}
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+    name: radarr-internal
+    namespace: {{ $.Release.Namespace }}
+spec:
+  parentRefs:
+  - name: internal
+    namespace: istio-gateway
+  hostnames:
+    - "radarr.sgenov.dev"
+  rules:
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /
+    backendRefs:
+    - name: radarr
+      port: {{ .Values.radarr.port }}
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+    name: overseerr-internal
+    namespace: {{ $.Release.Namespace }}
+spec:
+  parentRefs:
+  - name: internal
+    namespace: istio-gateway
+  hostnames:
+    - "overseerr.sgenov.dev"
+  rules:
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /
+    backendRefs:
+    - name: overseerr
+      port: {{ .Values.overseerr.port }}
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+    name: transmission-internal
+    namespace: {{ $.Release.Namespace }}
+spec:
+  parentRefs:
+  - name: internal
+    namespace: istio-gateway
+  hostnames:
+    - "transmission.sgenov.dev"
+  rules:
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /
+    backendRefs:
+    - name: transmission
+      port: {{ .Values.transmission.port }}
