@@ -1,0 +1,26 @@
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+    name: nodered-internal
+    namespace: {{ $.Release.Namespace }}
+    annotations:
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: Low-code automation
+        gethomepage.dev/group: Automation
+        gethomepage.dev/icon: node-red
+        gethomepage.dev/name: NodeRed
+spec:
+  parentRefs:
+  - name: internal
+    namespace: istio-gateway
+  hostnames:
+    - "nodered.sgenov.dev"
+  rules:
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /
+    backendRefs:
+    - name: nodered
+      port: {{ .Values.nodered.port }}
