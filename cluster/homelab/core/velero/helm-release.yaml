@@ -44,6 +44,7 @@ spec:
     kubectl:
       image:
         repository: alpine/kubectl
+        tag: 1.34.0
     credentials:
       existingSecret: cloud-credentials-wasabi
     configuration:
