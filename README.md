@@ -12,7 +12,7 @@ Also, big warning, this repo is things I've done on the side with time taken awa
 # Main tools used
 1. **FluxCD 2** - GitOps for my HomeLab.
 2. **Renovate** - Checks for updates to actions, helm charts, helm releases, docker containers.
-3. **ingress-nginx** - Kubernetes ingress. This is used to access services using reverse proxy instead of exposing them on a port.
+3. **Istio + Gateway API** - Reverse proxy + SSL termination for services
 4. **cert-manager + reflector** - cert-manager generates certificates for my services and reflector duplicates the generated ssl
 certificate secret to all the namespaces. The secret is called `ingress`.
 5. **Longhorn** - K8S native storage.
@@ -28,8 +28,8 @@ It is currently pretty stable.
 # Image updates
 Image updates are done via Renovate Bot :robot:. Renovate bot does periodic scans for new image versions and submits pull request for each change.
 
-# Accessing services ( ingress-nginx, cert-manager )
-Apps are currently exposed by ingress-nginx and have SSL certificates provided by cert-manager.
+# Accessing services ( istio, cert-manager )
+Apps are currently exposed by Istio with Gateway API and have SSL certificates provided by cert-manager.
 A wildcard certificate is issued for my domain `*.sgenov.dev` and when the secret is created
 it is replicated in all namespace as `ingress` to be consumed by the ingress resources. This replication is
 needed because `Let's encrypt` rate limits certificate requests. 

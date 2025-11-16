@@ -9,7 +9,6 @@ resources:
   - unofficial
   - longhorn-system
   - cert-manager
-  - ingress-nginx
   - reflector
   - velero
   - botkube

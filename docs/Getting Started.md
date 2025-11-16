@@ -2,7 +2,7 @@
 
 ## K3S and why are we using it
 - For raspberry pis who have limited resources we need something more minimalistic. k3s was made to run with limited resources in mind, so it seems like a good fit
-- We will not be using traefik as I stuck with ingress-nginx
+- We will not be using traefik, instead we are using istio
 
 ## Before installing anything
 It is highly advisory to go to each helm chart values.yaml file and check the different options and modify them as you wish.

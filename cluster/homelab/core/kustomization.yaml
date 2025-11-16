@@ -4,7 +4,6 @@ kind: Kustomization
 resources:
   - cluster-critical
   - reflector
-  - ingress-nginx
   - system-upgrade
   - longhorn-system
   - velero
