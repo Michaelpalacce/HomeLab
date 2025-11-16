@@ -1,9 +1,9 @@
 ---
 website:
-    image: ghcr.io/michaelpalacce/website:v2.16.0
-    port: 80
-    replicas: 3
-    resources:
-        requests:
-            cpu: 500m
-            memory: 512Mi
+  image: ghcr.io/michaelpalacce/website:v2.16.0
+  port: 80
+  replicas: 3
+  resources:
+    requests:
+      cpu: 500m
+      memory: 512Mi

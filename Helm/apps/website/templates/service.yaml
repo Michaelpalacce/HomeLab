@@ -6,8 +6,6 @@ metadata:
     name: website
     namespace: {{ $.Release.Namespace }}
 spec:
-    type: LoadBalancer
-    loadBalancerIP: 192.168.1.6
     selector:
         app.kubernetes.io/instance: website
         app.kubernetes.io/name: website

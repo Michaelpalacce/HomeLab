@@ -1,3 +1,6 @@
+#### [v4.0.0]
+- Using Gateway API
+
 #### [v3.0.0]
 - Better selectors
 - Better probes
