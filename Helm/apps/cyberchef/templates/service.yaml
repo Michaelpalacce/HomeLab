@@ -12,6 +12,5 @@ spec:
     ports:
         - name: cyberchef
           protocol: TCP
-          port: 80
-          targetPort: {{ .port }}
+          port: {{ .port }}
 {{- end }}

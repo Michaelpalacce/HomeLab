@@ -1,0 +1,26 @@
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+    name: cyberchef-internal
+    namespace: {{ $.Release.Namespace }}
+    annotations:
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: Swiss Army Knife of the internet
+        gethomepage.dev/group: Tools
+        gethomepage.dev/icon: cyberchef
+        gethomepage.dev/name: CyberChef
+spec:
+  parentRefs:
+  - name: internal
+    namespace: istio-gateway
+  hostnames:
+    - "cyberchef.sgenov.dev"
+  rules:
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /
+    backendRefs:
+    - name: cyberchef
+      port: {{ .Values.cyberchef.port }}
