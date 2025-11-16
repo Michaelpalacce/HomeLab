@@ -1,0 +1,46 @@
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+    name: reactiveresume-internal
+    namespace: {{ $.Release.Namespace }}
+    annotations:
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: Build your own CV
+        gethomepage.dev/group: Personal
+        gethomepage.dev/icon: https://raw.githubusercontent.com/AmruthPillai/Reactive-Resume/5513b909e79d2560b3ba313facb984d2457ef602/apps/artboard/public/favicon.svg
+        gethomepage.dev/name: Reactive Resume
+spec:
+  parentRefs:
+  - name: internal
+    namespace: istio-gateway
+  hostnames:
+    - "resume.sgenov.dev"
+  rules:
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /
+    backendRefs:
+    - name: reactiveresume
+      port: 3000
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+    name: reactiveresume-api-internal
+    namespace: {{ $.Release.Namespace }}
+spec:
+  parentRefs:
+  - name: internal
+    namespace: istio-gateway
+  hostnames:
+    - "resume-api.sgenov.dev"
+  rules:
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /
+    backendRefs:
+    - name: reactiveresume
+      port: 3100
