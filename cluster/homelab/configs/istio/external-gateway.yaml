@@ -20,6 +20,9 @@ spec:
         mode: Terminate
         certificateRefs:
           - name: ingress
+      allowedRoutes:
+        namespaces:
+          from: All
       # allowedRoutes:
       #   namespaces:
       #     from: Selector
