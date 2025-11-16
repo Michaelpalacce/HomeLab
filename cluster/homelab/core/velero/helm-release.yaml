@@ -44,7 +44,7 @@ spec:
     kubectl:
       image:
         repository: alpine/kubectl
-        tag: 1.34.0
+        tag: 1.34.2
     upgradeCRDsJob:
       shellCmd: /bin/sh
       updateCmd: /velero install --crds-only --dry-run -o yaml | /usr/local/bin/kubectl apply -f -
