@@ -1,0 +1,26 @@
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+    name: mazanoke-internal
+    namespace: {{ $.Release.Namespace }}
+    annotations:
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: Image Optimzier
+        gethomepage.dev/group: Tools
+        gethomepage.dev/icon: https://raw.githubusercontent.com/civilblur/mazanoke/refs/heads/main/favicon.ico
+        gethomepage.dev/name: Mazanoke
+spec:
+  parentRefs:
+  - name: internal
+    namespace: istio-gateway
+  hostnames:
+    - "mazanoke.sgenov.dev"
+  rules:
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /
+    backendRefs:
+    - name: mazanoke
+      port: {{ .Values.mazanoke.port }}
