@@ -1,36 +1,31 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
 metadata:
-    name: mealie
+    name: mealie-internal
     namespace: mealie
     annotations:
-        nginx.ingress.kubernetes.io/proxy-body-size: ENC[AES256_GCM,data:JQ==,iv:EfIwBXTgt8QZ+1fszoZBiQZb6Fel2YdXcFj+JJCAbCc=,tag:QhpslY6SWrg3n67+tw/hrw==,type:str]
-        gethomepage.dev/enabled: ENC[AES256_GCM,data:+IvxuQ==,iv:Ld+FevZlP80fyDnKFIYFt5SXC80+T8+T06JU3n5KiiQ=,tag:HQDZvFrfdHmXQ02DaoP8TQ==,type:str]
-        gethomepage.dev/description: ENC[AES256_GCM,data:PlhiKF+cjQP8KKwgHmwqcrCAzTU=,iv:e/KLUX3/+SLxtSscz96XinnMxoGHTXeVnFf4WXlly98=,tag:MzEzC0fP353G0jNq8BDqZw==,type:str]
-        gethomepage.dev/group: ENC[AES256_GCM,data:4OWy8JeFDv2Q,iv:jZL0ISciGKq6tKdRHmeiYkozqZ8y02OSfPcFyAlpPkA=,tag:LDwPuQxTJjWCk30r2vyXUw==,type:str]
-        gethomepage.dev/icon: ENC[AES256_GCM,data:tCQ+QY4N,iv:iwHORbNtw5PhU/kxSGyuwc+nvvU7IaU1/O6pjuLB5e4=,tag:y3i2lRO18RmS+BAX1twrqw==,type:str]
-        gethomepage.dev/name: ENC[AES256_GCM,data:asyNf0+m,iv:kRllSgfJ8bFDrDuyHxQfHS4cy4qy0HyGz0c3wm0gKUE=,tag:02g8vpimnGSibPgZSg/2mw==,type:str]
-        gethomepage.dev/widget.type: ENC[AES256_GCM,data:xIAyiGuj,iv:Rt/W/+22B3ed3lNd6p7PVBuqMUVFH/Q3wPYkjFOnGN0=,tag:xYpaidIuL259o3rS/DeAlA==,type:str]
-        gethomepage.dev/widget.url: ENC[AES256_GCM,data:Jf3N4d0hcRo/pcmf78lZBE1EaM/UoemC6Q==,iv:J4WgMZFeeOTViKoZ+ZD51cq4I7NIMt+NMs8OUaMO2PQ=,tag:AZ6qUuK3+DopCxni+cCRJA==,type:str]
-        gethomepage.dev/widget.key: ENC[AES256_GCM,data:68z7kmjBC/iY9+T6oY7qNd3Cy5zYdLKsRRRwiECbjZz5I6hNtv/g0tEzdy5Na0WEiJp55jqQadCzc2TpDpBbLok66d/TIbswWCcub/YCe5/zj/gdlKWnIOqsUSw/cwNQzNGXXBCby1fSVshRWI2sjmIJMm+bJihxrrIFVFzNhlv+6RYIpzKZiz+4Qhr/+QIyVxIOoSyPcMo12B3lZLlDVLZuLV+9aLVXurozsUavNJvjR646992Dn4qU2f1ZGY4JtYCZIbzF3FXrwMV7EsWBNZnnyVugr53B2qgGn61c1BT1ti6+ecelXs+HmfTpri7q0AI4xnkV+34=,iv:f10govS0mIe3JTieTIeP2bUokCDo53Rolx/2r8hmf00=,tag:s8SmLMczTpMJUV6ZdZGvrw==,type:str]
-        gethomepage.dev/widget.version: ENC[AES256_GCM,data:KQ==,iv:tfafsv8nRu9/xNSpIbGDbN62sFOEQl/DCuzoase+nLg=,tag:/4jpCVCtCL4rLqIL5W//PA==,type:str]
+        nginx.ingress.kubernetes.io/proxy-body-size: "0"
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: Self-hosted Recipes!
+        gethomepage.dev/group: Knowledge
+        gethomepage.dev/icon: mealie
+        gethomepage.dev/name: Mealie
+        gethomepage.dev/widget.type: mealie
+        gethomepage.dev/widget.url: https://mealie.sgenov.dev
+        gethomepage.dev/widget.key: ENC[AES256_GCM,data:6NLdB8Rv5Odp4eZ2osXaxoUJ5MRta3JcPEI5F8vmTVx480PVBiQ5E19Hqsmg/k1BDueZsl7B5EpjaqfikoNcw0nXEwGVh/LGnJk+2w/HI4/MtgIROg7UTn6DkVLbcCAhpXVRm7a0NpBNau+sQnf+HB5TPeMmxp1e7nJvgg922eiMH0kQq2urJszY+FqHaHQltw2W4NuoTxEaT9/UBc/IBTj000N2A8rW0BrWXKuyUhzIECF7BbJy/DNRSRwJDVuOuWsMO/UwUoC/fKG2cJdfYLPWZuF1CgoYS6DJ0SNsFx+5C7A3GijvZKwwOTxa+ZGigBueVeVGmNs=,iv:GnCnhG7VL/mneIpAsBqBXStRBFSgS2ickNicG6pZa64=,tag:7b7GIEAGmWdkIfb4ueqoiQ==,type:str]
+        gethomepage.dev/widget.version: "2"
 sops:
-    kms: []
-    gcp_kms: []
-    azure_kv: []
-    hc_vault: []
     age:
         - recipient: age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
           enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBNYTc3MG92Um9wSWZIWG1W
-            VDJMYkszNGN6elRiK3V4MnZ0QllTbjlMN2o0ClBLMlVFRWlET0hVcGRYdkxaVlZo
-            R2txMTNBZHd5b0ZyS2xCcmp1bXJ3NTAKLS0tIDlTd3pZZ05NUDdvWWRkSmY3Q1Jz
-            bCtnTWcwSi9YL1ZMQnhtWjV4cUJnbFkKo3EDLzmiLUw/3zWrR8vA9JEemwNgOd0l
-            kHc56YDMzUdSb23rb4DYsSQh7jyY3qGoTL7PtPrx8U0gFF0w5ZYMug==
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBtSmwrR2Z1L2JXd28xUEpq
+            K1lhSWo1dEdaUHF2bjdpYjBHMWlySEExTXpjCkkremhKaC82b2RGYi9wcW04WTR6
+            L3BxVmxPaXdBVXh1NHc0WFFsWUZQWDQKLS0tIDFwR1hnTUovOTFyVUpacmxJSkRu
+            YllZRVlETlhSL0c1T3ZWMDA1RHIrbjgK8AJi7u+479LRLnBz4CWntoODZn6Vn9sN
+            s5ry2zh8P38/wSrCvGwCY3ULg5k9NK3iZH+eKqPEkPOKJpK7XcSrPQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-04-21T18:10:31Z"
-    mac: ENC[AES256_GCM,data:TNVdOcnDz2rXgmsEyYu6RixzcXBTuJXgRbAvzVlQN3FY94qRKSkYMj/GxxJRIs0i1nyVEiy444IUG/IUNcEj+UgkJWAhRtgh0IEpKcz9sLc9zHcwZMoWbCEcl4FAgLjybHBRakXqa2P72PsnpnkuSD/MsPtpOmz+WASrT6STH+E=,iv:EG6nfWN9vTx0GnzhGW6aGaFDNKpZYMQVEgvPGasxRPg=,tag:yYp15gGZWt0ZTNqoaW8irg==,type:str]
-    pgp: []
-    encrypted_regex: ^(rules|annotations|)$
-    version: 3.8.1
+    lastmodified: "2025-11-16T14:07:24Z"
+    mac: ENC[AES256_GCM,data:OUc0vT0MrWjsqrAXu06Gf7nnXWPiqWe1a1J5OR71G3i51JG1IY2IgBmL2xbTQIY61qqOehlTK9PdwvYC0aAnH24LGxrflRcYbzMZNHo94gM1su5lf6bOMw+M1otN96mOeZK53gD0WSSoi5uCLKjxBBSR8OcuzfTPDvREp3Tm+78=,iv:9RYie7V5HRCVmWz9Ys8jojLTnXIMse9Y4NAKjK0JGO8=,tag:0L2L76aHDbqsqQFBncwl0w==,type:str]
+    encrypted_regex: (?i)password|webhook_url|token|key
+    version: 3.11.0
