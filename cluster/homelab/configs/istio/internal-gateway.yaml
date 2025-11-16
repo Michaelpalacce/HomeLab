@@ -12,6 +12,9 @@ spec:
     - name: http
       port: 80
       protocol: HTTP
+      allowedRoutes:
+        namespaces:
+          from: All
     - name: https
       hostname: "*.sgenov.dev"
       port: 443
