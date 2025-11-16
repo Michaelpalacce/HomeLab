@@ -16,7 +16,7 @@ spec:
       retries: 3
   chart:
     spec:
-      chart: istio/ztunnel
+      chart: ztunnel
       version: 1.28.0
       interval: 1h
       sourceRef:
