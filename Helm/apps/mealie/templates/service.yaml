@@ -1,0 +1,17 @@
+{{- with .Values.mealie }}
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: mealie
+    namespace: {{ $.Release.Namespace }}
+spec:
+    selector:
+        app.kubernetes.io/instance: mealie
+        app.kubernetes.io/name: mealie
+    ports:
+        -   name: web
+            protocol: TCP
+            port: {{ .port }}
+
+{{- end }}
