@@ -14,7 +14,7 @@ spec:
       retries: 3
   chart:
     spec:
-      chart: istio/base
+      chart: base
       version: 1.28.0
       interval: 1h
       sourceRef:
