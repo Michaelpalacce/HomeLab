@@ -100,7 +100,7 @@ spec:
                 - reflector
                 - system-upgrade
                 - metallb-system
-                - nginx-gateway
+                - istio-system
                 - cert-manager
       match:
         any:
