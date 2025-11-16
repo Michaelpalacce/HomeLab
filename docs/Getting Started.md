@@ -17,10 +17,5 @@ Ideally you should either pass in your password every time or setup passwordless
 - Run `ansible-galaxy install -r playbooks/install/requirements.yml` to install all the needed ansible roles from Ansible Galaxy
 - Run `ansible-playbook -i hosts/inventory playbooks/install/main.yml `
 - You should check the Troubleshooting options regarding svclb and enable container ip forwarding.
-- Install Gateway API (make sure to use latest version.)
-
-```sh
-kubectl apply --server-side -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.4.0/standard-install.yaml
-```
 
 Next Steps: - [Flux](./Flux.md)
