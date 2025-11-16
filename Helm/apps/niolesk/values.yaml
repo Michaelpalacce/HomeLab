@@ -1,8 +1,0 @@
----
-niolesk:
-  image: ghcr.io/webgiss/niolesk:v1.7.6
-  port: 80
-  resources:
-    requests:
-      cpu: 10m
-      memory: 10Mi

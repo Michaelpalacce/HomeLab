@@ -1,62 +1,61 @@
 apiVersion: velero.io/v1
 kind: Schedule
 metadata:
-    name: general
-    namespace: velero
+  name: general
+  namespace: velero
 spec:
-    schedule: '00 01 * * *'
-    template:
-        hooks: {}
-        includedNamespaces: # Either not important, not containing any information or they are easily recoverable
-          - freshrss # RSS are not fatal
-          - niolesk
-          - openbooks
-          - cyberchef
-          - diagrams
-          - stirlingpdf
-          - storage
-        snapshotVolumes: true
-        ttl: 730h0m0s # 1 Month
-    useOwnerReferencesInBackup: false
+  schedule: "00 01 * * *"
+  template:
+    hooks: {}
+    includedNamespaces: # Either not important, not containing any information or they are easily recoverable
+      - freshrss # RSS are not fatal
+      - openbooks
+      - cyberchef
+      - diagrams
+      - stirlingpdf
+      - storage
+    snapshotVolumes: true
+    ttl: 730h0m0s # 1 Month
+  useOwnerReferencesInBackup: false
 ---
 apiVersion: velero.io/v1
 kind: Schedule
 metadata:
-    name: sensitive
-    namespace: velero
+  name: sensitive
+  namespace: velero
 spec:
-    schedule: '00 01 * * *'
-    template:
-        hooks: {}
-        includedNamespaces: # Related to my homelab or automation
-          - media
-          - n8n
-          - uptimekuma
-          - go-ddns-controller-system
-          - nodered
-          - changedetection
-        snapshotVolumes: true
-        ttl: 1460h0m0s # 2 Month
-    useOwnerReferencesInBackup: false
+  schedule: "00 01 * * *"
+  template:
+    hooks: {}
+    includedNamespaces: # Related to my homelab or automation
+      - media
+      - n8n
+      - uptimekuma
+      - go-ddns-controller-system
+      - nodered
+      - changedetection
+    snapshotVolumes: true
+    ttl: 1460h0m0s # 2 Month
+  useOwnerReferencesInBackup: false
 ---
 apiVersion: velero.io/v1
 kind: Schedule
 metadata:
-    name: critical
-    namespace: velero
+  name: critical
+  namespace: velero
 spec:
-    schedule: '00 01 * * *'
-    template:
-        hooks: {}
-        includedNamespaces: # Data I don't want to lose
-          - vikunja
-          - website
-          - reactiveresume
-          - homebox
-          - paperless-ngx
-          - firefly
-          - wallabag
-          - mealie
-        snapshotVolumes: true
-        ttl: 2190h0m0s 
-    useOwnerReferencesInBackup: false 
+  schedule: "00 01 * * *"
+  template:
+    hooks: {}
+    includedNamespaces: # Data I don't want to lose
+      - vikunja
+      - website
+      - reactiveresume
+      - homebox
+      - paperless-ngx
+      - firefly
+      - wallabag
+      - mealie
+    snapshotVolumes: true
+    ttl: 2190h0m0s
+  useOwnerReferencesInBackup: false
