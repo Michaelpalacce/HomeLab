@@ -20,9 +20,10 @@ spec:
         mode: Terminate
         certificateRefs:
           - name: ingress
-      # allowedRoutes:
-      #   namespaces:
-      #     from: Selector
-      #     selector:
-      #       matchLabels:
-      #         kubernetes.io/metadata.name: default
+      allowedRoutes:
+        namespaces:
+          from: Selector
+          selector:
+            matchLabels:
+              # For internal, allow from anywhere
+              from: All
