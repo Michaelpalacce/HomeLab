@@ -1,85 +1,84 @@
 ---
 storage:
-    transmission:
-        config: 1Gi
-        downloads: 200Gi
-    kavita:
-        config: 5Gi
-    overseer:
-        config: 5Gi
-    radarr:
-        config: 5Gi
-    sonarr:
-        config: 5Gi
-    prowlarr:
-        config: 10Gi
+  transmission:
+    config: 1Gi
+    downloads: 200Gi
+  kavita:
+    config: 5Gi
+  overseer:
+    config: 5Gi
+  radarr:
+    config: 5Gi
+  sonarr:
+    config: 5Gi
+  prowlarr:
+    config: 10Gi
 
 flaresolverr:
-    image: ghcr.io/flaresolverr/flaresolverr:v3.4.5
-    port: 8191
-    resources:
-        requests:
-            cpu: 512m
-            memory: 1Gi
+  image: ghcr.io/flaresolverr/flaresolverr:v3.4.5
+  port: 8191
+  resources:
+    requests:
+      cpu: 512m
+      memory: 1Gi
 
 transmission:
-    image: lscr.io/linuxserver/transmission:4.0.6
-    port: 9091
-    username: username
-    password: password
-    resources:
-        requests:
-            cpu: 250m
-            memory: 1Gi
-        limits:
-            cpu: 2
-            memory: 2Gi
+  image: lscr.io/linuxserver/transmission:4.0.6
+  port: 9091
+  username: username
+  password: password
+  resources:
+    requests:
+      cpu: 250m
+      memory: 1Gi
+    limits:
+      cpu: 2
+      memory: 2Gi
 prowlarr:
-    replicas: 1
-    image: ghcr.io/linuxserver/prowlarr:2.1.5
-    port: 9696
-    resources:
-        requests:
-            cpu: 500m
-            memory: 1Gi
-        limits:
-            cpu: 2
-            memory: 2Gi
+  replicas: 1
+  image: ghcr.io/linuxserver/prowlarr:2.1.5
+  port: 9696
+  resources:
+    requests:
+      cpu: 500m
+      memory: 1Gi
+    limits:
+      cpu: 2
+      memory: 2Gi
 
 radarr:
-    image: ghcr.io/linuxserver/radarr:5.28.0
-    port: 7878
-    resources:
-        requests:
-            cpu: 10m
-            memory: 50Mi
+  image: ghcr.io/linuxserver/radarr:5.28.0
+  port: 7878
+  resources:
+    requests:
+      cpu: 10m
+      memory: 50Mi
 
 overseerr:
-    image: lscr.io/linuxserver/overseerr:1.34.0
-    port: 5055
-    replicas: 1
-    resources:
-        requests:
-            cpu: 10m
-            memory: 50Mi
+  image: lscr.io/linuxserver/overseerr:1.34.0
+  port: 5055
+  replicas: 1
+  resources:
+    requests:
+      cpu: 10m
+      memory: 50Mi
 
 sonarr:
-    image: lscr.io/linuxserver/sonarr:4.0.16
-    port: 8989
-    resources:
-        requests:
-            cpu: 1
-            memory: 1Gi
-        limits:
-            cpu: 2
+  image: lscr.io/linuxserver/sonarr:4.0.16
+  port: 8989
+  resources:
+    requests:
+      cpu: 1
+      memory: 1Gi
+    limits:
+      cpu: 2
 
 kavita:
-    image: ghcr.io/linuxserver/kavita:0.8.8
-    port: 5000
-    replicas: 1
-    lbIp: 192.168.1.15
-    resources:
-        requests:
-            cpu: 100m
-            memory: 500Mi
-
+  image: ghcr.io/linuxserver/kavita:0.8.8
+  port: 5000
+  replicas: 1
+  lbIp: 192.168.1.10
+  resources:
+    requests:
+      cpu: 100m
+      memory: 500Mi
