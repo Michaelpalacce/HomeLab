@@ -101,6 +101,7 @@ spec:
                 - system-upgrade
                 - metallb-system
                 - istio-system
+                - istio-gateway
                 - cert-manager
       match:
         any:
