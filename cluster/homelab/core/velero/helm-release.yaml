@@ -2,70 +2,74 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-    name: velero
-    namespace: velero
+  name: velero
+  namespace: velero
 spec:
-    interval: 1h
-    install:
-        createNamespace: true
-        crds: CreateReplace
-        remediation:
-            retries: 3
-    upgrade:
-        crds: CreateReplace
-        remediation:
-            retries: 3
-    chart:
-        spec:
-            chart: velero
-            version: 11.1.1
-            interval: 1h
-            sourceRef:
-                kind: HelmRepository
-                name: velero
-                namespace: flux-system
-    values:
-      image:
-        repository: velero/velero
-        tag: v1.17.1
-      upgradeCRDs: true
-      initContainers:
-          - name: velero-plugin-for-aws
-            image: velero/velero-plugin-for-aws:v1.13.1
-            volumeMounts:
-                - mountPath: /target
-                  name: plugins
-      metrics:
-          enabled: true
-          scrapeInterval: 120s
-          scrapeTimeout: 30s
-      deployNodeAgent: true
-      credentials:
-          existingSecret: cloud-credentials-wasabi
-      configuration:
-          features: EnableCSI
-          backupStorageLocation:
-              - name: default
-                provider: aws
-                default: true
-                bucket: sgenov-velero
-                config:
-                    region: eu-central-2
-                    s3ForcePathStyle: true
-                    s3Url: https://s3.eu-central-2.wasabisys.com
-                    checksumAlgorithm: ""
+  interval: 1h
+  install:
+    createNamespace: true
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  upgrade:
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  chart:
+    spec:
+      chart: velero
+      version: 11.1.1
+      interval: 1h
+      sourceRef:
+        kind: HelmRepository
+        name: velero
+        namespace: flux-system
+  values:
+    image:
+      repository: velero/velero
+      tag: v1.17.1
+    upgradeCRDs: true
+    initContainers:
+      - name: velero-plugin-for-aws
+        image: velero/velero-plugin-for-aws:v1.13.1
+        volumeMounts:
+          - mountPath: /target
+            name: plugins
+    metrics:
+      enabled: true
+      scrapeInterval: 120s
+      scrapeTimeout: 30s
+    deployNodeAgent: true
 
-              - name: wasabi
-                provider: aws
-                default: false
-                bucket: sgenov-velero
-                config:
-                    region: eu-central-2
-                    s3ForcePathStyle: true
-                    s3Url: https://s3.eu-central-2.wasabisys.com
-                    checksumAlgorithm: ""
-          volumeSnapshotLocation:
-              - name: wasabi
-                provider: aws
-                config:
-                    region: eu-central-2
+    kubectl:
+      image:
+        repository: alpine/kubectl
+    credentials:
+      existingSecret: cloud-credentials-wasabi
+    configuration:
+      features: EnableCSI
+      backupStorageLocation:
+        - name: default
+          provider: aws
+          default: true
+          bucket: sgenov-velero
+          config:
+            region: eu-central-2
+            s3ForcePathStyle: true
+            s3Url: https://s3.eu-central-2.wasabisys.com
+            checksumAlgorithm: ""
+
+        - name: wasabi
+          provider: aws
+          default: false
+          bucket: sgenov-velero
+          config:
+            region: eu-central-2
+            s3ForcePathStyle: true
+            s3Url: https://s3.eu-central-2.wasabisys.com
+            checksumAlgorithm: ""
+      volumeSnapshotLocation:
+        - name: wasabi
+          provider: aws
+          config:
+            region: eu-central-2
