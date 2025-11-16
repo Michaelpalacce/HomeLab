@@ -13,7 +13,7 @@ spec:
       port: 80
       protocol: HTTP
     - name: https
-      hostname: "sgenov.dev"
+      hostname: "*.sgenov.dev"
       port: 443
       protocol: HTTPS
       tls:
