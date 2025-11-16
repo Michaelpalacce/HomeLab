@@ -25,3 +25,5 @@ spec:
         namespace: flux-system
   values:
     profile: ambient
+    global:
+      platform: k3s
