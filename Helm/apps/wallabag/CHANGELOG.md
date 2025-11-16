@@ -1,3 +1,6 @@
+#### [v2.0.0]
+- Using Gateway API
+
 #### [v1.3.0]
 * Moved Env to simplesecret
 * Improved security

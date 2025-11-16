@@ -1,22 +1,21 @@
 ---
 wallabag:
-    image: wallabag/wallabag:2.6.14
-    replicas: 1
-    port: 80
-    lbIp: 192.168.1.7
-    domainName: https://wallabag.sgenov.dev
-    resources:
-        requests:
-            cpu: 100m
-            memory: 500Mi
+  image: wallabag/wallabag:2.6.14
+  replicas: 1
+  port: 80
+  domainName: https://wallabag.sgenov.dev
+  resources:
+    requests:
+      cpu: 100m
+      memory: 500Mi
 
 postgres:
-    image: postgres:16.11
-    port: 5432
-    resources:
-        requests:
-            cpu: 10m
-            memory: 256Mi
+  image: postgres:16.11
+  port: 5432
+  resources:
+    requests:
+      cpu: 10m
+      memory: 256Mi
 
 storage:
-    postgresqlSize: 5Gi
+  postgresqlSize: 5Gi
