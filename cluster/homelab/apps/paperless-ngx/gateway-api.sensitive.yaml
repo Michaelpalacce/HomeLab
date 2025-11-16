@@ -1,78 +1,78 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: paperless-ngx-external
-  namespace: paperless-ngx
+    name: paperless-ngx-external
+    namespace: paperless-ngx
 spec:
-  parentRefs:
-    - name: external
-      namespace: istio-gateway
-  hostnames:
-    - paperless-ngx.sgenov.dev
-  rules:
-    - matches:
-        - path:
-            type: PathPrefix
-            value: /
-      backendRefs:
-        - name: paperless-ngx
-          port: 80
+    parentRefs:
+        - name: external
+          namespace: istio-gateway
+    hostnames:
+        - paperless.sgenov.dev
+    rules:
+        - matches:
+            - path:
+                type: PathPrefix
+                value: /
+          backendRefs:
+            - name: paperless-ngx
+              port: 80
 sops:
-  age:
-    - recipient: age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
-      enc: |
-        -----BEGIN AGE ENCRYPTED FILE-----
-        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBvb0k2TnFWSGhjZDd6V3Fp
-        M0lzVXNIT1FSb1NxZE44SmRieFdJTWI4bkZjCkYya2Z3SGMzT25PM0pnd1Q0Y0VO
-        RzRpR1lhRXorc1VudmlHSThIUGFIMlUKLS0tIERFbkJadjh1dHFneHJkdi9aQlhw
-        RVFnSlh1eUppcjFBVXVOV1Z6N2JkblEKCnnjOfAPNvaeiz/Iz7ttgHpXV6xhJ34/
-        aZ1YI0a2du9H48aegmfobnvji1vc4MLX+BcWe28927RMWAZZ/qjDzw==
-        -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-11-16T14:19:11Z"
-  mac: ENC[AES256_GCM,data:MZV7g3nFsII4TD7sioSuKxdDF9nOYuAMwMcnMas8YldvRYdbkER0T/7rZSJ8qCfZ6sjGd5my9o2FEKtH6RFiiDjVHImCrb5r2JNiKMfAogFZAw/X8mmCKbxuM7XdoevA5gzf+ekZ/JZx9k0joebEA5PMHdR6qh/2BvmGWwaxYQU=,iv:0MR/6RgBiXouVf2YHHv4dMX0Fpu+jEvDKFxWeBHtwLU=,tag:iwhTqiig92eEOWVuAweRDg==,type:str]
-  encrypted_regex: (?i)password|webhook_url|token|key
-  version: 3.11.0
+    age:
+        - recipient: age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSArQ1QzVGpzYzVaWnU5bHQ2
+            K25JZG9JNjRnZE1ERkZINTY0U0pidGdNN0NBCnJ4eEVya29tTEdoQllaSW1Ja3V3
+            YWxqWjZxODdMNUVEUlhzUnZXeW1OckEKLS0tIC9sYkRRNDh4eWNJaWlaamJqVmtM
+            MmdKRmVRQzVWNzVrZHp2U2dmZllnK00KzJ8nbGiRMtzzxRwBY3ixXOiZ3DIl+Idh
+            OEMEBvdYpjVkxL6pXnFmcw1qzvq5ddeGe8m6uuy8u5NO9yxShqrKBA==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-11-16T14:23:48Z"
+    mac: ENC[AES256_GCM,data:XNuJvx7uQPkB+kJCDopO36GZ44to6sEMU0FpF8nJw+CFqdGdoFzqwDq7ThNXDPGM8rSKU+i8quXl1WVO/WvVcvUf/3+5Qp5s4D0QJBNT2csEbqTI0x0sLSADzyuqs38zFR50OBr23J1feHHiE2jMi4kUniMCmv/NoRrHIeVsihA=,iv:tabpzBbjgqhm9WS0Vv9CDTLzgeKUFUn0MzSJsLbQX9M=,tag:eU3ta9koDdIKLPy9zockZA==,type:str]
+    encrypted_regex: (?i)password|webhook_url|token|key
+    version: 3.11.0
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: paperless-ngx-internal
-  namespace: paperless-ngx
-  annotations:
-    gethomepage.dev/enabled: "true"
-    gethomepage.dev/description: Document Management System
-    gethomepage.dev/group: Knowledge
-    gethomepage.dev/icon: paperless-ngx
-    gethomepage.dev/name: Paperless-NGX
-    gethomepage.dev/widget.type: paperlessngx
-    gethomepage.dev/widget.url: https://paperless.sgenov.dev
-    gethomepage.dev/widget.key: ENC[AES256_GCM,data:WDMWnhMth62RegFGB94uRDv5V1646QNCXtNHlhY8SOUiGJpVsMKH6Jb0wwtQgDL7nOo6hAmnqS/F6ARc84nxIBh80bisnQIcevV4kLkJYGKXCP7c9uLpc+sj9tCKbrHTtYns1NXKbXzQKBD9aZsHw0OBDtYy5i+Tl1dxHzoQRiKNk7YSx7XYc0+wMjA3owDTdALotb16PrVlcBFli/VnNdj99w==,iv:/NB6be+6O7Pkbmi00uGdBi95kKorSvDyVt9fx308hLE=,tag:dNLBEhz3tJJa0f/NQINz7w==,type:str]
+    name: paperless-ngx-internal
+    namespace: paperless-ngx
+    annotations:
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: Document Management System
+        gethomepage.dev/group: Knowledge
+        gethomepage.dev/icon: paperless-ngx
+        gethomepage.dev/name: Paperless-NGX
+        gethomepage.dev/widget.type: paperlessngx
+        gethomepage.dev/widget.url: https://paperless.sgenov.dev
+        gethomepage.dev/widget.key: ENC[AES256_GCM,data:Rnzez6tBbfRuqOsJ9hDf9hq1x+bg3uGfokqt1vRhVwP1btqFpOqk472WgPp5njB+vIRq6JwntwFarp93ZaLTdejla7Tn1pzLlvqgnmZms/g/6V4R7hGejklHpF4FBP7l8hTVPKqqYFGrJ4h2dlLORnpmaFRGB+pkQy6hP4XFkszgfOkeehflpoQSNMcLIew3tMRDGGR2sKJ23WN5F9mOSwn0mw==,iv:jwRN7MVVzwvJ1A1WAYlNnzBbLEW6fwiGPf4bSlEDKMo=,tag:2B/jfk+a7V9FTSqmtMdyBw==,type:str]
 spec:
-  parentRefs:
-    - name: internal
-      namespace: istio-gateway
-  hostnames:
-    - paperless-ngx.sgenov.dev
-  rules:
-    - matches:
-        - path:
-            type: PathPrefix
-            value: /
-      backendRefs:
-        - name: paperless-ngx
-          port: 80
+    parentRefs:
+        - name: internal
+          namespace: istio-gateway
+    hostnames:
+        - paperless.sgenov.dev
+    rules:
+        - matches:
+            - path:
+                type: PathPrefix
+                value: /
+          backendRefs:
+            - name: paperless-ngx
+              port: 80
 sops:
-  age:
-    - recipient: age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
-      enc: |
-        -----BEGIN AGE ENCRYPTED FILE-----
-        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBvb0k2TnFWSGhjZDd6V3Fp
-        M0lzVXNIT1FSb1NxZE44SmRieFdJTWI4bkZjCkYya2Z3SGMzT25PM0pnd1Q0Y0VO
-        RzRpR1lhRXorc1VudmlHSThIUGFIMlUKLS0tIERFbkJadjh1dHFneHJkdi9aQlhw
-        RVFnSlh1eUppcjFBVXVOV1Z6N2JkblEKCnnjOfAPNvaeiz/Iz7ttgHpXV6xhJ34/
-        aZ1YI0a2du9H48aegmfobnvji1vc4MLX+BcWe28927RMWAZZ/qjDzw==
-        -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-11-16T14:19:11Z"
-  mac: ENC[AES256_GCM,data:MZV7g3nFsII4TD7sioSuKxdDF9nOYuAMwMcnMas8YldvRYdbkER0T/7rZSJ8qCfZ6sjGd5my9o2FEKtH6RFiiDjVHImCrb5r2JNiKMfAogFZAw/X8mmCKbxuM7XdoevA5gzf+ekZ/JZx9k0joebEA5PMHdR6qh/2BvmGWwaxYQU=,iv:0MR/6RgBiXouVf2YHHv4dMX0Fpu+jEvDKFxWeBHtwLU=,tag:iwhTqiig92eEOWVuAweRDg==,type:str]
-  encrypted_regex: (?i)password|webhook_url|token|key
-  version: 3.11.0
+    age:
+        - recipient: age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSArQ1QzVGpzYzVaWnU5bHQ2
+            K25JZG9JNjRnZE1ERkZINTY0U0pidGdNN0NBCnJ4eEVya29tTEdoQllaSW1Ja3V3
+            YWxqWjZxODdMNUVEUlhzUnZXeW1OckEKLS0tIC9sYkRRNDh4eWNJaWlaamJqVmtM
+            MmdKRmVRQzVWNzVrZHp2U2dmZllnK00KzJ8nbGiRMtzzxRwBY3ixXOiZ3DIl+Idh
+            OEMEBvdYpjVkxL6pXnFmcw1qzvq5ddeGe8m6uuy8u5NO9yxShqrKBA==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-11-16T14:23:48Z"
+    mac: ENC[AES256_GCM,data:XNuJvx7uQPkB+kJCDopO36GZ44to6sEMU0FpF8nJw+CFqdGdoFzqwDq7ThNXDPGM8rSKU+i8quXl1WVO/WvVcvUf/3+5Qp5s4D0QJBNT2csEbqTI0x0sLSADzyuqs38zFR50OBr23J1feHHiE2jMi4kUniMCmv/NoRrHIeVsihA=,iv:tabpzBbjgqhm9WS0Vv9CDTLzgeKUFUn0MzSJsLbQX9M=,tag:eU3ta9koDdIKLPy9zockZA==,type:str]
+    encrypted_regex: (?i)password|webhook_url|token|key
+    version: 3.11.0
