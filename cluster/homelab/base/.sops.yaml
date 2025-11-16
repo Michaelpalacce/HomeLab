@@ -1,5 +1,5 @@
 creation_rules:
-    # Secrets
+  # Secrets
   - path_regex: .*/*secret.sops.yaml
     encrypted_regex: ^(data|stringData|annotations|)$
     pgp: age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
@@ -10,7 +10,7 @@ creation_rules:
     pgp: age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
 
     # Ingress Hosts
-  - path_regex: .*/*ingress.sops.yaml
+  - path_regex: .*/*gateway-api.sops.yaml
     encrypted_regex: ^(rules|annotations|)$
     pgp: age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
 
@@ -24,7 +24,7 @@ creation_rules:
     encrypted_regex: ^(receivers)$
     pgp: age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
 
-    # sensitive... just general stuff I don't want to be sene
+    # sensitive... just general stuff I don't want to be seen
   - path_regex: .*/*sensitive.sops.yaml
     encrypted_regex: (?i)password|webhook_url|token|key
     pgp: age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn

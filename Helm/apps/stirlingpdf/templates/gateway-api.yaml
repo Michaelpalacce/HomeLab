@@ -5,7 +5,6 @@ metadata:
     name: stirlingpdf-internal
     namespace: {{ $.Release.Namespace }}
     annotations:
-        nginx.ingress.kubernetes.io/proxy-body-size: "100m"
         gethomepage.dev/enabled: "true"
         gethomepage.dev/description: Swiss Army Knife For PDFs
         gethomepage.dev/group: Tools
