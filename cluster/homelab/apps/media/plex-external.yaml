@@ -8,7 +8,6 @@ spec:
     - name: http-plex
       port: 32400
       targetPort: 32400
-  clusterIP: None
 ---
 apiVersion: v1
 kind: Endpoints
