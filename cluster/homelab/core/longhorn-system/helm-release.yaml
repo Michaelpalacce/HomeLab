@@ -2,55 +2,55 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-    name: longhorn-system
-    namespace: longhorn-system
+  name: longhorn-system
+  namespace: longhorn-system
 spec:
-    interval: 1h
-    install:
-        createNamespace: true
-    chart:
-        spec:
-            chart: longhorn
-            version: 1.10.1
-            interval: 1h
-            sourceRef:
-                kind: HelmRepository
-                name: longhorn-system
-                namespace: flux-system
-    values:
-        enablePSP: false
-        networkPolicies:
-          enabled: true
-          type: "k3s"
-        ingress:
-            enabled: true
-            host: longhorn.sgenov.dev
-            ingressClassName: nginx
-            tls: true
-            tlsSecret: ingress
-            annotations:
-                gethomepage.dev/enabled: "true"
-                gethomepage.dev/description: Block Storage For Kubernetes
-                gethomepage.dev/group: Storage
-                gethomepage.dev/icon: longhorn
-                gethomepage.dev/name: Longhorn
-                # type of authentication
-                nginx.ingress.kubernetes.io/auth-type: basic
-                # name of the secret that contains the user/password definitions
-                nginx.ingress.kubernetes.io/auth-secret: basic-auth
-                # message to display with an appropriate context why the authentication is required
-                nginx.ingress.kubernetes.io/auth-realm: 'Authentication Required - sgenov'
-        longhornManager:
-            tolerations: 
-              - key: "CriticalAddonsOnly"
-                operator: "Equal"
-                effect: "NoSchedule"
-                value:
-        longhornDriver:
-            tolerations: 
-              - key: "CriticalAddonsOnly"
-                operator: "Equal"
-                effect: "NoSchedule"
-                value:
-        defaultSettings:
-            taintToleration: "CriticalAddonsOnly:NoSchedule"
+  interval: 1h
+  install:
+    createNamespace: true
+  chart:
+    spec:
+      chart: longhorn
+      version: 1.10.1
+      interval: 1h
+      sourceRef:
+        kind: HelmRepository
+        name: longhorn-system
+        namespace: flux-system
+  values:
+    enablePSP: false
+    networkPolicies:
+      enabled: true
+      type: "k3s"
+    ingress:
+      enabled: false
+      host: longhorn.sgenov.dev
+      ingressClassName: nginx
+      tls: true
+      tlsSecret: ingress
+      annotations:
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: Block Storage For Kubernetes
+        gethomepage.dev/group: Storage
+        gethomepage.dev/icon: longhorn
+        gethomepage.dev/name: Longhorn
+        # type of authentication
+        nginx.ingress.kubernetes.io/auth-type: basic
+        # name of the secret that contains the user/password definitions
+        nginx.ingress.kubernetes.io/auth-secret: basic-auth
+        # message to display with an appropriate context why the authentication is required
+        nginx.ingress.kubernetes.io/auth-realm: "Authentication Required - sgenov"
+    longhornManager:
+      tolerations:
+        - key: "CriticalAddonsOnly"
+          operator: "Equal"
+          effect: "NoSchedule"
+          value:
+    longhornDriver:
+      tolerations:
+        - key: "CriticalAddonsOnly"
+          operator: "Equal"
+          effect: "NoSchedule"
+          value:
+    defaultSettings:
+      taintToleration: "CriticalAddonsOnly:NoSchedule"
