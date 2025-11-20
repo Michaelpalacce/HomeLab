@@ -6,14 +6,11 @@
 
 ## Security
 
-- [ ] Network policies 
-
 ## Infrastructure
 
 - [ ] Strip down the K3S Nodes of unused services and packages
 
 ## Service Specifics
-
 
 ## Upgrades
 
