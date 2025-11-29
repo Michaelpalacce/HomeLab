@@ -1,18 +1,25 @@
----
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-    name: stirlingpdf
-    namespace: stirlingpdf
+  name: stirlingpdf
+  namespace: stirling-pdf
 spec:
-    interval: 1h
-    install:
-        createNamespace: true
-    chart:
-        spec:
-            chart: ./Helm/apps/stirlingpdf
-            reconcileStrategy: Revision
-            sourceRef:
-                kind: GitRepository
-                name: flux-system
-                namespace: flux-system
+  interval: 1h
+  install:
+    createNamespace: true
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  upgrade:
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  chart:
+    spec:
+      chart: stirling-pdf-chart
+      version: 2.2.0
+      interval: 1h
+      sourceRef:
+        kind: HelmRepository
+        name: stirling-pdf
+        namespace: flux-system
