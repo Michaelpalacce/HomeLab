@@ -198,9 +198,9 @@ spec:
     affinity: {}
 
     persistence:
-      enabled: false
-      accessMode: ReadWriteOnce
-      size: 8Gi
+      enabled: true
+      accessMode: ReadWriteMany
+      size: 5Gi
       labels: {}
         # name: value
       path: /tmp
@@ -218,11 +218,11 @@ spec:
       # storageClass: "-"
       # volumeName:
       pv:
-        enabled: false
+        enabled: true
         pvname:
         capacity:
-          storage: 8Gi
-        accessMode: ReadWriteOnce
+          storage: 5Gi
+        accessMode: ReadWriteMany
         nfs:
           server:
           path:
@@ -241,36 +241,3 @@ spec:
         ##
         # pullSecrets:
         #   - myRegistryKeySecretName
-
-    # -- Ingress for load balancer
-    ingress:
-      enabled: false
-      pathType: "ImplementationSpecific"
-      # -- Stirling-pdf Ingress labels
-      labels: {}
-        # dns: "route53"
-
-      # -- Stirling-pdf Ingress annotations
-      annotations: {}
-        # kubernetes.io/ingress.class: nginx
-        # kubernetes.io/tls-acme: "true"
-
-      # -- Stirling-pdf Ingress hostnames
-      # -- Must be provided if Ingress is enabled
-      hosts: []
-        # - name: stirling-pdf.domain1.com
-        #   path: /
-        #   tls: false
-        # - name: stirling-pdf.domain2.com
-        #   path: /
-        #
-        #   ## Set this to true in order to enable TLS on the ingress record
-        #   tls: true
-        #
-        #   ## If TLS is set to true, you must declare what secret will store the key/certificate for TLS
-        #   ## Secrets must be added manually to the namespace
-        #   tlsSecret: stirling-pdf.domain2-tls
-
-      # -- For Kubernetes >= 1.18 you should specify the ingress-controller via the field ingressClassName
-      # -- See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#specifying-the-class-of-an-ingress
-      ingressClassName:
