@@ -22,5 +22,5 @@ spec:
             type: PathPrefix
             value: /
       backendRefs:
-        - name: stirlingpdf
+        - name: stirlingpdf-stirling-pdf-chart
           port: 8080
