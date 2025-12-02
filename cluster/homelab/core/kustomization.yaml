@@ -9,7 +9,7 @@ resources:
   - velero
   - cert-manager
   - kyverno
-  - kured
+  # - kured
   - trivy
   - descheduler
   - metallb
