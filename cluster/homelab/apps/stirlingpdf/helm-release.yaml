@@ -33,7 +33,7 @@ spec:
       registry: docker.stirlingpdf.com
       repository: stirlingtools/stirling-pdf
       # -- Overrides the image tag whose default is the chart appVersion.
-      tag: "2.0.3"
+      tag: "2.1.0"
       pullPolicy: IfNotPresent
     secret:
       labels: {}
