@@ -1,0 +1,28 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: external-adygenova
+  namespace: istio-gateway
+spec:
+  addresses:
+    - type: IPAddress
+      value: 192.168.1.18
+  gatewayClassName: istio
+  listeners:
+    - name: http
+      port: 80
+      protocol: HTTP
+      allowedRoutes:
+        namespaces:
+          from: All
+    - name: https
+      hostname: "adygenova.com"
+      port: 443
+      protocol: HTTPS
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: adygenova-cert
+      allowedRoutes:
+        namespaces:
+          from: All

@@ -4,4 +4,5 @@ kind: Kustomization
 resources:
   - internal-gateway.yaml
   - external-gateway.yaml
+  - external-gateway-adygenova.yaml
   - namespace.yaml
