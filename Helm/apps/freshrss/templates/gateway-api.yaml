@@ -2,6 +2,26 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
+    name: freshrss-external
+    namespace: {{ $.Release.Namespace }}
+spec:
+  parentRefs:
+  - name: external
+    namespace: istio-gateway
+  hostnames:
+    - "freshrss.sgenov.dev"
+  rules:
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /
+    backendRefs:
+    - name: freshrss
+      port: {{ .Values.freshrss.port }}
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
     name: freshrss-internal
     namespace: {{ $.Release.Namespace }}
 spec:
