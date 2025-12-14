@@ -2,7 +2,7 @@
 foldingathome:
   image: lscr.io/linuxserver/foldingathome:8.4.9
   port: 7396
-  replicas: 3
+  replicas: 4 # One for each server
   resources:
     requests:
       cpu: 200m
