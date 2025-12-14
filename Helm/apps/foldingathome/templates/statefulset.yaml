@@ -92,7 +92,6 @@ metadata:
   name: foldingathome
   namespace: {{ $.Release.Namespace }}
 spec:
-  clusterIP: None
   selector:
     app.kubernetes.io/instance: foldingathome
     app.kubernetes.io/name: foldingathome
