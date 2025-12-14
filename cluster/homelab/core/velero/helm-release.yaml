@@ -25,6 +25,7 @@ spec:
         name: velero
         namespace: flux-system
   values:
+    snapshotsEnabled: false
     image:
       repository: velero/velero
       tag: v1.17.1
