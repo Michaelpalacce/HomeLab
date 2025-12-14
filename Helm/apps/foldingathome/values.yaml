@@ -1,0 +1,11 @@
+---
+foldingathome:
+  image: lscr.io/linuxserver/foldingathome:8.4.9
+  port: 7396
+  resources:
+    requests:
+      cpu: 200m
+      memory: 200Mi
+
+storage:
+  configSize: 1Gi

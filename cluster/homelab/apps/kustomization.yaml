@@ -8,6 +8,7 @@ resources:
   - diagrams
   - firefly
   - freshrss
+  - foldingathome
   - go-ddns-controller
   - gotenberg
   - homepage
