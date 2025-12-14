@@ -8,7 +8,7 @@ foldingathome:
       cpu: 200m
       memory: 200Mi
     limits:
-      cpu: 1
+      cpu: 4
       memory: 1Gi
 
 storage:
