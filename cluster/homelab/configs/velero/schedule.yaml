@@ -12,7 +12,6 @@ spec:
       - openbooks
       - cyberchef
       - diagrams
-      - stirlingpdf
       - storage
       - foldingathome
     snapshotVolumes: true
