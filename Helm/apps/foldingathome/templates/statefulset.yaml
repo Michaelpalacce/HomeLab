@@ -12,7 +12,7 @@ metadata:
     app.kubernetes.io/name: foldingathome
 spec:
   serviceName: foldingathome
-  replicas: 1
+  replicas: {{ .replicas }}
   selector:
     matchLabels:
       app.kubernetes.io/instance: foldingathome
