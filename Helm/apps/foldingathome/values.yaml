@@ -2,10 +2,14 @@
 foldingathome:
   image: lscr.io/linuxserver/foldingathome:8.4.9
   port: 7396
+  replicas: 3
   resources:
     requests:
       cpu: 200m
       memory: 200Mi
+    limits:
+      cpu: 1
+      memory: 1Gi
 
 storage:
   configSize: 1Gi

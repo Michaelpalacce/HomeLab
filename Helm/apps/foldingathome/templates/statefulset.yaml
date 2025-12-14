@@ -1,0 +1,105 @@
+
+---
+{{- with .Values.foldingathome }}
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: foldingathome
+  namespace: {{ $.Release.Namespace }}
+  labels:
+    app.kubernetes.io/instance: foldingathome
+    app.kubernetes.io/name: foldingathome
+spec:
+  serviceName: foldingathome
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: foldingathome
+      app.kubernetes.io/name: foldingathome
+  template:
+    metadata:
+      annotations:
+        backup.velero.io/backup-volumes: app-config
+      labels:
+        app.kubernetes.io/instance: foldingathome
+        app.kubernetes.io/name: foldingathome
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchLabels:
+                  app.kubernetes.io/instance: foldingathome
+                  app.kubernetes.io/name: foldingathome
+              topologyKey: kubernetes.io/hostname
+      restartPolicy: Always
+      containers:
+        - name: foldingathome
+          image: {{ .image }}
+          imagePullPolicy: IfNotPresent
+{{- if .resources }}
+          resources:
+{{ toYaml .resources | indent 12 }}
+{{- end }}
+          ports:
+            - name: web
+              containerPort: {{ .port }}
+          volumeMounts:
+            - name: app-config
+              mountPath: /config
+          env:
+            - name: PUID
+              value: "1000"
+            - name: PGID
+              value: "1000"
+            - name: TZ
+              value: "Europe/Sofia"
+            - name: MACHINE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+          envFrom:
+            - secretRef:
+                name: app
+          livenessProbe:
+            failureThreshold: 5
+            initialDelaySeconds: 60
+            timeoutSeconds: 5
+            tcpSocket:
+              port: {{ .port }}
+          startupProbe:
+            failureThreshold: 5
+            initialDelaySeconds: 10
+            tcpSocket:
+              port: {{ .port }}
+
+  volumeClaimTemplates:
+    - metadata:
+        name: app-config
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: {{ $.Values.storage.configSize | default "1Gi" }}
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: foldingathome
+  namespace: {{ $.Release.Namespace }}
+spec:
+  clusterIP: None
+  selector:
+    app.kubernetes.io/instance: foldingathome
+    app.kubernetes.io/name: foldingathome
+  ports:
+    - name: foldingathome
+      protocol: TCP
+      port: {{ .port }}
+
+{{- end }}
+
