@@ -36,7 +36,7 @@ spec:
           - mountPath: /target
             name: plugins
     metrics:
-      enabled: true
+      enabled: false
       scrapeInterval: 120s
       scrapeTimeout: 30s
     deployNodeAgent: true
