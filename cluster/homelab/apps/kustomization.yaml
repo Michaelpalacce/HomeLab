@@ -21,7 +21,7 @@ resources:
   - openbooks
   - observeability
   - reactiveresume
-  - stirlingpdf
+  # - stirlingpdf #TODO: FIX
   - tika
   - uptimekuma
   - vikunja
