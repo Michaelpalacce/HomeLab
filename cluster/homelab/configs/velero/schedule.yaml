@@ -4,7 +4,7 @@ metadata:
   name: general
   namespace: velero
 spec:
-  schedule: "00 01 * * *"
+  schedule: "00 01 * * 7"
   template:
     hooks: {}
     includedNamespaces: # Either not important, not containing any information or they are easily recoverable
@@ -24,7 +24,7 @@ metadata:
   name: sensitive
   namespace: velero
 spec:
-  schedule: "00 01 * * *"
+  schedule: "00 01 * * 2,6"
   template:
     hooks: {}
     includedNamespaces: # Related to my homelab or automation
