@@ -9,7 +9,6 @@ services:
       resources:
         reservations:
           cpus: "0.00"
-          memory: 32G
           devices:
             - driver: nvidia
               count: 1
