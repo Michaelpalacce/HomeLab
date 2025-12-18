@@ -27,7 +27,7 @@ spec:
     values:
         image:
             repository: ghcr.io/kube-vip/kube-vip
-            tag: "v1.0.2"
+            tag: "v1.0.3"
         env:
             lb_enable: "true"
             lb_port: "6443"
