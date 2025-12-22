@@ -1,6 +1,6 @@
 ---
 foldingathome:
-  image: lscr.io/linuxserver/foldingathome:8.4.9
+  image: lscr.io/linuxserver/foldingathome:8.5.5
   port: 7396
   replicas: 0 # One for each server
   resources:
