@@ -15,7 +15,7 @@ spec:
   chart:
     spec:
       chart: base
-      version: 1.28.1
+      version: 1.28.2
       interval: 1h
       sourceRef:
         kind: HelmRepository
