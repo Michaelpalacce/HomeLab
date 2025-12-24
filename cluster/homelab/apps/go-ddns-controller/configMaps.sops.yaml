@@ -1,45 +1,45 @@
 kind: ConfigMap
 apiVersion: v1
 metadata:
-    name: cloudflare-config
-    namespace: go-ddns-controller-system
+  name: cloudflare-config
+  namespace: go-ddns-controller-system
 data:
-    config: ENC[AES256_GCM,data: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,iv:h0lltkz2ON/2cOXtqqQSkaz4aya4cqkQH40ZFnuQTF0=,tag:MO8E1HEO/4KFXM7AQXV4kg==,type:str]
+  config: ENC[AES256_GCM,data:ByjuPiSK+tPXtb+UqYPt/BNh0JX6MkOzEFpxKH3ujW0gqLECWvwSqUflV5ovB3g26E5GoWSi5ni3ZGwfZ1nLffj6ITZ3qPm8oEpT/BygRct6PS0l7CBP5NeHQLYhrZYydOZ5t0lTwBp1XiQO194O2HY2KmMiNDReG4cS1zIhDBWXK3dgce5Uw/LEHC9+Kuh0u99cRuHr64xWrE6aCFKOr9Za2BMk7Gd0oMTUVQ3HLltWYMo9nT7ioNoVcLSdblwPVmC+hui+fWKUKm8Ty0xPNOVCStdYo7MdeiCC3s8yr1wuju4cnp37NixRCsN9f62atJ9cLbw69cYNNln+vFP5mkgUTwndxAXt6iERBhe+xpAZRCIhrCH3rAkGehNCZOwNvoDIYnAOjNBtY4i8CeP5FIIrWKoJmWTvC1dy/CJ6hPkFBTs7H0D38+jatFaij0HgI/+nfeJWa+3RvtlfwMTnSYTrbqqdiD6LEhLeHednJfZAgZdrnc5RYhEHgNbEqZdEQfxl0UfKeu8YC7xgXThWUVDbxuaVdEk533LW2RGobymcAIsNjk1gDFA9w8opAbg8z/ax/HdEQJd5COLGbeCXRkS+8cgY7SxXsAgpuUbS5XSZhWtcsr8HubwV4FkyTg8nTe1WPxIpl6llCTzDjPOCN5iCFbDDtdi9JMn5ysDMkRAx71Axj6+cSjRFT5mVCczyb2IZbec/0IKN17sYcRf3ZaXGS3J18QUkgIolhBK/myazTCNjuAEYo13UP9UmF9fLV0HfKadOHRe9iymGcTYfrpP4BiQRa9c/5TbyyqnbUfUUVwj7TCcBHDzqs8qQwuLhE7iuxGQtHYFbTJrt6G3uvoL+bXRHfxcArwoJT5aW6I7DgvmFsNSemtPrVTDTNXMcuJ7ULPJhrGXEVNgDyDNml3r0jZAZNiE6SwvMoofw+Vt3HvboRcPfqUBu5K0z7tKTUQM38Y3AD7sb0xlIws/xXEmmD31lBC7hzySROmHciZHMfX6nHT54Ne66/jp48cpf8gsW1eaeg6cG9FMwE2HqqPtkAWp+c9JHKa3dPYgvzU+FIE3v7BUPM6F3FoL/bq8sCONF4QH8TF9LyIeScUVEZToKy6tmEGbT6oHokRXQSf9mc3ZUEzVsaWzkTkn2XlzDfmuYdgecvFLqy7cQj0TKi8Tn1+PduuUolpB1wPMyuKniYc6/YEb1BR//F51EburURGITW4gTVclEvfDXjucUySzAe+tahQJVoBfq5M/wOVZgxOgT60mil06cVj78jIPNkeYbH57n5sPZHdGIwZZBAdhL5c0CHre9kOUpxNtYlNlFNsjyI16rQ/kS1YykgIY6AmBHwqqb39FKeDl/EisCNrLMDbVBfu0O7HmJAM78xxRscXGjZwVsr0JmGeNjS8Ndb3VcaSJTOkPE38f0C0Y5Z2rSkMDfYMHt7HDzQ4BD8cvFN3hZVIy+EoGLHOxleh4gtQvuS8TpbfDrNg94UwwY0KWgSZJ/ZTc0QdqAIq1+D3mSuWXd+Tq3IYX9aLdry7LtXDrA1LOuAZI44uFsP4Vv1ogMbXWqzCsnhaKoL+zbGUbTmsS7TEwK7aElKzzfvW/9miFNwQqtYqCvzuzHkhLtHN8mdznbQ6acpcg3pEyDlToMH1cAQ0Ma3wwk45R64Y6AJASs,iv:c+YDZfQnJqdEmVJo8ocfmz9qSAUGJIiCgR6rrPhkDlM=,tag:0/e2HSxSwQxMdi+2Dyx9rw==,type:str]
 sops:
-    age:
-        - recipient: age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
-          enc: |
-            -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBBK0UwRnJ2S3lqeHgwOTBV
-            dU5vaDJ1WURoUE5BQzZjV09wZVVFMU1UNGgwClJ5RUVLNklXbGw3dU1IZmNRYUVK
-            THdjVDcwZ2dLa1pxTWpMTlRvNFl6Mm8KLS0tIDN6QnpRelBURE9TK3kyZFk3T1pr
-            UTN4SjZTVGQrQkl3MEh2STNLZHRJc00K60vbB3+jM87omvDfbRKYy7x8EPg0qitV
-            lAiUBIioUm8ijfnVuoDdY0wPmPDRLsuAriiLNGUtRIcxiVOfGAzpuQ==
-            -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-04-27T13:14:16Z"
-    mac: ENC[AES256_GCM,data:y1XmoHclmLqfufafuGBmpLYpVM+SkJaQZfRMSckf0qGIdIuONfHTTU6eK3DLJdljTp7r6wAeqJ18FqAGyBUC04ohkhpeyf/zffTN6z+NbEh2L8qICcNLwjuDCsE2AIFHFOynttFWgVEWJeyZUFCtYtO0ECOZSS9jxESXdc0f+WQ=,iv:m4hafaN2ldkPyct/MwhssEv+XncJJ3vy/7UHZkizsjA=,tag:NoxDchgqwJfpwPzYKSjVkA==,type:str]
-    encrypted_regex: ^(data|stringData|annotations|)$
-    version: 3.10.2
+  age:
+    - recipient: age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSAwbVAxOU9EekpINmVDbmg4
+        aGM4aGlpbkVzNVp3akFwdGtCVllvbzNVOFNzCmVmUG85OTBiMFY3b05kNzFrd0kv
+        UWJNLzlpWmQ5enNBa1dHVXo3dTdQZk0KLS0tIHVoWTF1cm1oUXRhRWZiQmtqYnc1
+        WU50WnI0K0oyeDJTek9JY2ozZVR6aHcKhO6jXhMH04+g97aVYqGhpNW/0aMnfP84
+        F9ibzn8HSYA4pzaMth16BhE6SSXZzGq8wYiyOYRasawS6EfaaT+LuA==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2025-12-24T17:08:07Z"
+  mac: ENC[AES256_GCM,data:A4V58CbIin6h7K87gu8d5XFrhgE1+VNkGsbZw73Ok080Vd4jp1qInuBL47SIwO+KK9bne50GeAi5ECtnn+qmBRV24s4oEn1qblj5WAjarpim/Uj4171yj0i7GoHkhy43cSXF4tKl5DS6kCQHK0UlFJCgCkCnLcK7NqgdEVV+gaU=,iv:0RFXBrK6hnAcUONyTypZ/gSzhu2f1LsMVXV6xTdkd38=,tag:oKfvTpmjdznBV8V5xiMdYg==,type:str]
+  encrypted_regex: ^(data|stringData|annotations|)$
+  version: 3.11.0
 ---
 kind: ConfigMap
 apiVersion: v1
 metadata:
-    name: webhook-config
-    namespace: go-ddns-controller-system
+  name: webhook-config
+  namespace: go-ddns-controller-system
 data:
-    config: ""
+  config: ""
 sops:
-    age:
-        - recipient: age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
-          enc: |
-            -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBBK0UwRnJ2S3lqeHgwOTBV
-            dU5vaDJ1WURoUE5BQzZjV09wZVVFMU1UNGgwClJ5RUVLNklXbGw3dU1IZmNRYUVK
-            THdjVDcwZ2dLa1pxTWpMTlRvNFl6Mm8KLS0tIDN6QnpRelBURE9TK3kyZFk3T1pr
-            UTN4SjZTVGQrQkl3MEh2STNLZHRJc00K60vbB3+jM87omvDfbRKYy7x8EPg0qitV
-            lAiUBIioUm8ijfnVuoDdY0wPmPDRLsuAriiLNGUtRIcxiVOfGAzpuQ==
-            -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-04-27T13:14:16Z"
-    mac: ENC[AES256_GCM,data:y1XmoHclmLqfufafuGBmpLYpVM+SkJaQZfRMSckf0qGIdIuONfHTTU6eK3DLJdljTp7r6wAeqJ18FqAGyBUC04ohkhpeyf/zffTN6z+NbEh2L8qICcNLwjuDCsE2AIFHFOynttFWgVEWJeyZUFCtYtO0ECOZSS9jxESXdc0f+WQ=,iv:m4hafaN2ldkPyct/MwhssEv+XncJJ3vy/7UHZkizsjA=,tag:NoxDchgqwJfpwPzYKSjVkA==,type:str]
-    encrypted_regex: ^(data|stringData|annotations|)$
-    version: 3.10.2
+  age:
+    - recipient: age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSAwbVAxOU9EekpINmVDbmg4
+        aGM4aGlpbkVzNVp3akFwdGtCVllvbzNVOFNzCmVmUG85OTBiMFY3b05kNzFrd0kv
+        UWJNLzlpWmQ5enNBa1dHVXo3dTdQZk0KLS0tIHVoWTF1cm1oUXRhRWZiQmtqYnc1
+        WU50WnI0K0oyeDJTek9JY2ozZVR6aHcKhO6jXhMH04+g97aVYqGhpNW/0aMnfP84
+        F9ibzn8HSYA4pzaMth16BhE6SSXZzGq8wYiyOYRasawS6EfaaT+LuA==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2025-12-24T17:08:07Z"
+  mac: ENC[AES256_GCM,data:A4V58CbIin6h7K87gu8d5XFrhgE1+VNkGsbZw73Ok080Vd4jp1qInuBL47SIwO+KK9bne50GeAi5ECtnn+qmBRV24s4oEn1qblj5WAjarpim/Uj4171yj0i7GoHkhy43cSXF4tKl5DS6kCQHK0UlFJCgCkCnLcK7NqgdEVV+gaU=,iv:0RFXBrK6hnAcUONyTypZ/gSzhu2f1LsMVXV6xTdkd38=,tag:oKfvTpmjdznBV8V5xiMdYg==,type:str]
+  encrypted_regex: ^(data|stringData|annotations|)$
+  version: 3.11.0
