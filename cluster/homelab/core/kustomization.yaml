@@ -10,7 +10,7 @@ resources:
   - cert-manager
   - kyverno
   # - kured
-  - trivy
+  # - trivy
   - descheduler
   - metallb
   - istio
