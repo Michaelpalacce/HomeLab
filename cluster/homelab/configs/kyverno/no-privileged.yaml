@@ -18,15 +18,16 @@ spec:
     - name: privileged-containers
       match:
         any:
-        - resources:
-            kinds:
-              - Pod
+          - resources:
+              kinds:
+                - Pod
       exclude:
         any:
-        - resources:
-            namespaces:
-              - kured
-              - longhorn-system
+          - resources:
+              namespaces:
+                - kured
+                - longhorn-system
+                - system-upgrade
       validate:
         failureAction: Enforce
         message: >-
