@@ -20,23 +20,24 @@ spec:
     - name: require-drop-all
       exclude:
         any:
-        - resources:
-            namespaces:
-              - longhorn-system
-              - kube-system
-              - metallb-system # @TODO: This may be fixable...
-              - kured
-              - velero
+          - resources:
+              namespaces:
+                - longhorn-system
+                - kube-system
+                - metallb-system # @TODO: This may be fixable...
+                - kured
+                - velero
+                - system-upgrade
       match:
         any:
-        - resources:
-            kinds:
-              - Pod
+          - resources:
+              kinds:
+                - Pod
       preconditions:
         all:
-        - key: "{{ request.operation || 'BACKGROUND' }}"
-          operator: NotEquals
-          value: DELETE
+          - key: "{{ request.operation || 'BACKGROUND' }}"
+            operator: NotEquals
+            value: DELETE
       validate:
         failureAction: Audit
         message: >-
@@ -46,6 +47,6 @@ spec:
             deny:
               conditions:
                 all:
-                - key: ALL
-                  operator: AnyNotIn
-                  value: "{{ element.securityContext.capabilities.drop[].to_upper(@) || `[]` }}"
+                  - key: ALL
+                    operator: AnyNotIn
+                    value: "{{ element.securityContext.capabilities.drop[].to_upper(@) || `[]` }}"
