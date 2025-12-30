@@ -43,13 +43,16 @@ spec:
               value: "Europe/Sofia"
             - name: CWA_DB_PATH
               value: "/config/app.db"
-          capabilities:
-            drop:
-              - "ALL"
-            add:
-              - CHOWN
-              - SETUID
-              - SETGID
+            - name: INGEST_DIR
+              value: "/books"
+          securityContext:
+            capabilities:
+              drop:
+                - "ALL"
+              add:
+                - CHOWN
+                - SETUID
+                - SETGID
           livenessProbe:
             failureThreshold: 5
             initialDelaySeconds: 30
