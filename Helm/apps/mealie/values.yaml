@@ -1,7 +1,7 @@
 ---
 mealie:
   replicas: 1
-  image: ghcr.io/mealie-recipes/mealie:v3.8.0
+  image: ghcr.io/mealie-recipes/mealie:v3.9.1
   port: 9000
   baseUrl: https://mealie.sgenov.dev
   resources:
