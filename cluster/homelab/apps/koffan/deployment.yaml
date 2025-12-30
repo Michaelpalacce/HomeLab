@@ -1,0 +1,90 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: koffan
+  labels:
+    app.kubernetes.io/instance: koffan
+    app.kubernetes.io/name: koffan
+spec:
+  replicas: 1 # Uses SqLite, so only one
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: koffan
+      app.kubernetes.io/name: koffan
+  template:
+    metadata:
+      annotations:
+        backup.velero.io/backup-volumes: data
+      labels:
+        app.kubernetes.io/instance: koffan
+        app.kubernetes.io/name: koffan
+    spec:
+      restartPolicy: Always
+      containers:
+        - name: koffan
+          image: ghcr.io/pansalut/koffan:v1.2.1
+          imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              cpu: 128m
+              memory: 128Mi
+            limits:
+              cpu: 512m
+              memory: 512Mi
+          ports:
+            - name: web
+              containerPort: 80
+          volumeMounts:
+            - name: data
+              mountPath: /data
+          env:
+            - name: PUID
+              value: "1000"
+            - name: PGID
+              value: "1000"
+            - name: TZ
+              value: "Europe/Sofia"
+            - name: APP_ENV
+              value: "production"
+            - name: PORT
+              value: "80"
+            - name: DB_PATH
+              value: "/data/shopping.db"
+          envFrom:
+            - secretRef:
+                name: app
+          startupProbe:
+            exec:
+              command:
+                - wget
+                - --no-verbose
+                - --tries=1
+                - --spider
+                - http://127.0.0.1:80/login
+            initialDelaySeconds: 5
+            failureThreshold: 30
+            periodSeconds: 10
+          livenessProbe:
+            exec:
+              command:
+                - wget
+                - --no-verbose
+                - --tries=1
+                - --spider
+                - http://127.0.0.1:80/login
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          readinessProbe:
+            exec:
+              command:
+                - wget
+                - --no-verbose
+                - --tries=1
+                - --spider
+                - http://127.0.0.1:80/login
+            initialDelaySeconds: 5
+            periodSeconds: 10
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: koffan-data

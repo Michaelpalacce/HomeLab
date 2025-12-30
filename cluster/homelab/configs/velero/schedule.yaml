@@ -13,6 +13,7 @@ spec:
       - cyberchef
       - diagrams
       - storage
+      - koffan
       - foldingathome
     snapshotVolumes: true
     ttl: 730h0m0s # 1 Month
