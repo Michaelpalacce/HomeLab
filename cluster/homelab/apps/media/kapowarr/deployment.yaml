@@ -42,7 +42,7 @@ spec:
             - name: TZ
               value: "Europe/Sofia"
             - name: CWA_DB_PATH
-              value: "/auth/app.db"
+              value: "/config/app.db"
           envFrom:
             - secretRef:
                 name: app
