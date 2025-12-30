@@ -1,0 +1,85 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kapowarr
+  labels:
+    app.kubernetes.io/instance: kapowarr
+    app.kubernetes.io/name: kapowarr
+spec:
+  replicas: 1 # Uses SqLite, so only one
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: kapowarr
+      app.kubernetes.io/name: kapowarr
+  template:
+    metadata:
+      annotations:
+        backup.velero.io/backup-volumes: data
+      labels:
+        app.kubernetes.io/instance: kapowarr
+        app.kubernetes.io/name: kapowarr
+    spec:
+      restartPolicy: Always
+      containers:
+        - name: kapowarr
+          image: ghcr.io/calibrain/calibre-web-automated-book-downloader:0.4
+          imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              cpu: 128m
+              memory: 128Mi
+            limits:
+              cpu: 1
+              memory: 1Gi
+          ports:
+            - name: web
+              containerPort: 8084
+          env:
+            - name: PUID
+              value: "1000"
+            - name: PGID
+              value: "1000"
+            - name: TZ
+              value: "Europe/Sofia"
+            - name: CWA_DB_PATH
+              value: "/auth/app.db"
+          envFrom:
+            - secretRef:
+                name: app
+          capabilities:
+            drop:
+              - "ALL"
+            add:
+              - CHOWN
+              - SETUID
+              - SETGID
+          livenessProbe:
+            failureThreshold: 5
+            initialDelaySeconds: 30
+            timeoutSeconds: 2
+            tcpSocket:
+              port: 8084
+          startupProbe:
+            failureThreshold: 10
+            timeoutSeconds: 2
+            tcpSocket:
+              port: 8084
+          volumeMounts:
+            - name: books-data-nfs
+              mountPath: /books # This is where the books will be downloaded and ingested by your book management application
+            - name: config
+              mountPath: /config
+            - name: downloads-data
+              mountPath: /downloads
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: kapowarr-config
+        - name: downloads-data
+          nfs:
+            path: "/volume1/k3s/media/downloads"
+            server: "192.168.1.39"
+        - name: books-data-nfs
+          nfs:
+            path: "/volume1/k3s/media/books"
+            server: "192.168.1.39"

@@ -1,0 +1,9 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: kapowarr
+resources:
+  - deployment.yaml
+  - service.yaml
+  - gateway-api.yaml
+  - storage.yaml

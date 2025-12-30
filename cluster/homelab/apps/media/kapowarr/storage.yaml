@@ -1,0 +1,12 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: kapowarr-config
+spec:
+  accessModes:
+    - ReadWriteOnce # It's Sqlite, so not a good idea to be many!
+  storageClassName: longhorn
+  resources:
+    requests:
+      storage: 1Gi

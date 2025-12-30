@@ -6,3 +6,4 @@ resources:
   - namespace.yaml
   - gateway-api.sops.yaml
   - plex-external.yaml
+  - ./kapowarr/
