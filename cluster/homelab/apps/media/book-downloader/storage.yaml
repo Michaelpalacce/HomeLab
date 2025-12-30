@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: kapowarr-config
+  name: bookdownloader-config
 spec:
   accessModes:
     - ReadWriteOnce # It's Sqlite, so not a good idea to be many!

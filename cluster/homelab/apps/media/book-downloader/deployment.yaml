@@ -1,27 +1,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: kapowarr
+  name: bookdownloader
   labels:
-    app.kubernetes.io/instance: kapowarr
-    app.kubernetes.io/name: kapowarr
+    app.kubernetes.io/instance: bookdownloader
+    app.kubernetes.io/name: bookdownloader
 spec:
   replicas: 1 # Uses SqLite, so only one
   selector:
     matchLabels:
-      app.kubernetes.io/instance: kapowarr
-      app.kubernetes.io/name: kapowarr
+      app.kubernetes.io/instance: bookdownloader
+      app.kubernetes.io/name: bookdownloader
   template:
     metadata:
       annotations:
         backup.velero.io/backup-volumes: data
       labels:
-        app.kubernetes.io/instance: kapowarr
-        app.kubernetes.io/name: kapowarr
+        app.kubernetes.io/instance: bookdownloader
+        app.kubernetes.io/name: bookdownloader
     spec:
       restartPolicy: Always
       containers:
-        - name: kapowarr
+        - name: bookdownloader
           image: ghcr.io/calibrain/calibre-web-automated-book-downloader:0.4
           imagePullPolicy: IfNotPresent
           resources:
@@ -74,7 +74,7 @@ spec:
       volumes:
         - name: config
           persistentVolumeClaim:
-            claimName: kapowarr-config
+            claimName: bookdownloader-config
         - name: downloads-data
           nfs:
             path: "/volume1/k3s/media/downloads"
