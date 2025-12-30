@@ -44,7 +44,7 @@ spec:
             - name: CWA_DB_PATH
               value: "/config/app.db"
             - name: INGEST_DIR
-              value: "/books"
+              value: "/books/Other"
           securityContext:
             capabilities:
               drop:
