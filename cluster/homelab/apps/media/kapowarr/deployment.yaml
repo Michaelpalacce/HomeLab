@@ -43,9 +43,6 @@ spec:
               value: "Europe/Sofia"
             - name: CWA_DB_PATH
               value: "/config/app.db"
-          envFrom:
-            - secretRef:
-                name: app
           capabilities:
             drop:
               - "ALL"
