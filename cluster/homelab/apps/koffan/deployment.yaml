@@ -37,6 +37,14 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /data
+          securityContext:
+            capabilities:
+              drop:
+                - "ALL"
+              add:
+                - CHOWN
+                - SETUID
+                - SETGID
           env:
             - name: PUID
               value: "1000"
