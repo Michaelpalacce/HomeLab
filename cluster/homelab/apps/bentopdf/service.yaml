@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: bentopdf
+spec:
+  selector:
+    app.kubernetes.io/instance: bentopdf
+    app.kubernetes.io/name: bentopdf
+  ports:
+    - name: web
+      protocol: TCP
+      port: 8080
