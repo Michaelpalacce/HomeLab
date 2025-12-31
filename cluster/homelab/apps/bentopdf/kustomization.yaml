@@ -7,5 +7,3 @@ resources:
   - deployment.yaml
   - service.yaml
   - gateway-api.yaml
-  - secret.sops.yaml
-  - storage.yaml
