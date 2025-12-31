@@ -22,4 +22,4 @@ spec:
             value: /
       backendRefs:
         - name: bentopdf
-          port: 80
+          port: 8080
