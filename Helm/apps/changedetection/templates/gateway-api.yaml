@@ -8,7 +8,7 @@ metadata:
         gethomepage.dev/enabled: "true"
         gethomepage.dev/description: Monitors changes to websites
         gethomepage.dev/group: Automation
-        gethomepage.dev/icon: changedetection-io
+        gethomepage.dev/icon: changedetection
         gethomepage.dev/name: ChangeDetection.io
         gethomepage.dev/widget.type: changedetectionio
         gethomepage.dev/widget.url: https://changedetection.sgenov.dev

@@ -7,8 +7,7 @@ metadata:
     gethomepage.dev/enabled: "true"
     gethomepage.dev/description: Books Downloader
     gethomepage.dev/group: Torrents
-    gethomepage.dev/icon: bookdownloader
-    gethomepage.dev/name: Kapowarr
+    gethomepage.dev/name: Books Downloader
 spec:
   parentRefs:
     - name: internal

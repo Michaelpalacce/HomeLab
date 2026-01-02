@@ -26,7 +26,6 @@ metadata:
     gethomepage.dev/enabled: "true"
     gethomepage.dev/description: Shopping List
     gethomepage.dev/group: Personal
-    gethomepage.dev/icon: https://koffan.sgenov.dev/favicon.ico
     gethomepage.dev/name: Koffan
 spec:
   parentRefs:
