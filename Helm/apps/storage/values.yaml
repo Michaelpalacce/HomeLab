@@ -1,6 +1,6 @@
 ---
 syncthing:
-    image: lscr.io/linuxserver/syncthing:2.0.12
+    image: lscr.io/linuxserver/syncthing:2.0.13
     replicas: 1
     port: 8384
     resources:
