@@ -20,7 +20,7 @@ spec:
       restartPolicy: Always
       containers:
         - name: garden
-          image: ghcr.io/michaelpalacce/garden:v1.1.1
+          image: ghcr.io/michaelpalacce/garden:v1.3.0
           imagePullPolicy: IfNotPresent
           resources:
             limits:
