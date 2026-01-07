@@ -25,7 +25,7 @@ spec:
           resources:
             limits:
               cpu: 512m
-              memory: 512Mi
+              memory: 1Gi
           ports:
             - name: web
               containerPort: 8080
