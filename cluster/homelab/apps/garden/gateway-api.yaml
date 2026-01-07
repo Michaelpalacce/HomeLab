@@ -1,0 +1,24 @@
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: garden-internal
+  annotations:
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/description: Personal Gaden / Second Brain / Blog
+    gethomepage.dev/group: Personal
+    gethomepage.dev/name: Garden
+spec:
+  parentRefs:
+    - name: internal
+      namespace: istio-gateway
+  hostnames:
+    - "garden.sgenov.dev"
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - name: garden
+          port: 8080

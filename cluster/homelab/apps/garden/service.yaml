@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: garden
+spec:
+  selector:
+    app.kubernetes.io/instance: garden
+    app.kubernetes.io/name: garden
+  ports:
+    - name: web
+      protocol: TCP
+      port: 8080

@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: garden
+  labels:
+    app.kubernetes.io/instance: garden
+    app.kubernetes.io/name: garden
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: garden
+      app.kubernetes.io/name: garden
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/instance: garden
+        app.kubernetes.io/name: garden
+    spec:
+      restartPolicy: Always
+      containers:
+        - name: garden
+          image: ghcr.io/michaelpalacce/garden:v0.0.5
+          imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              cpu: 512m
+              memory: 512Mi
+          ports:
+            - name: web
+              containerPort: 8080
+          securityContext:
+            capabilities:
+              drop:
+                - "ALL"
+              add:
+                - CHOWN
+                - SETUID
+                - SETGID
+          env:
+            - name: PUID
+              value: "1000"
+            - name: PGID
+              value: "1000"
+            - name: TZ
+              value: "Europe/Sofia"
+          livenessProbe:
+            failureThreshold: 10
+            initialDelaySeconds: 30
+            tcpSocket:
+              port: 8080
+            timeoutSeconds: 2
+          startupProbe:
+            failureThreshold: 20
+            timeoutSeconds: 2
+            tcpSocket:
+              port: 8080
