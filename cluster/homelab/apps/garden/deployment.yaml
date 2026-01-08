@@ -20,9 +20,9 @@ spec:
       restartPolicy: Always
       containers:
         - name: garden
-          image: ghcr.io/michaelpalacce/garden:v1.4.0
+          image: ghcr.io/michaelpalacce/quartz:v1.2.0 # Quartz image is separate for content to allow for updating `quartz` without needing to bump `garden`
           imagePullPolicy: IfNotPresent
-          resources:
+          resources: # Initial run requires a few more resources
             limits:
               cpu: 512m
               memory: 1Gi
@@ -55,3 +55,11 @@ spec:
             timeoutSeconds: 2
             tcpSocket:
               port: 8080
+          volumeMounts:
+            - name: garden
+              mountPath: /usr/src/app/content
+      volumes:
+        - name: garden
+          image:
+            reference: ghcr.io/michaelpalacce/garden:v1.5.1
+            pullPolicy: IfNotPresent
