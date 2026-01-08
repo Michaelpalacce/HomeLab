@@ -46,7 +46,7 @@ spec:
               value: "Europe/Sofia"
           livenessProbe:
             failureThreshold: 10
-            initialDelaySeconds: 30
+            initialDelaySeconds: 10
             tcpSocket:
               port: 8080
             timeoutSeconds: 2
