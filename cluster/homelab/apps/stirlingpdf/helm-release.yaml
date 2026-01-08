@@ -17,7 +17,7 @@ spec:
   chart:
     spec:
       chart: stirling-pdf-chart
-      version: 2.2.0
+      version: 3.0.0
       interval: 1h
       sourceRef:
         kind: HelmRepository
