@@ -54,10 +54,9 @@
         '/cluster/.+\\.ya?ml$/',
       ],
       matchStrings: [
-        'reference:\\s*["\']?(?<depName>[^\\s:"\']+):(?<currentValue>[^\\s\\n"\']+)["\']?',
+        'reference:\\s*(?<depName>[^\\s:]+):(?<currentValue>[^\\s\\n]+)',
       ],
       datasourceTemplate: 'docker',
-      versioningTemplate: 'regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)(?:\\.(?<build>\\d+))?$',
     },
     {
       customType: 'regex',
