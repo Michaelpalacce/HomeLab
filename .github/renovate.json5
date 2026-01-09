@@ -50,6 +50,16 @@
   },
   customManagers: [
     {
+      "customType": "regex",
+      "fileMatch": [
+        "cluster/.+\\.ya?ml$"
+      ],
+      "matchStrings": [
+        "reference:\\s*(?<depName>[^\\s:]+):(?<currentValue>[^\\s\\n]+)"
+      ],
+      "datasourceTemplate": "docker"
+    },
+    {
       customType: 'regex',
       fileMatch: [
         'cluster/.+\\.ya?ml$',
