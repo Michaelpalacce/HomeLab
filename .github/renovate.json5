@@ -19,7 +19,6 @@
   dependencyDashboard: true,
   dependencyDashboardTitle: 'Renovate Dashboard',
   suppressNotifications: [
-    'prIgnoreNotification',
   ],
   rebaseWhen: 'conflicted',
   ignoreDeps: [
@@ -58,7 +57,7 @@
         'reference:\\s*(?<depName>[^\\s:]+):(?<currentValue>[^\\s\\n]+)',
       ],
       "datasourceTemplate": "docker",
-      "versioningTemplate": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)(?:-(?<build>\\d+))?$"
+      "versioningTemplate": "loose"
     },
     {
       customType: 'regex',
