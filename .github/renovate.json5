@@ -8,13 +8,7 @@
     ':separatePatchReleases',
     'docker:enableMajor',
   ],
-  platform: 'github',
-  username: 'Renovate-Homelab[bot]',
-  repositories: [
-    'Michaelpalacce/HomeLab',
-  ],
   enabled: true,
-  onboarding: false,
   semanticCommits: 'enabled',
   dependencyDashboard: true,
   dependencyDashboardTitle: 'Renovate Dashboard',
@@ -75,16 +69,6 @@
       ],
       matchStrings: [
         'registryUrl=(?<registryUrl>.*?) chart=(?<depName>.*?)\n.*\\/(?<currentValue>.*?)\\/',
-      ],
-      datasourceTemplate: 'helm',
-    },
-    {
-      customType: 'regex',
-      managerFilePatterns: [
-        '/cluster/crds/traefik/.+\\.ya?ml$/',
-      ],
-      matchStrings: [
-        'registryUrl=(?<registryUrl>.*?) chart=(?<depName>.*?)\n *tag: v(?<currentValue>.*)\n',
       ],
       datasourceTemplate: 'helm',
     },
