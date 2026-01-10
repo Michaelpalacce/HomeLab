@@ -1,6 +1,6 @@
 ---
 website:
-  image: ghcr.io/michaelpalacce/website:v2.22.0
+  image: ghcr.io/michaelpalacce/website:v2.23.0
   port: 80
   replicas: 3
   resources:
