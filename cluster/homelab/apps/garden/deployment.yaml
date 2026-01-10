@@ -20,7 +20,7 @@ spec:
       restartPolicy: Always
       containers:
         - name: garden
-          image: ghcr.io/michaelpalacce/quartz:v1.8.0 # Quartz image is separate for content to allow for updating `quartz` without needing to bump `garden`
+          image: ghcr.io/michaelpalacce/quartz:v2.0.1768046581 # Quartz image is separate for content to allow for updating `quartz` without needing to bump `garden`
           imagePullPolicy: IfNotPresent
           resources: # Initial run requires a few more resources
             limits:
@@ -61,5 +61,5 @@ spec:
       volumes:
         - name: garden
           image:
-            reference: ghcr.io/michaelpalacce/garden:v4.0.0.1768004988
+            reference: ghcr.io/michaelpalacce/garden:v4.1.1768046634
             pullPolicy: IfNotPresent
