@@ -61,5 +61,5 @@ spec:
       volumes:
         - name: garden
           image:
-            reference: ghcr.io/michaelpalacce/garden:v4.1.1768086723
+            reference: ghcr.io/michaelpalacce/garden:v4.1.1768116301
             pullPolicy: IfNotPresent
