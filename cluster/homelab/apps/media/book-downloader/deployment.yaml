@@ -22,7 +22,7 @@ spec:
       restartPolicy: Always
       containers:
         - name: bookdownloader
-          image: ghcr.io/calibrain/calibre-web-automated-book-downloader:0.4
+          image: ghcr.io/calibrain/calibre-web-automated-book-downloader:1.0
           imagePullPolicy: IfNotPresent
           resources:
             requests:
