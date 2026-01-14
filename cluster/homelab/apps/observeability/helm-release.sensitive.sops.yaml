@@ -143,13 +143,17 @@ spec:
               matchers:
                 - alertname="Watchdog"
               continue: false
+            - receiver: "null"
+              matchers:
+                - alertname="InfoInhibitor"
+              continue: false
             # Match everything else
             - receiver: discord
         receivers:
           - name: "null"
           - name: discord
             discord_configs:
-              - webhook_url: ENC[AES256_GCM,data:U1q2IgygFez180LSkyNxDsPKZq8XrrP/LjGMaf3ICI94nL3KG+rkG7GF+oC/0ahn8IQwIm4aDmRlgKa03pRIoOta1SKw0yegTD34RK3ukDZ2WTny+nb31kBtbk954tVlVXtm2U0Jcz725sjYB5j46P7zvKo0nE/j6Q==,iv:L2R4XLr1sarmqW3PVEyf4mwtpMeMKRWRSJJl/OOUlCI=,tag:vQ8WBo1OSOKvlfc3mR6+NQ==,type:str]
+              - webhook_url: ENC[AES256_GCM,data:X3JPxmLya1DAXOcF2Wye04dWuT0d5mnwarj04DL1OE5yZFCojauRzcQIF2JNV5Z4lJBWZD5LQuTQ991OS/RBCKBa3zNjoZAP1xFifGfDxTGUxEfszmNpey6porPa7jK+1bRVS7dZX7ZUIEY4Cyg8wfE9TPFDz1jKCQ==,iv:FUy+psbXPk7/m60Ui4p1ERn/mdadI+kRTatdKLAAHEE=,tag:hkUPZmQyDJ1QuRZOrBeiog==,type:str]
                 send_resolved: true
         templates:
           - /etc/alertmanager/config/*.tmpl
@@ -190,7 +194,7 @@ spec:
                 value: /
     grafana:
       adminUser: admin
-      adminPassword: ENC[AES256_GCM,data:z7NCGFOwAq3DW1K0ucbSfmqoN60j9vlEDj2qpmnCGuBkobTIGD3tW3RyL6V93DIomuaiKg==,iv:PahIeR+GRj75DggLdFxl7wdfTzBogS286SGWc+ikiuc=,tag:X/OTRF3tltYaXxTeCEYx8w==,type:str]
+      adminPassword: ENC[AES256_GCM,data:W9cc+RM2pJtf/ce61cziwq0pNM4Aro8O240P11xu4MRXNwcAyywK9n0EyBtQGHauZM+t7g==,iv:xZEhDmF+9p5ILOgCUH9yA7uVxFucsjbAnJajTBdlxE8=,tag:dDAMCmNwX2oSzHAVliHjnA==,type:str]
       persistence:
         enabled: true
         type: sts
@@ -217,7 +221,7 @@ spec:
           gethomepage.dev/widget.version: "2"
           gethomepage.dev/widget.alerts: alertmanager
           gethomepage.dev/widget.username: admin
-          gethomepage.dev/widget.password: ENC[AES256_GCM,data:yGwzTp2V2a+a25QvvsqWtPquUrps22zAY+IUG8VnzF37cs1ByEhrVPHdMmbs4Ua7kbCHCQ==,iv:wySiycULpS7PUtJxjRT5hFRPtSf3Dlg2aX1g68L/CPE=,tag:XY0bKuD9bzaMotEoTT2D2A==,type:str]
+          gethomepage.dev/widget.password: ENC[AES256_GCM,data:/h9MONsjnnynnvz6uTHbgS2s20R09kfhbTUj6CZsCz/Daq00ZnLTRb5ZmDfqFe4Yu+xsXQ==,iv:EkzGmmbeIP9SuB+RbBsypNPEg0xQb3kSpNvdXXdavBo=,tag:tPN9Rahh1fOQiG26YOUuuw==,type:str]
           hostnames:
             - grafana.sgenov.dev
           parentRefs:
@@ -255,13 +259,13 @@ sops:
     - recipient: age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
       enc: |
         -----BEGIN AGE ENCRYPTED FILE-----
-        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBWSmFhbFZ6UWFYSHFDOUZQ
-        YXhBYVJqTlVick5IV3YxL1FVczdJVm1IYnd3CjFVbHR5bXhDK1hpTzRpRC93TElL
-        eFNMdGhaYWQ2YWtURXRyWnVaM0NZM0EKLS0tIHBaSDVCSE9kTXgxU2VrQ0E5OTJl
-        b0oyOXUyMVZZRHMyMWh4YWN4b1hubEkKF98BEkg3eoEpCvMcvZRyIdBmR1oUYfak
-        lyhID6EEc89+ABbqRRBtSWYCXKN8FVtqPmO6PTbdwZaT7jcjf/tkyA==
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBvd2dkWC9RbjRTTzVCcjR5
+        R3h0S3kvSHA1K3VjaDhjY3BoSzlnV2Y5RTFvCkJER095MVB6VEhDMVBoNUM1TkZN
+        SEFhN3k1WkRsTFUwVmhrTEhGc0g1ZlkKLS0tIEp4MFNZbkxaZGZDNTlWL0ZYMjVP
+        MnZTaUoxakkzSS9yd2hxL1NrSXVoZjQKq8DBQpSfBIe+49H9T4eFXYdUi7ZRtjMd
+        1St9o6vw0RmzNqGTtczmKZs42K2Cf3gE09b40TnFWzh/1AkhtkQuNQ==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2026-01-14T06:57:32Z"
-  mac: ENC[AES256_GCM,data:7GKd3uW7WucLyhs4IEvsFDs6s6JKTN/Ug/NeI1CF3ymOdPMSyS1pgRoJo1+wYPPXn1Hc1aT9owMPQb99gQfR61pXC7WbRDm89E0o9dvJlSHVr63bCPB2OjGEt1+ACF4pREvvqwg0Zxcl1inYFiBi0brciXkebaYupPIvqSkKwZA=,iv:yCH7H7UFuDc4009BAS3DXw7PNgWFfROb77NaUzbUYKA=,tag:FV87n3r68/+YmEIMuc9CWw==,type:str]
+  lastmodified: "2026-01-14T23:32:11Z"
+  mac: ENC[AES256_GCM,data:RSneOamRAdxSkyLVxpZPzfmKJAQwXoFtq4ka2X1hi6TUW5CwieVxzrWScYRbYQxoySD5RoJlnsugmMHSI96TXFDtqHZAA6DYek20ettwO2vuFq8Yp9QvwGJ0ht+f042yJOWilBAdK6hnCGB07xXuS9b4L5E6UcZKBKze+9XlFZM=,iv:iAFeVBOKojgRiEvX7yh/REIYQs22ixGaMdNdzTfKeKA=,tag:tl6t6t5ijhy0bcoZ8aNYZg==,type:str]
   encrypted_regex: (?i)password|webhook_url|token|key
   version: 3.11.0
