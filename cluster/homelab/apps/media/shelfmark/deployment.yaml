@@ -1,28 +1,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: bookdownloader
+  name: shelfmark
   labels:
-    app.kubernetes.io/instance: bookdownloader
-    app.kubernetes.io/name: bookdownloader
+    app.kubernetes.io/instance: shelfmark
+    app.kubernetes.io/name: shelfmark
 spec:
   replicas: 1 # Uses SqLite, so only one
   selector:
     matchLabels:
-      app.kubernetes.io/instance: bookdownloader
-      app.kubernetes.io/name: bookdownloader
+      app.kubernetes.io/instance: shelfmark
+      app.kubernetes.io/name: shelfmark
   template:
     metadata:
       annotations:
         backup.velero.io/backup-volumes: data
       labels:
-        app.kubernetes.io/instance: bookdownloader
-        app.kubernetes.io/name: bookdownloader
+        app.kubernetes.io/instance: shelfmark
+        app.kubernetes.io/name: shelfmark
     spec:
       restartPolicy: Always
       containers:
-        - name: bookdownloader
-          image: ghcr.io/calibrain/calibre-web-automated-book-downloader:0.4
+        - name: shelfmark
+          image: ghcr.io/calibrain/shelfmark:v1.0.1
           imagePullPolicy: IfNotPresent
           resources:
             requests:
@@ -74,7 +74,7 @@ spec:
       volumes:
         - name: config
           persistentVolumeClaim:
-            claimName: bookdownloader-config
+            claimName: shelfmark-config
         - name: downloads-data
           nfs:
             path: "/volume1/k3s/media/downloads"

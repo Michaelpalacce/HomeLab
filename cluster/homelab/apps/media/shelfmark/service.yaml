@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: bookdownloader
+  name: shelfmark
 spec:
   selector:
-    app.kubernetes.io/instance: bookdownloader
-    app.kubernetes.io/name: bookdownloader
+    app.kubernetes.io/instance: shelfmark
+    app.kubernetes.io/name: shelfmark
   ports:
     - name: web
       protocol: TCP
