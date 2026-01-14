@@ -64,7 +64,7 @@ spec:
       prometheusSpec:
         scrapeInterval: 60s
         scrapeTimeout: 30s
-        retention: 10d
+        retention: 30d
         retentionSize: 10GiB
         storageSpec:
           volumeClaimTemplate:
@@ -149,7 +149,7 @@ spec:
           - name: "null"
           - name: discord
             discord_configs:
-              - webhook_url: ENC[AES256_GCM,data:liRJjK7W/00/htGokO8BdyyZKrRysZ+I3ZdZrcZyTc7a4zg3WfmhH3h3xR7MUsLpgoItgB5AljHGGvKS7wgSVOL8GJ/pVDEJGKABkG6m9/P/vzDHoWWyz8lMrmDuNaDWGOvCIxXfs3m/6GmV0cEpqczNg4HEmT+7OQ==,iv:spqTL5TAo7HiHY51lzQ190Tv78kWAkvqdFkBWNrMhDE=,tag:u0Fzm3dtmD0pPFCea+KKBw==,type:str]
+              - webhook_url: ENC[AES256_GCM,data:U1q2IgygFez180LSkyNxDsPKZq8XrrP/LjGMaf3ICI94nL3KG+rkG7GF+oC/0ahn8IQwIm4aDmRlgKa03pRIoOta1SKw0yegTD34RK3ukDZ2WTny+nb31kBtbk954tVlVXtm2U0Jcz725sjYB5j46P7zvKo0nE/j6Q==,iv:L2R4XLr1sarmqW3PVEyf4mwtpMeMKRWRSJJl/OOUlCI=,tag:vQ8WBo1OSOKvlfc3mR6+NQ==,type:str]
                 send_resolved: true
         templates:
           - /etc/alertmanager/config/*.tmpl
@@ -190,7 +190,7 @@ spec:
                 value: /
     grafana:
       adminUser: admin
-      adminPassword: ENC[AES256_GCM,data:eZi0D7n1/mqjy+9eB9fvgI8pWr2fEUpjhxGO6WtOw2IBpGV85l2VxhgmnJM2W7gmDdaJ+A==,iv:f8IVWAb9vCp9FUXcH4ZZVkgw8IS4UUrlpp0ClzvD5kg=,tag:kgPh11b9u/GqAbB/edsIVw==,type:str]
+      adminPassword: ENC[AES256_GCM,data:z7NCGFOwAq3DW1K0ucbSfmqoN60j9vlEDj2qpmnCGuBkobTIGD3tW3RyL6V93DIomuaiKg==,iv:PahIeR+GRj75DggLdFxl7wdfTzBogS286SGWc+ikiuc=,tag:X/OTRF3tltYaXxTeCEYx8w==,type:str]
       persistence:
         enabled: true
         type: sts
@@ -217,7 +217,7 @@ spec:
           gethomepage.dev/widget.version: "2"
           gethomepage.dev/widget.alerts: alertmanager
           gethomepage.dev/widget.username: admin
-          gethomepage.dev/widget.password: ENC[AES256_GCM,data:q6HzcBL2ysjgL1tltFnujyBxXK7stsnh5GxUymRRhQHcUvutMxSrq0ZeQU+H490emOsDKw==,iv:m8O9o5NsdEXIrxf4NaZ2SQxBbfIYf61FrudpAGXV+18=,tag:FDRcuZYtAki3G9lfOl7XBQ==,type:str]
+          gethomepage.dev/widget.password: ENC[AES256_GCM,data:yGwzTp2V2a+a25QvvsqWtPquUrps22zAY+IUG8VnzF37cs1ByEhrVPHdMmbs4Ua7kbCHCQ==,iv:wySiycULpS7PUtJxjRT5hFRPtSf3Dlg2aX1g68L/CPE=,tag:XY0bKuD9bzaMotEoTT2D2A==,type:str]
           hostnames:
             - grafana.sgenov.dev
           parentRefs:
@@ -255,13 +255,13 @@ sops:
     - recipient: age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
       enc: |
         -----BEGIN AGE ENCRYPTED FILE-----
-        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBNak5iT0tRbUxpcFNlUGZQ
-        WExrRHFCdk5iUm44Q0c2c1I4OUszTi9VR0M4CkkvNmE2S2xla0NQTVhZNlZSdUxS
-        RFlqVlRha0I5SnB0dGtoZlBOcTBYZjAKLS0tIEMxR0x6aEg3cmMzU1NiUHlBNU4z
-        R3FrZnJjRDFadkROdFlwYWxNNlVvRFkKln7KeMGZGvaUWBQ6DHIajuv3QKjG3h37
-        zDhuGV4uIXR2DA7aHpGc4yhcfe0jbyQyh0trZNUOwnMK/1tgTrvsQA==
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBWSmFhbFZ6UWFYSHFDOUZQ
+        YXhBYVJqTlVick5IV3YxL1FVczdJVm1IYnd3CjFVbHR5bXhDK1hpTzRpRC93TElL
+        eFNMdGhaYWQ2YWtURXRyWnVaM0NZM0EKLS0tIHBaSDVCSE9kTXgxU2VrQ0E5OTJl
+        b0oyOXUyMVZZRHMyMWh4YWN4b1hubEkKF98BEkg3eoEpCvMcvZRyIdBmR1oUYfak
+        lyhID6EEc89+ABbqRRBtSWYCXKN8FVtqPmO6PTbdwZaT7jcjf/tkyA==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-11-16T15:03:04Z"
-  mac: ENC[AES256_GCM,data:oX1sRj7JQn0askLy0kz8XX9ErrJx217qglCe3UsV4cujpAcuTdlE28iRIJj0X86s6BTO9wL23+p6doqlfC9kqe9Ll+OibDMNMjnJhJs5Fuda8v/21xNn0f7xECq4Yx0jEIE3bQoN6YSNzzkFsvq9026LGG8tLbgzrq6q84k3Dzk=,iv:vjNpz2SjnZXDfiFqLJeG+wf7cONdGq7EK6eHHCqwC70=,tag:jrkiA/HNFLmDZnpqZt/7Ag==,type:str]
+  lastmodified: "2026-01-14T06:57:32Z"
+  mac: ENC[AES256_GCM,data:7GKd3uW7WucLyhs4IEvsFDs6s6JKTN/Ug/NeI1CF3ymOdPMSyS1pgRoJo1+wYPPXn1Hc1aT9owMPQb99gQfR61pXC7WbRDm89E0o9dvJlSHVr63bCPB2OjGEt1+ACF4pREvvqwg0Zxcl1inYFiBi0brciXkebaYupPIvqSkKwZA=,iv:yCH7H7UFuDc4009BAS3DXw7PNgWFfROb77NaUzbUYKA=,tag:FV87n3r68/+YmEIMuc9CWw==,type:str]
   encrypted_regex: (?i)password|webhook_url|token|key
   version: 3.11.0
