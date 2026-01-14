@@ -1,0 +1,87 @@
+---
+{{- with .Values.linkwarden }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: linkwarden
+    namespace: {{ $.Release.Namespace }}
+    labels:
+        app.kubernetes.io/instance: linkwarden
+        app.kubernetes.io/name: linkwarden
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app.kubernetes.io/instance: linkwarden
+            app.kubernetes.io/name: linkwarden
+    template:
+        metadata:
+            annotations:
+                backup.velero.io/backup-volumes: data-config
+            labels:
+                app.kubernetes.io/instance: linkwarden
+                app.kubernetes.io/name: linkwarden
+        spec:
+            containers:
+                - name: linkwarden
+                  image: {{ .image }}
+                  imagePullPolicy: IfNotPresent
+                  envFrom:
+                      -   secretRef:
+                              name: app
+                  securityContext:
+                      privileged: false
+                      allowPrivilegeEscalation: false
+                      capabilities:
+                        drop: 
+                        - "ALL"
+                        add:
+                        - CHOWN
+                        - SETUID
+                        - SETGID
+{{- if .resources }}
+                  resources:
+{{ toYaml .resources | indent 22 }}
+{{- end }}
+                  ports:
+                      - name: web
+                        containerPort: {{ .port }}
+                  volumeMounts:
+                      - name: data-config
+                        mountPath: /data/data
+                  livenessProbe:
+                      failureThreshold: 5
+                      initialDelaySeconds: 60
+                      timeoutSeconds: 2
+                      tcpSocket:
+                          port: {{ .port }}
+                  startupProbe:
+                      failureThreshold: 10
+                      initialDelaySeconds: 10
+                      timeoutSeconds: 2
+                      tcpSocket:
+                          port: {{ .port }}
+
+            restartPolicy: Always
+            volumes:
+                - name: data-config
+                  persistentVolumeClaim:
+                      claimName: linkwarden-pvc
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: linkwarden
+    namespace: {{ $.Release.Namespace }}
+spec:
+    selector:
+        app.kubernetes.io/instance: linkwarden
+        app.kubernetes.io/name: linkwarden
+    ports:
+        - name: linkwarden
+          protocol: TCP
+          port: {{ .port }}
+{{- end }}

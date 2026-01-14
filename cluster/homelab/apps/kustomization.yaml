@@ -21,6 +21,7 @@ resources:
   - n8n
   - nodered
   - openbooks
+  - linkwarden
   - observeability
   - reactiveresume
   - koffan
