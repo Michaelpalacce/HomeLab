@@ -4,7 +4,7 @@ metadata:
   name: istio-cni
   namespace: istio-system
 spec:
-  interval: 1h
+  interval: 10m
   install:
     createNamespace: true
     crds: CreateReplace
@@ -18,7 +18,7 @@ spec:
     spec:
       chart: cni
       version: 1.28.2
-      interval: 1h
+      interval: 10m
       sourceRef:
         kind: HelmRepository
         name: istio

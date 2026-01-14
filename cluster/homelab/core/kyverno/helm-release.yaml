@@ -5,14 +5,14 @@ metadata:
   name: kyverno
   namespace: kyverno
 spec:
-  interval: 1h
+  interval: 10m
   install:
     createNamespace: true
   chart:
     spec:
       chart: kyverno
       version: 3.6.2
-      interval: 1h
+      interval: 10m
       sourceRef:
         kind: HelmRepository
         name: kyverno

@@ -5,24 +5,24 @@ metadata:
   name: go-ddns-controller
   namespace: go-ddns-controller-system
 spec:
-  interval: 1h
+  interval: 10m
   install:
-      createNamespace: true
-      crds: CreateReplace
-      remediation:
-          retries: 3
+    createNamespace: true
+    crds: CreateReplace
+    remediation:
+      retries: 3
   upgrade:
-      crds: CreateReplace
-      remediation:
-          retries: 3
+    crds: CreateReplace
+    remediation:
+      retries: 3
   chart:
-      spec:
-          chart: ./charts/go-ddns-controller
-          reconcileStrategy: Revision
-          sourceRef:
-              kind: GitRepository
-              name: go-ddns-controller
-              namespace: flux-system
+    spec:
+      chart: ./charts/go-ddns-controller
+      reconcileStrategy: Revision
+      sourceRef:
+        kind: GitRepository
+        name: go-ddns-controller
+        namespace: flux-system
   values:
     image:
       repository: ghcr.io/michaelpalacce/go-ddns-controller

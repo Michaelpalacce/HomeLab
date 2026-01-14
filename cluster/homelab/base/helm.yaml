@@ -2,16 +2,16 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-    name: helm
-    namespace: flux-system
+  name: helm
+  namespace: flux-system
 spec:
-    interval: 1h0s
-    path: ./cluster/homelab/helm
-    prune: true
-    decryption:
-        provider: sops
-        secretRef:
-            name: sops-age
-    sourceRef:
-        kind: GitRepository
-        name: flux-system
+  interval: 10m
+  path: ./cluster/homelab/helm
+  prune: true
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
+  sourceRef:
+    kind: GitRepository
+    name: flux-system

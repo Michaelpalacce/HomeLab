@@ -2,20 +2,20 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-    name: mealie
-    namespace: mealie
+  name: mealie
+  namespace: mealie
 spec:
-    interval: 1h
-    install:
-        createNamespace: true
-    chart:
-        spec:
-            chart: ./Helm/apps/mealie
-            reconcileStrategy: Revision
-            sourceRef:
-                kind: GitRepository
-                name: flux-system
-                namespace: flux-system
-    values:
-        mealie:
-            replicas: 1
+  interval: 10m
+  install:
+    createNamespace: true
+  chart:
+    spec:
+      chart: ./Helm/apps/mealie
+      reconcileStrategy: Revision
+      sourceRef:
+        kind: GitRepository
+        name: flux-system
+        namespace: flux-system
+  values:
+    mealie:
+      replicas: 1

@@ -2,23 +2,23 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-    name: reflector
-    namespace: reflector
+  name: reflector
+  namespace: reflector
 spec:
-    interval: 1h
-    install:
-        createNamespace: true
-    chart:
-        spec:
-            chart: reflector
-            version: 9.1.45
-            interval: 1h
-            sourceRef:
-                kind: HelmRepository
-                name: reflector
-                namespace: flux-system
-    values:
-        livenessProbe:
-            periodSeconds: 30
-        readinessProbe:
-            periodSeconds: 10
+  interval: 10m
+  install:
+    createNamespace: true
+  chart:
+    spec:
+      chart: reflector
+      version: 9.1.45
+      interval: 10m
+      sourceRef:
+        kind: HelmRepository
+        name: reflector
+        namespace: flux-system
+  values:
+    livenessProbe:
+      periodSeconds: 30
+    readinessProbe:
+      periodSeconds: 10

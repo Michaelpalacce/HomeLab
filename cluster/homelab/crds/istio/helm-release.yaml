@@ -5,7 +5,7 @@ metadata:
   name: istio-base
   namespace: istio-system
 spec:
-  interval: 1h
+  interval: 10m
   install:
     createNamespace: true
   upgrade:
@@ -16,7 +16,7 @@ spec:
     spec:
       chart: base
       version: 1.28.2
-      interval: 1h
+      interval: 10m
       sourceRef:
         kind: HelmRepository
         name: istio

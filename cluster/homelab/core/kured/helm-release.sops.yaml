@@ -1,52 +1,52 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-    name: kured
-    namespace: kured
+  name: kured
+  namespace: kured
 spec:
-    interval: 1h
-    install:
-        createNamespace: true
-        crds: CreateReplace
-        remediation:
-            retries: 3
-    upgrade:
-        crds: CreateReplace
-        remediation:
-            retries: 3
-    chart:
-        spec:
-            chart: kured
-            version: 5.10.0
-            interval: 1h
-            sourceRef:
-                kind: HelmRepository
-                name: kubereboot
-                namespace: flux-system
-    values:
-        configuration:
-            drainGracePeriod: ENC[AES256_GCM,data:2Td0Vw==,iv:UJHIic7+cOmT6q8v0Pakfy7FvDNUwvqGX698sFBpipM=,tag:R0HgYh0oLsldq76CgngGwg==,type:int]
-            drainTimeout: ENC[AES256_GCM,data:FlOOtjg=,iv:see4FeKoJUsHk7LOu+/ZzY3GR4SBO7egdA1t+XqQMTg=,tag:7tYYPrI48stvMMAU8d9Omw==,type:str]
-            forceReboot: ENC[AES256_GCM,data:3OgvH/M=,iv:FBoepgdrSrEe8R7xWk19fxT97LklI9tGCi2Fl90fKkk=,tag:YULlbrO2jg90jingMj9/OQ==,type:bool]
-            #ENC[AES256_GCM,data:p58DFDFzk1DNaY2JnEqwy1g=,iv:QMm6RsHnz8a3sjHup17XlLegUWg46ZFGFKOWVAmJ/cI=,tag:Byj6iWeJJMZLA/QRVzrvbA==,type:comment]
-            startTime: ENC[AES256_GCM,data:9vJzN2Y=,iv:iZ3SOxdM0IhZ/Pl1flnoozQMnNytu+rpHTALKbXGzDg=,tag:G0S4JBatU4DhFGkPIBiVDw==,type:str]
-            #ENC[AES256_GCM,data:PwhGuZQETUNB9G/wWmSwlaI=,iv:Sq7bjgxldqKPSRo7rKbmTHApYQf7RVW9zW08hAfVBhw=,tag:dRLxpUZwYqRQENg4BMaMcQ==,type:comment]
-            endTime: ENC[AES256_GCM,data:oRM8M5g=,iv:E24JzYa+Nyul8Blp0VMIG7VApcYhq57T9N07jJw2xK8=,tag:+G5M4Wx3jcIvOdvNBs1Urg==,type:str]
-            #ENC[AES256_GCM,data:5fx84FA6Lq86A/iM1UEUM7SulY4eUHqaSk3lziN029TzvYqtsb/RzO3PYLNqTU2qaBwCeRRaowZ+iKe1tHbKdex6nMt+TUz1wlIJA4XS9mI5pq6SUMV7xOjiplh4YsXo,iv:/IQ1Dnd+5ZaSRGXMA5jY4pqth3sb3mRHAaAU9uw3L3k=,tag:TE0CaA+2g0VYi0NH6Yl/Aw==,type:comment]
-            #ENC[AES256_GCM,data:bJ7fEcDqcE5EDMQc3/7klXRfRUOGeKvLS5KE5OxYkKd31Q==,iv:nVboVs/+SwFkwkdd9N6anhiwTryg7aAC0fbWCMxR9/8=,tag:yorWOET9WHAXOGl1IP5vtQ==,type:comment]
-            notifyUrl: ENC[AES256_GCM,data:jVHLn79qAR9bmCQM455cG7EmTvmkAzzK/r6qNb1WkXfUVkDxF6y0oJjmmpEex/alqRISbocEvVabzJEg1d7m/6FNwz8wRF+4NTDMNGcWiPHbF6OAVMbMma6ts2NwsXVUojE=,iv:4GfvaOMlgZyPz0k4aY8PMBm16blGzYLMzlru6WObwIE=,tag:VRQbXd3FSIef3R8DfG6wsw==,type:str]
+  interval: 10m
+  install:
+    createNamespace: true
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  upgrade:
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  chart:
+    spec:
+      chart: kured
+      version: 5.10.0
+      interval: 10m
+      sourceRef:
+        kind: HelmRepository
+        name: kubereboot
+        namespace: flux-system
+  values:
+    configuration:
+      drainGracePeriod: ENC[AES256_GCM,data:2Td0Vw==,iv:UJHIic7+cOmT6q8v0Pakfy7FvDNUwvqGX698sFBpipM=,tag:R0HgYh0oLsldq76CgngGwg==,type:int]
+      drainTimeout: ENC[AES256_GCM,data:FlOOtjg=,iv:see4FeKoJUsHk7LOu+/ZzY3GR4SBO7egdA1t+XqQMTg=,tag:7tYYPrI48stvMMAU8d9Omw==,type:str]
+      forceReboot: ENC[AES256_GCM,data:3OgvH/M=,iv:FBoepgdrSrEe8R7xWk19fxT97LklI9tGCi2Fl90fKkk=,tag:YULlbrO2jg90jingMj9/OQ==,type:bool]
+      #ENC[AES256_GCM,data:p58DFDFzk1DNaY2JnEqwy1g=,iv:QMm6RsHnz8a3sjHup17XlLegUWg46ZFGFKOWVAmJ/cI=,tag:Byj6iWeJJMZLA/QRVzrvbA==,type:comment]
+      startTime: ENC[AES256_GCM,data:9vJzN2Y=,iv:iZ3SOxdM0IhZ/Pl1flnoozQMnNytu+rpHTALKbXGzDg=,tag:G0S4JBatU4DhFGkPIBiVDw==,type:str]
+      #ENC[AES256_GCM,data:PwhGuZQETUNB9G/wWmSwlaI=,iv:Sq7bjgxldqKPSRo7rKbmTHApYQf7RVW9zW08hAfVBhw=,tag:dRLxpUZwYqRQENg4BMaMcQ==,type:comment]
+      endTime: ENC[AES256_GCM,data:oRM8M5g=,iv:E24JzYa+Nyul8Blp0VMIG7VApcYhq57T9N07jJw2xK8=,tag:+G5M4Wx3jcIvOdvNBs1Urg==,type:str]
+      #ENC[AES256_GCM,data:5fx84FA6Lq86A/iM1UEUM7SulY4eUHqaSk3lziN029TzvYqtsb/RzO3PYLNqTU2qaBwCeRRaowZ+iKe1tHbKdex6nMt+TUz1wlIJA4XS9mI5pq6SUMV7xOjiplh4YsXo,iv:/IQ1Dnd+5ZaSRGXMA5jY4pqth3sb3mRHAaAU9uw3L3k=,tag:TE0CaA+2g0VYi0NH6Yl/Aw==,type:comment]
+      #ENC[AES256_GCM,data:bJ7fEcDqcE5EDMQc3/7klXRfRUOGeKvLS5KE5OxYkKd31Q==,iv:nVboVs/+SwFkwkdd9N6anhiwTryg7aAC0fbWCMxR9/8=,tag:yorWOET9WHAXOGl1IP5vtQ==,type:comment]
+      notifyUrl: ENC[AES256_GCM,data:jVHLn79qAR9bmCQM455cG7EmTvmkAzzK/r6qNb1WkXfUVkDxF6y0oJjmmpEex/alqRISbocEvVabzJEg1d7m/6FNwz8wRF+4NTDMNGcWiPHbF6OAVMbMma6ts2NwsXVUojE=,iv:4GfvaOMlgZyPz0k4aY8PMBm16blGzYLMzlru6WObwIE=,tag:VRQbXd3FSIef3R8DfG6wsw==,type:str]
 sops:
-    age:
-        - recipient: age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
-          enc: |
-            -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB0RWlKYkQ0L1cvd1FzV01j
-            TEhXWitrSmVYc0xQNXZKNjRYcFJtcUdpNkRJCkwvdVpucUlZR3RnTXlyVnd1dlRz
-            bkVNZWo4MFhCUDZMbk9TQXVJTDhHY28KLS0tIGlEbllMa2FsMHp1RFRBczF0dlND
-            cFhiSXpnNW5TK3FUbjNPdGlaaWNWMU0KwCUiirHe9HKRT+8FbjtCt1RKgYRWbY2b
-            H8EYEq180QqJn1d2RXlqZh6ughtZYe3C8cHT2riG13vebNj81r9oeA==
-            -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-05-16T06:40:14Z"
-    mac: ENC[AES256_GCM,data:QqA98BTEQnfOzlEXXHtLR/OzOlHKiDkZHhlRxb5GnY7bTh1cf9diLbrdnomdl7Aa6tywnE+r8oMz+zWBZyb1egjlbrYq2JG/e161O3jtrBnGJbfIoMncOdSCdhLQJ5OGdddu5o+9ZIoUsVidCCICU8rP+HS2lXm+oEjTExKinrI=,iv:2mnpopavMeYr36ZIIgWJao4hka2hN3Vcqvory5WG0ak=,tag:vAJ6Ym9oO3cqkx8OYhnBMg==,type:str]
-    encrypted_regex: ^(values)$
-    version: 3.10.2
+  age:
+    - recipient: age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB0RWlKYkQ0L1cvd1FzV01j
+        TEhXWitrSmVYc0xQNXZKNjRYcFJtcUdpNkRJCkwvdVpucUlZR3RnTXlyVnd1dlRz
+        bkVNZWo4MFhCUDZMbk9TQXVJTDhHY28KLS0tIGlEbllMa2FsMHp1RFRBczF0dlND
+        cFhiSXpnNW5TK3FUbjNPdGlaaWNWMU0KwCUiirHe9HKRT+8FbjtCt1RKgYRWbY2b
+        H8EYEq180QqJn1d2RXlqZh6ughtZYe3C8cHT2riG13vebNj81r9oeA==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2025-05-16T06:40:14Z"
+  mac: ENC[AES256_GCM,data:QqA98BTEQnfOzlEXXHtLR/OzOlHKiDkZHhlRxb5GnY7bTh1cf9diLbrdnomdl7Aa6tywnE+r8oMz+zWBZyb1egjlbrYq2JG/e161O3jtrBnGJbfIoMncOdSCdhLQJ5OGdddu5o+9ZIoUsVidCCICU8rP+HS2lXm+oEjTExKinrI=,iv:2mnpopavMeYr36ZIIgWJao4hka2hN3Vcqvory5WG0ak=,tag:vAJ6Ym9oO3cqkx8OYhnBMg==,type:str]
+  encrypted_regex: ^(values)$
+  version: 3.10.2

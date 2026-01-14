@@ -5,7 +5,7 @@ metadata:
   name: velero
   namespace: velero
 spec:
-  interval: 1h
+  interval: 10m
   install:
     createNamespace: true
     crds: CreateReplace
@@ -19,7 +19,7 @@ spec:
     spec:
       chart: velero
       version: 11.3.2
-      interval: 1h
+      interval: 10m
       sourceRef:
         kind: HelmRepository
         name: velero

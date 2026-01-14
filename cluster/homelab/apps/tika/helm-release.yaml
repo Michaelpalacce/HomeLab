@@ -1,59 +1,59 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-    name: tika
-    namespace: tika
+  name: tika
+  namespace: tika
 spec:
-    interval: 1h
-    install:
-        createNamespace: true
-        crds: CreateReplace
-        remediation:
-            retries: 3
-    upgrade:
-        crds: CreateReplace
-        remediation:
-            retries: 3
-    chart:
-        spec:
-            chart: tika
-            version: 3.2.2
-            interval: 1h
-            sourceRef:
-                kind: HelmRepository
-                name: tika
-                namespace: flux-system
-    values:
-        image:
-            repository: apache/tika
-            tag: 3.2.3.0-full
-        securityContext:
-          allowPrivilegeEscalation: false
-          capabilities:
-            drop:
-              - ALL
-          readOnlyRootFilesystem: true
-          runAsNonRoot: true
-          runAsUser: 35002
-          runAsGroup: 35002
-        resources:
-          limits:
-            cpu: '1'
-            memory: 1000Mi
-          requests:
-            cpu: 500m
-            memory: 500Mi
-        config:
-          base_url: 'https://tika.sgenov.dev'
-        # ingress:
-        #     ingressClassName: nginx
-        #     enabled: true
-        #     annotations:
-        #     hosts:
-        #         - host: tika.sgenov.dev
-        #           paths:
-        #             - path: /
-        #     tls:
-        #         - secretName: ingress
-        #           hosts:
-        #             - '*.sgenov.dev'
+  interval: 10m
+  install:
+    createNamespace: true
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  upgrade:
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  chart:
+    spec:
+      chart: tika
+      version: 3.2.2
+      interval: 10m
+      sourceRef:
+        kind: HelmRepository
+        name: tika
+        namespace: flux-system
+  values:
+    image:
+      repository: apache/tika
+      tag: 3.2.3.0-full
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+          - ALL
+      readOnlyRootFilesystem: true
+      runAsNonRoot: true
+      runAsUser: 35002
+      runAsGroup: 35002
+    resources:
+      limits:
+        cpu: "1"
+        memory: 1000Mi
+      requests:
+        cpu: 500m
+        memory: 500Mi
+    config:
+      base_url: "https://tika.sgenov.dev"
+    # ingress:
+    #     ingressClassName: nginx
+    #     enabled: true
+    #     annotations:
+    #     hosts:
+    #         - host: tika.sgenov.dev
+    #           paths:
+    #             - path: /
+    #     tls:
+    #         - secretName: ingress
+    #           hosts:
+    #             - '*.sgenov.dev'

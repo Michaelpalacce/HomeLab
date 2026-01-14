@@ -4,14 +4,14 @@ metadata:
   name: observeability
   namespace: observeability
 spec:
-  interval: 1h
+  interval: 10m
   install:
     createNamespace: true
   chart:
     spec:
       chart: kube-prometheus-stack
       version: 80.14.3
-      interval: 1h
+      interval: 10m
       sourceRef:
         kind: HelmRepository
         name: kube-prometheus-stack

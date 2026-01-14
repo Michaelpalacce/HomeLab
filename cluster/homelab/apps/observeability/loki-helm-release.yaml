@@ -4,14 +4,14 @@ metadata:
   name: observeability-loki
   namespace: observeability
 spec:
-  interval: 1h
+  interval: 10m
   install:
     createNamespace: true
   chart:
     spec:
       chart: loki-stack
       version: 2.10.3
-      interval: 1h
+      interval: 10m
       sourceRef:
         kind: HelmRepository
         name: grafana

@@ -5,7 +5,7 @@ metadata:
   name: foldingathome
   namespace: foldingathome
 spec:
-  interval: 1h
+  interval: 10m
   install:
     createNamespace: true
   chart:

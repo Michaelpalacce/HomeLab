@@ -5,7 +5,7 @@ metadata:
   name: crds
   namespace: flux-system
 spec:
-  interval: 1h0s
+  interval: 10m
   path: ./cluster/homelab/crds
   prune: true
   decryption:

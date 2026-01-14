@@ -1,29 +1,29 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-    name: gotenberg
-    namespace: gotenberg
+  name: gotenberg
+  namespace: gotenberg
 spec:
-    interval: 1h
-    install:
-        createNamespace: true
-        crds: CreateReplace
-        remediation:
-            retries: 3
-    upgrade:
-        crds: CreateReplace
-        remediation:
-            retries: 3
-    chart:
-        spec:
-            chart: gotenberg
-            version: 1.14.0
-            interval: 1h
-            sourceRef:
-                kind: HelmRepository
-                name: maikumori
-                namespace: flux-system
-    values:
-        image:
-            repository: gotenberg/gotenberg
-            tag: 8.25.1
+  interval: 10m
+  install:
+    createNamespace: true
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  upgrade:
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  chart:
+    spec:
+      chart: gotenberg
+      version: 1.14.0
+      interval: 10m
+      sourceRef:
+        kind: HelmRepository
+        name: maikumori
+        namespace: flux-system
+  values:
+    image:
+      repository: gotenberg/gotenberg
+      tag: 8.25.1

@@ -5,7 +5,7 @@ metadata:
   name: mariadb-operator-crds
   namespace: mariadb-operator
 spec:
-  interval: 1h
+  interval: 10m
   install:
     createNamespace: true
   upgrade:
@@ -16,7 +16,7 @@ spec:
     spec:
       chart: mariadb-operator-crds
       version: "25.10.4"
-      interval: 1h
+      interval: 10m
       sourceRef:
         kind: HelmRepository
         name: mariadb-operator

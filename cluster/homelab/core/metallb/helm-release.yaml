@@ -2,33 +2,33 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-    name: metallb
-    namespace: metallb-system
+  name: metallb
+  namespace: metallb-system
 spec:
-    interval: 1h
-    install:
-        createNamespace: true
-    upgrade:
-        crds: CreateReplace
-        remediation:
-            retries: 3
-    chart:
-        spec:
-            chart: metallb
-            version: 0.15.3
-            interval: 1h
-            sourceRef:
-                kind: HelmRepository
-                name: metallb
-                namespace: flux-system
-    values:
-      controller:
-        image:
-          repository: quay.io/metallb/controller
-          tag: v0.15.3
-      speaker:
-          tolerations: 
-            - key: "CriticalAddonsOnly"
-              operator: "Equal"
-              effect: "NoSchedule"
-              value:
+  interval: 10m
+  install:
+    createNamespace: true
+  upgrade:
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  chart:
+    spec:
+      chart: metallb
+      version: 0.15.3
+      interval: 10m
+      sourceRef:
+        kind: HelmRepository
+        name: metallb
+        namespace: flux-system
+  values:
+    controller:
+      image:
+        repository: quay.io/metallb/controller
+        tag: v0.15.3
+    speaker:
+      tolerations:
+        - key: "CriticalAddonsOnly"
+          operator: "Equal"
+          effect: "NoSchedule"
+          value:

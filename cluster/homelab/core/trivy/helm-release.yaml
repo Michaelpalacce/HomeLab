@@ -2,80 +2,79 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-    name: trivy-operator
-    namespace: trivy-system
+  name: trivy-operator
+  namespace: trivy-system
 spec:
-    interval: 1h
-    install:
-        createNamespace: true
-    upgrade:
-        crds: CreateReplace
-        remediation:
-            retries: 3
-    chart:
-        spec:
-            chart: trivy-operator
-            version: 0.31.0
-            interval: 1h
-            sourceRef:
-                kind: HelmRepository
-                name: aqua
-                namespace: flux-system
-    values:
+  interval: 10m
+  install:
+    createNamespace: true
+  upgrade:
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  chart:
+    spec:
+      chart: trivy-operator
+      version: 0.31.0
+      interval: 10m
+      sourceRef:
+        kind: HelmRepository
+        name: aqua
+        namespace: flux-system
+  values:
+    service:
+      headless: true
+      metricsPort: 80
+    serviceMonitor:
+      labels:
+        release: observeability
+      enabled: true
+    trivy:
+      ignoreUnfixed: true
+    # targetWorkloads: "pod,statefulset,daemonset,replicaset,cronjob"
+    # Targeting only my specific apps
+    targetNamespaces: ""
+    trivyOperator:
+      reportResourceLabels: "owner,app"
+    operator:
+      # -- configAuditScannerEnabled the flag to enable configuration audit scanner
+      configAuditScannerEnabled: true
+      # -- rbacAssessmentScannerEnabled the flag to enable rbac assessment scanner
+      rbacAssessmentScannerEnabled: true
+      # -- infraAssessmentScannerEnabled the flag to enable infra assessment scanner
+      infraAssessmentScannerEnabled: true
+      # -- clusterComplianceEnabled the flag to enable cluster compliance scanner
+      clusterComplianceEnabled: true
+      metricsFindingsEnabled: true
 
-      service:
-        headless: true
-        metricsPort: 80
-      serviceMonitor:
-        labels:
-          release: observeability
-        enabled: true
-      trivy:
-        ignoreUnfixed: true
-      # targetWorkloads: "pod,statefulset,daemonset,replicaset,cronjob"
-      # Targeting only my specific apps
-      targetNamespaces: ""
-      trivyOperator:
-        reportResourceLabels: "owner,app"
-      operator:
-          # -- configAuditScannerEnabled the flag to enable configuration audit scanner
-          configAuditScannerEnabled: true
-          # -- rbacAssessmentScannerEnabled the flag to enable rbac assessment scanner
-          rbacAssessmentScannerEnabled: true
-          # -- infraAssessmentScannerEnabled the flag to enable infra assessment scanner
-          infraAssessmentScannerEnabled: true
-          # -- clusterComplianceEnabled the flag to enable cluster compliance scanner
-          clusterComplianceEnabled: true
-          metricsFindingsEnabled: true
+      # -- metricsVulnIdEnabled the flag to enable metrics about cve vulns id
+      # be aware of metrics cardinality is significantly increased with this feature enabled.
+      metricsVulnIdEnabled: true
 
-          # -- metricsVulnIdEnabled the flag to enable metrics about cve vulns id
-          # be aware of metrics cardinality is significantly increased with this feature enabled.
-          metricsVulnIdEnabled: true
+      # -- exposedSecretScannerEnabled the flag to enable exposed secret scanner
+      exposedSecretScannerEnabled: true
 
-          # -- exposedSecretScannerEnabled the flag to enable exposed secret scanner
-          exposedSecretScannerEnabled: true
+      # -- MetricsExposedSecretInfo the flag to enable metrics about exposed secrets
+      # be aware of metrics cardinality is significantly increased with this feature enabled.
+      metricsExposedSecretInfo: true
 
-          # -- MetricsExposedSecretInfo the flag to enable metrics about exposed secrets
-          # be aware of metrics cardinality is significantly increased with this feature enabled.
-          metricsExposedSecretInfo: true
+      # -- MetricsConfigAuditInfo the flag to enable metrics about configuration audits
+      # be aware of metrics cardinality is significantly increased with this feature enabled.
+      metricsConfigAuditInfo: true
 
-          # -- MetricsConfigAuditInfo the flag to enable metrics about configuration audits
-          # be aware of metrics cardinality is significantly increased with this feature enabled.
-          metricsConfigAuditInfo: true
+      # -- MetricsRbacAssessmentInfo the flag to enable metrics about Rbac Assessment
+      # be aware of metrics cardinality is significantly increased with this feature enabled.
+      metricsRbacAssessmentInfo: true
 
-          # -- MetricsRbacAssessmentInfo the flag to enable metrics about Rbac Assessment
-          # be aware of metrics cardinality is significantly increased with this feature enabled.
-          metricsRbacAssessmentInfo: true
+      # -- MetricsInfraAssessmentInfo the flag to enable metrics about Infra Assessment
+      # be aware of metrics cardinality is significantly increased with this feature enabled.
+      metricsInfraAssessmentInfo: true
 
-          # -- MetricsInfraAssessmentInfo the flag to enable metrics about Infra Assessment
-          # be aware of metrics cardinality is significantly increased with this feature enabled.
-          metricsInfraAssessmentInfo: true
+      # -- MetricsImageInfo the flag to enable metrics about Image Information of scanned images
+      # This information has image os information including os family, name/version, and if end of service life has been reached
+      # be aware of metrics cardinality is significantly increased with this feature enabled.
+      metricsImageInfo: true
 
-          # -- MetricsImageInfo the flag to enable metrics about Image Information of scanned images
-          # This information has image os information including os family, name/version, and if end of service life has been reached
-          # be aware of metrics cardinality is significantly increased with this feature enabled.
-          metricsImageInfo: true
-
-          # -- MetricsClusterComplianceInfo the flag to enable metrics about Cluster Compliance
-          # be aware of metrics cardinality is significantly increased with this feature enabled.
-          metricsClusterComplianceInfo: true
+      # -- MetricsClusterComplianceInfo the flag to enable metrics about Cluster Compliance
+      # be aware of metrics cardinality is significantly increased with this feature enabled.
+      metricsClusterComplianceInfo: true

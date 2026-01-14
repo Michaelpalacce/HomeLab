@@ -2,32 +2,32 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-    name: kube-vip
-    namespace: kube-vip
+  name: kube-vip
+  namespace: kube-vip
 spec:
-    interval: 1h
-    install:
-        createNamespace: true
-        crds: CreateReplace
-        remediation:
-            retries: 3
-    upgrade:
-        crds: CreateReplace
-        remediation:
-            retries: 3
-    chart:
-        spec:
-            chart: kube-vip
-            version: 0.9.5
-            interval: 1h
-            sourceRef:
-                kind: HelmRepository
-                name: kube-vip
-                namespace: flux-system
-    values:
-        image:
-            repository: ghcr.io/kube-vip/kube-vip
-            tag: "v1.0.3"
-        env:
-            lb_enable: "true"
-            lb_port: "6443"
+  interval: 10m
+  install:
+    createNamespace: true
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  upgrade:
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  chart:
+    spec:
+      chart: kube-vip
+      version: 0.9.5
+      interval: 10m
+      sourceRef:
+        kind: HelmRepository
+        name: kube-vip
+        namespace: flux-system
+  values:
+    image:
+      repository: ghcr.io/kube-vip/kube-vip
+      tag: "v1.0.3"
+    env:
+      lb_enable: "true"
+      lb_port: "6443"
