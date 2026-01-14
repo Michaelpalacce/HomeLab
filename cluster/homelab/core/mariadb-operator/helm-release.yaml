@@ -27,12 +27,3 @@ spec:
       enabled: true
       serviceMonitor:
         enabled: true
-    webhook:
-      cert:
-        certManager:
-          enabled: true
-          issuerRef:
-            kind: ClusterIssuer
-            name: homelab
-      serviceMonitor:
-        enabled: true
