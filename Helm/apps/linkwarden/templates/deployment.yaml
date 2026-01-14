@@ -27,6 +27,9 @@ spec:
                 - name: linkwarden
                   image: {{ .image }}
                   imagePullPolicy: IfNotPresent
+                  env:
+                    - name: "NEXT_PUBLIC_DISABLE_REGISTRATION"
+                      value: "true"
                   envFrom:
                       -   secretRef:
                               name: app
