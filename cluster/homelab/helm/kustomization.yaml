@@ -24,3 +24,4 @@ resources:
   - bjw-s
   - wger
   - istio
+  - tofu-controller

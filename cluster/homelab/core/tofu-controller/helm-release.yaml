@@ -1,0 +1,45 @@
+# Ref: https://raw.githubusercontent.com/flux-iac/tofu-controller/main/docs/release.yaml
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: tofu-controller
+  namespace: flux-system
+spec:
+  chart:
+    spec:
+      chart: tofu-controller
+      sourceRef:
+        kind: HelmRepository
+        name: tofu-controller
+      version: ">=0.16.0-rc.7"
+  interval: 10m
+  releaseName: tofu-controller
+  targetNamespace: flux-system
+  install:
+    crds: Create
+    remediation:
+      retries: -1
+  upgrade:
+    crds: CreateReplace
+    remediation:
+      retries: -1
+  values:
+    replicaCount: 3
+    concurrency: 24
+    resources:
+      limits:
+        cpu: 1000m
+        memory: 2Gi
+      requests:
+        cpu: 400m
+        memory: 64Mi
+    caCertValidityDuration: 24h
+    certRotationCheckFrequency: 30m
+    image:
+      tag: v0.16.0-rc.7
+    runner:
+      image:
+        tag: v0.16.0-rc.7
+      grpc:
+        maxMessageSize: 30

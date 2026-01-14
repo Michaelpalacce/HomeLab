@@ -1,0 +1,29 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: homelab-iac
+  namespace: flux-system
+spec:
+  interval: 30s
+  url: https://github.com/Michaelpalacce/HomeLab-IaC
+  ref:
+    branch: master
+---
+apiVersion: infra.contrib.fluxcd.io/v1alpha2
+kind: Terraform
+metadata:
+  name: homelab-iac
+  namespace: flux-system
+spec:
+  interval: 1m
+  approvePlan: auto
+  path: ./
+  sourceRef:
+    kind: GitRepository
+    name: homelab-iac
+    namespace: flux-system
+  varsFrom:
+    - kind: Secret
+      name: homelab-iac-secrets
+  storeReadablePlan: human
