@@ -16,7 +16,7 @@ metadata:
   name: homelab-iac
   namespace: flux-system
 spec:
-  interval: 1m
+  interval: 10m
   approvePlan: auto
   path: ./
   sourceRef:
