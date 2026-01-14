@@ -25,7 +25,7 @@ spec:
     remediation:
       retries: -1
   values:
-    replicaCount: 3
+    replicaCount: 1
     concurrency: 24
     resources:
       limits:
