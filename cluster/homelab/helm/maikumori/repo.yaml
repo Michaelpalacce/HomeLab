@@ -2,8 +2,8 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
-    name: maikumori
-    namespace: flux-system
+  name: maikumori
+  namespace: flux-system
 spec:
-    url: https://maikumori.github.io/helm-charts
-    interval: 60m
+  url: https://maikumori.github.io/helm-charts
+  interval: 5m

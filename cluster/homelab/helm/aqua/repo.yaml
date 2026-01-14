@@ -2,8 +2,8 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
-    name: aqua
-    namespace: flux-system
+  name: aqua
+  namespace: flux-system
 spec:
-    url: https://aquasecurity.github.io/helm-charts
-    interval: 60m
+  url: https://aquasecurity.github.io/helm-charts
+  interval: 5m

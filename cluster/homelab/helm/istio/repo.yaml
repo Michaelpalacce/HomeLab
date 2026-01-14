@@ -6,4 +6,4 @@ metadata:
   namespace: flux-system
 spec:
   url: https://istio-release.storage.googleapis.com/charts
-  interval: 60m
+  interval: 5m

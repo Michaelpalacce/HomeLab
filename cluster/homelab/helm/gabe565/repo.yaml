@@ -2,8 +2,8 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
-    name: gabe565
-    namespace: flux-system
+  name: gabe565
+  namespace: flux-system
 spec:
-    url: https://charts.gabe565.com
-    interval: 60m
+  url: https://charts.gabe565.com
+  interval: 5m

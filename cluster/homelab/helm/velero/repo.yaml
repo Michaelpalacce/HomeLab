@@ -2,8 +2,8 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
-    name: velero
-    namespace: flux-system
+  name: velero
+  namespace: flux-system
 spec:
-    url: https://vmware-tanzu.github.io/helm-charts
-    interval: 60m
+  url: https://vmware-tanzu.github.io/helm-charts
+  interval: 5m

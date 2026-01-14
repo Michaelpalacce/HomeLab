@@ -20,6 +20,7 @@ resources:
   - metallb
   - tika
   - maikumori
+  - mariadb-operator
   - bjw-s
   - wger
   - istio

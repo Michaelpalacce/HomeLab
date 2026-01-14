@@ -2,8 +2,8 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
-  name: longhorn-system
+  name: mariadb-operator
   namespace: flux-system
 spec:
-  url: https://charts.longhorn.io
+  url: https://helm.mariadb.com/mariadb-operator
   interval: 5m
