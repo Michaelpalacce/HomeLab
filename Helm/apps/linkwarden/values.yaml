@@ -8,7 +8,7 @@ linkwarden:
       memory: 256Mi
 
 postgres:
-  image: postgres:18.2
+  image: postgres:18.1
   dataSize: 5Gi
   port: 5432
   resources:
