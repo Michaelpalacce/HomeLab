@@ -1,0 +1,38 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: mariadb-operator
+  namespace: mariadb-operator
+spec:
+  interval: 1h
+  install:
+    createNamespace: true
+  upgrade:
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  chart:
+    spec:
+      chart: mariadb-operator
+      version: "25.10.4"
+      interval: 1h
+      sourceRef:
+        kind: HelmRepository
+        name: mariadb-operator
+        namespace: flux-system
+  values:
+    logLevel: INFO
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
+    webhook:
+      cert:
+        certManager:
+          enabled: true
+          issuerRef:
+            kind: ClusterIssuer
+            name: homelab
+      serviceMonitor:
+        enabled: true

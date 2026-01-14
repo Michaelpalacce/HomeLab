@@ -5,3 +5,4 @@ resources:
   - gateway-api
   - external-snapshotter # Velero gives an error if VolumeSnapshotClasses is missing
   - istio
+  - mariadb-operator
