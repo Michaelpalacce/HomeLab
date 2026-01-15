@@ -5,9 +5,10 @@ metadata:
   name: shelfmark-internal
   annotations:
     gethomepage.dev/enabled: "true"
-    gethomepage.dev/description: Books Downloader
+    gethomepage.dev/description: Books and Audiobooks Downloader
     gethomepage.dev/group: Torrents
-    gethomepage.dev/name: Books Downloader
+    gethomepage.dev/icon: favicon
+    gethomepage.dev/name: Shelfmark
 spec:
   parentRefs:
     - name: internal
