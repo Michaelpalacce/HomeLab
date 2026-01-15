@@ -19,6 +19,7 @@ certificate secret to all the namespaces. The secret is called `ingress`.
 6. **Ansible** - Used to provision the architecture
 7. **Velero** - K8S and PVC backup. Free and open source by VMware 
 8. **MetalLB** - LoadBalancer for bare-metal k8s clusters
+9. **tofu-controller** - Gitops for Terraform 
 
 # GitOps :construction:
 GitOps is applied wherever possible using Flux2.
@@ -41,7 +42,7 @@ and services I install.
 
 # Control Plane Load Balancing
 
-I used DNS load balancing for the control plane. This is done by creating an A record for the control plane and pointing it to the IPs of the control plane nodes.
+I use DNS load balancing for the control plane. This is done by creating an A record for the control plane and pointing it to the IPs of the control plane nodes.
 This is done because I don't have a load balancer in my homelab and I don't want to expose the control plane on a single node.
 
 # Storage ( Longhorn )
@@ -55,7 +56,11 @@ In my case I'm using the velero AWS plugin.
 The velero backup runs on a schedule every day during the evening hours and I pay around ~ $7 each month, mainly due to Wasabi pricing for
 1TB as a minimum. 
 
-Check the docs for more information about velero, but overall I try to backup everything
+Check the docs for more information about velero, but overall I try to backup everything. 
+
+# Infrastructure as code
+
+`tofu-controller` is a tool by the team behind FluxCD2 and allows me to continuously reconcile a git repo and apply changes when a change or drift is detected. I'm not handling VM creation yet, as that has proven to be a nuisance with the Terraform provider. Security is the main focus of this. 
 
 # What if I don't want to use Flux
 Well it's absolutely fine. You can go to `Helm/apps` and install any app you want ( e.g. `helm install media media -n media --create-namespace` ).
