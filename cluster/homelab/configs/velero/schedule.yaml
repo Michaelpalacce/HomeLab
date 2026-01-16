@@ -4,7 +4,7 @@ metadata:
   name: general
   namespace: velero
 spec:
-  schedule: "00 01 * * 7"
+  schedule: "00 01 * * 6"
   template:
     hooks: {}
     includedNamespaces: # Either not important, not containing any information or they are easily recoverable
@@ -25,7 +25,7 @@ metadata:
   name: sensitive
   namespace: velero
 spec:
-  schedule: "00 01 * * 2,6"
+  schedule: "00 01 * * 1,5"
   template:
     hooks: {}
     includedNamespaces: # Related to my homelab or automation
@@ -56,6 +56,7 @@ spec:
       - paperless-ngx
       - firefly
       - wallabag
+      - linkwarden
       - mealie
     snapshotVolumes: true
     ttl: 2190h0m0s
