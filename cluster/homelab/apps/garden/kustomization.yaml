@@ -7,3 +7,4 @@ resources:
   - deployment.yaml
   - service.yaml
   - gateway-api.yaml
+  - pdb.yaml

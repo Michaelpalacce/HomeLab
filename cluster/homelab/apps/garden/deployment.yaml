@@ -6,7 +6,7 @@ metadata:
     app.kubernetes.io/instance: garden
     app.kubernetes.io/name: garden
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app.kubernetes.io/instance: garden
@@ -18,6 +18,17 @@ spec:
         app.kubernetes.io/name: garden
     spec:
       restartPolicy: Always
+      priorityClassName: critical-priority
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    app.kubernetes.io/instance: garden
+                    app.kubernetes.io/name: garden
+                topologyKey: kubernetes.io/hostname
+              weight: 1
       containers:
         - name: garden
           image: ghcr.io/michaelpalacce/quartz:v2.0.1768247799 # Quartz image is separate for content to allow for updating `quartz` without needing to bump `garden`
