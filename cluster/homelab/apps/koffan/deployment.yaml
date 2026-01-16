@@ -7,6 +7,8 @@ metadata:
     app.kubernetes.io/name: koffan
 spec:
   replicas: 1 # Uses SqLite, so only one
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app.kubernetes.io/instance: koffan
