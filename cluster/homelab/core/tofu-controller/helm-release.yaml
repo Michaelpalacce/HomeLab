@@ -37,11 +37,11 @@ spec:
     caCertValidityDuration: 24h
     certRotationCheckFrequency: 30m
     image:
-      repository: ghcr.io/weaveworks/tofu-controller
+      repository: ghcr.io/flux-iac/tofu-controller
       tag: v0.16.0-rc.8
     runner:
       image:
-        repository: ghcr.io/weaveworks/tofu-runner
+        repository: ghcr.io/flux-iac/tofu-runner
         tag: v0.16.0-rc.8
       grpc:
         maxMessageSize: 30
