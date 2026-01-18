@@ -6,4 +6,4 @@ metadata:
   namespace: flux-system
 spec:
   url: https://cloudnative-pg.github.io/charts
-  interval: 60m
+  interval: 10m
