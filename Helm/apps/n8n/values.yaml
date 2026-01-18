@@ -1,22 +1,12 @@
 ---
 n8n:
-    image: n8nio/n8n:2.4.4
-    dataSize: 10Gi
-    port: 5678
-    replicas: 1
-    nasIp: 192.168.1.39
-    nasPath: /volume1/k3s
-    resources:
-        requests:
-            cpu: 10m
-            memory: 250Mi
-
-postgres:
-    image: postgres:16.11
-    dataSize: 2Gi
-    port: 5432
-    resources:
-        requests:
-            cpu: 10m
-            memory: 256Mi
-
+  image: n8nio/n8n:2.4.4
+  dataSize: 10Gi
+  port: 5678
+  replicas: 1
+  nasIp: 192.168.1.39
+  nasPath: /volume1/k3s
+  resources:
+    requests:
+      cpu: 10m
+      memory: 250Mi

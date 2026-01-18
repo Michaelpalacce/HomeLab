@@ -33,60 +33,60 @@ spec:
                         drop:
                         - ALL
                     env:
-                        -   name: N8N_BASIC_AUTH_ACTIVE
-                            value: "true"
-                        -   name: N8N_BASIC_AUTH_USER
-                            valueFrom:
-                                secretKeyRef:
-                                    name: app
-                                    key: username
-                        -   name: N8N_BASIC_AUTH_PASSWORD
-                            valueFrom:
-                                secretKeyRef:
-                                    name: app
-                                    key: password
-                        -   name: DB_POSTGRESDB_HOST
-                            valueFrom:
-                                secretKeyRef:
-                                    name: app
-                                    key: host
-                        -   name: DB_POSTGRESDB_DATABASE
-                            valueFrom:
-                                secretKeyRef:
-                                    name: db
-                                    key: POSTGRES_DB
-                        -   name: DB_POSTGRESDB_PORT
-                            valueFrom:
-                                secretKeyRef:
-                                    name: app
-                                    key: port
-                        -   name: DB_POSTGRESDB_USER
-                            valueFrom:
-                                secretKeyRef:
-                                    name: db
-                                    key: POSTGRES_USER
-                        -   name: DB_POSTGRESDB_PASSWORD
-                            valueFrom:
-                                secretKeyRef:
-                                    name: db
-                                    key: POSTGRES_PASSWORD
-                        -   name: DB_TYPE
-                            valueFrom:
-                                secretKeyRef:
-                                    name: app
-                                    key: type
-                        -   name: N8N_PORT
-                            value: "{{ .port }}"
-                        -   name: N8N_ENCRYPTION_KEY
-                            valueFrom:
-                                secretKeyRef:
-                                    name: app
-                                    key: encryption_key
-                        -   name: N8N_PAYLOAD_SIZE_MAX
-                            valueFrom:
-                                secretKeyRef:
-                                    name: app
-                                    key: maxFileSizeMb
+                        - name: N8N_BASIC_AUTH_ACTIVE
+                          value: "true"
+                        - name: N8N_BASIC_AUTH_USER
+                          valueFrom:
+                              secretKeyRef:
+                                  name: app
+                                  key: username
+                        - name: N8N_BASIC_AUTH_PASSWORD
+                          valueFrom:
+                              secretKeyRef:
+                                  name: app
+                                  key: password
+                        - name: DB_POSTGRESDB_HOST
+                          valueFrom:
+                              secretKeyRef:
+                                  name: cluster-postgres-app
+                                  key: host
+                        - name: DB_POSTGRESDB_DATABASE
+                          valueFrom:
+                              secretKeyRef:
+                                  name: cluster-postgres-app
+                                  key: dbname
+                        - name: DB_POSTGRESDB_PORT
+                          valueFrom:
+                              secretKeyRef:
+                                  name: cluster-postgres-app
+                                  key: port
+                        - name: DB_POSTGRESDB_USER
+                          valueFrom:
+                              secretKeyRef:
+                                  name: cluster-postgres-app
+                                  key: user
+                        - name: DB_POSTGRESDB_PASSWORD
+                          valueFrom:
+                              secretKeyRef:
+                                  name: cluster-postgres-app
+                                  key: password
+                        - name: DB_TYPE
+                          valueFrom:
+                              secretKeyRef:
+                                  name: app
+                                  key: type
+                        - name: N8N_PORT
+                          value: "{{ .port }}"
+                        - name: N8N_ENCRYPTION_KEY
+                          valueFrom:
+                              secretKeyRef:
+                                  name: app
+                                  key: encryption_key
+                        - name: N8N_PAYLOAD_SIZE_MAX
+                          valueFrom:
+                              secretKeyRef:
+                                  name: app
+                                  key: maxFileSizeMb
 
 {{- if .resources }}
                     resources:

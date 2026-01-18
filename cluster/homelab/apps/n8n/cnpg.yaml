@@ -1,0 +1,19 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: cluster-postgres
+spec:
+  instances: 1
+
+  imageName: ghcr.io/cloudnative-pg/postgresql:18.1
+
+  bootstrap:
+    initdb:
+      import:
+        type: microservice
+        databases:
+          - n8n
+        source:
+          externalCluster: old-cluster
+  storage:
+    size: 10Gi
