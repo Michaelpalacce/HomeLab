@@ -10,7 +10,7 @@ spec:
   imageName: ghcr.io/cloudnative-pg/postgresql:18.1
 
   storage:
-    size: 5Gi
+    size: 10Gi
 
   podSecurityContext:
     runAsNonRoot: true

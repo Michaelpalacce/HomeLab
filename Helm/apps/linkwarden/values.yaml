@@ -1,5 +1,6 @@
 ---
 linkwarden:
+  replicas: 1
   image: ghcr.io/linkwarden/linkwarden:v2.13.5
   port: 3000
   resources:
@@ -7,5 +8,15 @@ linkwarden:
       cpu: 10m
       memory: 256Mi
 
+postgres:
+  image: postgres:16.11
+  dataSize: 5Gi
+  port: 5432
+  resources:
+    requests:
+      cpu: 10m
+      memory: 256Mi
+
 storage:
   configSize: 1Gi
+  postgresqlSize: 10Gi
