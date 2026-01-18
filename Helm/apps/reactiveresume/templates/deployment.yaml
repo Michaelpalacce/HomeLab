@@ -35,11 +35,34 @@ spec:
                     envFrom:
                       - secretRef:
                           name: app
-                      - secretRef:
-                          name: db
                     env:
                       - name: PUBLIC_FLAG_DISABLE_SIGNUPS
                         value: "true"
+                      - name: POSTGRES_HOST
+                        valueFrom:
+                            secretKeyRef:
+                                name: cluster-postgres-app
+                                key: host
+                      - name: POSTGRES_PORT
+                        valueFrom:
+                            secretKeyRef:
+                                name: cluster-postgres-app
+                                key: port
+                      - name: POSTGRES_DB
+                        valueFrom:
+                            secretKeyRef:
+                                name: cluster-postgres-app
+                                key: dbname
+                      - name: POSTGRES_PASSWORD
+                        valueFrom:
+                            secretKeyRef:
+                                name: cluster-postgres-app
+                                key: password
+                      - name: POSTGRES_USER
+                        valueFrom:
+                            secretKeyRef:
+                                name: cluster-postgres-app
+                                key: user
                     imagePullPolicy: IfNotPresent
                     volumeMounts:
                       - name: uploads

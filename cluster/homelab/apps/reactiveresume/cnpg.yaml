@@ -1,0 +1,26 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: cluster-postgres
+  annotations:
+    backup.velero.io/backup-volumes: pgdata
+spec:
+  instances: 1
+
+  imageName: ghcr.io/cloudnative-pg/postgresql:18.1
+
+  storage:
+    size: 5Gi
+
+  podSecurityContext:
+    runAsNonRoot: true
+  securityContext:
+    allowPrivilegeEscalation: false
+    capabilities:
+      drop:
+        - ALL
+      add:
+        - NET_BIND_SERVICE
+    privileged: false
+    readOnlyRootFilesystem: true
+    runAsNonRoot: true

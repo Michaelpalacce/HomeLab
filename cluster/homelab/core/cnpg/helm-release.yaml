@@ -28,3 +28,17 @@ spec:
         release: observeability
       grafanaDashboard:
         create: true
+    config:
+      create: true
+      name: cnpg-controller-manager-config
+      secret: false
+      clusterWide: true
+      # -- The content of the configmap/secret, see
+      # https://cloudnative-pg.io/documentation/current/operator_conf/#available-options
+      # for all the available options.
+      data:
+        INHERITED_ANNOTATIONS: backup.velero.io/*
+      # INHERITED_LABELS: environment, workload, app
+      # WATCH_NAMESPACE: namespace-a,namespace-b
+      # -- The maximum number of concurrent reconciles. Defaults to 10.
+      maxConcurrentReconciles: 10
