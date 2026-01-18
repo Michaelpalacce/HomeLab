@@ -17,3 +17,20 @@ spec:
           externalCluster: old-cluster
   storage:
     size: 10Gi
+
+  podSecurityContext:
+    runAsNonRoot: true
+
+  # Custom Container SecurityContext
+  # This will be applied to all containers in the cluster pods and merged with operator defaults.
+  # The operator provides secure defaults for all fields, which will be used if not explicitly set.
+  securityContext:
+    allowPrivilegeEscalation: false
+    capabilities:
+      drop:
+        - ALL
+      add:
+        - NET_BIND_SERVICE
+    privileged: false
+    readOnlyRootFilesystem: true
+    runAsNonRoot: true
