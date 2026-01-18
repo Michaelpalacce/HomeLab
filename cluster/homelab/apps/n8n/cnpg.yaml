@@ -9,22 +9,18 @@ spec:
 
   imageName: ghcr.io/cloudnative-pg/postgresql:18.1
 
-  bootstrap:
-    initdb:
-      import:
-        type: microservice
-        databases:
-          - n8n
-        source:
-          externalCluster: old-cluster
   storage:
     size: 10Gi
-  externalClusters:
-    - name: old-cluster
-      connectionParameters:
-        host: postgres
-        user: n8n
-        dbname: n8n
-      password:
-        name: db
-        key: POSTGRES_PASSWORD
+
+  podSecurityContext:
+    runAsNonRoot: true
+  securityContext:
+    allowPrivilegeEscalation: false
+    capabilities:
+      drop:
+        - ALL
+      add:
+        - NET_BIND_SERVICE
+    privileged: false
+    readOnlyRootFilesystem: true
+    runAsNonRoot: true
