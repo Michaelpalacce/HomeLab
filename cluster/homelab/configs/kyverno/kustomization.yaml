@@ -10,5 +10,5 @@ resources:
   - require-drop-all.yaml
   - restrict-service-external-ips.yaml
   - restrict-node-port.yaml
-  - default-network-policy.yaml
+  # - default-network-policy.yaml
   - inject-image-pull-secrets.yaml
