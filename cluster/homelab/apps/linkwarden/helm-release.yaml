@@ -16,4 +16,5 @@ spec:
         name: flux-system
         namespace: flux-system
   values:
-    replicas: 3
+    linkwarden:
+      replicas: 3
