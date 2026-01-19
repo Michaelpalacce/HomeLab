@@ -1,17 +1,8 @@
 ---
 vikunja:
-    image: vikunja/vikunja:0.24.6
-    port: 3456
-    frontendUrl: https://vikunja.sgenov.dev
-
-postgres:
-    image: postgres:16.11
-    port: 5432
-    resources:
-        requests:
-            cpu: 10m
-            memory: 256Mi
+  image: vikunja/vikunja:0.24.6
+  port: 3456
+  frontendUrl: https://vikunja.sgenov.dev
 
 storage:
-    postgresqlSize: 5Gi
-    dataSize: 5Gi
+  dataSize: 5Gi

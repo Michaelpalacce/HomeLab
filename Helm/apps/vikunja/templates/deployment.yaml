@@ -35,31 +35,8 @@ spec:
                   env:
                       - name: VIKUNJA_SERVICE_FRONTENDURL
                         value: "{{ .frontendUrl }}"
-                      - name: VIKUNJA_DATABASE_HOST
-                        valueFrom:
-                            secretKeyRef:
-                                name: app
-                                key: host
-                      - name: VIKUNJA_DATABASE_USER
-                        valueFrom:
-                            secretKeyRef:
-                                name: db
-                                key: POSTGRES_USER
-                      - name: VIKUNJA_DATABASE_PASSWORD
-                        valueFrom:
-                            secretKeyRef:
-                                name: db
-                                key: POSTGRES_PASSWORD
                       - name: VIKUNJA_DATABASE_TYPE
-                        valueFrom:
-                            secretKeyRef:
-                                name: app
-                                key: type
-                      - name: VIKUNJA_DATABASE_DATABASE
-                        valueFrom:
-                            secretKeyRef:
-                                name: db
-                                key: POSTGRES_DB
+                        value: "postgres"
                       - name: VIKUNJA_SERVICE_JWTSECRET
                         valueFrom:
                             secretKeyRef:
@@ -67,6 +44,26 @@ spec:
                                 key: JWT_SECRET
                       - name: VIKUNJA_MAILER_ENABLED
                         value: "false"
+                      - name: VIKUNJA_DATABASE_HOST
+                        valueFrom:
+                            secretKeyRef:
+                                name: cluster-postgres-app
+                                key: host
+                      - name: VIKUNJA_DATABASE_USER
+                        valueFrom:
+                            secretKeyRef:
+                                name: cluster-postgres-app
+                                key: username
+                      - name: VIKUNJA_DATABASE_PASSWORD
+                        valueFrom:
+                            secretKeyRef:
+                                name: cluster-postgres-app
+                                key: password
+                      - name: VIKUNJA_DATABASE_DATABASE
+                        valueFrom:
+                            secretKeyRef:
+                                name: cluster-postgres-app
+                                key: dbname
                   imagePullPolicy: IfNotPresent
                   volumeMounts:
                       - name: data
