@@ -2,7 +2,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
- # - bentopdf https://www.reddit.com/r/selfhosted/s/Rm4v48pOf8 
+  # - bentopdf https://www.reddit.com/r/selfhosted/s/Rm4v48pOf8
   - cert-manager
   - changedetection
   - cyberchef
@@ -29,7 +29,7 @@ resources:
   - uptimekuma
   - vikunja
   - website
-  - wallabag
+  # - wallabag
   - paperless-ngx
   - homebox
   - storage
