@@ -8,15 +8,5 @@ linkwarden:
       cpu: 10m
       memory: 256Mi
 
-postgres:
-  image: postgres:16.11
-  dataSize: 5Gi
-  port: 5432
-  resources:
-    requests:
-      cpu: 10m
-      memory: 256Mi
-
 storage:
   configSize: 1Gi
-  postgresqlSize: 10Gi

@@ -30,6 +30,11 @@ spec:
                   env:
                     - name: "NEXT_PUBLIC_DISABLE_REGISTRATION"
                       value: "true"
+                    - name: "DATABASE_URL"
+                      valueFrom:
+                          secretKeyRef:
+                              name: cluster-postgres-app
+                              key: fqdn-uri
                   envFrom:
                       -   secretRef:
                               name: app

@@ -6,6 +6,8 @@
 
 ## Security
 
+- [ ] Network Policies For External Services
+
 ## Infrastructure
 
 - [ ] Strip down the K3S Nodes of unused services and packages
