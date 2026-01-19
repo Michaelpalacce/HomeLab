@@ -1,29 +1,20 @@
 ---
 firefly:
-    image: fireflyiii/core:version-6.2.10
-    port: 8080
-    appUrl: https://firefly.sgenov.dev
-    resources:
-        requests:
-            cpu: 500m
-            memory: 2Gi
+  image: fireflyiii/core:version-6.2.10
+  port: 8080
+  appUrl: https://firefly.sgenov.dev
+  resources:
+    requests:
+      cpu: 500m
+      memory: 2Gi
 
 fireflybot:
-    image: cyxou/firefly-iii-telegram-bot:v2.3.1
-    resources:
-        requests:
-            cpu: 200m
-            memory: 500Mi
-
-postgres:
-    image: postgres:16.11
-    port: 5432
-    resources:
-        requests:
-            cpu: 500m
-            memory: 2Gi
+  image: cyxou/firefly-iii-telegram-bot:v2.3.1
+  resources:
+    requests:
+      cpu: 200m
+      memory: 500Mi
 
 storage:
-    configSize: 5Gi
-    botSessionSize: 2Gi
-    postgresSize: 10Gi
+  configSize: 5Gi
+  botSessionSize: 2Gi

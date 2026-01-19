@@ -43,53 +43,50 @@ spec:
                         -   name: data
                             mountPath: /var/www/html/storage
                     env:
-                        -   name: PUID
-                            value: "1000"
-                        -   name: PGID
-                            value: "1000"
-                        -   name: TZ
-                            value: "Europe/Sofia"
+                        - name: PUID
+                          value: "1000"
+                        - name: PGID
+                          value: "1000"
+                        - name: TZ
+                          value: "Europe/Sofia"
 
-                        -   name: DB_USERNAME
-                            valueFrom:
-                                secretKeyRef:
-                                    name: db
-                                    key: POSTGRES_USER
-                        -   name: DB_PASSWORD
-                            valueFrom:
-                                secretKeyRef:
-                                    name: db
-                                    key: POSTGRES_PASSWORD
-                        -   name: DB_DATABASE
-                            valueFrom:
-                                secretKeyRef:
-                                    name: db
-                                    key: POSTGRES_DB
+                        - name: DB_USERNAME
+                          valueFrom:
+                              secretKeyRef:
+                                  name: cluster-postgres-app
+                                  key: username
+                        - name: DB_PASSWORD
+                          valueFrom:
+                              secretKeyRef:
+                                  name: cluster-postgres-app
+                                  key: password
+                        - name: DB_DATABASE
+                          valueFrom:
+                              secretKeyRef:
+                                  name: cluster-postgres-app
+                                  key: dbname
+                        - name: DB_HOST
+                          valueFrom:
+                              secretKeyRef:
+                                  name: cluster-postgres-app
+                                  key: host
+                        - name: DB_PORT
+                          valueFrom:
+                              secretKeyRef:
+                                  name: cluster-postgres-app
+                                  key: port
+                        - name: DB_CONNECTION
+                          value: pgsql
 
-                        -   name: DB_HOST
-                            valueFrom:
-                                secretKeyRef:
-                                    name: app
-                                    key: host
-                        -   name: DB_PORT
-                            valueFrom:
-                                secretKeyRef:
-                                    name: app
-                                    key: port
-                        -   name: DB_CONNECTION
-                            valueFrom:
-                                secretKeyRef:
-                                    name: app
-                                    key: type
-                        -   name: APP_KEY
-                            valueFrom:
-                                secretKeyRef:
-                                    name: app
-                                    key: key
-                        -   name: APP_URL
-                            value: "{{ .appUrl }}"
-                        -   name: TRUSTED_PROXIES
-                            value: "**"
+                        - name: APP_KEY
+                          valueFrom:
+                              secretKeyRef:
+                                  name: app
+                                  key: key
+                        - name: APP_URL
+                          value: "{{ .appUrl }}"
+                        - name: TRUSTED_PROXIES
+                          value: "**"
                     livenessProbe:
                         failureThreshold: 5
                         initialDelaySeconds: 30
