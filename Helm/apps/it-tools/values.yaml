@@ -1,7 +1,7 @@
 ---
 ittools:
   replicas: 1
-  image: ghcr.io/corentinth/it-tools:2024.10.22-7ca5933
+  image: ghcr.io/corentinth/it-tools:nightly # The project doesn't have good docker tag hygiene
   port: 80
   resources:
     requests:
