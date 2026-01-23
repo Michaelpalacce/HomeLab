@@ -31,7 +31,7 @@ spec:
               weight: 1
       containers:
         - name: garden
-          image: ghcr.io/michaelpalacce/quartz:v2.0.1768247799 # Quartz image is separate for content to allow for updating `quartz` without needing to bump `garden`
+          image: ghcr.io/michaelpalacce/quartz:v2.0.1769062495 # Quartz image is separate for content to allow for updating `quartz` without needing to bump `garden`
           imagePullPolicy: IfNotPresent
           resources: # Initial run requires a few more resources
             limits:
