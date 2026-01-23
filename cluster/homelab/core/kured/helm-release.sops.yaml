@@ -17,7 +17,7 @@ spec:
   chart:
     spec:
       chart: kured
-      version: 5.10.0
+      version: 5.11.0
       interval: 10m
       sourceRef:
         kind: HelmRepository
