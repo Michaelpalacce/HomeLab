@@ -23,7 +23,7 @@ spec:
       restartPolicy: Always
       containers:
         - name: replacedby
-          image: ghcr.io/michaelpalacce/replacedby:0.1.1769367103
+          image: ghcr.io/michaelpalacce/replacedby:0.1.1769375940
           imagePullPolicy: IfNotPresent
           resources:
             requests:
