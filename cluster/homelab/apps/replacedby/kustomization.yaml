@@ -8,3 +8,4 @@ resources:
   - service.yaml
   - gateway-api.yaml
   - database.yaml
+  - secret.sops.yaml

@@ -4,7 +4,7 @@ metadata:
   name: mariadb
 spec:
   storage:
-    size: 5Gi
+    size: 15Gi
 
   replicas: 3
 
@@ -17,8 +17,6 @@ spec:
       autoFailoverDelay: 0s
       # Trigger a switchover by declaring the desired primary index.
       # podIndex: 0
-    replica:
-
   tls:
     enabled: false
 ---
@@ -34,3 +32,42 @@ spec:
   cleanupPolicy: Delete
   requeueInterval: 10h
   retryInterval: 30s
+---
+apiVersion: k8s.mariadb.com/v1alpha1
+kind: PhysicalBackup
+metadata:
+  name: physicalbackup
+spec:
+  mariaDbRef:
+    name: mariadb
+  target: PreferReplica
+  compression: bzip2
+  storage:
+    s3:
+      bucket: replacedby
+      endpoint: s3.eu-central-2.wasabisys.com
+      region: eu-central-2
+      accessKeyIdSecretKeyRef:
+        name: s3
+        key: access-key-id
+      secretAccessKeySecretKeyRef:
+        name: s3
+        key: secret-access-key
+  # Define a PVC to use as staging area for keeping the backups while they are being processed.
+  stagingStorage:
+    persistentVolumeClaim:
+      resources:
+        requests:
+          storage: 1Gi
+      accessModes:
+        - ReadWriteOnce
+  timeout: 1h
+  podAffinity: true
+  serviceAccountName: backup
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 300m
+      memory: 512Mi
