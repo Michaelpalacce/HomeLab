@@ -48,6 +48,8 @@ spec:
               value: ":8080"
             - name: ENV
               value: "prod"
+            - name: GIN_MODE
+              value: "release"
             - name: MYSQL_PORT
               value: "3306"
             - name: MYSQL_HOSTNAME
