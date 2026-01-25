@@ -34,3 +34,21 @@ spec:
   commonName: "*.adygenova.com"
   dnsNames:
     - "*.adygenova.com"
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: replacedby-cert
+  namespace: cert-manager
+spec:
+  secretTemplate:
+    annotations:
+      reflector.v1.k8s.emberstack.com/reflection-auto-enabled: "true"
+      reflector.v1.k8s.emberstack.com/reflection-allowed: "true"
+  secretName: adygenova-cert
+  issuerRef:
+    name: letsencrypt
+    kind: ClusterIssuer
+  commonName: "*.replacedby.net"
+  dnsNames:
+    - "*.replacedby.net"

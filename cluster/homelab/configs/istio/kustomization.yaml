@@ -5,4 +5,5 @@ resources:
   - internal-gateway.yaml
   - external-gateway.yaml
   - external-gateway-adygenova.yaml
+  - external-gateway-replacedby.yaml
   - namespace.yaml
