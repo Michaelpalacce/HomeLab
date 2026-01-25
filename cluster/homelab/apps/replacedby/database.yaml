@@ -42,6 +42,10 @@ spec:
     name: mariadb
   target: PreferReplica
   compression: bzip2
+  schedule:
+    cron: "0 0 * * *"
+    suspend: false
+    immediate: true
   storage:
     s3:
       bucket: replacedby
