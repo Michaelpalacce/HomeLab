@@ -53,7 +53,7 @@ spec:
             - name: MYSQL_PORT
               value: "3306"
             - name: MYSQL_HOSTNAME
-              value: "mariadb"
+              value: "mariadb-primary"
             - name: MYSQL_DATABASE
               value: "app"
             - name: MYSQL_ROOT_PASSWORD #unused... need to fix in app.. w/e
