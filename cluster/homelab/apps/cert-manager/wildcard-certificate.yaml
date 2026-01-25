@@ -45,7 +45,7 @@ spec:
     annotations:
       reflector.v1.k8s.emberstack.com/reflection-auto-enabled: "true"
       reflector.v1.k8s.emberstack.com/reflection-allowed: "true"
-  secretName: adygenova-cert
+  secretName: replacedby-cert
   issuerRef:
     name: letsencrypt
     kind: ClusterIssuer

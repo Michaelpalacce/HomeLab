@@ -1,0 +1,80 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: replacedby
+  labels:
+    app.kubernetes.io/instance: replacedby
+    app.kubernetes.io/name: replacedby
+spec:
+  replicas: 3
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: replacedby
+      app.kubernetes.io/name: replacedby
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/instance: replacedby
+        app.kubernetes.io/name: replacedby
+    spec:
+      restartPolicy: Always
+      containers:
+        - name: replacedby
+          image: ghcr.io/michaelpalacce/replacedby:0.1
+          imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              cpu: 128m
+              memory: 128Mi
+            limits:
+              cpu: 512m
+              memory: 512Mi
+          ports:
+            - name: web
+              containerPort: 8080
+          securityContext:
+            capabilities:
+              drop:
+                - "ALL"
+              add:
+                - CHOWN
+                - SETUID
+                - SETGID
+          env:
+            - name: PORT
+              value: ":8080"
+            - name: ENV
+              value: "prod"
+            - name: MYSQL_PORT
+              value: "3306"
+            - name: MYSQL_HOSTNAME
+              value: "mariadb"
+            - name: MYSQL_DATABASE
+              value: "app"
+            - name: MYSQL_ROOT_PASSWORD #unused... need to fix in app.. w/e
+              valueFrom:
+                secretKeyRef:
+                  name: mariadb-root
+                  key: password
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mariadb-root
+                  key: password
+            - name: MYSQL_USER
+              value: "root"
+
+          livenessProbe:
+            failureThreshold: 10
+            initialDelaySeconds: 30
+            tcpSocket:
+              port: 8080
+            timeoutSeconds: 2
+          startupProbe:
+            failureThreshold: 20
+            timeoutSeconds: 2
+            tcpSocket:
+              port: 8080

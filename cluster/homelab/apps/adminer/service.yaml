@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: adminer
+spec:
+  selector:
+    app.kubernetes.io/instance: adminer
+    app.kubernetes.io/name: adminer
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: http
