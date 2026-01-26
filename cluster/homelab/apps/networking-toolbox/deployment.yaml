@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: networkingtoolbox
+  labels:
+    app.kubernetes.io/instance: networkingtoolbox
+    app.kubernetes.io/name: networkingtoolbox
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: networkingtoolbox
+      app.kubernetes.io/name: networkingtoolbox
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/instance: networkingtoolbox
+        app.kubernetes.io/name: networkingtoolbox
+    spec:
+      containers:
+        - name: networkingtoolbox
+          image: ghcr.io/lissy93/networking-toolbox:1.6.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 3000
+          env:
+            - name: NODE_ENV
+              value: "production"
+            - name: PORT
+              value: "3000"
+            - name: HOST
+              value: "networkingtoolbox.sgenov.dev"
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100Mi
+            limits:
+              cpu: 200m
+              memory: 200Mi
+          livenessProbe:
+            exec:
+              command:
+                - wget
+                - -qO-
+                - http://127.0.0.1:3000/health
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          readinessProbe:
+            exec:
+              command:
+                - wget
+                - -qO-
+                - http://127.0.0.1:3000/health
+            initialDelaySeconds: 5
+            periodSeconds: 10

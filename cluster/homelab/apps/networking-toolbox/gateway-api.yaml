@@ -1,0 +1,18 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: networkingtoolbox-internal
+spec:
+  parentRefs:
+    - name: internal
+      namespace: istio-gateway
+  hostnames:
+    - "networkingtoolbox.sgenov.dev"
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - name: networkingtoolbox
+          port: 3000
