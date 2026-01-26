@@ -3,7 +3,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - adminer
-  # - bentopdf https://www.reddit.com/r/selfhosted/s/Rm4v48pOf8
+  - bentopdf
   - cert-manager
   - changedetection
   - cyberchef
