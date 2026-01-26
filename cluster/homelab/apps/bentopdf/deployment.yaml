@@ -20,7 +20,7 @@ spec:
       restartPolicy: Always
       containers:
         - name: bentopdf
-          image: ghcr.io/alam00000/bentopdf:v1.15.3
+          image: ghcr.io/alam00000/bentopdf:1.16.1
           imagePullPolicy: IfNotPresent
           resources:
             limits:
