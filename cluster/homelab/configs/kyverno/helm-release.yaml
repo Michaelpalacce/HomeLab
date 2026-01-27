@@ -11,7 +11,7 @@ spec:
   chart:
     spec:
       chart: kyverno-policies
-      version: 3.6.2
+      version: 3.6.3
       interval: 10m
       sourceRef:
         kind: HelmRepository
