@@ -30,7 +30,7 @@ spec:
             - name: PORT
               value: "3000"
             - name: HOST
-              value: "networkingtoolbox.sgenov.dev"
+              value: "0.0.0.0"
           resources:
             requests:
               cpu: 100m
