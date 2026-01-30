@@ -9,4 +9,4 @@ linkwarden:
       memory: 256Mi
 
 storage:
-  configSize: 1Gi
+  configSize: 25Gi
