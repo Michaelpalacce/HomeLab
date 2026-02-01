@@ -16,7 +16,7 @@ spec:
             value: /
       backendRefs:
         - name: garden
-          port: 8080
+          port: 80
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
@@ -40,4 +40,4 @@ spec:
             value: /
       backendRefs:
         - name: garden
-          port: 8080
+          port: 8

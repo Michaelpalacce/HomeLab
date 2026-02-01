@@ -31,15 +31,15 @@ spec:
               weight: 1
       containers:
         - name: garden
-          image: ghcr.io/michaelpalacce/quartz:v2.0.1769062495 # Quartz image is separate for content to allow for updating `quartz` without needing to bump `garden`
+          image: ghcr.io/michaelpalacce/garden:v5.0
           imagePullPolicy: IfNotPresent
           resources: # Initial run requires a few more resources
             limits:
-              cpu: 1
-              memory: 1Gi
+              cpu: 500m
+              memory: 51Mi
           ports:
             - name: web
-              containerPort: 8080
+              containerPort: 80
           securityContext:
             capabilities:
               drop:
@@ -59,18 +59,10 @@ spec:
             failureThreshold: 10
             initialDelaySeconds: 10
             tcpSocket:
-              port: 8080
+              port: 80
             timeoutSeconds: 2
           startupProbe:
             failureThreshold: 20
             timeoutSeconds: 2
             tcpSocket:
-              port: 8080
-          volumeMounts:
-            - name: garden
-              mountPath: /usr/src/app/content
-      volumes:
-        - name: garden
-          image:
-            reference: ghcr.io/michaelpalacce/garden:v4.1.1769897164
-            pullPolicy: IfNotPresent
+              port: 80
