@@ -7,6 +7,6 @@ spec:
     app.kubernetes.io/instance: garden
     app.kubernetes.io/name: garden
   ports:
-    - name: web
+    - name: garden
       protocol: TCP
       port: 80

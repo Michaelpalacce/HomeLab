@@ -40,4 +40,4 @@ spec:
             value: /
       backendRefs:
         - name: garden
-          port: 8
+          port: 80
