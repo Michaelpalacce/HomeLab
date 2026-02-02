@@ -31,7 +31,7 @@ spec:
               weight: 1
       containers:
         - name: garden
-          image: ghcr.io/michaelpalacce/garden:v4.1.1769946284
+          image: ghcr.io/michaelpalacce/garden:v4.1.1769964525
           imagePullPolicy: IfNotPresent
           resources: # Initial run requires a few more resources
             limits:
