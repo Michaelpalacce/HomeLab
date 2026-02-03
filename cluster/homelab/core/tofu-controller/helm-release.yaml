@@ -12,7 +12,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: tofu-controller
-      version: "0.16.0"
+      version: "0.16.1"
   interval: 10m
   releaseName: tofu-controller
   targetNamespace: flux-system
