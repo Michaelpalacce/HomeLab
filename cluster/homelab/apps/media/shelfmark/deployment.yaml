@@ -24,7 +24,7 @@ spec:
       restartPolicy: Always
       containers:
         - name: shelfmark
-          image: ghcr.io/calibrain/shelfmark:v1.0.3
+          image: ghcr.io/calibrain/shelfmark:v1.0.4
           imagePullPolicy: IfNotPresent
           resources:
             requests:
