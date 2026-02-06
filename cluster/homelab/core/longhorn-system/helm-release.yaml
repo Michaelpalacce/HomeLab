@@ -18,6 +18,10 @@ spec:
         name: longhorn-system
         namespace: flux-system
   values:
+    image:
+      longhorn:
+        manager:
+          tag: v1.11.0-hotfix-1
     enablePSP: false
     networkPolicies:
       enabled: true
