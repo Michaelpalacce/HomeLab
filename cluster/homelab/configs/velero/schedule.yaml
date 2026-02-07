@@ -49,6 +49,7 @@ spec:
   template:
     hooks: {}
     includedNamespaces: # Data I don't want to lose
+      - replacedby
       - vikunja
       - website
       - reactiveresume
