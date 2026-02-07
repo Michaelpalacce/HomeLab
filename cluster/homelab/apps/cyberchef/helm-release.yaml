@@ -18,4 +18,4 @@ spec:
         namespace: flux-system
   values:
     cyberchef:
-      image: mpepping/cyberchef:v10.20.0
+      image: mpepping/cyberchef:v10.21.0
