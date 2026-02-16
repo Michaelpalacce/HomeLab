@@ -55,7 +55,7 @@ radarr:
       memory: 50Mi
 
 overseerr:
-  image: lscr.io/linuxserver/overseerr:1.34.0
+  image: lscr.io/linuxserver/overseerr:1.35.0
   port: 5055
   replicas: 1
   resources:
