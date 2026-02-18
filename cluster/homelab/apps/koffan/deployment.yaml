@@ -24,7 +24,7 @@ spec:
       restartPolicy: Always
       containers:
         - name: koffan
-          image: ghcr.io/pansalut/koffan:v1.9.2
+          image: ghcr.io/pansalut/koffan:v2.1.1
           imagePullPolicy: IfNotPresent
           resources:
             requests:
