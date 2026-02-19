@@ -11,7 +11,7 @@ spec:
   chart:
     spec:
       chart: kyverno
-      version: 3.7.0
+      version: 3.7.1
       interval: 10m
       sourceRef:
         kind: HelmRepository
