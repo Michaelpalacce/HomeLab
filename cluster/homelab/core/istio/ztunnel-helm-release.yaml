@@ -17,7 +17,7 @@ spec:
   chart:
     spec:
       chart: ztunnel
-      version: 1.29.0
+      version: 1.29.1
       interval: 10m
       sourceRef:
         kind: HelmRepository
