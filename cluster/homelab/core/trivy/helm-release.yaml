@@ -15,7 +15,7 @@ spec:
   chart:
     spec:
       chart: trivy-operator
-      version: 0.32.0
+      version: 0.32.1
       interval: 10m
       sourceRef:
         kind: HelmRepository
