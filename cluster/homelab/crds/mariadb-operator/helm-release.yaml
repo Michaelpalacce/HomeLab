@@ -15,7 +15,7 @@ spec:
   chart:
     spec:
       chart: mariadb-operator-crds
-      version: "25.10.4"
+      version: "26.3.0"
       interval: 10m
       sourceRef:
         kind: HelmRepository
