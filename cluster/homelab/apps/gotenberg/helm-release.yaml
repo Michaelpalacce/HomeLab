@@ -26,4 +26,4 @@ spec:
   values:
     image:
       repository: gotenberg/gotenberg
-      tag: 8.30.1
+      tag: 8.31.0
