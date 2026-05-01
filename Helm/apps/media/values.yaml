@@ -74,7 +74,7 @@ sonarr:
       cpu: 2
 
 kavita:
-  image: ghcr.io/linuxserver/kavita:0.8.9
+  image: ghcr.io/linuxserver/kavita:0.9.0
   port: 5000
   replicas: 1
   resources:
