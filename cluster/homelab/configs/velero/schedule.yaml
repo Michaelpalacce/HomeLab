@@ -56,7 +56,6 @@ spec:
       - homebox
       - paperless-ngx
       - firefly
-      - wallabag
       - linkwarden
       - mealie
     snapshotVolumes: true
