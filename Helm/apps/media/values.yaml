@@ -23,7 +23,7 @@ flaresolverr:
       memory: 1Gi
 
 transmission:
-  image: lscr.io/linuxserver/transmission:4.1.1
+  image: lscr.io/linuxserver/transmission:4.1.2
   port: 9091
   username: username
   password: password
