@@ -15,7 +15,7 @@ spec:
   chart:
     spec:
       chart: mariadb-operator
-      version: "26.3.0"
+      version: "26.6.0"
       interval: 10m
       sourceRef:
         kind: HelmRepository
