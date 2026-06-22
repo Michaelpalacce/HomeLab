@@ -1,6 +1,6 @@
 ---
 cyberchef:
-    image: mpepping/cyberchef:v10.24.0
+    image: mpepping/cyberchef:v11.2.0
     port: 8000
     resources:
         requests:
