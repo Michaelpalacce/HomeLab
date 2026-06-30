@@ -21,7 +21,7 @@ spec:
     image:
       repository: ghcr.io/cloudnative-pg/cloudnative-pg
       pullPolicy: IfNotPresent
-      tag: "1.29.2"
+      tag: "1.30.0"
     monitoring:
       podMonitorEnabled: true
       podMonitorAdditionalLabels:
