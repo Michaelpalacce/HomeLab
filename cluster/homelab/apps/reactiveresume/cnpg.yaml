@@ -12,8 +12,6 @@ spec:
   storage:
     size: 10Gi
 
-  podSecurityContext:
-    runAsNonRoot: true
   securityContext:
     allowPrivilegeEscalation: false
     capabilities:
