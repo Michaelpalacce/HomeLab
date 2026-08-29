@@ -1,70 +1,86 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: paperless-ngx
-  namespace: paperless-ngx
+    name: paperless-ngx
+    namespace: paperless-ngx
 spec:
-  interval: 10m
-  install:
-    createNamespace: true
-    crds: CreateReplace
-    remediation:
-      retries: 3
-  upgrade:
-    crds: CreateReplace
-    remediation:
-      retries: 3
-  chart:
-    spec:
-      chart: paperless-ngx
-      version: 0.24.1
-      interval: 10m
-      sourceRef:
-        kind: HelmRepository
-        name: gabe565
-        namespace: flux-system
-  values:
-    env:
-      PAPERLESS_OCR_LANGUAGES: eng bul
-      PAPERLESS_TIKA_ENABLED: "true"
-      PAPERLESS_TIKA_ENDPOINT: http://tika.tika:9998
-      PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://gotenberg.gotenberg:80
-      PAPERLESS_URL: https://paperless.sgenov.dev
-    podAnnotations:
-      backup.velero.io/backup-volumes: data,media,export,consume
-    redis:
-      image:
-        tag: latest
-    service:
-      main:
-        ports:
-          http:
-            port: 80
-    image:
-      # -- Image repository
-      repository: ghcr.io/paperless-ngx/paperless-ngx
-      # -- Image pull policy
-      pullPolicy: IfNotPresent
-      # -- Image tag
-      tag: 3.1.0
-    persistence:
-      data:
-        enabled: true
-        storageClass: longhorn
-        accessMode: ReadWriteOnce
-        size: 10Gi
-      media:
-        enabled: true
-        storageClass: longhorn
-        accessMode: ReadWriteOnce
-        size: 100Gi
-      export:
-        enabled: true
-        storageClass: longhorn
-        accessMode: ReadWriteOnce
-        size: 1Gi
-      consume:
-        enabled: true
-        storageClass: longhorn
-        accessMode: ReadWriteOnce
-        size: 4Gi
+    interval: 10m
+    install:
+        createNamespace: true
+        crds: CreateReplace
+        remediation:
+            retries: 3
+    upgrade:
+        crds: CreateReplace
+        remediation:
+            retries: 3
+    chart:
+        spec:
+            chart: paperless-ngx
+            version: 0.24.1
+            interval: 10m
+            sourceRef:
+                kind: HelmRepository
+                name: gabe565
+                namespace: flux-system
+    values:
+        env:
+            PAPERLESS_OCR_LANGUAGES: eng bul
+            PAPERLESS_TIKA_ENABLED: "true"
+            PAPERLESS_TIKA_ENDPOINT: http://tika.tika:9998
+            PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://gotenberg.gotenberg:80
+            PAPERLESS_URL: https://paperless.sgenov.dev
+            PAPERLESS_SECRET_KEY: ENC[AES256_GCM,data:mKWbjYEOOuOpfs2HuJeoeNvHP4EQsjpz16amRC/jb2ivrUNR42m+Kqc5pAEL4mP1wmQkdrI3rHuCZs8oo44JeLjRc4zJ7uGWjIAzNKex8ACxHlZf0gw=,iv:as+wfxfRRu4FdUM8JlxU0kSIPnTizMPD4qFwIYrKrGA=,tag:kwOGaSnZYhqtIQMYYfyzLg==,type:str]
+        podAnnotations:
+            backup.velero.io/backup-volumes: data,media,export,consume
+        redis:
+            image:
+                tag: latest
+        service:
+            main:
+                ports:
+                    http:
+                        port: 80
+        image:
+            # -- Image repository
+            repository: ghcr.io/paperless-ngx/paperless-ngx
+            # -- Image pull policy
+            pullPolicy: IfNotPresent
+            # -- Image tag
+            tag: 3.1.0
+        persistence:
+            data:
+                enabled: true
+                storageClass: longhorn
+                accessMode: ReadWriteOnce
+                size: 10Gi
+            media:
+                enabled: true
+                storageClass: longhorn
+                accessMode: ReadWriteOnce
+                size: 100Gi
+            export:
+                enabled: true
+                storageClass: longhorn
+                accessMode: ReadWriteOnce
+                size: 1Gi
+            consume:
+                enabled: true
+                storageClass: longhorn
+                accessMode: ReadWriteOnce
+                size: 4Gi
+sops:
+    age:
+        - enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBvbjRVMVFua084OEFqWjg5
+            MmdicXpKemdVblQ3UzkyY1hud2RsbU51YkJRCkcxam14di83aDZQY0VoT1NkS05n
+            SVdvY0ZtV3c2a1BLZ2tPdFliK2w3NVUKLS0tIG9tUmhDL1BjZm9nRDVMREd3SUZn
+            VjBOVTRxWUF1N0JIUE1XVmtOR0FjM3cKPLtzvo4CplP3u2c3uzo4BAj18fVTG/pc
+            AOAphji4wY7vGgeAEbVzBkbXc1KCBbCmiQ8hYzHKQHeICMmKmolF5Q==
+            -----END AGE ENCRYPTED FILE-----
+          recipient: age1mq6usjzvvxvcp7tl03yjdqd0kgjhhvhz48kmg86p43nhx0jc75jssw0kfn
+    encrypted_regex: (?i)password|webhook_url|token|key
+    lastmodified: "2026-08-29T13:16:44Z"
+    mac: ENC[AES256_GCM,data:yqrMVDJE3ej7en92c2QYFZY7K5pboatJuo5sZskqzr8yHbUY2jr3BWI1hXE4JmRDU67LFrsCEYSimd5pQ/bNcEJ+0KE70UkgsCI+1gGrzPbTaYrgPToqNEai/pF7MnHxBp0708uCdNI1PGGCMgv1+7TBgQodbogfn3cUQuX8jHo=,iv:CFP+RRUEdFrMCIN/k4DH/L6KbXPEFRo8giHY5XlBzM4=,tag:ORY+z0SBnSBN12YqagG8VA==,type:str]
+    version: 3.13.3
