@@ -15,6 +15,3 @@
 ## Service Specifics
 
 ## Upgrades
-
-- [ ] Migrate to newest postgresql
-- [ ] postgresql instances should be a statefulset
