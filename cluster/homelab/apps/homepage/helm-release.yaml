@@ -27,7 +27,7 @@ spec:
   values:
     image:
       repository: ghcr.io/gethomepage/homepage
-      tag: v2.3.0
+      tag: v2.4.0
 
     # Enable RBAC. RBAC is necessary to use Kubernetes integration
     enableRbac: true
