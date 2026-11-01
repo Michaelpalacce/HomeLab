@@ -26,7 +26,6 @@ resources:
   - observeability
   - paperless-ngx
   - reactiveresume
-  - replacedby
   - koffan
   - storage
   - tika
@@ -35,4 +34,5 @@ resources:
   - website
   - homebox
   - networking-toolbox
+  # - replacedby
   # - wallabag
