@@ -18,13 +18,6 @@ spec:
         name: longhorn-system
         namespace: flux-system
   values:
-    image:
-      longhorn:
-        manager:
-          tag: v1.11.0-hotfix-1
-        instanceManager:
-          tag: v1.11.0-hotfix-1
-    # REF: https://longhorn.io/docs/1.11.0/important-notes/#longhorn-manager-image
     preUpgradeChecker:
       jobEnabled: true
       upgradeVersionCheck: false
