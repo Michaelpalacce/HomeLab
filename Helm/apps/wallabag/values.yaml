@@ -1,6 +1,6 @@
 ---
 wallabag:
-  image: wallabag/wallabag:2.6.17
+  image: wallabag/wallabag:2.6.19
   replicas: 1
   port: 80
   domainName: https://wallabag.sgenov.dev
